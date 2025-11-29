@@ -1,63 +1,52 @@
-# Next.js Framework Starter
+# Claude Code Hub 文档站
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/next-starter-template)
+[Claude Code Hub](https://github.com/ding113/claude-code-hub) 的官方在线文档。
 
-<!-- dash-content-start -->
+## 技术栈
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It's deployed on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+- **框架**: Next.js 15 (App Router)
+- **样式**: Tailwind CSS 4
+- **文档**: Markdoc
+- **主题**: Claude 品牌色彩系统
 
-This template uses [OpenNext](https://opennext.js.org/) via the [OpenNext Cloudflare adapter](https://opennext.js.org/cloudflare), which works by taking the Next.js build output and transforming it, so that it can run in Cloudflare Workers.
-
-<!-- dash-content-end -->
-
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/next-starter-template
-```
-
-A live public deployment of this template is available at [https://next-starter-template.templates.workers.dev](https://next-starter-template.templates.workers.dev)
-
-## Getting Started
-
-First, run:
+## 本地开发
 
 ```bash
+# 安装依赖
 npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
-```
 
-Then run the development server (using the package manager of your choice):
-
-```bash
+# 启动开发服务器
 npm run dev
+
+# 构建生产版本
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 文档结构
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/docs/
+├── installation/        # 快速开始
+├── configuration/       # 配置指南
+├── client-setup/        # 客户端设置
+├── provider-management/ # 供应商管理
+├── intelligent-routing/ # 智能路由
+├── circuit-breaker/     # 熔断器
+├── rate-limiting/       # 限流
+├── session-management/  # 会话管理
+├── dashboard/           # 仪表盘
+├── user-management/     # 用户管理
+├── monitoring/          # 监控
+├── advanced-settings/   # 高级设置
+├── api-compatibility/   # API 兼容性
+├── server-actions-api/  # Server Actions
+├── architecture/        # 架构设计
+├── database-schema/     # 数据库设计
+├── contributing/        # 贡献指南
+├── faq/                 # 常见问题
+└── changelog/           # 更新日志
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 许可证
 
-## Deploying To Production
-
-| Command                           | Action                                       |
-| :-------------------------------- | :------------------------------------------- |
-| `npm run build`                   | Build your production site                   |
-| `npm run preview`                 | Preview your build locally, before deploying |
-| `npm run build && npm run deploy` | Deploy your production site to Cloudflare    |
-| `npm wrangler tail`               | View real-time logs for all Workers          |
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+MIT
