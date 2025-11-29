@@ -1,0 +1,75 @@
+name: Sync CHANGELOG from upstream
+
+on:
+  schedule:
+    # 每小时运行一次
+    - cron: '0 * * * *'
+  workflow_dispatch: # 支持手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Fetch upstream CHANGELOG
+        run: |
+          curl -sSL https://raw.githubusercontent.com/ding113/claude-code-hub/main/CHANGELOG.md -o /tmp/upstream-changelog.md
+
+      - name: Sync changelog content
+        run: |
+          LOCAL_FILE="src/app/docs/changelog/page.md"
+          UPSTREAM_FILE="/tmp/upstream-changelog.md"
+
+          # 定义本地头部（保持不变）
+          cat > /tmp/local-header.md << 'HEADER_EOF'
+          ---
+          dimensions:
+            type:
+              primary: reference
+              detail: changelog
+            level: beginner
+          standard_title: 更新日志
+          language: zh
+          ---
+
+          # 更新日志
+
+          本页面记录 Claude Code Hub 的所有版本变更，按时间倒序排列。 {% .lead %}
+
+          ---
+
+          HEADER_EOF
+
+          # 从上游提取正文（跳过标题行，从第一个版本开始）
+          # 上游格式：# Changelog / ## [vX.X.X]...
+          awk '/^## \[v[0-9]+\.[0-9]+\.[0-9]+\]/{found=1} found{print}' "$UPSTREAM_FILE" > /tmp/upstream-body.md
+
+          # 合并头部和上游正文
+          cat /tmp/local-header.md /tmp/upstream-body.md > "$LOCAL_FILE"
+
+          echo "Changelog synced successfully"
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet src/app/docs/changelog/page.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/app/docs/changelog/page.md
+          git commit -m "docs: sync CHANGELOG from upstream
+
+          🤖 Auto-synced from https://github.com/ding113/claude-code-hub/blob/main/CHANGELOG.md"
+          git push

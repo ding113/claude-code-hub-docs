@@ -82,12 +82,37 @@ export default function withSearch(nextConfig = {}) {
             return `
               import FlexSearch from 'flexsearch'
 
+              // 中文分词函数：按字符分割，支持中英文混合搜索
+              function tokenize(str) {
+                const tokens = []
+                let word = ''
+                for (const char of str) {
+                  // 中文字符单独作为 token
+                  if (/[\\u4e00-\\u9fff]/.test(char)) {
+                    if (word) {
+                      tokens.push(word.toLowerCase())
+                      word = ''
+                    }
+                    tokens.push(char)
+                  } else if (/[a-zA-Z0-9]/.test(char)) {
+                    word += char
+                  } else {
+                    if (word) {
+                      tokens.push(word.toLowerCase())
+                      word = ''
+                    }
+                  }
+                }
+                if (word) tokens.push(word.toLowerCase())
+                return tokens
+              }
+
               let sectionIndex = new FlexSearch.Document({
-                tokenize: 'full',
+                tokenize: tokenize,
                 document: {
                   id: 'url',
-                  index: 'content',
-                  store: ['title', 'pageTitle'],
+                  index: ['title', 'content'],
+                  store: ['title', 'pageTitle', 'content'],
                 },
                 context: {
                   resolution: 9,
@@ -102,7 +127,7 @@ export default function withSearch(nextConfig = {}) {
                 for (let [title, hash, content] of sections) {
                   sectionIndex.add({
                     url: url + (hash ? ('#' + hash) : ''),
-                    title,
+                    title: title || '',
                     content: [title, ...content].join('\\n'),
                     pageTitle: hash ? sections[0][0] : undefined,
                   })
@@ -117,7 +142,18 @@ export default function withSearch(nextConfig = {}) {
                 if (result.length === 0) {
                   return []
                 }
-                return result[0].result.map((item) => ({
+                // 合并多个索引字段的结果并去重
+                let seen = new Set()
+                let items = []
+                for (let field of result) {
+                  for (let item of field.result) {
+                    if (!seen.has(item.id)) {
+                      seen.add(item.id)
+                      items.push(item)
+                    }
+                  }
+                }
+                return items.slice(0, options.limit || 5).map((item) => ({
                   url: item.id,
                   title: item.doc.title,
                   pageTitle: item.doc.pageTitle,

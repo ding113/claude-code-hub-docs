@@ -8,18 +8,17 @@ import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'typescript'
-const code = `// claude-code-hub.config.ts
-export default {
-  providers: ['anthropic', 'openai', 'google'],
-  loadBalancing: 'smart-routing',
-  circuitBreaker: { threshold: 5 },
-  rateLimit: { rpm: 1000 },
-}`
+const codeLanguage = 'javascript'
+const code = `// 🚀 Claude Code Hub
+provider  → anthropic | openai | google
+routing   → smart-load-balance
+failover  → auto-retry × 3
+monitor   → realtime-dashboard
+`
 
 const tabs = [
-  { name: 'claude-code-hub.config.ts', isActive: true },
-  { name: 'package.json', isActive: false },
+  { name: 'hub-overview', isActive: true },
+  { name: 'features', isActive: false },
 ]
 
 function TrafficLightsIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
