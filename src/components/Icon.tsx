@@ -18,9 +18,9 @@ const icons = {
 }
 
 const iconStyles = {
-  blue: '[--icon-foreground:var(--color-slate-900)] [--icon-background:var(--color-white)]',
+  blue: '[--icon-foreground:var(--claude-rust)] [--icon-background:var(--claude-sunrise)]',
   amber:
-    '[--icon-foreground:var(--color-amber-900)] [--icon-background:var(--color-amber-100)]',
+    '[--icon-foreground:var(--claude-ember-dark)] [--icon-background:var(--claude-amber)]',
 }
 
 export function Icon({
@@ -50,13 +50,13 @@ export function Icon({
 
 const gradients = {
   blue: [
-    { stopColor: '#0EA5E9' },
-    { stopColor: '#22D3EE', offset: '.527' },
-    { stopColor: '#818CF8', offset: 1 },
+    { stopColor: 'var(--claude-rust)' },
+    { stopColor: 'var(--claude-terracotta)', offset: '.527' },
+    { stopColor: 'var(--claude-ember)', offset: 1 },
   ],
   amber: [
-    { stopColor: '#FDE68A', offset: '.08' },
-    { stopColor: '#F59E0B', offset: '.837' },
+    { stopColor: 'var(--claude-amber)', offset: '.08' },
+    { stopColor: 'var(--claude-ember-dark)', offset: '.837' },
   ],
 }
 

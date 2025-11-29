@@ -20,6 +20,14 @@ function GitHubIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function TelegramIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" {...props}>
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+    </svg>
+  )
+}
+
 function Header() {
   let [isScrolled, setIsScrolled] = useState(false)
 
@@ -37,9 +45,9 @@ function Header() {
   return (
     <header
       className={clsx(
-        'sticky top-0 z-50 flex flex-none flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none',
+        'sticky top-0 z-50 flex flex-none flex-wrap items-center justify-between bg-[var(--claude-paper)] px-4 py-5 shadow-md shadow-[var(--claude-walnut)]/5 transition duration-500 sm:px-6 lg:px-8 dark:shadow-none',
         isScrolled
-          ? 'dark:bg-slate-900/95 dark:backdrop-blur-sm dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
+          ? 'dark:bg-[var(--claude-paper)]/95 dark:backdrop-blur-sm dark:[@supports(backdrop-filter:blur(0))]:bg-[var(--claude-paper)]/75'
           : 'dark:bg-transparent',
       )}
     >
@@ -49,7 +57,7 @@ function Header() {
       <div className="relative flex grow basis-0 items-center">
         <Link href="/" aria-label="Home page">
           <Logomark className="h-9 w-9 lg:hidden" />
-          <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" />
+          <Logo className="hidden h-9 w-auto fill-[var(--claude-ink)] lg:block dark:fill-[var(--claude-ink)]" />
         </Link>
       </div>
       <div className="-my-5 mr-6 sm:mr-8 md:mr-0">
@@ -57,11 +65,65 @@ function Header() {
       </div>
       <div className="relative flex basis-0 justify-end gap-6 sm:gap-8 md:grow">
         <ThemeSelector className="relative z-10" />
-        <Link href="https://github.com" className="group" aria-label="GitHub">
-          <GitHubIcon className="h-6 w-6 fill-slate-400 group-hover:fill-slate-500 dark:group-hover:fill-slate-300" />
+        <Link
+          href="https://github.com/ding113/claude-code-hub"
+          className="group"
+          aria-label="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHubIcon className="h-6 w-6 fill-[var(--claude-walnut)]/60 group-hover:fill-[var(--claude-walnut)] dark:group-hover:fill-[var(--claude-ink)]" />
+        </Link>
+        <Link
+          href="https://t.me/ygxz_group"
+          className="group"
+          aria-label="Telegram"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <TelegramIcon className="h-6 w-6 fill-[var(--claude-walnut)]/60 group-hover:fill-[var(--claude-walnut)] dark:group-hover:fill-[var(--claude-ink)]" />
         </Link>
       </div>
     </header>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-[var(--claude-smoke)]/30 bg-[var(--claude-sand)] py-10 dark:border-[var(--claude-smoke)]/30 dark:bg-[var(--claude-sand)]">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          <div className="flex items-center gap-2 text-sm text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]">
+            <span>Claude Code Hub</span>
+            <span>-</span>
+            <span>智能 AI API 代理平台</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <Link
+              href="https://github.com/ding113/claude-code-hub"
+              className="group flex items-center gap-2 text-sm text-[var(--claude-walnut)]/80 hover:text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]/80 dark:hover:text-[var(--claude-ink)]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon className="h-5 w-5 fill-[var(--claude-walnut)]/60 group-hover:fill-[var(--claude-walnut)] dark:fill-[var(--claude-walnut)]/60 dark:group-hover:fill-[var(--claude-ink)]" />
+              <span>GitHub</span>
+            </Link>
+            <Link
+              href="https://t.me/ygxz_group"
+              className="group flex items-center gap-2 text-sm text-[var(--claude-walnut)]/80 hover:text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]/80 dark:hover:text-[var(--claude-ink)]"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TelegramIcon className="h-5 w-5 fill-[var(--claude-walnut)]/60 group-hover:fill-[var(--claude-walnut)] dark:fill-[var(--claude-walnut)]/60 dark:group-hover:fill-[var(--claude-ink)]" />
+              <span>Telegram</span>
+            </Link>
+          </div>
+        </div>
+        <div className="mt-6 text-center text-xs text-[var(--claude-walnut)]/60 dark:text-[var(--claude-walnut)]/60">
+          &copy; {new Date().getFullYear()} Claude Code Hub. All rights reserved.
+        </div>
+      </div>
+    </footer>
   )
 }
 
@@ -70,22 +132,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
   let isHomePage = pathname === '/'
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex min-h-screen w-full flex-col">
       <Header />
 
       {isHomePage && <Hero />}
 
       <div className="relative mx-auto flex w-full max-w-8xl flex-auto justify-center sm:px-2 lg:px-8 xl:px-12">
         <div className="hidden lg:relative lg:block lg:flex-none">
-          <div className="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />
-          <div className="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-slate-800 dark:block" />
-          <div className="absolute top-28 right-0 bottom-0 hidden w-px bg-slate-800 dark:block" />
+          <div className="absolute inset-y-0 right-0 w-[50vw] bg-[var(--claude-sand)] dark:hidden" />
+          <div className="absolute top-16 right-0 bottom-0 hidden h-12 w-px bg-linear-to-t from-[var(--claude-smoke)] dark:block" />
+          <div className="absolute top-28 right-0 bottom-0 hidden w-px bg-[var(--claude-smoke)] dark:block" />
           <div className="sticky top-19 -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-x-hidden overflow-y-auto py-16 pr-8 pl-0.5 xl:w-72 xl:pr-16">
             <Navigation />
           </div>
         </div>
         {children}
       </div>
+
+      <Footer />
     </div>
   )
 }

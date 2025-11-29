@@ -8,17 +8,17 @@ import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
-const codeLanguage = 'javascript'
-const code = `export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
+const codeLanguage = 'typescript'
+const code = `// claude-code-hub.config.ts
+export default {
+  providers: ['anthropic', 'openai', 'google'],
+  loadBalancing: 'smart-routing',
+  circuitBreaker: { threshold: 5 },
+  rateLimit: { rpm: 1000 },
 }`
 
 const tabs = [
-  { name: 'cache-advance.config.js', isActive: true },
+  { name: 'claude-code-hub.config.ts', isActive: true },
   { name: 'package.json', isActive: false },
 ]
 
@@ -34,12 +34,12 @@ function TrafficLightsIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 export function Hero() {
   return (
-    <div className="overflow-hidden bg-slate-900 dark:-mt-19 dark:-mb-32 dark:pt-19 dark:pb-32">
+    <div className="overflow-hidden bg-[var(--claude-sand)] dark:-mt-19 dark:-mb-32 dark:bg-[var(--claude-paper)] dark:pt-19 dark:pb-32">
       <div className="py-16 sm:px-2 lg:relative lg:px-0 lg:py-20">
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-8xl lg:grid-cols-2 lg:px-8 xl:gap-x-16 xl:px-12">
           <div className="relative z-10 md:text-center lg:text-left">
             <Image
-              className="absolute right-full bottom-full -mr-72 -mb-56 opacity-50"
+              className="absolute right-full bottom-full -mr-72 -mb-56 opacity-30"
               src={blurCyanImage}
               alt=""
               width={530}
@@ -48,17 +48,23 @@ export function Hero() {
               priority
             />
             <div className="relative">
-              <p className="inline bg-linear-to-r from-indigo-200 via-sky-400 to-indigo-200 bg-clip-text font-display text-5xl tracking-tight text-transparent">
-                Never miss the cache again.
+              <p className="inline bg-gradient-to-r from-[var(--claude-rust)] via-[var(--claude-terracotta)] to-[var(--claude-ember)] bg-clip-text font-display text-5xl tracking-tight text-transparent">
+                智能 AI API 代理平台
               </p>
-              <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Cache every single thing your app could ever do ahead of time,
-                so your code never even has to run at all.
+              <p className="mt-3 text-2xl tracking-tight text-[var(--claude-walnut)]">
+                面向团队的多供应商 AI Coding 代理调度平台，
+                <br className="hidden sm:inline" />
+                提供智能负载均衡、熔断器、限流和完整监控。
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/">Get started</Button>
-                <Button href="/" variant="secondary">
-                  View on GitHub
+                <Button href="/docs/installation">快速开始</Button>
+                <Button
+                  href="https://github.com/ding113/claude-code-hub"
+                  variant="secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
                 </Button>
               </div>
             </div>
@@ -69,7 +75,7 @@ export function Hero() {
             </div>
             <div className="relative">
               <Image
-                className="absolute -top-64 -right-64"
+                className="absolute -top-64 -right-64 opacity-50"
                 src={blurCyanImage}
                 alt=""
                 width={530}
@@ -78,7 +84,7 @@ export function Hero() {
                 priority
               />
               <Image
-                className="absolute -right-44 -bottom-40"
+                className="absolute -right-44 -bottom-40 opacity-50"
                 src={blurIndigoImage}
                 alt=""
                 width={567}
@@ -86,13 +92,13 @@ export function Hero() {
                 unoptimized
                 priority
               />
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10 blur-lg" />
-              <div className="absolute inset-0 rounded-2xl bg-linear-to-tr from-sky-300 via-sky-300/70 to-blue-300 opacity-10" />
-              <div className="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
-                <div className="absolute -top-px right-11 left-20 h-px bg-linear-to-r from-sky-300/0 via-sky-300/70 to-sky-300/0" />
-                <div className="absolute right-20 -bottom-px left-11 h-px bg-linear-to-r from-blue-400/0 via-blue-400 to-blue-400/0" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[var(--claude-terracotta)] via-[var(--claude-ember)] to-[var(--claude-amber)] opacity-10 blur-lg" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-[var(--claude-terracotta)] via-[var(--claude-ember)] to-[var(--claude-amber)] opacity-10" />
+              <div className="relative rounded-2xl bg-[var(--claude-cloud)]/80 ring-1 ring-[var(--claude-smoke)]/20 backdrop-blur-sm dark:bg-[var(--claude-sand)]/80 dark:ring-white/10">
+                <div className="absolute -top-px right-11 left-20 h-px bg-gradient-to-r from-[var(--claude-terracotta)]/0 via-[var(--claude-terracotta)]/70 to-[var(--claude-terracotta)]/0" />
+                <div className="absolute right-20 -bottom-px left-11 h-px bg-gradient-to-r from-[var(--claude-ember)]/0 via-[var(--claude-ember)] to-[var(--claude-ember)]/0" />
                 <div className="pt-4 pl-4">
-                  <TrafficLightsIcon className="h-2.5 w-auto stroke-slate-500/30" />
+                  <TrafficLightsIcon className="h-2.5 w-auto stroke-[var(--claude-smoke)]/50" />
                   <div className="mt-4 flex space-x-2 text-xs">
                     {tabs.map((tab) => (
                       <div
@@ -100,14 +106,15 @@ export function Hero() {
                         className={clsx(
                           'flex h-6 rounded-full',
                           tab.isActive
-                            ? 'bg-linear-to-r from-sky-400/30 via-sky-400 to-sky-400/30 p-px font-medium text-sky-300'
-                            : 'text-slate-500',
+                            ? 'bg-gradient-to-r from-[var(--claude-terracotta)]/30 via-[var(--claude-terracotta)] to-[var(--claude-terracotta)]/30 p-px font-medium text-[var(--claude-rust)] dark:text-[var(--claude-ember)]'
+                            : 'text-[var(--claude-walnut)]/50',
                         )}
                       >
                         <div
                           className={clsx(
                             'flex items-center rounded-full px-2.5',
-                            tab.isActive && 'bg-slate-800',
+                            tab.isActive &&
+                              'bg-[var(--claude-paper)] dark:bg-[var(--claude-sand)]',
                           )}
                         >
                           {tab.name}
@@ -118,7 +125,7 @@ export function Hero() {
                   <div className="mt-6 flex items-start px-1 text-sm">
                     <div
                       aria-hidden="true"
-                      className="border-r border-slate-300/5 pr-4 font-mono text-slate-600 select-none"
+                      className="border-r border-[var(--claude-smoke)]/20 pr-4 font-mono text-[var(--claude-walnut)]/50 select-none"
                     >
                       {Array.from({
                         length: code.split('\n').length,
@@ -148,7 +155,7 @@ export function Hero() {
                           )}
                           style={style}
                         >
-                          <code className="px-4">
+                          <code className="px-4 text-[var(--claude-ink)]">
                             {tokens.map((line, lineIndex) => (
                               <div key={lineIndex} {...getLineProps({ line })}>
                                 {line.map((token, tokenIndex) => (

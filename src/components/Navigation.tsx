@@ -18,12 +18,12 @@ export function Navigation({
       <ul role="list" className="space-y-9">
         {navigation.map((section) => (
           <li key={section.title}>
-            <h2 className="font-display font-medium text-slate-900 dark:text-white">
+            <h2 className="font-display font-medium text-[var(--claude-ink)]">
               {section.title}
             </h2>
             <ul
               role="list"
-              className="mt-2 space-y-2 border-l-2 border-slate-100 lg:mt-4 lg:space-y-4 lg:border-slate-200 dark:border-slate-800"
+              className="mt-2 space-y-2 border-l-2 border-[var(--claude-smoke)]/30 lg:mt-4 lg:space-y-4 lg:border-[var(--claude-smoke)]/50"
             >
               {section.links.map((link) => (
                 <li key={link.href} className="relative">
@@ -33,8 +33,8 @@ export function Navigation({
                     className={clsx(
                       'block w-full pl-3.5 before:pointer-events-none before:absolute before:top-1/2 before:-left-1 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full',
                       link.href === pathname
-                        ? 'font-semibold text-sky-500 before:bg-sky-500'
-                        : 'text-slate-500 before:hidden before:bg-slate-300 hover:text-slate-600 hover:before:block dark:text-slate-400 dark:before:bg-slate-700 dark:hover:text-slate-300',
+                        ? 'font-semibold text-[var(--claude-terracotta)] before:bg-[var(--claude-terracotta)]'
+                        : 'text-[var(--claude-walnut)]/70 before:hidden before:bg-[var(--claude-smoke)] hover:text-[var(--claude-walnut)] hover:before:block dark:text-[var(--claude-walnut)]/70 dark:before:bg-[var(--claude-smoke)] dark:hover:text-[var(--claude-walnut)]',
                     )}
                   >
                     {link.title}

@@ -1,56 +1,47 @@
 export const navigation = [
   {
-    title: 'Introduction',
+    title: '开始使用',
     links: [
-      { title: 'Getting started', href: '/' },
-      { title: 'Installation', href: '/docs/installation' },
+      { title: '项目介绍', href: '/' },
+      { title: '快速安装', href: '/docs/installation' },
+      { title: '环境配置', href: '/docs/configuration' },
+      { title: '客户端接入', href: '/docs/client-setup' },
     ],
   },
   {
-    title: 'Core concepts',
+    title: '核心概念',
     links: [
-      { title: 'Understanding caching', href: '/docs/understanding-caching' },
-      {
-        title: 'Predicting user behavior',
-        href: '/docs/predicting-user-behavior',
-      },
-      { title: 'Basics of time-travel', href: '/docs/basics-of-time-travel' },
-      {
-        title: 'Introduction to string theory',
-        href: '/docs/introduction-to-string-theory',
-      },
-      { title: 'The butterfly effect', href: '/docs/the-butterfly-effect' },
+      { title: '智能调度与负载均衡', href: '/docs/intelligent-routing' },
+      { title: '熔断器与故障转移', href: '/docs/circuit-breaker' },
+      { title: '限流与并发控制', href: '/docs/rate-limiting' },
+      { title: '供应商管理', href: '/docs/provider-management' },
+      { title: 'Session 管理', href: '/docs/session-management' },
     ],
   },
   {
-    title: 'Advanced guides',
+    title: '管理后台',
     links: [
-      { title: 'Writing plugins', href: '/docs/writing-plugins' },
-      { title: 'Neuralink integration', href: '/docs/neuralink-integration' },
-      { title: 'Temporal paradoxes', href: '/docs/temporal-paradoxes' },
-      { title: 'Testing', href: '/docs/testing' },
-      { title: 'Compile-time caching', href: '/docs/compile-time-caching' },
-      {
-        title: 'Predictive data generation',
-        href: '/docs/predictive-data-generation',
-      },
+      { title: '仪表盘概览', href: '/docs/dashboard' },
+      { title: '用户与 API Key 管理', href: '/docs/user-management' },
+      { title: '监控与日志', href: '/docs/monitoring' },
     ],
   },
   {
-    title: 'API reference',
+    title: '参考资料',
     links: [
-      { title: 'CacheAdvance.predict()', href: '/docs/cacheadvance-predict' },
-      { title: 'CacheAdvance.flush()', href: '/docs/cacheadvance-flush' },
-      { title: 'CacheAdvance.revert()', href: '/docs/cacheadvance-revert' },
-      { title: 'CacheAdvance.regret()', href: '/docs/cacheadvance-regret' },
+      { title: 'API 兼容层', href: '/docs/api-compatibility' },
+      { title: '常见问题', href: '/docs/faq' },
+      { title: '贡献指南', href: '/docs/contributing' },
+      { title: '更新日志', href: '/docs/changelog' },
     ],
   },
   {
-    title: 'Contributing',
+    title: '高级专题',
     links: [
-      { title: 'How to contribute', href: '/docs/how-to-contribute' },
-      { title: 'Architecture guide', href: '/docs/architecture-guide' },
-      { title: 'Design principles', href: '/docs/design-principles' },
+      { title: '系统架构', href: '/docs/architecture' },
+      { title: '高级设置', href: '/docs/advanced-settings' },
+      { title: 'Server Actions API', href: '/docs/server-actions-api' },
+      { title: '数据库设计', href: '/docs/database-schema' },
     ],
   },
 ]

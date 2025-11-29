@@ -140,7 +140,7 @@ function LoadingIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function HighlightQuery({ text, query }: { text: string; query: string }) {
   return (
     <Highlighter
-      highlightClassName="group-aria-selected:underline bg-transparent text-sky-600 dark:text-sky-400"
+      highlightClassName="group-aria-selected:underline bg-transparent text-[var(--claude-terracotta)] dark:text-[var(--claude-terracotta)]"
       searchWords={[query]}
       autoEscape={true}
       textToHighlight={text}
@@ -170,7 +170,7 @@ function SearchResult({
 
   return (
     <li
-      className="group block cursor-default rounded-lg px-3 py-2 aria-selected:bg-slate-100 dark:aria-selected:bg-slate-700/30"
+      className="group block cursor-default rounded-lg px-3 py-2 aria-selected:bg-[var(--claude-sand)] dark:aria-selected:bg-[var(--claude-cloud)]/30"
       aria-labelledby={`${id}-hierarchy ${id}-title`}
       {...autocomplete.getItemProps({
         item: result,
@@ -180,7 +180,7 @@ function SearchResult({
       <div
         id={`${id}-title`}
         aria-hidden="true"
-        className="text-sm text-slate-700 group-aria-selected:text-sky-600 dark:text-slate-300 dark:group-aria-selected:text-sky-400"
+        className="text-sm text-[var(--claude-walnut)] group-aria-selected:text-[var(--claude-terracotta)] dark:text-[var(--claude-walnut)] dark:group-aria-selected:text-[var(--claude-terracotta)]"
       >
         <HighlightQuery text={result.title} query={query} />
       </div>
@@ -188,7 +188,7 @@ function SearchResult({
         <div
           id={`${id}-hierarchy`}
           aria-hidden="true"
-          className="mt-0.5 truncate text-xs whitespace-nowrap text-slate-500 dark:text-slate-400"
+          className="mt-0.5 truncate text-xs whitespace-nowrap text-[var(--claude-walnut)]/60 dark:text-[var(--claude-walnut)]/60"
         >
           {hierarchy.map((item, itemIndex, items) => (
             <Fragment key={itemIndex}>
@@ -197,7 +197,7 @@ function SearchResult({
                 className={
                   itemIndex === items.length - 1
                     ? 'sr-only'
-                    : 'mx-2 text-slate-300 dark:text-slate-700'
+                    : 'mx-2 text-[var(--claude-smoke)] dark:text-[var(--claude-smoke)]'
                 }
               >
                 /
@@ -221,9 +221,9 @@ function SearchResults({
 }) {
   if (collection.items.length === 0) {
     return (
-      <p className="px-4 py-8 text-center text-sm text-slate-700 dark:text-slate-400">
+      <p className="px-4 py-8 text-center text-sm text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]">
         No results for &ldquo;
-        <span className="wrap-break-word text-slate-900 dark:text-white">
+        <span className="wrap-break-word text-[var(--claude-ink)] dark:text-[var(--claude-ink)]">
           {query}
         </span>
         &rdquo;
@@ -258,12 +258,12 @@ const SearchInput = forwardRef<
 
   return (
     <div className="group relative flex h-12">
-      <SearchIcon className="pointer-events-none absolute top-0 left-4 h-full w-5 fill-slate-400 dark:fill-slate-500" />
+      <SearchIcon className="pointer-events-none absolute top-0 left-4 h-full w-5 fill-[var(--claude-walnut)]/50 dark:fill-[var(--claude-walnut)]/50" />
       <input
         ref={inputRef}
         data-autofocus
         className={clsx(
-          'flex-auto appearance-none bg-transparent pl-12 text-slate-900 outline-hidden placeholder:text-slate-400 focus:w-full focus:flex-none sm:text-sm dark:text-white [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
+          'flex-auto appearance-none bg-transparent pl-12 text-[var(--claude-ink)] outline-hidden placeholder:text-[var(--claude-walnut)]/50 focus:w-full focus:flex-none sm:text-sm dark:text-[var(--claude-ink)] [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden [&::-webkit-search-results-button]:hidden [&::-webkit-search-results-decoration]:hidden',
           autocompleteState.status === 'stalled' ? 'pr-11' : 'pr-4',
         )}
         {...inputProps}
@@ -287,7 +287,7 @@ const SearchInput = forwardRef<
       />
       {autocompleteState.status === 'stalled' && (
         <div className="absolute inset-y-0 right-3 flex items-center">
-          <LoadingIcon className="h-6 w-6 animate-spin stroke-slate-200 text-slate-400 dark:stroke-slate-700 dark:text-slate-500" />
+          <LoadingIcon className="h-6 w-6 animate-spin stroke-[var(--claude-smoke)] text-[var(--claude-walnut)]/50 dark:stroke-[var(--claude-smoke)] dark:text-[var(--claude-walnut)]/50" />
         </div>
       )}
     </div>
@@ -367,10 +367,10 @@ function SearchDialog({
         onClose={() => close(autocomplete)}
         className={clsx('fixed inset-0 z-50', className)}
       >
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" />
+        <div className="fixed inset-0 bg-[var(--claude-ink)]/50 backdrop-blur-sm" />
 
         <div className="fixed inset-0 overflow-y-auto px-4 py-4 sm:px-6 sm:py-20 md:py-32 lg:px-8 lg:py-[15vh]">
-          <DialogPanel className="mx-auto transform-gpu overflow-hidden rounded-xl bg-white shadow-xl sm:max-w-xl dark:bg-slate-800 dark:ring-1 dark:ring-slate-700">
+          <DialogPanel className="mx-auto transform-gpu overflow-hidden rounded-xl bg-[var(--claude-paper)] shadow-xl sm:max-w-xl dark:bg-[var(--claude-sand)] dark:ring-1 dark:ring-[var(--claude-smoke)]/30">
             <div {...autocomplete.getRootProps({})}>
               <form
                 ref={formRef}
@@ -386,7 +386,7 @@ function SearchDialog({
                 />
                 <div
                   ref={panelRef}
-                  className="border-t border-slate-200 bg-white px-2 py-3 empty:hidden dark:border-slate-400/10 dark:bg-slate-800"
+                  className="border-t border-[var(--claude-smoke)]/30 bg-[var(--claude-paper)] px-2 py-3 empty:hidden dark:border-[var(--claude-smoke)]/30 dark:bg-[var(--claude-sand)]"
                   {...autocomplete.getPanelProps({})}
                 >
                   {autocompleteState.isOpen && (
@@ -444,15 +444,15 @@ export function Search() {
     <>
       <button
         type="button"
-        className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-slate-200 md:hover:ring-slate-300 lg:w-96 dark:md:bg-slate-800/75 dark:md:ring-white/5 dark:md:ring-inset dark:md:hover:bg-slate-700/40 dark:md:hover:ring-slate-500"
+        className="group flex h-6 w-6 items-center justify-center sm:justify-start md:h-auto md:w-80 md:flex-none md:rounded-lg md:py-2.5 md:pr-3.5 md:pl-4 md:text-sm md:ring-1 md:ring-[var(--claude-smoke)]/30 md:hover:ring-[var(--claude-smoke)]/50 lg:w-96 dark:md:bg-[var(--claude-cloud)]/50 dark:md:ring-[var(--claude-smoke)]/20 dark:md:ring-inset dark:md:hover:bg-[var(--claude-cloud)]/70 dark:md:hover:ring-[var(--claude-smoke)]/40"
         {...buttonProps}
       >
-        <SearchIcon className="h-5 w-5 flex-none fill-slate-400 group-hover:fill-slate-500 md:group-hover:fill-slate-400 dark:fill-slate-500" />
-        <span className="sr-only md:not-sr-only md:ml-2 md:text-slate-500 md:dark:text-slate-400">
+        <SearchIcon className="h-5 w-5 flex-none fill-[var(--claude-walnut)]/50 group-hover:fill-[var(--claude-walnut)]/70 md:group-hover:fill-[var(--claude-walnut)]/50 dark:fill-[var(--claude-walnut)]/50" />
+        <span className="sr-only md:not-sr-only md:ml-2 md:text-[var(--claude-walnut)]/70 md:dark:text-[var(--claude-walnut)]/70">
           Search docs
         </span>
         {modifierKey && (
-          <kbd className="ml-auto hidden font-medium text-slate-400 md:block dark:text-slate-500">
+          <kbd className="ml-auto hidden font-medium text-[var(--claude-walnut)]/50 md:block dark:text-[var(--claude-walnut)]/50">
             <kbd className="font-sans">{modifierKey}</kbd>
             <kbd className="font-sans">K</kbd>
           </kbd>

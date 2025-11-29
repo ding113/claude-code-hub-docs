@@ -5,15 +5,15 @@ import { Icon } from '@/components/Icon'
 const styles = {
   note: {
     container:
-      'bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10',
-    title: 'text-sky-900 dark:text-sky-400',
-    body: 'text-sky-800 [--tw-prose-background:var(--color-sky-50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300',
+      'bg-[var(--claude-sage)]/10 dark:bg-[var(--claude-sage)]/20 dark:ring-1 dark:ring-[var(--claude-sage)]/30',
+    title: 'text-[var(--claude-sage)] dark:text-[var(--claude-sage)]',
+    body: 'text-[var(--claude-walnut)] [--tw-prose-background:var(--claude-sage)/10] prose-a:text-[var(--claude-sage)] prose-code:text-[var(--claude-sage)] dark:text-[var(--claude-walnut)] dark:prose-code:text-[var(--claude-sage)]',
   },
   warning: {
     container:
-      'bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10',
-    title: 'text-amber-900 dark:text-amber-500',
-    body: 'text-amber-800 [--tw-prose-underline:var(--color-amber-400)] [--tw-prose-background:var(--color-amber-50)] prose-a:text-amber-900 prose-code:text-amber-900 dark:text-slate-300 dark:[--tw-prose-underline:var(--color-sky-700)] dark:prose-code:text-slate-300',
+      'bg-[var(--claude-amber)]/20 dark:bg-[var(--claude-amber)]/10 dark:ring-1 dark:ring-[var(--claude-amber)]/30',
+    title: 'text-[var(--claude-ember-dark)] dark:text-[var(--claude-amber)]',
+    body: 'text-[var(--claude-walnut)] [--tw-prose-underline:var(--claude-amber)] [--tw-prose-background:var(--claude-amber)/20] prose-a:text-[var(--claude-ember-dark)] prose-code:text-[var(--claude-ember-dark)] dark:text-[var(--claude-walnut)] dark:prose-code:text-[var(--claude-amber)]',
   },
 }
 

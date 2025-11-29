@@ -23,11 +23,11 @@ const lexend = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Docs',
-    default: 'CacheAdvance - Never miss the cache again.',
+    template: '%s - Claude Code Hub',
+    default: 'Claude Code Hub - 智能 AI API 代理平台',
   },
   description:
-    'Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.',
+    '面向团队的多供应商 AI Coding 代理调度平台，提供智能负载均衡、熔断器、限流和完整监控',
 }
 
 export default function RootLayout({
@@ -37,11 +37,11 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="zh-CN"
       className={clsx('h-full antialiased', inter.variable, lexend.variable)}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full bg-white dark:bg-slate-900">
+      <body className="flex min-h-full bg-[var(--claude-paper)] dark:bg-[var(--claude-paper)]">
         <Providers>
           <Layout>{children}</Layout>
         </Providers>
