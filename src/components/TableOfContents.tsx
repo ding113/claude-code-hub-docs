@@ -32,6 +32,7 @@ export function TableOfContents({
   useEffect(() => {
     if (tableOfContents.length === 0) return
     let headings = getHeadings(tableOfContents)
+    if (headings.length === 0) return
     function onScroll() {
       let top = window.scrollY
       let current = headings[0].id
@@ -73,43 +74,52 @@ export function TableOfContents({
               On this page
             </h2>
             <ol role="list" className="mt-4 space-y-3 text-sm">
-              {tableOfContents.map((section) => (
-                <li key={section.id}>
-                  <h3>
-                    <Link
-                      href={`#${section.id}`}
-                      className={clsx(
-                        isActive(section)
-                          ? 'text-[var(--claude-terracotta)] font-medium'
-                          : 'font-normal text-[var(--claude-walnut)]/70 hover:text-[var(--claude-walnut)]',
-                      )}
-                    >
-                      {section.title}
-                    </Link>
-                  </h3>
-                  {section.children.length > 0 && (
-                    <ol
-                      role="list"
-                      className="mt-2 space-y-3 pl-5 text-[var(--claude-walnut)]/70"
-                    >
-                      {section.children.map((subSection) => (
-                        <li key={subSection.id}>
-                          <Link
-                            href={`#${subSection.id}`}
-                            className={
-                              isActive(subSection)
-                                ? 'text-[var(--claude-terracotta)] font-medium'
-                                : 'hover:text-[var(--claude-walnut)]'
-                            }
-                          >
-                            {subSection.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ol>
-                  )}
-                </li>
-              ))}
+              {tableOfContents
+                .filter((section) => section.id)
+                .map((section, index) => (
+                  <li key={section.id || `section-${index}`}>
+                    <h3>
+                      <Link
+                        href={`#${section.id}`}
+                        className={clsx(
+                          isActive(section)
+                            ? 'font-medium text-[var(--claude-terracotta)]'
+                            : 'font-normal text-[var(--claude-walnut)]/70 hover:text-[var(--claude-walnut)]',
+                        )}
+                      >
+                        {section.title}
+                      </Link>
+                    </h3>
+                    {section.children.length > 0 && (
+                      <ol
+                        role="list"
+                        className="mt-2 space-y-3 pl-5 text-[var(--claude-walnut)]/70"
+                      >
+                        {section.children
+                          .filter((subSection) => subSection.id)
+                          .map((subSection, subIndex) => (
+                            <li
+                              key={
+                                subSection.id ||
+                                `subsection-${index}-${subIndex}`
+                              }
+                            >
+                              <Link
+                                href={`#${subSection.id}`}
+                                className={
+                                  isActive(subSection)
+                                    ? 'font-medium text-[var(--claude-terracotta)]'
+                                    : 'hover:text-[var(--claude-walnut)]'
+                                }
+                              >
+                                {subSection.title}
+                              </Link>
+                            </li>
+                          ))}
+                      </ol>
+                    )}
+                  </li>
+                ))}
             </ol>
           </>
         )}

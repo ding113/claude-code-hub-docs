@@ -1,5 +1,5 @@
 import { type Node } from '@markdoc/markdoc'
-import { slugifyWithCounter } from '@sindresorhus/slugify'
+import { slugifyWithCounter } from '@/lib/slugify'
 
 interface HeadingNode extends Node {
   type: 'heading'

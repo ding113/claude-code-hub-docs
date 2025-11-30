@@ -1,5 +1,5 @@
 import { nodes as defaultNodes, Tag } from '@markdoc/markdoc'
-import { slugifyWithCounter } from '@sindresorhus/slugify'
+import { slugifyWithCounter } from '@/lib/slugify'
 import yaml from 'js-yaml'
 
 import { DocsLayout } from '@/components/DocsLayout'
