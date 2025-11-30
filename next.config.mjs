@@ -4,6 +4,15 @@ import withSearch from './src/markdoc/search.mjs'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'ts', 'tsx'],
+  images: {
+    localPatterns: [
+      {
+        pathname: '/**',
+      },
+    ],
+  },
+  // Next.js 16 默认使用 Turbopack，显式配置以避免警告
+  turbopack: {},
 }
 
 export default withSearch(
