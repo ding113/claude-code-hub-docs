@@ -742,9 +742,7 @@ docker compose logs -f app
 {% callout type="warning" title="升级前备份" %}
 建议在升级前备份数据库：
 ```bash
-docker compose exec postgres \
-  pg_dump -U postgres claude_code_hub \
-  > backup.sql
+docker compose exec postgres pg_dump -U postgres claude_code_hub > backup.sql
 ```
 {% /callout %}
 
