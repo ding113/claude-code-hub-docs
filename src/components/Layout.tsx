@@ -57,8 +57,8 @@ function Header() {
       </div>
       <div className="relative flex grow basis-0 items-center">
         <Link href="/" aria-label="Home page">
-          <Logomark className="h-9 w-9 lg:hidden" />
-          <Logo className="hidden h-9 w-auto fill-[var(--claude-ink)] lg:block dark:fill-[var(--claude-ink)]" />
+          <Logomark className="lg:hidden" />
+          <Logo className="hidden lg:block" />
         </Link>
       </div>
       <div className="-my-5 mr-6 sm:mr-8 md:mr-0">
@@ -117,6 +117,12 @@ function Footer() {
             >
               <TelegramIcon className="h-5 w-5 fill-[var(--claude-walnut)]/60 group-hover:fill-[var(--claude-walnut)] dark:fill-[var(--claude-walnut)]/60 dark:group-hover:fill-[var(--claude-ink)]" />
               <span>Telegram</span>
+            </Link>
+            <Link
+              href="/sitemap"
+              className="text-sm text-[var(--claude-walnut)]/80 hover:text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]/80 dark:hover:text-[var(--claude-ink)]"
+            >
+              网站地图
             </Link>
           </div>
         </div>
