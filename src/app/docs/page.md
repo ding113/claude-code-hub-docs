@@ -61,7 +61,7 @@ Redis Lua 脚本确保原子性，Fail-Open 策略保障 Redis 不可用时服�
 
 5 分钟上下文缓存，同一会话的请求自动路由到相同供应商，提高缓存命中率、降低成本。完整记录决策链，支持全链路审计。
 
-### OpenAI 兼容层
+### OpenAI 兼容层（即将上线）
 
 支持 `/v1/chat/completions` 端点，自动格式转换、工具调用、reasoning 字段与 Codex CLI 指令注入，无缝对接现有工具链。
 
