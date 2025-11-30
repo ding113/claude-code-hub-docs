@@ -303,7 +303,7 @@ POST /v1/responses
 
 ```json
 {
-  "model": "gpt-5-codex",
+  "model": "gpt-5.1-codex",
   "instructions": "You are a coding agent...",
   "input": [
     {
