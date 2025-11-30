@@ -2,502 +2,511 @@
 dimensions:
   type:
     primary: reference
-    detail: guides
+    detail: troubleshooting
   level: beginner
 standard_title: 常见问题
 language: zh
 ---
 
-# 常见问题
+# 常见问题（FAQ）
 
-本页面汇总了 Claude Code Hub 部署和使用过程中的常见问题及解决方案。 {% .lead %}
+本页面汇集了 Claude Code Hub 使用过程中的常见问题及解决方案，涵盖部署、配置、使用、供应商管理、性能优化和安全等方面。如果您遇到的问题未在此列出，欢迎在 [GitHub Issues](https://github.com/ding113/claude-code-hub/issues) 提交反馈。
 
 ---
 
-## 安装与部署问题
+## 部署相关问题
 
-### Docker 启动失败怎么办？
+### 数据库连接失败怎么办？
 
-**症状**：执行 `docker compose up -d` 后容器无法正常启动。
+**可能原因：**
 
-**排查步骤**：
+1. `DSN` 环境变量格式错误
+2. 数据库服务未启动
+3. 网络或防火墙问题
+4. 凭据不正确
 
-1. 检查 Docker 服务状态：
+**解决方案：**
+
+1. 确认 `DSN` 格式正确：
    ```bash
-   docker info
+   # 标准格式
+   DSN="postgres://用户名:密码@主机:端口/数据库名"
+
+   # Docker Compose 示例
+   DSN="postgres://postgres:postgres@postgres:5432/claude_code_hub"
+   ```
+
+2. 检查数据库服务状态：
+   ```bash
+   # Docker Compose 部署
    docker compose ps
-   ```
-
-2. 查看容器日志定位错误：
-   ```bash
-   docker compose logs -f app
-   ```
-
-3. 常见原因及解决方案：
-
-| 错误类型 | 可能原因 | 解决方案 |
-| --- | --- | --- |
-| 端口冲突 | 23000 端口已被占用 | 修改 `docker-compose.yml` 中的端口映射 |
-| 镜像拉取失败 | 网络问题或镜像仓库不可达 | 配置 Docker 镜像加速器或使用代理 |
-| 资源不足 | 内存或磁盘空间不足 | 清理无用容器和镜像，释放资源 |
-| 权限问题 | 数据卷权限不正确 | 检查并修正挂载目录的权限 |
-
-{% callout type="note" title="Docker 资源清理" %}
-使用以下命令清理无用的 Docker 资源：
-```bash
-docker system prune -a
-```
-{% /callout %}
-
----
-
-### 数据库连接失败如何排查？
-
-**症状**：应用启动时报告数据库连接错误。
-
-**排查步骤**：
-
-1. **确认 DSN 格式正确**
-   ```bash
-   # Docker Compose 场景下应使用服务名
-   DSN=postgres://postgres:postgres@postgres:5432/claude_code_hub
-
-   # 本地开发应使用 localhost
-   DSN=postgres://postgres:postgres@localhost:5432/claude_code_hub
-   ```
-
-2. **检查数据库容器状态**
-   ```bash
-   docker compose ps postgres
    docker compose logs postgres
+
+   # 本地 PostgreSQL
+   pg_isready -h localhost -p 5432
    ```
 
-3. **测试数据库连接**
+3. 测试数据库连接：
    ```bash
    # 进入数据库命令行
    docker compose exec postgres psql -U postgres -d claude_code_hub
-
-   # 或使用 dev 目录的 Makefile
-   cd dev && make db-shell
    ```
 
-4. **常见错误及解决方案**
-
-| 错误信息 | 原因 | 解决方案 |
-| --- | --- | --- |
-| `connection refused` | 数据库未启动 | 等待数据库容器完全启动 |
-| `authentication failed` | 用户名或密码错误 | 检查 DSN 中的凭据 |
-| `database does not exist` | 数据库未创建 | 启用 `AUTO_MIGRATE=true` 或手动创建 |
-
-{% callout type="warning" title="Docker 网络" %}
-在 Docker Compose 环境中，服务间通信应使用服务名（如 `postgres`）而非 `localhost`。
+{% callout type="note" title="Docker 网络注意事项" %}
+Docker Compose 部署时，应用需使用服务名（如 `postgres`）而非 `localhost` 访问数据库。
 {% /callout %}
 
 ---
 
-### Redis 连接问题解决
+### Redis 离线会影响服务吗？
 
-**症状**：日志中出现 Redis 连接错误，但服务仍在运行。
+**影响范围：**
 
-**说明**：Claude Code Hub 采用 **Fail-Open** 策略，Redis 不可用时服务会自动降级：
+Claude Code Hub 采用 **Fail-Open** 策略，即 Redis 不可用时，系统会自动降级而不是拒绝请求：
 
-- 限流功能暂时失效（所有请求放行）
-- Session 缓存失效（每次请求重新选择供应商）
-- 统计数据可能不准确
+| 功能 | Redis 离线时的行为 |
+|------|-------------------|
+| **限流检查** | 跳过限流，允许所有请求通过 |
+| **Session 缓存** | 每次请求重新选择供应商（无粘性） |
+| **熔断器状态** | 使用内存缓存（无法跨实例共享） |
+| **并发 Session 统计** | 无法准确统计，可能超限 |
 
-**排查步骤**：
+**建议措施：**
 
-1. **检查 Redis 容器状态**
-   ```bash
-   docker compose ps redis
-   docker compose logs redis
-   ```
+1. 监控日志中的 Redis Error 告警
+2. 确保 Redis 配置持久化以加速恢复
+3. 生产环境考虑 Redis Sentinel 或 Cluster 实现高可用
 
-2. **测试 Redis 连接**
-   ```bash
-   docker compose exec redis redis-cli ping
-   # 应返回 PONG
-   ```
-
-3. **检查 REDIS_URL 配置**
-   ```bash
-   # Docker Compose 场景
-   REDIS_URL=redis://redis:6379
-
-   # 支持 TLS 连接
-   REDIS_URL=rediss://redis:6379
-   ```
-
-{% callout type="note" title="Redis 降级影响" %}
-Redis 离线时建议尽快恢复，以避免：
-- 限流失效导致的请求过载
-- Session 频繁切换导致的上下文丢失
-- 统计数据不准确
-{% /callout %}
-
----
-
-## 使用问题
-
-### API Key 如何获取？
-
-**获取步骤**：
-
-1. 登录管理后台 (`http://localhost:23000`)
-2. 进入 **用户管理** 页面
-3. 创建新用户或编辑现有用户
-4. 在用户详情中查看或生成 API Key
-
-**API Key 格式**：
-```
-cch-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-**使用方式**：
 ```bash
-# 设置为环境变量
-export ANTHROPIC_API_KEY=cch-your-api-key
-
-# 或在请求头中携带
-curl -H "x-api-key: cch-your-api-key" ...
+# 检查 Redis 状态
+docker compose logs redis
+redis-cli -h localhost -p 6379 ping
 ```
 
 {% callout type="warning" title="安全提示" %}
-API Key 是访问凭证，请妥善保管，不要泄露或提交到代码仓库。
+Fail-Open 策略确保服务可用性，但可能导致限额被突破。请及时恢复 Redis 服务。
 {% /callout %}
 
 ---
 
-### 为什么请求被限流？
+### 如何升级到新版本？
 
-**限流类型**：
+**Docker Compose 部署：**
 
-Claude Code Hub 支持多维度限流：
+```bash
+# 拉取最新镜像并重启
+docker compose pull
+docker compose up -d
 
-| 限流维度 | 说明 | 默认值 |
-| --- | --- | --- |
-| RPM | 每分钟请求次数 | 用户配置 |
-| 5小时金额 | 5小时内消费上限 | 用户配置 |
-| 周金额 | 每周消费上限 | 用户配置 |
-| 月金额 | 每月消费上限 | 用户配置 |
-| 并发 Session | 同时活跃的会话数 | 用户配置 |
+# 查看升级日志
+docker compose logs -f app
+```
 
-**排查方法**：
+**源码部署：**
 
-1. **查看用户限额配置**
-   - 登录管理后台
-   - 进入用户管理页面
-   - 检查目标用户的限流设置
+```bash
+git pull origin main
+bun install
+bun run build
+bun run start
+```
 
-2. **查看当前使用量**
-   - 进入仪表盘查看实时统计
-   - 查看排行榜了解用户消耗
-
-3. **查看请求日志**
-   - 日志页面会显示被限流的请求
-   - 检查 HTTP 状态码 429
-
-**解决方案**：
-- 调整用户限额配置
-- 等待限流窗口重置
-- 优化请求频率
+{% callout type="note" title="自动迁移" %}
+默认情况下 `AUTO_MIGRATE=true`，启动时会自动执行数据库迁移。生产环境建议在升级前备份数据库。
+{% /callout %}
 
 ---
 
-### Session 绑定失败怎么办？
+## 配置相关问题
 
-**症状**：请求时报告 Session 相关错误，或频繁切换供应商。
+### 环境变量如何配置？
 
-**排查步骤**：
+**核心配置说明：**
 
-1. **检查 Redis 状态**
-   - Session 数据存储在 Redis 中
-   - 参考上文 Redis 连接问题解决
+| 变量 | 必填 | 默认值 | 说明 |
+|-----|------|--------|------|
+| `ADMIN_TOKEN` | 是 | `change-me` | 后台登录令牌，**必须修改** |
+| `DSN` | 是 | - | PostgreSQL 连接串 |
+| `REDIS_URL` | 否 | `redis://localhost:6379` | Redis 连接地址 |
+| `APP_PORT` | 否 | `23000` | 应用监听端口 |
+| `APP_URL` | 否 | 空（自动检测） | 应用访问地址 |
+| `ENABLE_RATE_LIMIT` | 否 | `true` | 是否启用限流 |
+| `SESSION_TTL` | 否 | `300` | Session 过期时间（秒） |
 
-2. **检查并发限制**
-   - 用户可能已达到并发 Session 上限
-   - 在用户管理中调整并发限制
+**限流相关配置：**
 
-3. **检查 Session TTL 配置**
+| 变量 | 默认值 | 说明 |
+|-----|--------|------|
+| `ENABLE_RATE_LIMIT` | `true` | 启用后支持 RPM、金额限制、并发 Session 限制 |
+| `SESSION_TTL` | `300` | Session 5 分钟内复用同一供应商 |
+| `STORE_SESSION_MESSAGES` | `false` | 是否存储请求内容到 Redis |
+
+**熔断器相关配置：**
+
+| 变量 | 默认值 | 说明 |
+|-----|--------|------|
+| `ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS` | `false` | 网络错误是否计入熔断器 |
+| `ENABLE_SMART_PROBING` | `false` | 启用智能探测以加速熔断恢复 |
+| `PROBE_INTERVAL_MS` | `30000` | 探测间隔（毫秒） |
+| `PROBE_TIMEOUT_MS` | `5000` | 单次探测超时（毫秒） |
+
+{% callout type="warning" title="布尔值配置" %}
+布尔变量请直接写 `true` 或 `false`，不要加引号，否则可能被错误解析。
+{% /callout %}
+
+---
+
+### Cookie 无法设置导致登录失败怎么办？
+
+**问题原因：**
+
+`ENABLE_SECURE_COOKIES=true`（默认值）要求 HTTPS 连接才能设置 Cookie。通过 HTTP 远程访问时浏览器会拒绝设置 Secure Cookie。
+
+**解决方案：**
+
+1. **推荐**：配置 HTTPS（Nginx/Caddy 反向代理 + SSL 证书）
+
+2. **内网部署**：如果是纯内网环境，可关闭安全 Cookie：
    ```bash
-   # Session 缓存时间（秒），默认 300
-   SESSION_TTL=300
+   ENABLE_SECURE_COOKIES=false
    ```
 
-4. **查看决策链日志**
-   - 在日志页面查看请求的决策链
-   - 确认 Session 分配是否正常
-
----
-
-## 供应商相关
-
-### 如何添加新供应商？
-
-**添加步骤**：
-
-1. 登录管理后台
-2. 进入 **供应商管理** 页面
-3. 点击 **添加供应商** 按钮
-4. 填写供应商信息：
-
-| 字段 | 说明 | 示例 |
-| --- | --- | --- |
-| 名称 | 供应商标识名称 | `claude-primary` |
-| 类型 | API 类型 | Claude / OpenAI / Gemini |
-| API Key | 供应商的 API 密钥 | `sk-xxx...` |
-| Base URL | API 基础地址 | `https://api.anthropic.com` |
-| 权重 | 负载均衡权重 | `100` |
-| 优先级 | 选择优先级（数值越小越优先） | `1` |
-
-5. 点击 **测试连接** 验证配置
-6. 保存供应商
-
-{% callout type="note" title="模型重定向" %}
-可以配置模型重定向，将请求的模型名映射到供应商实际支持的模型。
+{% callout type="note" title="localhost 例外" %}
+浏览器会自动放行 `localhost` 的 HTTP Cookie，本地开发时无需修改此配置。
 {% /callout %}
 
 ---
 
-### 供应商认证失败如何处理？
+### 如何配置代理访问供应商？
 
-**常见原因**：
+在供应商管理页面为每个供应商单独配置代理：
 
-| 错误类型 | 可能原因 | 解决方案 |
-| --- | --- | --- |
-| `401 Unauthorized` | API Key 无效或过期 | 更新 API Key |
-| `403 Forbidden` | 账户权限不足 | 检查供应商账户状态 |
-| `Network Error` | 网络不通或被防火墙拦截 | 配置代理或检查网络 |
+**支持的代理协议：**
 
-**排查步骤**：
+- HTTP 代理：`http://host:port`
+- HTTPS 代理：`https://host:port`
+- SOCKS5 代理：`socks5://user:pass@host:port`
 
-1. **使用测试连接功能**
-   - 在供应商管理页面点击"测试连接"
-   - 查看详细错误信息
+**配置步骤：**
 
-2. **检查代理配置**
-   - 如需代理访问，确认代理 URL 格式正确
-   - 支持 `http://`、`https://`、`socks5://` 协议
+1. 进入「供应商管理」页面
+2. 编辑目标供应商
+3. 在「代理设置」填入代理 URL
+4. 可选：启用「代理失败时直连」（`proxy_fallback_to_direct`）
+5. 使用「测试连接」按钮验证配置
 
-3. **查看请求日志**
-   - 在日志页面筛选该供应商的请求
-   - 查看具体错误响应
+{% callout type="warning" title="代理 URL 格式" %}
+代理 URL 必须包含协议前缀（`http://`、`https://`、`socks5://`），否则无法正确解析。
+{% /callout %}
 
 ---
 
-### 熔断后如何恢复？
+## 使用相关问题
 
-**熔断机制说明**：
+### 客户端如何接入 Claude Code Hub？
 
-当供应商连续出现错误时，熔断器会自动打开，暂时停止向该供应商发送请求。
+**Claude Code CLI 配置：**
 
-**熔断状态**：
+```bash
+# 设置 API 端点
+export ANTHROPIC_BASE_URL=http://your-cch-server:23000
+
+# 设置 API Key（从 CCH 后台获取）
+export ANTHROPIC_API_KEY=cch_your_api_key_here
+```
+
+**Codex CLI 配置：**
+
+```bash
+# 设置 API 端点
+export OPENAI_BASE_URL=http://your-cch-server:23000/v1
+
+# 设置 API Key
+export OPENAI_API_KEY=cch_your_api_key_here
+```
+
+**API 请求示例：**
+
+```bash
+curl -X POST http://your-cch-server:23000/v1/messages \
+  -H "Authorization: Bearer cch_your_api_key" \
+  -H "Content-Type: application/json" \
+  -H "anthropic-version: 2023-06-01" \
+  -d '{
+    "model": "claude-sonnet-4-20250514",
+    "max_tokens": 1024,
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+```
+
+---
+
+### 触发限流后如何处理？
+
+当请求触发限流时，系统返回 HTTP 429 状态码并包含限流原因：
+
+**限流类型及重置机制：**
+
+| 限流类型 | 说明 | 重置机制 |
+|---------|------|---------|
+| RPM 限流 | 每分钟请求数超限 | 滑动窗口，60 秒后自动恢复 |
+| 5 小时消费限流 | 5 小时内消费超限 | 滚动窗口，持续滑动 |
+| 每日消费限流 | 24 小时内消费超限 | 支持固定时间或滚动窗口 |
+| 周消费限流 | 每周消费超限 | 每周一 00:00 重置 |
+| 月消费限流 | 每月消费超限 | 每月 1 日 00:00 重置 |
+| 并发 Session | 同时活跃会话数超限 | Session 5 分钟后自动失效 |
+
+**处理建议：**
+
+1. 检查响应中的 `x-rate-limit-*` 头部了解限额详情
+2. 等待限额重置或联系管理员调整配额
+3. 分散请求时间，避免集中调用
+
+{% callout type="note" title="限额优先级" %}
+当用户限额和 API Key 限额同时存在时，系统取两者中更严格的限制。
+{% /callout %}
+
+---
+
+### 如何查看我的使用情况？
+
+**管理员视角：**
+
+1. **仪表盘**：查看整体调用量、成本、活跃 Session
+2. **排行榜**：按用户统计请求数、Token、成本
+3. **日志查询**：筛选特定用户的请求记录
+4. **限流监控**：查看限流事件统计和受影响用户
+
+**普通用户：**
+
+目前普通用户无法直接查看自己的使用情况，需联系管理员获取。
+
+---
+
+## 供应商相关问题
+
+### 熔断器持续打开如何排查？
+
+**熔断器状态说明：**
 
 | 状态 | 说明 | 行为 |
-| --- | --- | --- |
-| CLOSED | 正常状态 | 正常转发请求 |
-| OPEN | 熔断打开 | 拒绝请求，等待恢复 |
-| HALF-OPEN | 半开状态 | 允许少量探测请求 |
+|-----|------|------|
+| CLOSED | 正常状态 | 请求正常转发 |
+| OPEN | 熔断打开 | 请求跳过该供应商 |
+| HALF-OPEN | 半开状态 | 允许少量请求测试恢复 |
 
-**恢复方式**：
+**默认熔断配置：**
 
-1. **自动恢复**
-   - 熔断器默认 30 分钟后自动尝试恢复
-   - 启用智能探测时会更快恢复
+- 失败阈值：连续失败 5 次后触发熔断
+- 熔断持续时间：30 分钟
+- 恢复阈值：半开状态下成功 2 次后关闭熔断器
 
-2. **手动恢复**
-   - 重启应用服务会重置熔断状态
-   - 在供应商管理中重新启用供应商
+**排查步骤：**
 
-3. **排查根本原因**
-   - 查看日志中的 `[CircuitBreaker]` 记录
-   - 确认错误类型（4xx/5xx/网络错误）
-   - 修复供应商配置或等待供应商恢复
+1. 查看应用日志中的 `[CircuitBreaker]` 记录：
+   ```bash
+   docker compose logs app | grep CircuitBreaker
+   ```
 
-{% callout type="note" title="网络错误熔断" %}
-默认情况下网络错误不计入熔断器。如需更激进的熔断策略，可设置：
+2. 确认失败原因：
+   - 4xx 错误：检查 API Key 是否有效、额度是否充足
+   - 5xx 错误：供应商服务异常
+   - 网络错误：检查代理配置、DNS 解析
+
+3. 在管理后台检查供应商健康状态
+
+4. 如需手动恢复，可重启应用或等待熔断时间结束
+
+{% callout type="note" title="网络错误配置" %}
+默认情况下网络错误不计入熔断器（`ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS=false`）。如需更激进的熔断策略，可设置为 `true`。
+{% /callout %}
+
+---
+
+### 提示「无可用供应商」该怎么办？
+
+**可能原因及解决方案：**
+
+| 原因 | 检查方法 | 解决方案 |
+|-----|---------|---------|
+| 所有供应商已禁用 | 检查供应商列表的启用状态 | 启用至少一个供应商 |
+| 所有供应商熔断 | 查看熔断器状态 | 等待恢复或手动重置 |
+| 权重/优先级配置不当 | 检查供应商权重是否为 0 | 设置大于 0 的权重 |
+| 用户分组限制 | 检查用户的供应商分组设置 | 调整分组或供应商标签 |
+| 并发 Session 超限 | 检查供应商并发限制 | 提高限制或等待 Session 释放 |
+| 模型不支持 | 检查供应商的允许模型列表 | 添加模型到白名单或清空限制 |
+
+**查看决策链日志：**
+
 ```bash
-ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS=true
+# 查看请求日志中的 providerChain 字段
+# 可以看到每次供应商选择的尝试和失败原因
 ```
+
+---
+
+### 不同格式的 API 如何转换？
+
+Claude Code Hub 支持多种 API 格式的自动转换：
+
+**支持的转换路径：**
+
+```
+Claude Messages API ←→ OpenAI Chat Completions
+Claude Messages API ←→ Codex Response API
+Claude Messages API ←→ Gemini API
+```
+
+**格式对应关系：**
+
+| 客户端格式 | 请求端点 | 供应商类型 |
+|-----------|---------|-----------|
+| Claude | `/v1/messages` | claude, claude-auth |
+| OpenAI | `/v1/chat/completions` | codex, openai-compatible |
+| Codex | `/v1/responses` | codex |
+| Gemini | `/v1/generateContent` | gemini, gemini-cli |
+
+**自动转换行为：**
+
+- 请求到达时自动检测格式
+- 根据目标供应商类型转换请求格式
+- 响应返回时转换回客户端期望的格式
+- 流式响应保持正确的 SSE 格式
+
+{% callout type="note" title="模型重定向" %}
+可在供应商配置中设置模型重定向，将客户端请求的模型名映射到供应商实际支持的模型。
 {% /callout %}
 
 ---
 
-## 性能优化
+## 性能相关问题
 
-### 如何提高缓存命中率？
+### 响应延迟较高怎么优化？
 
-**Session 缓存优化**：
+**延迟构成分析：**
 
-1. **调整 Session TTL**
-   ```bash
-   # 增加缓存时间以提高复用率
-   SESSION_TTL=600  # 10分钟
-   ```
+```
+总延迟 = CCH 处理延迟 + 网络延迟 + 供应商响应延迟
+         (目标 <50ms)   (取决于网络)  (取决于供应商)
+```
 
-2. **优化并发配置**
-   - 适当限制并发 Session 数
-   - 避免过多 Session 分散请求
+**CCH 侧优化：**
 
-**Redis 缓存优化**：
+1. **确保 Redis 正常运行**：Session 和限流检查依赖 Redis
+2. **减少供应商切换**：合理配置权重和优先级
+3. **启用 Session 粘性**：`SESSION_TTL` 设置合理值（默认 300 秒）
 
-1. **确保 Redis 稳定运行**
-   - 监控 Redis 内存使用
-   - 配置适当的内存淘汰策略
+**网络侧优化：**
 
-2. **网络优化**
-   - Redis 与应用部署在同一网络
-   - 减少网络延迟
+1. CCH 部署在靠近用户的位置
+2. 供应商选择延迟较低的节点
+3. 代理配置使用低延迟线路
 
----
+**排查工具：**
 
-### 响应延迟高怎么优化？
-
-**排查方向**：
-
-1. **供应商延迟**
-   - 查看日志中的响应时间
-   - 考虑配置就近的供应商或代理
-
-2. **数据库查询**
-   - 检查 PostgreSQL 性能
-   - 确保索引正确创建
-
-3. **Redis 延迟**
-   - 检查 Redis 响应时间
-   - 确保 Redis 部署在低延迟网络
-
-4. **网络优化**
-   - 配置合适的代理
-   - 优化网络路由
-
-**优化建议**：
-
-| 场景 | 优化方案 |
-| --- | --- |
-| 供应商响应慢 | 配置多供应商负载均衡 |
-| 首次请求慢 | 预热 Session 缓存 |
-| 跨境访问慢 | 使用代理或边缘节点 |
+```bash
+# 查看请求日志中的 durationMs 字段
+# 分析各环节耗时
+```
 
 ---
 
-### 数据库查询慢如何解决？
+### 连接超时如何配置？
 
-**排查步骤**：
+**供应商超时配置：**
 
-1. **检查数据库状态**
-   ```bash
-   docker compose exec postgres psql -U postgres -d claude_code_hub -c "SELECT * FROM pg_stat_activity;"
-   ```
+在供应商管理页面为每个供应商配置独立的超时参数：
 
-2. **查看慢查询**
-   - 启用 PostgreSQL 慢查询日志
-   - 分析查询计划
+| 参数 | 默认值 | 说明 |
+|-----|--------|------|
+| `timeoutFirstByte` | 30000ms | 流式响应首字节超时 |
+| `timeoutIdle` | 60000ms | 流式响应空闲超时 |
+| `timeoutRequest` | 120000ms | 非流式请求总超时 |
 
-3. **常见优化**：
+**API 测试超时：**
 
-| 问题 | 解决方案 |
-| --- | --- |
-| 日志表过大 | 定期清理历史日志 |
-| 索引缺失 | 检查并创建必要索引 |
-| 连接数过多 | 配置连接池大小 |
+```bash
+# 供应商测试连接的超时时间
+API_TEST_TIMEOUT_MS=15000  # 默认 15 秒，范围 5000-120000
+```
 
-{% callout type="note" title="数据维护" %}
-建议定期清理超过 30 天的日志数据，保持数据库性能。
+{% callout type="note" title="跨境网络建议" %}
+使用跨境网络访问供应商时，建议适当提高超时配置以避免因网络波动导致的请求失败。
 {% /callout %}
 
 ---
 
-## 安全建议
+## 安全相关问题
 
-### API Key 安全存储
+### API Key 如何安全存储？
 
-**最佳实践**：
+**CCH 的安全措施：**
 
-1. **环境变量方式**
-   ```bash
-   # 不要硬编码在代码中
-   export ANTHROPIC_API_KEY=cch-your-api-key
-   ```
+1. **哈希存储**：API Key 使用 SHA-256 哈希后存储，数据库中不保存明文
+2. **脱敏显示**：管理界面仅显示 Key 的最后 4 位
+3. **日志脱敏**：请求日志中不记录完整的 API Key
+4. **创建时显示**：Key 仅在创建时完整显示一次，请务必保存
 
-2. **配置文件权限**
-   ```bash
-   # 限制 .env 文件权限
-   chmod 600 .env
-   ```
+**用户侧建议：**
 
-3. **不要泄露的位置**：
-   - 代码仓库（添加到 .gitignore）
-   - 日志文件
-   - 错误信息
-   - 客户端代码
+1. 不要在代码仓库中明文存储 Key
+2. 使用环境变量或密钥管理服务
+3. 定期轮换 API Key
+4. 为不同用途创建不同的 Key
 
-{% callout type="warning" title="泄露处理" %}
-如果 API Key 泄露，请立即：
-1. 在管理后台禁用或删除该用户
-2. 生成新的 API Key
-3. 更新所有客户端配置
+---
+
+### 如何防止敏感内容泄露？
+
+**内置防护：**
+
+1. **敏感词过滤**：在「设置 > 敏感词」配置过滤规则
+2. **请求内容不默认存储**：`STORE_SESSION_MESSAGES=false`
+3. **日志脱敏**：敏感信息自动脱敏
+
+**配置敏感词过滤：**
+
+1. 进入「设置 > 敏感词管理」
+2. 添加需要过滤的词汇或正则表达式
+3. 支持精确匹配和正则匹配
+4. 匹配的请求将被拒绝并记录
+
+{% callout type="warning" title="合规提示" %}
+如需存储请求内容用于审计，请确保符合当地数据保护法规，并告知用户。
 {% /callout %}
 
 ---
 
-### 网络隔离建议
+### 管理员令牌丢失怎么办？
 
-**部署建议**：
+**解决方案：**
 
-1. **内网部署**
-   - 将管理后台部署在内网
-   - 仅暴露 API 端点到公网
-
-2. **防火墙配置**
+1. 修改 `.env` 文件中的 `ADMIN_TOKEN` 为新值
+2. 重启应用：
    ```bash
-   # 仅允许特定 IP 访问管理端口
-   # 示例：仅允许内网访问 23000 端口
+   docker compose restart app
    ```
+3. 使用新令牌登录后台
 
-3. **反向代理**
-   - 使用 Nginx/Caddy 做反向代理
-   - 配置 HTTPS 加密传输
-   - 启用访问日志和限流
-
-4. **Docker 网络**
-   ```yaml
-   # docker-compose.yml
-   networks:
-     internal:
-       internal: true  # 内部网络，不暴露到宿主机
-   ```
+{% callout type="warning" title="安全提示" %}
+`ADMIN_TOKEN` 是登录后台的唯一凭证，请妥善保管。建议使用高强度随机字符串。
+{% /callout %}
 
 ---
 
-### 日志敏感信息处理
+## 更多帮助
 
-**默认行为**：
+如果上述内容未能解决您的问题，可通过以下渠道获取帮助：
 
-Claude Code Hub 会自动脱敏以下信息：
-- API Key 显示为部分掩码
-- 请求内容不记录完整 body
-
-**建议配置**：
-
-1. **生产环境日志级别**
-   - 避免使用 DEBUG 级别
-   - 减少敏感信息输出
-
-2. **日志存储**
-   - 定期清理过期日志
-   - 限制日志访问权限
-
-3. **审计需求**
-   - 如需完整审计，单独配置审计日志
-   - 加密存储审计数据
+- **GitHub Issues**：[提交问题](https://github.com/ding113/claude-code-hub/issues)
+- **Telegram 交流群**：[加入讨论](https://t.me/ygxz_group)
+- **项目文档**：查阅其他文档页面了解更多功能细节
 
 ---
 
-## 获取帮助
+## 相关文档
 
-如果以上内容未能解决你的问题，可以通过以下方式获取帮助：
-
-1. **Telegram 交流群**：[https://t.me/ygxz_group](https://t.me/ygxz_group)
-2. **GitHub Issues**：[提交问题](https://github.com/ding113/claude-code-hub/issues)
-3. **GitHub Discussions**：[参与讨论](https://github.com/ding113/claude-code-hub/discussions)
+- [快速开始](/docs/guide/quickstart) - 部署和初始配置指南
+- [供应商管理](/docs/guide/providers) - 供应商配置详解
+- [限流监控](/docs/guide/rate-limits) - 限流机制说明
+- [可用性监控](/docs/guide/availability) - 熔断器和健康状态监控
