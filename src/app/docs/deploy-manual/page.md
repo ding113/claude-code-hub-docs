@@ -74,7 +74,7 @@ bun install
 bun run build
 ```
 
-{% callout type="info" title="构建说明" %}
+{% callout type="note" title="构建说明" %}
 `bun run build` 命令会执行以下操作：
 1. 运行 `next build` 构建 Next.js 应用
 2. 自动将 `VERSION` 文件复制到 `.next/standalone/VERSION`

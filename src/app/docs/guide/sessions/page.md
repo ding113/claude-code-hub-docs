@@ -20,7 +20,7 @@ Session（会话）是 Claude Code Hub 中的核心概念。当用户通过 API 
 - **供应商粘性**：确保同一会话的请求路由到同一供应商，提高缓存命中率
 - **并发控制**：限制单个会话的并发请求数
 
-{% callout type="info" title="Session 生命周期" %}
+{% callout type="note" title="Session 生命周期" %}
 Session 默认有效期为 5 分钟。在此期间的请求会复用同一 Session，超过 5 分钟无活动后 Session 自动过期。
 {% /callout %}
 
