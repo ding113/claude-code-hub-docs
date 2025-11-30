@@ -112,7 +112,7 @@ API Key: sk-ant-xxx
 
 - `Authorization: Bearer <api_key>` - Bearer Token 认证
 
-{% callout type="tip" title="何时使用" %}
+{% callout type="note" title="何时使用" %}
 如果你使用的中转服务在配置为 `claude` 类型时返回认证错误，尝试切换为 `claude-auth` 类型。这通常可以解决因 `x-api-key` 头部冲突导致的问题。
 {% /callout %}
 

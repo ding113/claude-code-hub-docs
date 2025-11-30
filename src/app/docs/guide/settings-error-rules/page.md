@@ -51,7 +51,7 @@ language: zh
 | 最终响应 | 如果配置了响应体覆写，显示最终返回给用户的错误响应 |
 | 警告信息 | 如果规则配置存在问题，显示相关警告 |
 
-{% callout type="tip" %}
+{% callout type="note" %}
 测试器会模拟运行时的处理逻辑，确保测试结果与实际行为一致。建议在创建或修改规则后使用测试器验证配置是否正确。
 {% /callout %}
 
@@ -179,7 +179,7 @@ language: zh
 }
 ```
 
-{% callout type="tip" %}
+{% callout type="note" %}
 点击「使用模板」按钮可快速填入标准格式模板。系统会实时验证 JSON 格式是否正确。
 {% /callout %}
 
@@ -247,7 +247,7 @@ language: zh
 - 包含规则数量
 - 精确规则数量
 
-{% callout type="tip" %}
+{% callout type="note" %}
 当系统升级后默认规则有更新时，点击「刷新缓存」可确保使用最新的规则配置。
 {% /callout %}
 

@@ -58,7 +58,7 @@ language: zh
 - 搜索会重置到第一页
 - 搜索词会同步到 URL 参数，方便分享和刷新
 
-{% callout type="tip" %}
+{% callout type="note" %}
 搜索支持模糊匹配，输入 `claude` 可以找到所有包含 claude 的模型，输入 `sonnet` 可以筛选出所有 Sonnet 系列模型。
 {% /callout %}
 
@@ -176,7 +176,7 @@ Claude Code Hub 支持从 [LiteLLM](https://github.com/BerriAI/litellm) 项目�
 1. 数据库中不存在任何价格记录
 2. 种子文件存在且格式正确
 
-{% callout type="tip" %}
+{% callout type="note" %}
 如果自动初始化失败（如种子文件不存在），系统会正常启动，您可以稍后通过「同步 LiteLLM」或「上传价格表」手动添加价格数据。
 {% /callout %}
 

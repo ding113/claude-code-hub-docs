@@ -39,7 +39,7 @@ Claude Code Hub 使用环境变量进行配置，支持以下几类配置：
 
 管理员登录令牌，用于访问后台管理界面。
 
-{% callout type="error" title="安全警告" %}
+{% callout type="warning" title="安全警告" %}
 **部署前必须修改此值！** 使用默认值 `change-me` 会导致系统拒绝启动或存在严重安全风险。
 建议使用至少 32 位的随机字符串作为令牌。
 {% /callout %}
@@ -384,7 +384,7 @@ APP_URL=
 | `true` | 仅允许 HTTPS 传输 Cookie（浏览器自动放行 localhost 的 HTTP） |
 | `false` | 允许 HTTP 传输 Cookie（降低安全性） |
 
-{% callout type="error" title="内网部署注意事项" %}
+{% callout type="warning" title="内网部署注意事项" %}
 如果您需要通过 **远程 HTTP**（非 localhost）访问管理界面：
 - 必须设置 `ENABLE_SECURE_COOKIES=false`
 - 否则浏览器将拒绝设置 Cookie，导致无法登录

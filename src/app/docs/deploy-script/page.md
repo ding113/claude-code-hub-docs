@@ -180,7 +180,7 @@ Windows 系统不支持自动安装 Docker。脚本会打开 Docker Desktop 下�
 ⚠️  IMPORTANT: Please save the admin token in a secure location!
 ```
 
-{% callout type="error" title="务必保存管理员令牌" %}
+{% callout type="warning" title="务必保存管理员令牌" %}
 管理员令牌是登录管理后台的唯一凭证，且仅在部署时显示一次。请立即将其保存到安全的位置（如密码管理器）。如果丢失，需要手动修改 `.env` 文件重新设置。
 {% /callout %}
 

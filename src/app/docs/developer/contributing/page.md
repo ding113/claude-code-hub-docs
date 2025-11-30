@@ -37,7 +37,7 @@ Claude Code Hub 是一个面向团队的 AI API 代理平台，支持统一管�
 - **基于事实**：讨论以数据和事实为依据，避免人身攻击
 - **建设性反馈**：提出问题时同时思考可能的解决方案
 
-{% callout type="error" title="零容忍" %}
+{% callout type="warning" title="零容忍" %}
 任何形式的歧视、骚扰或攻击性言论都是不可接受的，将导致参与资格被取消。
 {% /callout %}
 

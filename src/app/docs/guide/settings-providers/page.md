@@ -60,7 +60,7 @@ language: zh
 2. **排序方式**：按优先级、权重、名称或创建时间排序
 3. **搜索框**：根据名称、URL 或分组标签进行模糊搜索
 
-{% callout type="tip" %}
+{% callout type="note" %}
 搜索框支持 500ms 防抖，输入后稍等片刻即可看到搜索结果。
 {% /callout %}
 
@@ -107,7 +107,7 @@ language: zh
 
 点击供应商卡片右侧的复制图标可快速克隆一个供应商。克隆功能会复制原供应商的所有配置，您只需修改名称和 API Key 即可创建新供应商。
 
-{% callout type="tip" %}
+{% callout type="note" %}
 当您需要添加多个配置相似的供应商时，使用克隆功能可以节省大量时间。
 {% /callout %}
 
@@ -148,7 +148,7 @@ language: zh
 
 测试成功后会显示绿色提示，测试失败会显示具体错误信息。
 
-{% callout type="tip" %}
+{% callout type="note" %}
 建议在保存供应商配置前先进行连接测试，确保配置正确无误。
 {% /callout %}
 

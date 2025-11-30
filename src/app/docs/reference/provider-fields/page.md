@@ -113,7 +113,7 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 → A 获得 70% 流量，B 获得 30% 流量
 ```
 
-{% callout type="tip" %}
+{% callout type="note" %}
 权重范围为 1-100，建议使用整十数值（如 10、20、50）便于理解和计算。
 {% /callout %}
 
@@ -271,7 +271,7 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 }
 ```
 
-{% callout type="tip" %}
+{% callout type="note" %}
 跨境网络环境建议适当增加超时时间，避免因网络延迟导致误判。
 {% /callout %}
 
@@ -495,7 +495,7 @@ HALF-OPEN（试探）
 }
 ```
 
-{% callout type="tip" %}
+{% callout type="note" %}
 网络不稳定的环境可以适当提高失败阈值，避免误触发熔断。
 {% /callout %}
 

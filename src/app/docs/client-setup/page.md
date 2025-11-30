@@ -335,7 +335,7 @@ CCH 实现了 Session 粘性机制，确保同一对话的请求路由到同一�
 - **Session ID**：从请求头 `x-session-id` 提取，或由系统自动生成
 - **故障转移**：当绑定的供应商不可用时，系统会自动切换到其他可用供应商
 
-{% callout type="tip" title="优化建议" %}
+{% callout type="note" title="优化建议" %}
 对于需要保持上下文的长对话，建议客户端在请求头中传递 `x-session-id`，确保对话的连续性和一致性。
 {% /callout %}
 
