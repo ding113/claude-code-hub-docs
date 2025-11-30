@@ -473,4 +473,4 @@ PROBE_TIMEOUT_MS=10000
 - [可用性监控](/docs/guide/availability) - 查看供应商健康状态
 - [供应商管理](/docs/guide/settings-providers) - 配置熔断器参数
 - [通知设置](/docs/guide/settings-notifications) - 配置熔断告警通知
-- [请求日志](/docs/guide/logs) - 分析请求失败原因
+- [请求日志](/docs/guide/settings-logs) - 分析请求失败原因

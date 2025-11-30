@@ -412,6 +412,6 @@ PORT=3001 bun run start
 
 ## 下一步
 
-- [配置参考](/docs/config-reference) - 了解所有可配置项
-- [供应商管理](/docs/features-provider) - 添加和配置 AI 供应商
-- [用户管理](/docs/features-user) - 创建用户和 API Key
+- [配置参考](/docs/reference/env-variables) - 了解所有可配置项
+- [供应商管理](/docs/guide/settings-providers) - 添加和配置 AI 供应商
+- [用户管理](/docs/guide/users) - 创建用户和 API Key

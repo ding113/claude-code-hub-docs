@@ -343,4 +343,4 @@ language: zh
 
 - [高可用机制](/docs/guide/availability) - 了解熔断器和重试机制
 - [供应商管理](/docs/guide/settings-providers) - 配置供应商的熔断参数
-- [日志查询](/docs/guide/logs) - 查看错误请求的详细日志
+- [日志查询](/docs/guide/settings-logs) - 查看错误请求的详细日志

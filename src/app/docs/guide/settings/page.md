@@ -150,7 +150,7 @@ language: zh
 
 根据您的需求，可以从以下页面开始配置：
 
-1. **首次部署**：建议先完成 [供应商管理](/docs/guide/settings/providers) 添加至少一个可用的 AI 服务供应商
-2. **成本控制**：配置 [价格表](/docs/guide/settings/prices) 以准确计算请求成本
-3. **安全加固**：设置 [敏感词过滤](/docs/guide/settings/sensitive-words) 规则
-4. **运维监控**：配置 [消息推送](/docs/guide/settings/notifications) 接收系统告警
+1. **首次部署**：建议先完成 [供应商管理](/docs/guide/settings-providers) 添加至少一个可用的 AI 服务供应商
+2. **成本控制**：配置 [价格表](/docs/guide/settings-prices) 以准确计算请求成本
+3. **安全加固**：设置 [敏感词过滤](/docs/guide/settings-sensitive-words) 规则
+4. **运维监控**：配置 [消息推送](/docs/guide/settings-notifications) 接收系统告警

@@ -506,7 +506,7 @@ API_TEST_TIMEOUT_MS=15000  # 默认 15 秒，范围 5000-120000
 
 ## 相关文档
 
-- [快速开始](/docs/guide/quickstart) - 部署和初始配置指南
-- [供应商管理](/docs/guide/providers) - 供应商配置详解
+- [系统设置](/docs/guide/settings) - 部署和初始配置指南
+- [供应商管理](/docs/guide/settings-providers) - 供应商配置详解
 - [限流监控](/docs/guide/rate-limits) - 限流机制说明
 - [可用性监控](/docs/guide/availability) - 熔断器和健康状态监控

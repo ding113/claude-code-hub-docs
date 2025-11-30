@@ -250,6 +250,6 @@ language: zh
 
 - [供应商字段详解](/docs/reference/provider-fields) - 了解各配置字段的详细说明
 - [用户管理](/docs/guide/users) - 为用户配置供应商分组
-- [日志查询](/docs/guide/logs) - 查看供应商请求日志
+- [日志查询](/docs/guide/settings-logs) - 查看供应商请求日志
 - [排行榜](/docs/guide/leaderboard) - 查看供应商使用排行
 - [高可用机制](/docs/guide/availability) - 了解熔断器和故障转移机制

@@ -226,6 +226,6 @@ Token 数量包含以下组成部分：
 
 ## 下一步
 
-- [请求日志](/docs/guide/logs) - 查看详细的请求记录
+- [请求日志](/docs/guide/settings-logs) - 查看详细的请求记录
 - [活跃 Session](/docs/guide/sessions) - 监控当前活跃会话
 - [仪表盘](/docs/guide/dashboard) - 查看整体系统概览

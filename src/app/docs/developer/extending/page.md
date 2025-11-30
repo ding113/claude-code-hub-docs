@@ -808,5 +808,5 @@ describe("YourFormat to Claude Request Transform", () => {
 ## 相关资源
 
 - [架构设计](/docs/developer/architecture) - 了解系统整体架构
-- [API 参考](/docs/developer/api-reference) - 完整的 API 文档
-- [贡献指南](https://github.com/ding113/claude-code-hub/blob/main/CONTRIBUTING.md) - 如何提交 PR
+- [代码结构](/docs/developer/code-structure) - 了解项目代码组织
+- [贡献指南](/docs/developer/contributing) - 如何参与项目开发

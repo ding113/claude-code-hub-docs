@@ -189,6 +189,6 @@ API Key 只在创建时显示一次，请务必妥善保存。如果丢失，需
 
 ## 相关功能
 
-- [供应商管理](/docs/guide/providers) - 配置和管理 AI 供应商
-- [日志查询](/docs/guide/logs) - 查看 API 调用日志
+- [供应商管理](/docs/guide/settings-providers) - 配置和管理 AI 供应商
+- [日志查询](/docs/guide/settings-logs) - 查看 API 调用日志
 - [排行榜](/docs/guide/leaderboard) - 查看用户消费排行

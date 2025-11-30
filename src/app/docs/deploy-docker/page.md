@@ -282,6 +282,6 @@ Docker Compose 部署包含三个服务：
 
 ## 下一步
 
-- [快速开始](/docs/quickstart) - 了解如何配置和使用
-- [供应商管理](/docs/providers) - 添加 AI 供应商
-- [用户管理](/docs/users) - 创建和管理用户
+- [系统设置](/docs/guide/settings) - 了解如何配置和使用
+- [供应商管理](/docs/guide/settings-providers) - 添加 AI 供应商
+- [用户管理](/docs/guide/users) - 创建和管理用户

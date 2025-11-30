@@ -305,6 +305,6 @@ docker system prune -a
 
 部署成功后，你可以：
 
-- [访问管理后台](/docs/first-login)配置系统
-- [添加供应商](/docs/provider-management)接入 AI 服务
-- [创建用户和 API Key](/docs/user-key-management)分发给团队成员
+- [访问管理后台](/docs/guide/settings)配置系统
+- [添加供应商](/docs/guide/settings-providers)接入 AI 服务
+- [创建用户和 API Key](/docs/guide/users)分发给团队成员

@@ -556,6 +556,6 @@ const COUNT_TOKENS_PIPELINE: GuardConfig = {
 
 ## 下一步
 
-- [开发环境搭建](/docs/developer/setup) - 配置本地开发环境
-- [代理管道详解](/docs/architecture/proxy-pipeline) - 深入理解代理实现
+- [系统架构](/docs/developer/architecture) - 了解整体架构设计
+- [扩展开发](/docs/developer/extending) - 深入理解如何扩展系统
 - [贡献指南](/docs/developer/contributing) - 参与项目开发

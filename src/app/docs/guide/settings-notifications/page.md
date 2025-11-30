@@ -304,6 +304,6 @@ https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxxxx-xxxx-xxxx-xxxx-xxx
 ## 相关功能
 
 - [设置概览](/docs/guide/settings) - 系统设置模块总览
-- [供应商管理](/docs/guide/settings/providers) - 配置供应商熔断器参数
+- [供应商管理](/docs/guide/settings-providers) - 配置供应商熔断器参数
 - [用户管理](/docs/guide/users) - 设置用户消费限额
 - [限流监控](/docs/guide/rate-limits) - 查看限流事件统计

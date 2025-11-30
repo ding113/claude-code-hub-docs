@@ -466,7 +466,7 @@ if (useTls) {
 
 ## 相关文档
 
-- [限流策略详解](/docs/architecture/rate-limiting) - 深入了解 RPM 和成本限制算法
-- [熔断器设计](/docs/architecture/circuit-breaker) - 熔断器状态机与容错机制
-- [会话管理](/docs/architecture/session-management) - 会话粘性实现原理
-- [环境变量配置](/docs/deployment/environment-variables) - 完整的 Redis 相关配置项
+- [限流策略详解](/docs/reference/rate-limiting) - 深入了解 RPM 和成本限制算法
+- [熔断器设计](/docs/reference/circuit-breaker) - 熔断器状态机与容错机制
+- [活跃 Session](/docs/guide/sessions) - 会话粘性实现原理
+- [环境变量配置](/docs/reference/env-variables) - 完整的 Redis 相关配置项

@@ -206,5 +206,5 @@ language: zh
 ## 相关功能
 
 - [系统配置](/docs/guide/settings-config) - 配置自动日志清理策略
-- [日志查询](/docs/guide/logs) - 查看请求日志详情
+- [日志查询](/docs/guide/settings-logs) - 查看请求日志详情
 - [设置概览](/docs/guide/settings) - 了解所有设置功能
