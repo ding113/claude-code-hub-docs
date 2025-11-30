@@ -53,6 +53,8 @@ export function SidebarAd() {
             alt="Cubence - AI 中转平台"
             width={374}
             height={125}
+            sizes="224px"
+            quality={80}
             className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
           {/* 图片上的渐变遮罩 */}
@@ -114,6 +116,8 @@ export function ArticleEndAd() {
               alt="Cubence - AI 中转平台"
               width={748}
               height={250}
+              sizes="(max-width: 768px) 100vw, 672px"
+              quality={80}
               className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
@@ -185,6 +189,9 @@ export function HomePageAd() {
             alt="Cubence - AI 中转平台"
             width={1496}
             height={500}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 900px"
+            quality={85}
+            priority
             className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
           {/* 角标 */}
