@@ -20,7 +20,7 @@ export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
   const { className, ...rest } = props
   return (
     <div
-      className={`flex flex-row items-center gap-3 ${className || ''}`}
+      className={`flex shrink-0 flex-nowrap items-center gap-3 ${className || ''}`}
       {...rest}
     >
       <div className="relative h-9 w-9 shrink-0">
@@ -34,7 +34,7 @@ export function Logo(props: React.ComponentPropsWithoutRef<'div'>) {
         />
       </div>
       <span
-        className="whitespace-nowrap text-[var(--claude-ink)] dark:text-[var(--claude-ink)]"
+        className="hidden whitespace-nowrap text-[var(--claude-ink)] xl:inline dark:text-[var(--claude-ink)]"
         style={{
           fontFamily: 'var(--font-display), system-ui, sans-serif',
           fontSize: '16px',
