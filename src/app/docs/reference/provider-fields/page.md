@@ -376,6 +376,10 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 
 ### 加入 Claude 调度池（joinClaudePool）
 
+{% callout type="warning" title="即将上线" %}
+此功能正在开发中，尚未正式发布。
+{% /callout %}
+
 仅对非 Anthropic 类型供应商有效：
 
 - **false（默认）**：独立调度

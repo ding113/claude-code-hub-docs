@@ -56,7 +56,7 @@ export function Hero() {
                 提供智能负载均衡、熔断器、限流和完整监控。
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/docs/installation">快速开始</Button>
+                <Button href="/docs/deploy-script">快速开始</Button>
                 <Button
                   href="https://github.com/ding113/claude-code-hub"
                   variant="secondary"

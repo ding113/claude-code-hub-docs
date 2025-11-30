@@ -850,6 +850,10 @@ codex
 
 ## Gemini CLI 使用指南
 
+{% callout type="warning" title="即将上线" %}
+此功能正在开发中，尚未正式发布。
+{% /callout %}
+
 Gemini CLI 是 Google 官方的 AI 编程助手命令行工具，支持通过 CCH 代理服务使用。
 
 ### macOS

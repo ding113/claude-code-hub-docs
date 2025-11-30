@@ -267,6 +267,10 @@ Gemini 类型使用**直接透传**模式，不进行格式转换。请求体直
 
 ## Gemini CLI 类型 (gemini-cli)
 
+{% callout type="warning" title="即将上线" %}
+此功能正在开发中，尚未正式发布。
+{% /callout %}
+
 ### 概述
 
 `gemini-cli` 类型专为 Gemini CLI 工具设计，使用 Google 内部 API 端点和特殊的请求封装格式。
@@ -315,6 +319,10 @@ Gemini CLI 类型会自动添加：
 ---
 
 ## OpenAI Compatible 类型 (openai-compatible)
+
+{% callout type="warning" title="即将上线" %}
+此功能正在开发中，尚未正式发布。
+{% /callout %}
 
 ### 概述
 
@@ -369,6 +377,10 @@ API Key: gsk_xxx
 - 流式响应格式转换
 
 ### 加入 Claude 调度池
+
+{% callout type="warning" title="即将上线" %}
+此功能正在开发中，尚未正式发布。
+{% /callout %}
 
 非 Anthropic 类型供应商可以通过启用 `joinClaudePool` 选项加入 Claude 调度池。这需要配合模型重定向功能使用：
 

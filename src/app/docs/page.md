@@ -38,7 +38,7 @@ CCH 专为解决这些问题而生，提供**服务器部署、多租户、Sessi
 
 ### 多供应商管理
 
-同时接入 Claude、Codex、Gemini CLI、OpenAI Compatible 等多种类型供应商。支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
+同时接入 Claude、Codex 等多种类型供应商。Gemini CLI、OpenAI Compatible 等类型即将上线。支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
 
 ### 限流与并发控制
 
@@ -104,7 +104,7 @@ CCH 基于现代 Web 技术栈构建：
 
 {% quick-links %}
 
-{% quick-link title="快速开始" href="/docs/quick-start" description="一键部署脚本，5 分钟启动 CCH" /%}
+{% quick-link title="快速开始" href="/docs/deploy-script" description="一键部署脚本，5 分钟启动 CCH" /%}
 
 {% quick-link title="核心概念" href="/docs/core-concepts" description="供应商、用户、API Key、Session 等核心概念" /%}
 
