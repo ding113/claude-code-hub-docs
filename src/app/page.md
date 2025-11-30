@@ -88,3 +88,7 @@ CCH 采用 [MIT License](https://github.com/ding113/claude-code-hub/blob/main/LI
 {% callout title="加入社区" type="note" %}
 有问题或建议？欢迎加入 [Telegram 交流群](https://t.me/ygxz_group) 与社区讨论，或在 [GitHub](https://github.com/ding113/claude-code-hub) 提交 Issue。
 {% /callout %}
+
+---
+
+{% sponsor-ad /%}

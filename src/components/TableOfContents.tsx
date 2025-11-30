@@ -5,6 +5,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { type Section, type Subsection } from '@/lib/sections'
+import { SidebarAd } from '@/components/SidebarAd'
 
 export function TableOfContents({
   tableOfContents,
@@ -123,6 +124,7 @@ export function TableOfContents({
             </ol>
           </>
         )}
+        <SidebarAd />
       </nav>
     </div>
   )

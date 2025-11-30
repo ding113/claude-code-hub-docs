@@ -1,7 +1,12 @@
 import { Callout } from '@/components/Callout'
 import { QuickLink, QuickLinks } from '@/components/QuickLinks'
+import { HomePageAd } from '@/components/SidebarAd'
 
 const tags = {
+  'sponsor-ad': {
+    selfClosing: true,
+    render: HomePageAd,
+  },
   callout: {
     attributes: {
       title: { type: String },
