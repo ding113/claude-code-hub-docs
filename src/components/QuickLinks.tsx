@@ -26,7 +26,9 @@ export function QuickLink({
       <div className="absolute -inset-px rounded-xl border-2 border-transparent opacity-0 [background:linear-gradient(var(--quick-links-hover-bg,var(--claude-cloud)),var(--quick-links-hover-bg,var(--claude-cloud)))_padding-box,linear-gradient(to_top,var(--claude-rust),var(--claude-terracotta),var(--claude-ember))_border-box] group-hover:opacity-100 dark:[--quick-links-hover-bg:var(--claude-cloud)]" />
       <div className="relative overflow-hidden rounded-xl p-6">
         {icon && <Icon icon={icon} className="h-8 w-8" />}
-        <h2 className={`${icon ? 'mt-4' : ''} font-display text-base text-[var(--claude-ink)]`}>
+        <h2
+          className={`${icon ? 'mt-4' : ''} font-display text-base text-[var(--claude-ink)]`}
+        >
           <Link href={href}>
             <span className="absolute -inset-px rounded-xl" />
             {title}

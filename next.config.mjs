@@ -52,4 +52,5 @@ export default withSearch(
 
 // 启用开发模式下的 Cloudflare 上下文
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+
 initOpenNextCloudflareForDev()

@@ -1,12 +1,12 @@
-import { type Metadata } from 'next'
+import clsx from 'clsx'
+import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import clsx from 'clsx'
 import type { Organization, WebSite, WithContext } from 'schema-dts'
 
 import { Providers } from '@/app/providers'
-import { Layout } from '@/components/Layout'
 import { JsonLd } from '@/components/JsonLd'
+import { Layout } from '@/components/Layout'
 import { SITE_CONFIG } from '@/lib/constants'
 
 import '@/styles/tailwind.css'

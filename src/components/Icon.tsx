@@ -1,5 +1,5 @@
-import { useId } from 'react'
 import clsx from 'clsx'
+import { useId } from 'react'
 
 import { InstallationIcon } from '@/components/icons/InstallationIcon'
 import { LightbulbIcon } from '@/components/icons/LightbulbIcon'
@@ -32,8 +32,8 @@ export function Icon({
   color?: keyof typeof iconStyles
   icon: keyof typeof icons
 } & Omit<React.ComponentPropsWithoutRef<'svg'>, 'color'>) {
-  let id = useId()
-  let IconComponent = icons[icon]
+  const id = useId()
+  const IconComponent = icons[icon]
 
   return (
     <svg

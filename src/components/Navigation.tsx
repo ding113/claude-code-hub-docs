@@ -1,6 +1,6 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
 
 import { navigation } from '@/lib/navigation'
 
@@ -11,20 +11,17 @@ export function Navigation({
   className?: string
   onLinkClick?: React.MouseEventHandler<HTMLAnchorElement>
 }) {
-  let pathname = usePathname()
+  const pathname = usePathname()
 
   return (
     <nav className={clsx('text-base lg:text-sm', className)}>
-      <ul role="list" className="space-y-9">
+      <ul className="space-y-9">
         {navigation.map((section) => (
           <li key={section.title}>
             <h2 className="font-display font-medium text-[var(--claude-ink)]">
               {section.title}
             </h2>
-            <ul
-              role="list"
-              className="mt-2 space-y-2 border-l-2 border-[var(--claude-smoke)]/30 lg:mt-4 lg:space-y-4 lg:border-[var(--claude-smoke)]/50"
-            >
+            <ul className="mt-2 space-y-2 border-l-2 border-[var(--claude-smoke)]/30 lg:mt-4 lg:space-y-4 lg:border-[var(--claude-smoke)]/50">
               {section.links.map((link) => (
                 <li key={link.href} className="relative">
                   <Link

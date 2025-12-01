@@ -1,8 +1,8 @@
 'use client'
 
-import { Fragment, useState } from 'react'
-import { Highlight } from 'prism-react-renderer'
 import clsx from 'clsx'
+import { Highlight } from 'prism-react-renderer'
+import { Fragment, useState } from 'react'
 
 function CopyIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -65,6 +65,7 @@ export function Fence({
   return (
     <div className="group relative">
       <button
+        type="button"
         onClick={handleCopy}
         className={clsx(
           'absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-md transition-all',
@@ -72,7 +73,7 @@ export function Fence({
           'bg-[var(--claude-cloud)]/80 hover:bg-[var(--claude-smoke)]/80',
           'dark:bg-[var(--claude-smoke)]/50 dark:hover:bg-[var(--claude-smoke)]/80',
           'ring-1 ring-[var(--claude-smoke)]/30',
-          copied && 'text-[var(--claude-sage)]'
+          copied && 'text-[var(--claude-sage)]',
         )}
         aria-label={copied ? '已复制' : '复制代码'}
       >

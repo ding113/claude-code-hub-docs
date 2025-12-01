@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
 import {
   Label,
   Listbox,
@@ -8,6 +6,8 @@ import {
   ListboxOptions,
 } from '@headlessui/react'
 import clsx from 'clsx'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const themes = [
   { name: 'Light', value: 'light', icon: LightIcon },
@@ -54,8 +54,8 @@ function SystemIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export function ThemeSelector(
   props: React.ComponentPropsWithoutRef<typeof Listbox<'div'>>,
 ) {
-  let { theme, setTheme } = useTheme()
-  let [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -75,13 +75,17 @@ export function ThemeSelector(
         <LightIcon
           className={clsx(
             'h-4 w-4 dark:hidden',
-            theme === 'system' ? 'fill-[var(--claude-walnut)]/50' : 'fill-[var(--claude-terracotta)]',
+            theme === 'system'
+              ? 'fill-[var(--claude-walnut)]/50'
+              : 'fill-[var(--claude-terracotta)]',
           )}
         />
         <DarkIcon
           className={clsx(
             'hidden h-4 w-4 dark:block',
-            theme === 'system' ? 'fill-[var(--claude-walnut)]/50' : 'fill-[var(--claude-terracotta)]',
+            theme === 'system'
+              ? 'fill-[var(--claude-walnut)]/50'
+              : 'fill-[var(--claude-terracotta)]',
           )}
         />
       </ListboxButton>
@@ -95,9 +99,12 @@ export function ThemeSelector(
                 'flex cursor-pointer items-center rounded-[0.625rem] p-1 select-none',
                 {
                   'text-[var(--claude-terracotta)]': selected,
-                  'text-[var(--claude-ink)] dark:text-[var(--claude-ink)]': focus && !selected,
-                  'text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]': !focus && !selected,
-                  'bg-[var(--claude-sand)] dark:bg-[var(--claude-cloud)]/40': focus,
+                  'text-[var(--claude-ink)] dark:text-[var(--claude-ink)]':
+                    focus && !selected,
+                  'text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]':
+                    !focus && !selected,
+                  'bg-[var(--claude-sand)] dark:bg-[var(--claude-cloud)]/40':
+                    focus,
                 },
               )
             }

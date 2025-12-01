@@ -1,6 +1,6 @@
 'use client'
 
-import { type Node } from '@markdoc/markdoc'
+import type { Node } from '@markdoc/markdoc'
 import { usePathname } from 'next/navigation'
 import type { TechArticle, WithContext } from 'schema-dts'
 
@@ -23,7 +23,7 @@ export function DocsLayout({
   nodes: Array<Node>
 }) {
   const pathname = usePathname()
-  let tableOfContents = collectSections(nodes)
+  const tableOfContents = collectSections(nodes)
   // 首页已有独立的 sponsor-ad，不再显示文章末尾广告
   const isHomePage = standard_title === '首页'
 

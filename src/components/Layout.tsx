@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
+import { useEffect, useState } from 'react'
 
 import { AdBanner } from '@/components/AdBanner'
 import { Hero } from '@/components/Hero'
@@ -30,7 +30,7 @@ function TelegramIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 function Header() {
-  let [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     function onScroll() {
@@ -136,8 +136,8 @@ function Footer() {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  let pathname = usePathname()
-  let isHomePage = pathname === '/'
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   return (
     <div className="flex min-h-screen w-full flex-col">

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
-
-import { navigation } from '@/lib/navigation'
 import { SITE_CONFIG } from '@/lib/constants'
+import { navigation } from '@/lib/navigation'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()

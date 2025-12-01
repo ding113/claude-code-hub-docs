@@ -1,30 +1,29 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
-
-import { type Section, type Subsection } from '@/lib/sections'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import { SidebarAd } from '@/components/SidebarAd'
+import type { Section, Subsection } from '@/lib/sections'
 
 export function TableOfContents({
   tableOfContents,
 }: {
   tableOfContents: Array<Section>
 }) {
-  let [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id)
+  const [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id)
 
-  let getHeadings = useCallback((tableOfContents: Array<Section>) => {
+  const getHeadings = useCallback((tableOfContents: Array<Section>) => {
     return tableOfContents
       .flatMap((node) => [node.id, ...node.children.map((child) => child.id)])
       .map((id) => {
-        let el = document.getElementById(id)
+        const el = document.getElementById(id)
         if (!el) return null
 
-        let style = window.getComputedStyle(el)
-        let scrollMt = parseFloat(style.scrollMarginTop)
+        const style = window.getComputedStyle(el)
+        const scrollMt = parseFloat(style.scrollMarginTop)
 
-        let top = window.scrollY + el.getBoundingClientRect().top - scrollMt
+        const top = window.scrollY + el.getBoundingClientRect().top - scrollMt
         return { id, top }
       })
       .filter((x): x is { id: string; top: number } => x !== null)
@@ -32,12 +31,12 @@ export function TableOfContents({
 
   useEffect(() => {
     if (tableOfContents.length === 0) return
-    let headings = getHeadings(tableOfContents)
+    const headings = getHeadings(tableOfContents)
     if (headings.length === 0) return
     function onScroll() {
-      let top = window.scrollY
+      const top = window.scrollY
       let current = headings[0].id
-      for (let heading of headings) {
+      for (const heading of headings) {
         if (top >= heading.top - 10) {
           current = heading.id
         } else {
@@ -74,7 +73,7 @@ export function TableOfContents({
             >
               On this page
             </h2>
-            <ol role="list" className="mt-4 space-y-3 text-sm">
+            <ol className="mt-4 space-y-3 text-sm">
               {tableOfContents
                 .filter((section) => section.id)
                 .map((section, index) => (
@@ -92,10 +91,7 @@ export function TableOfContents({
                       </Link>
                     </h3>
                     {section.children.length > 0 && (
-                      <ol
-                        role="list"
-                        className="mt-2 space-y-3 pl-5 text-[var(--claude-walnut)]/70"
-                      >
+                      <ol className="mt-2 space-y-3 pl-5 text-[var(--claude-walnut)]/70">
                         {section.children
                           .filter((subSection) => subSection.id)
                           .map((subSection, subIndex) => (
