@@ -140,17 +140,113 @@ language: zh
 
 ## 连接测试
 
-供应商编辑表单中提供「测试连接」功能，用于验证：
+供应商编辑表单中提供「测试连接」功能，用于验证供应商配置是否正确。该功能不仅验证连接是否可用，还提供详细的诊断信息。
+
+### 基础验证项
 
 - API 端点是否可访问
 - API Key 是否有效
 - 代理配置是否正确（如有配置）
+- 响应延迟是否在可接受范围内
+- 响应内容是否符合预期
 
-测试成功后会显示绿色提示，测试失败会显示具体错误信息。
+### 预置检测模板
+
+系统为不同类型的供应商预置了多套检测模板，这些模板模拟真实 CLI 客户端的请求特征：
+
+#### Claude 类型供应商
+
+| 模板 | 说明 | 默认模型 | 成功检测关键字 |
+| --- | --- | --- | --- |
+| `cc_base` | Claude CLI 基础检测，速度快 | claude-haiku-4-5-20251001 | `isNewTopic` |
+| `cc_sonnet` | Claude CLI Sonnet，使用消息级缓存 | claude-sonnet-4-5-20250929 | `pong` |
+| `public_cc_base` | 社区/公开 Claude，启用扩展思考 | claude-sonnet-4-5-20250929 | `pong` |
+
+#### Codex / OpenAI 兼容类型供应商
+
+| 模板 | 说明 | 默认模型 | 成功检测关键字 |
+| --- | --- | --- | --- |
+| `cx_base` | Codex CLI Response API 格式 | gpt-5-codex | `pong` |
+
+{% callout type="note" %}
+`cx_base` 模板同时适用于 Codex 和 OpenAI 兼容类型的供应商。Gemini 类型供应商使用独立的请求格式，不使用预置模板。
+{% /callout %}
+
+### 客户端限制兼容性
+
+{% callout type="warning" title="重要说明" %}
+**即使上游 API 配置了严格的客户端限制（仅允许官方 CLI 请求），检测功能依然可以正常工作。**
+{% /callout %}
+
+这是因为检测请求完全模拟真实客户端的特征：
+
+| 供应商类型 | 模拟的 User-Agent |
+| --- | --- |
+| Claude | `claude-cli/2.0.50 (external, cli)` |
+| Codex | `codex_cli_rs/0.63.0` |
+| Gemini | `GeminiCLI/v0.17.1 (darwin; arm64)` |
+
+除了 User-Agent，检测请求还包含：
+- 完整的请求头特征（Accept、Accept-Language、Accept-Encoding 等）
+- 真实 CLI 格式的请求体结构
+- 标准的 metadata 字段（如 Claude 的 `user_id`）
+
+因此，即使您使用的是仅对官方客户端开放的转发服务，检测功能也能正常验证连接状态。
+
+### 三层验证机制
+
+检测功能采用三层验证机制，确保供应商不仅能连接，而且性能达标：
+
+#### 第一层：HTTP 状态码验证
+
+- **通过**：2xx/3xx 状态码
+- **失败**：
+  - 401/403：认证错误（API Key 无效或权限不足）
+  - 429：请求频率限制
+  - 400：请求格式错误
+  - 5xx：服务端错误
+
+#### 第二层：延迟阈值验证
+
+- **绿色**：延迟低于阈值（默认 5000ms）
+- **黄色**：延迟超过阈值，供应商可用但性能降级
+
+#### 第三层：内容验证
+
+- 检查响应体是否包含预期的关键字（如 `pong` 或 `isNewTopic`）
+- 可通过模板默认值或自定义配置指定检测关键字
+
+### 检测结果状态
+
+| 状态 | 含义 | 建议操作 |
+| --- | --- | --- |
+| 🟢 GREEN | 所有验证通过，供应商健康 | 可正常使用 |
+| 🟡 YELLOW | HTTP 正常但延迟过高 | 检查网络或降低该供应商优先级 |
+| 🔴 RED | 验证失败 | 检查配置或联系供应商 |
+
+### 错误类型分类
+
+当检测失败时，系统会对错误进行分类以帮助诊断：
+
+| 错误类型 | 说明 | 常见原因 |
+| --- | --- | --- |
+| Timeout | 请求超时 | 网络慢、供应商响应慢 |
+| DNS Error | DNS 解析失败 | URL 配置错误、DNS 故障 |
+| Connection Refused | 连接被拒绝 | 端口错误、服务未启动 |
+| Connection Reset | 连接被重置 | 网络不稳定、防火墙 |
+| SSL/TLS Error | 证书问题 | 证书过期、域名不匹配 |
+| Auth Error | 认证失败 | API Key 错误或过期 |
+| Rate Limit | 频率限制 | 请求过于频繁 |
+
+### 使用建议
 
 {% callout type="note" %}
 建议在保存供应商配置前先进行连接测试，确保配置正确无误。
 {% /callout %}
+
+1. **新增供应商时**：先使用 `cc_base`（Claude）或 `cx_base`（Codex）进行快速验证
+2. **验证高级功能时**：使用 `cc_sonnet` 测试提示缓存功能是否正常
+3. **自定义检测**：如需特殊验证，可切换到自定义模式编写 JSON payload
 
 ---
 
@@ -250,6 +346,6 @@ language: zh
 
 - [供应商字段详解](/docs/reference/provider-fields) - 了解各配置字段的详细说明
 - [用户管理](/docs/guide/users) - 为用户配置供应商分组
-- [日志查询](/docs/guide/settings-logs) - 查看供应商请求日志
+- [日志查询](/docs/guide/logs) - 查看供应商请求日志
 - [排行榜](/docs/guide/leaderboard) - 查看供应商使用排行
 - [高可用机制](/docs/guide/availability) - 了解熔断器和故障转移机制

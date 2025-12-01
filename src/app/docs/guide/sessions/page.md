@@ -156,6 +156,6 @@ Session 有三种状态：
 
 ## 下一步
 
-- [日志查询](/docs/guide/settings-logs) - 查看历史请求日志
+- [日志查询](/docs/guide/logs) - 查看历史请求日志
 - [供应商管理](/docs/guide/settings-providers) - 配置供应商的并发限制
 - [用户管理](/docs/guide/users) - 设置用户级别的并发限制

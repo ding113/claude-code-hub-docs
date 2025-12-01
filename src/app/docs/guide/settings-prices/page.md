@@ -244,4 +244,4 @@ Claude Code Hub 支持从 [LiteLLM](https://github.com/BerriAI/litellm) 项目�
 - [设置概览](/docs/guide/settings) - 了解所有设置模块
 - [供应商管理](/docs/guide/settings-providers) - 配置供应商的成本系数
 - [排行榜](/docs/guide/leaderboard) - 查看基于成本计算的用户排行
-- [日志查询](/docs/guide/settings-logs) - 查看包含成本信息的请求日志
+- [日志查询](/docs/guide/logs) - 查看包含成本信息的请求日志

@@ -155,6 +155,177 @@ ENABLE_SECURE_COOKIES=false
 
 ---
 
+## 使用远程数据库
+
+默认情况下，Docker Compose 会启动一个本地 PostgreSQL 容器。如果您希望使用已有的远程数据库（如云数据库服务），可以通过配置 `DSN` 环境变量来实现。
+
+### DSN 连接字符串格式
+
+DSN（Data Source Name）是 PostgreSQL 的标准连接字符串格式：
+
+```
+postgres://用户名:密码@主机:端口/数据库名?参数=值
+```
+
+或
+
+```
+postgresql://用户名:密码@主机:端口/数据库名?参数=值
+```
+
+{% callout type="note" title="两种协议前缀等效" %}
+`postgres://` 和 `postgresql://` 在功能上完全等效，可以互换使用。
+{% /callout %}
+
+### 配置步骤
+
+#### 1. 修改 .env 文件
+
+在 `.env` 文件中直接设置 `DSN` 环境变量：
+
+```bash
+# 使用远程数据库时，直接指定完整的 DSN
+DSN=postgres://myuser:mypassword@db.example.com:5432/claude_code_hub
+
+# DB_USER、DB_PASSWORD、DB_NAME 仅用于本地 PostgreSQL 容器
+# 使用远程数据库时可以忽略这些配置
+```
+
+{% callout type="note" title="环境变量优先级" %}
+`.env` 文件中的 `DSN` 变量会覆盖 `docker-compose.yaml` 中由 `DB_USER`、`DB_PASSWORD`、`DB_NAME` 构建的默认 DSN。
+{% /callout %}
+
+#### 2. 移除本地数据库服务（可选）
+
+如果不需要本地 PostgreSQL 容器，可以修改启动命令只启动应用和 Redis：
+
+```bash
+# 仅启动 app 和 redis 服务
+docker compose up -d app redis
+```
+
+或者创建一个 `docker-compose.override.yml` 文件来禁用 postgres 服务：
+
+```yaml
+services:
+  postgres:
+    profiles:
+      - disabled
+```
+
+### SSL/TLS 连接
+
+大多数云数据库服务要求使用 SSL 加密连接。在 DSN 中添加 `sslmode` 参数：
+
+```bash
+# 启用 SSL 连接
+DSN=postgres://user:pass@host:5432/db?sslmode=require
+```
+
+**常用 sslmode 值：**
+
+| 值 | 说明 |
+|---|---|
+| `disable` | 禁用 SSL（不推荐） |
+| `require` | 要求 SSL 连接，不验证证书 |
+| `verify-ca` | 验证服务器证书由可信 CA 签发 |
+| `verify-full` | 验证证书且检查主机名匹配 |
+
+{% callout type="warning" title="生产环境安全建议" %}
+生产环境建议使用 `sslmode=require` 或更高级别，确保数据传输加密。部分云服务（如 Supabase、Neon）默认强制 SSL。
+{% /callout %}
+
+### 云数据库配置示例
+
+#### Supabase
+
+```bash
+# 在 Supabase 控制台 → Settings → Database → Connection string 获取
+DSN=postgres://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
+```
+
+{% callout type="note" title="Supabase 连接模式" %}
+Supabase 提供两种连接模式：
+- **Session mode (端口 5432)**：适用于长连接场景
+- **Transaction mode (端口 6543)**：适用于 Serverless 场景，推荐用于 Claude Code Hub
+{% /callout %}
+
+#### Neon
+
+```bash
+# 在 Neon 控制台 → Connection Details 获取
+DSN=postgres://[user]:[password]@[endpoint].neon.tech/[database]?sslmode=require
+```
+
+#### Railway
+
+```bash
+# 在 Railway 项目 → PostgreSQL 服务 → Connect 获取
+DSN=postgres://postgres:[password]@[host].railway.app:5432/railway
+```
+
+#### 阿里云 RDS
+
+```bash
+# 内网访问
+DSN=postgres://user:password@rm-xxx.pg.rds.aliyuncs.com:5432/claude_code_hub
+
+# 公网访问（需开启公网地址）
+DSN=postgres://user:password@pgm-xxx.pg.rds.aliyuncs.com:5432/claude_code_hub?sslmode=require
+```
+
+#### 自建 PostgreSQL
+
+```bash
+# 局域网内其他服务器
+DSN=postgres://user:password@192.168.1.100:5432/claude_code_hub
+
+# 通过 SSH 隧道访问（需先建立隧道）
+# ssh -L 15432:localhost:5432 user@remote-server
+DSN=postgres://user:password@localhost:15432/claude_code_hub
+```
+
+### 验证数据库连接
+
+启动服务后，可以通过以下方式验证数据库连接是否成功：
+
+```bash
+# 查看应用日志
+docker compose logs app | grep -i "database\|migration"
+
+# 成功连接时会显示：
+# Database connection established
+# ✅ Database migrations completed successfully!
+```
+
+如果连接失败，日志会显示详细的错误信息，常见问题包括：
+
+| 错误类型 | 可能原因 | 解决方案 |
+|---------|---------|---------|
+| `connection refused` | 防火墙阻止、数据库未启动 | 检查防火墙规则和数据库状态 |
+| `authentication failed` | 用户名或密码错误 | 核对数据库凭据 |
+| `SSL required` | 数据库要求 SSL 连接 | 在 DSN 中添加 `?sslmode=require` |
+| `database does not exist` | 数据库未创建 | 手动创建数据库 |
+
+### 数据库初始化
+
+使用远程数据库时，首次启动会自动执行数据库迁移（`AUTO_MIGRATE=true` 时）。确保：
+
+1. **数据库已创建**：应用不会自动创建数据库，需手动创建
+2. **用户有足够权限**：需要 `CREATE TABLE`、`ALTER TABLE` 等权限
+3. **网络可达**：确保 Docker 容器能访问远程数据库地址
+
+```bash
+# 手动创建数据库（如果不存在）
+psql -h db.example.com -U postgres -c "CREATE DATABASE claude_code_hub;"
+```
+
+{% callout type="note" title="数据库迁移" %}
+自动迁移会在应用启动时检查并应用所有待执行的 schema 变更。生产环境首次部署后，建议设置 `AUTO_MIGRATE=false` 并手动控制迁移时机。
+{% /callout %}
+
+---
+
 ## 修改端口
 
 如果默认端口 `23000` 已被占用，可以在 `.env` 文件中修改：

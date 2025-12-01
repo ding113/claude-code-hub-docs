@@ -177,7 +177,49 @@ Claude Code Hub 支持三种类型的消息推送通知：
 
 ## Webhook 配置指南
 
-### 企业微信机器人
+Claude Code Hub 的消息推送基于标准 Webhook 协议实现，**理论上可以对接任何支持 Webhook 的平台**，企业微信只是其中一个开箱即用的示例。
+
+{% callout type="note" title="平台兼容性" %}
+只要目标平台能够接收 HTTP POST 请求并返回符合预期格式的响应，就可以与 Claude Code Hub 对接。对于不兼容格式的平台，可以通过中间层（如 Cloudflare Worker）进行格式转换。
+{% /callout %}
+
+---
+
+### 请求格式说明
+
+Claude Code Hub 发送的 Webhook 请求采用以下格式：
+
+**HTTP 请求：**
+
+```http
+POST <webhook_url>
+Content-Type: application/json
+
+{
+  "msgtype": "markdown",
+  "markdown": {
+    "content": "消息内容（Markdown 格式）"
+  }
+}
+```
+
+**期望响应：**
+
+系统根据响应判断推送是否成功：
+
+| 响应格式 | 行为 |
+|----------|------|
+| `{"errcode": 0, "errmsg": "ok"}` | 成功，不重试 |
+| `{"errcode": 非0}` | 失败，触发重试 |
+| HTTP 状态码 4xx/5xx | 失败，触发重试 |
+
+---
+
+### 企业微信（开箱即用）
+
+企业微信机器人原生支持 Claude Code Hub 的消息格式，无需额外配置。
+
+**配置步骤：**
 
 1. 在企业微信群中点击右上角「...」，选择「添加群机器人」
 2. 创建机器人后，复制 Webhook URL
@@ -188,6 +230,182 @@ Claude Code Hub 支持三种类型的消息推送通知：
 ```
 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
+
+---
+
+### 飞书（需格式转换）
+
+飞书的 Webhook 格式与企业微信不同，需要通过中间层转换。可参考下方「自定义适配器」章节。
+
+---
+
+### 钉钉（需格式转换）
+
+钉钉的 Webhook 格式也需要转换。可参考下方「自定义适配器」章节。
+
+---
+
+### Telegram（通过 Cloudflare Worker）
+
+Telegram 需要调用 Bot API 发送消息，可以使用 Cloudflare Worker 作为适配层。
+
+**部署步骤：**
+
+1. 在 [Cloudflare Dashboard](https://dash.cloudflare.com/) 创建新 Worker
+2. 粘贴以下代码
+3. 设置环境变量
+4. 将 Worker URL 配置为 Claude Code Hub 的 Webhook 地址
+
+**环境变量：**
+
+| 变量 | 说明 |
+|------|------|
+| `WEBHOOK_SECRET` | 自定义密钥，用于验证请求来源 |
+| `BOT_TOKEN` | Telegram Bot Token（从 @BotFather 获取） |
+| `CHAT_ID` | 目标聊天/群组 ID |
+
+**Worker 代码（wrangler.toml + worker.js）：**
+
+```js
+// worker.js - Telegram 适配器
+export default {
+  async fetch(request, env) {
+    try {
+      // 验证请求方法
+      if (request.method !== 'POST') {
+        return jsonResponse({ errcode: 405, errmsg: 'Method not allowed' }, 200);
+      }
+
+      // 从 URL 参数验证密钥
+      const url = new URL(request.url);
+      const secret = url.searchParams.get('secret');
+
+      if (secret !== env.WEBHOOK_SECRET) {
+        return jsonResponse({ errcode: 401, errmsg: 'Unauthorized' }, 200);
+      }
+
+      // 解析请求体（企业微信格式）
+      const body = await request.json();
+      const content = body.markdown?.content || body.text;
+
+      if (!content) {
+        return jsonResponse({ errcode: 400, errmsg: 'Missing content' }, 200);
+      }
+
+      // 发送到 Telegram
+      const telegramResponse = await fetch(
+        `https://api.telegram.org/bot${env.BOT_TOKEN}/sendMessage`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: env.CHAT_ID,
+            text: content,
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true
+          })
+        }
+      );
+
+      const result = await telegramResponse.json();
+
+      if (result.ok) {
+        // ✅ Telegram 成功 - 返回成功响应（不会重试）
+        console.log('✅ Message sent successfully');
+        return jsonResponse({ errcode: 0, errmsg: 'ok' }, 200);
+      } else {
+        // ❌ Telegram 失败 - 返回错误响应（触发 CCH 重试）
+        console.error('❌ Telegram API error:', result.description);
+        return jsonResponse({
+          errcode: result.error_code || 1,
+          errmsg: `Telegram error: ${result.description || 'Unknown error'}`
+        }, 200);
+      }
+
+    } catch (error) {
+      // ❌ Worker 异常 - 返回错误响应（触发 CCH 重试）
+      console.error('❌ Worker error:', error);
+      return jsonResponse({
+        errcode: 500,
+        errmsg: error.message || 'Internal error'
+      }, 200);
+    }
+  }
+};
+
+// 辅助函数：返回 JSON 响应
+function jsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status: status,
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
+```
+
+**Webhook URL 格式：**
+
+```
+https://your-worker.your-subdomain.workers.dev?secret=your_webhook_secret
+```
+
+{% callout type="warning" title="安全提示" %}
+请务必设置 `WEBHOOK_SECRET` 并在 URL 中携带，防止未授权请求触发通知。
+{% /callout %}
+
+---
+
+### 自定义适配器开发
+
+对于其他平台，可以参考以下适配器模板：
+
+```js
+// 通用适配器模板
+export default {
+  async fetch(request, env) {
+    if (request.method !== 'POST') {
+      return jsonResponse({ errcode: 405, errmsg: 'Method not allowed' });
+    }
+
+    try {
+      // 1. 验证请求（可选但推荐）
+      const url = new URL(request.url);
+      if (url.searchParams.get('secret') !== env.SECRET) {
+        return jsonResponse({ errcode: 401, errmsg: 'Unauthorized' });
+      }
+
+      // 2. 解析 CCH 发送的消息
+      const body = await request.json();
+      const content = body.markdown?.content || body.text;
+
+      // 3. 转换为目标平台格式并发送
+      // ... 根据目标平台 API 实现 ...
+
+      // 4. 返回结果
+      return jsonResponse({ errcode: 0, errmsg: 'ok' });
+
+    } catch (error) {
+      return jsonResponse({ errcode: 500, errmsg: error.message });
+    }
+  }
+};
+
+function jsonResponse(data) {
+  return new Response(JSON.stringify(data), {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
+```
+
+**适配器部署选项：**
+
+| 平台 | 优势 | 免费额度 |
+|------|------|----------|
+| Cloudflare Workers | 全球边缘节点，延迟低 | 10 万次/天 |
+| Vercel Edge Functions | 与 Vercel 生态集成 | 100 万次/月 |
+| AWS Lambda | 功能强大，生态丰富 | 100 万次/月 |
+| 自建服务 | 完全可控 | 取决于服务器 |
+
+---
 
 ### 安全限制
 
