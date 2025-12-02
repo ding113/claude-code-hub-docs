@@ -151,6 +151,36 @@ AUTO_MIGRATE=false
 
 ---
 
+### 本地构建失败
+
+**现象**
+- 执行 `bun run build` 时报错
+- 构建过程中出现环境相关的错误
+
+**原因**
+1. `NODE_ENV` 环境变量未正确设置为 `production`
+2. 残留的开发环境配置与生产构建冲突
+
+**解决方案**
+
+1. 先清除当前的 `NODE_ENV` 环境变量，再显式设置为 `production` 后执行构建：
+```bash
+unset NODE_ENV && NODE_ENV=production bun run build
+```
+
+2. 如果使用的是 npm 或 pnpm：
+```bash
+unset NODE_ENV && NODE_ENV=production npm run build
+# 或
+unset NODE_ENV && NODE_ENV=production pnpm run build
+```
+
+{% callout type="note" %}
+某些 shell 配置（如 `.bashrc`、`.zshrc`）可能默认设置了 `NODE_ENV`，导致构建时使用了错误的环境配置。使用 `unset NODE_ENV` 可以清除这些残留设置。
+{% /callout %}
+
+---
+
 ### Cookie 设置失败导致无法登录
 
 **现象**
