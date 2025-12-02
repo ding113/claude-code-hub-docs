@@ -1,4 +1,5 @@
 import withMarkdoc from '@markdoc/next.js'
+import withGitTimestamps from './src/markdoc/gitTimestamps.mjs'
 import withSearch from './src/markdoc/search.mjs'
 
 /** @type {import('next').NextConfig} */
@@ -46,8 +47,8 @@ const nextConfig = {
   // 在 OpenNext/Cloudflare 环境下，Next.js 的 compress 选项是多余的
 }
 
-export default withSearch(
-  withMarkdoc({ schemaPath: './src/markdoc' })(nextConfig),
+export default withGitTimestamps(
+  withSearch(withMarkdoc({ schemaPath: './src/markdoc' })(nextConfig)),
 )
 
 // 启用开发模式下的 Cloudflare 上下文

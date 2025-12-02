@@ -6,6 +6,7 @@ import type { TechArticle, WithContext } from 'schema-dts'
 
 import { DocsHeader } from '@/components/DocsHeader'
 import { JsonLd } from '@/components/JsonLd'
+import { LastModified } from '@/components/LastModified'
 import { PrevNextLinks } from '@/components/PrevNextLinks'
 import { Prose } from '@/components/Prose'
 import { ArticleEndAd } from '@/components/SidebarAd'
@@ -17,10 +18,12 @@ export function DocsLayout({
   children,
   frontmatter: { title, standard_title, description },
   nodes,
+  gitTimestamps,
 }: {
   children: React.ReactNode
   frontmatter: { title?: string; standard_title?: string; description?: string }
   nodes: Array<Node>
+  gitTimestamps: Record<string, string>
 }) {
   const pathname = usePathname()
   const tableOfContents = collectSections(nodes)
@@ -54,6 +57,7 @@ export function DocsLayout({
         <article>
           <DocsHeader title={title} />
           <Prose>{children}</Prose>
+          {!isHomePage && <LastModified timestamps={gitTimestamps} />}
           {!isHomePage && <ArticleEndAd />}
         </article>
         <PrevNextLinks />

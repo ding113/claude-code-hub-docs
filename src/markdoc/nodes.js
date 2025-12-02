@@ -3,6 +3,7 @@ import yaml from 'js-yaml'
 import { DocsLayout } from '@/components/DocsLayout'
 import { Fence } from '@/components/Fence'
 import { slugifyWithCounter } from '@/lib/slugify'
+import { gitTimestamps } from './gitTimestamps.mjs'
 
 const documentSlugifyMap = new Map()
 
@@ -18,6 +19,7 @@ const nodes = {
         {
           frontmatter: yaml.load(node.attributes.frontmatter),
           nodes: node.children,
+          gitTimestamps,
         },
         node.transformChildren(config),
       )
