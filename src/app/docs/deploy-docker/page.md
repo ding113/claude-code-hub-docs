@@ -85,7 +85,7 @@ docker compose ps
 ```
 NAME                    STATUS                   PORTS
 claude-code-hub-app     Up (healthy)             0.0.0.0:23000->3000/tcp
-claude-code-hub-db      Up (healthy)             0.0.0.0:35432->5432/tcp
+claude-code-hub-db      Up (healthy)
 claude-code-hub-redis   Up (healthy)
 ```
 
@@ -407,8 +407,12 @@ Docker Compose 部署包含三个服务：
 | 服务 | 镜像 | 端口映射 | 说明 |
 | --- | --- | --- | --- |
 | `app` | `ghcr.io/ding113/claude-code-hub:latest` | `23000:3000` | 应用主服务 |
-| `postgres` | `postgres:18` | `35432:5432` | PostgreSQL 数据库 |
+| `postgres` | `postgres:18` | 无（仅内部网络） | PostgreSQL 数据库 |
 | `redis` | `redis:7-alpine` | 无外部映射 | Redis 缓存 |
+
+{% callout type="note" title="数据库安全配置" %}
+PostgreSQL 默认不对外暴露端口，仅允许容器内部网络访问。这是生产环境的安全最佳实践。如需调试数据库，可取消 `docker-compose.yaml` 中的端口注释（绑定到 `127.0.0.1:35432`），或通过 SSH 隧道连接。
+{% /callout %}
 
 ---
 

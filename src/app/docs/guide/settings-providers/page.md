@@ -80,6 +80,10 @@ language: zh
 
 创建成功后，新供应商会自动出现在列表中。
 
+{% callout type="note" title="默认启用" %}
+新创建的供应商默认处于启用状态，可立即参与请求调度。如需先配置后启用，可在创建后手动禁用。
+{% /callout %}
+
 {% callout type="warning" %}
 创建供应商时，API Key 只需输入一次。系统会安全存储密钥，后续仅显示脱敏值。
 {% /callout %}

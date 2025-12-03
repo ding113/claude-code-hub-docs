@@ -162,15 +162,28 @@ CCH 同时支持两种策略,可通过配置选择。
 
 **特点**: 5 分钟缓存 TTL,降低频繁查询 Redis/数据库的压力。
 
-#### 状态机存储
+#### 状态机存储（v0.3.20+）
 
-{% callout type="warning" title="熔断器状态不存储在 Redis" %}
-熔断器状态机(CLOSED/OPEN/HALF-OPEN)存储在**内存中**(`src/lib/circuit-breaker.ts` 的 `healthMap`)。Redis 仅缓存配置,不存储实时状态。
+| Redis Key                                 | 类型 | TTL     | 说明                     |
+| ----------------------------------------- | ---- | ------- | ------------------------ |
+| `circuit_breaker:state:{providerId}`      | HASH | 86400s  | 供应商熔断器运行时状态   |
 
-原因:
-1. 状态转换频繁,内存访问更快
-2. 应用重启时状态自然重置,符合"重启后恢复尝试"的设计
-3. 配置从 Redis 读取,保证多实例一致性
+**字段**:
+- `failureCount`: 连续失败计数（整数字符串）
+- `lastFailureTime`: 最后失败时间戳（Unix 毫秒字符串）
+- `circuitState`: 当前状态（closed/open/half-open）
+- `circuitOpenUntil`: 熔断结束时间戳（仅 OPEN 状态，Unix 毫秒字符串）
+- `halfOpenSuccessCount`: 半开状态成功计数（整数字符串）
+
+**实现位置**: `src/lib/circuit-breaker.ts`、`src/lib/redis/circuit-breaker-state.ts`
+
+{% callout type="note" title="状态存储策略" %}
+从 v0.3.20 版本开始，熔断器状态支持 Redis 持久化：
+- **Redis 可用时**：状态同步存储到 Redis，实现多实例共享和重启保留
+- **Redis 不可用时**：降级为内存存储（`healthMap`），重启后状态重置
+- **24 小时 TTL**：自动清理长期未使用的供应商状态
+
+这种设计既保证了多实例部署场景下的状态一致性，又确保了 Redis 故障时的服务可用性。
 {% /callout %}
 
 ---

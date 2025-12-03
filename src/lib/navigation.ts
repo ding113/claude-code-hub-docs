@@ -33,6 +33,7 @@ export const navigation = [
       { title: '价格表', href: '/docs/guide/settings-prices' },
       { title: '供应商管理', href: '/docs/guide/settings-providers' },
       { title: '敏感词', href: '/docs/guide/settings-sensitive-words' },
+      { title: '请求过滤器', href: '/docs/guide/settings-request-filters' },
       { title: '错误规则', href: '/docs/guide/settings-error-rules' },
       { title: '客户端升级提醒', href: '/docs/guide/settings-client-versions' },
       { title: '数据管理', href: '/docs/guide/settings-data' },

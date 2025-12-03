@@ -373,8 +373,12 @@ interface ProviderHealth {
 }
 ```
 
-{% callout type="warning" title="重启清空" %}
-熔断器状态存储在内存中，应用重启后会重置为默认状态（CLOSED）。这是设计行为，确保重启后供应商有机会重新被验证。
+{% callout type="note" title="Redis 持久化（v0.3.20+）" %}
+从 v0.3.20 版本开始，熔断器状态支持 Redis 持久化存储。当 Redis 可用时，熔断器状态会同步存储到 Redis，实现：
+- **多实例状态共享**：多个应用实例共享熔断器状态，避免各实例独立计数
+- **重启状态保留**：应用重启后可从 Redis 恢复熔断器状态，无需重新验证
+
+当 Redis 不可用时，系统自动降级为内存存储模式，应用重启后熔断器状态会重置为 CLOSED。
 {% /callout %}
 
 ### Redis 配置缓存
