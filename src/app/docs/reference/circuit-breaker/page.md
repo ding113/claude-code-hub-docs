@@ -381,6 +381,79 @@ interface ProviderHealth {
 当 Redis 不可用时，系统自动降级为内存存储模式，应用重启后熔断器状态会重置为 CLOSED。
 {% /callout %}
 
+### Redis 状态同步增强（v0.3.24+）
+
+v0.3.24 版本引入了更智能的 Redis 状态同步机制，优化了多实例部署场景下的状态一致性和性能。
+
+#### 智能同步策略
+
+系统采用「内存优先，Redis 持久化」的混合存储架构：
+
+| 状态 | 同步策略 | 说明 |
+|------|----------|------|
+| CLOSED | 首次加载时检查 Redis | 正常状态下仅在首次访问时从 Redis 加载，减少不必要的查询 |
+| OPEN / HALF-OPEN | 每次访问检查 Redis | 非正常状态始终检查 Redis，确保及时同步外部重置操作 |
+
+**设计原理**：
+
+- **CLOSED 状态**：表示供应商正常，无需频繁同步。仅在首次加载时检查 Redis，之后依赖内存状态
+- **OPEN/HALF-OPEN 状态**：可能被管理员通过后台手动重置。每次访问都检查 Redis，确保重置操作能够及时生效
+
+#### 外部重置同步机制
+
+当管理员通过后台手动重置熔断器时，系统能够自动检测并同步状态：
+
+1. **管理员操作**：在可用性监控页面点击「重置」按钮
+2. **Redis 更新**：Redis 中对应供应商的状态被清除或更新为 CLOSED
+3. **内存同步**：下次访问该供应商时，系统检测到 Redis 状态已变更，自动将内存状态重置为 CLOSED
+
+```
+管理后台重置 → Redis 状态清除 → 内存检测到差异 → 自动重置为 CLOSED
+```
+
+{% callout type="note" title="重置生效时机" %}
+外部重置操作不会立即反映到所有实例的内存中。当下一次请求访问该供应商时，系统会检测到 Redis 状态变更并自动同步。这种「懒加载」机制在保证一致性的同时减少了不必要的网络开销。
+{% /callout %}
+
+#### loadedFromRedis 标记机制
+
+系统使用 `loadedFromRedis` 集合跟踪已从 Redis 加载过状态的供应商：
+
+- **首次访问**：供应商 ID 不在集合中，从 Redis 加载状态
+- **后续访问**：
+  - CLOSED 状态：直接使用内存状态，不再查询 Redis
+  - OPEN/HALF-OPEN 状态：仍然检查 Redis（可能被外部重置）
+- **强制刷新**：调用 `getAllHealthStatusAsync` 时可传入 `forceRefresh: true` 清除标记，强制从 Redis 重新加载
+
+#### 批量加载优化
+
+`getAllHealthStatusAsync` 函数支持批量加载多个供应商的健康状态，减少 Redis 查询次数：
+
+```typescript
+// 批量获取供应商健康状态
+const healthStatus = await getAllHealthStatusAsync(providerIds, {
+  forceRefresh: true  // 强制从 Redis 刷新
+});
+```
+
+**参数说明**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `providerIds` | `number[]` | 需要查询的供应商 ID 列表 |
+| `options.forceRefresh` | `boolean` | 是否强制从 Redis 刷新（默认 `false`） |
+
+**使用场景**：
+
+- **管理后台**：展示所有供应商的熔断器状态时，使用 `forceRefresh: true` 确保显示最新状态
+- **请求路由**：路由选择时使用默认参数，优先使用内存缓存以提升性能
+
+**性能优化**：
+
+- 使用 `Promise.allSettled` 并行加载所有供应商状态
+- 仅对需要刷新的供应商发起 Redis 查询
+- 单次批量操作替代多次单独查询
+
 ### Redis 配置缓存
 
 供应商的熔断器配置缓存在 Redis 中，键格式为：
