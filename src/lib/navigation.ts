@@ -37,6 +37,7 @@ export const navigation = [
       { title: '错误规则', href: '/docs/guide/settings-error-rules' },
       { title: '客户端升级提醒', href: '/docs/guide/settings-client-versions' },
       { title: '数据管理', href: '/docs/guide/settings-data' },
+      { title: '会话绑定清理', href: '/docs/guide/session-binding-cleanup' },
       { title: '日志设置', href: '/docs/guide/settings-logs' },
       { title: '消息推送', href: '/docs/guide/settings-notifications' },
     ],

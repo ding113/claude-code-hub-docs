@@ -53,6 +53,7 @@ language: zh
 | `providerType` | enum | 否 | `claude` | 供应商类型（见下表） |
 | `websiteUrl` | string | 否 | null | 供应商官网地址，用于快速跳转 |
 | `faviconUrl` | string | 否 | null | 网站图标 URL，系统根据 websiteUrl 自动生成 |
+| `preserveClientIp` | boolean | 否 | `false` | 是否将客户端 IP 透传给上游供应商 |
 
 ### 供应商类型（providerType）
 
@@ -322,6 +323,55 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 
 ---
 
+## IP 透传配置
+
+IP 透传功能用于将客户端真实 IP 地址传递给上游供应商。
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `preserveClientIp` | boolean | `false` | 是否将客户端 IP 透传给上游 |
+
+### 工作原理
+
+启用 IP 透传后，系统会在转发请求时添加以下 HTTP 头：
+
+- `x-forwarded-for`：包含客户端 IP 的转发链
+- `x-real-ip`：客户端的真实 IP 地址
+
+默认情况下，系统会移除所有客户端 IP 相关的请求头以保护用户隐私。启用此选项后，这些头部会被保留并传递给上游供应商。
+
+### IP 解析优先级
+
+系统按以下优先级从请求头中解析客户端 IP：
+
+| 优先级 | HTTP 头 | 说明 |
+| --- | --- | --- |
+| 1 | `x-forwarded-for` | 标准的代理转发头 |
+| 2 | `x-real-ip` | Nginx 常用的真实 IP 头 |
+| 3 | `x-client-ip` | 部分代理使用 |
+| 4 | `x-originating-ip` | 部分负载均衡器使用 |
+| 5 | `x-remote-ip` | 备选头部 |
+| 6 | `x-remote-addr` | 备选头部 |
+
+### 配置示例
+
+```json
+{
+  "preserveClientIp": true
+}
+```
+
+{% callout type="warning" title="隐私注意" %}
+启用此功能会将用户的真实 IP 地址暴露给上游供应商。请确保：
+- 符合相关隐私法规要求
+- 已告知用户其 IP 可能被传递给第三方
+- 上游供应商的隐私政策符合您的合规需求
+{% /callout %}
+
+---
+
 ## 模型配置
 
 模型配置用于控制模型名称映射和访问限制。
@@ -575,6 +625,8 @@ HALF-OPEN（试探）
 
   "proxyUrl": null,
   "proxyFallbackToDirect": false,
+
+  "preserveClientIp": false,
 
   "modelRedirects": {
     "claude-3-5-sonnet-20241022": "claude-3-5-sonnet-latest"
