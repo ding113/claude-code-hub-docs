@@ -199,14 +199,14 @@ source ~/.zshrc
 
 **验证配置**
 
-配置完成后，验证环境变量是否设置成功：
+配置完成后,验证环境变量是否设置成功:
 
 ```bash
 echo $ANTHROPIC_BASE_URL
 echo $ANTHROPIC_AUTH_TOKEN
 ```
 
-预期输出示例：
+预期输出示例:
 
 ```text
 https://your-cch-domain.com
@@ -214,7 +214,62 @@ sk_xxxxxxxxxxxxxxxxxx
 ```
 
 {% callout type="note" title="注意" %}
-如果输出为空或显示变量名本身，说明环境变量设置失败，请重新按照上述步骤设置。
+如果输出为空或显示变量名本身,说明环境变量设置失败,请重新按照上述步骤设置。
+{% /callout %}
+
+#### 跳过首次登录引导
+
+新版 Claude Code 全新安装后,即使已正确配置 `settings.json`,首次启动仍会要求登录 Anthropic 账号。这是因为 Claude Code 需要完成首次使用引导(onboarding)流程。
+
+**解决方案:**
+
+在 `~/.claude.json` 文件中添加以下配置(如果文件不存在,请创建):
+
+```json
+{
+  "hasCompletedOnboarding": true
+}
+```
+
+{% callout type="note" title="配置文件说明" %}
+- `~/.claude.json` 是 Claude Code 的全局状态文件,与 `~/.claude/settings.json` 不同
+- 此配置告诉 Claude Code 跳过首次登录引导流程
+- macOS/Linux: `~/.claude.json`
+- Windows: `C:\Users\你的用户名\.claude.json`
+{% /callout %}
+
+**完整配置示例:**
+
+如果 `.claude.json` 文件已存在,请在最后添加 `hasCompletedOnboarding` 字段:
+
+```json
+{
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "firstStartTime": "2025-07-14T06:11:03.877Z",
+  "userID": "f5afdd05117c901a4a5a0761d08230bfcbb76f9fd380ff7bc144cc12c52e55aa",
+  "projects": {
+    "/home/nassi": {
+      "allowedTools": [],
+      "history": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false
+    }
+  },
+  "hasCompletedOnboarding": true
+}
+```
+
+{% callout type="warning" title="JSON 语法注意事项" %}
+- 在添加新字段前,确保上一行末尾有逗号(`,`)
+- JSON 不支持注释,请删除所有注释内容
+- 使用标准的 JSON 格式,字段名必须用双引号包裹
 {% /callout %}
 
 #### VS Code 扩展配置
@@ -422,6 +477,62 @@ echo %ANTHROPIC_BASE_URL%
 echo %ANTHROPIC_AUTH_TOKEN%
 ```
 
+#### 跳过首次登录引导
+
+新版 Claude Code 全新安装后,即使已正确配置 `settings.json`,首次启动仍会要求登录 Anthropic 账号。这是因为 Claude Code 需要完成首次使用引导(onboarding)流程。
+
+**解决方案:**
+
+在 `C:\Users\你的用户名\.claude.json` 文件中添加以下配置(如果文件不存在,请创建):
+
+```json
+{
+  "hasCompletedOnboarding": true
+}
+```
+
+{% callout type="note" title="配置文件说明" %}
+- `.claude.json` 是 Claude Code 的全局状态文件,与 `.claude\settings.json` 不同
+- 此配置告诉 Claude Code 跳过首次登录引导流程
+- Windows: `C:\Users\你的用户名\.claude.json`
+- macOS/Linux: `~/.claude.json`
+{% /callout %}
+
+**完整配置示例:**
+
+如果 `.claude.json` 文件已存在,请在最后添加 `hasCompletedOnboarding` 字段:
+
+```json
+{
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "firstStartTime": "2025-07-14T06:11:03.877Z",
+  "userID": "f5afdd05117c901a4a5a0761d08230bfcbb76f9fd380ff7bc144cc12c52e55aa",
+  "projects": {
+    "C:\\Users\\你的用户名\\Documents": {
+      "allowedTools": [],
+      "history": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false
+    }
+  },
+  "hasCompletedOnboarding": true
+}
+```
+
+{% callout type="warning" title="JSON 语法注意事项" %}
+- 在添加新字段前,确保上一行末尾有逗号(`,`)
+- JSON 不支持注释,请删除所有注释内容
+- 使用标准的 JSON 格式,字段名必须用双引号包裹
+- Windows 路径中的反斜杠需要转义: `C:\\Users\\...`
+{% /callout %}
+
 #### VS Code 扩展配置
 
 配置文件路径：`C:\Users\你的用户名\.claude\config.json`
@@ -576,35 +687,62 @@ echo 'export ANTHROPIC_AUTH_TOKEN="your-api-key-here"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-#### VS Code 扩展配置
+#### 跳过首次登录引导
 
-配置文件路径：`~/.claude/config.json`
+新版 Claude Code 全新安装后,即使已正确配置 `settings.json`,首次启动仍会要求登录 Anthropic 账号。这是因为 Claude Code 需要完成首次使用引导(onboarding)流程。
 
-```jsonc
+**解决方案:**
+
+在 `~/.claude.json` 文件中添加以下配置(如果文件不存在,请创建):
+
+```json
 {
-  "primaryApiKey": "any-value"
+  "hasCompletedOnboarding": true
 }
 ```
 
-#### 启动 Claude Code
+{% callout type="note" title="配置文件说明" %}
+- `~/.claude.json` 是 Claude Code 的全局状态文件,与 `~/.claude/settings.json` 不同
+- 此配置告诉 Claude Code 跳过首次登录引导流程
+- macOS/Linux: `~/.claude.json`
+- Windows: `C:\Users\你的用户名\.claude.json`
+{% /callout %}
 
-```bash
-cd /path/to/your/project
-claude
+**完整配置示例:**
+
+如果 `.claude.json` 文件已存在,请在最后添加 `hasCompletedOnboarding` 字段:
+
+```json
+{
+  "installMethod": "unknown",
+  "autoUpdates": true,
+  "firstStartTime": "2025-07-14T06:11:03.877Z",
+  "userID": "f5afdd05117c901a4a5a0761d08230bfcbb76f9fd380ff7bc144cc12c52e55aa",
+  "projects": {
+    "/home/nassi": {
+      "allowedTools": [],
+      "history": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 0,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false
+    }
+  },
+  "hasCompletedOnboarding": true
+}
 ```
 
-#### 常见问题
+{% callout type="warning" title="JSON 语法注意事项" %}
+- 在添加新字段前,确保上一行末尾有逗号(`,`)
+- JSON 不支持注释,请删除所有注释内容
+- 使用标准的 JSON 格式,字段名必须用双引号包裹
+{% /callout %}
 
-**1. 命令未找到**
-
-```bash
-# 检查 npm 全局安装路径并添加到 PATH（如果不在）
-npm config get prefix
-
-# 添加到 PATH（如果不在）
-echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
+#### VS Code 扩展配置
 
 ---
 

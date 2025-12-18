@@ -201,6 +201,36 @@ bun run start
 
 ---
 
+### 通过 nginx 反向代理访问时 Codex 客户端认证失败怎么办？
+
+**问题描述：**
+
+使用 nginx 反向代理 Claude Code Hub 后，Codex 客户端请求失败，返回 500 错误：
+
+```
+Provider xxx returned 500: This API endpoint is only accessible via the official Codex CLI
+```
+
+**原因：**
+
+nginx 默认会丢弃 HTTP header 名称中包含下划线的请求头（`underscores_in_headers off`）。某些 Codex 中转站或客户端可能使用带下划线的自定义 header，被 nginx 丢弃后导致认证失败。
+
+**解决方案：**
+
+在 nginx 配置文件的 `http` 或 `server` 块中添加：
+
+```nginx
+underscores_in_headers on;
+```
+
+完整配置示例参考：[故障排查 - 反向代理问题](/docs/troubleshooting#通过-nginx-反代时-codex-客户端认证失败)
+
+{% callout type="note" title="其他反向代理" %}
+Caddy、Traefik 等现代反向代理通常默认允许下划线 header，无需额外配置。
+{% /callout %}
+
+---
+
 ## 使用相关问题
 
 ### 客户端如何接入 Claude Code Hub？
@@ -238,6 +268,34 @@ curl -X POST http://your-cch-server:23000/v1/messages \
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
 ```
+
+---
+
+### 新版 Claude Code 安装后仍要求登录怎么办？
+
+**问题描述：**
+
+新版 Claude Code 全新安装后，即使已配置 `~/.claude/settings.json`，首次启动仍要求登录 Anthropic 账号。
+
+**解决方案：**
+
+在 `~/.claude.json` 文件中添加 `hasCompletedOnboarding` 配置：
+
+```json
+{
+  "hasCompletedOnboarding": true
+}
+```
+
+**配置位置：**
+- macOS/Linux: `~/.claude.json`
+- Windows: `C:\Users\你的用户名\.claude.json`
+
+详细说明请参考：[客户端接入 - 跳过首次登录引导](/docs/client-setup#跳过首次登录引导)
+
+{% callout type="note" %}
+`~/.claude.json` 是 Claude Code 的全局状态文件，与项目配置文件 `~/.claude/settings.json` 不同。
+{% /callout %}
 
 ---
 

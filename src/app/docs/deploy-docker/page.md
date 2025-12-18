@@ -125,6 +125,92 @@ ENABLE_SECURE_COOKIES=false
 
 ---
 
+## 配置反向代理（可选）
+
+生产环境建议使用 HTTPS 反向代理（nginx/Caddy）来提供 SSL 加密和域名访问。
+
+### Nginx 配置示例
+
+创建 nginx 配置文件：
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name your-cch-domain.com;
+
+    # SSL 证书配置
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    # SSL 优化配置
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+
+    # 重要：允许带下划线的 HTTP header（Codex 客户端需要）
+    underscores_in_headers on;
+
+    location / {
+        proxy_pass http://127.0.0.1:23000;
+        proxy_http_version 1.1;
+
+        # 标准代理头
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # SSE 流式响应支持
+        proxy_set_header Connection '';
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_read_timeout 300s;
+        chunked_transfer_encoding on;
+    }
+}
+
+# HTTP 自动跳转 HTTPS
+server {
+    listen 80;
+    server_name your-cch-domain.com;
+    return 301 https://$server_name$request_uri;
+}
+```
+
+### Caddy 配置示例
+
+Caddy 自动处理 HTTPS 证书，配置更简单：
+
+```caddyfile
+your-cch-domain.com {
+    reverse_proxy localhost:23000
+}
+```
+
+{% callout type="note" title="Caddy 自动配置" %}
+Caddy 会自动处理 SSL 证书申请、续期和 HTTP header 转发，无需额外配置 `underscores_in_headers`。
+{% /callout %}
+
+### 验证配置
+
+配置反向代理后，测试访问：
+
+```bash
+# 测试 HTTPS 访问
+curl -I https://your-cch-domain.com
+
+# 测试 API 端点
+curl https://your-cch-domain.com/api/health
+```
+
+配置完成后，记得修改 `.env` 文件确保 Secure Cookie 启用：
+
+```bash
+ENABLE_SECURE_COOKIES=true
+```
+
+---
+
 ## 配置说明
 
 ### 关键环境变量

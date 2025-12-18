@@ -206,6 +206,77 @@ ENABLE_SECURE_COOKIES=false
 
 ---
 
+## 反向代理问题
+
+### 通过 nginx 反代时 Codex 客户端认证失败
+
+**现象**
+- Codex 客户端请求返回 500 错误
+- 错误消息：`This API endpoint is only accessible via the official Codex CLI`
+- 或：`Provider xxx returned 500: Provider returned 500: upstream_error`
+
+**原因**
+
+nginx 默认配置会丢弃 HTTP header 名称中包含下划线的请求头（`underscores_in_headers off`）。某些 Codex 中转站使用带下划线的自定义 header 进行客户端识别或认证，这些 header 被 nginx 丢弃后导致上游认证失败。
+
+**解决方案**
+
+在 nginx 配置的 `http` 或 `server` 块中添加：
+
+```nginx
+underscores_in_headers on;
+```
+
+完整的反向代理配置示例：
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name your-cch-domain.com;
+
+    # SSL 证书配置
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    # 关键配置：允许带下划线的 HTTP header
+    underscores_in_headers on;
+
+    location / {
+        proxy_pass http://127.0.0.1:23000;
+        proxy_http_version 1.1;
+
+        # 标准代理头
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # SSE 流式响应支持（Claude/Codex 必需）
+        proxy_set_header Connection '';
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_read_timeout 300s;
+        chunked_transfer_encoding on;
+    }
+}
+```
+
+重新加载 nginx 配置：
+
+```bash
+# 测试配置语法
+nginx -t
+
+# 重新加载配置
+nginx -s reload
+```
+
+{% callout type="note" %}
+`underscores_in_headers` 指令只能在 `http` 或 `server` 块中使用，不能在 `location` 块中使用。该配置对整个虚拟主机生效。
+{% /callout %}
+
+---
+
 ## 认证问题
 
 ### API Key 无效
