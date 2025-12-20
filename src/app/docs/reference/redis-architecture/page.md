@@ -241,6 +241,134 @@ CCH 使用 **Bull** 基于 Redis 实现后台任务队列:
 
 ---
 
+### 7. Session 缓存层
+
+CCH 在 Redis 之上提供了一层内存缓存,进一步减少高频读取场景下的数据库查询。
+
+**实现位置**: `src/lib/cache/session-cache.ts`
+
+#### 缓存类型
+
+| 缓存实例             | TTL  | 用途                               |
+| -------------------- | ---- | ---------------------------------- |
+| `activeSessionsCache`| 2s   | 活跃 Session 列表(仪表盘展示)      |
+| `sessionDetailsCache`| 1s   | 单个 Session 详情(频繁变化数据)    |
+
+#### 核心 API
+
+```typescript
+// 活跃 Sessions 缓存
+getActiveSessionsCache(key?: string): SessionData[] | null
+setActiveSessionsCache(data: SessionData[], key?: string): void
+clearActiveSessionsCache(): void
+
+// Session 详情缓存
+getSessionDetailsCache(sessionId: string): SessionDetail | null
+setSessionDetailsCache(sessionId: string, data: SessionDetail): void
+clearSessionDetailsCache(sessionId: string): void
+
+// 全局操作
+clearAllSessionCache(): void
+getCacheStats(): { activeSessions: Stats; sessionDetails: Stats }
+```
+
+#### 自动清理机制
+
+```typescript
+// 启动定期清理任务（默认 60 秒间隔）
+startCacheCleanup(intervalSeconds: number = 60): void
+
+// 停止清理任务
+stopCacheCleanup(): void
+```
+
+**热重载支持**: 使用 `globalThis` 存储 interval ID,避免开发环境热重载时创建多个清理任务。
+
+{% callout type="note" title="缓存层设计理念" %}
+Session 缓存层与 Redis 的定位不同:
+- **Redis**: 跨实例共享状态、分布式锁、持久化
+- **内存缓存**: 单实例内的极速读取,适用于仪表盘等高频刷新场景
+
+两者配合使用:先查内存缓存,未命中则查 Redis/数据库,再回填内存缓存。
+{% /callout %}
+
+---
+
+### 8. 优雅关闭
+
+CCH 实现了完整的优雅关闭机制,确保服务停止时正确清理资源。
+
+**实现位置**: `src/instrumentation.ts`、`src/lib/async-task-manager.ts`
+
+#### Instrumentation 钩子
+
+服务器启动时自动初始化,关闭时清理:
+
+```typescript
+// 启动时
+register() {
+  startCacheCleanup(60);  // 启动缓存清理
+  
+  // 注册关闭钩子
+  process.once("SIGTERM", shutdownHandler);
+  process.once("SIGINT", shutdownHandler);
+}
+
+// 关闭时
+async shutdownHandler(signal: string) {
+  stopCacheCleanup();     // 停止缓存清理
+  await closeRedis();     // 关闭 Redis 连接
+}
+```
+
+**防重入设计**: 使用 `globalThis` 存储状态标志,防止:
+- 热重载时重复初始化
+- 多次信号触发重复关闭
+
+#### 异步任务管理器
+
+统一管理后台异步任务的生命周期:
+
+```typescript
+// 注册任务
+const abortController = AsyncTaskManager.register(
+  taskId,
+  asyncPromise,
+  "stream-processing"
+);
+
+// 取消任务
+AsyncTaskManager.cancel(taskId);
+
+// 获取活跃任务数
+AsyncTaskManager.getActiveTaskCount();
+```
+
+**核心特性**:
+
+| 特性             | 说明                                       |
+| ---------------- | ------------------------------------------ |
+| AbortController  | 每个任务提供取消机制                       |
+| 自动清理         | 任务完成后自动从 Map 中移除                |
+| 超时保护         | 每分钟检查,超过 10 分钟未完成的任务自动取消 |
+| 信号监听         | SIGTERM/SIGINT/beforeExit 触发全部任务取消 |
+
+**单例模式**: 使用 `globalThis` 缓存实例,确保热重载场景下只有一个管理器。
+
+{% callout type="warning" title="关闭顺序" %}
+优雅关闭的执行顺序:
+1. 收到 SIGTERM/SIGINT 信号
+2. 停止接收新请求(由容器/负载均衡器处理)
+3. 取消所有异步任务(AsyncTaskManager)
+4. 停止缓存清理定时器
+5. 关闭 Redis 连接
+6. 进程退出
+
+确保先停止产生新任务,再清理现有资源。
+{% /callout %}
+
+---
+
 ## Lua 脚本列表
 
 所有 Lua 脚本位于 `src/lib/redis/lua-scripts.ts`,通过 `EVALSHA` 调用。

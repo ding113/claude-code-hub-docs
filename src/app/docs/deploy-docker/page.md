@@ -502,6 +502,162 @@ PostgreSQL 默认不对外暴露端口，仅允许容器内部网络访问。这
 
 ---
 
+## Dockerfile 优化详解
+
+Claude Code Hub 的 Docker 镜像采用了多项优化策略，确保构建速度快、镜像体积小、运行稳定。
+
+### 多阶段构建
+
+Dockerfile 采用四阶段构建，实现构建环境与运行环境分离：
+
+```dockerfile
+# 阶段 1：构建基础镜像
+FROM oven/bun:debian AS build-base
+
+# 阶段 2：安装依赖
+FROM build-base AS deps
+COPY package.json ./
+RUN bun install
+
+# 阶段 3：构建应用
+FROM deps AS build
+COPY . .
+RUN bun run build
+
+# 阶段 4：运行时镜像
+FROM node:trixie-slim AS runner
+```
+
+| 阶段 | 基础镜像 | 用途 |
+| --- | --- | --- |
+| `build-base` | `oven/bun:debian` | 提供 Bun 运行环境 |
+| `deps` | 继承自 build-base | 安装项目依赖 |
+| `build` | 继承自 deps | 构建 Next.js 应用 |
+| `runner` | `node:trixie-slim` | 生产运行时环境 |
+
+{% callout type="note" title="多阶段构建优势" %}
+多阶段构建确保最终镜像只包含运行所需的文件，不包含构建工具和开发依赖，大幅减小镜像体积。
+{% /callout %}
+
+### 运行时选择：Node.js vs Bun
+
+虽然构建阶段使用 Bun（因其安装和构建速度快），但运行阶段选择 Node.js：
+
+```dockerfile
+# 运行阶段：使用 Node.js（避免 Bun 流式响应内存泄漏 Issue #18488）
+FROM node:trixie-slim AS runner
+```
+
+**选择 Node.js 的原因：**
+
+- **流式响应稳定性**：Bun 在处理 SSE（Server-Sent Events）流式响应时存在内存泄漏问题（[Bun Issue #18488](https://github.com/oven-sh/bun/issues/18488)）
+- **Claude Code Hub 依赖流式响应**：与 AI 模型的交互大量使用流式响应，内存泄漏会导致容器 OOM
+- **Node.js 成熟稳定**：经过长期生产验证，适合长时间运行的服务
+
+{% callout type="warning" title="为什么不完全使用 Bun" %}
+虽然 Bun 性能优异，但其在流式响应场景下的内存泄漏问题会导致 Claude Code Hub 在长时间运行后内存持续增长。选择 Node.js 作为运行时是稳定性与性能的权衡。
+{% /callout %}
+
+### 构建优化策略
+
+#### 跳过数据库初始化
+
+构建时设置 `CI=true` 环境变量，跳过 `instrumentation.ts` 中的数据库连接检查：
+
+```dockerfile
+# 标记为 CI 环境，跳过 instrumentation.ts 中的数据库连接
+ENV CI=true
+```
+
+这避免了构建过程中因无法连接数据库而失败。
+
+#### BuildKit 缓存（开发镜像）
+
+`Dockerfile.dev` 使用 BuildKit 缓存机制加速重复构建：
+
+```dockerfile
+# 缓存 Next.js 构建产物
+RUN --mount=type=cache,target=/app/.next/cache \
+    bun run build
+
+# 缓存 APT 包下载
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
+    apt-get update && apt-get install -y ...
+```
+
+{% callout type="note" title="启用 BuildKit" %}
+使用 BuildKit 缓存需要确保 Docker BuildKit 已启用：
+```bash
+export DOCKER_BUILDKIT=1
+docker build -f deploy/Dockerfile.dev .
+```
+{% /callout %}
+
+### 文件复制优化
+
+运行时镜像只复制必要的文件，精确控制镜像内容：
+
+```dockerfile
+# 精确复制所需目录
+COPY --from=build --chown=node:node /app/public ./public
+COPY --from=build --chown=node:node /app/drizzle ./drizzle
+COPY --from=build --chown=node:node /app/messages ./messages
+COPY --from=build --chown=node:node /app/.next/standalone ./
+COPY --from=build --chown=node:node /app/.next/server ./.next/server
+COPY --from=build --chown=node:node /app/.next/static ./.next/static
+```
+
+| 目录 | 用途 |
+| --- | --- |
+| `public/` | 静态资源文件 |
+| `drizzle/` | 数据库迁移脚本 |
+| `messages/` | 国际化语言文件 |
+| `.next/standalone/` | Next.js 独立运行文件 |
+| `.next/server/` | Server Actions 和服务端组件 |
+| `.next/static/` | 客户端静态资源 |
+
+使用 `--chown=node:node` 设置正确的文件权限，容器以非 root 用户运行，符合安全最佳实践。
+
+### 运行时依赖
+
+运行时镜像安装了必要的系统工具：
+
+```dockerfile
+RUN apt-get update && \
+    apt-get install -y curl ca-certificates postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
+```
+
+| 依赖 | 用途 |
+| --- | --- |
+| `curl` | 健康检查端点访问 |
+| `ca-certificates` | HTTPS 证书验证 |
+| `postgresql-client` | 数据库备份/恢复功能 |
+
+### 自定义构建
+
+如需自行构建镜像，可以使用以下命令：
+
+```bash
+# 生产镜像构建
+docker build -f deploy/Dockerfile -t claude-code-hub:custom .
+
+# 开发镜像构建（使用 BuildKit 缓存）
+DOCKER_BUILDKIT=1 docker build -f deploy/Dockerfile.dev -t claude-code-hub:dev .
+
+# 指定版本号
+docker build -f deploy/Dockerfile \
+  --build-arg APP_VERSION=v1.0.0 \
+  -t claude-code-hub:v1.0.0 .
+```
+
+{% callout type="note" title="多平台构建" %}
+Dockerfile 支持通过 `--platform` 参数进行多平台构建（如 `linux/amd64`、`linux/arm64`），适配不同架构的服务器。
+{% /callout %}
+
+---
+
 ## 常见问题
 
 ### 数据库连接失败

@@ -250,6 +250,57 @@ Provider1(✗) → Provider2(✗) → Provider3(✓)
 总耗时：2500ms
 ```
 
+### 错误请求详情
+
+当请求发生错误时（供应商错误、系统错误、HTTP/2 协议回退等），时间线中会显示该次请求的详细信息，便于问题排查。
+
+#### 可查看的信息
+
+| 信息类型 | 说明 |
+|----------|------|
+| 请求方法 | HTTP 方法（GET、POST 等） |
+| 请求 URL | 实际发送的上游请求地址 |
+| 请求头 | 发送给上游的 HTTP 头部 |
+| 请求体 | 发送给上游的请求内容（限制 2000 字符） |
+
+#### 敏感信息脱敏
+
+为保护安全，请求详情中的敏感信息会自动脱敏处理：
+
+**请求头脱敏**
+
+以下请求头的值会被部分遮罩：
+- `Authorization`：保留认证类型前缀（如 `Bearer`），令牌只显示前后各 4 字符
+- `X-API-Key`、`API-Key`、`Anthropic-API-Key` 等 API 密钥头
+- `Cookie`、`Set-Cookie`
+- `Proxy-Authorization`、`X-Auth-Token` 等认证相关头部
+
+遮罩示例：
+- `Bearer sk-ant-api...****...xyz123` - 长令牌部分遮罩
+- `[REDACTED]` - 短于 8 字符的值完全遮罩
+- `Basic [REDACTED]` - Basic 认证完全遮罩（包含用户名密码）
+
+**URL 参数脱敏**
+
+以下 URL 查询参数的值会被替换为 `[REDACTED]`：
+- `api_key`、`api-key`、`apiKey`、`key`
+- `token`、`access_token`、`auth_token`
+- `secret`、`client_secret`、`password`
+
+**请求体截断**
+
+- 请求体最大显示 2000 字符
+- 超出部分会被截断，并标注「已截断」提示
+- 在时间线详情展示时进一步限制为 500 字符预览
+
+{% callout type="note" title="请求详情用途" %}
+请求详情主要用于排查以下问题：
+- 验证请求是否正确转发到上游供应商
+- 检查请求头是否符合预期
+- 对比不同供应商的请求差异
+- 分析网络层错误的原因
+{% /callout %}
+
 ## 特殊标记
 
 ### 非计费端点

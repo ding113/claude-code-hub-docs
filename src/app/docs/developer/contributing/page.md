@@ -384,6 +384,23 @@ git push --force-with-lease
 | `bun run format` | 格式化代码 |
 | `bun run format:check` | 检查代码格式 |
 
+### 测试命令
+
+项目使用 [Vitest](https://vitest.dev/) 作为测试框架，相比 Jest 具有更快的执行速度、原生 ESM 支持和更好的 TypeScript 集成。
+
+| 命令 | 说明 |
+|------|------|
+| `bun run test` | 运行所有测试 |
+| `bun run test:watch` | 监听模式运行测试 |
+| `bun run test:coverage` | 运行测试并生成覆盖率报告 |
+
+{% callout type="note" title="API 完整性测试" %}
+项目包含 API 完整性测试套件，用于：
+- 确保所有 API 端点正常工作
+- 验证请求/响应格式符合规范
+- 测试错误处理逻辑
+{% /callout %}
+
 ### 数据库命令
 
 | 命令 | 说明 |

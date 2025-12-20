@@ -47,6 +47,21 @@ Claude Code Hub 使用 [Pino](https://getpino.io/) 作为日志库，支持以�
 日志级别具有包含关系。例如，选择 `Info` 级别时，会同时输出 `Info`、`Warn`、`Error` 和 `Fatal` 级别的日志。
 {% /callout %}
 
+### 日志级别优先级
+
+每个日志级别都有一个对应的优先级数值，数值越小表示越详细：
+
+| 级别 | 优先级数值 |
+|------|-----------|
+| trace | 10 |
+| debug | 20 |
+| info | 30 |
+| warn | 40 |
+| error | 50 |
+| fatal | 60 |
+
+系统会根据当前设置的日志级别，输出所有优先级数值大于或等于该级别的日志。例如，当日志级别设置为 `info`（30）时，只会输出 `info`（30）、`warn`（40）、`error`（50）和 `fatal`（60）级别的日志。
+
 ---
 
 ## 使用方法
@@ -89,6 +104,88 @@ LOG_LEVEL=info
 
 {% callout type="note" title="动态调整与环境变量" %}
 通过界面动态调整的日志级别仅在当前进程有效。服务重启后会重新读取环境变量的配置。如需持久化日志级别设置，请修改环境变量。
+{% /callout %}
+
+---
+
+## 技术架构
+
+### 双日志器架构
+
+Claude Code Hub 采用双日志器架构，确保在任何环境下都能正常输出日志：
+
+1. **Console Logger（同步创建）**：系统启动时立即创建，使用浏览器/Node.js 原生 console 对象
+2. **Pino Logger（异步加载）**：在 Node.js 环境下异步加载，加载完成后自动切换
+
+这种架构的优势：
+
+- **零延迟启动**：应用启动时立即可用，无需等待 Pino 加载
+- **无缝切换**：Pino 加载完成后自动切换，日志级别设置自动继承
+- **环境兼容**：在浏览器环境或 Edge Runtime 中自动降级为 Console Logger
+
+### 灵活的参数格式
+
+日志方法支持两种调用方式，自动适配参数顺序：
+
+```typescript
+// 方式一：Pino 原生方式（对象在前，消息在后）
+logger.info({ userId: 123, action: 'login' }, '用户登录成功');
+
+// 方式二：便捷方式（消息在前，对象在后）
+logger.info('用户登录成功', { userId: 123, action: 'login' });
+```
+
+系统会自动检测参数类型并交换顺序，最终都会以 Pino 原生格式输出。
+
+---
+
+## 运行时 API
+
+除了通过界面调整日志级别，开发者还可以在代码中使用以下 API：
+
+### setLogLevel
+
+动态调整日志级别：
+
+```typescript
+import { setLogLevel } from '@/lib/logger';
+
+// 临时开启调试模式
+setLogLevel('debug');
+
+// 执行需要调试的操作...
+
+// 恢复正常级别
+setLogLevel('info');
+```
+
+### getLogLevel
+
+获取当前日志级别：
+
+```typescript
+import { getLogLevel } from '@/lib/logger';
+
+const currentLevel = getLogLevel();
+console.log(`当前日志级别: ${currentLevel}`);
+```
+
+### 直接设置 logger.level
+
+也可以直接通过 logger 对象的 level 属性进行设置：
+
+```typescript
+import { logger } from '@/lib/logger';
+
+// 获取当前级别
+console.log(logger.level);
+
+// 设置新级别
+logger.level = 'debug';
+```
+
+{% callout type="warning" title="API 使用注意" %}
+运行时 API 的修改仅影响当前进程。如果应用有多个实例（如 PM2 集群模式），需要分别调用每个实例的 API。
 {% /callout %}
 
 ---

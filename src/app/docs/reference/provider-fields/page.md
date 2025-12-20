@@ -31,6 +31,7 @@ language: zh
 | **代理配置** | HTTP/SOCKS 代理设置 | proxyUrl, proxyFallbackToDirect |
 | **模型配置** | 模型重定向和白名单 | modelRedirects, allowedModels |
 | **特性配置** | 供应商特定功能 | codexInstructionsStrategy, mcpPassthroughType |
+| **上下文窗口配置** | 1M 上下文窗口控制 | context1mPreference |
 | **熔断器配置** | 故障隔离和恢复 | circuitBreakerFailureThreshold 等 |
 | **元数据字段** | 时间戳和软删除 | createdAt, updatedAt, deletedAt |
 
@@ -506,6 +507,82 @@ MCP（Model Context Protocol）透传功能用于增强模型能力。
 {% callout type="warning" %}
 MCP 透传 URL 禁止使用内部网络地址（localhost、私有 IP 等）以防止 SSRF 攻击。
 {% /callout %}
+
+---
+
+## 1M 上下文窗口配置
+
+1M 上下文窗口是 Anthropic 提供的大容量上下文功能，允许模型处理最多 100 万 token 的上下文内容。此功能通过供应商级别的配置进行控制。
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `context1mPreference` | enum | `inherit` | 1M 上下文窗口偏好设置 |
+
+### 配置选项（context1mPreference）
+
+| 选项值 | 说明 | 使用场景 |
+| --- | --- | --- |
+| `inherit` | 继承客户端请求设置 | 默认推荐，由客户端决定是否启用 |
+| `force_enable` | 强制启用 1M 上下文 | 需要确保支持长上下文的场景 |
+| `disabled` | 禁用 1M 上下文 | 成本敏感场景，避免分层定价 |
+
+### 支持的模型
+
+1M 上下文窗口功能仅支持以下模型前缀：
+
+| 模型前缀 | 说明 |
+| --- | --- |
+| `claude-sonnet-4-5` | Claude Sonnet 4.5 系列 |
+| `claude-sonnet-4` | Claude Sonnet 4 系列 |
+
+{% callout type="note" %}
+模型匹配使用前缀规则，例如 `claude-sonnet-4-20250514` 会匹配 `claude-sonnet-4` 前缀。
+{% /callout %}
+
+### 分层定价
+
+使用 1M 上下文窗口时，超过 200k token 的部分会按溢价计费：
+
+| 定价类型 | 阈值 | 溢价倍数 | 说明 |
+| --- | --- | --- | --- |
+| 输入 token | >200k | 2x | 例如：$3/MTok → $6/MTok |
+| 输出 token | >200k | 1.5x | 例如：$15/MTok → $22.50/MTok |
+
+{% callout type="warning" title="成本注意" %}
+启用 1M 上下文窗口后，超过 200k token 的输入和输出会按溢价计费。请根据实际使用场景评估成本影响。
+{% /callout %}
+
+### 工作原理
+
+1. **客户端请求**：客户端通过 `anthropic-beta: context-1m-2025-08-07` 请求头申请启用 1M 上下文
+2. **供应商过滤**：路由选择器会自动过滤掉设置为 `disabled` 的供应商
+3. **请求转发**：对于 `inherit` 或 `force_enable` 的供应商，系统会在转发请求时添加相应的 beta 头部
+
+### 配置示例
+
+```json
+{
+  "context1mPreference": "inherit"
+}
+```
+
+**强制启用示例**（适用于需要保证长上下文支持的供应商）：
+
+```json
+{
+  "context1mPreference": "force_enable"
+}
+```
+
+**禁用示例**（适用于成本敏感或不支持 1M 上下文的中转站）：
+
+```json
+{
+  "context1mPreference": "disabled"
+}
+```
 
 ---
 

@@ -750,6 +750,64 @@ source ~/.bashrc
 
 Codex 是 OpenAI 官方的命令行 AI 编程助手，支持通过 CCH 代理使用。注意：Codex 使用 OpenAI 兼容格式，端点需要包含 `/v1` 路径。
 
+### CCH 请求处理优化
+
+CCH 在转发 Codex 请求时会自动进行以下优化处理，确保与 Codex Response API 的最佳兼容性：
+
+#### 强制参数设置
+
+| 参数 | 强制值 | 说明 |
+|------|--------|------|
+| `stream` | `true` | Codex API 要求必须使用流式响应，CCH 会强制启用 |
+| `store` | `false` | 禁用响应存储，保护用户隐私 |
+| `parallel_tool_calls` | `true` | 启用并行工具调用，提升执行效率 |
+| `include` | `["reasoning.encrypted_content"]` | 包含加密的推理内容 |
+
+{% callout type="note" title="关于流式响应" %}
+即使客户端配置为非流式请求，CCH 也会强制将 `stream` 设置为 `true`。这是因为 Codex Response API 的设计要求必须使用流式传输。CCH 会在内部处理流式响应的转换，对客户端透明。
+{% /callout %}
+
+#### System 消息处理
+
+Codex Response API 不直接支持 OpenAI 格式的 `system` 消息。CCH 会自动进行以下转换：
+
+1. **提取 System 消息**：从请求中提取所有 `role: "system"` 的消息内容
+2. **转换为 Instructions**：将提取的内容合并为 Codex 格式的 `instructions` 字段
+3. **注入用户消息**：同时将 system 内容注入到第一条用户消息中，确保上下文完整
+
+```text
+OpenAI 格式:
+messages: [
+  { role: "system", content: "你是一个专业的代码助手" },
+  { role: "user", content: "帮我写一个函数" }
+]
+
+CCH 转换后的 Codex 格式:
+input: [
+  {
+    type: "message",
+    role: "user",
+    content: [
+      { type: "input_text", text: "你是一个专业的代码助手" },
+      { type: "input_text", text: "帮我写一个函数" }
+    ]
+  }
+]
+instructions: "<官方完整 prompt>"
+```
+
+#### 不支持的参数
+
+以下 OpenAI Chat Completions 参数在 Codex 格式中不被支持，CCH 会自动删除：
+
+- `max_tokens` / `max_output_tokens` / `max_completion_tokens`
+- `temperature`
+- `top_p`
+
+{% callout type="warning" title="参数兼容性" %}
+如果您的客户端配置了上述参数，不会影响请求的正常处理，CCH 会在转换时静默移除这些参数。
+{% /callout %}
+
 ### macOS
 
 #### 环境准备：安装 Node.js

@@ -93,6 +93,140 @@ language: zh
 
 ---
 
+## 预设错误规则
+
+Claude Code Hub 内置了一套预设错误规则（`DEFAULT_ERROR_RULES`），覆盖常见的不可重试错误场景。这些规则在系统启动时自动同步到数据库，确保用户开箱即用。
+
+### 预设规则类型
+
+系统预设规则覆盖以下错误类别：
+
+| 分类标识 | 分类名称 | 典型场景 | 示例错误消息 |
+| --- | --- | --- | --- |
+| `prompt_limit` | Prompt 超限 | 请求 token 数量超过模型限制 | "prompt is too long...tokens maximum" |
+| `input_limit` | 输入超限 | 输入内容长度超过供应商限制 | "Input is too long"、"CONTENT_LENGTH_EXCEEDS_THRESHOLD" |
+| `validation_error` | 验证错误 | AWS/Bedrock 验证失败、工具调用参数错误 | "ValidationException"、"tool_use ids must be unique" |
+| `context_limit` | 上下文超限 | 上下文窗口或 token 限制超出 | "context length exceed"、"pricing plan does not include Long Context" |
+| `token_limit` | Token 超限 | max_tokens 参数超过模型允许值 | "max_tokens exceed" |
+| `content_filter` | 内容过滤 | 请求内容被安全过滤器拦截 | "blocked by content filter" |
+| `model_error` | 模型错误 | 模型参数为空、未知模型 | "actualModel is null"、"unknown model" |
+| `pdf_limit` | PDF 超限 | PDF 文件页数超过处理限制 | "PDF has too many pages" |
+| `thinking_error` | Thinking 错误 | Thinking 模式配置或格式错误 | "thinking format invalid" |
+| `parameter_error` | 参数错误 | 请求参数不符合 API 规范 | "Missing required parameter" |
+| `invalid_request` | 非法请求 | 请求格式或内容非法 | "invalid request"、"image exceeds maximum bytes" |
+| `cache_limit` | 缓存超限 | cache_control 块数量超过限制 | "cache_control limit blocks" |
+
+### 预设规则详情
+
+以下是 v0.3.30 版本中包含的完整预设规则列表：
+
+| 匹配模式 | 匹配类型 | 分类 | 说明 |
+| --- | --- | --- | --- |
+| `prompt is too long.*(tokens.*maximum\|maximum.*tokens)` | regex | prompt_limit | Prompt token 超限 |
+| `Input is too long` | contains | input_limit | 输入内容长度超限 |
+| `CONTENT_LENGTH_EXCEEDS_THRESHOLD` | contains | input_limit | AWS Bedrock 内容长度超限 |
+| `ValidationException` | contains | validation_error | AWS/Bedrock 验证错误 |
+| `context.*(length\|window\|limit).*exceed\|exceed.*(context\|token\|length).*(limit\|window)` | regex | context_limit | 上下文窗口超限 |
+| `max_tokens.*exceed\|exceed.*max_tokens\|maximum.*tokens.*allowed` | regex | token_limit | max_tokens 参数超限 |
+| `pricing plan does not include Long Context` | contains | context_limit | 供应商套餐不支持长上下文 |
+| `blocked by.*content filter` | regex | content_filter | 内容被安全过滤器拦截 |
+| `` `tool_use` ids must be unique\|tool_use.*ids must be unique`` | regex | validation_error | tool_use ID 重复 |
+| `Tool names must be unique` | contains | validation_error | MCP 工具名称重复 |
+| `unexpected.*tool_use_id.*tool_result\|tool_result.*must have.*corresponding.*tool_use` | regex | validation_error | tool_result 缺少对应 tool_use |
+| `"actualModel" is null\|actualModel.*null` | regex | model_error | 模型参数为空 |
+| `unknown model\|model.*not.*found\|model.*does.*not.*exist` | regex | model_error | 未知模型 |
+| `model is required` | contains | model_error | 缺少 model 参数 |
+| `模型名称.*为空\|模型名称不能为空\|未指定模型` | regex | model_error | 模型名称为空（中文） |
+| `PDF has too many pages\|maximum of.*PDF pages` | regex | pdf_limit | PDF 页数超限 |
+| `thinking.*format.*invalid\|Expected.*thinking.*but found\|clear_thinking.*requires.*thinking.*enabled` | regex | thinking_error | Thinking 块格式错误 |
+| `Missing required parameter\|Extra inputs.*not permitted` | regex | parameter_error | 请求参数验证失败 |
+| `非法请求\|illegal request\|invalid request` | regex | invalid_request | 非法请求格式 |
+| `image exceeds.*maximum.*bytes` | regex | invalid_request | 图片大小超限 |
+| `(cache_control.*(limit\|maximum).*blocks\|(maximum\|limit).*blocks.*cache_control)` | regex | cache_limit | cache_control 块超限 |
+
+{% callout type="note" %}
+每条预设规则都配置了中文的覆写响应消息，当匹配成功时会返回用户友好的错误提示。
+{% /callout %}
+
+### 同步策略
+
+预设规则采用「用户自定义优先」的同步策略，确保用户的修改不会被覆盖：
+
+| 场景 | 处理方式 |
+| --- | --- |
+| pattern 不存在于数据库 | 插入新规则 |
+| pattern 存在且 `isDefault=true` | 更新为最新预设规则 |
+| pattern 存在且 `isDefault=false` | 跳过（保留用户的自定义版本） |
+| 数据库中存在但不在预设规则中 | 删除过期的默认规则 |
+
+**同步时机**
+
+- **系统启动时**：自动执行 `syncDefaultErrorRules()` 同步预设规则
+- **手动刷新**：点击「刷新缓存」按钮时同步最新预设规则
+
+**编辑默认规则的行为**
+
+当用户编辑默认规则的匹配模式或分类时，系统会自动将 `isDefault` 标记为 `false`，将其转换为用户自定义规则。这样可以：
+
+1. 保留用户的修改不被后续同步覆盖
+2. 允许用户完全控制该规则的配置
+3. 系统升级时不会丢失用户的自定义内容
+
+{% callout type="warning" %}
+如果需要恢复默认规则的原始配置，可以删除该规则后点击「刷新缓存」重新同步。
+{% /callout %}
+
+### 匹配优先级
+
+错误规则检测器按照性能优先的顺序进行匹配：
+
+```
+错误消息输入
+     ↓
+1. 包含匹配（contains）
+   - 遍历所有包含规则
+   - 检查 message.includes(pattern)
+   - 大小写不敏感
+     ↓ 未命中
+2. 精确匹配（exact）
+   - 使用 HashMap O(1) 查找
+   - 匹配 message.trim() === pattern
+   - 大小写不敏感
+     ↓ 未命中
+3. 正则匹配（regex）
+   - 依次执行正则表达式
+   - 大小写不敏感（/i 标志）
+   - 带 ReDoS 安全检测
+     ↓
+返回匹配结果
+```
+
+{% callout type="note" %}
+一旦命中任意规则，立即返回结果，不再继续匹配后续规则。建议优先使用包含匹配和精确匹配以获得更好的性能。
+{% /callout %}
+
+### 手动同步预设规则
+
+除了系统自动同步外，也可以通过命令行手动同步：
+
+```bash
+bun run scripts/init-error-rules.ts
+```
+
+执行后会显示同步统计：
+
+```
+Syncing default error rules...
+Default error rules synced: 5 inserted, 10 updated, 2 skipped, 1 deleted
+```
+
+- **inserted**：新增的规则数量
+- **updated**：更新的默认规则数量
+- **skipped**：跳过的用户自定义规则数量
+- **deleted**：删除的过期默认规则数量
+
+---
+
 ## 匹配方式
 
 错误规则支持三种匹配方式：
