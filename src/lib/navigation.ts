@@ -20,6 +20,7 @@ export const navigation = [
       { title: '可用性监控', href: '/docs/guide/availability' },
       { title: '限流监控', href: '/docs/guide/rate-limits' },
       { title: '用户管理', href: '/docs/guide/users' },
+      { title: '用户权限与分组', href: '/docs/guide/permissions-groups' },
       { title: '限额管理', href: '/docs/guide/quota-management' },
       { title: '用户配额', href: '/docs/guide/quotas-users' },
       { title: '供应商配额', href: '/docs/guide/quotas-providers' },
