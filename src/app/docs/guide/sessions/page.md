@@ -107,6 +107,50 @@ Session 默认有效期为 5 分钟。在此期间的请求会复用同一 Sessi
 | 管理员 | 所有用户的 Session |
 | 普通用户 | 仅自己创建的 Session |
 
+## 访问控制
+
+{% callout type="warning" title="仅管理员可访问" %}
+v0.3.33 版本起，Session 管理页面（`/dashboard/sessions`）**仅对管理员开放**。普通用户访问时会被自动重定向到仪表盘主页。
+{% /callout %}
+
+### 页面访问权限
+
+| 用户角色 | 页面访问 | 说明 |
+|----------|----------|------|
+| 管理员 | 允许 | 可以访问完整的 Session 管理功能 |
+| 普通用户 | 禁止 | 访问时重定向到 `/dashboard` |
+
+### 管理员功能权限
+
+管理员可以执行以下操作：
+
+| 功能 | 范围 |
+|------|------|
+| 查看活跃 Session 列表 | 所有用户的 Session |
+| 查看 Session 详情 | 所有 Session |
+| 批量终止 Session | 所有 Session |
+| 查看 Session 消息 | 所有 Session |
+| 查看代理状态 | 所有 Session |
+
+### API 级别权限（纵深防御）
+
+除页面级控制外，后端 API 也实现了数据隔离作为安全纵深防御：
+
+| API 功能 | 管理员 | 普通用户（直接调用 API） |
+|----------|--------|-------------------------|
+| 获取 Session 列表 | 返回所有用户数据 | 仅返回自己的数据 |
+| 获取 Session 详情 | 可查看所有 Session | 仅可查看自己的 Session |
+| 获取 Session 消息 | 可查看所有 Session | 仅可查看自己的 Session |
+| 终止 Session | 可终止所有 Session | 仅可终止自己的 Session |
+
+{% callout type="note" title="双重防护" %}
+API 级别的权限过滤是安全纵深防御的一部分，防止通过直接调用 API 绕过页面权限检查。
+{% /callout %}
+
+{% callout type="warning" %}
+Session 消息可能包含敏感信息。管理员查看用户 Session 消息时应遵守组织的隐私政策。
+{% /callout %}
+
 ### 结果反馈
 
 批量终止完成后，系统会显示详细的操作结果：
