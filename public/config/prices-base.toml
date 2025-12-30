@@ -2,7 +2,7 @@
 
 [metadata]
 version = "2025.12.31"
-checksum = "7072cf486a529f6d5749fcfdd2ee77fd11594fdedf8f886025e060439477f65b"
+checksum = "28183ca2f83973c5d800d41c9ae374b0c53dc48e1d6d91651623ed69b12ef48b"
 
 [models."1024-x-1024/50-steps/bedrock/amazon.nova-canvas-v1:0"]
 litellm_provider = "bedrock"
@@ -17468,12 +17468,13 @@ litellm_provider = "openai"
 max_input_tokens = 272000
 max_output_tokens = 128000
 max_tokens = 128000
-mode = "responses"
+mode = "chat"
 output_cost_per_token = 0.00001
 output_cost_per_token_priority = 0.00002
-supported_endpoints = ["/v1/responses"]
+source = "custom"
+supported_endpoints = ["/v1/chat/completions", "/v1/responses"]
 supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
+supported_output_modalities = ["text", "image"]
 supports_function_calling = true
 supports_native_streaming = true
 supports_parallel_function_calling = true
@@ -17481,7 +17482,8 @@ supports_pdf_input = true
 supports_prompt_caching = true
 supports_reasoning = true
 supports_response_schema = true
-supports_system_messages = false
+supports_service_tier = true
+supports_system_messages = true
 supports_tool_choice = true
 supports_vision = true
 
@@ -17610,6 +17612,34 @@ supports_pdf_input = true
 supports_prompt_caching = true
 supports_reasoning = true
 supports_response_schema = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_vision = true
+
+[models."gpt-5.2-codex"]
+cache_read_input_token_cost = 1.75e-7
+cache_read_input_token_cost_priority = 3.5e-7
+input_cost_per_token = 0.00000175
+input_cost_per_token_priority = 0.0000035
+litellm_provider = "openai"
+max_input_tokens = 400000
+max_output_tokens = 128000
+max_tokens = 128000
+mode = "chat"
+output_cost_per_token = 0.000014
+output_cost_per_token_priority = 0.000028
+source = "custom"
+supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text", "image"]
+supports_function_calling = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_pdf_input = true
+supports_prompt_caching = true
+supports_reasoning = true
+supports_response_schema = true
+supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 supports_vision = true
