@@ -1,46 +1,447 @@
+# =============================================================================
+# Claude Code Hub - Vendor Configuration Schema
+# Version: 1.0.0
+# =============================================================================
+#
+# This file defines the vendor configuration schema for Claude Code Hub v0.4+
+# It includes:
+#   - Vendor definitions (endpoints, balance queries, metadata)
+#   - Vendor templates (reusable configurations like new-api)
+#   - Authentication methods (API Key, Cookie, Custom Headers)
+#
+# =============================================================================
+# SCHEMA REFERENCE (for future development)
+# =============================================================================
+#
+# [vendors.<vendor_id>]
+#   id           : string   # Unique vendor identifier (auto-generated from key)
+#   name         : string   # Display name
+#   website      : string   # Official website URL
+#   icon         : string   # Icon URL (favicon or logo)
+#   description  : string   # Optional description
+#   enabled      : boolean  # Whether vendor is enabled (default: true)
+#   template     : string   # Optional template reference (e.g., "new-api")
+#   created_at   : string   # ISO timestamp (auto-generated)
+#   updated_at   : string   # ISO timestamp (auto-updated)
+#
+# [vendors.<vendor_id>.endpoints.<endpoint_id>]
+#   id           : string   # Unique endpoint identifier
+#   name         : string   # Display name
+#   url          : string   # Base URL (e.g., "https://api.example.com")
+#   priority     : integer  # Lower = higher priority (default: 0)
+#   weight       : integer  # Load balancing weight (default: 100)
+#   enabled      : boolean  # Whether endpoint is enabled (default: true)
+#   latency_ms   : integer  # Last measured latency (auto-updated)
+#   region       : string   # Optional region hint (e.g., "us-west", "asia")
+#   tags         : array    # Optional tags for filtering
+#
+# [vendors.<vendor_id>.balance]
+#   enabled      : boolean  # Whether balance query is enabled
+#   url          : string   # Balance query endpoint URL
+#   method       : string   # HTTP method (GET, POST)
+#   interval_ms  : integer  # Auto-refresh interval (default: 300000 = 5min)
+#   timeout_ms   : integer  # Request timeout (default: 10000 = 10s)
+#   auto_disable : boolean  # Auto-disable vendor when balance is low
+#   threshold    : number   # Balance threshold for auto-disable
+#
+# [vendors.<vendor_id>.balance.auth]
+#   type         : string   # Auth type: "bearer", "cookie", "header", "query"
+#   # For type = "bearer":
+#   token_source : string   # "api_key" | "custom"
+#   token        : string   # Custom token (if token_source = "custom")
+#   # For type = "cookie":
+#   cookie_name  : string   # Cookie name
+#   cookie_value : string   # Cookie value (user-configured)
+#   # For type = "header":
+#   header_name  : string   # Custom header name
+#   header_value : string   # Custom header value
+#   # For type = "query":
+#   param_name   : string   # Query parameter name
+#   param_value  : string   # Query parameter value
+#
+# [vendors.<vendor_id>.balance.request]
+#   headers      : table    # Additional request headers
+#   body         : string   # Request body (for POST)
+#   content_type : string   # Content-Type header
+#
+# [vendors.<vendor_id>.balance.extractor]
+#   type         : string   # "jsonpath", "javascript", "regex"
+#   # For type = "jsonpath":
+#   remaining    : string   # JSONPath for remaining balance
+#   total        : string   # JSONPath for total balance
+#   used         : string   # JSONPath for used balance
+#   unit         : string   # JSONPath for unit or static string
+#   expires_at   : string   # JSONPath for expiration timestamp
+#   # For type = "javascript":
+#   code         : string   # JavaScript function body
+#   # For type = "regex":
+#   pattern      : string   # Regex pattern with named groups
+#
+# Extractor Response Schema (for JavaScript extractors):
+# {
+#   remaining    : number   # Required: remaining balance
+#   total        : number   # Optional: total balance
+#   used         : number   # Optional: used balance
+#   unit         : string   # Optional: unit/currency (default: "quota")
+#   unlimited    : boolean  # Optional: unlimited flag
+#   expires_at   : string   # Optional: expiration timestamp (ISO 8601)
+#   quotas       : object   # Optional: time-window based quotas
+#   extra        : object   # Optional: additional vendor-specific info
+# }
+#
+# Quotas Structure (all fields optional):
+# quotas: {
+#   "5h": { limit, used, remaining, reset_at },   # 5-hour window
+#   "1d": { limit, used, remaining, reset_at },   # Daily window
+#   "1w": { limit, used, remaining, reset_at },   # Weekly window
+#   "1m": { limit, used, remaining, reset_at },   # Monthly window
+#   "total": { limit, used, remaining }           # Lifetime quota (no reset)
+# }
+# Each quota object fields:
+#   limit     : number   # Total allowed in this window
+#   used      : number   # Amount consumed
+#   remaining : number   # Available amount
+#   reset_at  : string   # ISO 8601 timestamp when quota resets (optional)
+#
+# [templates.<template_id>]
+#   name         : string   # Template display name
+#   description  : string   # Template description
+#   base_path    : string   # Default API base path
+#   balance      : table    # Balance query configuration
+#   endpoints    : table    # Default endpoint configuration
+#
+# =============================================================================
+
 [metadata]
-version = "2025.12.26"
+version = "2025.12.30"
+schema_version = "1.0.0"
 
-[[vendors]]
-slug = "anthropic"
-name = "Anthropic"
-category = "official"
-website_url = "https://www.anthropic.com"
-favicon_url = "https://www.anthropic.com/favicon.ico"
-tags = ["claude"]
+# =============================================================================
+# VENDOR DEFINITIONS
+# =============================================================================
 
-[[vendors.endpoints]]
-name = "Official API"
-url = "https://api.anthropic.com"
-api_format = "claude"
-
-[vendors.balance_check]
+# -----------------------------------------------------------------------------
+# Cubence - Full Configuration Example
+# -----------------------------------------------------------------------------
+[vendors.cubence]
+name = "Cubence"
+website = "https://cubence.com"
+icon = "https://cubence.com/favicon.svg"
+description = "Cubence AI API Provider with multiple regional endpoints"
 enabled = true
-endpoint = "/v1/messages/count_tokens"
-jsonpath = "$.input_tokens"
 
-[[vendors]]
-slug = "openai"
-name = "OpenAI"
-category = "official"
-website_url = "https://openai.com"
-favicon_url = "https://openai.com/favicon.ico"
-tags = ["codex", "gpt", "o1"]
+# Multiple endpoints for failover and load balancing
+[vendors.cubence.endpoints.main]
+name = "Cubence API"
+url = "https://api.cubence.com"
+priority = 0
+weight = 100
+enabled = true
+region = "default"
 
-[[vendors.endpoints]]
-name = "Official API"
-url = "https://api.openai.com"
-api_format = "codex"
+[vendors.cubence.endpoints.dmit]
+name = "Cubence DMIT API"
+url = "https://api-dmit.cubence.com"
+priority = 1
+weight = 80
+enabled = true
+region = "us-west"
+tags = ["low-latency", "asia"]
 
-[[vendors]]
-slug = "google"
-name = "Google AI"
-category = "official"
-website_url = "https://ai.google.dev"
-favicon_url = "https://ai.google.dev/favicon.ico"
-tags = ["gemini"]
+[vendors.cubence.endpoints.bwg]
+name = "Cubence BWG API"
+url = "https://api-bwg.cubence.com"
+priority = 2
+weight = 60
+enabled = true
+region = "us-west"
+tags = ["backup"]
 
-[[vendors.endpoints]]
-name = "Generative AI API"
-url = "https://generativelanguage.googleapis.com"
-api_format = "gemini"
+[vendors.cubence.endpoints.cf]
+name = "Cubence CF API"
+url = "https://api-cf.cubence.com"
+priority = 3
+weight = 40
+enabled = true
+region = "global"
+tags = ["cloudflare", "fallback"]
+
+# Balance query configuration
+[vendors.cubence.balance]
+enabled = true
+url = "https://cubence.com/api/v1/user/subscription-info"
+method = "GET"
+interval_ms = 300000
+timeout_ms = 10000
+auto_disable = true
+threshold = 1.0
+
+[vendors.cubence.balance.auth]
+type = "bearer"
+token_source = "api_key"
+
+[vendors.cubence.balance.request]
+headers = { Accept = "*/*", "Content-Type" = "application/json" }
+
+# JavaScript extractor for complex response parsing
+[vendors.cubence.balance.extractor]
+type = "javascript"
+code = """
+function extract(response) {
+  const data = typeof response === 'string' ? JSON.parse(response) : response;
+  const normalBalance = data.normal_balance?.amount_dollar || 0;
+  const subscription = data.subscription_window || {};
+  const fiveHour = subscription.five_hour || {};
+  const weekly = subscription.weekly || {};
+
+  // Build quotas object with time-window based limits
+  const quotas = {};
+
+  // 5-hour window quota
+  if (fiveHour.limit !== undefined) {
+    quotas['5h'] = {
+      limit: fiveHour.limit,
+      used: fiveHour.used || 0,
+      remaining: (fiveHour.limit || 0) - (fiveHour.used || 0),
+      reset_at: fiveHour.reset_at || null  // ISO 8601 timestamp
+    };
+  }
+
+  // Weekly window quota
+  if (weekly.limit !== undefined) {
+    quotas['1w'] = {
+      limit: weekly.limit,
+      used: weekly.used || 0,
+      remaining: (weekly.limit || 0) - (weekly.used || 0),
+      reset_at: weekly.reset_at || null
+    };
+  }
+
+  return {
+    remaining: normalBalance,
+    unit: 'USD',
+    unlimited: data.unlimited_quota || false,
+    quotas: Object.keys(quotas).length > 0 ? quotas : undefined,
+    extra: {
+      subscription_5h_price: fiveHour.price || 0,
+      subscription_weekly_price: weekly.price || 0
+    }
+  };
+}
+"""
+
+# -----------------------------------------------------------------------------
+# Example: Vendor using Cookie Authentication (for reference)
+# -----------------------------------------------------------------------------
+# [vendors.example_cookie_auth]
+# name = "Example Cookie Auth Vendor"
+# website = "https://example.com"
+# icon = "https://example.com/favicon.ico"
+# enabled = false
+#
+# [vendors.example_cookie_auth.endpoints.main]
+# name = "Main API"
+# url = "https://api.example.com"
+# priority = 0
+#
+# [vendors.example_cookie_auth.balance]
+# enabled = true
+# url = "https://example.com/api/user/balance"
+# method = "GET"
+#
+# [vendors.example_cookie_auth.balance.auth]
+# type = "cookie"
+# cookie_name = "session_token"
+# cookie_value = ""  # User must configure this manually
+#
+# [vendors.example_cookie_auth.balance.extractor]
+# type = "jsonpath"
+# remaining = "$.data.balance"
+# unit = "USD"
+
+# -----------------------------------------------------------------------------
+# Example: Vendor using Custom Header Authentication (for reference)
+# -----------------------------------------------------------------------------
+# [vendors.example_header_auth]
+# name = "Example Header Auth Vendor"
+# website = "https://example.com"
+# enabled = false
+#
+# [vendors.example_header_auth.balance]
+# enabled = true
+# url = "https://example.com/api/balance"
+# method = "GET"
+#
+# [vendors.example_header_auth.balance.auth]
+# type = "header"
+# header_name = "X-API-Token"
+# header_value = ""  # User must configure this
+#
+# [vendors.example_header_auth.balance.extractor]
+# type = "jsonpath"
+# remaining = "$.balance"
+# unit = "credits"
+
+# =============================================================================
+# VENDOR TEMPLATES
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# new-api Template
+# A common API gateway framework used by many providers
+# Reference: https://github.com/Calcium-Ion/new-api
+# -----------------------------------------------------------------------------
+[templates.new-api]
+name = "New-API"
+description = "Common API gateway framework template with standard endpoints"
+base_path = "/v1"
+
+# Default balance query configuration for new-api based vendors
+[templates.new-api.balance]
+enabled = true
+path = "/api/usage/token/"
+method = "GET"
+interval_ms = 300000
+timeout_ms = 10000
+
+[templates.new-api.balance.auth]
+type = "bearer"
+token_source = "api_key"
+
+[templates.new-api.balance.request]
+headers = { Accept = "application/json" }
+
+# JSONPath extractor for new-api standard response format
+# Response format:
+# {
+#   "code": true,
+#   "message": "ok",
+#   "data": {
+#     "object": "token_usage",
+#     "name": "Token Name",
+#     "total_granted": 1000000,
+#     "total_used": 250000,
+#     "total_available": 750000,
+#     "unlimited_quota": false,
+#     "model_limits": { "gpt-4": 100000 },
+#     "model_limits_enabled": true,
+#     "expires_at": 1735689600
+#   }
+# }
+[templates.new-api.balance.extractor]
+type = "jsonpath"
+remaining = "$.data.total_available"
+total = "$.data.total_granted"
+used = "$.data.total_used"
+unlimited = "$.data.unlimited_quota"
+expires_at = "$.data.expires_at"
+unit = "quota"
+
+# Alternative JavaScript extractor for more complex parsing
+[templates.new-api.balance.extractor_js]
+type = "javascript"
+code = """
+function extract(response) {
+  const data = typeof response === 'string' ? JSON.parse(response) : response;
+
+  if (!data.code || data.code === false) {
+    throw new Error(data.message || 'Balance query failed');
+  }
+
+  const usage = data.data;
+  const expiresAt = usage.expires_at > 0 ? new Date(usage.expires_at * 1000).toISOString() : null;
+
+  return {
+    remaining: usage.total_available,
+    total: usage.total_granted,
+    used: usage.total_used,
+    unlimited: usage.unlimited_quota || false,
+    unit: 'quota',
+    expires_at: expiresAt,
+    extra: {
+      name: usage.name,
+      model_limits_enabled: usage.model_limits_enabled,
+      model_limits: usage.model_limits
+    }
+  };
+}
+"""
+
+# =============================================================================
+# EXTRACTOR EXAMPLES (for documentation)
+# =============================================================================
+#
+# JSONPath Extractor Example:
+# ---------------------------
+# [vendors.example.balance.extractor]
+# type = "jsonpath"
+# remaining = "$.data.balance.available"
+# total = "$.data.balance.total"
+# used = "$.data.balance.used"
+# unit = "$.data.balance.currency"  # or static: "USD"
+# expires_at = "$.data.expires_at"
+#
+# JavaScript Extractor Example:
+# -----------------------------
+# [vendors.example.balance.extractor]
+# type = "javascript"
+# code = """
+# function extract(response) {
+#   // response is the raw response body (string or parsed JSON)
+#   const data = typeof response === 'string' ? JSON.parse(response) : response;
+#
+#   return {
+#     remaining: data.balance,           // Required: remaining balance
+#     total: data.total_balance,         // Optional: total balance
+#     used: data.used_balance,           // Optional: used balance
+#     unit: data.currency || 'USD',      // Optional: unit/currency
+#     unlimited: data.is_unlimited,      // Optional: unlimited flag
+#     expires_at: data.expiry,           // Optional: expiration timestamp
+#     extra: {                           // Optional: additional info
+#       plan: data.plan_name,
+#       rate_limit: data.rate_limit
+#     }
+#   };
+# }
+# """
+#
+# Regex Extractor Example:
+# ------------------------
+# [vendors.example.balance.extractor]
+# type = "regex"
+# pattern = "Balance: (?<remaining>[\\d.]+) (?<unit>\\w+)"
+#
+# =============================================================================
+# AUTHENTICATION TYPES (for documentation)
+# =============================================================================
+#
+# 1. Bearer Token (API Key):
+#    [vendors.example.balance.auth]
+#    type = "bearer"
+#    token_source = "api_key"  # Uses the vendor's configured API key
+#
+# 2. Bearer Token (Custom):
+#    [vendors.example.balance.auth]
+#    type = "bearer"
+#    token_source = "custom"
+#    token = "your-custom-token"
+#
+# 3. Cookie Authentication:
+#    [vendors.example.balance.auth]
+#    type = "cookie"
+#    cookie_name = "session"
+#    cookie_value = ""  # User configures this in UI
+#
+# 4. Custom Header:
+#    [vendors.example.balance.auth]
+#    type = "header"
+#    header_name = "X-Auth-Token"
+#    header_value = ""  # User configures this in UI
+#
+# 5. Query Parameter:
+#    [vendors.example.balance.auth]
+#    type = "query"
+#    param_name = "api_key"
+#    param_value = ""  # Uses api_key or user-configured value
+#
+# =============================================================================
