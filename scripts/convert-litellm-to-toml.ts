@@ -113,19 +113,18 @@ function loadExistingCustomModels(): Map<string, ModelInfo> {
 
   const content = readFileSync(OUTPUT_PATH, "utf-8");
   const modelRegex = /\[models\."([^"]+)"\]/g;
+
+  // Collect all matches first to avoid O(n^2) regex scanning
+  const matches: { name: string; index: number }[] = [];
   let match: RegExpExecArray | null;
-
   while ((match = modelRegex.exec(content)) !== null) {
-    const modelName = match[1];
-    const startIndex = match.index;
+    matches.push({ name: match[1], index: match.index });
+  }
 
-    let endIndex = content.length;
-    const nextMatch = modelRegex.exec(content);
-    if (nextMatch) {
-      endIndex = nextMatch.index;
-      modelRegex.lastIndex = match.index + 1;
-    }
-
+  // Linear scan through collected matches
+  for (let i = 0; i < matches.length; i++) {
+    const { name: modelName, index: startIndex } = matches[i];
+    const endIndex = i + 1 < matches.length ? matches[i + 1].index : content.length;
     const modelSection = content.slice(startIndex, endIndex);
 
     if (modelSection.includes('source = "custom"')) {
