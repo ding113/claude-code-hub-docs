@@ -15,14 +15,14 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 
 const LITELLM_PRICES_URL =
   "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json";
 
-const OUTPUT_PATH = join(
-  import.meta.dir,
-  "../public/config/prices-base.toml"
-);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const OUTPUT_PATH = join(__dirname, "../public/config/prices-base.toml");
 
 interface ModelInfo {
   [key: string]: unknown;
