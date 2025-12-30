@@ -235,7 +235,24 @@ Session 消息可能包含敏感信息。管理员查看用户 Session 消息时
 
 显示请求的 User-Agent 信息，帮助识别客户端类型（如 Claude Code CLI 版本、操作系统等）。
 
-**请求消息（Request Messages）**：
+**Tab 切换视图**：
+
+{% callout type="note" title="v0.3.37 新增" %}
+消息详情区域支持通过 Tab 切换查看不同类型的数据，包括请求头、请求体、响应头、响应体四个选项卡。
+{% /callout %}
+
+| Tab 名称 | 内容说明 |
+|----------|----------|
+| 请求头 | HTTP 请求头信息，以纯文本格式展示 |
+| 请求体 | 完整的请求 messages 数据，以格式化 JSON 展示 |
+| 响应头 | HTTP 响应头信息，以纯文本格式展示 |
+| 响应体 | API 返回的完整响应，以格式化 JSON 展示 |
+
+{% callout type="note" title="请求头追踪" %}
+v0.3.38 进一步完善了请求头追踪功能，确保请求过滤器修改的 header 能够在 Session 详情中正确显示。
+{% /callout %}
+
+**请求体（Request Body）**：
 
 完整的请求 messages 数据，以格式化的 JSON 展示。包含：
 
@@ -244,7 +261,7 @@ Session 消息可能包含敏感信息。管理员查看用户 Session 消息时
 - 助手回复（assistant message）
 - 工具调用（tool calls）等
 
-**响应内容（Response Body）**：
+**响应体（Response Body）**：
 
 API 返回的完整响应体，以格式化的 JSON 展示。包含：
 
