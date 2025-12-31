@@ -34,6 +34,19 @@
 #   latency_ms   : integer  # Last measured latency (auto-updated)
 #   region       : string   # Optional region hint (e.g., "us-west", "asia")
 #   tags         : array    # Optional tags for filtering
+#   api_types    : array    # Supported API types (e.g., ["anthropic", "codex", "gemini"])
+#
+# [vendors.<vendor_id>.endpoints.<endpoint_id>.paths]  (optional, for custom paths)
+#   anthropic    : string   # Anthropic API path (e.g., "/api" or "" for standard)
+#   codex        : string   # Codex API path (e.g., "/openai/v1")
+#   gemini       : string   # Gemini API path (e.g., "" for base URL)
+#   openai       : string   # OpenAI API path (e.g., "/v1")
+#
+# Standard paths (when paths omitted or field is empty):
+#   - anthropic: "" (client appends /v1/messages)
+#   - codex: "" (client appends /v1/responses)
+#   - gemini: "" (client appends /v1beta/models/{model}:generateContent)
+#   - openai: "" (client appends /v1/chat/completions)
 #
 # [vendors.<vendor_id>.balance]
 #   enabled      : boolean  # Whether balance query is enabled
@@ -113,7 +126,7 @@
 # =============================================================================
 
 [metadata]
-version = "2025.12.30"
+version = "2026.01.01"
 schema_version = "1.0.0"
 
 # =============================================================================
@@ -134,6 +147,7 @@ enabled = true
 [vendors.cubence.endpoints.main]
 name = "Cubence API"
 url = "https://api.cubence.com"
+api_types = ["anthropic", "codex", "gemini"]
 priority = 0
 weight = 100
 enabled = true
@@ -142,6 +156,7 @@ region = "default"
 [vendors.cubence.endpoints.dmit]
 name = "Cubence DMIT API"
 url = "https://api-dmit.cubence.com"
+api_types = ["anthropic", "codex", "gemini"]
 priority = 1
 weight = 80
 enabled = true
@@ -151,6 +166,7 @@ tags = ["low-latency", "asia"]
 [vendors.cubence.endpoints.bwg]
 name = "Cubence BWG API"
 url = "https://api-bwg.cubence.com"
+api_types = ["anthropic", "codex", "gemini"]
 priority = 2
 weight = 60
 enabled = true
@@ -160,6 +176,7 @@ tags = ["backup"]
 [vendors.cubence.endpoints.cf]
 name = "Cubence CF API"
 url = "https://api-cf.cubence.com"
+api_types = ["anthropic", "codex", "gemini"]
 priority = 3
 weight = 40
 enabled = true
@@ -444,4 +461,177 @@ function extract(response) {
 #    param_name = "api_key"
 #    param_value = ""  # Uses api_key or user-configured value
 #
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 88code - Multi-API Type Provider
+# -----------------------------------------------------------------------------
+[vendors.88code]
+name = "88code"
+website = "https://www.88code.ai"
+icon = "https://www.88code.ai/favicon.ico"
+description = "88code AI API Provider with multi-API type support (Anthropic, Codex, Gemini)"
+enabled = true
+
+# Global Smart Routing (Recommended)
+[vendors.88code.endpoints.global]
+name = "Global Smart Routing"
+url = "https://www.88code.ai"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 0
+weight = 100
+enabled = true
+region = "global"
+tags = ["recommended", "smart-routing"]
+
+[vendors.88code.endpoints.global.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# AWS Global Anycast
+[vendors.88code.endpoints.aws]
+name = "AWS Global Anycast"
+url = "https://aws-m.88code.ai"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 1
+weight = 80
+enabled = true
+region = "global"
+tags = ["aws", "anycast"]
+
+[vendors.88code.endpoints.aws.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# China Edgeone CDN
+[vendors.88code.endpoints.edgeone]
+name = "China Edgeone CDN"
+url = "https://88code.wu.ren"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 2
+weight = 70
+enabled = true
+region = "china"
+tags = ["china", "edgeone", "cdn"]
+
+[vendors.88code.endpoints.edgeone.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# China Ningbo Cloud
+[vendors.88code.endpoints.ningbo]
+name = "China Ningbo Cloud"
+url = "https://tik2i1kw.cn-nb1.rainapp.top"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 3
+weight = 60
+enabled = true
+region = "china"
+tags = ["china", "ningbo", "rainapp"]
+
+[vendors.88code.endpoints.ningbo.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# Japan CDN
+[vendors.88code.endpoints.japan]
+name = "Japan CDN"
+url = "https://jp-m.88code.ai"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 4
+weight = 75
+enabled = true
+region = "asia"
+tags = ["japan", "asia", "cdn"]
+
+[vendors.88code.endpoints.japan.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# Hong Kong CDN
+[vendors.88code.endpoints.hongkong]
+name = "Hong Kong CDN"
+url = "https://hk-m.88code.ai"
+api_types = ["anthropic", "codex", "gemini"]
+priority = 5
+weight = 75
+enabled = true
+region = "asia"
+tags = ["hongkong", "asia", "cdn"]
+
+[vendors.88code.endpoints.hongkong.paths]
+anthropic = "/api"
+codex = "/openai/v1"
+gemini = ""
+
+# Balance query configuration
+[vendors.88code.balance]
+enabled = true
+url = "https://www.88code.ai/api/usage"
+method = "POST"
+interval_ms = 300000
+timeout_ms = 10000
+auto_disable = true
+threshold = 1.0
+
+[vendors.88code.balance.auth]
+type = "bearer"
+token_source = "api_key"
+
+[vendors.88code.balance.request]
+headers = { Accept = "application/json", "Content-Type" = "application/json" }
+
+# JavaScript extractor for 88code usage API response
+[vendors.88code.balance.extractor]
+type = "javascript"
+code = """
+function extract(response) {
+  const data = typeof response === 'string' ? JSON.parse(response) : response;
+
+  if (!data.ok || data.code !== 0) {
+    throw new Error(data.msg || 'Balance query failed');
+  }
+
+  const usage = data.data;
+
+  // Calculate total remaining balance from active subscriptions
+  let totalRemaining = usage.currentCredits || 0;
+  let totalLimit = usage.creditLimit || 0;
+
+  // Build subscription quotas
+  const quotas = {};
+  if (usage.subscriptionEntityList && usage.subscriptionEntityList.length > 0) {
+    usage.subscriptionEntityList.forEach((sub, idx) => {
+      if (sub.isActive) {
+        const key = sub.subscriptionName.toLowerCase();
+        quotas[key] = {
+          limit: sub.creditLimit,
+          remaining: sub.currentCredits,
+          used: sub.creditLimit - sub.currentCredits
+        };
+      }
+    });
+  }
+
+  return {
+    remaining: totalRemaining,
+    total: totalLimit,
+    used: totalLimit - totalRemaining,
+    unit: 'USD',
+    quotas: Object.keys(quotas).length > 0 ? quotas : undefined,
+    extra: {
+      totalTokens: usage.totalTokens,
+      usedTokens: usage.usedTokens,
+      remainingTokens: usage.remainingTokens,
+      percentageUsed: usage.percentageUsed
+    }
+  };
+}
+"""
+
 # =============================================================================
