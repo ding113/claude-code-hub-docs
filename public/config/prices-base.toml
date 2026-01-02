@@ -2,7 +2,7 @@
 
 [metadata]
 version = "2026.01.02"
-checksum = "2177b92b5db37bd8d6082e12d0c0dcdafadf8fbc491a45bde577691e6f594dd6"
+checksum = "032120833879844e387f47fb4728e4f0ac94f723fd6e27e0cf41987f4f146dd6"
 
 [models."1024-x-1024/50-steps/bedrock/amazon.nova-canvas-v1:0"]
 litellm_provider = "bedrock"
@@ -3053,18 +3053,24 @@ supports_tool_choice = true
 supports_vision = false
 
 [models."azure/gpt-image-1"]
-input_cost_per_pixel = 4.0054321e-8
+cache_read_input_image_token_cost = 0.0000025
+cache_read_input_token_cost = 0.00000125
+input_cost_per_image_token = 0.00001
+input_cost_per_token = 0.000005
 litellm_provider = "azure"
 mode = "image_generation"
-output_cost_per_pixel = 0
-supported_endpoints = ["/v1/images/generations"]
+output_cost_per_image_token = 0.00004
+supported_endpoints = ["/v1/images/generations", "/v1/images/edits"]
 
 [models."azure/gpt-image-1-mini"]
-input_cost_per_pixel = 8.0566406e-9
+cache_read_input_image_token_cost = 2.5e-7
+cache_read_input_token_cost = 2e-7
+input_cost_per_image_token = 0.0000025
+input_cost_per_token = 0.000002
 litellm_provider = "azure"
 mode = "image_generation"
-output_cost_per_pixel = 0
-supported_endpoints = ["/v1/images/generations"]
+output_cost_per_image_token = 0.000008
+supported_endpoints = ["/v1/images/generations", "/v1/images/edits"]
 
 [models."azure/gpt-image-1.5"]
 cache_read_input_image_token_cost = 0.000002
@@ -17739,15 +17745,14 @@ supports_vision = true
 supports_web_search = true
 
 [models."gpt-image-1"]
-input_cost_per_image = 0.042
+cache_read_input_image_token_cost = 0.0000025
+cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.00001
-input_cost_per_pixel = 4.0054321e-8
 input_cost_per_token = 0.000005
 litellm_provider = "openai"
 mode = "image_generation"
-output_cost_per_pixel = 0
-output_cost_per_token = 0.00004
-supported_endpoints = ["/v1/images/generations"]
+output_cost_per_image_token = 0.00004
+supported_endpoints = ["/v1/images/generations", "/v1/images/edits"]
 
 [models."gpt-image-1-mini"]
 cache_read_input_image_token_cost = 2.5e-7
