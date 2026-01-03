@@ -32,6 +32,7 @@ export const navigation = [
       { title: '设置概览', href: '/docs/guide/settings' },
       { title: '配置', href: '/docs/guide/settings-config' },
       { title: '价格表', href: '/docs/guide/settings-prices' },
+      { title: '模型价格', href: '/docs/model-prices' },
       { title: '供应商管理', href: '/docs/guide/settings-providers' },
       { title: '敏感词', href: '/docs/guide/settings-sensitive-words' },
       { title: '请求过滤器', href: '/docs/guide/settings-request-filters' },
