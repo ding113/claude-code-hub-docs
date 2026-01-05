@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.05"
-checksum = "0d23d0fa47d0f84d83db36099b9388794be8da9f12a911f6c6bde2b6785bdb88"
+checksum = "2cc3d36c23a6b21f3deefe092e04281f2a16f330cf14fe5ea437b0db2ee82475"
 sources = ["litellm", "modelsdev"]
-total_models = 2412
+total_models = 2423
 litellm_raw_models = 2283
-modelsdev_raw_models = 1999
+modelsdev_raw_models = 2028
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -10326,6 +10326,28 @@ output_cost_per_token = 0.0000011
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 0.0000011
 
+[models."baidu/ernie-5-0-thinking-preview"]
+display_name = "ERNIE-5.0-Thinking-Preview"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 64000
+input_cost_per_token = 8.4e-7
+output_cost_per_token = 0.00000337
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-11-13"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."baidu/ernie-5-0-thinking-preview".pricing."zenmux"]
+input_cost_per_token = 8.4e-7
+output_cost_per_token = 0.00000337
+
 [models."bart-large-cnn"]
 display_name = "@cf/facebook/bart-large-cnn"
 model_family = "bart-large-cnn"
@@ -12465,7 +12487,7 @@ output_cost_per_token = 0.000075
 cache_read_input_token_cost = 0.0000015
 cache_creation_input_token_cost = 0.00001875
 litellm_provider = "openrouter"
-providers = ["openrouter", "cloudflare-ai-gateway", "github-copilot", "helicone", "poe", "requesty", "vertex_ai"]
+providers = ["openrouter", "cloudflare-ai-gateway", "github-copilot", "helicone", "poe", "requesty", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -12507,6 +12529,10 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 [models."claude-opus-4".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.00001875
+cache_read_input_token_cost = 0.0000015
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+[models."claude-opus-4".pricing."zenmux"]
 cache_read_input_token_cost = 0.0000015
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
@@ -12769,7 +12795,7 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "anthropic"
-providers = ["anthropic", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "opencode", "openrouter", "poe", "requesty", "vercel", "vertex_ai"]
+providers = ["anthropic", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "opencode", "openrouter", "poe", "requesty", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -12836,6 +12862,10 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."claude-opus-4-5".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.00000625
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-5".pricing."zenmux"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -13246,7 +13276,7 @@ max_input_tokens = 1000000
 max_output_tokens = 64000
 max_tokens = 64000
 litellm_provider = "github_copilot"
-providers = ["github_copilot", "cloudflare-ai-gateway", "cortecs", "fastrouter", "github-copilot", "helicone", "opencode", "openrouter", "poe", "requesty", "vertex_ai"]
+providers = ["github_copilot", "cloudflare-ai-gateway", "cortecs", "fastrouter", "github-copilot", "helicone", "opencode", "openrouter", "poe", "requesty", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -13310,6 +13340,10 @@ input_cost_per_token = 0.000003
 input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
+[models."claude-sonnet-4".pricing."zenmux"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 
 [models."claude-sonnet-4-0"]
 display_name = "Claude Sonnet 4 (latest)"
@@ -17731,8 +17765,7 @@ input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
 
 [models."deepseek/deepseek-chat"]
-display_name = "DeepSeek-V3.2-Exp (Non-thinking Mode)"
-model_family = "deepseek-chat"
+display_name = "DeepSeek-V3.2 (Non-thinking Mode)"
 mode = "chat"
 max_input_tokens = 65536
 max_output_tokens = 8192
@@ -17742,11 +17775,11 @@ output_cost_per_token = 2.8e-7
 litellm_provider = "openrouter"
 providers = ["openrouter", "zenmux"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 supports_prompt_caching = true
-open_weights = true
-knowledge_cutoff = "2025-07"
-release_date = "2025-09-29"
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-09-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_tool_choice = true
@@ -17755,9 +17788,9 @@ supports_tool_choice = true
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-chat".pricing."zenmux"]
-cache_read_input_token_cost = 7e-8
-input_cost_per_token = 5.6e-7
-output_cost_per_token = 0.00000168
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 4.2e-7
 
 [models."deepseek/deepseek-chat-v3-0324"]
 display_name = "DeepSeek V3 0324"
@@ -17987,6 +18020,30 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek/deepseek-reasoner"]
+display_name = "DeepSeek-V3.2 (Thinking Mode)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 64000
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 4.2e-7
+cache_read_input_token_cost = 3e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-10-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek/deepseek-reasoner".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 4.2e-7
+
 [models."deepseek/deepseek-v3"]
 mode = "chat"
 max_input_tokens = 128000
@@ -18162,7 +18219,7 @@ max_tokens = 8192
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4e-7
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -18179,6 +18236,9 @@ supports_tool_choice = true
 input_cost_per_token = 2.8e-7
 input_cost_per_token_cache_hit = 2.8e-8
 output_cost_per_token = 4e-7
+[models."deepseek/deepseek-v3.2".pricing."zenmux"]
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 4.3e-7
 
 [models."deepseek/deepseek-v3.2-exp"]
 display_name = "DeepSeek V3.2 Exp"
@@ -18190,9 +18250,9 @@ max_tokens = 8192
 input_cost_per_token = 2e-7
 output_cost_per_token = 4e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "vercel"]
+providers = ["openrouter", "vercel", "zenmux"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 supports_prompt_caching = true
 open_weights = false
 knowledge_cutoff = "2025-09"
@@ -18210,6 +18270,9 @@ output_cost_per_token = 4e-7
 [models."deepseek/deepseek-v3.2-exp".pricing."vercel"]
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
+[models."deepseek/deepseek-v3.2-exp".pricing."zenmux"]
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 3.3e-7
 
 [models."devstral-2512"]
 display_name = "Devstral 2"
@@ -22002,7 +22065,7 @@ max_tokens = 1000000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "aihubmix", "fastrouter", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models"]
+providers = ["deepinfra", "abacus", "aihubmix", "fastrouter", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -22082,6 +22145,10 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_audio_token = 0.000001
 input_cost_per_token = 3e-7
 output_cost_per_reasoning_token = 0.0000025
+output_cost_per_token = 0.0000025
+[models."gemini-2.5-flash".pricing."zenmux"]
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 
 [models."gemini-2.5-flash-image"]
@@ -22234,7 +22301,7 @@ input_cost_per_token = 1e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "vercel"]
+providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -22298,6 +22365,10 @@ input_cost_per_audio_token = 5e-7
 input_cost_per_token = 1e-7
 output_cost_per_reasoning_token = 4e-7
 output_cost_per_token = 4e-7
+[models."gemini-2.5-flash-lite".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 
 [models."gemini-2.5-flash-lite-preview-06-17"]
 display_name = "Gemini 2.5 Flash Lite Preview 06-17"
@@ -23103,7 +23174,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 5e-8
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai", "abacus", "gemini", "github-copilot", "google", "google-vertex", "openrouter", "requesty", "venice", "vertex_ai-language-models"]
+providers = ["vertex_ai", "abacus", "gemini", "github-copilot", "google", "google-vertex", "openrouter", "requesty", "venice", "vertex_ai-language-models", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23172,6 +23243,26 @@ input_cost_per_audio_token = 0.000001
 input_cost_per_token = 5e-7
 output_cost_per_reasoning_token = 0.000003
 output_cost_per_token = 0.000003
+[models."gemini-3-flash-preview".pricing."zenmux"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
+
+[models."gemini-3-flash-preview-free"]
+display_name = "Gemini 3 Flash Preview Free"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 64000
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-17"
+supported_modalities = ["text", "image", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."gemini-3-pro"]
 display_name = "Gemini 3 Pro"
@@ -23263,7 +23354,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2e-7
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "abacus", "aihubmix", "gemini", "github_copilot", "github-copilot", "google", "google-vertex", "helicone", "openrouter", "requesty", "venice", "vercel", "vertex_ai"]
+providers = ["vertex_ai-language-models", "abacus", "aihubmix", "gemini", "github_copilot", "github-copilot", "google", "google-vertex", "helicone", "openrouter", "requesty", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23366,6 +23457,10 @@ input_cost_per_token_batches = 0.000001
 output_cost_per_token = 0.000012
 output_cost_per_token_above_200k_tokens = 0.000018
 output_cost_per_token_batches = 0.000006
+[models."gemini-3-pro-preview".pricing."zenmux"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
 
 [models."gemini-deep-research"]
 display_name = "gemini-deep-research"
@@ -27324,7 +27419,7 @@ cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5".pricing."zenmux"]
-cache_read_input_token_cost = 1.25e-7
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
@@ -27581,7 +27676,7 @@ cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5-codex".pricing."zenmux"]
-cache_read_input_token_cost = 1.25e-7
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
@@ -27964,7 +28059,7 @@ input_cost_per_token = 0.00000138
 output_cost_per_token = 0.000011
 cache_read_input_token_cost = 1.4e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "helicone", "openai", "opencode", "openrouter", "poe"]
+providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "helicone", "openai", "opencode", "openrouter", "poe", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28037,6 +28132,10 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.000009
+[models."gpt-5.1".pricing."zenmux"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 
 [models."gpt-5.1-2025-11-13"]
 mode = "chat"
@@ -28092,7 +28191,7 @@ input_cost_per_token = 0.00000138
 output_cost_per_token = 0.000011
 cache_read_input_token_cost = 1.4e-7
 litellm_provider = "azure"
-providers = ["azure", "azure-cognitive-services", "openrouter"]
+providers = ["azure", "azure-cognitive-services", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28132,6 +28231,10 @@ input_cost_per_token = 0.00000138
 output_cost_per_token = 0.000011
 [models."gpt-5.1-chat".pricing."openrouter"]
 cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+[models."gpt-5.1-chat".pricing."zenmux"]
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
@@ -28228,7 +28331,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "openai"
-providers = ["openai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "helicone", "opencode", "openrouter", "poe"]
+providers = ["openai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "helicone", "opencode", "openrouter", "poe", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28302,6 +28405,10 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.000009
+[models."gpt-5.1-codex".pricing."zenmux"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 
 [models."gpt-5.1-codex-2025-11-13"]
 mode = "responses"
@@ -28399,7 +28506,7 @@ input_cost_per_token = 2.75e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "azure-cognitive-services", "github-copilot", "helicone", "openai", "opencode", "openrouter", "poe"]
+providers = ["azure", "aihubmix", "azure-cognitive-services", "github-copilot", "helicone", "openai", "opencode", "openrouter", "poe", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28464,6 +28571,10 @@ output_cost_per_token = 0.000002
 cache_read_input_token_cost = 2.2e-8
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 0.0000018000000000000001
+[models."gpt-5.1-codex-mini".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000002
 
 [models."gpt-5.1-codex-mini-2025-11-13"]
 mode = "responses"
@@ -28511,7 +28622,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "openai", "opencode", "openrouter", "poe"]
+providers = ["azure", "abacus", "aihubmix", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "openai", "opencode", "openrouter", "poe", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28565,6 +28676,10 @@ output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 0.0000016000000000000001
 output_cost_per_token = 0.000013
+[models."gpt-5.2".pricing."zenmux"]
+cache_read_input_token_cost = 1.7000000000000001e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
 
 [models."gpt-5.2-2025-12-11"]
 mode = "chat"
@@ -31898,53 +32013,51 @@ output_cost_per_token = 5.699999999999999e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.699999999999999e-7
 
-[models."inclusionai/lint-1t"]
+[models."inclusionai/ling-1t"]
 display_name = "Ling-1T"
-model_family = "lint-1t"
 mode = "chat"
 max_input_tokens = 128000
-max_output_tokens = 32000
+max_output_tokens = 64000
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
-cache_read_input_token_cost = 1.12e-7
+cache_read_input_token_cost = 1.1e-7
 litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-10"
-release_date = "2025-10-09"
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-10-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."inclusionai/lint-1t".pricing."zenmux"]
-cache_read_input_token_cost = 1.12e-7
+[models."inclusionai/ling-1t".pricing."zenmux"]
+cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
 
 [models."inclusionai/ring-1t"]
 display_name = "Ring-1T"
-model_family = "ring-1t"
 mode = "chat"
 max_input_tokens = 128000
-max_output_tokens = 32000
+max_output_tokens = 64000
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
-cache_read_input_token_cost = 1.12e-7
+cache_read_input_token_cost = 1.1e-7
 litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-10"
-release_date = "2025-10-12"
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-10-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."inclusionai/ring-1t".pricing."zenmux"]
-cache_read_input_token_cost = 1.12e-7
+cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
 
@@ -32743,28 +32856,35 @@ output_cost_per_token = 0.0000025
 
 [models."kuaishou/kat-coder-pro-v1"]
 display_name = "KAT-Coder-Pro-V1"
-model_family = "kat-coder-pro"
 mode = "chat"
 max_input_tokens = 256000
-max_output_tokens = 32000
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000024
-cache_read_input_token_cost = 1.2e-7
+max_output_tokens = 64000
 litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2025-01-01"
-release_date = "2025-10-23"
+release_date = "2025-10-24"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."kuaishou/kat-coder-pro-v1".pricing."zenmux"]
-cache_read_input_token_cost = 1.2e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000024
+[models."kuaishou/kat-coder-pro-v1-free"]
+display_name = "KAT-Coder-Pro-V1 Free"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-31"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."kwaipilot/kat-coder-pro:free"]
 display_name = "Kat Coder Pro (free)"
@@ -37904,6 +38024,7 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -37916,10 +38037,11 @@ max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "openrouter"
-providers = ["openrouter", "nano-gpt"]
+providers = ["openrouter", "nano-gpt", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
+knowledge_cutoff = "2025-01-01"
 release_date = "2025-12-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -37929,6 +38051,10 @@ source = "modelsdev"
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 [models."minimax/minimax-m2-1".pricing."openrouter"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."minimax/minimax-m2-1".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -40957,6 +41083,7 @@ output_cost_per_token = 0.0000025
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-thinking".pricing."zenmux"]
+cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 
@@ -40983,21 +41110,23 @@ display_name = "Kimi K2 Thinking Turbo"
 model_family = "kimi-k2"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 262144
+max_output_tokens = 64000
 input_cost_per_token = 0.00000115
 output_cost_per_token = 0.000008
+cache_read_input_token_cost = 1.5e-7
 litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2025-11"
+knowledge_cutoff = "2025-01-01"
 release_date = "2025-11-06"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."moonshotai/kimi-k2-thinking-turbo".pricing."zenmux"]
+cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.00000115
 output_cost_per_token = 0.000008
 
@@ -45355,11 +45484,10 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000015
 
 [models."qwen/qwen3-coder-plus"]
-display_name = "Qwen3 Coder Plus"
-model_family = "qwen3-coder"
+display_name = "Qwen3-Coder-Plus"
 mode = "chat"
 max_input_tokens = 1000000
-max_output_tokens = 66540
+max_output_tokens = 64000
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -45367,9 +45495,9 @@ litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
 supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-23"
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-09-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -48267,6 +48395,28 @@ output_cost_per_token = 0.00000142
 input_cost_per_token = 5.699999999999999e-7
 output_cost_per_token = 0.00000142
 
+[models."stepfun/step-3"]
+display_name = "Step-3"
+mode = "chat"
+max_input_tokens = 65536
+max_output_tokens = 64000
+input_cost_per_token = 2.1e-7
+output_cost_per_token = 5.699999999999999e-7
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-18"
+supported_modalities = ["image", "text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."stepfun/step-3".pricing."zenmux"]
+input_cost_per_token = 2.1e-7
+output_cost_per_token = 5.699999999999999e-7
+
 [models."structure"]
 mode = "image_edit"
 litellm_provider = "stability"
@@ -50869,6 +51019,54 @@ providers = ["ollama"]
 input_cost_per_token = 0
 output_cost_per_token = 0
 
+[models."volcengine/doubao-seed-1-8"]
+display_name = "Doubao-Seed-1.8"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 1.1e-7
+output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."volcengine/doubao-seed-1-8".pricing."zenmux"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.1e-7
+output_cost_per_token = 2.8e-7
+
+[models."volcengine/doubao-seed-code"]
+display_name = "Doubao-Seed-Code"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.00000112
+cache_read_input_token_cost = 3e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-11-11"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."volcengine/doubao-seed-code".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.00000112
+
 [models."voxtral-small-24b-2507"]
 display_name = "Voxtral Small 24B 2507"
 model_family = "voxtral-small"
@@ -52258,7 +52456,7 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -52269,6 +52467,34 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."x-ai/grok-4-1-fast".pricing."openrouter"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
+[models."x-ai/grok-4-1-fast".pricing."zenmux"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
+
+[models."x-ai/grok-4-1-fast-non-reasoning"]
+display_name = "Grok 4.1 Fast Non Reasoning"
+mode = "chat"
+max_input_tokens = 2000000
+max_output_tokens = 64000
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-11-20"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."x-ai/grok-4-1-fast-non-reasoning".pricing."zenmux"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -52298,31 +52524,6 @@ cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 [models."x-ai/grok-4-fast".pricing."zenmux"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-
-[models."x-ai/grok-4-fast-non-reasoning"]
-display_name = "Grok 4 Fast None Reasoning"
-model_family = "grok-4"
-mode = "chat"
-max_input_tokens = 2000000
-max_output_tokens = 30000
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-cache_read_input_token_cost = 5.0000000000000004e-8
-litellm_provider = "zenmux"
-providers = ["zenmux"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2025-01-01"
-release_date = "2025-09-19"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."x-ai/grok-4-fast-non-reasoning".pricing."zenmux"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -52788,26 +52989,35 @@ output_cost_per_token = 0.0000015
 
 [models."xiaomi/mimo-v2-flash"]
 display_name = "MiMo-V2-Flash"
-model_family = "mimo-v2-flash"
 mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 32000
-input_cost_per_token = 7e-8
-output_cost_per_token = 2.1e-7
+max_input_tokens = 262144
+max_output_tokens = 64000
 litellm_provider = "zenmux"
 providers = ["zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-12-01"
+open_weights = false
+knowledge_cutoff = "2025-01-01"
 release_date = "2025-12-17"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."xiaomi/mimo-v2-flash".pricing."zenmux"]
-input_cost_per_token = 7e-8
-output_cost_per_token = 2.1e-7
+[models."xiaomi/mimo-v2-flash-free"]
+display_name = "MiMo-V2-Flash Free"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 64000
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-31"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."z-ai/GLM-4-5"]
 display_name = "z-ai/GLM-4.5"
@@ -52818,7 +53028,7 @@ max_output_tokens = 131000
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 litellm_provider = "siliconflow-cn"
-providers = ["siliconflow-cn", "openrouter", "siliconflow"]
+providers = ["siliconflow-cn", "openrouter", "siliconflow", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -52837,6 +53047,10 @@ output_cost_per_token = 0.000002
 [models."z-ai/GLM-4-5".pricing."siliconflow-cn"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+[models."z-ai/GLM-4-5".pricing."zenmux"]
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 3.5e-7
+output_cost_per_token = 0.00000154
 
 [models."z-ai/GLM-4-5-Air"]
 display_name = "z-ai/GLM-4.5-Air"
@@ -52867,7 +53081,7 @@ output_cost_per_token = 8.6e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 8.6e-7
 [models."z-ai/GLM-4-5-Air".pricing."zenmux"]
-cache_read_input_token_cost = 2.2e-8
+cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.6e-7
 
@@ -52933,6 +53147,62 @@ source = "modelsdev"
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 
+[models."z-ai/glm-4-6v"]
+display_name = "GLM 4.6V"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.2e-7
+cache_read_input_token_cost = 3e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-08"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-4-6v".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.2e-7
+
+[models."z-ai/glm-4-6v-flash"]
+display_name = "GLM 4.6V FlashX"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-08"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-4-6v-flash-free"]
+display_name = "GLM 4.6V Flash (Free)"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2025-12-30"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."z-ai/glm-4-7"]
 display_name = "GLM-4.7"
 model_family = "glm-4.7"
@@ -52943,7 +53213,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -52957,6 +53227,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
+[models."z-ai/glm-4-7".pricing."zenmux"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 0.0000011399999999999999
 
 [models."z-ai/glm-4.6"]
 display_name = "GLM 4.6"
