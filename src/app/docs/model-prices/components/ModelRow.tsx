@@ -136,7 +136,7 @@ export const ModelRow = memo(function ModelRow({
         </span>
       </div>
 
-      <div className="hidden min-w-0 md:block">
+      <div className="hidden min-w-0 overflow-hidden md:block">
         <AbilityIcons abilities={model.abilities} max={7} />
       </div>
 

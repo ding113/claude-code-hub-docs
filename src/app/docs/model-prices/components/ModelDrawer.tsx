@@ -240,7 +240,7 @@ export function ModelDrawer({
     <>
       <aside
         className={clsx(
-          'hidden min-h-0 w-[420px] flex-none flex-col overflow-hidden rounded-2xl border border-[var(--claude-smoke)]/40 bg-[var(--claude-paper)] shadow-sm dark:bg-[var(--claude-sand)] lg:flex',
+          'sticky top-6 hidden max-h-[calc(100vh-theme(spacing.32))] w-[420px] flex-none flex-col self-start overflow-hidden rounded-2xl border border-[var(--claude-smoke)]/40 bg-[var(--claude-paper)] shadow-sm dark:bg-[var(--claude-sand)] lg:flex',
           className,
         )}
       >

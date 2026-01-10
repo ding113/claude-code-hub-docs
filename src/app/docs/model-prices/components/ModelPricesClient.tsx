@@ -31,13 +31,8 @@ export function ModelPricesClient() {
 
   const selectedModel = useMemo(() => {
     if (!selectedId) return null
-    return filtered.find((m) => m.id === selectedId) ?? null
-  }, [filtered, selectedId])
-
-  useEffect(() => {
-    if (!selectedId) return
-    if (!selectedModel) setSelectedId(null)
-  }, [selectedId, selectedModel])
+    return models.find((m) => m.id === selectedId) ?? null
+  }, [models, selectedId])
 
   useEffect(() => {
     if (!selectedId) return
