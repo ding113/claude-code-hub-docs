@@ -279,15 +279,6 @@ language: zh
 
 ---
 
-## [v0.3.35](https://github.com/ding113/claude-code-hub/releases/tag/v0.3.35) - 2025-12-22
-
-### 其他
-
-- README 新增 PackyCode 赞助 / 优惠信息
-- 更新 LiteLLM 模型价格数据
-
----
-
 ## [v0.3.34](https://github.com/ding113/claude-code-hub/releases/tag/v0.3.34) - 2025-12-22
 
 ### 新增
@@ -1112,29 +1103,16 @@ language: zh
 
 ---
 
-## [v0.2.35](https://github.com/ding113/claude-code-hub/releases/tag/v0.2.35) - 2025-11-09
-
-### 优化
-
-- 不可重试客户端错误识别增强：新增参数缺失/非法请求模式，避免无意义重试 ([#94](https://github.com/ding113/claude-code-hub/pull/94))
-- Redis 客户端增强：基于 `redis://` / `rediss://` 自动配置 TLS，连接日志更丰富且脱敏
-
-### 其他
-
-- README 与配置示例更新
-
----
-
 ## [v0.2.34](https://github.com/ding113/claude-code-hub/releases/tag/v0.2.34) - 2025-11-09
+
+### 新增
+
+- 扩展不可重试的客户端错误定义和模式
 
 ### 修复
 
-- 修复 `rediss://` TLS 连接的 SNI 兼容性问题（Redis 客户端 & Bull 队列） ([#93](https://github.com/ding113/claude-code-hub/pull/93))
-
-### 其他
-
-- `.env.example` 更新：`REDIS_URL` 支持 `rediss://` TLS
-- 更新 LiteLLM 模型价格数据
+- 修复流式响应中的 usage tokens 提取 ([#82](https://github.com/ding113/claude-code-hub/issues/82))
+- 修复 CircuitBreaker 请求计数器竞态条件 ([#81](https://github.com/ding113/claude-code-hub/pull/81))
 
 ---
 
