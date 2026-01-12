@@ -575,40 +575,19 @@ API_TEST_TIMEOUT_MS=15000  # 默认 15 秒，范围 5000-120000
 
 ### 消息推送只支持企业微信吗？
 
-**不是。** Claude Code Hub 的消息推送基于标准 Webhook 协议，可以对接**任何支持 Webhook 的平台**。企业微信只是开箱即用的示例。
+**不是。** 当前版本的 Claude Code Hub 内置多平台推送能力，支持企业微信、飞书、钉钉、Telegram 以及自定义 Webhook（JSON 模板 + 占位符），可按通知类型绑定多个推送目标，实现多平台同时推送。
 
 **平台支持情况：**
 
 | 平台 | 支持方式 |
 |------|----------|
-| 企业微信 | 原生支持，直接配置 |
-| Telegram | 通过 Cloudflare Worker 适配 |
-| 飞书 | 需要格式转换适配器 |
-| 钉钉 | 需要格式转换适配器 |
-| Slack | 需要格式转换适配器 |
-| Discord | 需要格式转换适配器 |
-| 自定义系统 | 实现兼容接口即可 |
+| 企业微信 | 内置（群机器人 Webhook） |
+| 飞书 | 内置（群机器人 Webhook，交互式卡片） |
+| 钉钉 | 内置（群机器人 Webhook，支持签名 Secret） |
+| Telegram | 内置（Bot API：Bot Token + Chat ID） |
+| 其他平台（Slack/Discord/自建系统等） | 使用「自定义 Webhook」+ 模板适配 |
 
-**关键技术点：**
-
-Claude Code Hub 发送的请求格式：
-
-```json
-{
-  "msgtype": "markdown",
-  "markdown": { "content": "消息内容" }
-}
-```
-
-期望的成功响应：
-
-```json
-{ "errcode": 0, "errmsg": "ok" }
-```
-
-只要目标平台能返回此格式的响应，就可以直接对接。否则可以通过 Cloudflare Worker 等中间层进行格式转换。
-
-详细配置请参考：[消息推送 - Webhook 配置指南](/docs/guide/settings-notifications#webhook-配置指南)
+详细配置请参考：[消息推送](/docs/guide/settings-notifications)
 
 ---
 

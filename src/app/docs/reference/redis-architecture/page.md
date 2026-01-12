@@ -216,15 +216,19 @@ CCH 同时支持两种策略,可通过配置选择。
 
 ### 5. 业务缓存
 
-#### Codex 指令缓存
+#### 缓存失效通知（Pub/Sub）
 
-| Redis Key                                        | 类型   | TTL    | 说明                     |
-| ------------------------------------------------ | ------ | ------ | ------------------------ |
-| `codex:instructions:{providerId}:{model}`        | STRING | 86400s | Codex CLI 的 instructions 字段缓存 |
+在多实例部署下，Claude Code Hub 使用 Redis Pub/Sub 做“缓存失效通知”，让各实例的**进程级缓存**能及时同步配置变更。
 
-**实现位置**: `src/lib/codex-instructions-cache.ts`
+| Channel | 用途 | 相关实现 |
+| --- | --- | --- |
+| `cch:cache:providers:updated` | 供应商列表缓存失效通知 | `src/lib/cache/provider-cache.ts` |
+| `cch:cache:error_rules:updated` | 错误规则缓存失效通知 | `src/lib/redis/pubsub.ts`, `src/lib/error-rule-detector.ts` |
+| `cch:cache:request_filters:updated` | 请求过滤器缓存失效通知 | `src/lib/redis/pubsub.ts`, `src/lib/request-filter-engine.ts` |
 
-**用途**: 避免每次请求都查询数据库获取 Codex 指令配置。
+{% callout type="note" title="Fail-Open" %}
+当 Redis 不可用时，发布/订阅会静默降级；各模块会依赖自身的 TTL 或“下次请求重载”策略保证服务可用性，但跨实例的即时同步会失效。
+{% /callout %}
 
 ---
 
@@ -451,7 +455,7 @@ if (times > 5) {
 | 会话管理       | 降级为无状态,每次请求重新选择供应商  | `src/lib/session-manager.ts`    |
 | 熔断器配置     | 返回默认配置                         | `src/lib/redis/circuit-breaker-config.ts` |
 | 排行榜缓存     | 降级为实时查询数据库                 | `src/lib/redis/leaderboard-cache.ts` |
-| Codex 指令缓存 | 每次从数据库读取                     | `src/lib/codex-instructions-cache.ts` |
+| 供应商列表缓存 | 失效通知不可用时依赖 TTL 自动过期     | `src/lib/cache/provider-cache.ts` |
 
 **日志记录**: 所有降级行为都记录 WARN 级别日志,便于监控和排查。
 
@@ -483,7 +487,6 @@ await pipeline.exec();
 | 限流计数器     | 按窗口时长(60s/5h/1d/1w/1m)          | 窗口结束自动清理                |
 | 熔断器配置缓存 | 300s(5 分钟)                         | 平衡新鲜度与查询压力            |
 | 排行榜缓存     | 60s(1 分钟)                          | 快速更新,减少数据库查询         |
-| Codex 指令缓存 | 86400s(24 小时)                      | 配置更新频率低                  |
 
 **自动清理**: 利用 Redis 的 TTL 机制,无需额外清理任务。
 

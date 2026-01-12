@@ -82,6 +82,7 @@ language: zh
 | `prompt_limit` | Prompt 长度超限 | "prompt is too long...tokens maximum" |
 | `content_filter` | 内容安全过滤 | "blocked by content filter" |
 | `pdf_limit` | PDF 页数超限 | "PDF has too many pages" |
+| `media_limit` | 媒体内容超限 | "Too much media" |
 | `thinking_error` | Thinking 模式错误 | "thinking format invalid" |
 | `parameter_error` | 请求参数错误 | "Missing required parameter" |
 | `invalid_request` | 非法请求 | "invalid request" |
@@ -111,6 +112,7 @@ Claude Code Hub 内置了一套预设错误规则（`DEFAULT_ERROR_RULES`），�
 | `content_filter` | 内容过滤 | 请求内容被安全过滤器拦截 | "blocked by content filter" |
 | `model_error` | 模型错误 | 模型参数为空、未知模型 | "actualModel is null"、"unknown model" |
 | `pdf_limit` | PDF 超限 | PDF 文件页数超过处理限制 | "PDF has too many pages" |
+| `media_limit` | 媒体内容超限 | 媒体总量超出限制（文档页数 + 图片数量） | "Too much media" |
 | `thinking_error` | Thinking 错误 | Thinking 模式配置或格式错误 | "thinking format invalid" |
 | `parameter_error` | 参数错误 | 请求参数不符合 API 规范 | "Missing required parameter" |
 | `invalid_request` | 非法请求 | 请求格式或内容非法 | "invalid request"、"image exceeds maximum bytes" |
@@ -138,6 +140,7 @@ Claude Code Hub 内置了一套预设错误规则（`DEFAULT_ERROR_RULES`），�
 | `model is required` | contains | model_error | 缺少 model 参数 |
 | `模型名称.*为空\|模型名称不能为空\|未指定模型` | regex | model_error | 模型名称为空（中文） |
 | `PDF has too many pages\|maximum of.*PDF pages` | regex | pdf_limit | PDF 页数超限 |
+| `Too much media` | contains | media_limit | 媒体内容超限（文档页数 + 图片数量） |
 | `thinking.*format.*invalid\|Expected.*thinking.*but found\|clear_thinking.*requires.*thinking.*enabled` | regex | thinking_error | Thinking 块格式错误 |
 | `Missing required parameter\|Extra inputs.*not permitted` | regex | parameter_error | 请求参数验证失败 |
 | `非法请求\|illegal request\|invalid request` | regex | invalid_request | 非法请求格式 |
@@ -272,6 +275,7 @@ Default error rules synced: 5 inserted, 10 updated, 2 skipped, 1 deleted
 | `prompt_limit` | Prompt 超限 | 请求的 token 数量超过模型限制 |
 | `content_filter` | 内容过滤 | 请求内容被安全过滤器拦截 |
 | `pdf_limit` | PDF 超限 | PDF 文件页数超过处理限制 |
+| `media_limit` | 媒体内容超限 | 媒体总量超出限制（文档页数 + 图片数量） |
 | `thinking_error` | Thinking 错误 | Thinking 模式配置或格式错误 |
 | `parameter_error` | 参数错误 | 请求参数不符合 API 规范 |
 | `invalid_request` | 非法请求 | 请求格式或内容非法 |

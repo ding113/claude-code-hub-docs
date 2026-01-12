@@ -10,7 +10,7 @@ language: zh
 
 # 配置
 
-配置页面允许团队管理员对系统进行全局设置，包括站点参数和日志自动清理策略。合理的配置能够提升团队使用体验并有效管理系统资源。
+配置页面允许团队管理员对系统进行全局设置，包括站点参数、代理链路的可靠性开关以及日志自动清理策略。合理的配置能够提升团队使用体验、增强兼容性并有效管理系统资源。
 
 ## 访问配置页面
 
@@ -79,6 +79,45 @@ language: zh
 {% callout type="note" title="自动降级" %}
 启用 HTTP/2 后，如果连接失败会自动回退到 HTTP/1.1。SOCKS 代理不支持 HTTP/2，会强制使用 HTTP/1.1。
 {% /callout %}
+
+### 拦截 Anthropic Warmup 请求
+
+控制是否拦截 Claude Messages API 的 Warmup 探测请求（默认关闭）。
+
+当开启后，系统会在识别到 Warmup 请求时：
+
+- **不转发上游**：由 Claude Code Hub 直接返回最小合法响应
+- **不计费 / 不限流 / 不计入统计**：该类请求用于客户端探测，不应污染成本与配额
+- **仍会写入日志**：方便排查与审计（会标记为 warmup 拦截）
+
+{% callout type="note" title="Warmup 请求判定（尽量严格）" %}
+系统仅在请求满足以下特征时才会判定为 Warmup 并尝试拦截：端点为 `POST /v1/messages`，消息只有 1 条且为 user，content 为单个 text block 且文本为 `Warmup`（忽略大小写/空格），并且 `cache_control.type = ephemeral`。
+{% /callout %}
+
+### Thinking Signature 整流器
+
+控制是否启用「thinking signature 整流器」（默认开启）。
+
+它用于解决 Anthropic 供应商链路中常见的 thinking 兼容性问题，例如：
+
+- 跨渠道/跨供应商切换导致的 `signature` 字段不兼容
+- thinking 已启用，但工具调用续写的 assistant 消息未以 thinking/redacted_thinking 开头（典型错误为 “Expected thinking … but found tool_use”）
+
+当命中相关错误特征时，系统会对请求体做最小侵入整流（移除/清理相关字段）并对**同一供应商重试一次**，以避免无意义的故障转移与熔断污染。整流命中会在 Session 详情与日志中以 `specialSettings` 记录，便于排查。
+
+### 响应修复器（Response Fixer）
+
+控制是否启用「响应修复器」（默认开启）。
+
+响应修复器用于在代理返回给客户端之前，自动修复一些上游响应的常见问题（避免客户端解析失败或 SSE 中断），包括：
+
+- **截断 JSON 修复**：尝试修复被截断的 JSON 响应
+- **SSE 格式修复**：修复不规范的 `text/event-stream` 分段格式
+- **异常编码修复**：处理非预期编码导致的乱码/解析异常
+
+开启响应修复器后，你可以在界面中分别开关上述三项修复能力，以便在“兼容性收益”和“最小改动”之间做取舍。
+
+该功能主要用于提升兼容性与稳定性；命中与修复细节同样会记录到 `specialSettings`（便于审计与排查）。
 
 ### 供应商错误详细信息
 

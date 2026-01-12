@@ -28,6 +28,7 @@ language: zh
 - **删除规则**：移除不再需要的规则
 - **启用/禁用**：临时关闭或开启单条规则
 - **优先级排序**：控制规则的执行顺序
+- **绑定范围**：支持全局、指定供应商、或按供应商分组（group tags）绑定生效范围
 
 ---
 
@@ -65,6 +66,20 @@ language: zh
 | `contains` | 包含匹配，目标内容包含指定文本即匹配 | 高 |
 | `regex` | 正则表达式匹配，支持复杂模式 | 较低 |
 
+### 绑定范围（Apply / Binding）
+
+指定该规则“对哪些请求生效”。这是 v0.3.39 引入的能力，用于把过滤规则精确绑定到某个供应商或某个供应商分组，避免全局生效带来的副作用。
+
+| 绑定类型 | 说明 | 执行时机 |
+| --- | --- | --- |
+| `global` | 对所有请求生效 | **选择供应商之前**（在 Session/Warmup 之后、RateLimit 之前） |
+| `providers` | 仅对指定 `providerIds` 生效 | **选择供应商之后**（只影响命中的供应商） |
+| `groups` | 仅对匹配 `groupTags` 的供应商生效 | **选择供应商之后**（按分组批量生效） |
+
+{% callout type="note" title="groups 如何匹配？" %}
+`groups` 绑定会读取供应商的 `groupTag` 字段，并按英文逗号 `,` 拆分为多个 tag（会自动 trim 空格）。当过滤器的 `groupTags` 与供应商 tag 有任意交集时，即视为匹配。
+{% /callout %}
+
 ### 其他字段
 
 | 字段 | 类型 | 说明 |
@@ -73,6 +88,9 @@ language: zh
 | `replacement` | string | 替换内容（根据操作类型有不同含义） |
 | `priority` | number | 执行优先级，数字越小越先执行 |
 | `isEnabled` | boolean | 是否启用该规则 |
+| `bindingType` | `global \| providers \| groups` | 生效范围（默认 `global`） |
+| `providerIds` | number[] | 仅当 `bindingType=providers` 时需要：指定要绑定的供应商 ID 列表 |
+| `groupTags` | string[] | 仅当 `bindingType=groups` 时需要：指定要绑定的分组 tag 列表 |
 
 ---
 
@@ -184,12 +202,39 @@ language: zh
 | Replacement | `claude-code-hub` |
 | Priority | 30 |
 
+### 示例 4：仅对指定供应商注入 Header
+
+当某些上游供应商需要额外 Header（或需要修正某些客户端头部）时，建议使用 `bindingType=providers` 精确绑定：
+
+| 字段 | 值 |
+| --- | --- |
+| Binding | providers（选择指定 Provider） |
+| Scope | header |
+| Action | set |
+| Target | `User-Agent` |
+| Replacement | `CustomAgent/1.0` |
+| Priority | 10 |
+
+### 示例 5：对某个供应商分组统一替换 Body 内容
+
+当你用 `groupTag` 将供应商分为多个环境/线路（例如 `cn`, `us`, `openai-compatible`）时，可以按分组批量绑定：
+
+| 字段 | 值 |
+| --- | --- |
+| Binding | groups（选择 `cn`） |
+| Scope | body |
+| Action | json_path |
+| Target | `metadata.source` |
+| Replacement | `cch-cn` |
+| Priority | 30 |
+
 ---
 
 ## 添加过滤规则
 
 1. 点击页面右上角的「添加过滤器」按钮
 2. 在弹出的对话框中填写以下信息：
+   - **绑定范围**：选择 Global / Providers / Groups
    - **作用范围**：选择 Header 或 Body
    - **操作类型**：选择 remove、set、json_path 或 text_replace
    - **匹配模式**：选择精确匹配、包含匹配或正则表达式
@@ -219,10 +264,12 @@ language: zh
 
 ### 执行时机
 
-请求过滤器在 Guard Pipeline 中执行，位于敏感词检测**之前**。这意味着：
+请求过滤器分为两类执行时机：
 
-1. 过滤器可以在敏感词检测前修改内容
-2. 可以用于对请求进行预处理和规范化
+1. **全局过滤器（bindingType=global）**：在 Guard Pipeline 中执行，位于 Session/Warmup 之后、RateLimit/Provider 之前，用于在进入限流与供应商选择前对请求做全局修补与规范化。
+   - 注意：敏感词检测在更早阶段执行，因此全局过滤器不会改变敏感词拦截的判断结果。
+
+2. **供应商/分组过滤器（bindingType=providers/groups）**：在供应商选择完成后执行，只对命中的供应商生效，适用于“按供应商修补兼容性/注入特殊 Header”。
 
 ---
 

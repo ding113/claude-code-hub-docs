@@ -10,7 +10,7 @@ language: zh
 
 # 客户端接入
 
-完整的 Claude Code、Codex、Gemini CLI 和 Droid CLI 集成指南。 {% .lead %}
+完整的 Claude Code、Codex、Gemini CLI、OpenCode 和 Droid CLI 集成指南。 {% .lead %}
 
 ---
 
@@ -836,8 +836,8 @@ codex --version
 
 ```toml
 model_provider = "cch"
-model = "gpt-5.1-codex"
-model_reasoning_effort = "high"
+model = "gpt-5.2"
+model_reasoning_effort = "xhigh"
 disable_response_storage = true
 sandbox_mode = "workspace-write"
 
@@ -957,8 +957,8 @@ codex --version
 
 ```toml
 model_provider = "cch"
-model = "gpt-5.1-codex"
-model_reasoning_effort = "high"
+model = "gpt-5.2"
+model_reasoning_effort = "xhigh"
 disable_response_storage = true
 sandbox_mode = "workspace-write"
 windows_wsl_setup_acknowledged = true
@@ -1045,10 +1045,6 @@ codex
 ---
 
 ## Gemini CLI 使用指南
-
-{% callout type="warning" title="即将上线" %}
-此功能正在开发中，尚未正式发布。
-{% /callout %}
 
 Gemini CLI 是 Google 官方的 AI 编程助手命令行工具，支持通过 CCH 代理服务使用。
 
@@ -1343,6 +1339,256 @@ gemini
 
 ---
 
+## OpenCode 使用指南
+
+OpenCode 是一款在终端中运行的 CLI + TUI AI 编程代理工具，也提供 IDE 插件集成。你可以将 OpenCode 指向 CCH 作为统一入口来接入 Claude、GPT 与 Gemini 等模型。
+
+### macOS
+
+#### 安装 OpenCode
+
+**方式一：官方安装脚本（推荐）**
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+**方式二：Homebrew**
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+**方式三：npm**
+
+```bash
+npm install -g opencode-ai
+```
+
+{% callout type="note" title="npm 安装提示" %}
+不建议通过 npm 镜像源/第三方 registry 安装 `opencode-ai`，可能会导致依赖缺失；如遇问题请改用官方 npm registry。
+{% /callout %}
+
+**方式四：Bun**
+
+```bash
+bun add -g opencode-ai
+```
+
+#### 连接 CCH 服务
+
+配置文件路径：`~/.config/opencode/opencode.json`
+
+创建配置目录：
+
+```bash
+mkdir -p ~/.config/opencode
+```
+
+设置 API Key 环境变量（建议写入 `~/.zshrc` / `~/.bashrc` 以持久化）：
+
+```bash
+export CCH_API_KEY="your-api-key-here"
+```
+
+编辑 `opencode.json`，写入以下内容：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "autoupdate": false,
+  "provider": {
+    "cchClaude": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "Claude via cch",
+      "options": {
+        "baseURL": "https://your-cch-domain.com/v1",
+        "apiKey": "{env:CCH_API_KEY}"
+      },
+      "models": {
+        "claude-haiku-4-5-20251001": { "name": "Claude Haiku 4.5" },
+        "claude-sonnet-4-5-20250929": { "name": "Claude Sonnet 4.5" },
+        "claude-opus-4-5-20251101": { "name": "Claude Opus 4.5" }
+      }
+    },
+    "cchGPT": {
+      "npm": "@ai-sdk/openai",
+      "name": "GPT via cch",
+      "options": {
+        "baseURL": "https://your-cch-domain.com/v1",
+        "apiKey": "{env:CCH_API_KEY}"
+      },
+      "models": {
+        "gpt-5.2": { "name": "GPT-5.2" }
+      }
+    },
+    "cchGemini": {
+      "npm": "@ai-sdk/google",
+      "name": "Gemini via cch",
+      "options": {
+        "baseURL": "https://your-cch-domain.com/v1",
+        "apiKey": "{env:CCH_API_KEY}"
+      },
+      "models": {
+        "gemini-3-pro-preview": { "name": "Gemini 3 Pro Preview" },
+        "gemini-3-flash-preview": { "name": "Gemini 3 Flash Preview" }
+      }
+    }
+  }
+}
+```
+
+{% callout title="重要说明" %}
+- 请先在 CCH 后台创建 API Key，并设置环境变量 `CCH_API_KEY`。
+- 三个 provider 的 `baseURL` 都使用 `https://your-cch-domain.com/v1`（CCH v1 API 地址）。
+- 模型选择时使用 `provider_id/model_id` 格式（例如 `cchClaude/claude-sonnet-4-5-20250929`）。
+{% /callout %}
+
+#### 启动 OpenCode
+
+```bash
+cd /path/to/your/project
+opencode
+```
+
+#### 选择模型
+
+启动 OpenCode 后，在 TUI 中输入以下命令查看/选择模型：
+
+```text
+/models
+```
+
+---
+
+### Windows
+
+#### 安装 OpenCode
+
+**方式一：Chocolatey（推荐）**
+
+```powershell
+choco install opencode
+```
+
+**方式二：Scoop**
+
+```powershell
+scoop bucket add extras
+scoop install extras/opencode
+```
+
+**方式三：npm**
+
+```powershell
+npm install -g opencode-ai
+```
+
+{% callout type="note" title="提示" %}
+官方说明 Windows 上通过 Bun 安装仍在推进。建议使用 Chocolatey/Scoop/npm，或从 GitHub Releases 下载二进制。
+{% /callout %}
+
+#### 连接 CCH 服务
+
+配置文件路径：`%USERPROFILE%\.config\opencode\opencode.json`
+
+创建配置目录：
+
+```powershell
+mkdir $env:USERPROFILE\.config\opencode
+```
+
+设置 API Key 环境变量（设置后需重新打开终端生效）：
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("CCH_API_KEY", "your-api-key-here", [System.EnvironmentVariableTarget]::User)
+```
+
+编辑 `opencode.json`（内容同 macOS），并将 `https://your-cch-domain.com` 替换为实际地址。
+
+#### 启动 OpenCode
+
+```powershell
+cd C:\path\to\your\project
+opencode
+```
+
+#### 选择模型
+
+```text
+/models
+```
+
+---
+
+### Linux
+
+#### 安装 OpenCode
+
+**方式一：官方安装脚本（推荐）**
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+**方式二：Homebrew**
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+**方式三：npm**
+
+```bash
+npm install -g opencode-ai
+```
+
+**方式四：Bun**
+
+```bash
+bun add -g opencode-ai
+```
+
+**方式五：Paru（Arch Linux）**
+
+```bash
+paru -S opencode-bin
+```
+
+#### 连接 CCH 服务
+
+配置文件路径：`~/.config/opencode/opencode.json`
+
+创建配置目录：
+
+```bash
+mkdir -p ~/.config/opencode
+```
+
+设置 API Key 环境变量（建议写入 `~/.bashrc` / `~/.zshrc` 以持久化）：
+
+```bash
+export CCH_API_KEY="your-api-key-here"
+```
+
+创建并编辑 `opencode.json`（内容同 macOS）。
+
+#### 启动 OpenCode
+
+```bash
+cd /path/to/your/project
+opencode
+```
+
+#### 选择模型
+
+```text
+/models
+```
+
+---
+
 ## Droid CLI 使用指南
 
 Droid 是 Factory AI 开发的交互式终端 AI 编程助手，支持通过 CCH 代理服务使用。使用前必须先注册并登录 Droid 官方账号。
@@ -1388,8 +1634,8 @@ sudo apt-get install xdg-utils
       "provider": "anthropic"
     },
     {
-      "model_display_name": "GPT-5-Codex [cch]",
-      "model": "gpt-5.1-codex",
+      "model_display_name": "GPT-5.2 [cch]",
+      "model": "gpt-5.2",
       "base_url": "https://your-cch-domain.com/v1",
       "api_key": "your-api-key-here",
       "provider": "openai"
@@ -1408,7 +1654,7 @@ sudo apt-get install xdg-utils
 
 1. 重启 Droid
 2. 输入 `/model` 命令
-3. 选择 GPT-5-Codex [cch] 或 Sonnet 4.5 [cch]
+3. 选择 GPT-5.2 [cch] 或 Sonnet 4.5 [cch]
 4. 开始使用！
 
 #### 启动 Droid
@@ -1466,8 +1712,8 @@ irm https://app.factory.ai/cli/windows | iex
       "provider": "anthropic"
     },
     {
-      "model_display_name": "GPT-5-Codex [cch]",
-      "model": "gpt-5.1-codex",
+      "model_display_name": "GPT-5.2 [cch]",
+      "model": "gpt-5.2",
       "base_url": "https://your-cch-domain.com/v1",
       "api_key": "your-api-key-here",
       "provider": "openai"
@@ -1541,6 +1787,10 @@ CCH 支持多种认证头格式，兼容不同客户端：
 | `x-goog-api-key` | `{api_key}` | Gemini CLI |
 
 所有认证方式使用同一个 CCH API Key，系统自动识别认证头类型。
+
+{% callout type="note" title="Gemini 额外说明" %}
+对于 Gemini API（`/v1beta`）请求，除了 `x-goog-api-key` 头部，也支持通过 URL 查询参数 `?key={api_key}` 传递 API Key。
+{% /callout %}
 
 ---
 

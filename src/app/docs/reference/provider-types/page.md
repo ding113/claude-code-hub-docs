@@ -49,9 +49,13 @@ Claude Code Hub 支持以下六种供应商类型：
 
 ```
 https://api.anthropic.com          # 官方 API
-https://your-proxy.com/v1          # 中转服务
 https://your-proxy.com/anthropic   # 带路径的中转服务
+https://your-proxy.com            # 中转服务（推荐填写基础地址）
 ```
+
+{% callout type="note" title="关于 URL 填写" %}
+Claude Code Hub 会基于客户端请求路径（如 `/v1/messages`）自动拼接到供应商 URL 上。通常建议填写**供应商基础地址**（不要额外带 `/v1` 之类的版本前缀），以避免出现重复路径（例如 `/v1/v1/messages`）。
+{% /callout %}
 
 ### 认证方式
 
@@ -121,7 +125,7 @@ API Key: sk-ant-xxx
 ```yaml
 名称: Claude Relay Service
 类型: claude-auth
-URL: https://relay.example.com/v1
+URL: https://relay.example.com
 API Key: your-relay-token
 ```
 
@@ -131,7 +135,6 @@ API Key: your-relay-token
 
 ```
 https://relay.example.com          # 基础域名
-https://relay.example.com/v1       # 带版本路径
 https://relay.example.com/api      # 自定义路径
 ```
 
@@ -163,20 +166,8 @@ https://your-proxy.com             # 中转服务
 https://your-proxy.com/openai      # 带路径的中转
 ```
 
-### Instructions 策略
-
-Codex 类型提供三种 Instructions 处理策略：
-
-| 策略 | 说明 |
-| --- | --- |
-| `auto` | 默认策略。透传客户端 instructions，400 错误时自动重试（使用官方 instructions） |
-| `force_official` | 始终使用官方 Codex CLI instructions（约 4000+ 字完整 prompt） |
-| `keep_original` | 始终透传客户端 instructions，不自动重试 |
-
-{% callout type="warning" title="策略选择建议" %}
-- 对于严格验证 instructions 的中转站（如 88code、foxcode），建议使用 `force_official` 策略
-- 对于宽松的中转站，可使用 `auto` 策略以获得更好的灵活性
-- `keep_original` 适用于已知中转站不验证 instructions 的场景
+{% callout type="note" title="Codex instructions 策略已废弃" %}
+历史版本曾支持基于策略对 `instructions` 进行注入/替换与缓存。当前版本中，Codex 请求的 `instructions` 字段**一律透传**（不注入、不替换、不缓存），相关策略字段仅为兼容旧数据保留。
 {% /callout %}
 
 ### 配置示例
@@ -186,20 +177,20 @@ Codex 类型提供三种 Instructions 处理策略：
 类型: codex
 URL: https://api.openai.com
 API Key: sk-xxx
-Instructions 策略: auto
 ```
 
-### 请求清洗
+### 请求清洗与兼容处理
 
-系统会自动清洗 Codex 请求，包括：
+为提升对上游（尤其是带“官方客户端校验”的中转站）的兼容性，Claude Code Hub 会对 **非官方 Codex 客户端**的请求做最小侵入清洗：
 
-1. **Instructions 处理** - 根据策略处理 instructions 字段
-2. **参数过滤** - 移除不支持的参数（如 `max_tokens`, `temperature`, `top_p` 等）
-3. **必需字段** - 确保 `stream`, `store`, `parallel_tool_calls` 字段存在
+1. **instructions 透传**：不注入、不替换、不缓存（兼容历史字段）
+2. **参数过滤**：移除 Responses API 不支持的参数（如 `max_tokens` / `temperature` / `top_p` 等）
+3. **必需字段**：强制 `store=false`；`parallel_tool_calls` 缺省时默认 `true`
+4. **stream 不强制**：如果客户端未指定 `stream`，会保持未设置，避免对不支持 `stream` 参数的端点造成误伤
 
 ### 官方客户端检测
 
-系统会自动检测官方 Codex CLI 客户端（通过 User-Agent），对于官方客户端使用 `auto` 策略时会跳过清洗，直接透传请求。
+系统会自动检测官方 Codex CLI 客户端（通过 User-Agent）。官方客户端请求会跳过清洗，直接透传，以避免兼容逻辑误伤官方参数。
 
 官方客户端 User-Agent 格式：
 - `codex_vscode/0.35.0 (Windows 10.0.26100; x86_64) unknown (Cursor; 0.4.10)`
@@ -234,8 +225,8 @@ Gemini 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER_TYPES=true
 ### URL 格式
 
 ```
-https://generativelanguage.googleapis.com/v1beta  # 官方 API（默认）
-https://your-proxy.com/v1beta                     # 中转服务
+https://generativelanguage.googleapis.com         # 官方 API（推荐填写基础地址）
+https://your-proxy.com                            # 中转服务
 ```
 
 ### 认证方式
@@ -244,18 +235,27 @@ Gemini 支持两种认证方式：
 
 1. **API Key 认证**：
    - 头部：`x-goog-api-key: <api_key>`
-   - 适用：以 `AIza` 开头的 API Key
+   - 适用：Google Gemini API Key（通常形如 `AIza...`）
 
 2. **OAuth Token 认证**：
    - 头部：`Authorization: Bearer <access_token>`
-   - 适用：Google Cloud 服务账号或 OAuth 流程获取的 Token
+   - 适用：Access Token（常见前缀 `ya29.`）
+
+{% callout type="note" title="扩展：JSON 凭据" %}
+Gemini 供应商的 Key 也可以填写 JSON（常见为 `authorized_user` 导出的字段集合），Claude Code Hub 会按以下逻辑处理（不回写数据库）：
+
+- 如果提供了 `access_token` 且未过期：直接使用
+- 如果提供了 `refresh_token` + `client_id` + `client_secret`：会尝试刷新并使用新的 `access_token`
+
+说明：目前不支持直接使用 Google `service_account` JSON 自动换取 access token（除非你自行填入 `access_token` / 通过外部方式提供 token）。
+{% /callout %}
 
 ### 配置示例
 
 ```yaml
 名称: Gemini Official
 类型: gemini
-URL: https://generativelanguage.googleapis.com/v1beta
+URL: https://generativelanguage.googleapis.com
 API Key: AIzaSyXXX  # 或 OAuth Access Token
 ```
 
@@ -266,10 +266,6 @@ Gemini 类型使用**直接透传**模式，不进行格式转换。请求体直
 ---
 
 ## Gemini CLI 类型 (gemini-cli)
-
-{% callout type="warning" title="即将上线" %}
-此功能正在开发中，尚未正式发布。
-{% /callout %}
 
 ### 概述
 
@@ -298,8 +294,8 @@ Gemini CLI 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER_TYPES=
 ### URL 格式
 
 ```
-https://cloudcode-pa.googleapis.com/v1internal  # 官方 CLI 端点（默认）
-https://your-proxy.com/v1internal               # 中转服务
+https://cloudcode-pa.googleapis.com             # 官方 CLI 端点（推荐填写基础地址）
+https://your-proxy.com                          # 中转服务
 ```
 
 ### 配置示例
@@ -307,7 +303,7 @@ https://your-proxy.com/v1internal               # 中转服务
 ```yaml
 名称: Gemini CLI
 类型: gemini-cli
-URL: https://cloudcode-pa.googleapis.com/v1internal
+URL: https://cloudcode-pa.googleapis.com
 API Key: your-cli-token
 ```
 
@@ -319,10 +315,6 @@ Gemini CLI 类型会自动添加：
 ---
 
 ## OpenAI Compatible 类型 (openai-compatible)
-
-{% callout type="warning" title="即将上线" %}
-此功能正在开发中，尚未正式发布。
-{% /callout %}
 
 ### 概述
 
@@ -349,10 +341,10 @@ OpenAI Compatible 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER
 ### URL 格式
 
 ```
-https://api.openai.com/v1          # OpenAI 官方
-https://api.groq.com/openai/v1     # Groq
-https://localhost:11434/v1         # Ollama
-https://your-proxy.com/v1          # 自定义服务
+https://api.openai.com             # OpenAI 官方（推荐填写基础地址）
+https://api.groq.com/openai        # Groq（会拼接出 /openai/v1/...）
+http://localhost:11434             # Ollama（会拼接出 /v1/...）
+https://your-proxy.com             # 自定义服务
 ```
 
 ### 配置示例
@@ -360,39 +352,31 @@ https://your-proxy.com/v1          # 自定义服务
 ```yaml
 名称: OpenAI Compatible
 类型: openai-compatible
-URL: https://api.groq.com/openai/v1
+URL: https://api.groq.com/openai
 API Key: gsk_xxx
 ```
 
-### 格式转换
-
-当客户端使用 Claude 格式请求，但目标供应商为 `openai-compatible` 类型时，系统会自动进行格式转换：
-
-**Claude -> OpenAI 转换规则：**
-
-- `messages` 格式转换
-- `system` 字段处理
-- `max_tokens` -> `max_completion_tokens`
-- 工具调用格式适配
-- 流式响应格式转换
+{% callout type="note" title="关于格式转换" %}
+Claude Code Hub 内置多种协议之间的请求/响应转换器，但调度器默认会根据请求端点/请求体识别出的格式，优先选择**同类型供应商**以避免格式错配。不同 API 入口与兼容细节请参考 [API 兼容层](/docs/reference/api-compatibility)。
+{% /callout %}
 
 ### 加入 Claude 调度池
-
-{% callout type="warning" title="即将上线" %}
-此功能正在开发中，尚未正式发布。
-{% /callout %}
 
 非 Anthropic 类型供应商可以通过启用 `joinClaudePool` 选项加入 Claude 调度池。这需要配合模型重定向功能使用：
 
 ```yaml
-名称: OpenAI as Claude
+名称: OpenAI Compatible (Claude pool)
 类型: openai-compatible
-URL: https://api.openai.com/v1
+URL: https://api.openai.com
 加入 Claude 调度池: 是
 模型重定向:
-  claude-sonnet-4-20250514: gpt-4o
-  claude-3-5-sonnet-20241022: gpt-4-turbo
+  claude-sonnet-4-20250514: claude-3-5-sonnet-20241022
+  claude-3-opus-20240229: claude-3-5-sonnet-20241022
 ```
+
+{% callout type="note" %}
+`joinClaudePool` 只影响“调度器是否把该供应商纳入候选集”的模型匹配逻辑（当用户请求 `claude-*` 模型时）。它不会改变请求格式与供应商类型的兼容性约束。
+{% /callout %}
 
 ---
 

@@ -29,8 +29,8 @@ language: zh
 | **限制字段** | 并发和成本限制 | limitConcurrentSessions, limit5hUsd, limitDailyUsd |
 | **超时配置** | 请求超时控制 | firstByteTimeoutStreamingMs, streamingIdleTimeoutMs |
 | **代理配置** | HTTP/SOCKS 代理设置 | proxyUrl, proxyFallbackToDirect |
-| **模型配置** | 模型重定向和白名单 | modelRedirects, allowedModels |
-| **特性配置** | 供应商特定功能 | codexInstructionsStrategy, mcpPassthroughType |
+| **模型配置** | 模型重定向、白名单与调度池 | modelRedirects, allowedModels, joinClaudePool |
+| **特性配置** | 供应商特定功能 | codexReasoningEffortPreference, codexTextVerbosityPreference, mcpPassthroughType |
 | **上下文窗口配置** | 1M 上下文窗口控制 | context1mPreference |
 | **熔断器配置** | 故障隔离和恢复 | circuitBreakerFailureThreshold 等 |
 | **元数据字段** | 时间戳和软删除 | createdAt, updatedAt, deletedAt |
@@ -63,8 +63,8 @@ language: zh
 | `claude` | Anthropic 官方 API | x-api-key 头 + Bearer Token |
 | `claude-auth` | Claude 中转服务 | 仅 Bearer Token |
 | `codex` | OpenAI Codex/Response API | Bearer Token |
-| `gemini` | Google Gemini API | API Key |
-| `gemini-cli` | Gemini CLI 格式 | API Key |
+| `gemini` | Google Gemini API | `x-goog-api-key` 或 `Authorization: Bearer` |
+| `gemini-cli` | Gemini CLI 格式 | `x-goog-api-key` 或 `Authorization: Bearer`（并注入 CLI 头） |
 | `openai-compatible` | OpenAI 兼容 API | Bearer Token |
 
 ### 配置示例
@@ -464,18 +464,26 @@ IP 透传功能用于将客户端真实 IP 地址传递给上游供应商。
 - **null 或空数组**：不限制（允许所有模型）
 
 ### 加入 Claude 调度池（joinClaudePool）
+`joinClaudePool` 用于让**非 Claude 类型**供应商在“用户请求 `claude-*` 模型”时也能参与候选选择。
 
-{% callout type="warning" title="即将上线" %}
-此功能正在开发中，尚未正式发布。
-{% /callout %}
+它的生效条件与约束：
 
-仅对非 Anthropic 类型供应商有效：
+- 仅对 `providerType != claude/claude-auth` 的供应商有意义
+- 仅当 `modelRedirects` 中存在“**重定向目标以 `claude-` 开头**”的映射时，管理后台才会显示该开关
+- 启用后，调度器会在用户请求 `claude-*` 模型时，将该供应商纳入候选集（并依赖 `modelRedirects` 进行模型名适配）
 
-- **false（默认）**：独立调度
-- **true**：配合 modelRedirects 加入 Claude 请求的调度池
+```json
+{
+  "providerType": "openai-compatible",
+  "joinClaudePool": true,
+  "modelRedirects": {
+    "claude-sonnet-4-20250514": "claude-3-5-sonnet-20241022"
+  }
+}
+```
 
 {% callout type="note" %}
-启用此选项后，非 Claude 类型的供应商也可以参与处理 Claude 模型的请求（通过模型重定向）。
+`joinClaudePool` 只影响调度器的“模型匹配/候选集”逻辑，不会改变请求格式与供应商类型的兼容性约束（例如 Claude Messages API 请求仍优先在 Claude 类型供应商内调度）。
 {% /callout %}
 
 ---
@@ -488,18 +496,14 @@ IP 透传功能用于将客户端真实 IP 地址传递给上游供应商。
 
 | 字段名 | 类型 | 默认值 | 说明 |
 | --- | --- | --- | --- |
-| `codexInstructionsStrategy` | enum | `auto` | Codex instructions 处理策略 |
-
-### Instructions 处理策略
-
-| 策略值 | 说明 | 使用场景 |
-| --- | --- | --- |
-| `auto` | 透传客户端 instructions，400 错误时自动重试（使用官方 instructions） | 默认推荐 |
-| `force_official` | 始终强制使用官方 Codex CLI instructions | 严格合规场景 |
-| `keep_original` | 始终透传客户端 instructions，不重试 | 宽松的中转站 |
+| `codexReasoningEffortPreference` | enum | `inherit` | 覆写 `reasoning.effort`（null/`inherit` 表示跟随客户端） |
+| `codexReasoningSummaryPreference` | enum | `inherit` | 覆写 `reasoning.summary`（null/`inherit` 表示跟随客户端） |
+| `codexTextVerbosityPreference` | enum | `inherit` | 覆写 `text.verbosity`（null/`inherit` 表示跟随客户端） |
+| `codexParallelToolCallsPreference` | enum | `inherit` | 覆写 `parallel_tool_calls`（`true`/`false`/`inherit`） |
+| `codexInstructionsStrategy` | enum | `auto` | **已废弃**：运行时不再读取/生效，仅为兼容旧数据保留 |
 
 {% callout type="note" %}
-此配置仅对 `providerType = 'codex'` 的供应商生效。
+上述覆写仅对 `providerType = 'codex'` 的供应商生效；一旦发生覆写，会以审计字段写入 Session 详情（`specialSettings`）。
 {% /callout %}
 
 ### 配置示例
@@ -507,7 +511,10 @@ IP 透传功能用于将客户端真实 IP 地址传递给上游供应商。
 ```json
 {
   "providerType": "codex",
-  "codexInstructionsStrategy": "auto"
+  "codexReasoningEffortPreference": "inherit",
+  "codexReasoningSummaryPreference": "inherit",
+  "codexTextVerbosityPreference": "inherit",
+  "codexParallelToolCallsPreference": "inherit"
 }
 ```
 

@@ -30,23 +30,25 @@ language: zh
 
 {% quick-links %}
 
-{% quick-link title="系统配置" icon="presets" href="/docs/guide/settings/config" description="配置站点标题、货币显示、计费模型来源，以及自动清理策略等基础参数。" /%}
+{% quick-link title="系统配置" icon="presets" href="/docs/guide/settings-config" description="配置站点标题、货币显示、计费模型来源，以及 Warmup/响应修复等系统级开关。" /%}
 
-{% quick-link title="价格表管理" icon="theming" href="/docs/guide/settings/prices" description="管理 AI 模型的输入/输出 Token 定价，支持从 LiteLLM 同步或手动上传价格数据。" /%}
+{% quick-link title="价格表管理" icon="theming" href="/docs/guide/settings-prices" description="管理 AI 模型与缓存相关定价，支持云端 TOML 价格表同步与手动维护。" /%}
 
-{% quick-link title="供应商管理" icon="plugins" href="/docs/guide/settings/providers" description="添加、编辑和管理 AI 服务供应商，配置权重、优先级、限流参数和代理设置。" /%}
+{% quick-link title="供应商管理" icon="plugins" href="/docs/guide/settings-providers" description="添加、编辑与调度 AI 供应商，支持优先级/权重/分组、成本倍数自动排序与健康状态查看。" /%}
 
-{% quick-link title="敏感词过滤" icon="warning" href="/docs/guide/settings/sensitive-words" description="设置内容过滤规则，阻止包含敏感词的请求，支持精确匹配和正则表达式。" /%}
+{% quick-link title="敏感词过滤" icon="warning" href="/docs/guide/settings-sensitive-words" description="配置内容过滤规则，阻止包含敏感词的请求，支持精确匹配和正则表达式。" /%}
 
-{% quick-link title="错误规则" icon="warning" href="/docs/guide/settings/error-rules" description="配置错误分类规则，控制哪些错误应触发重试或熔断器，包含规则测试工具。" /%}
+{% quick-link title="错误规则" icon="warning" href="/docs/guide/settings-error-rules" description="配置错误分类与覆写策略，帮助系统识别不可重试错误，包含规则测试与缓存刷新。" /%}
 
-{% quick-link title="客户端版本" icon="installation" href="/docs/guide/settings/client-versions" description="启用客户端版本检查功能，查看版本分布统计，向旧版客户端发送升级提醒。" /%}
+{% quick-link title="请求过滤器" icon="presets" href="/docs/guide/settings-request-filters" description="按规则修改请求 Header/Body，支持全局/供应商/分组绑定，用于脱敏与兼容性修补。" /%}
 
-{% quick-link title="数据管理" icon="presets" href="/docs/guide/settings/data" description="查看数据库状态、执行日志清理、导出和导入配置数据，进行数据备份与迁移。" /%}
+{% quick-link title="客户端版本" icon="installation" href="/docs/guide/settings-client-versions" description="启用客户端版本检查功能，查看版本分布统计，向旧版客户端发送升级提醒。" /%}
 
-{% quick-link title="日志配置" icon="lightbulb" href="/docs/guide/settings/logs" description="配置系统日志级别，控制日志输出的详细程度以便于调试和监控。" /%}
+{% quick-link title="数据管理" icon="presets" href="/docs/guide/settings-data" description="查看数据库状态、执行日志清理、导出和导入配置数据，进行数据备份与迁移。" /%}
 
-{% quick-link title="消息推送" icon="plugins" href="/docs/guide/settings/notifications" description="配置 Webhook 通知，包括熔断器告警、每日排行榜推送和成本预警功能。" /%}
+{% quick-link title="日志配置" icon="lightbulb" href="/docs/guide/settings-logs" description="配置系统日志级别，控制日志输出的详细程度以便于调试和监控。" /%}
+
+{% quick-link title="消息推送" icon="plugins" href="/docs/guide/settings-notifications" description="配置多目标 Webhook 通知，支持企业微信/飞书/钉钉/Telegram/自定义模板等平台。" /%}
 
 {% /quick-links %}
 
@@ -59,6 +61,7 @@ language: zh
 系统配置页面包含两个主要部分：
 
 - **站点参数**：设置站点标题、是否允许全局用量查看、货币显示格式（USD/CNY）、计费模型来源
+- **可靠性开关**：Warmup 请求拦截、thinking signature 整流器、响应修复器等（用于兼容性与稳定性兜底）
 - **自动清理**：配置请求日志的自动清理策略，包括是否启用自动清理和数据保留天数
 
 ### 价格表管理 `/settings/prices`
@@ -66,9 +69,9 @@ language: zh
 价格表用于计算每次请求的成本。提供以下功能：
 
 - 分页浏览和搜索模型价格
-- 从 LiteLLM 一键同步最新价格数据
-- 手动上传自定义价格 JSON 文件
-- 编辑单个模型的定价信息
+- 同步云端 TOML 价格表（默认不覆盖手动价格，冲突可选择覆盖）
+- 手动维护单个模型价格（支持输入/输出/按次、以及缓存相关价格字段）
+- 上传 `.toml` / `.json` 价格表文件（用于离线/内网环境）
 
 ### 供应商管理 `/settings/providers`
 
@@ -127,13 +130,13 @@ language: zh
 
 ### 消息推送 `/settings/notifications`
 
-配置外部通知集成（目前支持企业微信机器人 Webhook）：
+配置外部通知集成（多目标 Webhook + 多平台渲染）：
 
 - **熔断器告警**：当供应商触发熔断时发送通知
 - **每日排行榜**：定时推送用户用量排行榜
 - **成本预警**：当用户消费达到预设阈值时发送告警
 
-每种通知都支持单独的 Webhook 地址和测试功能。
+通知系统支持配置多个「推送目标（Targets）」并按通知类型进行「绑定（Bindings）」，同一类通知可以同时推送到多个平台；自定义 Webhook 支持 JSON 模板与占位符变量。
 
 ---
 

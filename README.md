@@ -4,7 +4,7 @@
 
 ## 技术栈
 
-- **框架**: Next.js 15 (App Router)
+- **框架**: Next.js 16 (App Router)
 - **样式**: Tailwind CSS 4
 - **文档**: Markdoc
 - **主题**: Claude 品牌色彩系统
@@ -13,13 +13,13 @@
 
 ```bash
 # 安装依赖
-npm install
+bun install
 
 # 启动开发服务器
-npm run dev
+bun run dev
 
 # 构建生产版本
-npm run build
+bun run build
 ```
 
 ## 文档结构

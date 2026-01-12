@@ -38,7 +38,11 @@ CCH 专为解决这些问题而生，提供**服务器部署、多租户、Sessi
 
 ### 多供应商管理
 
-同时接入 Claude、Codex 等多种类型供应商。Gemini CLI、OpenAI Compatible 等类型即将上线。支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
+同时接入 Claude、Codex、Gemini、OpenAI Compatible 等多种类型供应商，支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
+
+{% callout type="note" title="多供应商类型开关" %}
+出于安全与兼容性考虑，非 Claude 类型供应商（如 `gemini` / `gemini-cli` / `openai-compatible`）默认需要启用环境变量 `ENABLE_MULTI_PROVIDER_TYPES=true` 才会在管理后台展示并允许配置。
+{% /callout %}
 
 ### 限流与并发控制
 
@@ -61,17 +65,23 @@ Redis Lua 脚本确保原子性，Fail-Open 策略保障 Redis 不可用时服�
 
 5 分钟上下文缓存，同一会话的请求自动路由到相同供应商，提高缓存命中率、降低成本。完整记录决策链，支持全链路审计。
 
-### OpenAI 兼容层（即将上线）
+### API 兼容层
 
-支持 `/v1/chat/completions` 端点，自动格式转换、工具调用、reasoning 字段与 Codex CLI 指令注入，无缝对接现有工具链。
+Claude Code Hub 在同一套鉴权与调度体系下，提供多种主流客户端协议入口：
+
+- Claude Messages API：`POST /v1/messages`（及 `POST /v1/messages/count_tokens`）
+- OpenAI Chat Completions：`POST /v1/chat/completions`
+- OpenAI Responses（Codex / Response API）：`POST /v1/responses`
+- Gemini API：`/v1beta/models/{model}:generateContent`（及 `streamGenerateContent` / `countTokens`）
+- 可用模型聚合：`GET /v1/models`（按用户/分组聚合返回可用模型列表）
 
 ### 自动化 OpenAPI 文档
 
-39 个 REST 端点自动生成 OpenAPI 3.1.0 规范，提供 Swagger + Scalar UI 双界面，即刻试用 API。
+管理后台的 Server Actions 自动生成 OpenAPI 3.1.0 规范，并提供 Swagger + Scalar UI 双界面，便于自助查阅与调试接口。
 
 ### 价格表管理
 
-支持分页查询、搜索防抖、LiteLLM 同步，即使千级模型也能快速检索，确保成本计算准确。
+支持云端价格表同步（TOML）、手动维护模型价格（含缓存相关价格字段）、分页/过滤/搜索等能力，确保成本计算准确且可控。
 
 ---
 
@@ -92,7 +102,7 @@ CCH 专为以下团队设计：
 
 CCH 基于现代 Web 技术栈构建：
 
-- **前端**：Next.js 15 (App Router) + React 19 + Tailwind CSS + shadcn/ui
+- **前端**：Next.js 16 (App Router) + React 19 + Tailwind CSS + shadcn/ui
 - **API 层**：Hono（高性能路由框架）
 - **数据库**：PostgreSQL + Drizzle ORM
 - **缓存**：Redis（Session 管理、限流、熔断器状态）
@@ -106,11 +116,11 @@ CCH 基于现代 Web 技术栈构建：
 
 {% quick-link title="快速开始" href="/docs/deploy-script" description="一键部署脚本，5 分钟启动 CCH" /%}
 
-{% quick-link title="核心概念" href="/docs/core-concepts" description="供应商、用户、API Key、Session 等核心概念" /%}
+{% quick-link title="客户端接入" href="/docs/client-setup" description="Claude Code / Codex / Gemini CLI / OpenCode 等接入指南" /%}
 
-{% quick-link title="供应商管理" href="/docs/providers" description="添加、配置、调度多家 AI 供应商" /%}
+{% quick-link title="供应商管理" href="/docs/guide/settings-providers" description="添加、配置与调度多家 AI 供应商" /%}
 
-{% quick-link title="API 参考" href="/docs/api" description="完整的 REST API 文档" /%}
+{% quick-link title="API 兼容层" href="/docs/reference/api-compatibility" description="支持 Claude / OpenAI / Codex / Gemini 的 API 入口与兼容说明" /%}
 
 {% /quick-links %}
 
