@@ -80,7 +80,7 @@ export function SidebarAd() {
                 DING113CCH
               </code>
               <span className="text-[10px] font-bold text-[var(--claude-rust)]">
-                -20%
+                -10%
               </span>
             </div>
             <ArrowRightIcon className="h-3 w-3 text-[var(--claude-walnut)]/50 transition-transform group-hover:translate-x-0.5 group-hover:text-[var(--claude-terracotta)]" />
@@ -154,7 +154,7 @@ export function ArticleEndAd() {
                 </div>
 
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--claude-terracotta)] text-white shadow-lg transition-transform group-hover:scale-110">
-                  <span className="text-sm font-bold">-20%</span>
+                  <span className="text-sm font-bold">-10%</span>
                 </div>
               </div>
             </div>
@@ -224,7 +224,7 @@ export function HomePageAd() {
               </div>
 
               <div className="flex items-center gap-2 rounded-full bg-[var(--claude-terracotta)] px-4 py-2 font-bold text-white shadow-md transition-transform group-hover:scale-105">
-                <span>立减 20%</span>
+                <span>立减 10%</span>
                 <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </div>
             </div>

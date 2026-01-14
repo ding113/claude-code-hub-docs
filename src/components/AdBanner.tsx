@@ -46,7 +46,7 @@ export function AdBanner() {
               </code>
             </span>
             <span className="font-bold text-[var(--claude-sunrise)]">
-              立减 20%
+              立减 10%
             </span>
             <Link
               href="https://cubence.com?source=cch"
