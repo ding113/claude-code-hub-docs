@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.01.19"
-checksum = "039433410fda7603d4277926a9a5e308cf91fb23ac7bce252be136bd165eeb35"
+checksum = "84ec671944dd2854f98251a84e60a7be186e1027bbbf1d066c3f25e9c63b1a28"
 sources = ["litellm", "modelsdev"]
 total_models = 2524
-litellm_raw_models = 2426
+litellm_raw_models = 2428
 modelsdev_raw_models = 2233
 custom_models = 2
 
@@ -15604,16 +15604,18 @@ output_cost_per_image = 0.06
 [models."dall-e-2"]
 mode = "image_generation"
 litellm_provider = "aiml"
-providers = ["aiml"]
+providers = ["aiml", "openai"]
 source = "https://docs.aimlapi.com/"
 output_cost_per_image = 0.021
-supported_endpoints = ["/v1/images/generations"]
+supported_endpoints = ["/v1/images/generations", "/v1/images/edits", "/v1/images/variations"]
 
 [models."dall-e-2".metadata]
 notes = "DALL-E 2 via AI/ML API - Reliable text-to-image generation"
 
 [models."dall-e-2".pricing."aiml"]
 output_cost_per_image = 0.021
+[models."dall-e-2".pricing."openai"]
+input_cost_per_image = 0.02
 
 [models."dall-e-3"]
 display_name = "DALL-E-3"
@@ -15622,7 +15624,7 @@ mode = "image_generation"
 max_input_tokens = 800
 max_output_tokens = 0
 litellm_provider = "aiml"
-providers = ["aiml"]
+providers = ["aiml", "openai"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
@@ -15638,6 +15640,8 @@ notes = "DALL-E 3 via AI/ML API - High-quality text-to-image generation"
 
 [models."dall-e-3".pricing."aiml"]
 output_cost_per_image = 0.042
+[models."dall-e-3".pricing."openai"]
+input_cost_per_image = 0.04
 
 [models."databricks-bge-large-en"]
 mode = "embedding"
