@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.19"
-checksum = "84ec671944dd2854f98251a84e60a7be186e1027bbbf1d066c3f25e9c63b1a28"
+checksum = "00f62212d5f78f2c47a1d6336ae2f56c8eec7dbde27480b68a5c51cf88dd663a"
 sources = ["litellm", "modelsdev"]
-total_models = 2524
+total_models = 2523
 litellm_raw_models = 2428
-modelsdev_raw_models = 2233
+modelsdev_raw_models = 2235
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -49363,7 +49363,7 @@ max_output_tokens = 32768
 input_cost_per_token = 7e-7
 output_cost_per_token = 0.0000028
 litellm_provider = "alibaba"
-providers = ["alibaba", "alibaba-cn"]
+providers = ["alibaba", "alibaba-cn", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -49382,6 +49382,9 @@ reasoning_cost_per_token = 0.000008400000000000001
 input_cost_per_token = 2.8670499999999997e-7
 output_cost_per_token = 0.0000011468199999999999
 reasoning_cost_per_token = 0.000002867051
+[models."qwen3-vl-235b-a22b".pricing."venice"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.0000015
 
 [models."qwen3-vl-235b-a22b-instruct"]
 display_name = "Qwen3 VL 235B A22B Instruct"
@@ -56278,6 +56281,7 @@ input_cost_per_token = 4.5e-7
 output_cost_per_token = 0.0000019
 
 [models."zai-glm-4.6"]
+display_name = "Z.AI GLM-4.6"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 128000
@@ -56288,7 +56292,11 @@ litellm_provider = "cerebras"
 providers = ["cerebras"]
 supports_function_calling = true
 supports_reasoning = true
+open_weights = true
+release_date = "2025-11-05"
 deprecation_date = "2026-01-20"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://www.cerebras.ai/pricing"
 supports_tool_choice = true
 
@@ -56318,28 +56326,6 @@ supports_tool_choice = true
 [models."zai-glm-4.7".pricing."cerebras"]
 input_cost_per_token = 0.00000225
 output_cost_per_token = 0.00000275
-
-[models."zai-org-glm-4-6v"]
-display_name = "GLM 4.6V"
-model_family = "glmv"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 32768
-input_cost_per_token = 3.9e-7
-output_cost_per_token = 0.00000113
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-release_date = "2025-12-11"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."zai-org-glm-4-6v".pricing."venice"]
-input_cost_per_token = 3.9e-7
-output_cost_per_token = 0.00000113
 
 [models."zai-org-glm-4-7"]
 display_name = "GLM 4.7"
