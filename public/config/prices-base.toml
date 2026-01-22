@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.01.22"
-checksum = "003aa5a79ff022a372d61e6a084ce9d2e5730eb27b152ddd019ac194e34c3e7a"
+checksum = "92cf238ea913bdd6e917a306737bb34f3426665cce12c6a0cc724aa3a31e1ec9"
 sources = ["litellm", "modelsdev"]
-total_models = 2526
-litellm_raw_models = 2434
+total_models = 2529
+litellm_raw_models = 2439
 modelsdev_raw_models = 2251
 custom_models = 2
 
@@ -27335,8 +27335,8 @@ output_cost_per_token = 0.00001
 litellm_provider = "openai"
 providers = ["openai"]
 supports_function_calling = true
-input_cost_per_audio_token = 0.0001
-output_cost_per_audio_token = 0.0002
+input_cost_per_audio_token = 0.00004
+output_cost_per_audio_token = 0.00008
 supports_audio_input = true
 supports_audio_output = true
 supports_parallel_function_calling = true
@@ -27344,9 +27344,9 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."gpt-4o-audio-preview".pricing."openai"]
-input_cost_per_audio_token = 0.0001
+input_cost_per_audio_token = 0.00004
 input_cost_per_token = 0.0000025
-output_cost_per_audio_token = 0.0002
+output_cost_per_audio_token = 0.00008
 output_cost_per_token = 0.00001
 
 [models."gpt-4o-audio-preview-2024-10-01"]
@@ -27359,8 +27359,8 @@ output_cost_per_token = 0.00001
 litellm_provider = "openai"
 providers = ["openai"]
 supports_function_calling = true
-input_cost_per_audio_token = 0.0001
-output_cost_per_audio_token = 0.0002
+input_cost_per_audio_token = 0.00004
+output_cost_per_audio_token = 0.00008
 supports_audio_input = true
 supports_audio_output = true
 supports_parallel_function_calling = true
@@ -27368,9 +27368,9 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."gpt-4o-audio-preview-2024-10-01".pricing."openai"]
-input_cost_per_audio_token = 0.0001
+input_cost_per_audio_token = 0.00004
 input_cost_per_token = 0.0000025
-output_cost_per_audio_token = 0.0002
+output_cost_per_audio_token = 0.00008
 output_cost_per_token = 0.00001
 
 [models."gpt-4o-audio-preview-2024-12-17"]
@@ -29857,6 +29857,38 @@ output_cost_per_token = 0.000168
 input_cost_per_token = 0.000021
 output_cost_per_token = 0.000168
 
+[models."gpt-audio"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+max_tokens = 16384
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = false
+supports_reasoning = false
+supports_prompt_caching = false
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+input_cost_per_audio_token = 0.000032
+output_cost_per_audio_token = 0.000064
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/realtime", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-audio".pricing."openai"]
+input_cost_per_audio_token = 0.000032
+input_cost_per_token = 0.0000025
+output_cost_per_audio_token = 0.000064
+output_cost_per_token = 0.00001
+
 [models."gpt-audio-2025-08-28"]
 mode = "chat"
 max_input_tokens = 128000
@@ -29865,7 +29897,7 @@ max_tokens = 16384
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 litellm_provider = "azure"
-providers = ["azure"]
+providers = ["azure", "openai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -29874,7 +29906,9 @@ supported_modalities = ["text", "audio"]
 supported_output_modalities = ["text", "audio"]
 input_cost_per_audio_token = 0.00004
 output_cost_per_audio_token = 0.00008
-supported_endpoints = ["/v1/chat/completions"]
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/realtime", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = true
 supports_native_streaming = true
 supports_parallel_function_calling = true
 supports_response_schema = false
@@ -29886,6 +29920,43 @@ input_cost_per_audio_token = 0.00004
 input_cost_per_token = 0.0000025
 output_cost_per_audio_token = 0.00008
 output_cost_per_token = 0.00001
+[models."gpt-audio-2025-08-28".pricing."openai"]
+input_cost_per_audio_token = 0.000032
+input_cost_per_token = 0.0000025
+output_cost_per_audio_token = 0.000064
+output_cost_per_token = 0.00001
+
+[models."gpt-audio-mini"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+max_tokens = 16384
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000024
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = false
+supports_reasoning = false
+supports_prompt_caching = false
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+input_cost_per_audio_token = 0.00001
+output_cost_per_audio_token = 0.00002
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/realtime", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-audio-mini".pricing."openai"]
+input_cost_per_audio_token = 0.00001
+input_cost_per_token = 6e-7
+output_cost_per_audio_token = 0.00002
+output_cost_per_token = 0.0000024
 
 [models."gpt-audio-mini-2025-10-06"]
 mode = "chat"
@@ -29895,7 +29966,7 @@ max_tokens = 16384
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
 litellm_provider = "azure"
-providers = ["azure"]
+providers = ["azure", "openai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -29904,7 +29975,9 @@ supported_modalities = ["text", "audio"]
 supported_output_modalities = ["text", "audio"]
 input_cost_per_audio_token = 0.00001
 output_cost_per_audio_token = 0.00002
-supported_endpoints = ["/v1/chat/completions"]
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/realtime", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = true
 supports_native_streaming = true
 supports_parallel_function_calling = true
 supports_response_schema = false
@@ -29912,6 +29985,43 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."gpt-audio-mini-2025-10-06".pricing."azure"]
+input_cost_per_audio_token = 0.00001
+input_cost_per_token = 6e-7
+output_cost_per_audio_token = 0.00002
+output_cost_per_token = 0.0000024
+[models."gpt-audio-mini-2025-10-06".pricing."openai"]
+input_cost_per_audio_token = 0.00001
+input_cost_per_token = 6e-7
+output_cost_per_audio_token = 0.00002
+output_cost_per_token = 0.0000024
+
+[models."gpt-audio-mini-2025-12-15"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+max_tokens = 16384
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000024
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = false
+supports_reasoning = false
+supports_prompt_caching = false
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+input_cost_per_audio_token = 0.00001
+output_cost_per_audio_token = 0.00002
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/realtime", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-audio-mini-2025-12-15".pricing."openai"]
 input_cost_per_audio_token = 0.00001
 input_cost_per_token = 6e-7
 output_cost_per_audio_token = 0.00002
