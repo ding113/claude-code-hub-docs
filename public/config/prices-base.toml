@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.24"
-checksum = "d4767e3abc2a62c77b7a209ac44dd7ef4b25baf1971ecb5656f7747953d69655"
+checksum = "7cf7aa3814432e6ac6343a1adac2f1ffcb8b2bd890b88ff190b7ba01baeb96ab"
 sources = ["litellm", "modelsdev"]
-total_models = 2534
+total_models = 2536
 litellm_raw_models = 2456
-modelsdev_raw_models = 2253
+modelsdev_raw_models = 2256
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1508,7 +1508,7 @@ max_tokens = 16384
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "gmi"
-providers = ["gmi", "deepinfra", "huggingface", "nvidia"]
+providers = ["gmi", "deepinfra", "huggingface", "nvidia", "siliconflow"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -1524,6 +1524,9 @@ output_cost_per_token = 0.0000012
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.1".pricing."huggingface"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."MiniMaxAI/MiniMax-M2.1".pricing."siliconflow"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -2234,6 +2237,28 @@ output_cost_per_token = 5e-7
 [models."Phi-4-reasoning".pricing."azure_ai"]
 input_cost_per_token = 1.25e-7
 output_cost_per_token = 5e-7
+
+[models."Pro/MiniMaxAI/MiniMax-M2-1"]
+display_name = "Pro/MiniMaxAI/MiniMax-M2.1"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 197000
+max_output_tokens = 131000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+litellm_provider = "siliconflow-cn"
+providers = ["siliconflow-cn"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-12-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Pro/MiniMaxAI/MiniMax-M2-1".pricing."siliconflow-cn"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."QwQ-32B"]
 display_name = "QwQ 32B"
@@ -19206,6 +19231,23 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2024-09-30"
 release_date = "2026-01-22"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."duo-chat-gpt-5-2"]
+display_name = "Agentic Chat (GPT-5.2)"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+litellm_provider = "gitlab"
+providers = ["gitlab"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-01-23"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
