@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.27"
-checksum = "3cf40b092449353f14fa8d9ed576ad95e1153f551751320bcb7160822f7f0f9a"
+checksum = "c1bd002a60e410d20ecdcc93a33dfff4e632f845ef292bdce87687f0a66f3bf0"
 sources = ["litellm", "modelsdev"]
 total_models = 2555
 litellm_raw_models = 2460
-modelsdev_raw_models = 2274
+modelsdev_raw_models = 2277
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1432,11 +1432,12 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax", "aihubmix", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "moark"]
+providers = ["minimax", "aihubmix", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "moark", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
 open_weights = true
+knowledge_cutoff = "2025-01"
 release_date = "2025-12-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -1457,6 +1458,10 @@ output_cost_per_token = 0.0000012
 [models."MiniMax-M2.1".pricing."moark"]
 input_cost_per_token = 0.0000021000000000000002
 output_cost_per_token = 0.000008400000000000001
+[models."MiniMax-M2.1".pricing."opencode"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."MiniMax-M2.1-lightning"]
 mode = "chat"
@@ -34112,9 +34117,8 @@ max_input_tokens = 262144
 max_output_tokens = 65536
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.00000375
-cache_read_input_token_cost = 1.25e-7
 litellm_provider = "venice"
-providers = ["venice"]
+providers = ["venice", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34124,8 +34128,11 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."kimi-k2-5".pricing."opencode"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.0000012
 [models."kimi-k2-5".pricing."venice"]
-cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.00000375
 
