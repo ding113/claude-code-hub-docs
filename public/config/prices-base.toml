@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.28"
-checksum = "df6229b002c4aa4de331d6fd4dbfd0d7aacb23c2984fd649c60bcbe7d75297c1"
+checksum = "be924224a5432b1e3b9f3da28695dce688176cace1a435b6487515204a4faf50"
 sources = ["litellm", "modelsdev"]
-total_models = 2556
+total_models = 2573
 litellm_raw_models = 2460
-modelsdev_raw_models = 2282
+modelsdev_raw_models = 2349
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1390,8 +1390,30 @@ source = "https://cloud.sambanova.ai/plans/pricing"
 input_cost_per_token = 3e-7
 output_cost_per_token = 3e-7
 
+[models."MiniMax-M1"]
+display_name = "MiniMax-M1"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 0.000001254
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-06-16"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."MiniMax-M1".pricing."302ai"]
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 0.000001254
+
 [models."MiniMax-M2"]
-display_name = "minimax-m2"
+display_name = "MiniMax-M2"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 200000
@@ -1401,17 +1423,20 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
+providers = ["minimax", "302ai", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = true
-release_date = "2025-10-23"
+open_weights = false
+release_date = "2025-10-26"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."MiniMax-M2".pricing."302ai"]
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 0.00000132
 [models."MiniMax-M2".pricing."minimax"]
 cache_creation_input_token_cost = 3.75e-7
 cache_read_input_token_cost = 3e-8
@@ -1422,7 +1447,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."MiniMax-M2.1"]
-display_name = "minimax-m2.1"
+display_name = "MiniMax-M2.1"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 1000000
@@ -1432,18 +1457,21 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax", "aihubmix", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "moark", "opencode"]
+providers = ["minimax", "302ai", "aihubmix", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "moark", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2025-01"
-release_date = "2025-12-23"
+release_date = "2025-12-19"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."MiniMax-M2.1".pricing."302ai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."MiniMax-M2.1".pricing."aihubmix"]
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
@@ -11152,7 +11180,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 5e-7
 
 [models."chatgpt-4o-latest"]
-display_name = "OpenAI ChatGPT-4o"
+display_name = "chatgpt-4o-latest"
 model_family = "gpt"
 mode = "chat"
 max_input_tokens = 128000
@@ -11161,21 +11189,24 @@ max_tokens = 4096
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000015
 litellm_provider = "openai"
-providers = ["openai", "helicone", "poe"]
+providers = ["openai", "302ai", "helicone", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-08"
-release_date = "2024-08-14"
+knowledge_cutoff = "2023-09"
+release_date = "2024-08-08"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."chatgpt-4o-latest".pricing."302ai"]
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000015
 [models."chatgpt-4o-latest".pricing."helicone"]
 cache_read_input_token_cost = 0.0000025
 input_cost_per_token = 0.000005
@@ -12661,7 +12692,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
 
 [models."claude-haiku-4-5-20251001"]
-display_name = "Claude Haiku 4.5"
+display_name = "claude-haiku-4-5-20251001"
 model_family = "claude-haiku"
 mode = "chat"
 max_input_tokens = 200000
@@ -12672,16 +12703,16 @@ output_cost_per_token = 0.000005
 cache_read_input_token_cost = 1e-7
 cache_creation_input_token_cost = 0.00000125
 litellm_provider = "anthropic"
-providers = ["anthropic", "abacus", "helicone"]
+providers = ["anthropic", "302ai", "abacus", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-02-28"
-release_date = "2025-10-15"
-supported_modalities = ["text", "image", "pdf"]
+knowledge_cutoff = "2025-03"
+release_date = "2025-10-16"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.000002
 supports_assistant_prefill = true
@@ -12689,6 +12720,9 @@ supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."claude-haiku-4-5-20251001".pricing."302ai"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
 [models."claude-haiku-4-5-20251001".pricing."abacus"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
@@ -12989,7 +13023,7 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
 [models."claude-opus-4-1-20250805"]
-display_name = "Claude Opus 4.1"
+display_name = "claude-opus-4-1-20250805"
 model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
@@ -13000,17 +13034,17 @@ output_cost_per_token = 0.000075
 cache_read_input_token_cost = 0.0000015
 cache_creation_input_token_cost = 0.00001875
 litellm_provider = "anthropic"
-providers = ["anthropic", "abacus", "helicone"]
+providers = ["anthropic", "302ai", "abacus", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-08"
+knowledge_cutoff = "2025-03"
 release_date = "2025-08-05"
 deprecation_date = "2026-08-05"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00003
 supports_assistant_prefill = true
@@ -13024,6 +13058,9 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-opus-4-1-20250805".pricing."302ai"]
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
 [models."claude-opus-4-1-20250805".pricing."abacus"]
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
@@ -13035,6 +13072,28 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 [models."claude-opus-4-1-20250805".pricing."helicone"]
 cache_read_input_token_cost = 0.0000015
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+
+[models."claude-opus-4-1-20250805-thinking"]
+display_name = "claude-opus-4-1-20250805-thinking"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 32000
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03"
+release_date = "2025-05-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-opus-4-1-20250805-thinking".pricing."302ai"]
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
@@ -13210,7 +13269,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."claude-opus-4-5-20251101"]
-display_name = "Claude Opus 4.5"
+display_name = "claude-opus-4-5-20251101"
 model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
@@ -13221,16 +13280,16 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "anthropic"
-providers = ["anthropic", "abacus"]
+providers = ["anthropic", "302ai", "abacus"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-01"
-supported_modalities = ["text", "image", "pdf"]
+knowledge_cutoff = "2025-03"
+release_date = "2025-11-25"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
@@ -13244,6 +13303,9 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-opus-4-5-20251101".pricing."302ai"]
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 [models."claude-opus-4-5-20251101".pricing."abacus"]
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -13251,6 +13313,28 @@ output_cost_per_token = 0.000025
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."claude-opus-4-5-20251101-thinking"]
+display_name = "claude-opus-4-5-20251101-thinking"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03"
+release_date = "2025-11-25"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-opus-4-5-20251101-thinking".pricing."302ai"]
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
@@ -13870,7 +13954,7 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."claude-sonnet-4-5-20250929"]
-display_name = "Claude Sonnet 4.5"
+display_name = "claude-sonnet-4-5-20250929"
 model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
@@ -13881,16 +13965,16 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "anthropic"
-providers = ["anthropic", "abacus", "helicone"]
+providers = ["anthropic", "302ai", "abacus", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-07-31"
+knowledge_cutoff = "2025-03"
 release_date = "2025-09-29"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
@@ -13908,6 +13992,9 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-sonnet-4-5-20250929".pricing."302ai"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."claude-sonnet-4-5-20250929".pricing."abacus"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -13922,6 +14009,28 @@ output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
 [models."claude-sonnet-4-5-20250929".pricing."helicone"]
 cache_read_input_token_cost = 3.0000000000000004e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."claude-sonnet-4-5-20250929-thinking"]
+display_name = "claude-sonnet-4-5-20250929-thinking"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03"
+release_date = "2025-09-30"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-sonnet-4-5-20250929-thinking".pricing."302ai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
@@ -14915,6 +15024,31 @@ output_cost_per_token = 0.000006
 cache_read_input_token_cost = 3.75e-7
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000006
+
+[models."coding-glm-4-7"]
+display_name = "Coding-GLM-4.7"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 204800
+max_output_tokens = 131072
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 0.0000011
+cache_read_input_token_cost = 5.480000000000001e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-12-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."coding-glm-4-7".pricing."aihubmix"]
+cache_read_input_token_cost = 5.480000000000001e-7
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 0.0000011
 
 [models."coding-glm-4-7-free"]
 display_name = "Coding GLM 4.7 Free"
@@ -17412,7 +17546,7 @@ input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "deepseek"
-providers = ["deepseek", "firmware"]
+providers = ["deepseek", "302ai", "firmware"]
 supports_function_calling = true
 supports_reasoning = false
 supports_prompt_caching = true
@@ -17430,6 +17564,9 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."deepseek-chat".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 4.3e-7
 [models."deepseek-chat".pricing."deepseek"]
 cache_creation_input_token_cost = 0
 cache_read_input_token_cost = 2.8e-8
@@ -17843,7 +17980,7 @@ input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "deepseek"
-providers = ["deepseek", "firmware", "helicone"]
+providers = ["deepseek", "302ai", "firmware", "helicone"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -17861,6 +17998,9 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."deepseek-reasoner".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 4.3e-7
 [models."deepseek-reasoner".pricing."deepseek"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 2.8e-7
@@ -18097,6 +18237,28 @@ source = "modelsdev"
 input_cost_per_token = 3e-7
 output_cost_per_token = 4.5000000000000003e-7
 
+[models."deepseek-v3-2-thinking"]
+display_name = "DeepSeek-V3.2-Thinking"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 128000
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 4.3e-7
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2025-12-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-v3-2-thinking".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 4.3e-7
+
 [models."deepseek-v3.1:671b-cloud"]
 mode = "chat"
 max_input_tokens = 163840
@@ -18122,18 +18284,21 @@ max_tokens = 163840
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "azure", "azure-cognitive-services", "deepseek", "helicone", "iflowcn", "venice"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "deepseek", "helicone", "iflowcn", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = true
-knowledge_cutoff = "2025-10"
-release_date = "2025-06-15"
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2025-12-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_tool_choice = true
 
+[models."deepseek-v3.2".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 4.3e-7
 [models."deepseek-v3.2".pricing."aihubmix"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 4.5000000000000003e-7
@@ -18168,7 +18333,7 @@ max_tokens = 163840
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "azure", "azure-cognitive-services"]
+providers = ["azure_ai", "azure", "azure-cognitive-services"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -18180,9 +18345,6 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_tool_choice = true
 
-[models."deepseek-v3.2-speciale".pricing."aihubmix"]
-input_cost_per_token = 5.8e-7
-output_cost_per_token = 0.00000168
 [models."deepseek-v3.2-speciale".pricing."azure"]
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
@@ -19401,6 +19563,90 @@ notes = "Volcengine Doubao embedding model - text-240715 version with 2560 dimen
 [models."doubao-embedding-text-240715".pricing."volcengine"]
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."doubao-seed-1-6-thinking-250715"]
+display_name = "doubao-seed-1-6-thinking-250715"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 16000
+input_cost_per_token = 1.2099999999999998e-7
+output_cost_per_token = 0.00000121
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2025-07-15"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-1-6-thinking-250715".pricing."302ai"]
+input_cost_per_token = 1.2099999999999998e-7
+output_cost_per_token = 0.00000121
+
+[models."doubao-seed-1-6-vision-250815"]
+display_name = "doubao-seed-1-6-vision-250815"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32000
+input_cost_per_token = 1.14e-7
+output_cost_per_token = 0.0000011430000000000001
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-09-30"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-1-6-vision-250815".pricing."302ai"]
+input_cost_per_token = 1.14e-7
+output_cost_per_token = 0.0000011430000000000001
+
+[models."doubao-seed-1-8-251215"]
+display_name = "doubao-seed-1-8-251215"
+mode = "chat"
+max_input_tokens = 224000
+max_output_tokens = 64000
+input_cost_per_token = 1.14e-7
+output_cost_per_token = 2.86e-7
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-12-18"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-1-8-251215".pricing."302ai"]
+input_cost_per_token = 1.14e-7
+output_cost_per_token = 2.86e-7
+
+[models."doubao-seed-code-preview-251028"]
+display_name = "doubao-seed-code-preview-251028"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32000
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.0000011399999999999999
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-11-11"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-code-preview-251028".pricing."302ai"]
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.0000011399999999999999
 
 [models."dreamshaper-8-lcm"]
 display_name = "@cf/lykon/dreamshaper-8-lcm"
@@ -22325,6 +22571,29 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemini-2-5-flash-nothink"]
+display_name = "gemini-2.5-flash-nothink"
+model_family = "gemini-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2025-06-24"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemini-2-5-flash-nothink".pricing."302ai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
+
 [models."gemini-2.0-flash"]
 display_name = "Gemini 2.0 Flash"
 model_family = "gemini-flash"
@@ -22517,7 +22786,7 @@ output_cost_per_token = 6e-7
 output_cost_per_token_above_128k_tokens = 0
 
 [models."gemini-2.0-flash-lite"]
-display_name = "Gemini 2.0 Flash Lite"
+display_name = "gemini-2.0-flash-lite"
 model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 1048576
@@ -22527,14 +22796,14 @@ input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 cache_read_input_token_cost = 1.875e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "poe", "vercel", "vercel_ai_gateway"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "google-vertex", "poe", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 supports_prompt_caching = true
 open_weights = false
-knowledge_cutoff = "2024-06"
-release_date = "2024-12-11"
+knowledge_cutoff = "2024-11"
+release_date = "2025-06-16"
 deprecation_date = "2026-03-31"
 supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
@@ -22553,6 +22822,9 @@ supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."gemini-2.0-flash-lite".pricing."302ai"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
 [models."gemini-2.0-flash-lite".pricing."gemini"]
 cache_read_input_token_cost = 1.875e-8
 input_cost_per_audio_token = 7.5e-8
@@ -23047,7 +23319,7 @@ max_tokens = 1000000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "aihubmix", "fastrouter", "firmware", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models", "zenmux"]
+providers = ["deepinfra", "302ai", "abacus", "aihubmix", "fastrouter", "firmware", "gemini", "google", "google-vertex", "helicone", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23067,6 +23339,9 @@ supports_tool_choice = true
 supports_url_context = true
 supports_web_search = true
 
+[models."gemini-2.5-flash".pricing."302ai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."abacus"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
@@ -23137,7 +23412,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 
 [models."gemini-2.5-flash-image"]
-display_name = "Nano Banana (Gemini 2.5 Flash Image)"
+display_name = "gemini-2.5-flash-image"
 model_family = "gemini-flash"
 mode = "image_generation"
 max_input_tokens = 32768
@@ -23147,7 +23422,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 3e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "vercel", "vertex_ai"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23155,7 +23430,7 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-01"
-release_date = "2025-03-20"
+release_date = "2025-10-08"
 supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text", "image"]
 source = "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash-image"
@@ -23180,6 +23455,9 @@ supports_url_context = true
 supports_web_search = true
 tpm = 8000000
 
+[models."gemini-2.5-flash-image".pricing."302ai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.00003
 [models."gemini-2.5-flash-image".pricing."gemini"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_audio_token = 0.000001
@@ -23426,7 +23704,7 @@ output_cost_per_reasoning_token = 4e-7
 output_cost_per_token = 4e-7
 
 [models."gemini-2.5-flash-lite-preview-09-2025"]
-display_name = "Gemini 2.5 Flash Lite Preview 09-25"
+display_name = "gemini-2.5-flash-lite-preview-09-2025"
 model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 1048576
@@ -23436,7 +23714,7 @@ input_cost_per_token = 1e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 1e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "openrouter", "vercel"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "google-vertex", "openrouter", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23444,7 +23722,7 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-01"
-release_date = "2025-09-25"
+release_date = "2025-09-26"
 supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 source = "https://developers.googleblog.com/en/continuing-to-bring-you-our-latest-models-with-an-improved-gemini-2-5-flash-and-flash-lite-release/"
@@ -23465,6 +23743,9 @@ supports_tool_choice = true
 supports_url_context = true
 supports_web_search = true
 
+[models."gemini-2.5-flash-lite-preview-09-2025".pricing."302ai"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite-preview-09-2025".pricing."gemini"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_audio_token = 3e-7
@@ -23617,7 +23898,7 @@ output_cost_per_reasoning_token = 0.0000025
 output_cost_per_token = 0.0000025
 
 [models."gemini-2.5-flash-preview-09-2025"]
-display_name = "Gemini 2.5 Flash Preview 09-25"
+display_name = "gemini-2.5-flash-preview-09-2025"
 model_family = "gemini-flash"
 mode = "chat"
 max_input_tokens = 1048576
@@ -23627,7 +23908,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 7.5e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "openrouter", "vercel"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "google-vertex", "openrouter", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23635,7 +23916,7 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-01"
-release_date = "2025-09-25"
+release_date = "2025-09-26"
 supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 source = "https://developers.googleblog.com/en/continuing-to-bring-you-our-latest-models-with-an-improved-gemini-2-5-flash-and-flash-lite-release/"
@@ -23656,6 +23937,9 @@ supports_tool_choice = true
 supports_url_context = true
 supports_web_search = true
 
+[models."gemini-2.5-flash-preview-09-2025".pricing."302ai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash-preview-09-2025".pricing."gemini"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_audio_token = 0.000001
@@ -23744,7 +24028,7 @@ max_tokens = 1000000
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "aihubmix", "cortecs", "fastrouter", "firmware", "gemini", "github_copilot", "github-copilot", "google", "google-vertex", "helicone", "openrouter", "poe", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models", "zenmux"]
+providers = ["deepinfra", "302ai", "abacus", "aihubmix", "cortecs", "fastrouter", "firmware", "gemini", "github_copilot", "github-copilot", "google", "google-vertex", "helicone", "openrouter", "poe", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway", "vertex_ai-language-models", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23765,6 +24049,9 @@ supports_tool_choice = true
 supports_video_input = true
 supports_web_search = true
 
+[models."gemini-2.5-pro".pricing."302ai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 [models."gemini-2.5-pro".pricing."abacus"]
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -24187,7 +24474,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 5e-8
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai", "abacus", "firmware", "gemini", "github-copilot", "gmi", "google", "google-vertex", "openrouter", "requesty", "venice", "vertex_ai-language-models", "vivgrid", "zenmux"]
+providers = ["vertex_ai", "302ai", "abacus", "firmware", "gemini", "github-copilot", "gmi", "google", "google-vertex", "openrouter", "requesty", "venice", "vertex_ai-language-models", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -24216,6 +24503,9 @@ supports_url_context = true
 supports_video_input = true
 supports_web_search = true
 
+[models."gemini-3-flash-preview".pricing."302ai"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
 [models."gemini-3-flash-preview".pricing."abacus"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
@@ -24345,6 +24635,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00012
 
 [models."gemini-3-pro-image-preview"]
+display_name = "gemini-3-pro-image-preview"
 mode = "image_generation"
 max_input_tokens = 65536
 max_output_tokens = 32768
@@ -24352,10 +24643,14 @@ max_tokens = 32768
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "vertex_ai"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "vertex_ai"]
 supports_function_calling = false
 supports_vision = true
+supports_reasoning = false
 supports_prompt_caching = true
+open_weights = false
+knowledge_cutoff = "2025-06"
+release_date = "2025-11-20"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "image"]
 source = "https://ai.google.dev/gemini-api/docs/pricing"
@@ -24369,6 +24664,9 @@ supports_response_schema = true
 supports_system_messages = true
 supports_web_search = true
 
+[models."gemini-3-pro-image-preview".pricing."302ai"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00012
 [models."gemini-3-pro-image-preview".pricing."gemini"]
 input_cost_per_image = 0.0011
 input_cost_per_token = 0.000002
@@ -24405,7 +24703,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2e-7
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "abacus", "aihubmix", "firmware", "gemini", "github_copilot", "github-copilot", "gmi", "google", "google-vertex", "helicone", "openrouter", "requesty", "venice", "vercel", "vertex_ai", "vivgrid", "zenmux"]
+providers = ["vertex_ai-language-models", "302ai", "abacus", "aihubmix", "firmware", "gemini", "github_copilot", "github-copilot", "gmi", "google", "google-vertex", "helicone", "openrouter", "requesty", "venice", "vercel", "vertex_ai", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -24438,6 +24736,9 @@ supports_tool_choice = true
 supports_video_input = true
 supports_web_search = true
 
+[models."gemini-3-pro-preview".pricing."302ai"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
 [models."gemini-3-pro-preview".pricing."abacus"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
@@ -25571,17 +25872,25 @@ model_family = "glm"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 32768
-litellm_provider = "zai-coding-plan"
-providers = ["zai-coding-plan", "zai", "zhipuai", "zhipuai-coding-plan"]
+input_cost_per_token = 1.45e-7
+output_cost_per_token = 4.3e-7
+litellm_provider = "302ai"
+providers = ["302ai", "aihubmix", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
+open_weights = false
+knowledge_cutoff = "2025-03"
 release_date = "2025-12-08"
-supported_modalities = ["text", "image", "video"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."glm-4-6v".pricing."302ai"]
+input_cost_per_token = 1.45e-7
+output_cost_per_token = 4.3e-7
+[models."glm-4-6v".pricing."aihubmix"]
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.1e-7
 [models."glm-4-6v".pricing."zai"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 9.000000000000001e-7
@@ -25668,17 +25977,20 @@ max_output_tokens = 32000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 litellm_provider = "zai"
-providers = ["zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "302ai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-28"
+open_weights = false
+knowledge_cutoff = "2024-10"
+release_date = "2025-07-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://docs.z.ai/guides/overview/pricing"
 supports_tool_choice = true
 
+[models."glm-4.5".pricing."302ai"]
+input_cost_per_token = 2.86e-7
+output_cost_per_token = 0.0000011419999999999998
 [models."glm-4.5".pricing."zai"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
@@ -25780,18 +26092,21 @@ max_output_tokens = 32000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018
 litellm_provider = "zai"
-providers = ["zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "302ai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-08-11"
-supported_modalities = ["text", "image", "video"]
+open_weights = false
+knowledge_cutoff = "2024-10"
+release_date = "2025-07-29"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://docs.z.ai/guides/overview/pricing"
 supports_tool_choice = true
 
+[models."glm-4.5v".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 8.6e-7
 [models."glm-4.5v".pricing."zai"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018
@@ -25800,7 +26115,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018000000000000001
 
 [models."glm-4.6"]
-display_name = "GLM-4.6"
+display_name = "glm-4.6"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
@@ -25808,17 +26123,20 @@ max_output_tokens = 128000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 litellm_provider = "zai"
-providers = ["zai", "helicone", "iflowcn", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "302ai", "helicone", "iflowcn", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
+open_weights = false
+knowledge_cutoff = "2025-03"
 release_date = "2025-09-30"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://docs.z.ai/guides/overview/pricing"
 supports_tool_choice = true
 
+[models."glm-4.6".pricing."302ai"]
+input_cost_per_token = 2.86e-7
+output_cost_per_token = 0.0000011419999999999998
 [models."glm-4.6".pricing."helicone"]
 input_cost_per_token = 4.5e-7
 output_cost_per_token = 0.0000015
@@ -25835,7 +26153,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 
 [models."glm-4.7"]
-display_name = "GLM-4.7"
+display_name = "glm-4.7"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
@@ -25845,17 +26163,20 @@ output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 cache_creation_input_token_cost = 0
 litellm_provider = "zai"
-providers = ["zai", "aihubmix", "moark", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "302ai", "aihubmix", "moark", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
+open_weights = false
+knowledge_cutoff = "2025-06"
 release_date = "2025-12-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://docs.z.ai/guides/overview/pricing"
 supports_tool_choice = true
 
+[models."glm-4.7".pricing."302ai"]
+input_cost_per_token = 2.86e-7
+output_cost_per_token = 0.0000011419999999999998
 [models."glm-4.7".pricing."aihubmix"]
 cache_read_input_token_cost = 5.480000000000001e-7
 input_cost_per_token = 2.7e-7
@@ -27017,7 +27338,7 @@ input_cost_per_token = 0.00001
 output_cost_per_token = 0.00003
 
 [models."gpt-4.1"]
-display_name = "GPT-4.1"
+display_name = "gpt-4.1"
 model_family = "gpt"
 mode = "chat"
 max_input_tokens = 1047576
@@ -27027,7 +27348,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -27049,6 +27370,9 @@ supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = false
 
+[models."gpt-4.1".pricing."302ai"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
 [models."gpt-4.1".pricing."abacus"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
@@ -27163,8 +27487,8 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 
 [models."gpt-4.1-mini"]
-display_name = "GPT-4.1 Mini"
-model_family = "gpt"
+display_name = "gpt-4.1-mini"
+model_family = "gpt-mini"
 mode = "chat"
 max_input_tokens = 1047576
 max_output_tokens = 32768
@@ -27173,7 +27497,7 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 cache_read_input_token_cost = 1e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -27195,6 +27519,9 @@ supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = false
 
+[models."gpt-4.1-mini".pricing."302ai"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
 [models."gpt-4.1-mini".pricing."abacus"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
@@ -27312,8 +27639,8 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 
 [models."gpt-4.1-nano"]
-display_name = "GPT-4.1 Nano"
-model_family = "gpt"
+display_name = "gpt-4.1-nano"
+model_family = "gpt-nano"
 mode = "chat"
 max_input_tokens = 1047576
 max_output_tokens = 32768
@@ -27322,7 +27649,7 @@ input_cost_per_token = 1e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "openai", "openrouter", "poe", "replicate", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -27343,6 +27670,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-4.1-nano".pricing."302ai"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gpt-4.1-nano".pricing."abacus"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -27523,7 +27853,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "replicate", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "replicate", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -27542,6 +27872,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-4o".pricing."302ai"]
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
 [models."gpt-4o".pricing."aihubmix"]
 cache_read_input_token_cost = 0.00000125
 input_cost_per_token = 0.0000025
@@ -28552,7 +28885,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "gmi", "helicone", "openai", "opencode", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "zenmux"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "gmi", "helicone", "openai", "opencode", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28571,6 +28904,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5".pricing."302ai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 [models."gpt-5".pricing."abacus"]
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -28966,7 +29302,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28985,6 +29321,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5-mini".pricing."302ai"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000002
 [models."gpt-5-mini".pricing."abacus"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
@@ -29219,7 +29558,7 @@ output_cost_per_token = 4e-7
 output_cost_per_token_flex = 2e-7
 
 [models."gpt-5-pro"]
-display_name = "GPT-5 pro"
+display_name = "gpt-5-pro"
 model_family = "gpt"
 mode = "responses"
 max_input_tokens = 272000
@@ -29228,7 +29567,7 @@ max_tokens = 272000
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.00012
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "azure-cognitive-services", "helicone", "openai", "openrouter", "poe", "vercel"]
+providers = ["azure", "302ai", "aihubmix", "azure-cognitive-services", "helicone", "openai", "openrouter", "poe", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -29236,7 +29575,7 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2024-10"
-release_date = "2025-08-07"
+release_date = "2025-10-08"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#gpt-5"
@@ -29247,6 +29586,9 @@ supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."gpt-5-pro".pricing."302ai"]
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.00012
 [models."gpt-5-pro".pricing."aihubmix"]
 cache_read_input_token_cost = 0.0000035
 input_cost_per_token = 0.000007
@@ -29307,8 +29649,30 @@ input_cost_per_token_batches = 0.0000075
 output_cost_per_token = 0.00012
 output_cost_per_token_batches = 0.00006
 
+[models."gpt-5-thinking"]
+display_name = "gpt-5-thinking"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-10"
+release_date = "2025-08-08"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-thinking".pricing."302ai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+
 [models."gpt-5.1"]
-display_name = "GPT-5.1"
+display_name = "gpt-5.1"
 model_family = "gpt"
 mode = "chat"
 max_input_tokens = 409600
@@ -29318,15 +29682,15 @@ input_cost_per_token = 0.00000138
 output_cost_per_token = 0.000011
 cache_read_input_token_cost = 1.4e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "gmi", "helicone", "openai", "opencode", "openrouter", "poe", "zenmux"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-copilot", "gmi", "helicone", "openai", "opencode", "openrouter", "poe", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-09-30"
-release_date = "2025-11-13"
+knowledge_cutoff = "2024-10"
+release_date = "2025-11-14"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "image"]
 supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
@@ -29337,6 +29701,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5.1".pricing."302ai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 [models."gpt-5.1".pricing."abacus"]
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -29536,7 +29903,7 @@ output_cost_per_token = 0.00001
 output_cost_per_token_priority = 0.00002
 
 [models."gpt-5.1-chat-latest"]
-display_name = "GPT-5.1 Chat Latest"
+display_name = "gpt-5.1-chat-latest"
 model_family = "gpt"
 mode = "chat"
 max_input_tokens = 128000
@@ -29546,15 +29913,15 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "openai"
-providers = ["openai", "abacus", "helicone"]
+providers = ["openai", "302ai", "abacus", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-09-30"
-release_date = "2025-11-13"
+knowledge_cutoff = "2024-10"
+release_date = "2025-11-14"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "image"]
 cache_read_input_token_cost_priority = 2.5e-7
@@ -29567,6 +29934,9 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = false
 
+[models."gpt-5.1-chat-latest".pricing."302ai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 [models."gpt-5.1-chat-latest".pricing."abacus"]
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -29909,7 +30279,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "chatgpt", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "gmi", "openai", "opencode", "openrouter", "poe", "vercel", "zenmux"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "chatgpt", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "gmi", "openai", "opencode", "openrouter", "poe", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -29928,6 +30298,9 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5.2".pricing."302ai"]
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
 [models."gpt-5.2".pricing."abacus"]
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
@@ -30107,7 +30480,7 @@ output_cost_per_token = 0.000014
 output_cost_per_token_priority = 0.000028
 
 [models."gpt-5.2-chat-latest"]
-display_name = "GPT-5.2 Chat Latest"
+display_name = "gpt-5.2-chat-latest"
 model_family = "gpt"
 mode = "chat"
 max_input_tokens = 128000
@@ -30117,15 +30490,15 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "openai"
-providers = ["openai", "abacus", "openrouter"]
+providers = ["openai", "302ai", "abacus", "openrouter"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-09-30"
-release_date = "2026-01-01"
+knowledge_cutoff = "2024-10"
+release_date = "2025-12-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_read_input_token_cost_priority = 3.5e-7
@@ -30138,6 +30511,9 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5.2-chat-latest".pricing."302ai"]
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
 [models."gpt-5.2-chat-latest".pricing."abacus"]
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000012
@@ -31673,6 +32049,28 @@ input_cost_per_token_above_128k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_128k_tokens = 0.00003
 
+[models."grok-4-1"]
+display_name = "grok-4.1"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-06"
+release_date = "2025-11-18"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."grok-4-1".pricing."302ai"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+
 [models."grok-4-1-fast"]
 display_name = "Grok 4.1 Fast"
 model_family = "grok"
@@ -31709,7 +32107,7 @@ output_cost_per_token = 5e-7
 output_cost_per_token_above_128k_tokens = 0.000001
 
 [models."grok-4-1-fast-non-reasoning"]
-display_name = "Grok 4.1 Fast (Non-Reasoning)"
+display_name = "grok-4-1-fast-non-reasoning"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 2000000
@@ -31719,13 +32117,13 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 5e-8
 litellm_provider = "xai"
-providers = ["xai", "abacus", "helicone"]
+providers = ["xai", "302ai", "abacus", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 open_weights = false
-knowledge_cutoff = "2025-07"
-release_date = "2025-11-19"
+knowledge_cutoff = "2025-06"
+release_date = "2025-11-20"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://docs.x.ai/docs/models/grok-4-1-fast-non-reasoning"
@@ -31736,6 +32134,9 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."grok-4-1-fast-non-reasoning".pricing."302ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
 [models."grok-4-1-fast-non-reasoning".pricing."abacus"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -31778,7 +32179,7 @@ output_cost_per_token = 5e-7
 output_cost_per_token_above_128k_tokens = 0.000001
 
 [models."grok-4-1-fast-reasoning"]
-display_name = "xAI Grok 4.1 Fast Reasoning"
+display_name = "grok-4-1-fast-reasoning"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 2000000
@@ -31788,13 +32189,13 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 5e-8
 litellm_provider = "xai"
-providers = ["xai", "helicone"]
+providers = ["xai", "302ai", "helicone"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2025-11"
-release_date = "2025-11-17"
+knowledge_cutoff = "2025-06"
+release_date = "2025-11-20"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://docs.x.ai/docs/models/grok-4-1-fast-reasoning"
@@ -31805,6 +32206,9 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."grok-4-1-fast-reasoning".pricing."302ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
 [models."grok-4-1-fast-reasoning".pricing."helicone"]
 cache_read_input_token_cost = 5e-8
 input_cost_per_token = 2e-7
@@ -31879,7 +32283,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "azure", "azure-cognitive-services", "firmware", "helicone", "xai"]
+providers = ["azure_ai", "302ai", "abacus", "azure", "azure-cognitive-services", "firmware", "helicone", "xai"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
@@ -31891,6 +32295,9 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."grok-4-fast-non-reasoning".pricing."302ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
 [models."grok-4-fast-non-reasoning".pricing."abacus"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -31926,7 +32333,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "azure", "azure-cognitive-services", "firmware", "helicone", "xai"]
+providers = ["azure_ai", "302ai", "azure", "azure-cognitive-services", "firmware", "helicone", "xai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -31939,6 +32346,9 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."grok-4-fast-reasoning".pricing."302ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
 [models."grok-4-fast-reasoning".pricing."azure"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
@@ -34109,7 +34519,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "moonshotai", "moonshotai-cn"]
+providers = ["moonshot", "302ai", "moonshotai", "moonshotai-cn"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -34121,6 +34531,9 @@ source = "https://platform.moonshot.ai/docs/pricing/chat#generation-model-kimi-k
 supports_tool_choice = true
 supports_web_search = true
 
+[models."kimi-k2-0905-preview".pricing."302ai"]
+input_cost_per_token = 6.32e-7
+output_cost_per_token = 0.00000253
 [models."kimi-k2-0905-preview".pricing."moonshot"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
@@ -34141,7 +34554,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "moonshotai-cn"
-providers = ["moonshotai-cn", "moonshotai", "opencode", "venice"]
+providers = ["moonshotai-cn", "aihubmix", "moonshotai", "opencode", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34151,6 +34564,10 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."kimi-k2-5".pricing."aihubmix"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
 [models."kimi-k2-5".pricing."opencode"]
 cache_read_input_token_cost = 6e-7
 input_cost_per_token = 0.0000012
@@ -34197,7 +34614,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "azure", "azure-cognitive-services", "cortecs", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
+providers = ["moonshot", "302ai", "azure", "azure-cognitive-services", "cortecs", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34209,6 +34626,9 @@ source = "https://platform.moonshot.ai/docs/pricing/chat#generation-model-kimi-k
 supports_tool_choice = true
 supports_web_search = true
 
+[models."kimi-k2-thinking".pricing."302ai"]
+input_cost_per_token = 5.75e-7
+output_cost_per_token = 0.0000023
 [models."kimi-k2-thinking".pricing."azure"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
@@ -34274,7 +34694,7 @@ input_cost_per_token = 0.00000115
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "moonshotai", "moonshotai-cn"]
+providers = ["moonshot", "302ai", "moonshotai", "moonshotai-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34286,6 +34706,9 @@ source = "https://platform.moonshot.ai/docs/pricing/chat#generation-model-kimi-k
 supports_tool_choice = true
 supports_web_search = true
 
+[models."kimi-k2-thinking-turbo".pricing."302ai"]
+input_cost_per_token = 0.000001265
+output_cost_per_token = 0.000009119
 [models."kimi-k2-thinking-turbo".pricing."moonshot"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.00000115
@@ -40045,6 +40468,28 @@ source = "modelsdev"
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 
+[models."ministral-14b-2512"]
+display_name = "ministral-14b-2512"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 128000
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 3.3e-7
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2025-12-16"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."ministral-14b-2512".pricing."302ai"]
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 3.3e-7
+
 [models."ministral-3b"]
 display_name = "Ministral 3B"
 model_family = "ministral"
@@ -40569,24 +41014,27 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 
 [models."mistral-large-2512"]
-display_name = "Mistral Large 3"
+display_name = "mistral-large-2512"
 model_family = "mistral-large"
 mode = "chat"
-max_input_tokens = 262144
+max_input_tokens = 128000
 max_output_tokens = 262144
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000015
-litellm_provider = "mistral"
-providers = ["mistral"]
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000032999999999999997
+litellm_provider = "302ai"
+providers = ["302ai", "mistral"]
 supports_function_calling = true
 supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-11"
-release_date = "2024-11-01"
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2025-12-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."mistral-large-2512".pricing."302ai"]
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000032999999999999997
 [models."mistral-large-2512".pricing."mistral"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000015
@@ -42828,18 +43276,20 @@ output_cost_per_token = 0.00000115
 
 [models."moonshotai/Kimi-K2-5-TEE"]
 display_name = "Kimi K2.5 TEE"
+model_family = "kimi"
 mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
+max_input_tokens = 262144
+max_output_tokens = 65535
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 litellm_provider = "chutes"
 providers = ["chutes"]
-supports_function_calling = false
-supports_reasoning = false
+supports_function_calling = true
+supports_reasoning = true
 open_weights = true
+knowledge_cutoff = "2024-10"
 release_date = "2026-01-27"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -46644,14 +47094,14 @@ input_cost_per_token = 8.7e-8
 output_cost_per_token = 1.44e-7
 
 [models."qwen-flash"]
-display_name = "Qwen Flash"
+display_name = "Qwen-Flash"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 997952
 max_output_tokens = 32768
 max_tokens = 32768
 litellm_provider = "dashscope"
-providers = ["dashscope", "alibaba", "alibaba-cn"]
+providers = ["dashscope", "302ai", "alibaba", "alibaba-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -46663,6 +47113,9 @@ source = "https://www.alibabacloud.com/help/en/model-studio/models"
 supports_tool_choice = true
 tiered_pricing = [{ input_cost_per_token = 5e-8, output_cost_per_token = 4e-7, range = [0, 256000] }, { input_cost_per_token = 2.5e-7, output_cost_per_token = 0.000002, range = [256000, 1000000] }]
 
+[models."qwen-flash".pricing."302ai"]
+input_cost_per_token = 2.2e-8
+output_cost_per_token = 2.2e-7
 [models."qwen-flash".pricing."alibaba"]
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 4.0000000000000003e-7
@@ -46783,6 +47236,29 @@ output_cost_per_token = 0.000001377
 input_cost_per_token = 0.0000016
 output_cost_per_token = 0.0000064
 
+[models."qwen-max-latest"]
+display_name = "Qwen-Max-Latest"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 8192
+input_cost_per_token = 3.4300000000000004e-7
+output_cost_per_token = 0.0000013720000000000002
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2024-11"
+release_date = "2024-04-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen-max-latest".pricing."302ai"]
+input_cost_per_token = 3.4300000000000004e-7
+output_cost_per_token = 0.0000013720000000000002
+
 [models."qwen-mt-plus"]
 display_name = "Qwen-MT Plus"
 model_family = "qwen"
@@ -46888,7 +47364,7 @@ input_cost_per_token = 2.3000000000000002e-7
 output_cost_per_token = 9.18e-7
 
 [models."qwen-plus"]
-display_name = "Qwen Plus"
+display_name = "Qwen-Plus"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 129024
@@ -46897,18 +47373,21 @@ max_tokens = 16384
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "dashscope"
-providers = ["dashscope", "alibaba", "alibaba-cn"]
+providers = ["dashscope", "302ai", "alibaba", "alibaba-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2024-04"
-release_date = "2024-01-25"
+knowledge_cutoff = "2024-10"
+release_date = "2024-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.alibabacloud.com/help/en/model-studio/models"
 reasoning_cost_per_token = 0.000004
 supports_tool_choice = true
 
+[models."qwen-plus".pricing."302ai"]
+input_cost_per_token = 1.2e-7
+output_cost_per_token = 0.0000012
 [models."qwen-plus".pricing."alibaba"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000012
@@ -49256,25 +49735,28 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen3-235b-a22b"]
-display_name = "Qwen3 235B-A22B"
+display_name = "Qwen3-235B-A22B"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 131072
+max_input_tokens = 128000
 max_output_tokens = 16384
-input_cost_per_token = 7e-7
-output_cost_per_token = 0.0000028
-litellm_provider = "alibaba"
-providers = ["alibaba", "alibaba-cn"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.0000028599999999999997
+litellm_provider = "302ai"
+providers = ["302ai", "alibaba", "alibaba-cn"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2025-04"
-release_date = "2025-04"
+release_date = "2025-04-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 reasoning_cost_per_token = 0.000008400000000000001
 
+[models."qwen3-235b-a22b".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.0000028599999999999997
 [models."qwen3-235b-a22b".pricing."alibaba"]
 input_cost_per_token = 7e-7
 output_cost_per_token = 0.0000028
@@ -49302,24 +49784,27 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen3-235b-a22b-instruct-2507"]
-display_name = "Qwen 3 235B A22B Instruct 2507"
+display_name = "qwen3-235b-a22b-instruct-2507"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 32768
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 7.5e-7
-litellm_provider = "venice"
-providers = ["venice", "aihubmix", "scaleway"]
+max_input_tokens = 128000
+max_output_tokens = 65536
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.0000011430000000000001
+litellm_provider = "302ai"
+providers = ["302ai", "aihubmix", "scaleway", "venice"]
 supports_function_calling = true
 supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-07"
-release_date = "2025-04-29"
+open_weights = false
+knowledge_cutoff = "2025-04"
+release_date = "2025-07-30"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen3-235b-a22b-instruct-2507".pricing."302ai"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.0000011430000000000001
 [models."qwen3-235b-a22b-instruct-2507".pricing."aihubmix"]
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 0.00000112
@@ -49380,24 +49865,27 @@ input_cost_per_token = 4.5000000000000003e-7
 output_cost_per_token = 0.0000035
 
 [models."qwen3-30b-a3b"]
-display_name = "Qwen3 30B A3B"
+display_name = "Qwen3-30B-A3B"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 129024
 max_output_tokens = 16384
 max_tokens = 16384
 litellm_provider = "dashscope"
-providers = ["dashscope", "helicone"]
+providers = ["dashscope", "302ai", "helicone"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2025-06"
-release_date = "2025-06-01"
-supported_modalities = ["text", "image"]
+knowledge_cutoff = "2025-04"
+release_date = "2025-04-29"
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.alibabacloud.com/help/en/model-studio/models"
 supports_tool_choice = true
 
+[models."qwen3-30b-a3b".pricing."302ai"]
+input_cost_per_token = 1.1e-7
+output_cost_per_token = 0.00000108
 [models."qwen3-30b-a3b".pricing."helicone"]
 input_cost_per_token = 8e-8
 output_cost_per_token = 2.9e-7
@@ -49604,24 +50092,27 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 8.000000000000001e-7
 
 [models."qwen3-coder-480b-a35b-instruct"]
-display_name = "Qwen3-Coder 480B-A35B Instruct"
+display_name = "qwen3-coder-480b-a35b-instruct"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.0000075
-litellm_provider = "alibaba"
-providers = ["alibaba", "aihubmix", "alibaba-cn", "cortecs", "venice"]
+input_cost_per_token = 8.6e-7
+output_cost_per_token = 0.00000343
+litellm_provider = "302ai"
+providers = ["302ai", "aihubmix", "alibaba", "alibaba-cn", "cortecs", "venice"]
 supports_function_calling = true
 supports_reasoning = false
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2025-04"
-release_date = "2025-04"
+release_date = "2025-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen3-coder-480b-a35b-instruct".pricing."302ai"]
+input_cost_per_token = 8.6e-7
+output_cost_per_token = 0.00000343
 [models."qwen3-coder-480b-a35b-instruct".pricing."aihubmix"]
 input_cost_per_token = 8.2e-7
 output_cost_per_token = 0.00000329
@@ -49814,6 +50305,51 @@ output_cost_per_token = 0.000006
 [models."qwen3-max".pricing."alibaba-cn"]
 input_cost_per_token = 8.61e-7
 output_cost_per_token = 0.0000034409999999999998
+
+[models."qwen3-max-2025-09-23"]
+display_name = "qwen3-max-2025-09-23"
+mode = "chat"
+max_input_tokens = 258048
+max_output_tokens = 65536
+input_cost_per_token = 8.6e-7
+output_cost_per_token = 0.00000343
+litellm_provider = "302ai"
+providers = ["302ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-04"
+release_date = "2025-09-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-max-2025-09-23".pricing."302ai"]
+input_cost_per_token = 8.6e-7
+output_cost_per_token = 0.00000343
+
+[models."qwen3-max-2026-01-23"]
+display_name = "Qwen3 Max"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 3.4000000000000003e-7
+output_cost_per_token = 0.00000137
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-04"
+release_date = "2025-09-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-max-2026-01-23".pricing."aihubmix"]
+input_cost_per_token = 3.4000000000000003e-7
+output_cost_per_token = 0.00000137
 
 [models."qwen3-max-preview"]
 display_name = "Qwen3-Max-Preview"
