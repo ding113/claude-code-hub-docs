@@ -3,7 +3,7 @@
 
 [metadata]
 version = "2026.01.29"
-checksum = "1ae699d0f5f3577b521ac1182617af3e1a4d4946cac19174371b030c3ba1264c"
+checksum = "0bb050040955b5b5538a8dc2aff4b227d1c36f9d79d1e823e0485f04691e1aeb"
 sources = ["litellm", "modelsdev"]
 total_models = 2577
 litellm_raw_models = 2465
@@ -25376,8 +25376,8 @@ max_tokens = 65535
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 0
-litellm_provider = "gemini"
-providers = ["gemini"]
+litellm_provider = "vertex_ai-language-models"
+providers = ["vertex_ai-language-models", "gemini"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -25397,6 +25397,12 @@ supports_url_context = true
 supports_web_search = true
 
 [models."gemini-robotics-er-1.5-preview".pricing."gemini"]
+cache_read_input_token_cost = 0
+input_cost_per_audio_token = 0.000001
+input_cost_per_token = 3e-7
+output_cost_per_reasoning_token = 0.0000025
+output_cost_per_token = 0.0000025
+[models."gemini-robotics-er-1.5-preview".pricing."vertex_ai-language-models"]
 cache_read_input_token_cost = 0
 input_cost_per_audio_token = 0.000001
 input_cost_per_token = 3e-7
@@ -29253,7 +29259,7 @@ supports_native_streaming = true
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
-supports_tool_choice = false
+supports_tool_choice = true
 
 [models."gpt-5-chat-latest".pricing."azure"]
 cache_read_input_token_cost = 1.25e-7
