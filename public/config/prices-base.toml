@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.01.29"
-checksum = "0bb050040955b5b5538a8dc2aff4b227d1c36f9d79d1e823e0485f04691e1aeb"
+checksum = "76bb8325c6420c7e746ecd22417ce17cd22b3fcd8ce1d9a4ce17a028e136d354"
 sources = ["litellm", "modelsdev"]
-total_models = 2577
+total_models = 2582
 litellm_raw_models = 2465
-modelsdev_raw_models = 2361
+modelsdev_raw_models = 2364
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1306,8 +1306,6 @@ input_cost_per_token = 8e-8
 output_cost_per_token = 1.6e-7
 
 [models."Meta-Llama-3.3-70B-Instruct"]
-display_name = "Llama 3.3 70B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -1315,20 +1313,12 @@ max_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "sambanova"
-providers = ["sambanova", "friendli"]
+providers = ["sambanova"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-release_date = "2024-08-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://cloud.sambanova.ai/plans/pricing"
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."Meta-Llama-3.3-70B-Instruct".pricing."friendli"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 6e-7
 [models."Meta-Llama-3.3-70B-Instruct".pricing."sambanova"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000012
@@ -1545,7 +1535,7 @@ max_tokens = 16384
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "gmi"
-providers = ["gmi", "deepinfra", "huggingface", "nvidia", "siliconflow"]
+providers = ["gmi", "deepinfra", "friendli", "huggingface", "nvidia", "siliconflow"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -1556,6 +1546,9 @@ supported_output_modalities = ["text"]
 
 [models."MiniMaxAI/MiniMax-M2.1".pricing."deepinfra"]
 input_cost_per_token = 2.8e-7
+output_cost_per_token = 0.0000012
+[models."MiniMaxAI/MiniMax-M2.1".pricing."friendli"]
+input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.1".pricing."gmi"]
 input_cost_per_token = 3e-7
@@ -5404,7 +5397,7 @@ display_name = "Kimi K2.5"
 model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 256000
-max_output_tokens = 32768
+max_output_tokens = 256000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -25453,15 +25446,17 @@ providers = ["vercel_ai_gateway"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
-[models."gemma-2-9b-it:free"]
-display_name = "Gemma 2 9B (free)"
+[models."gemma-2-9b-it"]
+display_name = "Gemma 2 9B"
 model_family = "gemma"
 mode = "chat"
 max_input_tokens = 8192
 max_output_tokens = 8192
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
 litellm_provider = "openrouter"
 providers = ["openrouter"]
-supports_function_calling = true
+supports_function_calling = false
 supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06"
@@ -25469,6 +25464,10 @@ release_date = "2024-06-28"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."gemma-2-9b-it".pricing."openrouter"]
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
 
 [models."gemma-2b-it-lora"]
 display_name = "@cf/google/gemma-2b-it-lora"
@@ -25544,6 +25543,26 @@ output_cost_per_token = 1e-7
 [models."gemma-3-12b-it".pricing."novita"]
 input_cost_per_token = 5e-8
 output_cost_per_token = 1e-7
+[models."gemma-3-12b-it".pricing."openrouter"]
+input_cost_per_token = 3e-8
+output_cost_per_token = 1.0000000000000001e-7
+
+[models."gemma-3-12b-it:free"]
+display_name = "Gemma 3 12B (free)"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 32768
+max_output_tokens = 8192
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-10"
+release_date = "2025-03-13"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."gemma-3-1b-it"]
 display_name = "Gemma 3 1b It"
@@ -25624,12 +25643,15 @@ output_cost_per_token = 2e-7
 [models."gemma-3-27b-it".pricing."novita-ai"]
 input_cost_per_token = 1.19e-7
 output_cost_per_token = 2.0000000000000002e-7
+[models."gemma-3-27b-it".pricing."openrouter"]
+input_cost_per_token = 4e-8
+output_cost_per_token = 1.5e-7
 [models."gemma-3-27b-it".pricing."scaleway"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 5e-7
 
 [models."gemma-3-27b-it:free"]
-display_name = "Gemma 3 27B"
+display_name = "Gemma 3 27B (free)"
 model_family = "gemma"
 mode = "chat"
 max_input_tokens = 131072
@@ -25646,6 +25668,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."gemma-3-4b-it"]
+display_name = "Gemma 3 4B"
+model_family = "gemma"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -25653,12 +25677,39 @@ max_tokens = 131072
 input_cost_per_token = 4e-8
 output_cost_per_token = 8e-8
 litellm_provider = "deepinfra"
-providers = ["deepinfra"]
+providers = ["deepinfra", "openrouter"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-10"
+release_date = "2025-03-13"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
 supports_tool_choice = true
 
 [models."gemma-3-4b-it".pricing."deepinfra"]
 input_cost_per_token = 4e-8
 output_cost_per_token = 8e-8
+[models."gemma-3-4b-it".pricing."openrouter"]
+input_cost_per_token = 1.703e-8
+output_cost_per_token = 6.815e-8
+
+[models."gemma-3-4b-it:free"]
+display_name = "Gemma 3 4B (free)"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 32768
+max_output_tokens = 8192
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-10"
+release_date = "2025-03-13"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."gemma-3n-e2b-it"]
 display_name = "Gemma 3n E2b It"
@@ -25673,6 +25724,23 @@ open_weights = true
 knowledge_cutoff = "2024-06"
 release_date = "2025-06-12"
 supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-3n-e2b-it:free"]
+display_name = "Gemma 3n 2B (free)"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 2000
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-06"
+release_date = "2025-07-09"
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -25693,20 +25761,24 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemma-3n-e4b-it".pricing."openrouter"]
+input_cost_per_token = 2e-8
+output_cost_per_token = 4e-8
+
 [models."gemma-3n-e4b-it:free"]
 display_name = "Gemma 3n 4B (free)"
 model_family = "gemma"
 mode = "chat"
 max_input_tokens = 8192
-max_output_tokens = 8192
+max_output_tokens = 2000
 litellm_provider = "openrouter"
 providers = ["openrouter"]
-supports_function_calling = true
+supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2025-05"
+knowledge_cutoff = "2024-06"
 release_date = "2025-05-20"
-supported_modalities = ["text", "image", "audio"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -30617,7 +30689,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "openai"
-providers = ["openai", "azure", "azure-cognitive-services", "chatgpt", "github-copilot", "opencode", "openrouter", "vercel", "vivgrid"]
+providers = ["openai", "azure", "azure-cognitive-services", "chatgpt", "github-copilot", "opencode", "openrouter", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -30668,6 +30740,10 @@ cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 [models."gpt-5.2-codex".pricing."vivgrid"]
+cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+[models."gpt-5.2-codex".pricing."zenmux"]
 cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
@@ -37363,7 +37439,7 @@ max_tokens = 8192
 input_cost_per_token = 1e-7
 output_cost_per_token = 1e-7
 litellm_provider = "friendliai"
-providers = ["friendliai", "azure", "azure-cognitive-services", "friendli"]
+providers = ["friendliai", "azure", "azure-cognitive-services"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -37382,9 +37458,6 @@ output_cost_per_token = 6.1e-7
 [models."meta-llama-3.1-8b-instruct".pricing."azure-cognitive-services"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 6.1e-7
-[models."meta-llama-3.1-8b-instruct".pricing."friendli"]
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 1.0000000000000001e-7
 [models."meta-llama-3.1-8b-instruct".pricing."friendliai"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 1e-7
@@ -37979,7 +38052,7 @@ max_tokens = 128000
 input_cost_per_token = 7.1e-7
 output_cost_per_token = 7.1e-7
 litellm_provider = "watsonx"
-providers = ["watsonx", "io-net", "nano-gpt", "novita-ai", "wandb"]
+providers = ["watsonx", "friendli", "io-net", "nano-gpt", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -37990,6 +38063,9 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 
+[models."meta-llama/llama-3-3-70b-instruct".pricing."friendli"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 6e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."io-net"]
 cache_read_input_token_cost = 6.5e-8
 input_cost_per_token = 1.3e-7
@@ -38176,7 +38252,7 @@ max_tokens = 16384
 input_cost_per_token = 2e-8
 output_cost_per_token = 5e-8
 litellm_provider = "novita"
-providers = ["novita", "novita-ai", "wandb"]
+providers = ["novita", "friendli", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -38186,6 +38262,9 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 
+[models."meta-llama/llama-3.1-8b-instruct".pricing."friendli"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 1.0000000000000001e-7
 [models."meta-llama/llama-3.1-8b-instruct".pricing."novita"]
 input_cost_per_token = 2e-8
 output_cost_per_token = 5e-8
@@ -38308,7 +38387,7 @@ litellm_provider = "groq"
 providers = ["groq"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-08"
 release_date = "2025-04-05"
@@ -43615,7 +43694,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "nvidia"
-providers = ["nvidia", "huggingface", "novita-ai", "openrouter", "togetherai", "vercel"]
+providers = ["nvidia", "huggingface", "novita-ai", "openrouter", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -43643,6 +43722,10 @@ output_cost_per_token = 0.0000028
 [models."moonshotai/kimi-k2-5".pricing."vercel"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000012
+[models."moonshotai/kimi-k2-5".pricing."zenmux"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.00000302
 
 [models."moonshotai/kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
@@ -48992,6 +49075,28 @@ output_cost_per_token = 0.00000845
 input_cost_per_token = 0.0000021099999999999997
 output_cost_per_token = 0.000008449999999999999
 [models."qwen/qwen3-max".pricing."openrouter"]
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000006
+
+[models."qwen/qwen3-max-thinking"]
+display_name = "Qwen3-Max-Thinking"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32000
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000006
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2026-01-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-max-thinking".pricing."zenmux"]
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000006
 
@@ -57546,6 +57651,31 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."z-ai/glm-4-7-flashx"]
+display_name = "GLM 4.7 FlashX"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 7.15e-8
+output_cost_per_token = 4.25e-7
+cache_read_input_token_cost = 1.4e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2026-01-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-4-7-flashx".pricing."zenmux"]
+cache_read_input_token_cost = 1.4e-8
+input_cost_per_token = 7.15e-8
+output_cost_per_token = 4.25e-7
+
 [models."z-ai/glm-4.6"]
 display_name = "GLM 4.6"
 model_family = "glm"
@@ -57617,7 +57747,7 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 0
 cache_creation_input_token_cost = 0
 litellm_provider = "openrouter"
-providers = ["openrouter", "nvidia", "zenmux"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
