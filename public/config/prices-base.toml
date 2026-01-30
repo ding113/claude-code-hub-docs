@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.01.30"
-checksum = "15c0f9357934cf7d6d64b447ae39e20f5057470668c9d36fb811e28cbe75bf32"
+checksum = "b44f898e5381cc2a6dad897151985b5d8357e462bf95734ce8cb4f48a68624fb"
 sources = ["litellm", "modelsdev"]
-total_models = 2586
-litellm_raw_models = 2469
+total_models = 2587
+litellm_raw_models = 2470
 modelsdev_raw_models = 2369
 custom_models = 2
 
@@ -43542,6 +43542,41 @@ output_cost_per_token = 0.00000115
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
 
+[models."moonshotai/Kimi-K2-5"]
+display_name = "Kimi K2.5"
+model_family = "kimi"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000028
+litellm_provider = "togetherai"
+providers = ["togetherai", "huggingface", "openrouter", "zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-10"
+release_date = "2026-01-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."moonshotai/Kimi-K2-5".pricing."huggingface"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/Kimi-K2-5".pricing."openrouter"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/Kimi-K2-5".pricing."togetherai"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000028
+[models."moonshotai/Kimi-K2-5".pricing."zenmux"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.00000302
+
 [models."moonshotai/Kimi-K2-5-TEE"]
 display_name = "Kimi K2.5 TEE"
 model_family = "kimi"
@@ -43762,46 +43797,6 @@ source = "modelsdev"
 [models."moonshotai/kimi-k2-0905:exacto".pricing."openrouter"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
-
-[models."moonshotai/kimi-k2-5"]
-display_name = "Kimi K2.5"
-model_family = "kimi"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-litellm_provider = "nvidia"
-providers = ["nvidia", "huggingface", "novita-ai", "openrouter", "togetherai", "vercel", "zenmux"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-07"
-release_date = "2026-01-27"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."moonshotai/kimi-k2-5".pricing."huggingface"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/kimi-k2-5".pricing."novita-ai"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/kimi-k2-5".pricing."openrouter"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/kimi-k2-5".pricing."togetherai"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000028
-[models."moonshotai/kimi-k2-5".pricing."vercel"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000012
-[models."moonshotai/kimi-k2-5".pricing."zenmux"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 5.8e-7
-output_cost_per_token = 0.00000302
 
 [models."moonshotai/kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
@@ -44043,6 +44038,44 @@ source = "modelsdev"
 [models."moonshotai/kimi-k2-turbo".pricing."vercel"]
 input_cost_per_token = 0.0000024
 output_cost_per_token = 0.00001
+
+[models."moonshotai/kimi-k2.5"]
+display_name = "Kimi K2.5"
+model_family = "kimi"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 1e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "novita-ai", "nvidia", "togetherai", "vercel"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-07"
+release_date = "2026-01-27"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "https://openrouter.ai/moonshotai/kimi-k2.5"
+supports_tool_choice = true
+
+[models."moonshotai/kimi-k2.5".pricing."novita-ai"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/kimi-k2.5".pricing."openrouter"]
+cache_read_input_token_cost = 1e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/kimi-k2.5".pricing."togetherai"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000028
+[models."moonshotai/kimi-k2.5".pricing."vercel"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000012
 
 [models."moonshotai/kimi-k2:free"]
 display_name = "Kimi K2 (free)"
