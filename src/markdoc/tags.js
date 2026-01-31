@@ -1,3 +1,4 @@
+import { Badge } from '@/components/Badge'
 import { Callout } from '@/components/Callout'
 import { QuickLink, QuickLinks } from '@/components/QuickLinks'
 import { HomePageAd } from '@/components/SidebarAd'
@@ -7,6 +8,15 @@ const tags = {
   'sponsor-ad': {
     selfClosing: true,
     render: HomePageAd,
+  },
+  badge: {
+    selfClosing: true,
+    render: Badge,
+    attributes: {
+      version: { type: String },
+      href: { type: String },
+      label: { type: String },
+    },
   },
   callout: {
     attributes: {

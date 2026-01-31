@@ -14,11 +14,11 @@ language: zh
 
 {% quick-links %}
 
-{% quick-link title="一键部署" icon="installation" href="/docs/deploy-script" description="使用一键部署脚本，5 分钟内完成 CCH 安装与启动" /%}
+{% quick-link title="脚本部署" icon="installation" href="/docs/deployment/script" description="使用一键部署脚本，5 分钟内完成 CCH 安装与启动" /%}
 
-{% quick-link title="供应商管理" icon="presets" href="/docs/guide/settings-providers" description="添加、配置和管理 Claude、Codex、Gemini 等多家 AI 供应商" /%}
+{% quick-link title="供应商管理" icon="presets" href="/docs/providers/crud" description="添加、配置和管理 Claude、Codex、Gemini 等多家 AI 供应商" /%}
 
-{% quick-link title="客户端接入" icon="plugins" href="/docs/client-setup" description="配置 Claude Code、Codex CLI 等工具连接到 CCH" /%}
+{% quick-link title="客户端接入" icon="plugins" href="/docs/deployment/client-setup" description="配置 Claude Code、Codex CLI 等工具连接到 CCH" /%}
 
 {% quick-link title="配置参考" icon="theming" href="/docs/reference/env-variables" description="环境变量、供应商参数等完整配置文档" /%}
 
@@ -50,7 +50,7 @@ CCH 专为解决这些问题而生，提供**服务器部署、多租户、Sessi
 
 ### 多供应商管理
 
-同时接入 Claude、Codex 等多种类型供应商。Gemini CLI、OpenAI Compatible 等类型即将上线。支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
+支持同时接入 Claude、Codex、Gemini、OpenAI Compatible 等多种类型供应商。支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
 
 ### 限流与并发控制
 
@@ -64,7 +64,7 @@ CCH 专为解决这些问题而生，提供**服务器部署、多租户、Sessi
 
 5 分钟上下文缓存，同一会话的请求自动路由到相同供应商，提高缓存命中率、降低成本。完整记录决策链，支持全链路审计。
 
-### OpenAI 兼容层（即将上线）
+### OpenAI 兼容层
 
 支持 `/v1/chat/completions` 端点，自动格式转换、工具调用、reasoning 字段与 Codex CLI 指令注入，无缝对接现有工具链。
 

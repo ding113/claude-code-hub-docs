@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Highlight } from 'prism-react-renderer'
 import { Fragment } from 'react'
 
+import { Badge } from '@/components/Badge'
 import { Button } from '@/components/Button'
 import { HeroBackground } from '@/components/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
@@ -50,13 +51,20 @@ export function Hero() {
               <p className="inline bg-gradient-to-r from-[var(--claude-rust)] via-[var(--claude-terracotta)] to-[var(--claude-ember)] bg-clip-text font-display text-5xl tracking-tight text-transparent">
                 智能 AI API 代理平台
               </p>
-              <p className="mt-3 text-2xl tracking-tight text-[var(--claude-walnut)]">
+              <div className="mt-4 md:flex md:justify-center lg:justify-start">
+                <Badge
+                  version="v0.5"
+                  href="https://github.com/ding113/claude-code-hub/releases/latest"
+                  label="最新版本"
+                />
+              </div>
+              <p className="mt-6 text-2xl tracking-tight text-[var(--claude-walnut)]">
                 面向团队的多供应商 AI Coding 代理调度平台，
                 <br className="hidden sm:inline" />
                 提供智能负载均衡、熔断器、限流和完整监控。
               </p>
               <div className="mt-8 flex gap-4 md:justify-center lg:justify-start">
-                <Button href="/docs/deploy-script">快速开始</Button>
+                <Button href="/docs/deployment/script">快速开始</Button>
                 <Button
                   href="https://github.com/ding113/claude-code-hub"
                   variant="secondary"
