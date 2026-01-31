@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.01.31"
-checksum = "c530a68c96e0120ae855c743eb539ed9d697ed5bb52ccd9c8d7d1946a8728131"
+checksum = "502266581d4b664c9bc813085df93d0cdd29b6313e7ebddfbe3dfdf442ed8c12"
 sources = ["litellm", "modelsdev"]
-total_models = 2589
-litellm_raw_models = 2470
+total_models = 2590
+litellm_raw_models = 2471
 modelsdev_raw_models = 2372
 custom_models = 2
 
@@ -43296,6 +43296,19 @@ source = "modelsdev"
 input_cost_per_token = 1.4e-7
 [models."model-router".pricing."azure-cognitive-services"]
 input_cost_per_token = 1.4e-7
+
+[models."model_router"]
+mode = "chat"
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 0
+litellm_provider = "azure_ai"
+providers = ["azure_ai"]
+source = "https://azure.microsoft.com/en-us/pricing/details/ai-services/"
+comment = "Flat cost of $0.14 per M input tokens for Azure AI Foundry Model Router infrastructure. Use pattern: azure_ai/model_router/<deployment-name> where deployment-name is your Azure deployment (e.g., azure-model-router)"
+
+[models."model_router".pricing."azure_ai"]
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 0
 
 [models."moonshot-kimi-k2-instruct"]
 display_name = "Moonshot Kimi K2 Instruct"
