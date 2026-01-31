@@ -1,6 +1,7 @@
 import { Callout } from '@/components/Callout'
 import { QuickLink, QuickLinks } from '@/components/QuickLinks'
 import { HomePageAd } from '@/components/SidebarAd'
+import { Tabs, TabItem } from '@/components/Tabs'
 
 const tags = {
   'sponsor-ad': {
@@ -45,6 +46,15 @@ const tags = {
       description: { type: String },
       icon: { type: String },
       href: { type: String },
+    },
+  },
+  tabs: {
+    render: Tabs,
+  },
+  tab: {
+    render: TabItem,
+    attributes: {
+      label: { type: String, required: true },
     },
   },
 }

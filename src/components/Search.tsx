@@ -22,7 +22,7 @@ import {
 import Highlighter from 'react-highlight-words'
 
 import { navigation } from '@/lib/navigation'
-import type { Result } from '@/markdoc/search.mjs'
+import type { Result } from '@/markdoc/search.types'
 
 type EmptyObject = Record<string, never>
 

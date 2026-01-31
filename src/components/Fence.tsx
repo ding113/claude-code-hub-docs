@@ -89,7 +89,14 @@ export function Fence({
         theme={{ plain: {}, styles: [] }}
       >
         {({ className, style, tokens, getTokenProps }) => (
-          <pre className={className} style={style}>
+          <pre
+            className={clsx(
+              className,
+              'rounded-xl bg-[var(--claude-sand)] p-4 text-sm shadow-lg overflow-x-auto',
+              'dark:bg-[var(--claude-cloud)]/60 dark:shadow-none dark:ring-1 dark:ring-[var(--claude-smoke)]/20',
+            )}
+            style={style}
+          >
             <code>
               {tokens.map((line, lineIndex) => (
                 <Fragment key={lineIndex}>

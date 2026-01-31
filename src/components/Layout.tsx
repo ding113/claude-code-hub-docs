@@ -119,7 +119,7 @@ function Footer() {
               <span>Telegram</span>
             </Link>
             <Link
-              href="/sitemap"
+              href="/site-map"
               className="text-sm text-[var(--claude-walnut)]/80 hover:text-[var(--claude-walnut)] dark:text-[var(--claude-walnut)]/80 dark:hover:text-[var(--claude-ink)]"
             >
               网站地图
