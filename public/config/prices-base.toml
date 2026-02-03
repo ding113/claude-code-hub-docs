@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.03"
-checksum = "10ffea41e9bc4b7dd693f9e365bb90b06771adf1f506e57b82ed91171c430a05"
+checksum = "25ec38143098762afc7bc44dc65c1ba768e77b292f4cf961b2825dbfcb79785e"
 sources = ["litellm", "modelsdev"]
-total_models = 2609
+total_models = 2612
 litellm_raw_models = 2474
-modelsdev_raw_models = 2412
+modelsdev_raw_models = 2420
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -834,6 +834,29 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 9.499999999999999e-7
+
+[models."KBLab/kb-whisper-large"]
+display_name = "KB-Whisper-Large"
+model_family = "whisper"
+mode = "chat"
+max_input_tokens = 480000
+max_output_tokens = 4800
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000003
+litellm_provider = "berget"
+providers = ["berget"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-04-27"
+supported_modalities = ["audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."KBLab/kb-whisper-large".pricing."berget"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000003
 
 [models."Kwaipilot/KAT-Dev"]
 display_name = "Kwaipilot/KAT-Dev"
@@ -10503,6 +10526,8 @@ input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
 
 [models."baai/bge-reranker-v2-m3"]
+display_name = "bge-reranker-v2-m3"
+model_family = "bge"
 mode = "rerank"
 max_input_tokens = 8000
 max_output_tokens = 8000
@@ -10510,8 +10535,18 @@ max_tokens = 8000
 input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
 litellm_provider = "novita"
-providers = ["novita"]
+providers = ["novita", "berget"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-04-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 
+[models."baai/bge-reranker-v2-m3".pricing."berget"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 1.0000000000000001e-7
 [models."baai/bge-reranker-v2-m3".pricing."novita"]
 input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
@@ -31190,7 +31225,7 @@ max_tokens = 131072
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "cerebras", "cloudflare-workers-ai", "cortecs", "deepinfra", "fastrouter", "firmware", "groq", "helicone", "io-net", "nano-gpt", "nebius", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "privatemode-ai", "replicate", "sambanova", "scaleway", "siliconflow", "submodel", "together_ai", "togetherai", "vercel", "vultr", "wandb", "watsonx"]
+providers = ["azure_ai", "abacus", "berget", "cerebras", "cloudflare-workers-ai", "cortecs", "deepinfra", "fastrouter", "firmware", "groq", "helicone", "io-net", "nano-gpt", "nebius", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "privatemode-ai", "replicate", "sambanova", "scaleway", "siliconflow", "submodel", "together_ai", "togetherai", "vercel", "vultr", "wandb", "watsonx"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -31212,6 +31247,9 @@ output_cost_per_token = 4.4e-7
 [models."gpt-oss-120b".pricing."azure_ai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
+[models."gpt-oss-120b".pricing."berget"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 9.000000000000001e-7
 [models."gpt-oss-120b".pricing."cerebras"]
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 7.5e-7
@@ -34319,6 +34357,48 @@ supports_function_calling = true
 [models."internlm2_5-20b-chat".pricing."ollama"]
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."intfloat/multilingual-e5-large"]
+display_name = "Multilingual-E5-large"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 512
+max_output_tokens = 1024
+input_cost_per_token = 2e-8
+litellm_provider = "berget"
+providers = ["berget"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-09"
+release_date = "2025-09-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."intfloat/multilingual-e5-large".pricing."berget"]
+input_cost_per_token = 2e-8
+
+[models."intfloat/multilingual-e5-large-instruct"]
+display_name = "Multilingual-E5-large-instruct"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 512
+max_output_tokens = 1024
+input_cost_per_token = 2e-8
+litellm_provider = "berget"
+providers = ["berget"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-04-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."intfloat/multilingual-e5-large-instruct".pricing."berget"]
+input_cost_per_token = 2e-8
 
 [models."invoke/anthropic.claude-3-5-sonnet-20240620-v1:0"]
 mode = "chat"
@@ -38274,7 +38354,7 @@ max_tokens = 128000
 input_cost_per_token = 7.1e-7
 output_cost_per_token = 7.1e-7
 litellm_provider = "watsonx"
-providers = ["watsonx", "friendli", "io-net", "nano-gpt", "novita-ai", "wandb"]
+providers = ["watsonx", "berget", "friendli", "io-net", "nano-gpt", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -38285,6 +38365,9 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 
+[models."meta-llama/llama-3-3-70b-instruct".pricing."berget"]
+input_cost_per_token = 9.000000000000001e-7
+output_cost_per_token = 9.000000000000001e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."friendli"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 6e-7
@@ -42517,6 +42600,8 @@ input_cost_per_token = 5e-8
 output_cost_per_token = 8e-8
 
 [models."mistralai/Mistral-Small-3.2-24B-Instruct-2506"]
+display_name = "Mistral Small 3.2 24B Instruct 2506"
+model_family = "mistral-small"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 128000
@@ -42524,9 +42609,19 @@ max_tokens = 128000
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra"]
+providers = ["deepinfra", "berget"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-09"
+release_date = "2025-10-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supports_tool_choice = true
 
+[models."mistralai/Mistral-Small-3.2-24B-Instruct-2506".pricing."berget"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 3e-7
 [models."mistralai/Mistral-Small-3.2-24B-Instruct-2506".pricing."deepinfra"]
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2e-7
@@ -59101,7 +59196,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "novita"
-providers = ["novita", "abacus", "baseten", "deepinfra", "huggingface", "nano-gpt", "novita-ai", "siliconflow", "togetherai"]
+providers = ["novita", "abacus", "baseten", "berget", "deepinfra", "huggingface", "nano-gpt", "novita-ai", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -59121,6 +59216,9 @@ output_cost_per_token = 0.0000025
 [models."zai-org/glm-4.7".pricing."baseten"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
+[models."zai-org/glm-4.7".pricing."berget"]
+input_cost_per_token = 7e-7
+output_cost_per_token = 0.0000023
 [models."zai-org/glm-4.7".pricing."deepinfra"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.3e-7
