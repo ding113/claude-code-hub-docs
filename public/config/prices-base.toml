@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.04"
-checksum = "060a92db819ca7dc88148b82d59f7c2d37f5cc9a1e64a3423b211f2fa692aaf4"
+checksum = "764ff3626629a55999cc3cbcab079d6ba8a0a992b5b42597e18b5daa0a028f47"
 sources = ["litellm", "modelsdev"]
-total_models = 2592
+total_models = 2591
 litellm_raw_models = 2477
-modelsdev_raw_models = 2375
+modelsdev_raw_models = 2374
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -4040,8 +4040,8 @@ supports_tool_choice = true
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.0000012
 
-[models."Qwen/Qwen3-Coder-Next"]
-display_name = "Qwen3 Coder Next"
+[models."Qwen/Qwen3-Coder-Next-FP8"]
+display_name = "Qwen3 Coder Next FP8"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
@@ -4059,7 +4059,7 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."Qwen/Qwen3-Coder-Next".pricing."togetherai"]
+[models."Qwen/Qwen3-Coder-Next-FP8".pricing."togetherai"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000012
 
@@ -43686,44 +43686,6 @@ output_cost_per_token = 0.00000115
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
 
-[models."moonshotai/Kimi-K2-5"]
-display_name = "Kimi K2.5"
-model_family = "kimi"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 32768
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000028
-litellm_provider = "togetherai"
-providers = ["togetherai", "huggingface", "openrouter", "siliconflow", "zenmux"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2026-01-27"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."moonshotai/Kimi-K2-5".pricing."huggingface"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/Kimi-K2-5".pricing."openrouter"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/Kimi-K2-5".pricing."siliconflow"]
-input_cost_per_token = 5.5e-7
-output_cost_per_token = 0.000003
-[models."moonshotai/Kimi-K2-5".pricing."togetherai"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000028
-[models."moonshotai/Kimi-K2-5".pricing."zenmux"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 5.8e-7
-output_cost_per_token = 0.00000302
-
 [models."moonshotai/Kimi-K2-5-TEE"]
 display_name = "Kimi K2.5 TEE"
 model_family = "kimi"
@@ -43843,7 +43805,7 @@ max_tokens = 256000
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000028
 litellm_provider = "together_ai"
-providers = ["together_ai", "novita-ai", "nvidia", "togetherai", "vercel"]
+providers = ["together_ai", "huggingface", "novita-ai", "nvidia", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -43855,9 +43817,20 @@ supported_output_modalities = ["text"]
 source = "https://www.together.ai/models/kimi-k2-5"
 supports_tool_choice = true
 
+[models."moonshotai/Kimi-K2.5".pricing."huggingface"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
 [models."moonshotai/Kimi-K2.5".pricing."novita-ai"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/Kimi-K2.5".pricing."openrouter"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."moonshotai/Kimi-K2.5".pricing."siliconflow"]
+input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.000003
 [models."moonshotai/Kimi-K2.5".pricing."together_ai"]
 input_cost_per_token = 5e-7
@@ -43868,6 +43841,10 @@ output_cost_per_token = 0.0000028
 [models."moonshotai/Kimi-K2.5".pricing."vercel"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000012
+[models."moonshotai/Kimi-K2.5".pricing."zenmux"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.00000302
 
 [models."moonshotai/kimi-dev-72b:free"]
 display_name = "Kimi Dev 72b (free)"
