@@ -8,7 +8,7 @@ sources = ["litellm", "modelsdev"]
 total_models = 2615
 litellm_raw_models = 2479
 modelsdev_raw_models = 2425
-custom_models = 2
+custom_models = 3
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
 mode = "chat"
@@ -14429,6 +14429,7 @@ max_output_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
 litellm_provider = "opencode"
 providers = ["opencode"]
 supports_function_calling = true
@@ -14438,12 +14439,21 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "custom"
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token_above_200k_tokens = 0.0000375
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost_above_200k_tokens = 0.000001
 
 [models."claude-opus-4-6".pricing."opencode"]
 cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
 input_cost_per_token = 0.000005
+input_cost_per_token_above_200k_tokens = 0.00001
 output_cost_per_token = 0.000025
+output_cost_per_token_above_200k_tokens = 0.0000375
 
 [models."claude-opus-4.1"]
 mode = "chat"
