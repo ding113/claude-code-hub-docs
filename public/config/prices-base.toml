@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.05"
-checksum = "7d59fbca72ebf5bbe77ec463d8c0df06a75f262b2101b0e32807ab499934cd92"
+checksum = "a9f6fd51450d30cfad01dce2d105f4d776429f5f6b0894adfbee4ef6da160cb2"
 sources = ["litellm", "modelsdev"]
-total_models = 2596
+total_models = 2613
 litellm_raw_models = 2479
-modelsdev_raw_models = 2388
+modelsdev_raw_models = 2423
 custom_models = 2
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1186,6 +1186,48 @@ output_vector_size = 768
 input_cost_per_token = 8e-9
 output_cost_per_token = 0
 
+[models."BAAI/bge-en-icl"]
+display_name = "BGE-ICL"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 32768
+max_output_tokens = 0
+input_cost_per_token = 1e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-06"
+release_date = "2024-07-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."BAAI/bge-en-icl".pricing."nebius"]
+input_cost_per_token = 1e-8
+
+[models."BAAI/bge-multilingual-gemma2"]
+display_name = "bge-multilingual-gemma2"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 0
+input_cost_per_token = 1e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-06"
+release_date = "2024-07-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."BAAI/bge-multilingual-gemma2".pricing."nebius"]
+input_cost_per_token = 1e-8
+
 [models."BSC-LT/ALIA-40b-instruct_Q8_0"]
 mode = "chat"
 max_input_tokens = 8192
@@ -2337,7 +2379,7 @@ max_tokens = 16384
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "gmi"
-providers = ["gmi", "deepinfra", "friendli", "huggingface", "nvidia", "siliconflow"]
+providers = ["gmi", "deepinfra", "friendli", "huggingface", "nebius", "nvidia", "siliconflow"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -2345,6 +2387,7 @@ knowledge_cutoff = "2025-10"
 release_date = "2025-12-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+reasoning_cost_per_token = 0.0000012
 
 [models."MiniMaxAI/MiniMax-M2.1".pricing."deepinfra"]
 input_cost_per_token = 2.8e-7
@@ -2358,6 +2401,11 @@ output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.1".pricing."huggingface"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
+[models."MiniMaxAI/MiniMax-M2.1".pricing."nebius"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+reasoning_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.1".pricing."siliconflow"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -2592,56 +2640,64 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."NousResearch/hermes-4-405b"]
-display_name = "Hermes-4 405B"
+display_name = "Hermes-4-405B"
 model_family = "hermes"
 mode = "chat"
-max_input_tokens = 131072
+max_input_tokens = 128000
 max_output_tokens = 8192
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
+cache_read_input_token_cost = 1.0000000000000001e-7
 litellm_provider = "nebius"
 providers = ["nebius", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-07"
-release_date = "2024-08-01"
+open_weights = true
+knowledge_cutoff = "2025-11"
+release_date = "2026-01-30"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+reasoning_cost_per_token = 0.000003
 
 [models."NousResearch/hermes-4-405b".pricing."nebius"]
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
+reasoning_cost_per_token = 0.000003
 [models."NousResearch/hermes-4-405b".pricing."openrouter"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 
 [models."NousResearch/hermes-4-70b"]
-display_name = "Hermes 4 70B"
-model_family = "hermes"
+display_name = "Hermes-4-70B"
+model_family = "nousresearch"
 mode = "chat"
-max_input_tokens = 131072
+max_input_tokens = 128000
 max_output_tokens = 8192
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1.2999999999999999e-8
 litellm_provider = "nebius"
 providers = ["nebius", "chutes", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-07"
-release_date = "2024-08-01"
+open_weights = true
+knowledge_cutoff = "2025-11"
+release_date = "2026-01-30"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+reasoning_cost_per_token = 4.0000000000000003e-7
 
 [models."NousResearch/hermes-4-70b".pricing."chutes"]
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 3.8e-7
 [models."NousResearch/hermes-4-70b".pricing."nebius"]
+cache_read_input_token_cost = 1.2999999999999999e-8
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
+reasoning_cost_per_token = 4.0000000000000003e-7
 [models."NousResearch/hermes-4-70b".pricing."openrouter"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -3069,6 +3125,30 @@ output_cost_per_token = 5e-7
 [models."Phi-4-reasoning".pricing."azure_ai"]
 input_cost_per_token = 1.25e-7
 output_cost_per_token = 5e-7
+
+[models."PrimeIntellect/intellect-3"]
+display_name = "INTELLECT-3"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000011
+cache_read_input_token_cost = 2e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-10"
+release_date = "2026-01-25"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."PrimeIntellect/intellect-3".pricing."nebius"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000011
 
 [models."Pro/MiniMaxAI/MiniMax-M2-1"]
 display_name = "Pro/MiniMaxAI/MiniMax-M2.1"
@@ -3842,67 +3922,6 @@ output_cost_per_token = 4.5000000000000003e-7
 [models."Qwen/Qwen3-30B-A3B".pricing."siliconflow-cn"]
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
-
-[models."Qwen/Qwen3-30B-A3B-Instruct-2507"]
-display_name = "Qwen/Qwen3-30B-A3B-Instruct-2507"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 262000
-max_output_tokens = 262000
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-litellm_provider = "siliconflow-cn"
-providers = ["siliconflow-cn", "chutes", "modelscope", "openrouter", "siliconflow"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-30"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."Qwen/Qwen3-30B-A3B-Instruct-2507".pricing."chutes"]
-input_cost_per_token = 8e-8
-output_cost_per_token = 3.3e-7
-[models."Qwen/Qwen3-30B-A3B-Instruct-2507".pricing."openrouter"]
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 8.000000000000001e-7
-[models."Qwen/Qwen3-30B-A3B-Instruct-2507".pricing."siliconflow"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-[models."Qwen/Qwen3-30B-A3B-Instruct-2507".pricing."siliconflow-cn"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-
-[models."Qwen/Qwen3-30B-A3B-Thinking-2507"]
-display_name = "Qwen/Qwen3-30B-A3B-Thinking-2507"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 262000
-max_output_tokens = 131000
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-litellm_provider = "siliconflow-cn"
-providers = ["siliconflow-cn", "modelscope", "openrouter", "siliconflow"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-31"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."Qwen/Qwen3-30B-A3B-Thinking-2507".pricing."openrouter"]
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 8.000000000000001e-7
-[models."Qwen/Qwen3-30B-A3B-Thinking-2507".pricing."siliconflow"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-[models."Qwen/Qwen3-30B-A3B-Thinking-2507".pricing."siliconflow-cn"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
 
 [models."Qwen/Qwen3-32B"]
 mode = "chat"
@@ -11821,6 +11840,38 @@ supported_endpoints = ["/v1/images/generations"]
 input_cost_per_pixel = 1.3e-9
 output_cost_per_pixel = 0
 
+[models."black-forest-labs/flux-dev"]
+display_name = "FLUX.1-dev"
+mode = "chat"
+max_input_tokens = 77
+max_output_tokens = 0
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-07"
+release_date = "2024-08-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["image"]
+source = "modelsdev"
+
+[models."black-forest-labs/flux-schnell"]
+display_name = "FLUX.1-schnell"
+mode = "chat"
+max_input_tokens = 77
+max_output_tokens = 0
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-07"
+release_date = "2024-08-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["image"]
+source = "modelsdev"
+
 [models."black-forest-labs/flux.1-dev"]
 display_name = "FLUX.1-dev"
 model_family = "flux"
@@ -17623,14 +17674,15 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.00000215
 cache_read_input_token_cost = 4e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "huggingface", "hyperbolic", "io-net", "nvidia", "submodel", "wandb"]
+providers = ["deepinfra", "huggingface", "hyperbolic", "io-net", "nebius", "nvidia", "submodel", "wandb"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-05"
+knowledge_cutoff = "2025-11"
 release_date = "2025-05-28"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+reasoning_cost_per_token = 0.0000024
 supports_parallel_function_calling = true
 supports_system_messages = true
 supports_tool_choice = true
@@ -17649,6 +17701,11 @@ output_cost_per_token = 2.5e-7
 cache_read_input_token_cost = 0.000001
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00000875
+[models."deepseek-ai/DeepSeek-R1-0528".pricing."nebius"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.0000024
+reasoning_cost_per_token = 0.0000024
 [models."deepseek-ai/DeepSeek-R1-0528".pricing."submodel"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000021499999999999997
@@ -17939,11 +17996,11 @@ max_tokens = 163840
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 8.8e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "gmi", "hyperbolic", "submodel", "wandb"]
+providers = ["deepinfra", "gmi", "hyperbolic", "nebius", "submodel", "wandb"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2024-10"
+knowledge_cutoff = "2024-12"
 release_date = "2025-03-24"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -17960,6 +18017,10 @@ output_cost_per_token = 8.8e-7
 [models."deepseek-ai/DeepSeek-V3-0324".pricing."hyperbolic"]
 input_cost_per_token = 4e-7
 output_cost_per_token = 4e-7
+[models."deepseek-ai/DeepSeek-V3-0324".pricing."nebius"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000015
 [models."deepseek-ai/DeepSeek-V3-0324".pricing."submodel"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 8.000000000000001e-7
@@ -18199,7 +18260,7 @@ max_tokens = 16384
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4e-7
 litellm_provider = "gmi"
-providers = ["gmi", "abacus", "baseten", "huggingface", "nvidia", "siliconflow", "siliconflow-cn"]
+providers = ["gmi", "abacus", "baseten", "huggingface", "nebius", "nvidia", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -18207,6 +18268,7 @@ knowledge_cutoff = "2024-07"
 release_date = "2025-12-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+reasoning_cost_per_token = 4.5000000000000003e-7
 
 [models."deepseek-ai/DeepSeek-V3.2".pricing."abacus"]
 input_cost_per_token = 2.7e-7
@@ -18220,6 +18282,11 @@ output_cost_per_token = 4e-7
 [models."deepseek-ai/DeepSeek-V3.2".pricing."huggingface"]
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.0000000000000003e-7
+[models."deepseek-ai/DeepSeek-V3.2".pricing."nebius"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 4.5000000000000003e-7
+reasoning_cost_per_token = 4.5000000000000003e-7
 [models."deepseek-ai/DeepSeek-V3.2".pricing."siliconflow"]
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 4.2e-7
@@ -18294,6 +18361,29 @@ output_cost_per_token = 0.0000021800000000000003
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000007
 
+[models."deepseek-ai/deepseek-r1-0528-fast"]
+display_name = "DeepSeek R1 0528 Fast"
+model_family = "deepseek"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 8192
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2025-01-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-ai/deepseek-r1-0528-fast".pricing."nebius"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
 [models."deepseek-ai/deepseek-r1-0528-maas"]
 mode = "chat"
 max_input_tokens = 65336
@@ -18352,6 +18442,30 @@ output_cost_per_token = 0.000001
 [models."deepseek-ai/deepseek-v3".pricing."togetherai"]
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000125
+
+[models."deepseek-ai/deepseek-v3-0324-fast"]
+display_name = "DeepSeek-V3-0324 (Fast)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.00000225
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2025-03-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-ai/deepseek-v3-0324-fast".pricing."nebius"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.00000225
 
 [models."deepseek-ai/deepseek-v3.1"]
 display_name = "DeepSeek V3.1"
@@ -19389,6 +19503,27 @@ supports_tool_choice = true
 input_cost_per_token = 3e-8
 output_cost_per_token = 3e-8
 [models."deepseek/deepseek-ocr".pricing."novita-ai"]
+input_cost_per_token = 3e-8
+output_cost_per_token = 3e-8
+
+[models."deepseek/deepseek-ocr-2"]
+display_name = "deepseek/deepseek-ocr-2"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 8192
+input_cost_per_token = 3e-8
+output_cost_per_token = 3e-8
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek/deepseek-ocr-2".pricing."novita-ai"]
 input_cost_per_token = 3e-8
 output_cost_per_token = 3e-8
 
@@ -26210,14 +26345,20 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 litellm_provider = "nvidia"
-providers = ["nvidia"]
+providers = ["nvidia", "nebius"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
+knowledge_cutoff = "2024-06"
 release_date = "2024-07-16"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."gemma-2-2b-it".pricing."nebius"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 2e-8
+output_cost_per_token = 6e-8
 
 [models."gemma-2-9b"]
 mode = "chat"
@@ -26256,6 +26397,30 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."gemma-2-9b-it".pricing."openrouter"]
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
+
+[models."gemma-2-9b-it-fast"]
+display_name = "Gemma-2-9b-it (Fast)"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 4096
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
+cache_read_input_token_cost = 3e-9
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-06"
+release_date = "2024-06-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-2-9b-it-fast".pricing."nebius"]
+cache_read_input_token_cost = 3e-9
 input_cost_per_token = 3e-8
 output_cost_per_token = 9e-8
 
@@ -26377,7 +26542,7 @@ max_tokens = 131072
 input_cost_per_token = 9e-8
 output_cost_per_token = 1.6e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "gemini", "novita", "novita-ai", "nvidia", "openrouter", "scaleway"]
+providers = ["deepinfra", "gemini", "nebius", "novita", "novita-ai", "nvidia", "openrouter", "scaleway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -26408,6 +26573,10 @@ output_cost_per_character = 0
 output_cost_per_character_above_128k_tokens = 0
 output_cost_per_token = 0
 output_cost_per_token_above_128k_tokens = 0
+[models."gemma-3-27b-it".pricing."nebius"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 [models."gemma-3-27b-it".pricing."novita"]
 input_cost_per_token = 1.19e-7
 output_cost_per_token = 2e-7
@@ -26420,6 +26589,30 @@ output_cost_per_token = 1.5e-7
 [models."gemma-3-27b-it".pricing."scaleway"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 5e-7
+
+[models."gemma-3-27b-it-fast"]
+display_name = "Gemma-3-27b-it (Fast)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-10"
+release_date = "2026-01-20"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-3-27b-it-fast".pricing."nebius"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
 
 [models."gemma-3-27b-it:free"]
 display_name = "Gemma 3 27B (free)"
@@ -31905,6 +32098,7 @@ release_date = "2025-08-04"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/"
+reasoning_cost_per_token = 6e-7
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
@@ -31944,8 +32138,10 @@ output_cost_per_token = 4.0000000000000003e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 [models."gpt-oss-120b".pricing."nebius"]
+cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
+reasoning_cost_per_token = 6e-7
 [models."gpt-oss-120b".pricing."novita"]
 input_cost_per_token = 5e-8
 output_cost_per_token = 2.5e-7
@@ -32141,6 +32337,7 @@ cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 1.4e-7
 [models."gpt-oss-20b".pricing."nebius"]
+cache_read_input_token_cost = 5e-9
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.0000000000000002e-7
 [models."gpt-oss-20b".pricing."novita"]
@@ -34983,6 +35180,27 @@ supports_function_calling = true
 [models."internlm2_5-20b-chat".pricing."ollama"]
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."intfloat/e5-mistral-7b-instruct"]
+display_name = "e5-mistral-7b-instruct"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 32768
+max_output_tokens = 0
+input_cost_per_token = 1e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2023-12"
+release_date = "2024-01-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."intfloat/e5-mistral-7b-instruct".pricing."nebius"]
+input_cost_per_token = 1e-8
 
 [models."intfloat/multilingual-e5-large"]
 display_name = "Multilingual-E5-large"
@@ -38221,6 +38439,7 @@ input_cost_per_token = 0.017
 output_cost_per_token = 0.066
 
 [models."meta-llama/Llama-Guard-3-8B"]
+display_name = "Llama-Guard-3-8B"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -38228,12 +38447,23 @@ max_tokens = 131072
 input_cost_per_token = 5.5e-8
 output_cost_per_token = 5.5e-8
 litellm_provider = "deepinfra"
-providers = ["deepinfra"]
+providers = ["deepinfra", "nebius"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-04"
+release_date = "2024-04-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supports_tool_choice = false
 
 [models."meta-llama/Llama-Guard-3-8B".pricing."deepinfra"]
 input_cost_per_token = 5.5e-8
 output_cost_per_token = 5.5e-8
+[models."meta-llama/Llama-Guard-3-8B".pricing."nebius"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 2e-8
+output_cost_per_token = 6e-8
 
 [models."meta-llama/Llama-Guard-4-12B"]
 mode = "chat"
@@ -38398,10 +38628,11 @@ max_tokens = 131072
 input_cost_per_token = 3e-8
 output_cost_per_token = 5e-8
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "hyperbolic", "siliconflow"]
+providers = ["deepinfra", "abacus", "hyperbolic", "nebius", "siliconflow"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
+knowledge_cutoff = "2024-12"
 release_date = "2024-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -38418,6 +38649,10 @@ output_cost_per_token = 5e-8
 [models."meta-llama/Meta-Llama-3.1-8B-Instruct".pricing."hyperbolic"]
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 3e-7
+[models."meta-llama/Meta-Llama-3.1-8B-Instruct".pricing."nebius"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 2e-8
+output_cost_per_token = 6e-8
 [models."meta-llama/Meta-Llama-3.1-8B-Instruct".pricing."siliconflow"]
 input_cost_per_token = 6e-8
 output_cost_per_token = 6e-8
@@ -38649,48 +38884,50 @@ input_cost_per_token = 7.1e-7
 output_cost_per_token = 7.1e-7
 
 [models."meta-llama/llama-3-3-70b-instruct-base"]
-display_name = "Llama-3.3-70B-Instruct (Base)"
-model_family = "llama"
+display_name = "Llama-3.3-70B-Instruct"
 mode = "chat"
-max_input_tokens = 131072
+max_input_tokens = 128000
 max_output_tokens = 8192
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1.2999999999999999e-8
 litellm_provider = "nebius"
 providers = ["nebius"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-08"
-release_date = "2024-08-22"
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-08"
+release_date = "2025-12-05"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."meta-llama/llama-3-3-70b-instruct-base".pricing."nebius"]
+cache_read_input_token_cost = 1.2999999999999999e-8
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
 
 [models."meta-llama/llama-3-3-70b-instruct-fast"]
 display_name = "Llama-3.3-70B-Instruct (Fast)"
-model_family = "llama"
 mode = "chat"
-max_input_tokens = 131072
+max_input_tokens = 128000
 max_output_tokens = 8192
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 7.5e-7
+cache_read_input_token_cost = 2.5000000000000002e-8
 litellm_provider = "nebius"
 providers = ["nebius"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-08"
-release_date = "2024-08-22"
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-08"
+release_date = "2025-12-05"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."meta-llama/llama-3-3-70b-instruct-fast".pricing."nebius"]
+cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 7.5e-7
 
@@ -38877,25 +39114,26 @@ input_cost_per_token = 1.35e-7
 output_cost_per_token = 4e-7
 
 [models."meta-llama/llama-3_1-405b-instruct"]
-display_name = "Llama 3.1 405B Instruct"
-model_family = "llama"
+display_name = "Llama-3.1-405B-Instruct"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 8192
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
+cache_read_input_token_cost = 1.0000000000000001e-7
 litellm_provider = "nebius"
 providers = ["nebius"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-03"
-release_date = "2024-07-23"
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2025-01-20"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."meta-llama/llama-3_1-405b-instruct".pricing."nebius"]
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 
@@ -39091,6 +39329,30 @@ supported_output_modalities = ["text"]
 [models."meta-llama/llama-guard-4-12b".pricing."groq"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
+
+[models."meta-llama/meta-llama-3-1-8b-instruct-fast"]
+display_name = "Meta-Llama-3.1-8B-Instruct (Fast)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4096
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
+cache_read_input_token_cost = 3e-9
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2024-07-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."meta-llama/meta-llama-3-1-8b-instruct-fast".pricing."nebius"]
+cache_read_input_token_cost = 3e-9
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
 
 [models."meta-textgeneration-llama-2-13b"]
 mode = "completion"
@@ -44307,6 +44569,7 @@ output_cost_per_token = 0.000003
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 [models."moonshotai/kimi-k2-instruct".pricing."nebius"]
+cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000024
 [models."moonshotai/kimi-k2-instruct".pricing."novita"]
@@ -44384,7 +44647,7 @@ max_tokens = 262144
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "novita"
-providers = ["novita", "baseten", "deepinfra", "huggingface", "io-net", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn", "togetherai", "vercel", "zenmux"]
+providers = ["novita", "baseten", "deepinfra", "huggingface", "io-net", "nano-gpt", "nebius", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -44392,6 +44655,7 @@ knowledge_cutoff = "2025-07"
 release_date = "2025-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+reasoning_cost_per_token = 0.0000025
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
@@ -44414,6 +44678,11 @@ output_cost_per_token = 0.00000225
 [models."moonshotai/kimi-k2-thinking".pricing."nano-gpt"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
+[models."moonshotai/kimi-k2-thinking".pricing."nebius"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+reasoning_cost_per_token = 0.0000025
 [models."moonshotai/kimi-k2-thinking".pricing."novita"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
@@ -45661,25 +45930,26 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."nvidia/llama-3_1-nemotron-ultra-253b-v1"]
-display_name = "Llama 3.1 Nemotron Ultra 253B v1"
-model_family = "llama"
+display_name = "Llama-3.1-Nemotron-Ultra-253B-v1"
 mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 8192
+max_input_tokens = 128000
+max_output_tokens = 4096
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018000000000000001
+cache_read_input_token_cost = 6e-8
 litellm_provider = "nebius"
 providers = ["nebius"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-07"
-release_date = "2024-07-01"
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2025-01-15"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."nvidia/llama-3_1-nemotron-ultra-253b-v1".pricing."nebius"]
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018000000000000001
 
@@ -45903,6 +46173,30 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."nvidia/nemotron-nano-v2-12b"]
+display_name = "Nemotron-Nano-V2-12b"
+mode = "chat"
+max_input_tokens = 32000
+max_output_tokens = 4096
+input_cost_per_token = 7e-8
+output_cost_per_token = 2.0000000000000002e-7
+cache_read_input_token_cost = 7e-9
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2025-03-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia/nemotron-nano-v2-12b".pricing."nebius"]
+cache_read_input_token_cost = 7e-9
+input_cost_per_token = 7e-8
+output_cost_per_token = 2.0000000000000002e-7
+
 [models."nvidia/nv-rerankqa-mistral-4b-v3"]
 mode = "rerank"
 input_cost_per_token = 0
@@ -45915,6 +46209,30 @@ input_cost_per_query = 0
 input_cost_per_query = 0
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."nvidia/nvidia-nemotron-3-nano-30b-a3b"]
+display_name = "Nemotron-3-Nano-30B-A3B"
+mode = "chat"
+max_input_tokens = 32000
+max_output_tokens = 4096
+input_cost_per_token = 6e-8
+output_cost_per_token = 2.4e-7
+cache_read_input_token_cost = 6e-9
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2025-08-10"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia/nvidia-nemotron-3-nano-30b-a3b".pricing."nebius"]
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 6e-8
+output_cost_per_token = 2.4e-7
 
 [models."nvidia/parakeet-tdt-0-6b-v2"]
 display_name = "Parakeet TDT 0.6B v2"
@@ -48817,6 +49135,30 @@ supports_tool_choice = true
 input_cost_per_token = 2.1e-7
 output_cost_per_token = 6.3e-7
 
+[models."qwen/qwen2-5-coder-7b-fast"]
+display_name = "Qwen2.5-Coder-7B (Fast)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
+cache_read_input_token_cost = 3e-9
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-09"
+release_date = "2024-09-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen2-5-coder-7b-fast".pricing."nebius"]
+cache_read_input_token_cost = 3e-9
+input_cost_per_token = 3e-8
+output_cost_per_token = 9e-8
+
 [models."qwen/qwen2-5-vl-32b-instruct:free"]
 display_name = "Qwen2.5 VL 32B Instruct (free)"
 model_family = "qwen"
@@ -48887,7 +49229,7 @@ input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 5.0000000000000004e-8
 
 [models."qwen/qwen2.5-vl-72b-instruct"]
-display_name = "Qwen2.5 VL 72B Instruct"
+display_name = "Qwen2.5-VL-72B-Instruct"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 32768
@@ -48896,17 +49238,21 @@ max_tokens = 32768
 input_cost_per_token = 8e-7
 output_cost_per_token = 8e-7
 litellm_provider = "novita"
-providers = ["novita", "novita-ai", "openrouter", "siliconflow", "siliconflow-cn"]
+providers = ["novita", "nebius", "novita-ai", "openrouter", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-03-25"
-supported_modalities = ["text", "image", "video"]
+knowledge_cutoff = "2024-12"
+release_date = "2025-01-20"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 
+[models."qwen/qwen2.5-vl-72b-instruct".pricing."nebius"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 7.5e-7
 [models."qwen/qwen2.5-vl-72b-instruct".pricing."novita"]
 input_cost_per_token = 8e-7
 output_cost_per_token = 8e-7
@@ -49211,6 +49557,79 @@ output_cost_per_token = 4.5e-7
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
 
+[models."qwen/qwen3-30b-a3b-instruct-2507"]
+display_name = "Qwen3-30B-A3B-Instruct-2507"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "nebius"
+providers = ["nebius", "chutes", "modelscope", "openrouter", "siliconflow", "siliconflow-cn"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-12"
+release_date = "2026-01-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."chutes"]
+input_cost_per_token = 8e-8
+output_cost_per_token = 3.3e-7
+[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."nebius"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."openrouter"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 8.000000000000001e-7
+[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."siliconflow"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 3e-7
+[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."siliconflow-cn"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 3e-7
+
+[models."qwen/qwen3-30b-a3b-thinking-2507"]
+display_name = "Qwen3-30B-A3B-Thinking-2507"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "nebius"
+providers = ["nebius", "modelscope", "openrouter", "siliconflow", "siliconflow-cn"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-12"
+release_date = "2026-01-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+reasoning_cost_per_token = 3e-7
+
+[models."qwen/qwen3-30b-a3b-thinking-2507".pricing."nebius"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+reasoning_cost_per_token = 3e-7
+[models."qwen/qwen3-30b-a3b-thinking-2507".pricing."openrouter"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 8.000000000000001e-7
+[models."qwen/qwen3-30b-a3b-thinking-2507".pricing."siliconflow"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 3e-7
+[models."qwen/qwen3-30b-a3b-thinking-2507".pricing."siliconflow-cn"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 3e-7
+
 [models."qwen/qwen3-30b-a3b:free"]
 display_name = "Qwen3 30B A3B (free)"
 model_family = "qwen"
@@ -49238,7 +49657,7 @@ max_tokens = 131000
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 5.9e-7
 litellm_provider = "groq"
-providers = ["groq", "abacus", "chutes", "siliconflow", "siliconflow-cn"]
+providers = ["groq", "abacus", "chutes", "nebius", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -49258,12 +49677,40 @@ output_cost_per_token = 2.4e-7
 [models."qwen/qwen3-32b".pricing."groq"]
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 5.9e-7
+[models."qwen/qwen3-32b".pricing."nebius"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 [models."qwen/qwen3-32b".pricing."siliconflow"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.699999999999999e-7
 [models."qwen/qwen3-32b".pricing."siliconflow-cn"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.699999999999999e-7
+
+[models."qwen/qwen3-32b-fast"]
+display_name = "Qwen3-32B (Fast)"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-12"
+release_date = "2026-01-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-32b-fast".pricing."nebius"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-32b-fp8"]
 display_name = "Qwen3 32B"
@@ -49440,7 +49887,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-coder-30b-a3b-instruct"]
-display_name = "Qwen3 Coder 30b A3B Instruct"
+display_name = "Qwen3-Coder-30B-A3B-Instruct"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 160000
@@ -49449,12 +49896,12 @@ max_tokens = 32768
 input_cost_per_token = 7e-8
 output_cost_per_token = 2.7e-7
 litellm_provider = "novita"
-providers = ["novita", "modelscope", "novita-ai", "openrouter", "siliconflow", "siliconflow-cn"]
+providers = ["novita", "modelscope", "nebius", "novita-ai", "openrouter", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-10-09"
+knowledge_cutoff = "2025-12"
+release_date = "2026-01-28"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
@@ -49462,6 +49909,10 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."qwen/qwen3-coder-30b-a3b-instruct".pricing."nebius"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 [models."qwen/qwen3-coder-30b-a3b-instruct".pricing."novita"]
 input_cost_per_token = 7e-8
 output_cost_per_token = 2.7e-7
@@ -49573,6 +50024,28 @@ source = "modelsdev"
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000015
 
+[models."qwen/qwen3-coder-next"]
+display_name = "Qwen3 Coder Next"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000015
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-coder-next".pricing."novita-ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000015
+
 [models."qwen/qwen3-coder-plus"]
 display_name = "Qwen3-Coder-Plus"
 mode = "chat"
@@ -49652,8 +50125,8 @@ input_cost_per_token = 7e-8
 output_cost_per_token = 0
 
 [models."qwen/qwen3-embedding-8b"]
-display_name = "Qwen 3 Embedding 8B"
-model_family = "qwen"
+display_name = "Qwen3-Embedding-8B"
+model_family = "text-embedding"
 mode = "embedding"
 max_input_tokens = 32768
 max_output_tokens = 4096
@@ -49661,16 +50134,18 @@ max_tokens = 4096
 input_cost_per_token = 7e-8
 output_cost_per_token = 0
 litellm_provider = "novita"
-providers = ["novita", "huggingface"]
+providers = ["novita", "huggingface", "nebius"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2024-12"
-release_date = "2025-01-01"
+knowledge_cutoff = "2025-10"
+release_date = "2026-01-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 
 [models."qwen/qwen3-embedding-8b".pricing."huggingface"]
+input_cost_per_token = 1e-8
+[models."qwen/qwen3-embedding-8b".pricing."nebius"]
 input_cost_per_token = 1e-8
 [models."qwen/qwen3-embedding-8b".pricing."novita"]
 input_cost_per_token = 7e-8
@@ -49809,7 +50284,7 @@ max_tokens = 32768
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "novita"
-providers = ["novita", "huggingface", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn"]
+providers = ["novita", "huggingface", "nebius", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -49817,6 +50292,7 @@ knowledge_cutoff = "2024-12"
 release_date = "2024-12-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+reasoning_cost_per_token = 0.0000012
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
@@ -49825,6 +50301,11 @@ supports_tool_choice = true
 [models."qwen/qwen3-next-80b-a3b-thinking".pricing."huggingface"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.000002
+[models."qwen/qwen3-next-80b-a3b-thinking".pricing."nebius"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.0000012
+reasoning_cost_per_token = 0.0000012
 [models."qwen/qwen3-next-80b-a3b-thinking".pricing."novita"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
@@ -58660,7 +59141,7 @@ input_cost_per_token = 4.5e-7
 output_cost_per_token = 0.000002
 
 [models."zai-org/GLM-4.7-FP8"]
-display_name = "GLM 4.7 FP8"
+display_name = "GLM-4.7 (FP8)"
 mode = "chat"
 max_input_tokens = 202752
 max_output_tokens = 16384
@@ -58668,11 +59149,12 @@ max_tokens = 16384
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.000002
 litellm_provider = "gmi"
-providers = ["gmi", "chutes"]
+providers = ["gmi", "chutes", "nebius"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
-release_date = "2026-01-27"
+open_weights = false
+knowledge_cutoff = "2025-12"
+release_date = "2026-01-15"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 
@@ -58681,6 +59163,10 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."zai-org/GLM-4.7-FP8".pricing."gmi"]
 input_cost_per_token = 4e-7
+output_cost_per_token = 0.000002
+[models."zai-org/GLM-4.7-FP8".pricing."nebius"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 
 [models."zai-org/autoglm-phone-9b-multilingual"]
@@ -58796,7 +59282,7 @@ providers = ["novita", "abacus", "deepinfra", "nebius", "novita-ai", "siliconflo
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2024-05"
+knowledge_cutoff = "2025-06"
 release_date = "2025-07-28"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -58812,6 +59298,7 @@ output_cost_per_token = 0.0000022
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.5".pricing."nebius"]
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.5".pricing."novita"]
@@ -58828,7 +59315,7 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 
 [models."zai-org/glm-4.5-air"]
-display_name = "GLM 4.5 Air"
+display_name = "GLM-4.5-Air"
 model_family = "glm-air"
 mode = "chat"
 max_input_tokens = 131072
@@ -58841,8 +59328,8 @@ providers = ["novita", "chutes", "nano-gpt", "nebius", "novita-ai", "siliconflow
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2024-05"
-release_date = "2024-06-01"
+knowledge_cutoff = "2025-06"
+release_date = "2025-11-15"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
@@ -58856,6 +59343,7 @@ output_cost_per_token = 2.2e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 [models."zai-org/glm-4.5-air".pricing."nebius"]
+cache_read_input_token_cost = 2e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000012
 [models."zai-org/glm-4.5-air".pricing."novita"]
@@ -59026,11 +59514,11 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "novita"
-providers = ["novita", "abacus", "baseten", "berget", "deepinfra", "huggingface", "nano-gpt", "novita-ai", "siliconflow", "togetherai"]
+providers = ["novita", "abacus", "baseten", "berget", "deepinfra", "huggingface", "nano-gpt", "nebius", "novita-ai", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-07"
+knowledge_cutoff = "2025-01"
 release_date = "2025-06-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -59059,6 +59547,9 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.7".pricing."nano-gpt"]
 input_cost_per_token = 0.000001
+output_cost_per_token = 0.000002
+[models."zai-org/glm-4.7".pricing."nebius"]
+input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 [models."zai-org/glm-4.7".pricing."novita"]
 cache_read_input_token_cost = 1.1e-7
