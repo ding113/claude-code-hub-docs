@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.05"
-checksum = "6bb41e8b01e299af2f0cb7c558f4149fc0dc73dc45ebd7033edd8d5ecc99f72d"
+checksum = "103eb0949ff366c4d83ac02c3f5aec080a8f91ca7193839026a11565800f498a"
 sources = ["litellm", "modelsdev"]
-total_models = 2628
+total_models = 2630
 litellm_raw_models = 2488
-modelsdev_raw_models = 2439
+modelsdev_raw_models = 2444
 custom_models = 3
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -14374,7 +14374,7 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
 [models."claude-opus-4-5"]
-display_name = "Claude Opus 4.5 (latest)"
+display_name = "Claude Opus 4.5"
 model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
@@ -14587,7 +14587,7 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "opencode"
-providers = ["opencode", "anthropic", "azure_ai", "cloudflare-ai-gateway", "github-copilot", "vercel", "vertex_ai"]
+providers = ["opencode", "anthropic", "azure_ai", "cloudflare-ai-gateway", "firmware", "github-copilot", "poe", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -14644,6 +14644,14 @@ input_cost_per_token = 0.000005
 input_cost_per_token_above_200k_tokens = 0.00001
 output_cost_per_token = 0.000025
 output_cost_per_token_above_200k_tokens = 0.0000375
+[models."claude-opus-4-6".pricing."poe"]
+cache_read_input_token_cost = 4.3e-7
+input_cost_per_token = 0.0000042999999999999995
+output_cost_per_token = 0.000021
+[models."claude-opus-4-6".pricing."venice"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 0.000006
+output_cost_per_token = 0.00003
 [models."claude-opus-4-6".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
@@ -21936,11 +21944,36 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."eu.anthropic.claude-opus-4-5-20251101-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000015
+cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."eu.anthropic.claude-opus-4-5-20251101-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000625
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."eu.anthropic.claude-opus-4-6-v1"]
+display_name = "Claude Opus 4.6 (EU)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-05"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."eu.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -56125,7 +56158,7 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-5-20251101-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000015
+cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."us.anthropic.claude-opus-4-5-20251101-v1:0".pricing."bedrock_converse"]
@@ -56142,7 +56175,7 @@ max_input_tokens = 1000000
 max_output_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
-cache_read_input_token_cost = 0.0000015
+cache_read_input_token_cost = 5e-7
 litellm_provider = "amazon-bedrock"
 providers = ["amazon-bedrock"]
 supports_function_calling = true
@@ -56155,7 +56188,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."us.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000015
+cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
@@ -59464,6 +59497,28 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.00000265
+
+[models."zai-org-glm-4-7-flash"]
+display_name = "GLM 4.7 Flash"
+model_family = "glm-flash"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 32000
+input_cost_per_token = 1.25e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-29"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org-glm-4-7-flash".pricing."venice"]
+input_cost_per_token = 1.25e-7
+output_cost_per_token = 5e-7
 
 [models."zai-org/GLM-4-5-FP8"]
 display_name = "GLM 4.5 FP8"
