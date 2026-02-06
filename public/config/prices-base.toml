@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.06"
-checksum = "ece29827ab111490118642b5a56dc380a33498d111d39164e19f210d8254f19a"
+checksum = "95ec90b81db97920a82ce419f11ff203e85d825e5f9f05617c8115217b41f63f"
 sources = ["litellm", "modelsdev"]
-total_models = 2632
-litellm_raw_models = 2490
+total_models = 2633
+litellm_raw_models = 2495
 modelsdev_raw_models = 2444
 custom_models = 4
 
@@ -10580,28 +10580,55 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-05"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token_above_200k_tokens = 0.0000375
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+input_cost_per_token = 0.000005
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token = 0.000025
+output_cost_per_token_above_200k_tokens = 0.0000375
 
 [models."anthropic.claude-opus-4-6-v1:0"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.000005
@@ -11199,9 +11226,50 @@ cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000055
 
+[models."apac.anthropic.claude-opus-4-6-v1"]
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token_above_200k_tokens = 0.00004125
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."apac.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."apac.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token = 0.0000055
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token = 0.0000275
+output_cost_per_token_above_200k_tokens = 0.00004125
+
 [models."apac.anthropic.claude-opus-4-6-v1:0"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.0000055
@@ -14668,7 +14736,7 @@ output_cost_per_token_above_200k_tokens = 0.0000375
 
 [models."claude-opus-4-6-20260205"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.000005
@@ -14683,11 +14751,15 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 cache_creation_input_token_cost_above_1hr = 0.00001
-supports_assistant_prefill = true
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token_above_200k_tokens = 0.0000375
+supports_assistant_prefill = false
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
+tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4-6-20260205".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -14697,9 +14769,13 @@ search_context_size_medium = 0.01
 [models."claude-opus-4-6-20260205".pricing."anthropic"]
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
 cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.000001
 input_cost_per_token = 0.000005
+input_cost_per_token_above_200k_tokens = 0.00001
 output_cost_per_token = 0.000025
+output_cost_per_token_above_200k_tokens = 0.0000375
 
 [models."claude-opus-4-6@default"]
 display_name = "Claude Opus 4.6"
@@ -21978,28 +22054,55 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-05"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token_above_200k_tokens = 0.00004125
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."eu.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."eu.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."eu.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token = 0.0000055
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token = 0.0000275
+output_cost_per_token_above_200k_tokens = 0.00004125
 
 [models."eu.anthropic.claude-opus-4-6-v1:0"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.0000055
@@ -27770,28 +27873,55 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-05"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token_above_200k_tokens = 0.0000375
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."global.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."global.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."global.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_200k_tokens = 0.0000125
+cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.000001
+input_cost_per_token = 0.000005
+input_cost_per_token_above_200k_tokens = 0.00001
+output_cost_per_token = 0.000025
+output_cost_per_token_above_200k_tokens = 0.0000375
 
 [models."global.anthropic.claude-opus-4-6-v1:0"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.000005
@@ -56266,28 +56396,55 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-05"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token_above_200k_tokens = 0.00004125
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."us.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."us.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token = 0.0000055
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token = 0.0000275
+output_cost_per_token_above_200k_tokens = 0.00004125
 
 [models."us.anthropic.claude-opus-4-6-v1:0"]
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.0000055
