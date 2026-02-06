@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.06"
-checksum = "103eb0949ff366c4d83ac02c3f5aec080a8f91ca7193839026a11565800f498a"
+checksum = "7de3983d5d91632c43eab14ee0a90bdb3e2af4aca1126a99e381c3d13c23ccc9"
 sources = ["litellm", "modelsdev"]
-total_models = 2630
-litellm_raw_models = 2488
+total_models = 2631
+litellm_raw_models = 2490
 modelsdev_raw_models = 2444
 custom_models = 3
 
@@ -21052,16 +21052,35 @@ source = "modelsdev"
 
 [models."eleven_multilingual_v2"]
 mode = "audio_speech"
-litellm_provider = "runwayml"
-providers = ["runwayml"]
-source = "https://docs.dev.runwayml.com/guides/pricing/"
-input_cost_per_character = 3e-7
+litellm_provider = "elevenlabs"
+providers = ["elevenlabs", "runwayml"]
+source = "https://elevenlabs.io/pricing"
+input_cost_per_character = 0.00018
+supported_endpoints = ["/v1/audio/speech"]
 
 [models."eleven_multilingual_v2".metadata]
-comment = "Estimated cost based on standard TTS pricing. RunwayML uses ElevenLabs models."
+calculation = "$0.18/1000 characters (Scale plan pricing, 1 credit per character)"
+notes = "ElevenLabs Eleven Multilingual v2 - default TTS model with 29 languages support"
 
+[models."eleven_multilingual_v2".pricing."elevenlabs"]
+input_cost_per_character = 0.00018
 [models."eleven_multilingual_v2".pricing."runwayml"]
 input_cost_per_character = 3e-7
+
+[models."eleven_v3"]
+mode = "audio_speech"
+litellm_provider = "elevenlabs"
+providers = ["elevenlabs"]
+source = "https://elevenlabs.io/pricing"
+input_cost_per_character = 0.00018
+supported_endpoints = ["/v1/audio/speech"]
+
+[models."eleven_v3".metadata]
+calculation = "$0.18/1000 characters (Scale plan pricing, 1 credit per character)"
+notes = "ElevenLabs Eleven v3 - most expressive TTS model with 70+ languages and audio tags support"
+
+[models."eleven_v3".pricing."elevenlabs"]
+input_cost_per_character = 0.00018
 
 [models."embed-english-light-v2.0"]
 mode = "embedding"
