@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.10"
-checksum = "aa15bc11b21a124df682b2bd5780d9d4c15f229b8e6c5e21c85ed03c9f118e13"
+checksum = "a92bf3d38c3b709a60ffbe86975367ec438ae1589907479c1b98d058ed12e69d"
 sources = ["litellm", "modelsdev"]
-total_models = 2636
-litellm_raw_models = 2505
+total_models = 2645
+litellm_raw_models = 2522
 modelsdev_raw_models = 2512
 custom_models = 4
 
@@ -10943,6 +10943,22 @@ supports_tool_choice = true
 input_cost_per_token = 0.000008
 output_cost_per_token = 0.000024
 
+[models."ap-northeast-1/moonshotai.kimi-k2-thinking"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."ap-northeast-1/moonshotai.kimi-k2-thinking".pricing."bedrock"]
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+
 [models."ap-south-1/meta.llama3-70b-instruct-v1:0"]
 mode = "chat"
 max_input_tokens = 8192
@@ -10970,6 +10986,22 @@ providers = ["bedrock"]
 [models."ap-south-1/meta.llama3-8b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 3.6e-7
 output_cost_per_token = 7.2e-7
+
+[models."ap-south-1/moonshotai.kimi-k2-thinking"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 7.1e-7
+output_cost_per_token = 0.00000294
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."ap-south-1/moonshotai.kimi-k2-thinking".pricing."bedrock"]
+input_cost_per_token = 7.1e-7
+output_cost_per_token = 0.00000294
 
 [models."apac.amazon.nova-2-lite-v1:0"]
 mode = "chat"
@@ -12565,7 +12597,7 @@ output_cost_per_token = 0.000004
 cache_read_input_token_cost = 8e-8
 cache_creation_input_token_cost = 0.000001
 litellm_provider = "anthropic"
-providers = ["anthropic", "openrouter"]
+providers = ["anthropic", "openrouter", "perplexity"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -12769,7 +12801,7 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "anthropic"
-providers = ["anthropic", "vercel_ai_gateway"]
+providers = ["anthropic", "perplexity", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -24381,7 +24413,7 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 cache_read_input_token_cost = 3.75e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini"]
+providers = ["vertex_ai-language-models", "gemini", "perplexity"]
 supports_function_calling = true
 supports_vision = true
 supports_prompt_caching = true
@@ -24733,9 +24765,10 @@ input_cost_per_token = 0
 output_cost_per_token = 0
 cache_read_input_token_cost = 0
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini"]
+providers = ["vertex_ai-language-models", "gemini", "perplexity"]
 supports_function_calling = true
 supports_vision = true
+supports_reasoning = true
 supports_prompt_caching = true
 deprecation_date = "2025-12-02"
 supported_modalities = ["text", "image", "audio", "video"]
@@ -29733,7 +29766,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "302ai", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "replicate", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "perplexity", "replicate", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -29751,6 +29784,7 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-4o".pricing."302ai"]
 input_cost_per_token = 0.0000025
@@ -30104,7 +30138,7 @@ max_tokens = 16384
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "abacus", "azure-cognitive-services", "cloudflare-ai-gateway", "github_copilot", "github-models", "gmi", "helicone", "openai", "openrouter", "perplexity", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -30120,6 +30154,7 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-4o-mini".pricing."abacus"]
 input_cost_per_token = 1.5e-7
@@ -32235,7 +32270,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "chatgpt", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "gmi", "jiekou", "openai", "opencode", "openrouter", "poe", "vercel", "zenmux"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "chatgpt", "cloudflare-ai-gateway", "firmware", "github_copilot", "github-copilot", "gmi", "jiekou", "openai", "opencode", "openrouter", "perplexity", "poe", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -32253,6 +32288,7 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-5.2".pricing."302ai"]
 input_cost_per_token = 0.00000175
@@ -45204,6 +45240,41 @@ output_cost_per_token = 0.0000025
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 
+[models."moonshotai.kimi-k2-thinking"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."moonshotai.kimi-k2-thinking".pricing."bedrock/us-east-1"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+[models."moonshotai.kimi-k2-thinking".pricing."bedrock/us-west-2"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+
+[models."moonshotai.kimi-k2.5"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."moonshotai.kimi-k2.5".pricing."bedrock"]
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+
 [models."moonshotai/Kimi-Dev-72B"]
 display_name = "moonshotai/Kimi-Dev-72B"
 model_family = "kimi"
@@ -49010,6 +49081,13 @@ input_cost_per_request = 0.005
 input_cost_per_request = 0.005
 input_cost_per_token = 0
 output_cost_per_token = 2.8e-7
+
+[models."preset/pro-search"]
+mode = "responses"
+litellm_provider = "perplexity"
+providers = ["perplexity"]
+supports_preset = true
+supports_web_search = true
 
 [models."prime-intellect/intellect-3"]
 display_name = "INTELLECT 3"
@@ -53277,6 +53355,22 @@ providers = ["bedrock"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.00000101
 
+[models."sa-east-1/moonshotai.kimi-k2-thinking"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."sa-east-1/moonshotai.kimi-k2-thinking".pricing."bedrock"]
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
+
 [models."sample_spec"]
 mode = "one of: chat, embedding, completion, image_generation, audio_transcription, audio_speech, image_generation, moderation, rerank, search"
 max_input_tokens = "max input tokens, if the provider specifies it. if not default to max_tokens"
@@ -55865,6 +55959,22 @@ source = "modelsdev"
 [models."unsloth/gemma-3-4b-it".pricing."chutes"]
 input_cost_per_token = 1e-8
 output_cost_per_token = 3e-8
+
+[models."us-east-2/moonshotai.kimi-k2-thinking"]
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+
+[models."us-east-2/moonshotai.kimi-k2-thinking".pricing."bedrock"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
 
 [models."us-gov-east-1/amazon.nova-pro-v1:0"]
 mode = "chat"
@@ -59248,6 +59358,13 @@ supports_tool_choice = true
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 
+[models."xai/grok-2-1212"]
+mode = "responses"
+litellm_provider = "perplexity"
+providers = ["perplexity"]
+supports_reasoning = false
+supports_web_search = true
+
 [models."xai/grok-2-vision"]
 display_name = "Grok 2 Vision"
 model_family = "grok"
@@ -59276,6 +59393,13 @@ output_cost_per_token = 0.00001
 [models."xai/grok-2-vision".pricing."vercel_ai_gateway"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
+
+[models."xai/grok-2-vision-1212"]
+mode = "responses"
+litellm_provider = "perplexity"
+providers = ["perplexity"]
+supports_reasoning = false
+supports_web_search = true
 
 [models."xai/grok-3"]
 display_name = "Grok 3"
