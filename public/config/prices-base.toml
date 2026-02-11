@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.11"
-checksum = "1afe9cfa4d29920b72c5e5fa4335562e3f3486e55870028b100d154ea712690e"
+checksum = "7ea19cf8cd1f1d2c249ed7543517c301b3aa2c8137ca00d2e90c2bd33f1a4e47"
 sources = ["litellm", "modelsdev"]
-total_models = 2645
-litellm_raw_models = 2523
-modelsdev_raw_models = 2512
+total_models = 2650
+litellm_raw_models = 2525
+modelsdev_raw_models = 2521
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2260,11 +2260,12 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax", "302ai", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
+providers = ["minimax", "302ai", "cortecs", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
 open_weights = false
+knowledge_cutoff = "2024-11"
 release_date = "2025-10-26"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -2274,6 +2275,9 @@ supports_tool_choice = true
 [models."MiniMax-M2".pricing."302ai"]
 input_cost_per_token = 3.3e-7
 output_cost_per_token = 0.00000132
+[models."MiniMax-M2".pricing."cortecs"]
+input_cost_per_token = 3.9e-7
+output_cost_per_token = 0.00000157
 [models."MiniMax-M2".pricing."minimax"]
 cache_creation_input_token_cost = 3.75e-7
 cache_read_input_token_cost = 3e-8
@@ -21108,7 +21112,7 @@ output_cost_per_token = 0.0000011399999999999999
 display_name = "Agentic Chat (GPT-5.1)"
 model_family = "gpt"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -21125,7 +21129,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (GPT-5.2)"
 model_family = "gpt"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -21142,7 +21146,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (GPT-5.2 Codex)"
 model_family = "gpt-codex"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -21159,7 +21163,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (GPT-5 Codex)"
 model_family = "gpt-codex"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -21176,7 +21180,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (GPT-5 Mini)"
 model_family = "gpt-mini"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -28023,6 +28027,75 @@ cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 
+[models."glm-4p5"]
+display_name = "GLM 4.5"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+input_cost_per_token = 6.7e-7
+output_cost_per_token = 0.00000246
+litellm_provider = "cortecs"
+providers = ["cortecs"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-07-29"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-4p5".pricing."cortecs"]
+input_cost_per_token = 6.7e-7
+output_cost_per_token = 0.00000246
+
+[models."glm-4p5-air"]
+display_name = "GLM 4.5 Air"
+model_family = "glm-air"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 0.00000134
+litellm_provider = "cortecs"
+providers = ["cortecs"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-08-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-4p5-air".pricing."cortecs"]
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 0.00000134
+
+[models."glm-4p7"]
+display_name = "GLM 4.7"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 198000
+max_output_tokens = 198000
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.00000223
+litellm_provider = "cortecs"
+providers = ["cortecs"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2025-12-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-4p7".pricing."cortecs"]
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.00000223
+
 [models."global.amazon.nova-2-lite-v1:0"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -31035,7 +31108,7 @@ output_cost_per_token_priority = 0.00002
 display_name = "GPT-5.3 Codex"
 model_family = "gpt-codex"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
@@ -36845,7 +36918,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "302ai", "alibaba-cn", "azure", "azure-cognitive-services", "cortecs", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
+providers = ["moonshot", "302ai", "alibaba-cn", "azure", "azure-cognitive-services", "cortecs", "firmware", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -36874,6 +36947,9 @@ output_cost_per_token = 0.0000025
 [models."kimi-k2-thinking".pricing."cortecs"]
 input_cost_per_token = 6.56e-7
 output_cost_per_token = 0.0000027309999999999998
+[models."kimi-k2-thinking".pricing."firmware"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
 [models."kimi-k2-thinking".pricing."helicone"]
 input_cost_per_token = 4.8e-7
 output_cost_per_token = 0.000002
@@ -37005,7 +37081,7 @@ max_tokens = 262144
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "alibaba-cn", "moonshot", "moonshotai", "moonshotai-cn"]
+providers = ["azure_ai", "alibaba-cn", "firmware", "moonshot", "moonshotai", "moonshotai-cn"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -37021,6 +37097,9 @@ supports_tool_choice = true
 input_cost_per_token = 5.739999999999999e-7
 output_cost_per_token = 0.000002411
 [models."kimi-k2.5".pricing."azure_ai"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+[models."kimi-k2.5".pricing."firmware"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 [models."kimi-k2.5".pricing."moonshot"]
@@ -42202,6 +42281,28 @@ cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 
+[models."minimax-m2p1"]
+display_name = "MiniMax-M2.1"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 196000
+max_output_tokens = 196000
+input_cost_per_token = 3.4000000000000003e-7
+output_cost_per_token = 0.00000134
+litellm_provider = "cortecs"
+providers = ["cortecs"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-12-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax-m2p1".pricing."cortecs"]
+input_cost_per_token = 3.4000000000000003e-7
+output_cost_per_token = 0.00000134
+
 [models."minimax.minimax-m2"]
 display_name = "MiniMax M2"
 model_family = "minimax"
@@ -45244,13 +45345,16 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 max_tokens = 262144
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000025
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_reasoning = true
 
+[models."moonshotai.kimi-k2-thinking".pricing."bedrock"]
+input_cost_per_token = 7.3e-7
+output_cost_per_token = 0.00000303
 [models."moonshotai.kimi-k2-thinking".pricing."bedrock/us-east-1"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
@@ -52659,12 +52763,11 @@ output_cost_per_token = 0.00001
 display_name = "Qwen3 Max"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 262144
+max_input_tokens = 258048
 max_output_tokens = 65536
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.000006
-litellm_provider = "alibaba"
-providers = ["alibaba", "abacus", "alibaba-cn", "iflowcn"]
+max_tokens = 65536
+litellm_provider = "dashscope"
+providers = ["dashscope", "abacus", "alibaba", "alibaba-cn", "iflowcn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -52672,7 +52775,9 @@ knowledge_cutoff = "2025-04"
 release_date = "2025-09-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.alibabacloud.com/help/en/model-studio/models"
+supports_tool_choice = true
+tiered_pricing = [{ input_cost_per_token = 0.0000012, output_cost_per_token = 0.000006, range = [0, 32000] }, { input_cost_per_token = 0.0000024, output_cost_per_token = 0.000012, range = [32000, 128000] }, { input_cost_per_token = 0.000003, output_cost_per_token = 0.000015, range = [128000, 252000] }]
 
 [models."qwen3-max".pricing."abacus"]
 input_cost_per_token = 0.0000012
@@ -60196,6 +60301,27 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."zai-glm-4-7-flash"]
+display_name = "Z.AI GLM-4.7 Flash"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 40000
+input_cost_per_token = 7e-8
+output_cost_per_token = 4.0000000000000003e-7
+litellm_provider = "firmware"
+providers = ["firmware"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "1970-01-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-glm-4-7-flash".pricing."firmware"]
+input_cost_per_token = 7e-8
+output_cost_per_token = 4.0000000000000003e-7
+
 [models."zai-glm-4.6"]
 mode = "chat"
 max_input_tokens = 128000
@@ -60224,11 +60350,11 @@ max_tokens = 128000
 input_cost_per_token = 0.00000225
 output_cost_per_token = 0.00000275
 litellm_provider = "cerebras"
-providers = ["cerebras"]
+providers = ["cerebras", "firmware"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-01-10"
+release_date = "1970-01-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.cerebras.ai/pricing"
@@ -60237,6 +60363,9 @@ supports_tool_choice = true
 [models."zai-glm-4.7".pricing."cerebras"]
 input_cost_per_token = 0.00000225
 output_cost_per_token = 0.00000275
+[models."zai-glm-4.7".pricing."firmware"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000022
 
 [models."zai-org-glm-4-7"]
 display_name = "GLM 4.7"
