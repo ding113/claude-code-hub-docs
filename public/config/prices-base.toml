@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.11"
-checksum = "dd495efc33d5eeddeb222453332b616be721122b0c3d3c1c28153435b3a755c0"
+checksum = "027e97c0ca079333b3aa980e43ac5718b5a987b6aeea3ef6562fd1baff7db21c"
 sources = ["litellm", "modelsdev"]
-total_models = 2659
+total_models = 2660
 litellm_raw_models = 2525
-modelsdev_raw_models = 2542
+modelsdev_raw_models = 2544
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -28139,6 +28139,15 @@ release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."glm-5".pricing."zai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+[models."glm-5".pricing."zhipuai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 
 [models."global.amazon.nova-2-lite-v1:0"]
 mode = "chat"
@@ -60792,10 +60801,11 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "huggingface"
-providers = ["huggingface", "friendli"]
+providers = ["huggingface", "friendli", "nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
+knowledge_cutoff = "2025-06"
 release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -60808,6 +60818,9 @@ output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
+[models."zai-org/GLM-5".pricing."nano-gpt"]
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
 
 [models."zai-org/autoglm-phone-9b-multilingual"]
 display_name = "AutoGLM-Phone-9B-Multilingual"
@@ -61248,6 +61261,29 @@ output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.7-maas".pricing."vertex_ai"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
+
+[models."zai-org/glm-5:thinking"]
+display_name = "GLM 5 Thinking"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-06"
+release_date = "2025-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/glm-5:thinking".pricing."nano-gpt"]
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
 
 [models."zai.glm-4-7"]
 display_name = "GLM-4.7"
