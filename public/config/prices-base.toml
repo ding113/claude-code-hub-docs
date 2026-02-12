@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.02.11"
-checksum = "04800f57dbd97af674f84ec0371e9ed56fd221546e309b022714aa6bd2d3fb4e"
+version = "2026.02.12"
+checksum = "fdca809ac8562c43b668ea25c56e0e23d8ea8fc78943eec3db4c846db3033263"
 sources = ["litellm", "modelsdev"]
-total_models = 2660
+total_models = 2661
 litellm_raw_models = 2525
-modelsdev_raw_models = 2544
+modelsdev_raw_models = 2546
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -35534,6 +35534,29 @@ source = "modelsdev"
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000021899999999999998
 
+[models."hf:nvidia/Kimi-K2-5-NVFP4"]
+display_name = "Kimi K2.5 (NVFP4)"
+model_family = "kimi"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.0000021899999999999998
+litellm_provider = "synthetic"
+providers = ["synthetic"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-01"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."hf:nvidia/Kimi-K2-5-NVFP4".pricing."synthetic"]
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.0000021899999999999998
+
 [models."hf:openai/gpt-oss-120b"]
 display_name = "GPT OSS 120B"
 model_family = "gpt-oss"
@@ -35555,29 +35578,6 @@ source = "modelsdev"
 [models."hf:openai/gpt-oss-120b".pricing."synthetic"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
-
-[models."hf:zai-org/GLM-4-5"]
-display_name = "GLM 4.5"
-model_family = "glm"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 96000
-input_cost_per_token = 5.5e-7
-output_cost_per_token = 0.0000021899999999999998
-litellm_provider = "synthetic"
-providers = ["synthetic"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."hf:zai-org/GLM-4-5".pricing."synthetic"]
-input_cost_per_token = 5.5e-7
-output_cost_per_token = 0.0000021899999999999998
 
 [models."hf:zai-org/GLM-4-6"]
 display_name = "GLM 4.6"
@@ -49238,22 +49238,6 @@ input_cost_per_character = 0.00005
 [models."playai-tts".pricing."groq"]
 input_cost_per_character = 0.00005
 
-[models."pony-alpha"]
-display_name = "Pony Alpha"
-model_family = "pony"
-mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 131000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-02-06"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."pplx-70b-chat"]
 mode = "chat"
 max_input_tokens = 4096
@@ -60447,6 +60431,30 @@ cache_read_input_token_cost = 0
 input_cost_per_token = 7e-8
 output_cost_per_token = 4e-7
 
+[models."z-ai/glm-5"]
+display_name = "GLM-5"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 202752
+max_output_tokens = 131000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-5".pricing."openrouter"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+
 [models."z-ai/glm4-7"]
 display_name = "GLM-4.7"
 model_family = "glm"
@@ -60576,6 +60584,30 @@ source = "modelsdev"
 [models."zai-org-glm-4-7-flash".pricing."venice"]
 input_cost_per_token = 1.25e-7
 output_cost_per_token = 5e-7
+
+[models."zai-org-glm-5"]
+display_name = "GLM 5"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 198000
+max_output_tokens = 49500
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org-glm-5".pricing."venice"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 
 [models."zai-org/GLM-4-5-FP8"]
 display_name = "GLM 4.5 FP8"
