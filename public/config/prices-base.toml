@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.12"
-checksum = "4841ea63e2e8b31d13bddb71a444be537994f96c6e920ae2ae81031200e5370f"
+checksum = "0ad7280e1ba633610b1358ac074e08e07c6684846db901562a1c1633a596b373"
 sources = ["litellm", "modelsdev"]
-total_models = 2666
+total_models = 2670
 litellm_raw_models = 2527
-modelsdev_raw_models = 2552
+modelsdev_raw_models = 2556
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -31328,6 +31328,31 @@ cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 
+[models."gpt-5-3-codex-spark"]
+display_name = "GPT-5.3 Codex Spark"
+model_family = "gpt-codex-spark"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 32000
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+cache_read_input_token_cost = 1.75e-7
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-3-codex-spark".pricing."openai"]
+cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+
 [models."gpt-5-chat"]
 display_name = "GPT-5-Chat"
 model_family = "gpt-codex"
@@ -42686,6 +42711,28 @@ source = "modelsdev"
 
 [models."minimax/minimax-m2-5".pricing."novita-ai"]
 cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."minimax/minimax-m2-5-official"]
+display_name = "MiniMax M2.5"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 204800
+max_output_tokens = 131072
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax/minimax-m2-5-official".pricing."nano-gpt"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -60307,28 +60354,6 @@ source = "modelsdev"
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000018000000000000001
 
-[models."z-ai/glm-4-6:thinking"]
-display_name = "GLM 4.6 Thinking"
-model_family = "glm"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 8192
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000002
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2025-04-07"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."z-ai/glm-4-6:thinking".pricing."nano-gpt"]
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000002
-
 [models."z-ai/glm-4-6v"]
 display_name = "GLM 4.6V"
 mode = "chat"
@@ -60443,7 +60468,7 @@ max_tokens = 131000
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.00000175
 litellm_provider = "openrouter"
-providers = ["openrouter", "nano-gpt", "zenmux"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -60455,9 +60480,6 @@ supported_output_modalities = ["text"]
 source = "https://openrouter.ai/z-ai/glm-4.6"
 supports_tool_choice = true
 
-[models."z-ai/glm-4.6".pricing."nano-gpt"]
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000002
 [models."z-ai/glm-4.6".pricing."openrouter"]
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.00000175
@@ -61029,6 +61051,28 @@ source = "modelsdev"
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 
+[models."zai-org/glm-4-6:thinking"]
+display_name = "GLM 4.6 Thinking"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000002
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-04-07"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/glm-4-6:thinking".pricing."nano-gpt"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000002
+
 [models."zai-org/glm-4-7:thinking"]
 display_name = "GLM 4.7 Thinking"
 model_family = "glm"
@@ -61205,7 +61249,7 @@ input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "novita"
-providers = ["novita", "abacus", "baseten", "io-net", "novita-ai", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["novita", "abacus", "baseten", "io-net", "nano-gpt", "novita-ai", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -61229,6 +61273,9 @@ output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.00000175
+[models."zai-org/glm-4.6".pricing."nano-gpt"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000002
 [models."zai-org/glm-4.6".pricing."novita"]
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 5.5e-7
@@ -61423,6 +61470,52 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 
+[models."zai-org/glm-5-original"]
+display_name = "GLM 5 Original"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-06"
+release_date = "2026-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/glm-5-original".pricing."nano-gpt"]
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
+
+[models."zai-org/glm-5-original:thinking"]
+display_name = "GLM 5 Original Thinking"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-06"
+release_date = "2026-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/glm-5-original:thinking".pricing."nano-gpt"]
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.00000256
+
 [models."zai-org/glm-5:thinking"]
 display_name = "GLM 5 Thinking"
 model_family = "glm"
@@ -61437,7 +61530,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-06"
-release_date = "2025-02-11"
+release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
