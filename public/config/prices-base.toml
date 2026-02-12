@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.12"
-checksum = "83553d5e3e023038a928c964516b6ee09931afc6555111cd58bc35a889c5f410"
+checksum = "7d7b3f3f4d7c4dc21c466e1cc475448623178f503852711279d1344882428a38"
 sources = ["litellm", "modelsdev"]
-total_models = 2670
+total_models = 2671
 litellm_raw_models = 2527
-modelsdev_raw_models = 2557
+modelsdev_raw_models = 2566
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2378,7 +2378,7 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax"]
+providers = ["minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -2392,6 +2392,10 @@ supports_tool_choice = true
 
 [models."MiniMax-M2.5".pricing."minimax"]
 cache_creation_input_token_cost = 3.75e-7
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."MiniMax-M2.5".pricing."minimax-cn"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -6129,6 +6133,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
+
+[models."accounts/fireworks/models/glm-5"]
+display_name = "GLM 5"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 202752
+max_output_tokens = 131072
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+cache_read_input_token_cost = 5e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/models/glm-5".pricing."fireworks-ai"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 
 [models."accounts/fireworks/models/gpt-oss-120b"]
 display_name = "GPT OSS 120B"
@@ -42707,7 +42735,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 litellm_provider = "novita-ai"
-providers = ["novita-ai"]
+providers = ["novita-ai", "nano-gpt", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -42716,7 +42744,14 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."minimax/minimax-m2-5".pricing."nano-gpt"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2-5".pricing."novita-ai"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."minimax/minimax-m2-5".pricing."openrouter"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -59394,6 +59429,8 @@ input_cost_per_token = 6.6e-7
 output_cost_per_token = 0.000001
 
 [models."writer.palmyra-x4-v1:0"]
+display_name = "Palmyra X4"
+model_family = "palmyra"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 8192
@@ -59401,15 +59438,25 @@ max_tokens = 8192
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_reasoning = true
 supports_pdf_input = true
+open_weights = false
+release_date = "2025-04-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 
+[models."writer.palmyra-x4-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
 [models."writer.palmyra-x4-v1:0".pricing."bedrock_converse"]
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 
 [models."writer.palmyra-x5-v1:0"]
+display_name = "Palmyra X5"
+model_family = "palmyra"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 8192
@@ -59417,10 +59464,18 @@ max_tokens = 8192
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000006
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_reasoning = true
 supports_pdf_input = true
+open_weights = false
+release_date = "2025-04-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 
+[models."writer.palmyra-x5-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000006
 [models."writer.palmyra-x5-v1:0".pricing."bedrock_converse"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000006
