@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.13"
-checksum = "c9750ac1d3ba7ab49067a3b4e5b54391418a28fdb40cfe759bd2be81499bd7a7"
+checksum = "1fb37563f7da8559c1b13094cd670fc6f5e6acf62b80252a55af70e0f1753b1c"
 sources = ["litellm", "modelsdev"]
 total_models = 2666
 litellm_raw_models = 2521
-modelsdev_raw_models = 2567
+modelsdev_raw_models = 2568
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -15198,11 +15198,11 @@ input_cost_per_token = 0.0000026
 output_cost_per_token = 0.000013
 
 [models."claude-sonnet-3-7"]
-display_name = "Claude Sonnet 3.7"
+display_name = "Claude-Sonnet-3.7"
 model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 196608
-max_output_tokens = 32768
+max_output_tokens = 128000
 input_cost_per_token = 0.0000026
 output_cost_per_token = 0.000013
 cache_read_input_token_cost = 2.6e-7
@@ -31300,7 +31300,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
 [models."gpt-5-2-instant"]
-display_name = "gpt-5.2-instant"
+display_name = "GPT-5.2-Instant"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 16384
@@ -33016,7 +33016,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 
 [models."gpt-5.2-pro"]
-display_name = "gpt-5.2-pro"
+display_name = "GPT-5.2-Pro"
 model_family = "gpt-pro"
 mode = "responses"
 max_input_tokens = 272000
@@ -60606,19 +60606,20 @@ input_cost_per_token = 7e-8
 output_cost_per_token = 4e-7
 
 [models."z-ai/glm-5"]
-display_name = "GLM-5"
+display_name = "GLM 5"
 model_family = "glm"
 mode = "chat"
-max_input_tokens = 202752
-max_output_tokens = 131000
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.0000032000000000000003
-cache_read_input_token_cost = 2.0000000000000002e-7
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.0000026
+cache_read_input_token_cost = 1.4e-7
+litellm_provider = "zenmux"
+providers = ["zenmux", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
 release_date = "2026-02-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -60628,6 +60629,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
+[models."z-ai/glm-5".pricing."zenmux"]
+cache_read_input_token_cost = 1.4e-7
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.0000026
 
 [models."z-ai/glm4-7"]
 display_name = "GLM-4.7"
