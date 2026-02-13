@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.13"
-checksum = "faf5c21af82ca74a539976b448151ead602100acbe4605c9dc1732ea7d4d6546"
+checksum = "07b20482156512a188bb339929c74dcafd3af05ceb56f7591db48654397f8684"
 sources = ["litellm", "modelsdev"]
-total_models = 2699
+total_models = 2698
 litellm_raw_models = 2566
-modelsdev_raw_models = 2569
+modelsdev_raw_models = 2561
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3423,6 +3423,28 @@ source = "modelsdev"
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 
+[models."Pro/zai-org/GLM-5"]
+display_name = "Pro/zai-org/GLM-5"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 205000
+max_output_tokens = 205000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+litellm_provider = "siliconflow-cn"
+providers = ["siliconflow-cn"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Pro/zai-org/GLM-5".pricing."siliconflow-cn"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+
 [models."QwQ-32B"]
 display_name = "QwQ 32B"
 model_family = "qwen"
@@ -3967,7 +3989,7 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 6e-7
 
 [models."Qwen/Qwen3-30B-A3B"]
-display_name = "Qwen/Qwen3-30B-A3B"
+display_name = "Qwen3 30B A3B"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 40960
@@ -3976,11 +3998,11 @@ max_tokens = 40960
 input_cost_per_token = 8e-8
 output_cost_per_token = 2.9e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "chutes", "siliconflow", "siliconflow-cn"]
+providers = ["deepinfra", "chutes"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2025-04-30"
+open_weights = true
+release_date = "2025-12-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_tool_choice = true
@@ -3991,12 +4013,6 @@ output_cost_per_token = 2.2e-7
 [models."Qwen/Qwen3-30B-A3B".pricing."deepinfra"]
 input_cost_per_token = 8e-8
 output_cost_per_token = 2.9e-7
-[models."Qwen/Qwen3-30B-A3B".pricing."siliconflow"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 4.5000000000000003e-7
-[models."Qwen/Qwen3-30B-A3B".pricing."siliconflow-cn"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 4.5000000000000003e-7
 
 [models."Qwen/Qwen3-30B-A3B-Instruct-2507"]
 display_name = "Qwen3 30B A3B Instruct 2507"
@@ -4672,31 +4688,6 @@ supports_tool_choice = false
 [models."Sao10K/L3.3-70B-Euryale-v2.3".pricing."deepinfra"]
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 7.5e-7
-
-[models."THUDM/GLM-4-1V-9B-Thinking"]
-display_name = "THUDM/GLM-4.1V-9B-Thinking"
-model_family = "glm"
-mode = "chat"
-max_input_tokens = 66000
-max_output_tokens = 66000
-input_cost_per_token = 3.5e-8
-output_cost_per_token = 1.4e-7
-litellm_provider = "siliconflow"
-providers = ["siliconflow", "siliconflow-cn"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2025-07-04"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."THUDM/GLM-4-1V-9B-Thinking".pricing."siliconflow"]
-input_cost_per_token = 3.5e-8
-output_cost_per_token = 1.4e-7
-[models."THUDM/GLM-4-1V-9B-Thinking".pricing."siliconflow-cn"]
-input_cost_per_token = 3.5e-8
-output_cost_per_token = 1.4e-7
 
 [models."THUDM/GLM-4-32B-0414"]
 display_name = "THUDM/GLM-4-32B-0414"
@@ -18718,21 +18709,11 @@ input_cost_per_token = 1.8e-7
 output_cost_per_token = 1.8e-7
 
 [models."deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"]
-display_name = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
-model_family = "qwen"
 mode = "chat"
-max_input_tokens = 33000
-max_output_tokens = 16000
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 litellm_provider = "nscale"
-providers = ["nscale", "siliconflow", "siliconflow-cn"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2025-01-20"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
+providers = ["nscale"]
 source = "https://docs.nscale.com/docs/inference/serverless-models/current#chat-models"
 
 [models."deepseek-ai/DeepSeek-R1-Distill-Qwen-7B".metadata]
@@ -18741,12 +18722,6 @@ notes = "Pricing listed as $0.40/1M tokens total. Assumed 50/50 split for input/
 [models."deepseek-ai/DeepSeek-R1-Distill-Qwen-7B".pricing."nscale"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
-[models."deepseek-ai/DeepSeek-R1-Distill-Qwen-7B".pricing."siliconflow"]
-input_cost_per_token = 5.0000000000000004e-8
-output_cost_per_token = 5.0000000000000004e-8
-[models."deepseek-ai/DeepSeek-R1-Distill-Qwen-7B".pricing."siliconflow-cn"]
-input_cost_per_token = 5.0000000000000004e-8
-output_cost_per_token = 5.0000000000000004e-8
 
 [models."deepseek-ai/DeepSeek-R1-TEE"]
 display_name = "DeepSeek R1 TEE"
@@ -19227,7 +19202,7 @@ input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 
 [models."deepseek-ai/deepseek-v3"]
-display_name = "DeepSeek V3"
+display_name = "deepseek-ai/DeepSeek-V3"
 model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 65536
@@ -19236,12 +19211,12 @@ max_tokens = 8192
 input_cost_per_token = 0.00000145
 output_cost_per_token = 0.00000145
 litellm_provider = "replicate"
-providers = ["replicate", "chutes", "nebius", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["replicate", "chutes", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2024-04"
-release_date = "2024-05-07"
+knowledge_cutoff = "2024-07"
+release_date = "2024-12-26"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
@@ -19249,9 +19224,6 @@ supports_system_messages = true
 [models."deepseek-ai/deepseek-v3".pricing."chutes"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-[models."deepseek-ai/deepseek-v3".pricing."nebius"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000015
 [models."deepseek-ai/deepseek-v3".pricing."replicate"]
 input_cost_per_token = 0.00000145
 output_cost_per_token = 0.00000145
@@ -40668,7 +40640,7 @@ max_tokens = 128000
 input_cost_per_token = 7.1e-7
 output_cost_per_token = 7.1e-7
 litellm_provider = "watsonx"
-providers = ["watsonx", "berget", "friendli", "io-net", "nano-gpt", "novita-ai", "wandb"]
+providers = ["watsonx", "berget", "friendli", "io-net", "nano-gpt", "nebius", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -40692,6 +40664,10 @@ output_cost_per_token = 3.8e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."nano-gpt"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
+[models."meta-llama/llama-3-3-70b-instruct".pricing."nebius"]
+cache_read_input_token_cost = 1.2999999999999999e-8
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."novita-ai"]
 input_cost_per_token = 1.35e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -40701,30 +40677,6 @@ output_cost_per_token = 7.1e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."watsonx"]
 input_cost_per_token = 7.1e-7
 output_cost_per_token = 7.1e-7
-
-[models."meta-llama/llama-3-3-70b-instruct-base"]
-display_name = "Llama-3.3-70B-Instruct"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 8192
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 4.0000000000000003e-7
-cache_read_input_token_cost = 1.2999999999999999e-8
-litellm_provider = "nebius"
-providers = ["nebius"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-08"
-release_date = "2025-12-05"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."meta-llama/llama-3-3-70b-instruct-base".pricing."nebius"]
-cache_read_input_token_cost = 1.2999999999999999e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 4.0000000000000003e-7
 
 [models."meta-llama/llama-3-3-70b-instruct-fast"]
 display_name = "Llama-3.3-70B-Instruct (Fast)"
@@ -40892,30 +40844,6 @@ supports_tool_choice = true
 [models."meta-llama/llama-3.3-70b-instruct".pricing."novita"]
 input_cost_per_token = 1.35e-7
 output_cost_per_token = 4e-7
-
-[models."meta-llama/llama-3_1-405b-instruct"]
-display_name = "Llama-3.1-405B-Instruct"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 8192
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
-cache_read_input_token_cost = 1.0000000000000001e-7
-litellm_provider = "nebius"
-providers = ["nebius"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-12"
-release_date = "2025-01-20"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."meta-llama/llama-3_1-405b-instruct".pricing."nebius"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
 
 [models."meta-llama/llama-4-maverick"]
 display_name = "Llama 4 Maverick"
@@ -42988,6 +42916,30 @@ cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 
+[models."minimax-m25"]
+display_name = "MiniMax M2.5"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 198000
+max_output_tokens = 32000
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
+cache_read_input_token_cost = 4e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax-m25".pricing."venice"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
+
 [models."minimax-m2p1"]
 display_name = "MiniMax-M2.1"
 model_family = "minimax"
@@ -43191,16 +43143,17 @@ display_name = "MiniMax M2.5"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 204800
-max_output_tokens = 131100
+max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
-litellm_provider = "novita-ai"
-providers = ["novita-ai", "nano-gpt", "openrouter"]
+litellm_provider = "zenmux"
+providers = ["zenmux", "nano-gpt", "novita-ai", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-02-12"
+knowledge_cutoff = "2025-01-01"
+release_date = "2026-02-13"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -43216,6 +43169,34 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
+[models."minimax/minimax-m2-5".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."minimax/minimax-m2-5-lightning"]
+display_name = "MiniMax: MiniMax M2.5 highspeed"
+mode = "chat"
+max_input_tokens = 204800
+max_output_tokens = 131072
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000048
+cache_read_input_token_cost = 6e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01-01"
+release_date = "2026-02-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax/minimax-m2-5-lightning".pricing."zenmux"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000048
 
 [models."minimax/minimax-m2-5-official"]
 display_name = "MiniMax M2.5"
@@ -43306,7 +43287,7 @@ max_tokens = 40000
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000022
 litellm_provider = "novita"
-providers = ["novita", "jiekou", "novita-ai", "siliconflow", "siliconflow-cn"]
+providers = ["novita", "jiekou", "novita-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -43326,12 +43307,6 @@ output_cost_per_token = 0.0000022
 [models."minimaxai/minimax-m1-80k".pricing."novita-ai"]
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000022
-[models."minimaxai/minimax-m1-80k".pricing."siliconflow"]
-input_cost_per_token = 5.5e-7
-output_cost_per_token = 0.0000022
-[models."minimaxai/minimax-m1-80k".pricing."siliconflow-cn"]
-input_cost_per_token = 5.5e-7
-output_cost_per_token = 0.0000022
 
 [models."minimaxai/minimax-m2"]
 display_name = "MiniMax-M2"
@@ -43340,7 +43315,7 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 16384
 litellm_provider = "nvidia"
-providers = ["nvidia", "deepinfra", "siliconflow", "siliconflow-cn"]
+providers = ["nvidia", "deepinfra"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -43353,12 +43328,6 @@ source = "modelsdev"
 [models."minimaxai/minimax-m2".pricing."deepinfra"]
 input_cost_per_token = 2.54e-7
 output_cost_per_token = 0.00000102
-[models."minimaxai/minimax-m2".pricing."siliconflow"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
-[models."minimaxai/minimax-m2".pricing."siliconflow-cn"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
 
 [models."minimaxai/minimax-m2-maas"]
 mode = "chat"
@@ -46180,31 +46149,6 @@ output_cost_per_token = 0.000003
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 
-[models."moonshotai/Kimi-Dev-72B"]
-display_name = "moonshotai/Kimi-Dev-72B"
-model_family = "kimi"
-mode = "chat"
-max_input_tokens = 131000
-max_output_tokens = 131000
-input_cost_per_token = 2.9e-7
-output_cost_per_token = 0.00000115
-litellm_provider = "siliconflow"
-providers = ["siliconflow", "siliconflow-cn"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2025-06-19"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."moonshotai/Kimi-Dev-72B".pricing."siliconflow"]
-input_cost_per_token = 2.9e-7
-output_cost_per_token = 0.00000115
-[models."moonshotai/Kimi-Dev-72B".pricing."siliconflow-cn"]
-input_cost_per_token = 2.9e-7
-output_cost_per_token = 0.00000115
-
 [models."moonshotai/Kimi-K2-5-TEE"]
 display_name = "Kimi K2.5 TEE"
 model_family = "kimi"
@@ -46324,7 +46268,7 @@ max_tokens = 256000
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000028
 litellm_provider = "together_ai"
-providers = ["together_ai", "baseten", "deepinfra", "huggingface", "jiekou", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
+providers = ["together_ai", "baseten", "deepinfra", "huggingface", "jiekou", "nano-gpt", "nebius", "novita-ai", "nvidia", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -46334,6 +46278,7 @@ release_date = "2026-01-27"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "https://www.together.ai/models/kimi-k2-5"
+reasoning_cost_per_token = 0.0000025
 supports_tool_choice = true
 
 [models."moonshotai/Kimi-K2.5".pricing."baseten"]
@@ -46352,6 +46297,11 @@ output_cost_per_token = 0.000003
 [models."moonshotai/Kimi-K2.5".pricing."nano-gpt"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000018999999999999998
+[models."moonshotai/Kimi-K2.5".pricing."nebius"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+reasoning_cost_per_token = 0.0000025
 [models."moonshotai/Kimi-K2.5".pricing."novita-ai"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
@@ -55644,30 +55594,30 @@ output_cost_per_token = 0
 input_cost_per_pixel = 4.359e-8
 output_cost_per_pixel = 0
 
-[models."stepfun-ai/step3"]
-display_name = "stepfun-ai/step3"
+[models."stepfun-ai/Step-3-5-Flash"]
+display_name = "stepfun-ai/Step-3.5-Flash"
 model_family = "step"
 mode = "chat"
-max_input_tokens = 66000
-max_output_tokens = 66000
-input_cost_per_token = 5.699999999999999e-7
-output_cost_per_token = 0.00000142
+max_input_tokens = 262000
+max_output_tokens = 262000
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 litellm_provider = "siliconflow"
 providers = ["siliconflow", "siliconflow-cn"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = false
-release_date = "2025-08-06"
-supported_modalities = ["text", "image"]
+release_date = "2026-02-11"
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."stepfun-ai/step3".pricing."siliconflow"]
-input_cost_per_token = 5.699999999999999e-7
-output_cost_per_token = 0.00000142
-[models."stepfun-ai/step3".pricing."siliconflow-cn"]
-input_cost_per_token = 5.699999999999999e-7
-output_cost_per_token = 0.00000142
+[models."stepfun-ai/Step-3-5-Flash".pricing."siliconflow"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+[models."stepfun-ai/Step-3-5-Flash".pricing."siliconflow-cn"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 
 [models."stepfun/step-3"]
 display_name = "Step-3"
@@ -62022,7 +61972,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "novita"
-providers = ["novita", "abacus", "baseten", "berget", "deepinfra", "huggingface", "jiekou", "nano-gpt", "nebius", "novita-ai", "siliconflow", "togetherai"]
+providers = ["novita", "abacus", "baseten", "berget", "deepinfra", "huggingface", "jiekou", "nano-gpt", "novita-ai", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -62058,9 +62008,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.7".pricing."nano-gpt"]
 input_cost_per_token = 0.000001
-output_cost_per_token = 0.000002
-[models."zai-org/glm-4.7".pricing."nebius"]
-input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 [models."zai-org/glm-4.7".pricing."novita"]
 cache_read_input_token_cost = 1.1e-7
@@ -62116,11 +62063,11 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "novita-ai"
-providers = ["novita-ai", "friendli", "huggingface", "nano-gpt"]
+providers = ["novita-ai", "friendli", "huggingface", "nano-gpt", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-06"
+knowledge_cutoff = "2025-11"
 release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -62138,6 +62085,12 @@ input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.00000256
 [models."zai-org/glm-5".pricing."novita-ai"]
 cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+[models."zai-org/glm-5".pricing."siliconflow"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+[models."zai-org/glm-5".pricing."togetherai"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 
