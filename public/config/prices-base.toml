@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.14"
-checksum = "ec38ed1a42bc30314d5d63ccb2446c96ecff806b2c3a0caa1f5400a521112eff"
+checksum = "3a71618568196fdcf5f111019236e256cd0c262b76784f8016399c205526885f"
 sources = ["litellm", "modelsdev"]
 total_models = 2701
 litellm_raw_models = 2566
-modelsdev_raw_models = 2568
+modelsdev_raw_models = 2570
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2378,7 +2378,7 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 cache_creation_input_token_cost = 3.75e-7
 litellm_provider = "minimax"
-providers = ["minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan"]
+providers = ["minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -2397,6 +2397,10 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMax-M2.5".pricing."minimax-cn"]
 cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."MiniMax-M2.5".pricing."opencode"]
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -28753,15 +28757,20 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "zai"
-providers = ["zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
+knowledge_cutoff = "2025-04"
 release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."glm-5".pricing."opencode"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 [models."glm-5".pricing."zai"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
@@ -47462,7 +47471,7 @@ providers = ["nova"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-12-03"
+release_date = "2025-12-03"
 supported_modalities = ["text", "image", "video", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
