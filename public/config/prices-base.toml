@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.02.13"
-checksum = "6419ce8399587874c928f9b34475d982d3db11d8c8f1a5bd1f84a32f47939810"
+version = "2026.02.14"
+checksum = "ec38ed1a42bc30314d5d63ccb2446c96ecff806b2c3a0caa1f5400a521112eff"
 sources = ["litellm", "modelsdev"]
-total_models = 2700
+total_models = 2701
 litellm_raw_models = 2566
-modelsdev_raw_models = 2567
+modelsdev_raw_models = 2568
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6953,7 +6953,7 @@ max_input_tokens = 200000
 max_output_tokens = 200000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-cache_read_input_token_cost = 1.5e-7
+cache_read_input_token_cost = 3e-8
 litellm_provider = "fireworks-ai"
 providers = ["fireworks-ai"]
 supports_function_calling = true
@@ -6965,7 +6965,31 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."accounts/fireworks/models/minimax-m2p1".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.5e-7
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."accounts/fireworks/models/minimax-m2p5"]
+display_name = "MiniMax-M2.5"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 196608
+max_output_tokens = 196608
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 3e-8
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/models/minimax-m2p5".pricing."fireworks-ai"]
+cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -26305,7 +26329,9 @@ release_date = "2025-05-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["audio"]
 source = "https://ai.google.dev/pricing"
+rpm = 10
 supported_endpoints = ["/v1/audio/speech"]
+tpm = 4000000
 
 [models."gemini-2.5-flash-preview-tts".pricing."gemini"]
 input_cost_per_token = 3e-7
@@ -27414,7 +27440,9 @@ providers = ["gemini"]
 supports_function_calling = true
 supports_vision = true
 source = "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models#foundation_models"
+rpm = 10
 supports_tool_choice = true
+tpm = 250000
 
 [models."gemini-gemma-2-27b-it".pricing."gemini"]
 input_cost_per_token = 3.5e-7
@@ -27431,7 +27459,9 @@ providers = ["gemini"]
 supports_function_calling = true
 supports_vision = true
 source = "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models#foundation_models"
+rpm = 10
 supports_tool_choice = true
+tpm = 250000
 
 [models."gemini-gemma-2-9b-it".pricing."gemini"]
 input_cost_per_token = 3.5e-7
