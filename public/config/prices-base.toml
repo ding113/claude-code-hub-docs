@@ -3,9 +3,9 @@
 
 [metadata]
 version = "2026.02.15"
-checksum = "4998616b8d73477e613a3aa5a6e709131edf37fb6d79c3e29f02e34fda8e2fb6"
+checksum = "31ac0f3f9b12d7ba65eba0f12b3f1f6c571381608d622f773f064ce5ecdfc7e2"
 sources = ["litellm", "modelsdev"]
-total_models = 2703
+total_models = 2704
 litellm_raw_models = 2566
 modelsdev_raw_models = 2572
 custom_models = 4
@@ -1355,7 +1355,7 @@ max_tokens = 32768
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000007
 litellm_provider = "sambanova"
-providers = ["sambanova", "alibaba-cn", "azure", "azure-cognitive-services", "firmware", "iflowcn"]
+providers = ["sambanova", "alibaba-cn", "azure", "azure-cognitive-services", "iflowcn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -1372,9 +1372,6 @@ output_cost_per_token = 0.000002294
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 [models."DeepSeek-R1".pricing."azure-cognitive-services"]
-input_cost_per_token = 0.00000135
-output_cost_per_token = 0.0000054
-[models."DeepSeek-R1".pricing."firmware"]
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 [models."DeepSeek-R1".pricing."sambanova"]
@@ -20131,7 +20128,7 @@ max_tokens = 163840
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "deepseek", "helicone", "iflowcn", "venice"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "deepseek", "helicone", "iflowcn", "venice", "vivgrid"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -20169,6 +20166,9 @@ output_cost_per_token = 4.1e-7
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000001
+[models."deepseek-v3.2".pricing."vivgrid"]
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 4.2e-7
 
 [models."deepseek-v3.2-speciale"]
 display_name = "DeepSeek-V3.2-Speciale"
@@ -20224,6 +20224,29 @@ source = "modelsdev"
 [models."deepseek.r1-v1:0".pricing."amazon-bedrock"]
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
+
+[models."deepseek.v3-2-v1:0"]
+display_name = "DeepSeek-V3.2"
+model_family = "deepseek"
+mode = "chat"
+max_input_tokens = 163840
+max_output_tokens = 81920
+input_cost_per_token = 6.2e-7
+output_cost_per_token = 0.00000185
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-07"
+release_date = "2026-02-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek.v3-2-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 6.2e-7
+output_cost_per_token = 0.00000185
 
 [models."deepseek.v3-v1:0"]
 display_name = "DeepSeek-V3.1"
@@ -28772,7 +28795,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "zai"
-providers = ["zai", "opencode", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "opencode", "vivgrid", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -28783,6 +28806,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."glm-5".pricing."opencode"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
+[models."glm-5".pricing."vivgrid"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
@@ -32112,7 +32139,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "helicone", "jiekou", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "fastrouter", "firmware", "github_copilot", "github-copilot", "helicone", "jiekou", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vivgrid"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -32195,6 +32222,10 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 [models."gpt-5-mini".pricing."vercel"]
 cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000002
+[models."gpt-5-mini".pricing."vivgrid"]
+cache_read_input_token_cost = 3e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 
@@ -37668,7 +37699,7 @@ input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.00000375
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "venice"
-providers = ["venice", "alibaba-cn", "azure", "firmware"]
+providers = ["venice", "alibaba-cn", "azure"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -37682,9 +37713,6 @@ source = "modelsdev"
 input_cost_per_token = 5.739999999999999e-7
 output_cost_per_token = 0.000002411
 [models."kimi-k2-5".pricing."azure"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
-[models."kimi-k2-5".pricing."firmware"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 [models."kimi-k2-5".pricing."venice"]
@@ -37746,7 +37774,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "302ai", "alibaba-cn", "azure", "azure-cognitive-services", "cortecs", "firmware", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
+providers = ["moonshot", "302ai", "alibaba-cn", "azure", "azure-cognitive-services", "cortecs", "helicone", "kimi-for-coding", "moonshotai", "moonshotai-cn", "opencode", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -37775,9 +37803,6 @@ output_cost_per_token = 0.0000025
 [models."kimi-k2-thinking".pricing."cortecs"]
 input_cost_per_token = 6.56e-7
 output_cost_per_token = 0.0000027309999999999998
-[models."kimi-k2-thinking".pricing."firmware"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000025
 [models."kimi-k2-thinking".pricing."helicone"]
 input_cost_per_token = 4.8e-7
 output_cost_per_token = 0.000002
@@ -61381,27 +61406,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."zai-glm-4-7-flash"]
-display_name = "Z.AI GLM-4.7 Flash"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 40000
-input_cost_per_token = 7e-8
-output_cost_per_token = 4.0000000000000003e-7
-litellm_provider = "firmware"
-providers = ["firmware"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-release_date = "1970-01-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."zai-glm-4-7-flash".pricing."firmware"]
-input_cost_per_token = 7e-8
-output_cost_per_token = 4.0000000000000003e-7
-
 [models."zai-glm-4.6"]
 mode = "chat"
 max_input_tokens = 128000
@@ -61430,11 +61434,11 @@ max_tokens = 128000
 input_cost_per_token = 0.00000225
 output_cost_per_token = 0.00000275
 litellm_provider = "cerebras"
-providers = ["cerebras", "firmware"]
+providers = ["cerebras"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "1970-01-01"
+release_date = "2026-01-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.cerebras.ai/pricing"
@@ -61443,9 +61447,6 @@ supports_tool_choice = true
 [models."zai-glm-4.7".pricing."cerebras"]
 input_cost_per_token = 0.00000225
 output_cost_per_token = 0.00000275
-[models."zai-glm-4.7".pricing."firmware"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000022
 
 [models."zai-org-glm-4-7"]
 display_name = "GLM 4.7"
@@ -61764,6 +61765,28 @@ output_cost_per_token = 0.000002
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+
+[models."zai-org/GLM-5-TEE"]
+display_name = "GLM 5 TEE"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 202752
+max_output_tokens = 65535
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000025
+litellm_provider = "chutes"
+providers = ["chutes"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-14"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/GLM-5-TEE".pricing."chutes"]
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000025
 
 [models."zai-org/autoglm-phone-9b-multilingual"]
 display_name = "AutoGLM-Phone-9B-Multilingual"
