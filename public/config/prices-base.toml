@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.16"
-checksum = "5e540357ba2d9060fa51f3dcfb6ad998e757a10fb21cdac491f3119491cfb650"
+checksum = "a38b8eb9de4a7e5715b95a55c0968892e801f1319a37d30f090254eb495ab434"
 sources = ["litellm", "modelsdev"]
-total_models = 2744
+total_models = 2746
 litellm_raw_models = 2567
-modelsdev_raw_models = 2845
+modelsdev_raw_models = 2851
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -11738,47 +11738,6 @@ cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000055
 
-[models."apac.anthropic.claude-opus-4-6-v1"]
-mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 128000
-max_tokens = 128000
-input_cost_per_token = 0.0000055
-output_cost_per_token = 0.0000275
-cache_read_input_token_cost = 5.5e-7
-cache_creation_input_token_cost = 0.000006875
-litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
-supports_function_calling = true
-supports_vision = true
-supports_reasoning = true
-supports_prompt_caching = true
-supports_pdf_input = true
-cache_creation_input_token_cost_above_200k_tokens = 0.00001375
-cache_read_input_token_cost_above_200k_tokens = 0.0000011
-input_cost_per_token_above_200k_tokens = 0.000011
-output_cost_per_token_above_200k_tokens = 0.00004125
-supports_assistant_prefill = false
-supports_computer_use = true
-supports_response_schema = true
-supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
-
-[models."apac.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
-search_context_size_high = 0.01
-search_context_size_low = 0.01
-search_context_size_medium = 0.01
-
-[models."apac.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
-cache_creation_input_token_cost = 0.000006875
-cache_creation_input_token_cost_above_200k_tokens = 0.00001375
-cache_read_input_token_cost = 5.5e-7
-cache_read_input_token_cost_above_200k_tokens = 0.0000011
-input_cost_per_token = 0.0000055
-input_cost_per_token_above_200k_tokens = 0.000011
-output_cost_per_token = 0.0000275
-output_cost_per_token_above_200k_tokens = 0.00004125
-
 [models."apac.anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -11952,6 +11911,47 @@ cache_creation_input_token_cost = 0.000001375
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000055
+
+[models."au.anthropic.claude-opus-4-6-v1"]
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token_above_200k_tokens = 0.00004125
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."au.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."au.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_200k_tokens = 0.00001375
+cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_above_200k_tokens = 0.0000011
+input_cost_per_token = 0.0000055
+input_cost_per_token_above_200k_tokens = 0.000011
+output_cost_per_token = 0.0000275
+output_cost_per_token_above_200k_tokens = 0.00004125
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0"]
 mode = "chat"
@@ -53095,19 +53095,20 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-5-397b-a17b"]
-display_name = "Qwen: Qwen3.5 397B A17B"
+display_name = "Qwen3.5 397B A17B"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 64000
+max_input_tokens = 262144
+max_output_tokens = 65536
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
-litellm_provider = "kilo"
-providers = ["kilo", "nano-gpt"]
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo", "nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-02-15"
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-16"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -53116,6 +53117,9 @@ source = "modelsdev"
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 [models."qwen/qwen3-5-397b-a17b".pricing."nano-gpt"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
+[models."qwen/qwen3-5-397b-a17b".pricing."openrouter"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 
@@ -53164,23 +53168,28 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
 
 [models."qwen/qwen3-5-plus-02-15"]
-display_name = "Qwen: Qwen3.5 Plus 2026-02-15"
+display_name = "Qwen3.5 Plus 2026-02-15"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 1000000
-max_output_tokens = 64000
+max_output_tokens = 65536
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
-litellm_provider = "kilo"
-providers = ["kilo"]
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-02-15"
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-16"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-5-plus-02-15".pricing."kilo"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000024
+[models."qwen/qwen3-5-plus-02-15".pricing."openrouter"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
 
@@ -54714,6 +54723,64 @@ source = "modelsdev"
 [models."qwen3-4b".pricing."venice"]
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 1.5e-7
+
+[models."qwen3-5-397b-a17b"]
+display_name = "Qwen3.5 397B-A17B"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
+litellm_provider = "alibaba"
+providers = ["alibaba", "alibaba-cn"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+reasoning_cost_per_token = 0.0000036000000000000003
+
+[models."qwen3-5-397b-a17b".pricing."alibaba"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
+reasoning_cost_per_token = 0.0000036000000000000003
+[models."qwen3-5-397b-a17b".pricing."alibaba-cn"]
+input_cost_per_token = 4.3e-7
+output_cost_per_token = 0.00000258
+reasoning_cost_per_token = 0.00000258
+
+[models."qwen3-5-plus"]
+display_name = "Qwen3.5 Plus"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000024
+litellm_provider = "alibaba"
+providers = ["alibaba", "alibaba-cn"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-04"
+release_date = "2026-02"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+reasoning_cost_per_token = 0.0000024
+
+[models."qwen3-5-plus".pricing."alibaba"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000024
+reasoning_cost_per_token = 0.0000024
+[models."qwen3-5-plus".pricing."alibaba-cn"]
+input_cost_per_token = 5.73e-7
+output_cost_per_token = 0.00000344
+reasoning_cost_per_token = 0.00000344
 
 [models."qwen3-8b"]
 display_name = "Qwen3 8B"
