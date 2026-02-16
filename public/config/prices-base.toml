@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.16"
-checksum = "26277f4dbf9ba39bac78f692a1697c2750a5b8224f8b78685c1966450e5e2b29"
+checksum = "423733f267ad6b52420c2698c6f9525d78729ed8fa485b8ccb2eb3d559dcb65b"
 sources = ["litellm", "modelsdev"]
-total_models = 2705
+total_models = 2708
 litellm_raw_models = 2566
-modelsdev_raw_models = 2574
+modelsdev_raw_models = 2578
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2444,6 +2444,28 @@ source = "modelsdev"
 [models."MiniMaxAI/MiniMax-M2-1-TEE".pricing."chutes"]
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 0.00000112
+
+[models."MiniMaxAI/MiniMax-M2-5"]
+display_name = "MiniMax-M2.5"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 204800
+max_output_tokens = 131072
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+litellm_provider = "togetherai"
+providers = ["togetherai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."MiniMaxAI/MiniMax-M2-5".pricing."togetherai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."MiniMaxAI/MiniMax-M2-5-TEE"]
 display_name = "MiniMax M2.5 TEE"
@@ -55736,6 +55758,54 @@ output_cost_per_token = 0
 input_cost_per_pixel = 4.359e-8
 output_cost_per_pixel = 0
 
+[models."step-1-32k"]
+display_name = "Step 1 (32K)"
+mode = "chat"
+max_input_tokens = 32768
+max_output_tokens = 32768
+input_cost_per_token = 0.00000205
+output_cost_per_token = 0.00000959
+cache_read_input_token_cost = 4.1e-7
+litellm_provider = "stepfun"
+providers = ["stepfun"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-06"
+release_date = "2025-01-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."step-1-32k".pricing."stepfun"]
+cache_read_input_token_cost = 4.1e-7
+input_cost_per_token = 0.00000205
+output_cost_per_token = 0.00000959
+
+[models."step-2-16k"]
+display_name = "Step 2 (16K)"
+mode = "chat"
+max_input_tokens = 16384
+max_output_tokens = 8192
+input_cost_per_token = 0.00000521
+output_cost_per_token = 0.000016440000000000002
+cache_read_input_token_cost = 0.00000104
+litellm_provider = "stepfun"
+providers = ["stepfun"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-06"
+release_date = "2025-01-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."step-2-16k".pricing."stepfun"]
+cache_read_input_token_cost = 0.00000104
+input_cost_per_token = 0.00000521
+output_cost_per_token = 0.000016440000000000002
+
 [models."stepfun-ai/Step-3-5-Flash"]
 display_name = "stepfun-ai/Step-3.5-Flash"
 model_family = "step"
@@ -55792,7 +55862,7 @@ max_output_tokens = 64000
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 litellm_provider = "zenmux"
-providers = ["zenmux", "openrouter"]
+providers = ["zenmux", "openrouter", "stepfun"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -55806,6 +55876,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
+[models."stepfun/step-3-5-flash".pricing."stepfun"]
+cache_read_input_token_cost = 1.8999999999999998e-8
+input_cost_per_token = 9.6e-8
+output_cost_per_token = 2.88e-7
 [models."stepfun/step-3-5-flash".pricing."zenmux"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
