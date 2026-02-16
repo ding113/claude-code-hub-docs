@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.02.15"
-checksum = "31ac0f3f9b12d7ba65eba0f12b3f1f6c571381608d622f773f064ce5ecdfc7e2"
+version = "2026.02.16"
+checksum = "26277f4dbf9ba39bac78f692a1697c2750a5b8224f8b78685c1966450e5e2b29"
 sources = ["litellm", "modelsdev"]
-total_models = 2704
+total_models = 2705
 litellm_raw_models = 2566
-modelsdev_raw_models = 2572
+modelsdev_raw_models = 2574
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2444,6 +2444,28 @@ source = "modelsdev"
 [models."MiniMaxAI/MiniMax-M2-1-TEE".pricing."chutes"]
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 0.00000112
+
+[models."MiniMaxAI/MiniMax-M2-5-TEE"]
+display_name = "MiniMax M2.5 TEE"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 196608
+max_output_tokens = 65536
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+litellm_provider = "chutes"
+providers = ["chutes"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."MiniMaxAI/MiniMax-M2-5-TEE".pricing."chutes"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 
 [models."MiniMaxAI/MiniMax-M2.1"]
 display_name = "MiniMax-M2.1"
@@ -62259,6 +62281,8 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 
 [models."zai-org/glm-5-maas"]
+display_name = "GLM-5"
+model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 128000
@@ -62267,13 +62291,21 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032
 cache_read_input_token_cost = 1e-7
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+release_date = "2026-02-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#glm-models"
 supports_tool_choice = true
 
+[models."zai-org/glm-5-maas".pricing."google-vertex"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 [models."zai-org/glm-5-maas".pricing."vertex_ai"]
 cache_read_input_token_cost = 1e-7
 input_cost_per_token = 0.000001
