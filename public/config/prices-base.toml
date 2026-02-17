@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.17"
-checksum = "a38b8eb9de4a7e5715b95a55c0968892e801f1319a37d30f090254eb495ab434"
+checksum = "1686d47a8c34160d8fad8dfa40a9939bd6babf0fa9df58e56d7f794031a3dcc2"
 sources = ["litellm", "modelsdev"]
 total_models = 2746
-litellm_raw_models = 2567
+litellm_raw_models = 2569
 modelsdev_raw_models = 2851
 custom_models = 4
 
@@ -15522,6 +15522,18 @@ cache_creation_input_token_cost = 0.00000625
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+
+[models."claude-opus-4.6-fast"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16000
+max_tokens = 16000
+litellm_provider = "github_copilot"
+providers = ["github_copilot"]
+supports_function_calling = true
+supports_vision = true
+supported_endpoints = ["/v1/chat/completions"]
+supports_parallel_function_calling = true
 
 [models."claude-opus-41"]
 display_name = "Claude Opus 4.1"
@@ -32319,31 +32331,6 @@ output_cost_per_token = 0.00001
 output_cost_per_token_flex = 0.000005
 output_cost_per_token_priority = 0.00002
 
-[models."gpt-5-3-codex"]
-display_name = "GPT-5.3 Codex"
-model_family = "gpt-codex"
-mode = "chat"
-max_input_tokens = 400000
-max_output_tokens = 128000
-input_cost_per_token = 0.00000175
-output_cost_per_token = 0.000014
-cache_read_input_token_cost = 1.75e-7
-litellm_provider = "openai"
-providers = ["openai"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-08-31"
-release_date = "2026-02-05"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."gpt-5-3-codex".pricing."openai"]
-cache_read_input_token_cost = 1.75e-7
-input_cost_per_token = 0.00000175
-output_cost_per_token = 0.000014
-
 [models."gpt-5-3-codex-spark"]
 display_name = "GPT-5.3 Codex Spark"
 model_family = "gpt-codex-spark"
@@ -34113,7 +34100,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "openai"
-providers = ["openai", "azure", "azure-cognitive-services", "opencode", "openrouter", "poe", "vercel", "vivgrid", "zenmux"]
+providers = ["openai", "azure", "azure-cognitive-services", "github_copilot", "opencode", "openrouter", "poe", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
