@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.17"
-checksum = "8917d9a0e3a1359d2ea69144a9e238b7094bd755ef003c6ba6c6ecaa6f416075"
+checksum = "dacf9d160cbd952d2dafa948d485293f9ff554a417278d9815e579a25a25ce2b"
 sources = ["litellm", "modelsdev"]
-total_models = 2748
+total_models = 2749
 litellm_raw_models = 2569
-modelsdev_raw_models = 2857
+modelsdev_raw_models = 2863
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2479,7 +2479,7 @@ max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "togetherai"
-providers = ["togetherai"]
+providers = ["togetherai", "huggingface"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -2488,6 +2488,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."MiniMaxAI/MiniMax-M2-5".pricing."huggingface"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2-5".pricing."togetherai"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -28864,6 +28868,31 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."glm-4-7-flashx"]
+display_name = "GLM-4.7-FlashX"
+model_family = "glm-flash"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 131072
+input_cost_per_token = 7e-8
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "zai-coding-plan"
+providers = ["zai-coding-plan"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-01-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-4-7-flashx".pricing."zai-coding-plan"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 7e-8
+output_cost_per_token = 4.0000000000000003e-7
+
 [models."glm-4-7-free"]
 display_name = "GLM-4.7 Free"
 model_family = "glm-free"
@@ -51182,25 +51211,28 @@ supports_preset = true
 supports_web_search = true
 
 [models."prime-intellect/intellect-3"]
-display_name = "INTELLECT 3"
-model_family = "intellect"
+display_name = "Intellect 3"
+model_family = "glm"
 mode = "chat"
 max_input_tokens = 131072
-max_output_tokens = 131072
+max_output_tokens = 8192
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000011
-litellm_provider = "vercel"
-providers = ["vercel", "kilo"]
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 knowledge_cutoff = "2024-10"
-release_date = "2025-11-26"
+release_date = "2025-01-15"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."prime-intellect/intellect-3".pricing."kilo"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000011
+[models."prime-intellect/intellect-3".pricing."openrouter"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000011
 [models."prime-intellect/intellect-3".pricing."vercel"]
@@ -53132,7 +53164,7 @@ max_output_tokens = 64000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 litellm_provider = "novita-ai"
-providers = ["novita-ai", "kilo", "nano-gpt", "openrouter"]
+providers = ["novita-ai", "huggingface", "kilo", "nano-gpt", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -53142,6 +53174,9 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen/qwen3-5-397b-a17b".pricing."huggingface"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
 [models."qwen/qwen3-5-397b-a17b".pricing."kilo"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
@@ -53498,10 +53533,11 @@ max_output_tokens = 65536
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "novita-ai"
-providers = ["novita-ai", "chutes", "jiekou", "kilo"]
+providers = ["novita-ai", "chutes", "huggingface", "jiekou", "kilo"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
+knowledge_cutoff = "2025-04"
 release_date = "2026-02-03"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -53510,6 +53546,9 @@ source = "modelsdev"
 [models."qwen/qwen3-coder-next".pricing."chutes"]
 input_cost_per_token = 7e-8
 output_cost_per_token = 3e-7
+[models."qwen/qwen3-coder-next".pricing."huggingface"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000015
 [models."qwen/qwen3-coder-next".pricing."jiekou"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
