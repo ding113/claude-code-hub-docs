@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.18"
-checksum = "962804897329c1eec554113ab445cdf1cfa4ecd22679741704e60f68062cf814"
+checksum = "5f8a0ddd1ad774ea236254bb56230783998e6f3b4000784052b530f897641ad7"
 sources = ["litellm", "modelsdev"]
-total_models = 2764
+total_models = 2768
 litellm_raw_models = 2584
-modelsdev_raw_models = 2965
+modelsdev_raw_models = 2973
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12720,7 +12720,7 @@ open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-11-25"
 supported_modalities = ["image", "text"]
-supported_output_modalities = ["image", "text"]
+supported_output_modalities = ["image"]
 source = "modelsdev"
 
 [models."black-forest-labs/flux.2-klein-4b"]
@@ -12737,7 +12737,7 @@ open_weights = true
 knowledge_cutoff = "2025-06"
 release_date = "2026-01-14"
 supported_modalities = ["image", "text"]
-supported_output_modalities = ["image", "text"]
+supported_output_modalities = ["image"]
 source = "modelsdev"
 
 [models."black-forest-labs/flux.2-max"]
@@ -12754,7 +12754,7 @@ open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-12-16"
 supported_modalities = ["image", "text"]
-supported_output_modalities = ["image", "text"]
+supported_output_modalities = ["image"]
 source = "modelsdev"
 
 [models."black-forest-labs/flux.2-pro"]
@@ -12771,7 +12771,7 @@ open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-11-25"
 supported_modalities = ["image", "text"]
-supported_output_modalities = ["image", "text"]
+supported_output_modalities = ["image"]
 source = "modelsdev"
 
 [models."bria/text-to-image/3.2"]
@@ -12819,7 +12819,7 @@ open_weights = true
 knowledge_cutoff = "2025-06"
 release_date = "2025-12-23"
 supported_modalities = ["image", "text"]
-supported_output_modalities = ["image", "text"]
+supported_output_modalities = ["image"]
 source = "modelsdev"
 
 [models."bytedance/seed-1-6"]
@@ -15343,7 +15343,7 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "opencode"
-providers = ["opencode", "anthropic", "azure", "azure_ai", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "jiekou", "kilo", "openrouter", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
+providers = ["opencode", "aihubmix", "anthropic", "azure", "azure_ai", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "jiekou", "kilo", "openrouter", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -15371,6 +15371,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-opus-4-6".pricing."aihubmix"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 [models."claude-opus-4-6".pricing."anthropic"]
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
@@ -15491,6 +15495,31 @@ input_cost_per_token = 0.000005
 input_cost_per_token_above_200k_tokens = 0.00001
 output_cost_per_token = 0.000025
 output_cost_per_token_above_200k_tokens = 0.0000375
+
+[models."claude-opus-4-6-think"]
+display_name = "Claude Opus 4.6 Think"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 3e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-05"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-opus-4-6-think".pricing."aihubmix"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 
 [models."claude-opus-4-6@default"]
 display_name = "Claude Opus 4.6"
@@ -16275,7 +16304,7 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "opencode", "poe", "venice", "vertex_ai"]
+providers = ["azure_ai", "aihubmix", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "opencode", "poe", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -16293,6 +16322,10 @@ supports_response_schema = true
 supports_tool_choice = true
 tool_use_system_prompt_tokens = 346
 
+[models."claude-sonnet-4-6".pricing."aihubmix"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."claude-sonnet-4-6".pricing."anthropic"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -16328,6 +16361,10 @@ output_cost_per_token = 0.000013
 cache_read_input_token_cost = 3.75e-7
 input_cost_per_token = 0.00000375
 output_cost_per_token = 0.00001875
+[models."claude-sonnet-4-6".pricing."vercel"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."claude-sonnet-4-6".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -16337,6 +16374,31 @@ input_cost_per_token = 0.000003
 input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
+
+[models."claude-sonnet-4-6-think"]
+display_name = "Claude Sonnet 4.6 Think"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08"
+release_date = "2026-02-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-sonnet-4-6-think".pricing."aihubmix"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 
 [models."claude-sonnet-4-6@default"]
 display_name = "Claude Sonnet 4.6"
@@ -22254,6 +22316,23 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."duo-chat-sonnet-4-6"]
+display_name = "Agentic Chat (Claude Sonnet 4.6)"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+litellm_provider = "gitlab"
+providers = ["gitlab"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-02-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."eleven_multilingual_v2"]
 mode = "audio_speech"
 litellm_provider = "elevenlabs"
@@ -27904,6 +27983,31 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 [models."gemini-3-pro-preview".pricing."zenmux"]
 cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+
+[models."gemini-3-pro-preview-search"]
+display_name = "Gemini 3 Pro Preview Search"
+model_family = "gemini-pro"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+cache_read_input_token_cost = 5e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-11"
+release_date = "2025-11-19"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemini-3-pro-preview-search".pricing."aihubmix"]
+cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 
@@ -34393,7 +34497,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "openai"
-providers = ["openai", "azure", "azure-cognitive-services", "chatgpt", "github-copilot", "jiekou", "kilo", "opencode", "openrouter", "poe", "qihang-ai", "vercel", "vivgrid", "zenmux"]
+providers = ["openai", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "github-copilot", "jiekou", "kilo", "opencode", "openrouter", "poe", "qihang-ai", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -34416,6 +34520,10 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5.2-codex".pricing."aihubmix"]
+cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
 [models."gpt-5.2-codex".pricing."azure"]
 cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
