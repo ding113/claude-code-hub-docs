@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.18"
-checksum = "fdd56a220718035140b08380062a11c67f32aa7c0b0a57f512bbf85025db85ba"
+checksum = "0cabff74b742b9c9e0bf7700d1aad7c36d9f48e8b9c07cdf5d814da1d176fff4"
 sources = ["litellm", "modelsdev"]
-total_models = 2759
+total_models = 2761
 litellm_raw_models = 2579
-modelsdev_raw_models = 2960
+modelsdev_raw_models = 2965
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -4195,6 +4195,30 @@ supports_tool_choice = true
 [models."Qwen/Qwen3-32B".pricing."deepinfra"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 2.8e-7
+
+[models."Qwen/Qwen3-5-397B-A17B-TEE"]
+display_name = "Qwen3.5 397B A17B TEE"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 1.5e-7
+litellm_provider = "chutes"
+providers = ["chutes"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-18"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Qwen/Qwen3-5-397B-A17B-TEE".pricing."chutes"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."Qwen/Qwen3-8B"]
 display_name = "Qwen/Qwen3-8B"
@@ -19824,6 +19848,8 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 8.000000000000001e-7
 
 [models."deepseek-ai/deepseek-v3.1-maas"]
+display_name = "DeepSeek V3.1"
+model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 163840
 max_output_tokens = 32768
@@ -19831,15 +19857,22 @@ max_tokens = 32768
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+release_date = "2025-08-28"
+supported_modalities = ["text", "pdf"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#partner-models"
 supported_regions = ["us-west2"]
 supports_assistant_prefill = true
 supports_tool_choice = true
 
+[models."deepseek-ai/deepseek-v3.1-maas".pricing."google-vertex"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000017
 [models."deepseek-ai/deepseek-v3.1-maas".pricing."vertex_ai"]
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
@@ -43044,6 +43077,29 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."meta/llama-3-3-70b-instruct-maas"]
+display_name = "Llama 3.3 70B Instruct"
+model_family = "llama"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+litellm_provider = "google-vertex"
+providers = ["google-vertex"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2023-12"
+release_date = "2025-04-29"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."meta/llama-3-3-70b-instruct-maas".pricing."google-vertex"]
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+
 [models."meta/llama-3-70b"]
 mode = "chat"
 max_input_tokens = 8192
@@ -43433,6 +43489,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."meta/llama-4-maverick-17b-128e-instruct-maas"]
+display_name = "Llama 4 Maverick 17B 128E Instruct"
+model_family = "llama"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 1000000
@@ -43440,13 +43498,20 @@ max_tokens = 1000000
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 0.00000115
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-08"
+release_date = "2025-04-29"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "code"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#partner-models"
 supports_tool_choice = true
 
+[models."meta/llama-4-maverick-17b-128e-instruct-maas".pricing."google-vertex"]
+input_cost_per_token = 3.5e-7
+output_cost_per_token = 0.00000115
 [models."meta/llama-4-maverick-17b-128e-instruct-maas".pricing."vertex_ai"]
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 0.00000115
@@ -53157,6 +53222,8 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
 
 [models."qwen/qwen3-235b-a22b-instruct-2507-maas"]
+display_name = "Qwen3 235B A22B Instruct"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 16384
@@ -53164,12 +53231,20 @@ max_tokens = 16384
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-08-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing"
 supported_regions = ["global"]
 supports_tool_choice = true
 
+[models."qwen/qwen3-235b-a22b-instruct-2507-maas".pricing."google-vertex"]
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 8.8e-7
 [models."qwen/qwen3-235b-a22b-instruct-2507-maas".pricing."vertex_ai"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
@@ -64447,8 +64522,8 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-04"
-release_date = "2025-12-22"
-supported_modalities = ["text"]
+release_date = "2026-01-06"
+supported_modalities = ["text", "pdf"]
 supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#partner-models"
 supports_tool_choice = true
