@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.19"
-checksum = "65548b601e06b353e46c876f6f83733eca722bb6dad736dbe2aaf1bd9db5ae9f"
+checksum = "6a5a06397dd3a508a1aa7d92f74b8e25bca734402b4214b099dadec14af02185"
 sources = ["litellm", "modelsdev"]
-total_models = 2772
-litellm_raw_models = 2584
-modelsdev_raw_models = 3001
+total_models = 2777
+litellm_raw_models = 2590
+modelsdev_raw_models = 3010
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -16387,16 +16387,16 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "opencode", "openrouter", "poe", "venice", "vercel", "vertex_ai"]
+providers = ["azure_ai", "aihubmix", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "opencode", "openrouter", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-07-31"
-release_date = "2026-02-17"
-supported_modalities = ["text", "image", "pdf"]
+knowledge_cutoff = "2025-01-01"
+release_date = "2026-02-18"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
@@ -16461,6 +16461,10 @@ input_cost_per_token = 0.000003
 input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
+[models."claude-sonnet-4-6".pricing."zenmux"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 
 [models."claude-sonnet-4-6-think"]
 display_name = "Claude Sonnet 4.6 Think"
@@ -27693,7 +27697,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "opencode"
-providers = ["opencode"]
+providers = ["opencode", "google", "google-vertex"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -27703,6 +27707,14 @@ supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemini-3-1-pro".pricing."google"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+[models."gemini-3-1-pro".pricing."google-vertex"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
 [models."gemini-3-1-pro".pricing."opencode"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
@@ -28137,6 +28149,175 @@ source = "modelsdev"
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
+
+[models."gemini-3.1-pro-preview"]
+display_name = "Gemini 3.1 Pro Preview"
+model_family = "gemini-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+cache_read_input_token_cost = 2e-7
+litellm_provider = "vertex_ai-language-models"
+providers = ["vertex_ai-language-models", "gemini", "openrouter", "vertex_ai"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2026-02-19"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#gemini-models"
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+max_audio_length_hours = 8.4
+max_audio_per_prompt = 1
+max_images_per_prompt = 3000
+max_pdf_size_mb = 30
+max_video_length = 1
+max_videos_per_prompt = 10
+output_cost_per_image = 0.00012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+reasoning_cost_per_token = 0.000012
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_audio_input = true
+supports_native_streaming = true
+supports_response_schema = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_url_context = true
+supports_video_input = true
+supports_web_search = true
+
+[models."gemini-3.1-pro-preview".pricing."gemini"]
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+[models."gemini-3.1-pro-preview".pricing."openrouter"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+reasoning_cost_per_token = 0.000012
+[models."gemini-3.1-pro-preview".pricing."vertex_ai"]
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_image = 0.00012
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+[models."gemini-3.1-pro-preview".pricing."vertex_ai-language-models"]
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_image = 0.00012
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+
+[models."gemini-3.1-pro-preview-customtools"]
+display_name = "Gemini 3.1 Pro Preview Custom Tools"
+model_family = "gemini-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+cache_read_input_token_cost = 2e-7
+litellm_provider = "vertex_ai-language-models"
+providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "vertex_ai"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2026-02-19"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#gemini-models"
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+max_audio_length_hours = 8.4
+max_audio_per_prompt = 1
+max_images_per_prompt = 3000
+max_pdf_size_mb = 30
+max_video_length = 1
+max_videos_per_prompt = 10
+output_cost_per_image = 0.00012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_audio_input = true
+supports_native_streaming = true
+supports_response_schema = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_url_context = true
+supports_video_input = true
+supports_web_search = true
+
+[models."gemini-3.1-pro-preview-customtools".pricing."gemini"]
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+[models."gemini-3.1-pro-preview-customtools".pricing."google"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+[models."gemini-3.1-pro-preview-customtools".pricing."google-vertex"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+[models."gemini-3.1-pro-preview-customtools".pricing."vertex_ai"]
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_image = 0.00012
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
+[models."gemini-3.1-pro-preview-customtools".pricing."vertex_ai-language-models"]
+cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
+cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_above_200k_tokens = 4e-7
+input_cost_per_token = 0.000002
+input_cost_per_token_above_200k_tokens = 0.000004
+input_cost_per_token_batches = 0.000001
+output_cost_per_image = 0.00012
+output_cost_per_token = 0.000012
+output_cost_per_token_above_200k_tokens = 0.000018
+output_cost_per_token_batches = 0.000006
 
 [models."gemini-deep-research"]
 display_name = "gemini-deep-research"
@@ -61408,6 +61589,78 @@ source = "modelsdev"
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 2.8e-7
+
+[models."volcengine/doubao-seed-2-0-lite"]
+display_name = "Doubao-Seed-2.0-lite"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 9e-8
+output_cost_per_token = 5.1e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-14"
+release_date = "2026-02-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."volcengine/doubao-seed-2-0-lite".pricing."zenmux"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 9e-8
+output_cost_per_token = 5.1e-7
+
+[models."volcengine/doubao-seed-2-0-mini"]
+display_name = "Doubao-Seed-2.0-mini"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 3e-8
+output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-14"
+release_date = "2026-02-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."volcengine/doubao-seed-2-0-mini".pricing."zenmux"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 3e-8
+output_cost_per_token = 2.8e-7
+
+[models."volcengine/doubao-seed-2-0-pro"]
+display_name = "Doubao-Seed-2.0-pro"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.00000224
+cache_read_input_token_cost = 9e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-14"
+release_date = "2026-02-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."volcengine/doubao-seed-2-0-pro".pricing."zenmux"]
+cache_read_input_token_cost = 9e-8
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.00000224
 
 [models."volcengine/doubao-seed-code"]
 display_name = "Doubao-Seed-Code"
