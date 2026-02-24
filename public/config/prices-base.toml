@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.02.24"
-checksum = "b1dc9118a037b9cfa845fe9250e5323ec2c6e1a185d9c506759ea223a5493d2a"
+checksum = "0fd41f61d490bf8ec3d45ffc35994f9053d448339b5c7e238c9a10752292a67a"
 sources = ["litellm", "modelsdev"]
-total_models = 2783
+total_models = 2784
 litellm_raw_models = 2599
-modelsdev_raw_models = 3032
+modelsdev_raw_models = 3036
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2472,15 +2472,19 @@ max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "togetherai"
-providers = ["togetherai", "huggingface", "meganova"]
+providers = ["togetherai", "baseten", "huggingface", "meganova"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
+knowledge_cutoff = "2026-01"
 release_date = "2026-02-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."MiniMaxAI/MiniMax-M2-5".pricing."baseten"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2-5".pricing."huggingface"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -9299,6 +9303,30 @@ source = "modelsdev"
 [models."alibaba/qwen3-235b-a22b-thinking".pricing."vercel"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000028999999999999998
+
+[models."alibaba/qwen3-5-flash"]
+display_name = "Qwen 3.5 Flash"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1e-9
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen3-5-flash".pricing."vercel"]
+cache_read_input_token_cost = 1e-9
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 
 [models."alibaba/qwen3-5-plus"]
 display_name = "Qwen 3.5 Plus"
@@ -27644,7 +27672,7 @@ display_name = "Gemini 3.1 Pro Preview"
 model_family = "gemini-pro"
 mode = "chat"
 max_input_tokens = 1000000
-max_output_tokens = 250000
+max_output_tokens = 65000
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 5e-7
@@ -28160,7 +28188,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2e-7
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "github-copilot", "vertex_ai"]
+providers = ["vertex_ai-language-models", "gemini", "github-copilot", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28217,6 +28245,10 @@ output_cost_per_token_above_200k_tokens = 0.000018
 output_cost_per_token_above_200k_tokens_priority = 0.0000324
 output_cost_per_token_batches = 0.000006
 output_cost_per_token_priority = 0.0000216
+[models."gemini-3.1-pro-preview".pricing."vercel"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
 [models."gemini-3.1-pro-preview".pricing."vertex_ai"]
 cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
 cache_read_input_token_cost = 2e-7
