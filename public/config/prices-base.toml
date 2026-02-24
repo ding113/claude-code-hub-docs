@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.24"
-checksum = "0d9b501df3d7f30f22c401b25ec9f166b46d33214600ef41eeb6881c2d8a0c2d"
+checksum = "7016f4467f2586cb54b96512994fca23aa33e83b36bef6508e843a4e997212ef"
 sources = ["litellm", "modelsdev"]
 total_models = 2782
-litellm_raw_models = 2590
+litellm_raw_models = 2591
 modelsdev_raw_models = 3031
 custom_models = 4
 
@@ -35754,11 +35754,12 @@ model_family = "gpt-oss"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 65536
-input_cost_per_token = 8e-8
+max_tokens = 65536
+input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
-cache_read_input_token_cost = 4e-8
-litellm_provider = "vercel"
-providers = ["vercel", "kilo", "openrouter"]
+cache_read_input_token_cost = 3.7e-8
+litellm_provider = "groq"
+providers = ["groq", "kilo", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -35766,8 +35767,14 @@ knowledge_cutoff = "2024-10"
 release_date = "2024-12-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+supports_response_schema = true
+supports_tool_choice = true
+supports_web_search = true
 
+[models."gpt-oss-safeguard-20b".pricing."groq"]
+cache_read_input_token_cost = 3.7e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
 [models."gpt-oss-safeguard-20b".pricing."kilo"]
 cache_read_input_token_cost = 3.7e-8
 input_cost_per_token = 7.5e-8
