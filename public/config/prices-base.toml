@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.27"
-checksum = "40ed5b0b885f9c0dd3a9e629db048c0aa78253553c8173bf61708ef9993601f6"
+checksum = "eef9bec765e1c24ecc004f7a4657295034dd7a9781dc6c25f995acaff94e94d9"
 sources = ["litellm", "modelsdev"]
-total_models = 2784
-litellm_raw_models = 2602
+total_models = 2785
+litellm_raw_models = 2604
 modelsdev_raw_models = 3041
 custom_models = 4
 
@@ -28220,6 +28220,42 @@ source = "modelsdev"
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
+
+[models."gemini-3.1-flash-image-preview"]
+mode = "image_generation"
+max_input_tokens = 65536
+max_output_tokens = 32768
+max_tokens = 32768
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
+litellm_provider = "vertex_ai-language-models"
+providers = ["vertex_ai-language-models", "vertex_ai"]
+supports_function_calling = false
+supports_vision = true
+supports_prompt_caching = true
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text", "image"]
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#gemini-models"
+input_cost_per_image = 0.00056
+output_cost_per_image = 0.0672
+output_cost_per_image_token = 0.00006
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_response_schema = true
+supports_system_messages = true
+supports_web_search = true
+
+[models."gemini-3.1-flash-image-preview".pricing."vertex_ai"]
+input_cost_per_image = 0.00056
+input_cost_per_token = 5e-7
+output_cost_per_image = 0.0672
+output_cost_per_image_token = 0.00006
+output_cost_per_token = 0.000003
+[models."gemini-3.1-flash-image-preview".pricing."vertex_ai-language-models"]
+input_cost_per_image = 0.00056
+input_cost_per_token = 5e-7
+output_cost_per_image = 0.0672
+output_cost_per_image_token = 0.00006
+output_cost_per_token = 0.000003
 
 [models."gemini-3.1-pro-preview"]
 display_name = "Gemini 3.1 Pro Preview"
