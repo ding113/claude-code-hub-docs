@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.27"
-checksum = "a22cd0614ee8b1965fa676588671dec8098d6592dda7705305e13cfe667cfefe"
+checksum = "759fb36fafd7efc308b0bc64621b8f79b80726004416c1f68432293ca0a74595"
 sources = ["litellm", "modelsdev"]
-total_models = 2787
-litellm_raw_models = 2606
+total_models = 2789
+litellm_raw_models = 2610
 modelsdev_raw_models = 3041
 custom_models = 4
 
@@ -12288,23 +12288,31 @@ source = "modelsdev"
 display_name = "Auto"
 model_family = "auto"
 mode = "chat"
-max_input_tokens = 32000
+max_input_tokens = 2000000
 max_output_tokens = 32000
-input_cost_per_token = 8.5e-7
-output_cost_per_token = 0.00000155
-litellm_provider = "morph"
-providers = ["morph"]
-supports_function_calling = false
-supports_reasoning = false
+max_tokens = 2000000
+input_cost_per_token = 0
+output_cost_per_token = 0
+litellm_provider = "openrouter"
+providers = ["openrouter", "morph"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
 open_weights = false
 release_date = "2024-06-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+supports_audio_input = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_video_input = true
 
 [models."auto".pricing."morph"]
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.00000155
+[models."auto".pricing."openrouter"]
+input_cost_per_token = 0
+output_cost_per_token = 0
 
 [models."baai/bge-base-en-v1.5"]
 mode = "embedding"
@@ -12966,6 +12974,19 @@ release_date = "2025-11-25"
 supported_modalities = ["image", "text"]
 supported_output_modalities = ["image"]
 source = "modelsdev"
+
+[models."bodybuilder"]
+mode = "chat"
+max_input_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0
+output_cost_per_token = 0
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+
+[models."bodybuilder".pricing."openrouter"]
+input_cost_per_token = 0
+output_cost_per_token = 0
 
 [models."bria/text-to-image/3.2"]
 mode = "image_generation"
@@ -15844,15 +15865,15 @@ output_cost_per_token = 0.000025
 
 [models."claude-opus-4.6"]
 mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 64000
-max_tokens = 64000
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
-litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway"]
+litellm_provider = "openrouter"
+providers = ["openrouter", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -15861,7 +15882,13 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
 
+[models."claude-opus-4.6".pricing."openrouter"]
+cache_creation_input_token_cost = 0.00000625
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 [models."claude-opus-4.6".pricing."vercel_ai_gateway"]
 cache_creation_input_token_cost = 0.00000625
 cache_read_input_token_cost = 5e-7
@@ -24340,6 +24367,24 @@ notes = "Flux Schnell - Fast generation model optimized for speed"
 
 [models."flux/schnell".pricing."aiml"]
 output_cost_per_image = 0.004
+
+[models."free"]
+mode = "chat"
+max_input_tokens = 200000
+max_tokens = 200000
+input_cost_per_token = 0
+output_cost_per_token = 0
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_response_schema = true
+supports_tool_choice = true
+
+[models."free".pricing."openrouter"]
+input_cost_per_token = 0
+output_cost_per_token = 0
 
 [models."ft:babbage-002"]
 mode = "completion"
