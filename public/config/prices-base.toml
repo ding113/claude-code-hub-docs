@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.02.27"
-checksum = "eef9bec765e1c24ecc004f7a4657295034dd7a9781dc6c25f995acaff94e94d9"
+checksum = "ea01d2ab34f6aff77c15c57474cb7960c8d9236ee1d87c136319b92a9f6ca4cd"
 sources = ["litellm", "modelsdev"]
-total_models = 2785
-litellm_raw_models = 2604
+total_models = 2787
+litellm_raw_models = 2606
 modelsdev_raw_models = 3041
 custom_models = 4
 
@@ -35248,6 +35248,38 @@ input_cost_per_token = 0.0000025
 output_cost_per_audio_token = 0.000064
 output_cost_per_token = 0.00001
 
+[models."gpt-audio-1.5"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+max_tokens = 16384
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = false
+supports_reasoning = false
+supports_prompt_caching = false
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+input_cost_per_audio_token = 0.000032
+output_cost_per_audio_token = 0.000064
+supported_endpoints = ["/v1/chat/completions"]
+supports_audio_input = true
+supports_audio_output = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-audio-1.5".pricing."openai"]
+input_cost_per_audio_token = 0.000032
+input_cost_per_token = 0.0000025
+output_cost_per_audio_token = 0.000064
+output_cost_per_token = 0.00001
+
 [models."gpt-audio-1.5-2026-02-23"]
 mode = "chat"
 max_input_tokens = 128000
@@ -36011,6 +36043,39 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."gpt-realtime".pricing."openai"]
+cache_creation_input_audio_token_cost = 4e-7
+cache_read_input_token_cost = 4e-7
+input_cost_per_audio_token = 0.000032
+input_cost_per_image = 0.000005
+input_cost_per_token = 0.000004
+output_cost_per_audio_token = 0.000064
+output_cost_per_token = 0.000016
+
+[models."gpt-realtime-1.5"]
+mode = "chat"
+max_input_tokens = 32000
+max_output_tokens = 4096
+max_tokens = 4096
+input_cost_per_token = 0.000004
+output_cost_per_token = 0.000016
+cache_read_input_token_cost = 4e-7
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supported_modalities = ["text", "image", "audio"]
+supported_output_modalities = ["text", "audio"]
+cache_creation_input_audio_token_cost = 4e-7
+input_cost_per_audio_token = 0.000032
+input_cost_per_image = 0.000005
+output_cost_per_audio_token = 0.000064
+supported_endpoints = ["/v1/realtime"]
+supports_audio_input = true
+supports_audio_output = true
+supports_parallel_function_calling = true
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-realtime-1.5".pricing."openai"]
 cache_creation_input_audio_token_cost = 4e-7
 cache_read_input_token_cost = 4e-7
 input_cost_per_audio_token = 0.000032
