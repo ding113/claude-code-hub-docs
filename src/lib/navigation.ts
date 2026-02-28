@@ -103,6 +103,7 @@ export const navigation = [
       { title: 'Webhook 通知', href: '/docs/system/webhook' },
       { title: '客户端版本检查', href: '/docs/system/client-version' },
       { title: '数据导入导出', href: '/docs/system/data-import-export' },
+      { title: 'Langfuse 集成', href: '/docs/system/langfuse' },
       { title: '自动清理', href: '/docs/system/auto-cleanup' },
     ],
   },

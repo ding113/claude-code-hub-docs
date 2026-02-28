@@ -14,6 +14,226 @@ language: zh
 
 ---
 
+## [v0.6.1](https://github.com/ding113/claude-code-hub/releases/tag/v0.6.1) - 2026-02-28
+
+### 修复
+
+- 修复 HTTP 部署时 CSRF 校验导致无法登录的问题，新增 `X-Forwarded-Host` 信任回退机制 (#846, #847)
+
+---
+
+## [v0.6.0](https://github.com/ding113/claude-code-hub/releases/tag/v0.6.0) - 2026-02-28
+
+{% callout type="warning" %}
+**Breaking Changes:**
+- v0.6 导出的数据库备份将不再兼容旧版本
+- 由于鉴权逻辑重构，更新到 v0.6 版本后，所有客户端登录态会失效
+- 由于更新涉及多个数据库迁移，如数据库体量大，建议在闲时更新
+{% /callout %}
+
+### 新增
+
+- 支持 Langfuse 集成，企业级 LLM 可观测性，自动追踪所有代理请求的完整生命周期（Trace/Span），支持 Langfuse Cloud 和自托管实例
+- 新增 usage_ledger 计费账本系统，解耦日志与计费，支持导出不含决策日志的数据库，且不影响计费和限额 (#811)
+- 支持决策链溯源，可在被复用请求的决策链中查看 Session 原始决策过程 (#810)
+- 支持供应商定时启停，可为供应商配置 `activeTimeStart` / `activeTimeEnd` 时间窗口，实现按时间调度 (#844)
+- 新增缓存率异常通知告警，当缓存命中率低于阈值时自动触发 Webhook 通知 (#834)
+- 客户端限制功能重构，支持 `blockedClients` 黑名单和 Claude Code 子客户端自动检测 (#812)
+- 渠道新增交换缓存 TTL 计费选项，适配供应商以 5m TTL 计费但实际提供 1h 缓存导致的计费不匹配 (#798)
+- 新增 OpenAI Responses API 错误规则内置支持
+- 供应商使用量表格和价格筛选器新增模型供应商图标 (#827)
+
+### 优化
+
+- 重构供应商批量操作，对齐供应商编辑 UI，支持所有字段的批量操作 (#806)
+- 供应商编辑和删除操作支持撤销 (#806)
+- 重构登录鉴权逻辑，增强安全性，使用 XOR 循环替代 timingSafeEqual 以兼容 Edge Runtime (#806)
+- 引入 EndpointPolicy 替代硬编码的 count_tokens 检查，提升代理策略可扩展性 (#801)
+- 优化 Fake 200 错误回显和错误码推断，持久化错误详情到 DB/Redis 并在仪表盘展示 (#790, #814)
+- 客户端限制编辑器改用基于复选框的预设选择，替代 TagInput (#822)
+- Dashboard 综合性能优化：懒加载用户使用量数据、防止无限轮询导致的内存泄漏、硬化游标解析和时间戳精度 (#808, #815, #818, #819)
+- 供应商页面性能改进 (#789)
+- 数据库备份路由通过 Docker Compose exec 执行 PG 工具
+- Key 查询使用 LATERAL JOIN 替代 DISTINCT ON 并添加复合部分索引，提升查询性能
+
+### 修复
+
+- 修复熔断器禁用后仍拦截供应商的问题 (#837)
+- 修复首页统计图表在小高度下裁切的问题 (#838)
+- 修复用户搜索时分页无法正常工作的问题 (#841)
+- 修复 SQL 模板中 Date 对象未转 ISO 字符串导致的查询错误 (#821)
+- 修复日志清理受影响行数统计和滚动 cron 日期问题
+- 修复大型分块响应中 reader.cancel() 可能导致死锁的问题
+- 修复 Claude Code 检测逻辑放宽至 4 信号系统以兼容 CLI 2.0.70
+- 修复 responses/compact 端点、熔断器缓存失效和客户端限制批量编辑问题 (#833)
+- 修复 Ledger 回填时跳过已同步记录，防止启动时冗余全表扫描
+- 修复 SQL 时区括号和端点 ID 整数转换 bug
+
+### 其他
+
+- 新增 usage_ledger 触发函数、回填服务和大量单元/集成测试
+- i18n 翻译更新：数据库大小和表计数翻译、审计白名单扩展
+
+---
+
+## [v0.5.8](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.8) - 2026-02-15
+
+### 优化
+
+- my-usage 页面配额卡片和统计摘要卡片 UX 改进 (#794) [@miraserver](https://github.com/miraserver)
+- 日志页面虚拟化视图中无筛选条件时隐藏统计面板，提升渲染性能
+
+### 修复
+
+- 移除确定性 Session ID，防止跨会话冲突 (#793)
+- 修复标准路径下 Host Header 未匹配实际请求目标的问题
+- 从 Gemini Vertex AI publishers 路径正确提取模型，确保计费准确
+
+### 其他
+
+- README 添加 SSSAiCode 推广信息
+- i18n 翻译文件更新
+
+---
+
+## [v0.5.7](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.7) - 2026-02-14
+
+### 新增
+
+- 新增 Billing Header 整流器，自动从系统提示中剥离 x-anthropic-billing-header，避免计费信息泄露 (#784)
+
+### 优化
+
+- 配额/用户页面总成本查询改为批量执行，提升页面加载性能
+
+### 修复
+
+- 修复全时间范围总成本查询的日期过滤问题，确保统计数据准确
+- 修复多 Key 并发场景下用户并发 Session 上限可能被击穿的问题 (#776) [@tesgth032](https://github.com/tesgth032)
+- 修复 AgentPool 清理逻辑，加固统计信息透传
+- 修复 billing 查询中 maxAgeDays 过大导致的日期下溢问题
+
+---
+
+## [v0.5.6](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.6) - 2026-02-12
+
+### 新增
+
+- 端点熔断器默认关闭，新增 `ENABLE_ENDPOINT_CIRCUIT_BREAKER` 环境变量控制开关，并完善 524 决策链审计记录 (#773)
+- 配置表单新增 API Key 输入智能警告提示，检测常见误粘贴格式（如 Bearer 前缀、引号包裹、非 ASCII 字符等）(#768)
+- 新增 InlineWarning 通用内联警告组件，用于表单字段的非阻塞提示
+- 新增配额租约输入警告提示，检测异常配置值 (#768)
+
+### 优化
+
+- 供应商类型熔断器复用 `ENABLE_ENDPOINT_CIRCUIT_BREAKER` 开关，统一熔断器控制逻辑
+- 供应商链格式化器新增 `vendor_type_all_timeout` 和 `endpoint_pool_exhausted` 等决策原因的展示支持
+- 供应商概率显示优化，处理超出 0-1 范围的异常值并封顶 100%
+- 系统设置表单增强，新增端点熔断器开关配置项和启动时自动清理残留熔断状态
+
+### 修复
+
+- 修复 Key 并发限制未继承用户并发上限的问题，Key 未设置时自动回退到用户级别限制 (#772)
+- 修复供应商表单克隆时浅拷贝导致的数据污染问题，改用 `structuredClone` 深拷贝 (#767)
+- 修复 Key 错误不应触发端点熔断器的问题，避免鉴权失败等非端点故障误触熔断
+
+### 其他
+
+- 新增大量单元测试覆盖：Key 并发继承、供应商表单深拷贝、端点熔断器隔离、供应商类型熔断器、并发会话限制、概率格式化、API Key 警告检测、配额租约警告等
+- 部署脚本新增 `ENABLE_ENDPOINT_CIRCUIT_BREAKER` 环境变量配置
+
+---
+
+## [v0.5.5](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.5) - 2026-02-11
+
+### 新增
+
+- Anthropic 供应商支持 Adaptive Thinking 覆写，可按供应商配置自适应思考模式和努力等级 (#758)
+- 供应商支持按用户组设置独立优先级，实现更精细的负载均衡策略 (#701) [@NieiR](https://github.com/NieiR)
+- 统一供应商-端点熔断可视化和通知机制，提升故障感知体验 (#755)
+- 排行榜新增供应商平均成本指标和缓存命中模型下钻分析 (#753)
+- API Key 与登录鉴权链路安全加固，引入 Vacuum Filter 快速负向过滤，降低数据库压力 (#734) [@tesgth032](https://github.com/tesgth032)
+- 端点探测默认切换为 TCP 模式，改进熔断恢复交互体验
+- 支持为 Relay 供应商注入 Claude metadata.user_id 以启用上游缓存 (#729) [@ProgramCaiCai](https://github.com/ProgramCaiCai)
+
+### 优化
+
+- Vacuum Filter 热路径性能优化，降低 API Key 负向短路成本 (#757) [@tesgth032](https://github.com/tesgth032)
+- 解耦 Adaptive Thinking 与 Thinking Budget 偏好设置，支持独立配置
+
+### 修复
+
+- 修复端点熔断器无法从 OPEN 状态恢复的问题
+- 修复请求卡死问题：AgentPool 驱逐操作改为非阻塞，防止级联超时 (#759) [@tesgth032](https://github.com/tesgth032)
+- 修复上游非 200 响应未正确触发熔断和回退的问题
+- 修复上游非 OK 响应 body 挂起导致请求卡死的问题 (#751) [@tesgth032](https://github.com/tesgth032)
+- 修复 SSE 结束后未识别假 200 错误的问题 (#735) [@tesgth032](https://github.com/tesgth032)
+- 修复端点更新回归问题，关联 #742 (#746)
+- 修复 provider_endpoints 查询缺少 anthropicAdaptiveThinking 字段的问题
+- 修复会话模型切换时旧供应商绑定未清除导致的路由错误
+
+### 其他
+
+- CI 全部 Claude Code GitHub Actions 切换至 claude-opus-4-6 模型
+- 新增大量单元测试覆盖：端点熔断恢复、AgentPool 驱逐、非 200 响应处理、Adaptive Thinking 覆写、按组优先级选择、Vacuum Filter、metadata 注入、模型切换绑定清理等
+
+---
+
+## [v0.5.4](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.4) - 2026-02-07
+
+### 新增
+
+- Gemini 供应商支持 Google Search 网络访问偏好设置，可按供应商配置启用/禁用/继承客户端设置 (#721)
+- 供应商设置 UI 中展示 vendor 端点池信息，便于查看和管理端点分布 (#719)
+- 日志页面成本列支持可切换显示/隐藏，改进类型安全性 (#715) [@lingyin](https://github.com/lingyin)
+
+### 优化
+
+- 端点同步操作包裹在数据库事务中，防止并发竞态条件 (#730)
+- SessionTracker 活跃会话 zsets 按环境 TTL 自动清理过期条目 (#718)
+- 请求过滤器和敏感词热重载缓存失效机制优化 (#710) [@miraserver](https://github.com/miraserver)
+- UI 货币显示遵循系统 currencyDisplay 设置 (#717)
+
+### 修复
+
+- 修复标准路径供应商错误回退到旧版 provider url 的问题
+- 修复 /api/actions 认证会话透传问题，解决 getUsers 返回空数据 (#720) [@Longlone](https://github.com/Longlone)
+- 修复 OpenAI chat completion 格式的 usage 提取逻辑 (#716)
+- 修复 Thinking 签名整流器对 "cannot be modified" 错误的检测
+- 修复 auth session storage 导出和测试 mock 类型
+
+### 其他
+
+- 升级 jspdf 依赖
+- 新增大量单元测试覆盖：端点同步事务、会话追踪清理、Gemini Google Search 覆写、热重载单例、货币格式化等
+
+---
+
+## [v0.5.3](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.3) - 2026-02-03
+
+### 新增
+
+- 扩展只读密钥访问权限，支持更多 API 端点访问 (#704) [@AptS:1547](https://github.com/AptS1547)
+- 支持 Zeabur 一键部署 (#679) [@h7ml](https://github.com/h7ml)
+- Anthropic 供应商支持参数覆写功能，可自定义 API 请求参数 (#689)
+
+### 优化
+
+- 重构代理架构，移除格式转换器并强制同格式路由，提升性能和稳定性 (#709)
+- 优化 Thinking Budget 整流器，改进思考模式下的令牌预算管理
+
+### 修复
+
+- 修复 Gemini 供应商 buildProxyUrl 重复拼接版本前缀的问题 (#693) [@sunxyw](https://github.com/sunxyw)
+- 修复 Gemini SSE 响应中 usageMetadata 提取逻辑，采用 last-wins 策略 (#691) [@sususu98](https://github.com/sususu98)
+
+### 其他
+
+- 新增 Thinking Budget 整流器单元测试覆盖
+- 更新 i18n 翻译和系统配置
+
+---
+
 ## [v0.5.2](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.2) - 2026-01-29
 
 ### 新增

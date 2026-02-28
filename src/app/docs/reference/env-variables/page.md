@@ -17,8 +17,11 @@ Claude Code Hub 使用环境变量进行配置，支持以下几类配置：
 - **数据库配置**：PostgreSQL 连接和迁移设置
 - **Redis 配置**：缓存、限流和 Session 管理
 - **安全配置**：Cookie 策略和认证设置
+- **API Key 安全配置**：Vacuum Filter 和鉴权缓存
 - **熔断器配置**：故障保护和智能探测
-- **高级配置**：调试、超时和实验性功能
+- **端点探测配置**：端点健康检查和动态间隔
+- **Langfuse 可观测性**：LLM 请求追踪和分析
+- **高级配置**：调试、性能、超时和实验性功能
 
 {% callout type="warning" title="布尔值配置注意事项" %}
 所有布尔类型的环境变量请直接使用 `true` 或 `false`（或 `1`/`0`），**不要加引号**。
@@ -260,14 +263,36 @@ Session 过期时间，控制 Session 与供应商的绑定关系缓存时长。
 | **默认值** | `false` |
 | **必需** | 否 |
 
-是否存储请求 messages 到 Redis（用于实时监控页面查看对话详情）。
+会话消息存储模式。控制请求/响应中 message 内容的存储方式（v0.5.1 行为变更）。
+
+- **`false`（默认）**：存储请求/响应体但对 message 内容脱敏，显示为 `[REDACTED]`
+- **`true`**：原样存储 message 内容
 
 {% callout type="warning" title="资源和隐私警告" %}
 启用此选项会：
-- **增加 Redis 内存使用**：每个请求的完整消息内容都会被存储
+- **增加 Redis/DB 存储空间**：每个请求的完整消息内容都会被存储
 - **可能包含敏感信息**：用户的代码和对话内容会被缓存
 
 建议仅在调试或需要详细监控时临时启用。
+{% /callout %}
+
+---
+
+### STORE_SESSION_RESPONSE_BODY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+是否在 Redis 中存储会话响应体（SSE/JSON）。用于调试和问题定位。
+
+- **`true`（默认）**：存储响应体到 Redis 临时缓存
+- **`false`**：不存储响应体
+
+{% callout type="note" %}
+此开关不影响内部统计读取响应体（tokens/费用统计、SSE 假 200 检测仍会正常进行），仅影响后续通过管理面板查看 response body。
 {% /callout %}
 
 ---
@@ -394,6 +419,51 @@ APP_URL=
 
 ---
 
+## API Key 安全配置
+
+### ENABLE_API_KEY_VACUUM_FILTER
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+启用 API Key 真空过滤器（Vacuum Filter），在访问数据库前对无效 API Key 进行负向短路，降低数据库压力、抵御暴力破解。
+
+| 值 | 行为 |
+|------|------|
+| `true` | 启用过滤器，无效 Key 在内存中即被拦截 |
+| `false` | 禁用过滤器，所有 Key 查询直接走数据库 |
+
+---
+
+### ENABLE_API_KEY_REDIS_CACHE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+是否启用 API Key Redis 缓存。需要 `ENABLE_RATE_LIMIT=true` 且配置 `REDIS_URL` 才会生效；否则自动回落到数据库查询。
+
+---
+
+### API_KEY_AUTH_CACHE_TTL_SECONDS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `60` |
+| **单位** | 秒 |
+| **范围** | 最大 3600 |
+| **必需** | 否 |
+
+API Key 鉴权缓存 TTL。缓存链路为 Vacuum Filter -> Redis -> DB。
+
+---
+
 ## 熔断器配置
 
 ### ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS
@@ -464,9 +534,7 @@ APP_URL=
 
 ---
 
-## 高级配置
-
-### ENABLE_MULTI_PROVIDER_TYPES
+### ENABLE_ENDPOINT_CIRCUIT_BREAKER
 
 | 属性 | 值 |
 |------|-----|
@@ -474,17 +542,204 @@ APP_URL=
 | **默认值** | `false` |
 | **必需** | 否 |
 
-是否启用多供应商类型支持（实验性功能）。
+控制是否启用端点级别的熔断器。
 
-| 值 | 支持的供应商类型 |
+| 值 | 行为 |
 |------|------|
-| `false` | 仅支持 `claude`、`claude-auth`、`codex` |
-| `true` | 额外支持 `gemini`、`gemini-cli`、`openai-compatible` |
+| `false` | 禁用端点熔断器，所有启用的端点均可使用 |
+| `true` | 启用熔断器，供应商类型级别和端点级别的熔断器均生效，连续失败的端点会被临时屏蔽（默认 3 次失败后熔断 5 分钟） |
 
-{% callout type="warning" title="实验性功能" %}
-Gemini CLI、OpenAI Compatible 等类型功能仍在开发中，可能存在不稳定性。
-生产环境暂不建议启用。
+{% callout type="note" %}
+此开关同时控制供应商类型级别和端点级别的熔断器。启用后，供应商类型和端点的熔断器都会生效。
 {% /callout %}
+
+---
+
+## 端点探测配置
+
+端点探测始终启用，定期检查所有启用的端点并刷新端点选择排名。
+
+### ENDPOINT_PROBE_INTERVAL_MS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `60000`（60 秒） |
+| **单位** | 毫秒 |
+| **必需** | 否 |
+
+端点探测基础间隔。系统使用动态间隔规则：
+1. **超时覆盖**（10 秒）：端点上次探测超时且未恢复时
+2. **单端点供应商**（10 分钟）：供应商仅有 1 个启用端点时
+3. **基础间隔**：其他端点使用此值
+
+---
+
+### ENDPOINT_PROBE_TIMEOUT_MS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `5000`（5 秒） |
+| **单位** | 毫秒 |
+| **必需** | 否 |
+
+单次端点探测超时时间。
+
+---
+
+### ENDPOINT_PROBE_METHOD
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | `TCP` |
+| **可选值** | `TCP` / `HEAD` / `GET` |
+| **必需** | 否 |
+
+端点探测方式。`TCP` 模式（默认）仅检测连接，不发送 HTTP 请求，不产生访问日志。
+
+---
+
+### ENDPOINT_PROBE_CONCURRENCY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `10` |
+| **必需** | 否 |
+
+端点探测并发数。
+
+---
+
+### ENDPOINT_PROBE_LOG_RETENTION_DAYS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `1` |
+| **单位** | 天 |
+| **必需** | 否 |
+
+探测日志保留天数。自动清理任务每 24 小时运行，删除过期记录。
+
+---
+
+## Langfuse 可观测性
+
+以下变量控制 Langfuse LLM 可观测性集成，自 v0.6.0 起可用。
+
+### LANGFUSE_PUBLIC_KEY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | 无 |
+| **必需** | 否（设置后自动启用 Langfuse） |
+
+Langfuse 项目公钥，以 `pk-lf-` 开头。与 `LANGFUSE_SECRET_KEY` 同时配置后自动启用追踪。
+
+---
+
+### LANGFUSE_SECRET_KEY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | 无 |
+| **必需** | 否（设置后自动启用 Langfuse） |
+
+Langfuse 项目密钥，以 `sk-lf-` 开头。
+
+---
+
+### LANGFUSE_BASE_URL
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` (URL 格式) |
+| **默认值** | `https://cloud.langfuse.com` |
+| **必需** | 否 |
+
+Langfuse 服务器地址。使用 Langfuse Cloud 时无需修改，自托管实例需指向你的服务地址。
+
+---
+
+### LANGFUSE_SAMPLE_RATE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `1.0` |
+| **范围** | `0.0` - `1.0` |
+| **必需** | 否 |
+
+追踪采样率。`0.0` 表示不采样，`1.0` 表示全量采样。高并发场景建议降低采样率以控制 Langfuse 存储成本。
+
+---
+
+### LANGFUSE_DEBUG
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `false` |
+| **必需** | 否 |
+
+是否启用 Langfuse SDK 调试日志。排查 Langfuse 集成问题时可临时开启。
+
+---
+
+## 高级配置
+
+### ENABLE_PROVIDER_CACHE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+启用供应商进程级缓存（30s TTL + Redis Pub/Sub 跨实例即时失效），提升供应商查询性能。禁用后每次请求直接查询数据库。
+
+---
+
+### MESSAGE_REQUEST_WRITE_MODE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | `async` |
+| **可选值** | `async` / `sync` |
+| **必需** | 否 |
+
+请求日志（message_request）写入模式。`async` 为异步批量写入（降低 DB 写放大和连接占用），`sync` 为同步写入（兼容旧行为，但高并发下会增加请求尾部阻塞）。
+
+---
+
+### DB_POOL_MAX
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `20`（生产），`10`（开发） |
+| **必需** | 否 |
+
+PostgreSQL 每个应用进程的连接池上限。K8s 多副本部署时需按副本数分摊。
+
+---
+
+### MAX_RETRY_ATTEMPTS_DEFAULT
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `2` |
+| **范围** | 1-10 |
+| **必需** | 否 |
+
+单供应商最大尝试次数（含首次调用）。
 
 ---
 
@@ -567,8 +822,8 @@ TZ=UTC                # 协调世界时
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
-| `FETCH_BODY_TIMEOUT` | `120000`（120 秒） | 请求/响应体传输超时 |
-| `FETCH_HEADERS_TIMEOUT` | `60000`（60 秒） | 响应头接收超时 |
+| `FETCH_BODY_TIMEOUT` | `600000`（600 秒） | 请求/响应体传输超时 |
+| `FETCH_HEADERS_TIMEOUT` | `600000`（600 秒） | 响应头接收超时 |
 | `FETCH_CONNECT_TIMEOUT` | `30000`（30 秒） | TCP 连接建立超时 |
 
 这些配置适用于系统向上游供应商发起的所有请求。
@@ -629,10 +884,22 @@ ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS=false
 ENABLE_SMART_PROBING=true
 PROBE_INTERVAL_MS=30000
 PROBE_TIMEOUT_MS=5000
+ENABLE_ENDPOINT_CIRCUIT_BREAKER=false
+
+# API Key 安全
+ENABLE_API_KEY_VACUUM_FILTER=true
+ENABLE_API_KEY_REDIS_CACHE=true
+API_KEY_AUTH_CACHE_TTL_SECONDS=60
 
 # 日志
 LOG_LEVEL=info
 TZ=Asia/Shanghai
+
+# Langfuse 可观测性（可选）
+# LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key
+# LANGFUSE_SECRET_KEY=sk-lf-your-secret-key
+# LANGFUSE_BASE_URL=https://cloud.langfuse.com
+# LANGFUSE_SAMPLE_RATE=1.0
 ```
 
 ### 内网部署（HTTP 访问）

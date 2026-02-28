@@ -36,7 +36,13 @@ nextjs:
 | `priority` | 优先级（数字越小优先级越高）| 0, 1, 2... |
 | `cost_multiplier` | 成本倍数 | 1.0, 1.5, 0.8 等 |
 | `group_tag` | 分组标签 | "production", "backup" |
+| `active_time_start` | 定时启动时间（HH:mm 格式）| "08:00"（v0.6.0+） |
+| `active_time_end` | 定时停止时间（HH:mm 格式）| "22:00"（v0.6.0+） |
 {% /table %}
+
+{% callout type="note" %}
+**定时启停功能**（v0.6.0+）：设置 `active_time_start` 和 `active_time_end` 后，供应商仅在指定时间窗口内参与请求调度。两个字段都为空时，供应商始终活跃。该功能可用于按时间调度供应商，例如在低价时段使用特定供应商。
+{% /callout %}
 
 ### 供应商类型
 
