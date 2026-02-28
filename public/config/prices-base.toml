@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.02.27"
-checksum = "759fb36fafd7efc308b0bc64621b8f79b80726004416c1f68432293ca0a74595"
+version = "2026.02.28"
+checksum = "c56f23fa732da9721761bf931494edf6b4484270853d4a2cd1e6d27d688200c9"
 sources = ["litellm", "modelsdev"]
-total_models = 2789
+total_models = 2794
 litellm_raw_models = 2610
-modelsdev_raw_models = 3041
+modelsdev_raw_models = 3054
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -10422,6 +10422,56 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."anthropic--claude-4-5-sonnet".pricing."sap-ai-core"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."anthropic--claude-4-6-opus"]
+display_name = "anthropic--claude-4.6-opus"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "sap-ai-core"
+providers = ["sap-ai-core"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-05"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic--claude-4-6-opus".pricing."sap-ai-core"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."anthropic--claude-4-6-sonnet"]
+display_name = "anthropic--claude-4.6-sonnet"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "sap-ai-core"
+providers = ["sap-ai-core"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08"
+release_date = "2026-02-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic--claude-4-6-sonnet".pricing."sap-ai-core"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -26790,7 +26840,7 @@ input_cost_per_token = 1e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 1e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "helicone", "jiekou", "kilo", "openrouter", "poe", "vercel", "zenmux"]
+providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "helicone", "jiekou", "kilo", "openrouter", "poe", "sap-ai-core", "vercel", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -26851,6 +26901,10 @@ output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."poe"]
 input_cost_per_token = 7e-8
 output_cost_per_token = 2.8e-7
+[models."gemini-2.5-flash-lite".pricing."sap-ai-core"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."vercel"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
@@ -28429,7 +28483,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2e-7
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "vertex_ai"]
+providers = ["vertex_ai-language-models", "gemini", "google", "google-vertex", "openrouter", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -28454,6 +28508,7 @@ max_videos_per_prompt = 10
 output_cost_per_image = 0.00012
 output_cost_per_token_above_200k_tokens = 0.000018
 output_cost_per_token_batches = 0.000006
+reasoning_cost_per_token = 0.000012
 supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
 supports_audio_input = true
 supports_native_streaming = true
@@ -28488,6 +28543,10 @@ output_cost_per_token = 0.000012
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
+[models."gemini-3.1-pro-preview-customtools".pricing."openrouter"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+reasoning_cost_per_token = 0.000012
 [models."gemini-3.1-pro-preview-customtools".pricing."vertex_ai"]
 cache_creation_input_token_cost_above_200k_tokens = 2.5e-7
 cache_read_input_token_cost = 2e-7
@@ -31516,7 +31575,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "kilo", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "kilo", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -31597,6 +31656,10 @@ output_cost_per_token = 0.000008
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
+[models."gpt-4.1".pricing."sap-ai-core"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
 [models."gpt-4.1".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
@@ -31665,7 +31728,7 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 cache_read_input_token_cost = 1e-7
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "kilo", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "kilo", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -31736,6 +31799,10 @@ output_cost_per_token = 0.0000014
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 [models."gpt-4.1-mini".pricing."requesty"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
+[models."gpt-4.1-mini".pricing."sap-ai-core"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
@@ -50202,6 +50269,28 @@ output_cost_per_token = 0.000004061
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.0000032000000000000003
 
+[models."nvidia-nemotron-3-nano-30b-a3b"]
+display_name = "NVIDIA Nemotron 3 Nano 30B"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 12288
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia-nemotron-3-nano-30b-a3b".pricing."venice"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
+
 [models."nvidia.nemotron-nano-12b-v2"]
 display_name = "NVIDIA Nemotron Nano 12B v2 VL BF16"
 model_family = "nemotron"
@@ -52028,6 +52117,30 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."openai-gpt-52-codex".pricing."venice"]
+cache_read_input_token_cost = 2.19e-7
+input_cost_per_token = 0.0000021899999999999998
+output_cost_per_token = 0.0000175
+
+[models."openai-gpt-53-codex"]
+display_name = "GPT-5.3 Codex"
+model_family = "gpt-codex"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 131072
+input_cost_per_token = 0.0000021899999999999998
+output_cost_per_token = 0.0000175
+cache_read_input_token_cost = 2.19e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-24"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-53-codex".pricing."venice"]
 cache_read_input_token_cost = 2.19e-7
 input_cost_per_token = 0.0000021899999999999998
 output_cost_per_token = 0.0000175
@@ -56417,6 +56530,30 @@ output_cost_per_token = 0.000001984
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.000003
 
+[models."qwen3-coder-480b-a35b-instruct-turbo"]
+display_name = "Qwen 3 Coder 480B Turbo"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 3.5e-7
+output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 4e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-coder-480b-a35b-instruct-turbo".pricing."venice"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 3.5e-7
+output_cost_per_token = 0.0000015
+
 [models."qwen3-coder-flash"]
 display_name = "Qwen3 Coder Flash"
 model_family = "qwen"
@@ -57897,7 +58034,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 2.5e-7
 
 [models."sonar"]
-display_name = "Perplexity Sonar"
+display_name = "sonar"
 model_family = "sonar"
 mode = "chat"
 max_input_tokens = 128000
@@ -57906,12 +58043,12 @@ max_tokens = 128000
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000001
 litellm_provider = "perplexity"
-providers = ["perplexity", "helicone", "kilo", "vercel", "vercel_ai_gateway"]
+providers = ["perplexity", "helicone", "kilo", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
-knowledge_cutoff = "2025-01"
-release_date = "2025-01-27"
+knowledge_cutoff = "2025-09-01"
+release_date = "2024-01-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_web_search = true
@@ -57925,6 +58062,9 @@ search_context_size_medium = 0.008
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000001
 [models."sonar".pricing."kilo"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000001
+[models."sonar".pricing."sap-ai-core"]
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000001
 [models."sonar".pricing."vercel"]
@@ -58005,7 +58145,7 @@ input_cost_per_token = 0
 output_cost_per_token = 0.0000018
 
 [models."sonar-pro"]
-display_name = "Perplexity Sonar Pro"
+display_name = "sonar-pro"
 model_family = "sonar-pro"
 mode = "chat"
 max_input_tokens = 200000
@@ -58014,13 +58154,13 @@ max_tokens = 8000
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "perplexity"
-providers = ["perplexity", "helicone", "kilo", "vercel", "vercel_ai_gateway"]
+providers = ["perplexity", "helicone", "kilo", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
-knowledge_cutoff = "2025-01"
-release_date = "2025-01-27"
-supported_modalities = ["text"]
+knowledge_cutoff = "2025-09-01"
+release_date = "2024-01-01"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_web_search = true
 
@@ -58036,6 +58176,9 @@ output_cost_per_token = 0.000015
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."sonar-pro".pricing."perplexity"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+[models."sonar-pro".pricing."sap-ai-core"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."sonar-pro".pricing."vercel"]
