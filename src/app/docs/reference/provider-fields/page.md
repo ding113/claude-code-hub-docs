@@ -690,6 +690,15 @@ v0.6.0 重构。供应商级别的客户端限制功能，可控制哪些客户�
 
 系统支持自动检测 Claude Code CLI 子客户端（使用 4 信号检测系统），便于精细化控制不同 IDE 集成的访问权限。
 
+### 配置示例
+
+```json
+{
+  "allowedClients": ["claude-code"],
+  "blockedClients": ["claude-code/vscode"]
+}
+```
+
 ---
 
 ## 交换缓存 TTL 计费
@@ -705,6 +714,14 @@ v0.6.0 新增。用于解决部分供应商以 5 分钟 TTL 计费但实际提�
 | `swapCacheTtlBilling` | boolean | `false` | 是否交换缓存 TTL 计费 |
 
 启用后，在计费计算时将 1 小时和 5 分钟的缓存 TTL 互换，使计费与供应商的实际收费策略对齐。
+
+### 配置示例
+
+```json
+{
+  "swapCacheTtlBilling": true
+}
+```
 
 ---
 

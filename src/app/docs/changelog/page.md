@@ -76,7 +76,7 @@ language: zh
 
 ---
 
-## v0.5.8 (2026-02-15)
+## [v0.5.8](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.8) - 2026-02-15
 
 ### 优化
 
@@ -96,7 +96,7 @@ language: zh
 
 ---
 
-## v0.5.7 (2026-02-14)
+## [v0.5.7](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.7) - 2026-02-14
 
 ### 新增
 
@@ -115,7 +115,7 @@ language: zh
 
 ---
 
-## v0.5.6 (2026-02-12)
+## [v0.5.6](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.6) - 2026-02-12
 
 ### 新增
 
@@ -144,7 +144,7 @@ language: zh
 
 ---
 
-## v0.5.5 (2026-02-11)
+## [v0.5.5](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.5) - 2026-02-11
 
 ### 新增
 
@@ -158,7 +158,7 @@ language: zh
 
 ### 优化
 
-- Vacuum Filter has 热路径性能优化，降低 API Key 负向短路成本 (#757) [@tesgth032](https://github.com/tesgth032)
+- Vacuum Filter 热路径性能优化，降低 API Key 负向短路成本 (#757) [@tesgth032](https://github.com/tesgth032)
 - 解耦 Adaptive Thinking 与 Thinking Budget 偏好设置，支持独立配置
 
 ### 修复
@@ -179,7 +179,7 @@ language: zh
 
 ---
 
-## v0.5.4 (2026-02-07)
+## [v0.5.4](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.4) - 2026-02-07
 
 ### 新增
 
@@ -209,7 +209,7 @@ language: zh
 
 ---
 
-## v0.5.3 (2026-02-03)
+## [v0.5.3](https://github.com/ding113/claude-code-hub/releases/tag/v0.5.3) - 2026-02-03
 
 ### 新增
 

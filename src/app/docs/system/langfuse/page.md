@@ -75,7 +75,7 @@ LANGFUSE_DEBUG=false
 
 ### 请求追踪流程
 
-```
+```text
 客户端请求
     ↓
 创建 Langfuse Trace（关联 request-id、user-id、model 等元数据）
