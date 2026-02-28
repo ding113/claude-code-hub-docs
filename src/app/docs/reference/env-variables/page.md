@@ -17,9 +17,11 @@ Claude Code Hub 使用环境变量进行配置，支持以下几类配置：
 - **数据库配置**：PostgreSQL 连接和迁移设置
 - **Redis 配置**：缓存、限流和 Session 管理
 - **安全配置**：Cookie 策略和认证设置
+- **API Key 安全配置**：Vacuum Filter 和鉴权缓存
 - **熔断器配置**：故障保护和智能探测
+- **端点探测配置**：端点健康检查和动态间隔
 - **Langfuse 可观测性**：LLM 请求追踪和分析
-- **高级配置**：调试、超时和实验性功能
+- **高级配置**：调试、性能、超时和实验性功能
 
 {% callout type="warning" title="布尔值配置注意事项" %}
 所有布尔类型的环境变量请直接使用 `true` 或 `false`（或 `1`/`0`），**不要加引号**。
@@ -261,14 +263,36 @@ Session 过期时间，控制 Session 与供应商的绑定关系缓存时长。
 | **默认值** | `false` |
 | **必需** | 否 |
 
-是否存储请求 messages 到 Redis（用于实时监控页面查看对话详情）。
+会话消息存储模式。控制请求/响应中 message 内容的存储方式（v0.5.1 行为变更）。
+
+- **`false`（默认）**：存储请求/响应体但对 message 内容脱敏，显示为 `[REDACTED]`
+- **`true`**：原样存储 message 内容
 
 {% callout type="warning" title="资源和隐私警告" %}
 启用此选项会：
-- **增加 Redis 内存使用**：每个请求的完整消息内容都会被存储
+- **增加 Redis/DB 存储空间**：每个请求的完整消息内容都会被存储
 - **可能包含敏感信息**：用户的代码和对话内容会被缓存
 
 建议仅在调试或需要详细监控时临时启用。
+{% /callout %}
+
+---
+
+### STORE_SESSION_RESPONSE_BODY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+是否在 Redis 中存储会话响应体（SSE/JSON）。用于调试和问题定位。
+
+- **`true`（默认）**：存储响应体到 Redis 临时缓存
+- **`false`**：不存储响应体
+
+{% callout type="note" %}
+此开关不影响内部统计读取响应体（tokens/费用统计、SSE 假 200 检测仍会正常进行），仅影响后续通过管理面板查看 response body。
 {% /callout %}
 
 ---
@@ -395,6 +419,51 @@ APP_URL=
 
 ---
 
+## API Key 安全配置
+
+### ENABLE_API_KEY_VACUUM_FILTER
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+启用 API Key 真空过滤器（Vacuum Filter），在访问数据库前对无效 API Key 进行负向短路，降低数据库压力、抵御暴力破解。
+
+| 值 | 行为 |
+|------|------|
+| `true` | 启用过滤器，无效 Key 在内存中即被拦截 |
+| `false` | 禁用过滤器，所有 Key 查询直接走数据库 |
+
+---
+
+### ENABLE_API_KEY_REDIS_CACHE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+是否启用 API Key Redis 缓存。需要 `ENABLE_RATE_LIMIT=true` 且配置 `REDIS_URL` 才会生效；否则自动回落到数据库查询。
+
+---
+
+### API_KEY_AUTH_CACHE_TTL_SECONDS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `60` |
+| **单位** | 秒 |
+| **范围** | 最大 3600 |
+| **必需** | 否 |
+
+API Key 鉴权缓存 TTL。缓存链路为 Vacuum Filter -> Redis -> DB。
+
+---
+
 ## 熔断器配置
 
 ### ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS
@@ -486,6 +555,77 @@ APP_URL=
 
 ---
 
+## 端点探测配置
+
+端点探测始终启用，定期检查所有启用的端点并刷新端点选择排名。
+
+### ENDPOINT_PROBE_INTERVAL_MS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `60000`（60 秒） |
+| **单位** | 毫秒 |
+| **必需** | 否 |
+
+端点探测基础间隔。系统使用动态间隔规则：
+1. **超时覆盖**（10 秒）：端点上次探测超时且未恢复时
+2. **单端点供应商**（10 分钟）：供应商仅有 1 个启用端点时
+3. **基础间隔**：其他端点使用此值
+
+---
+
+### ENDPOINT_PROBE_TIMEOUT_MS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `5000`（5 秒） |
+| **单位** | 毫秒 |
+| **必需** | 否 |
+
+单次端点探测超时时间。
+
+---
+
+### ENDPOINT_PROBE_METHOD
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | `TCP` |
+| **可选值** | `TCP` / `HEAD` / `GET` |
+| **必需** | 否 |
+
+端点探测方式。`TCP` 模式（默认）仅检测连接，不发送 HTTP 请求，不产生访问日志。
+
+---
+
+### ENDPOINT_PROBE_CONCURRENCY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `10` |
+| **必需** | 否 |
+
+端点探测并发数。
+
+---
+
+### ENDPOINT_PROBE_LOG_RETENTION_DAYS
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `1` |
+| **单位** | 天 |
+| **必需** | 否 |
+
+探测日志保留天数。自动清理任务每 24 小时运行，删除过期记录。
+
+---
+
 ## Langfuse 可观测性
 
 以下变量控制 Langfuse LLM 可观测性集成，自 v0.6.0 起可用。
@@ -552,6 +692,56 @@ Langfuse 服务器地址。使用 Langfuse Cloud 时无需修改，自托管实�
 ---
 
 ## 高级配置
+
+### ENABLE_PROVIDER_CACHE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `true` |
+| **必需** | 否 |
+
+启用供应商进程级缓存（30s TTL + Redis Pub/Sub 跨实例即时失效），提升供应商查询性能。禁用后每次请求直接查询数据库。
+
+---
+
+### MESSAGE_REQUEST_WRITE_MODE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | `async` |
+| **可选值** | `async` / `sync` |
+| **必需** | 否 |
+
+请求日志（message_request）写入模式。`async` 为异步批量写入（降低 DB 写放大和连接占用），`sync` 为同步写入（兼容旧行为，但高并发下会增加请求尾部阻塞）。
+
+---
+
+### DB_POOL_MAX
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `20`（生产），`10`（开发） |
+| **必需** | 否 |
+
+PostgreSQL 每个应用进程的连接池上限。K8s 多副本部署时需按副本数分摊。
+
+---
+
+### MAX_RETRY_ATTEMPTS_DEFAULT
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `2` |
+| **范围** | 1-10 |
+| **必需** | 否 |
+
+单供应商最大尝试次数（含首次调用）。
+
+---
 
 ### LOG_LEVEL
 
@@ -694,6 +884,12 @@ ENABLE_CIRCUIT_BREAKER_ON_NETWORK_ERRORS=false
 ENABLE_SMART_PROBING=true
 PROBE_INTERVAL_MS=30000
 PROBE_TIMEOUT_MS=5000
+ENABLE_ENDPOINT_CIRCUIT_BREAKER=false
+
+# API Key 安全
+ENABLE_API_KEY_VACUUM_FILTER=true
+ENABLE_API_KEY_REDIS_CACHE=true
+API_KEY_AUTH_CACHE_TTL_SECONDS=60
 
 # 日志
 LOG_LEVEL=info
