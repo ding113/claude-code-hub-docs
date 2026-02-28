@@ -101,11 +101,16 @@ export const USER_FIELD_PERMISSIONS = {
 客户端防护层限制哪些 CLI/IDE 客户端可以访问服务。这对于控制组织内使用的工具
 和确保合规性非常有用。
 
+{% callout type="note" %}
+v0.6.0 对客户端限制功能进行了重构，新增 `blockedClients` 黑名单机制和 Claude Code 子客户端自动检测。检测逻辑放宽至 4 信号系统以兼容 Claude Code CLI 2.0.70+。此外，客户端限制现在也可以在供应商级别进行配置。
+{% /callout %}
+
 ### 数据库字段
 
 ```typescript
 {
   allowedClients: string[],  // 允许的客户端模式列表
+  blockedClients: string[],  // 拒绝的客户端模式列表（v0.6.0+）
 }
 ```
 

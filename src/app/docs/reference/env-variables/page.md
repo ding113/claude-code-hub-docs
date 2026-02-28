@@ -18,6 +18,7 @@ Claude Code Hub 使用环境变量进行配置，支持以下几类配置：
 - **Redis 配置**：缓存、限流和 Session 管理
 - **安全配置**：Cookie 策略和认证设置
 - **熔断器配置**：故障保护和智能探测
+- **Langfuse 可观测性**：LLM 请求追踪和分析
 - **高级配置**：调试、超时和实验性功能
 
 {% callout type="warning" title="布尔值配置注意事项" %}
@@ -464,9 +465,7 @@ APP_URL=
 
 ---
 
-## 高级配置
-
-### ENABLE_MULTI_PROVIDER_TYPES
+### ENABLE_ENDPOINT_CIRCUIT_BREAKER
 
 | 属性 | 值 |
 |------|-----|
@@ -474,19 +473,85 @@ APP_URL=
 | **默认值** | `false` |
 | **必需** | 否 |
 
-是否启用多供应商类型支持（实验性功能）。
+控制是否启用端点级别的熔断器。
 
-| 值 | 支持的供应商类型 |
+| 值 | 行为 |
 |------|------|
-| `false` | 仅支持 `claude`、`claude-auth`、`codex` |
-| `true` | 额外支持 `gemini`、`gemini-cli`、`openai-compatible` |
+| `false` | 禁用端点熔断器，所有启用的端点均可使用 |
+| `true` | 启用端点熔断器，连续失败的端点会被临时屏蔽（默认 3 次失败后熔断 5 分钟） |
 
-{% callout type="warning" title="实验性功能" %}
-Gemini CLI、OpenAI Compatible 等类型功能仍在开发中，可能存在不稳定性。
-生产环境暂不建议启用。
+{% callout type="note" %}
+此开关同时控制供应商类型级别和端点级别的熔断器。启用后，供应商类型和端点的熔断器都会生效。
 {% /callout %}
 
 ---
+
+## Langfuse 可观测性
+
+以下变量控制 Langfuse LLM 可观测性集成，自 v0.6.0 起可用。
+
+### LANGFUSE_PUBLIC_KEY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | 无 |
+| **必需** | 否（设置后自动启用 Langfuse） |
+
+Langfuse 项目公钥，以 `pk-lf-` 开头。与 `LANGFUSE_SECRET_KEY` 同时配置后自动启用追踪。
+
+---
+
+### LANGFUSE_SECRET_KEY
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` |
+| **默认值** | 无 |
+| **必需** | 否（设置后自动启用 Langfuse） |
+
+Langfuse 项目密钥，以 `sk-lf-` 开头。
+
+---
+
+### LANGFUSE_BASE_URL
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `string` (URL 格式) |
+| **默认值** | `https://cloud.langfuse.com` |
+| **必需** | 否 |
+
+Langfuse 服务器地址。使用 Langfuse Cloud 时无需修改，自托管实例需指向你的服务地址。
+
+---
+
+### LANGFUSE_SAMPLE_RATE
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `number` |
+| **默认值** | `1.0` |
+| **范围** | `0.0` - `1.0` |
+| **必需** | 否 |
+
+追踪采样率。`0.0` 表示不采样，`1.0` 表示全量采样。高并发场景建议降低采样率以控制 Langfuse 存储成本。
+
+---
+
+### LANGFUSE_DEBUG
+
+| 属性 | 值 |
+|------|-----|
+| **类型** | `boolean` |
+| **默认值** | `false` |
+| **必需** | 否 |
+
+是否启用 Langfuse SDK 调试日志。排查 Langfuse 集成问题时可临时开启。
+
+---
+
+## 高级配置
 
 ### LOG_LEVEL
 
@@ -567,8 +632,8 @@ TZ=UTC                # 协调世界时
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
-| `FETCH_BODY_TIMEOUT` | `120000`（120 秒） | 请求/响应体传输超时 |
-| `FETCH_HEADERS_TIMEOUT` | `60000`（60 秒） | 响应头接收超时 |
+| `FETCH_BODY_TIMEOUT` | `600000`（600 秒） | 请求/响应体传输超时 |
+| `FETCH_HEADERS_TIMEOUT` | `600000`（600 秒） | 响应头接收超时 |
 | `FETCH_CONNECT_TIMEOUT` | `30000`（30 秒） | TCP 连接建立超时 |
 
 这些配置适用于系统向上游供应商发起的所有请求。
@@ -633,6 +698,12 @@ PROBE_TIMEOUT_MS=5000
 # 日志
 LOG_LEVEL=info
 TZ=Asia/Shanghai
+
+# Langfuse 可观测性（可选）
+# LANGFUSE_PUBLIC_KEY=pk-lf-your-public-key
+# LANGFUSE_SECRET_KEY=sk-lf-your-secret-key
+# LANGFUSE_BASE_URL=https://cloud.langfuse.com
+# LANGFUSE_SAMPLE_RATE=1.0
 ```
 
 ### 内网部署（HTTP 访问）
