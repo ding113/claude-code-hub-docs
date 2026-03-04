@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.03.04"
-checksum = "8b78815a2cdcc27f8245238c2fa5c28d9988aeb578f8305481a6b3a999fe1dc4"
+checksum = "a7a95e89e5eea65705d9ada9e7bf0a4867f2f2079e9b0d35e68be9751d97af59"
 sources = ["litellm", "modelsdev"]
-total_models = 2812
-litellm_raw_models = 2671
+total_models = 2813
+litellm_raw_models = 2673
 modelsdev_raw_models = 3068
 custom_models = 4
 
@@ -29276,7 +29276,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.000002
 
 [models."gemini-live-2.5-flash-preview-native-audio-09-2025"]
-mode = "chat"
+mode = "realtime"
 max_input_tokens = 1048576
 max_output_tokens = 65535
 max_tokens = 65535
@@ -29300,7 +29300,7 @@ max_pdf_size_mb = 30
 max_video_length = 1
 max_videos_per_prompt = 10
 output_cost_per_audio_token = 0.000012
-supported_endpoints = ["/v1/chat/completions", "/v1/completions"]
+supported_endpoints = ["/vertex_ai/live", "/v1/realtime"]
 supports_audio_input = true
 supports_audio_output = true
 supports_parallel_function_calling = true
@@ -47335,6 +47335,24 @@ supports_tool_choice = true
 [models."mistral-tiny".pricing."mistral"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 2.5e-7
+
+[models."mistral.devstral-2-123b"]
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 8192
+max_tokens = 8192
+input_cost_per_token = 4e-7
+output_cost_per_token = 0.000002
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+source = "https://aws.amazon.com/bedrock/pricing/"
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."mistral.devstral-2-123b".pricing."bedrock_converse"]
+input_cost_per_token = 4e-7
+output_cost_per_token = 0.000002
 
 [models."mistral.magistral-small-2509"]
 mode = "chat"
@@ -66471,29 +66489,6 @@ source = "modelsdev"
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.00000256
 
-[models."zai.glm-4-7-flash"]
-display_name = "GLM-4.7-Flash"
-model_family = "glm-flash"
-mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 131072
-input_cost_per_token = 7e-8
-output_cost_per_token = 4.0000000000000003e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2026-01-19"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."zai.glm-4-7-flash".pricing."amazon-bedrock"]
-input_cost_per_token = 7e-8
-output_cost_per_token = 4.0000000000000003e-7
-
 [models."zai.glm-4.7"]
 display_name = "GLM-4.7"
 model_family = "glm"
@@ -66522,6 +66517,35 @@ output_cost_per_token = 0.0000022
 [models."zai.glm-4.7".pricing."bedrock_converse"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
+
+[models."zai.glm-4.7-flash"]
+display_name = "GLM-4.7-Flash"
+model_family = "glm-flash"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 7e-8
+output_cost_per_token = 4e-7
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-01-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "https://aws.amazon.com/bedrock/pricing/"
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."zai.glm-4.7-flash".pricing."amazon-bedrock"]
+input_cost_per_token = 7e-8
+output_cost_per_token = 4.0000000000000003e-7
+[models."zai.glm-4.7-flash".pricing."bedrock_converse"]
+input_cost_per_token = 7e-8
+output_cost_per_token = 4e-7
 
 [models."zai/glm-4-5v"]
 display_name = "GLM 4.5V"
