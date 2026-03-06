@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.03.05"
-checksum = "b2b5a953d6617283dc516587e8e83db3bfcb2983141d00805a32125560b0033d"
+version = "2026.03.06"
+checksum = "f3bb1d773be1136fc3648a2a855ab18e5e55a2b4c411cf821d76f8021b39ece3"
 sources = ["litellm", "modelsdev"]
 total_models = 2819
 litellm_raw_models = 2680
-modelsdev_raw_models = 3074
+modelsdev_raw_models = 3075
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12222,47 +12222,6 @@ input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
 
-[models."apac.anthropic.claude-sonnet-4-6"]
-mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 64000
-max_tokens = 64000
-input_cost_per_token = 0.0000033
-output_cost_per_token = 0.0000165
-cache_read_input_token_cost = 3.3e-7
-cache_creation_input_token_cost = 0.000004125
-litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
-supports_function_calling = true
-supports_vision = true
-supports_reasoning = true
-supports_prompt_caching = true
-supports_pdf_input = true
-cache_creation_input_token_cost_above_200k_tokens = 0.00000825
-cache_read_input_token_cost_above_200k_tokens = 6.6e-7
-input_cost_per_token_above_200k_tokens = 0.0000066
-output_cost_per_token_above_200k_tokens = 0.00002475
-supports_assistant_prefill = true
-supports_computer_use = true
-supports_response_schema = true
-supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
-
-[models."apac.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
-search_context_size_high = 0.01
-search_context_size_low = 0.01
-search_context_size_medium = 0.01
-
-[models."apac.anthropic.claude-sonnet-4-6".pricing."bedrock_converse"]
-cache_creation_input_token_cost = 0.000004125
-cache_creation_input_token_cost_above_200k_tokens = 0.00000825
-cache_read_input_token_cost = 3.3e-7
-cache_read_input_token_cost_above_200k_tokens = 6.6e-7
-input_cost_per_token = 0.0000033
-input_cost_per_token_above_200k_tokens = 0.0000066
-output_cost_per_token = 0.0000165
-output_cost_per_token_above_200k_tokens = 0.00002475
-
 [models."arcee-ai/trinity-large-preview"]
 display_name = "Trinity Large Preview"
 model_family = "trinity"
@@ -12469,6 +12428,47 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000004125
+cache_creation_input_token_cost_above_200k_tokens = 0.00000825
+cache_read_input_token_cost = 3.3e-7
+cache_read_input_token_cost_above_200k_tokens = 6.6e-7
+input_cost_per_token = 0.0000033
+input_cost_per_token_above_200k_tokens = 0.0000066
+output_cost_per_token = 0.0000165
+output_cost_per_token_above_200k_tokens = 0.00002475
+
+[models."au.anthropic.claude-sonnet-4-6"]
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+max_tokens = 64000
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 3.3e-7
+cache_creation_input_token_cost = 0.000004125
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+cache_creation_input_token_cost_above_200k_tokens = 0.00000825
+cache_read_input_token_cost_above_200k_tokens = 6.6e-7
+input_cost_per_token_above_200k_tokens = 0.0000066
+output_cost_per_token_above_200k_tokens = 0.00002475
+supports_assistant_prefill = true
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."au.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."au.anthropic.claude-sonnet-4-6".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_200k_tokens = 0.00000825
 cache_read_input_token_cost = 3.3e-7
@@ -33870,18 +33870,23 @@ max_input_tokens = 1050000
 max_output_tokens = 128000
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
-litellm_provider = "openai"
-providers = ["openai"]
+cache_read_input_token_cost = 0.00003
+litellm_provider = "opencode"
+providers = ["opencode", "openai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-05"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."gpt-5-4-pro".pricing."openai"]
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+[models."gpt-5-4-pro".pricing."opencode"]
+cache_read_input_token_cost = 0.00003
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
 
