@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.06"
-checksum = "c6dc9a41774c9f82d8939837e1b390ba8b4d0bf9e6983ffb5c68b4a9868f3c2d"
+checksum = "9e8755f737fccdd0df6012d6d6e4e0e29d1183961ac322294e2da725138c4b0a"
 sources = ["litellm", "modelsdev"]
 total_models = 2821
 litellm_raw_models = 2688
-modelsdev_raw_models = 3078
+modelsdev_raw_models = 3079
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -34642,6 +34642,7 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-5.1-2025-11-13".pricing."azure"]
 cache_read_input_token_cost = 1.25e-7
@@ -34786,6 +34787,7 @@ supports_parallel_function_calling = false
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = false
+supports_web_search = true
 
 [models."gpt-5.1-chat-latest".pricing."302ai"]
 input_cost_per_token = 0.00000125
@@ -35272,6 +35274,7 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-5.2-2025-12-11".pricing."azure"]
 cache_read_input_token_cost = 1.75e-7
@@ -35411,6 +35414,7 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-5.2-chat-latest".pricing."302ai"]
 input_cost_per_token = 0.00000175
@@ -35621,6 +35625,7 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 
 [models."gpt-5.3-chat-latest".pricing."openai"]
 cache_read_input_token_cost = 1.75e-7
@@ -35759,7 +35764,7 @@ max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
 litellm_provider = "chatgpt"
-providers = ["chatgpt", "cloudflare-ai-gateway", "openai", "opencode", "openrouter"]
+providers = ["chatgpt", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -35853,18 +35858,23 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-supported_endpoints = ["/v1/responses"]
+supported_endpoints = ["/v1/responses", "/v1/chat/completions", "/v1/batch"]
 supports_native_streaming = true
 supports_parallel_function_calling = true
 supports_response_schema = true
+supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = true
+supports_xhigh_reasoning_effort = true
 
 [models."gpt-5.4-pro".pricing."openai"]
-cache_read_input_token_cost = 0.000002
-input_cost_per_token = 0.00002
-output_cost_per_token = 0.00012
+cache_read_input_token_cost = 0.000003
+cache_read_input_token_cost_priority = 0.000006
+input_cost_per_token = 0.00003
+input_cost_per_token_priority = 0.00006
+output_cost_per_token = 0.00018
+output_cost_per_token_priority = 0.00027
 [models."gpt-5.4-pro".pricing."opencode"]
 cache_read_input_token_cost = 0.00003
 input_cost_per_token = 0.00003
@@ -35879,9 +35889,9 @@ mode = "responses"
 max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
-input_cost_per_token = 0.00002
-output_cost_per_token = 0.00012
-cache_read_input_token_cost = 0.000002
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+cache_read_input_token_cost = 0.000003
 litellm_provider = "openai"
 providers = ["openai"]
 supports_function_calling = true
@@ -35891,18 +35901,27 @@ supports_prompt_caching = true
 supports_pdf_input = true
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-supported_endpoints = ["/v1/responses"]
+cache_read_input_token_cost_priority = 0.000006
+input_cost_per_token_priority = 0.00006
+output_cost_per_token_priority = 0.00027
+supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
 supports_native_streaming = true
+supports_none_reasoning_effort = false
 supports_parallel_function_calling = true
-supports_response_schema = true
+supports_response_schema = false
+supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 supports_web_search = true
+supports_xhigh_reasoning_effort = true
 
 [models."gpt-5.4-pro-2026-03-05".pricing."openai"]
-cache_read_input_token_cost = 0.000002
-input_cost_per_token = 0.00002
-output_cost_per_token = 0.00012
+cache_read_input_token_cost = 0.000003
+cache_read_input_token_cost_priority = 0.000006
+input_cost_per_token = 0.00003
+input_cost_per_token_priority = 0.00006
+output_cost_per_token = 0.00018
+output_cost_per_token_priority = 0.00027
 
 [models."gpt-audio"]
 mode = "chat"
