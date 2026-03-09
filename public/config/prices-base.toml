@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.09"
-checksum = "0112090128bac5e63db06f2d28d02bfeae3539d4f09fa15efa1c56f17e744475"
+checksum = "be208de41cd68b6a304db50482cc9bfeeb947bfc8d8d8f766ac650ed1c3f3bf6"
 sources = ["litellm", "modelsdev"]
 total_models = 2856
 litellm_raw_models = 2692
-modelsdev_raw_models = 3188
+modelsdev_raw_models = 3191
 custom_models = 4
 
 [models." MiniMaxAI/MiniMax-M2-5"]
@@ -4965,17 +4965,17 @@ display_name = "Qwen3.5-397B-A17B"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 64000
+max_output_tokens = 8192
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036
 litellm_provider = "together_ai"
-providers = ["together_ai", "huggingface", "kilo", "nano-gpt", "novita-ai", "openrouter", "siliconflow-cn", "togetherai"]
+providers = ["together_ai", "huggingface", "kilo", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2026-02-17"
-supported_modalities = ["text", "image", "video"]
+knowledge_cutoff = "2026-01"
+release_date = "2026-02-16"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://www.together.ai/models/Qwen/Qwen3.5-397B-A17B"
 supports_parallel_function_calling = true
@@ -23072,7 +23072,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (Claude Opus 4.6)"
 model_family = "claude-opus"
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 64000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -23106,7 +23106,7 @@ source = "modelsdev"
 display_name = "Agentic Chat (Claude Sonnet 4.6)"
 model_family = "claude-sonnet"
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 64000
 litellm_provider = "gitlab"
 providers = ["gitlab"]
@@ -36185,17 +36185,28 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 
 [models."gpt-5.3-instant"]
+display_name = "GPT-5.3-Instant"
 mode = "responses"
 max_input_tokens = 128000
 max_output_tokens = 64000
 max_tokens = 64000
 litellm_provider = "chatgpt"
-providers = ["chatgpt"]
+providers = ["chatgpt", "poe"]
 supports_function_calling = true
 supports_vision = true
+supports_reasoning = false
+open_weights = false
+release_date = "2026-03-03"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions", "/v1/responses"]
 supports_parallel_function_calling = true
 supports_response_schema = true
+
+[models."gpt-5.3-instant".pricing."poe"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 0.0000016000000000000001
+output_cost_per_token = 0.000013
 
 [models."gpt-5.4"]
 display_name = "GPT-5.4"
@@ -36205,7 +36216,7 @@ max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
 litellm_provider = "chatgpt"
-providers = ["chatgpt", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter"]
+providers = ["chatgpt", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -36260,6 +36271,10 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
+[models."gpt-5.4".pricing."poe"]
+cache_read_input_token_cost = 2.2e-7
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.000014
 
 [models."gpt-5.4-2026-03-05"]
 mode = "chat"
@@ -36327,7 +36342,7 @@ max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
 litellm_provider = "chatgpt"
-providers = ["chatgpt", "azure", "azure-cognitive-services", "openai", "opencode", "openrouter"]
+providers = ["chatgpt", "azure", "azure-cognitive-services", "openai", "opencode", "openrouter", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -36379,6 +36394,9 @@ output_cost_per_token = 0.00018
 cache_read_input_token_cost = 0.00003
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
+[models."gpt-5.4-pro".pricing."poe"]
+input_cost_per_token = 0.000027
+output_cost_per_token = 0.00016
 
 [models."gpt-5.4-pro-2026-03-05"]
 mode = "responses"
@@ -50648,7 +50666,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "groq"
-providers = ["groq", "baseten", "chutes", "deepinfra", "huggingface", "io-net", "nvidia", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["groq", "baseten", "chutes", "deepinfra", "huggingface", "io-net", "nvidia", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
@@ -50687,9 +50705,6 @@ output_cost_per_token = 0.000002
 [models."moonshotai/kimi-k2-instruct-0905".pricing."siliconflow-cn"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
-[models."moonshotai/kimi-k2-instruct-0905".pricing."togetherai"]
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
 
 [models."moonshotai/kimi-k2-thinking"]
 display_name = "Kimi K2 Thinking"
@@ -50701,7 +50716,7 @@ max_tokens = 262144
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "novita"
-providers = ["novita", "baseten", "deepinfra", "huggingface", "io-net", "kilo", "meganova", "nano-gpt", "nebius", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn", "togetherai", "vercel", "zenmux"]
+providers = ["novita", "baseten", "deepinfra", "huggingface", "io-net", "kilo", "meganova", "nano-gpt", "nebius", "novita-ai", "nvidia", "openrouter", "siliconflow", "siliconflow-cn", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -50760,9 +50775,6 @@ output_cost_per_token = 0.0000025
 [models."moonshotai/kimi-k2-thinking".pricing."siliconflow-cn"]
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000025
-[models."moonshotai/kimi-k2-thinking".pricing."togetherai"]
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-thinking".pricing."vercel"]
 cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 4.6999999999999995e-7
@@ -60893,28 +60905,26 @@ cache_read_input_token_cost = 0.00000104
 input_cost_per_token = 0.00000521
 output_cost_per_token = 0.000016440000000000002
 
-[models."stepfun-ai/Step-3-5-Flash"]
-display_name = "stepfun-ai/Step-3.5-Flash"
+[models."stepfun-ai/step-3-5-flash"]
+display_name = "Step 3.5 Flash"
 model_family = "step"
 mode = "chat"
-max_input_tokens = 262000
-max_output_tokens = 262000
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 3e-7
-litellm_provider = "siliconflow"
-providers = ["siliconflow", "siliconflow-cn"]
+max_input_tokens = 256000
+max_output_tokens = 16384
+litellm_provider = "nvidia"
+providers = ["nvidia", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-02-11"
+open_weights = true
+release_date = "2026-02-02"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."stepfun-ai/Step-3-5-Flash".pricing."siliconflow"]
+[models."stepfun-ai/step-3-5-flash".pricing."siliconflow"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
-[models."stepfun-ai/Step-3-5-Flash".pricing."siliconflow-cn"]
+[models."stepfun-ai/step-3-5-flash".pricing."siliconflow-cn"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 
