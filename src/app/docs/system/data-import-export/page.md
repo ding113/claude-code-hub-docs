@@ -23,18 +23,19 @@ Claude Code Hub 提供完整的数据导入导出功能，支持数据库备份�
 
 ### 导出接口
 
-**端点**：`GET /api/admin/database/export?excludeLogs=true`
+**端点**：`GET /api/admin/database/export?mode=full|excludeLogs|ledgerOnly`
 
 系统使用 `pg_dump` 创建 PostgreSQL 自定义格式（压缩）备份。
 
-| 参数 | 类型 | 说明 |
-|-----|------|------|
-| `excludeLogs` | boolean | 是否排除请求日志表数据 |
+| 参数 | 类型 | 默认值 | 说明 |
+|-----|------|--------|------|
+| `mode` | enum | `full` | 导出模式：`full`（完整导出）、`excludeLogs`（排除请求日志表数据）、`ledgerOnly`（仅导出 usage_ledger 计费账本，v0.6.0+） |
 
 **文件命名规则**：
-```
-backup_2025-01-29T10-30-00.dump
-backup_2025-01-29T10-30-00_no-logs.dump  // 排除日志时
+```text
+backup_2025-01-29T10-30-00.dump           // 完整导出
+backup_2025-01-29T10-30-00_no-logs.dump   // excludeLogs 模式
+backup_2025-01-29T10-30-00_ledger-only.dump  // ledgerOnly 模式（v0.6.0+）
 ```
 
 {% callout type="warning" title="权限要求" %}
@@ -45,7 +46,12 @@ backup_2025-01-29T10-30-00_no-logs.dump  // 排除日志时
 
 - **流式响应**：支持大型数据库的流式传输
 - **日志排除**：可选择排除 `message_request` 表数据，保留表结构
+- **计费账本导出**（v0.6.0+）：使用 `mode=ledgerOnly` 仅导出 `usage_ledger` 计费数据，不包含决策日志，备份文件更小且不影响计费和限额功能
 - **分布式锁**：Redis 分布式锁防止并发操作，锁超时 5 分钟
+
+{% callout type="warning" %}
+v0.6.0 引入了 `usage_ledger` 计费账本系统，将计费数据从日志中解耦。使用 v0.6.0+ 导出的数据库备份将不再兼容旧版本。
+{% /callout %}
 
 ## 数据库备份导入
 

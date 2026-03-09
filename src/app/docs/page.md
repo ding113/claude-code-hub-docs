@@ -40,10 +40,6 @@ CCH 专为解决这些问题而生，提供**服务器部署、多租户、Sessi
 
 同时接入 Claude、Codex、Gemini、OpenAI Compatible 等多种类型供应商，支持自定义模型重定向与 HTTP/HTTPS/SOCKS 代理配置。
 
-{% callout type="note" title="多供应商类型开关" %}
-出于安全与兼容性考虑，非 Claude 类型供应商（如 `gemini` / `gemini-cli` / `openai-compatible`）默认需要启用环境变量 `ENABLE_MULTI_PROVIDER_TYPES=true` 才会在管理后台展示并允许配置。
-{% /callout %}
-
 ### 限流与并发控制
 
 多维度限制机制：
@@ -58,8 +54,9 @@ Redis Lua 脚本确保原子性，Fail-Open 策略保障 Redis 不可用时服�
 
 - 仪表盘：调用量、成本、活跃 Session 一目了然
 - 排行榜：按用户统计请求数、Token 与成本
-- 决策链记录：完整追踪每次请求的路由决策
+- 决策链记录：完整追踪每次请求的路由决策，支持决策链溯源（v0.6.0+）
 - 供应商健康状态：实时监控熔断器状态
+- Langfuse 集成：企业级 LLM 可观测性，自动追踪请求全生命周期（v0.6.0+）
 
 ### Session 管理
 

@@ -21,6 +21,12 @@ Web UI 登录控制的核心设计目标：
 - **管理员令牌绕过**：基于环境变量的管理员令牌提供无需数据库依赖的紧急访问
 {% /callout %}
 
+{% callout type="warning" %}
+**v0.6.0 Breaking Change**：v0.6.0 对登录鉴权逻辑进行了重构，增强了安全性（使用 XOR 循环替代 timingSafeEqual 以兼容 Edge Runtime）。更新到 v0.6.0 后，所有客户端的登录态会失效，需要重新登录。
+
+v0.6.1 修复了 HTTP 部署时 CSRF 校验导致无法登录的问题，如果你使用 HTTP（非 HTTPS）部署，请确保至少更新到 v0.6.1。
+{% /callout %}
+
 ## 登录流程概览
 
 登录过程遵循以下顺序：

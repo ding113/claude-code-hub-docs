@@ -13,7 +13,7 @@ language: zh
 Claude Code Hub 支持多种供应商类型，每种类型针对不同的 AI 服务商和 API 协议进行了专门优化。本文档详细介绍各供应商类型的特点、适用场景和配置方法。
 
 {% callout type="note" title="版本说明" %}
-供应商类型功能在所有版本中可用。部分非 Claude 类型（如 Gemini、OpenAI Compatible）需要在环境变量中启用 `ENABLE_MULTI_PROVIDER_TYPES=true` 才能使用。
+供应商类型功能在所有版本中可用。所有类型（包括 Gemini、OpenAI Compatible）无需额外配置即可直接使用。
 {% /callout %}
 
 ---
@@ -205,7 +205,7 @@ API Key: sk-xxx
 `gemini` 类型用于连接 Google Gemini 官方 API。支持 Gemini 1.5、2.0 等模型系列。
 
 {% callout type="note" title="实验性功能" %}
-Gemini 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER_TYPES=true` 环境变量。
+Gemini 类型是实验性功能，可能存在不稳定性。
 {% /callout %}
 
 ### 适用场景
@@ -272,7 +272,7 @@ Gemini 类型使用**直接透传**模式，不进行格式转换。请求体直
 `gemini-cli` 类型专为 Gemini CLI 工具设计，使用 Google 内部 API 端点和特殊的请求封装格式。
 
 {% callout type="note" title="实验性功能" %}
-Gemini CLI 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER_TYPES=true` 环境变量。
+Gemini CLI 类型是实验性功能，可能存在不稳定性。
 {% /callout %}
 
 ### 与 gemini 类型的区别
@@ -321,7 +321,7 @@ Gemini CLI 类型会自动添加：
 `openai-compatible` 类型用于连接任何遵循 OpenAI Chat Completions API 格式的第三方服务。这包括许多本地模型服务和 API 聚合服务。
 
 {% callout type="note" title="实验性功能" %}
-OpenAI Compatible 类型是实验性功能，需要启用 `ENABLE_MULTI_PROVIDER_TYPES=true` 环境变量。
+OpenAI Compatible 类型是实验性功能，可能存在不稳定性。
 {% /callout %}
 
 ### 适用场景
@@ -494,6 +494,6 @@ Instructions 策略: auto
 ## 相关文档
 
 - [供应商管理](/docs/guide/settings-providers) - 供应商管理页面操作指南
-- [环境变量配置](/docs/reference/env-variables) - 配置 `ENABLE_MULTI_PROVIDER_TYPES` 等选项
+- [环境变量配置](/docs/reference/env-variables) - 配置环境变量选项
 - [智能路由](/docs/reference/intelligent-routing) - 了解供应商选择机制
 - [熔断器机制](/docs/reference/circuit-breaker) - 了解故障保护机制

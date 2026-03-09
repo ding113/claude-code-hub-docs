@@ -25,12 +25,12 @@ language: zh
 | 分类 | 说明 | 关键字段 |
 | --- | --- | --- |
 | **基础字段** | 供应商的标识和连接信息 | id, name, url, key |
-| **调度字段** | 控制请求路由和负载均衡 | weight, priority, costMultiplier, groupTag |
+| **调度字段** | 控制请求路由和负载均衡 | weight, priority, groupPriorities, costMultiplier, groupTag |
 | **限制字段** | 并发和成本限制 | limitConcurrentSessions, limit5hUsd, limitDailyUsd |
 | **超时配置** | 请求超时控制 | firstByteTimeoutStreamingMs, streamingIdleTimeoutMs |
 | **代理配置** | HTTP/SOCKS 代理设置 | proxyUrl, proxyFallbackToDirect |
 | **模型配置** | 模型重定向、白名单与调度池 | modelRedirects, allowedModels, joinClaudePool |
-| **特性配置** | 供应商特定功能 | codexReasoningEffortPreference, codexTextVerbosityPreference, mcpPassthroughType |
+| **特性配置** | 供应商特定功能 | codexReasoningEffortPreference, anthropicAdaptiveThinking, geminiGoogleSearchPreference 等 |
 | **上下文窗口配置** | 1M 上下文窗口控制 | context1mPreference |
 | **熔断器配置** | 故障隔离和恢复 | circuitBreakerFailureThreshold 等 |
 | **元数据字段** | 时间戳和软删除 | createdAt, updatedAt, deletedAt |
@@ -96,6 +96,7 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 | --- | --- | --- | --- | --- |
 | `weight` | integer | `1` | 1-100 | 权重，同优先级内按权重比例分配流量 |
 | `priority` | integer | `0` | 0-2147483647 | 优先级，数值越小越优先被选择 |
+| `groupPriorities` | JSON object | null | - | 按用户组设置独立优先级（v0.5.5+） |
 | `costMultiplier` | decimal | `1.0` | >= 0 | 成本系数，用于调整该供应商的成本计算 |
 | `groupTag` | string | null | 最大 50 字符 | 分组标签，用于用户分组绑定 |
 
@@ -137,6 +138,30 @@ API Key 在数据库中以明文存储。生产环境请确保数据库访问受
 
 1. 首先按 priority 升序排列（数值越小越优先）
 2. 然后在同 priority 内按 weight 降序排列（数值越大越优先）
+
+### 按组优先级（groupPriorities）
+
+{% callout type="note" %}
+v0.5.5 新增。允许为不同用户组设置独立的优先级，实现更精细的负载均衡策略。
+{% /callout %}
+
+格式为 JSON 对象，键为用户组标签，值为该组的专属优先级：
+
+```json
+{
+  "groupPriorities": {
+    "vip": 0,
+    "standard": 10,
+    "trial": 20
+  }
+}
+```
+
+**匹配规则**：
+
+- 当请求用户属于某个组时，使用该组对应的优先级值
+- 如果用户的组不在 `groupPriorities` 中，回退到全局 `priority` 值
+- `null` 或未设置时，所有用户使用全局 `priority`
 
 ### 成本系数（costMultiplier）
 
@@ -515,6 +540,186 @@ IP 透传功能用于将客户端真实 IP 地址传递给上游供应商。
   "codexReasoningSummaryPreference": "inherit",
   "codexTextVerbosityPreference": "inherit",
   "codexParallelToolCallsPreference": "inherit"
+}
+```
+
+---
+
+## Anthropic 参数覆写
+
+{% callout type="note" %}
+v0.5.3 新增。仅对 `providerType` 为 `claude` 或 `claude-auth` 的供应商生效。
+{% /callout %}
+
+针对 Anthropic 类型供应商的请求参数覆写配置，可在供应商级别强制覆盖客户端发送的参数值。
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `anthropicMaxTokensPreference` | string | null | 覆写 `max_tokens` 参数 |
+| `anthropicThinkingBudgetPreference` | string | null | 覆写 `thinking.budget_tokens` 参数 |
+| `anthropicAdaptiveThinking` | JSON object | null | Adaptive Thinking 自适应思考配置（v0.5.5+） |
+
+### max_tokens 覆写（anthropicMaxTokensPreference）
+
+- **null / `"inherit"`**：跟随客户端请求值
+- **数字字符串**（如 `"16384"`）：强制覆写为指定值
+
+### thinking budget 覆写（anthropicThinkingBudgetPreference）
+
+- **null / `"inherit"`**：跟随客户端请求值
+- **数字字符串**（如 `"10000"`）：强制覆写 `thinking.budget_tokens`
+- 覆写时自动设置 `thinking.type = "enabled"`
+- Anthropic API 要求 `budget_tokens >= 1024`；如果 budget 值 >= max_tokens，会自动压缩为 `max_tokens - 1`；压缩后 < 1024 则跳过覆写
+
+### Adaptive Thinking（anthropicAdaptiveThinking）
+
+{% callout type="note" %}
+v0.5.5 新增。Adaptive Thinking 优先级高于 `anthropicThinkingBudgetPreference`，当模型匹配时优先应用。
+{% /callout %}
+
+JSONB 结构，包含以下子字段：
+
+| 子字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `effort` | string | 努力等级：`"low"` / `"medium"` / `"high"` |
+| `modelMatchMode` | string | 模型匹配模式：`"all"` 或 `"list"` |
+| `models` | string[] | 当 `modelMatchMode = "list"` 时，指定匹配的模型名称列表 |
+
+生效时，覆写请求为 `thinking.type = "adaptive"` 并设置 `output_config.effort`。
+
+### 配置示例
+
+```json
+{
+  "anthropicMaxTokensPreference": "16384",
+  "anthropicThinkingBudgetPreference": "10000",
+  "anthropicAdaptiveThinking": {
+    "effort": "medium",
+    "modelMatchMode": "all",
+    "models": []
+  }
+}
+```
+
+---
+
+## Gemini 特殊配置
+
+{% callout type="note" %}
+v0.5.4 新增。仅对 `providerType` 为 `gemini` 或 `gemini-cli` 的供应商生效。
+{% /callout %}
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `geminiGoogleSearchPreference` | string | null | Google Search 网络访问偏好 |
+
+### Google Search 偏好（geminiGoogleSearchPreference）
+
+控制 Gemini 模型是否使用 Google Search 联网搜索能力：
+
+| 选项值 | 说明 |
+| --- | --- |
+| null / `"inherit"` | 跟随客户端请求（默认） |
+| `"enabled"` | 强制注入 `googleSearch` 工具到请求中 |
+| `"disabled"` | 强制移除请求中的 `googleSearch` 工具 |
+
+### 配置示例
+
+```json
+{
+  "providerType": "gemini",
+  "geminiGoogleSearchPreference": "enabled"
+}
+```
+
+---
+
+## 定时启停配置
+
+{% callout type="note" %}
+v0.6.0 新增。可为供应商配置活跃时间窗口，仅在指定时间段内参与调度。
+{% /callout %}
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 格式 | 说明 |
+| --- | --- | --- | --- | --- |
+| `activeTimeStart` | string | null | `HH:mm` | 活跃时段开始时间 |
+| `activeTimeEnd` | string | null | `HH:mm` | 活跃时段结束时间 |
+
+### 规则
+
+- **两者都为 null**：供应商始终活跃（默认行为）
+- **两者都设置**：仅在 `activeTimeStart` ~ `activeTimeEnd` 时间窗口内参与调度
+- 时间基于系统配置的时区（参见[时区设置](/docs/system/timezone)）
+- 支持跨午夜配置（如 `22:00` ~ `06:00`）
+
+### 配置示例
+
+```json
+{
+  "activeTimeStart": "08:00",
+  "activeTimeEnd": "22:00"
+}
+```
+
+---
+
+## 客户端限制配置
+
+{% callout type="note" %}
+v0.6.0 重构。供应商级别的客户端限制功能，可控制哪些客户端类型可以使用该供应商。
+{% /callout %}
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `allowedClients` | JSON array | `[]` | 允许的客户端列表，空数组表示不限制 |
+| `blockedClients` | JSON array | `[]` | 阻止的客户端黑名单 |
+
+### 匹配规则
+
+1. **allowedClients 为空**：不限制客户端类型
+2. **allowedClients 非空**：仅允许列表中的客户端使用
+3. **blockedClients**：即使 allowedClients 允许，黑名单中的客户端也会被拒绝
+
+系统支持自动检测 Claude Code CLI 子客户端（使用 4 信号检测系统），便于精细化控制不同 IDE 集成的访问权限。
+
+### 配置示例
+
+```json
+{
+  "allowedClients": ["claude-code"],
+  "blockedClients": ["claude-code/vscode"]
+}
+```
+
+---
+
+## 交换缓存 TTL 计费
+
+{% callout type="note" %}
+v0.6.0 新增。用于解决部分供应商以 5 分钟 TTL 计费但实际提供 1 小时缓存的计费不匹配问题。
+{% /callout %}
+
+### 字段说明
+
+| 字段名 | 类型 | 默认值 | 说明 |
+| --- | --- | --- | --- |
+| `swapCacheTtlBilling` | boolean | `false` | 是否交换缓存 TTL 计费 |
+
+启用后，在计费计算时将 1 小时和 5 分钟的缓存 TTL 互换，使计费与供应商的实际收费策略对齐。
+
+### 配置示例
+
+```json
+{
+  "swapCacheTtlBilling": true
 }
 ```
 

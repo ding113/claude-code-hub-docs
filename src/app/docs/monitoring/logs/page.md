@@ -59,6 +59,7 @@ Claude Code Hub 的日志系统提供了完整的 API 请求追踪、审计和�
 | 性能指标 | `durationMs`, `ttfbMs` | 总耗时和首字节时间 |
 | 错误信息 | `errorMessage`, `errorStack`, `errorCause`, `statusCode` | 错误详情、堆栈、原因和 HTTP 状态码 |
 | 供应商决策 | `providerChain` | 供应商选择决策链（JSONB） |
+| 决策链溯源 | origin chain | 被复用请求可查看 Session 原始决策过程（v0.6.0+） |
 | 拦截记录 | `blockedBy`, `blockedReason` | 被拦截的请求记录 |
 | 请求详情 | `messagesCount`, `userAgent` | 消息数量和客户端信息 |
 
@@ -708,7 +709,7 @@ A: 检查搜索关键词长度（至少 2 个字符），并确保有相应权�
 A: 异步写入模式下，日志最多有 250ms 延迟。如果延迟更长，检查 `MESSAGE_REQUEST_ASYNC_FLUSH_INTERVAL_MS` 配置。
 
 **Q: 如何追踪一个请求的完整生命周期？**
-A: 使用 Session ID 筛选，按时间排序。查看 `requestSequence` 了解请求顺序，`providerChain` 了解供应商选择过程。
+A: 使用 Session ID 筛选，按时间排序。查看 `requestSequence` 了解请求顺序，`providerChain` 了解供应商选择过程。自 v0.6.0 起，被复用的请求还可以通过决策链溯源功能查看 Session 的原始决策过程。
 
 ## 相关文档
 
