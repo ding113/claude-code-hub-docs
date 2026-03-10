@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.10"
-checksum = "9c7b801e71e3a7a81ae82634bd5549ad3335fe8291a0b8813b72123efe77a41f"
+checksum = "c11a2e4c622b0f1395bd5599e197d8a5dc9ec5a4e22c0419eba753777167ff24"
 sources = ["litellm", "modelsdev"]
 total_models = 3175
-litellm_raw_models = 2692
-modelsdev_raw_models = 3676
+litellm_raw_models = 2697
+modelsdev_raw_models = 3677
 custom_models = 4
 
 [models." MiniMaxAI/MiniMax-M2-5"]
@@ -34383,7 +34383,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "abacus", "gemini", "google", "vertex_ai"]
+providers = ["vertex_ai-language-models", "abacus", "gemini", "google", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -34429,6 +34429,10 @@ input_cost_per_token = 2.5e-7
 output_cost_per_reasoning_token = 0.0000015
 output_cost_per_token = 0.0000015
 [models."gemini-3.1-flash-lite-preview".pricing."google"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
+[models."gemini-3.1-flash-lite-preview".pricing."vercel"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
@@ -39920,31 +39924,6 @@ output_cost_per_token = 0.00001
 output_cost_per_token_flex = 0.000005
 output_cost_per_token_priority = 0.00002
 
-[models."gpt-5-3-chat"]
-display_name = "GPT-5.3 Chat"
-model_family = "gpt-codex"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 16384
-input_cost_per_token = 0.00000175
-output_cost_per_token = 0.000014
-cache_read_input_token_cost = 1.75e-7
-litellm_provider = "azure"
-providers = ["azure"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-08-31"
-release_date = "2026-03-03"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."gpt-5-3-chat".pricing."azure"]
-cache_read_input_token_cost = 1.75e-7
-input_cost_per_token = 0.00000175
-output_cost_per_token = 0.000014
-
 [models."gpt-5-3-codex"]
 display_name = "GPT-5.3 Codex"
 model_family = "gpt"
@@ -41895,6 +41874,47 @@ output_cost_per_token = 0.000168
 input_cost_per_token = 0.000021
 output_cost_per_token = 0.000168
 
+[models."gpt-5.3-chat"]
+display_name = "GPT-5.3 Chat"
+model_family = "gpt-codex"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+max_tokens = 16384
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+cache_read_input_token_cost = 1.75e-7
+litellm_provider = "azure"
+providers = ["azure"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-03"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+cache_read_input_token_cost_priority = 3.5e-7
+input_cost_per_token_priority = 0.0000035
+output_cost_per_token_priority = 0.000028
+supported_endpoints = ["/v1/chat/completions", "/v1/responses"]
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_service_tier = true
+supports_system_messages = true
+supports_tool_choice = true
+
+[models."gpt-5.3-chat".pricing."azure"]
+cache_read_input_token_cost = 1.75e-7
+cache_read_input_token_cost_priority = 3.5e-7
+input_cost_per_token = 0.00000175
+input_cost_per_token_priority = 0.0000035
+output_cost_per_token = 0.000014
+output_cost_per_token_priority = 0.000028
+
 [models."gpt-5.3-chat-latest"]
 display_name = "GPT-5.3 Chat Latest"
 model_family = "gpt"
@@ -42074,12 +42094,15 @@ output_cost_per_token = 0.000013
 [models."gpt-5.4"]
 display_name = "GPT-5.4"
 model_family = "gpt"
-mode = "responses"
+mode = "chat"
 max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
-litellm_provider = "chatgpt"
-providers = ["chatgpt", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "poe"]
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 2.5e-7
+litellm_provider = "azure"
+providers = ["azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42090,7 +42113,16 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/batch"]
+cache_read_input_token_cost_above_272k_tokens = 5e-7
+cache_read_input_token_cost_above_272k_tokens_priority = 0.000001
+cache_read_input_token_cost_priority = 5e-7
+input_cost_per_token_above_272k_tokens = 0.000005
+input_cost_per_token_above_272k_tokens_priority = 0.00001
+input_cost_per_token_priority = 0.000005
+output_cost_per_token_above_272k_tokens = 0.0000225
+output_cost_per_token_above_272k_tokens_priority = 0.000045
+output_cost_per_token_priority = 0.00003
+supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
 supports_native_streaming = true
 supports_none_reasoning_effort = true
 supports_parallel_function_calling = true
@@ -42100,6 +42132,19 @@ supports_system_messages = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
 
+[models."gpt-5.4".pricing."azure"]
+cache_read_input_token_cost = 2.5e-7
+cache_read_input_token_cost_above_272k_tokens = 5e-7
+cache_read_input_token_cost_above_272k_tokens_priority = 0.000001
+cache_read_input_token_cost_priority = 5e-7
+input_cost_per_token = 0.0000025
+input_cost_per_token_above_272k_tokens = 0.000005
+input_cost_per_token_above_272k_tokens_priority = 0.00001
+input_cost_per_token_priority = 0.000005
+output_cost_per_token = 0.000015
+output_cost_per_token_above_272k_tokens = 0.0000225
+output_cost_per_token_above_272k_tokens_priority = 0.000045
+output_cost_per_token_priority = 0.00003
 [models."gpt-5.4".pricing."azure-cognitive-services"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
@@ -42147,8 +42192,8 @@ max_tokens = 128000
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 2.5e-7
-litellm_provider = "openai"
-providers = ["openai"]
+litellm_provider = "azure"
+providers = ["azure", "openai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42158,18 +42203,13 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_read_input_token_cost_above_272k_tokens = 5e-7
 cache_read_input_token_cost_above_272k_tokens_priority = 0.000001
-cache_read_input_token_cost_flex = 1.3e-7
 cache_read_input_token_cost_priority = 5e-7
 input_cost_per_token_above_272k_tokens = 0.000005
 input_cost_per_token_above_272k_tokens_priority = 0.00001
-input_cost_per_token_batches = 0.00000125
-input_cost_per_token_flex = 0.00000125
 input_cost_per_token_priority = 0.000005
 output_cost_per_token_above_272k_tokens = 0.0000225
-output_cost_per_token_above_272k_tokens_priority = 0.00003375
-output_cost_per_token_batches = 0.0000075
-output_cost_per_token_flex = 0.0000075
-output_cost_per_token_priority = 0.0000225
+output_cost_per_token_above_272k_tokens_priority = 0.000045
+output_cost_per_token_priority = 0.00003
 supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
 supports_native_streaming = true
 supports_parallel_function_calling = true
@@ -42178,6 +42218,19 @@ supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."gpt-5.4-2026-03-05".pricing."azure"]
+cache_read_input_token_cost = 2.5e-7
+cache_read_input_token_cost_above_272k_tokens = 5e-7
+cache_read_input_token_cost_above_272k_tokens_priority = 0.000001
+cache_read_input_token_cost_priority = 5e-7
+input_cost_per_token = 0.0000025
+input_cost_per_token_above_272k_tokens = 0.000005
+input_cost_per_token_above_272k_tokens_priority = 0.00001
+input_cost_per_token_priority = 0.000005
+output_cost_per_token = 0.000015
+output_cost_per_token_above_272k_tokens = 0.0000225
+output_cost_per_token_above_272k_tokens_priority = 0.000045
+output_cost_per_token_priority = 0.00003
 [models."gpt-5.4-2026-03-05".pricing."openai"]
 cache_read_input_token_cost = 2.5e-7
 cache_read_input_token_cost_above_272k_tokens = 5e-7
@@ -42204,8 +42257,11 @@ mode = "responses"
 max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
-litellm_provider = "chatgpt"
-providers = ["chatgpt", "azure", "azure-cognitive-services", "openai", "opencode", "openrouter", "poe"]
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+cache_read_input_token_cost = 0.000003
+litellm_provider = "azure"
+providers = ["azure", "azure-cognitive-services", "chatgpt", "openai", "opencode", "openrouter", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42216,7 +42272,10 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-supported_endpoints = ["/v1/responses", "/v1/batch"]
+cache_read_input_token_cost_above_272k_tokens = 0.000006
+input_cost_per_token_above_272k_tokens = 0.00006
+output_cost_per_token_above_272k_tokens = 0.00027
+supported_endpoints = ["/v1/batch", "/v1/responses"]
 supports_native_streaming = true
 supports_parallel_function_calling = true
 supports_response_schema = true
@@ -42227,8 +42286,12 @@ supports_web_search = true
 supports_xhigh_reasoning_effort = true
 
 [models."gpt-5.4-pro".pricing."azure"]
+cache_read_input_token_cost = 0.000003
+cache_read_input_token_cost_above_272k_tokens = 0.000006
 input_cost_per_token = 0.00003
+input_cost_per_token_above_272k_tokens = 0.00006
 output_cost_per_token = 0.00018
+output_cost_per_token_above_272k_tokens = 0.00027
 [models."gpt-5.4-pro".pricing."azure-cognitive-services"]
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
@@ -42269,8 +42332,8 @@ max_tokens = 128000
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
 cache_read_input_token_cost = 0.000003
-litellm_provider = "openai"
-providers = ["openai"]
+litellm_provider = "azure"
+providers = ["azure", "openai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42279,21 +42342,10 @@ supports_pdf_input = true
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_read_input_token_cost_above_272k_tokens = 0.000006
-cache_read_input_token_cost_above_272k_tokens_priority = 0.000012
-cache_read_input_token_cost_priority = 0.000006
 input_cost_per_token_above_272k_tokens = 0.00006
-input_cost_per_token_above_272k_tokens_priority = 0.00012
-input_cost_per_token_batches = 0.000015
-input_cost_per_token_flex = 0.000015
-input_cost_per_token_priority = 0.00006
 output_cost_per_token_above_272k_tokens = 0.00027
-output_cost_per_token_above_272k_tokens_priority = 0.000405
-output_cost_per_token_batches = 0.00009
-output_cost_per_token_flex = 0.00009
-output_cost_per_token_priority = 0.00027
-supported_endpoints = ["/v1/responses", "/v1/batch"]
+supported_endpoints = ["/v1/batch", "/v1/responses"]
 supports_native_streaming = true
-supports_none_reasoning_effort = false
 supports_parallel_function_calling = true
 supports_response_schema = false
 supports_service_tier = true
@@ -42302,6 +42354,13 @@ supports_tool_choice = true
 supports_web_search = true
 supports_xhigh_reasoning_effort = true
 
+[models."gpt-5.4-pro-2026-03-05".pricing."azure"]
+cache_read_input_token_cost = 0.000003
+cache_read_input_token_cost_above_272k_tokens = 0.000006
+input_cost_per_token = 0.00003
+input_cost_per_token_above_272k_tokens = 0.00006
+output_cost_per_token = 0.00018
+output_cost_per_token_above_272k_tokens = 0.00027
 [models."gpt-5.4-pro-2026-03-05".pricing."openai"]
 cache_read_input_token_cost = 0.000003
 cache_read_input_token_cost_above_272k_tokens = 0.000006
