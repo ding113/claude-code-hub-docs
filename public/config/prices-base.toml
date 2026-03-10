@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.10"
-checksum = "6c94a9aabf19b16682ce03e14115e86b0f9446309f09872b1b48290257782abe"
+checksum = "7349e69a1e6526c395f229f8f61fdc4a37beed2e6b71101755ec3ebce87dba43"
 sources = ["litellm", "modelsdev"]
 total_models = 3174
 litellm_raw_models = 2697
-modelsdev_raw_models = 3694
+modelsdev_raw_models = 3701
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6890,7 +6890,7 @@ max_output_tokens = 8192
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036
 litellm_provider = "together_ai"
-providers = ["together_ai", "huggingface", "kilo", "novita-ai", "nvidia", "openrouter", "siliconflow-cn", "togetherai"]
+providers = ["together_ai", "huggingface", "kilo", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -6907,6 +6907,9 @@ supports_tool_choice = true
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 [models."Qwen/Qwen3.5-397B-A17B".pricing."kilo"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
+[models."Qwen/Qwen3.5-397B-A17B".pricing."nano-gpt"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 [models."Qwen/Qwen3.5-397B-A17B".pricing."novita-ai"]
@@ -54895,6 +54898,8 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 2.5e-7
 
 [models."mistral.devstral-2-123b"]
+display_name = "Devstral 2 135B"
+model_family = "mistral"
 mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 8192
@@ -54902,12 +54907,20 @@ max_tokens = 8192
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.000002
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2026-02-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."mistral.devstral-2-123b".pricing."amazon-bedrock"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
 [models."mistral.devstral-2-123b".pricing."bedrock_converse"]
 input_cost_per_token = 4e-7
 output_cost_per_token = 0.000002
@@ -75006,7 +75019,7 @@ input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.00000256
 cache_read_input_token_cost = 1.6e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "baseten", "friendli", "huggingface", "meganova", "novita-ai", "siliconflow", "togetherai"]
+providers = ["deepinfra", "abacus", "baseten", "friendli", "huggingface", "meganova", "nano-gpt", "novita-ai", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -75036,6 +75049,9 @@ output_cost_per_token = 0.0000032000000000000003
 [models."zai-org/GLM-5".pricing."meganova"]
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.00000256
+[models."zai-org/GLM-5".pricing."nano-gpt"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025499999999999997
 [models."zai-org/GLM-5".pricing."novita-ai"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
