@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.03.11"
-checksum = "64ddb76c514fa3018cb3022e55bbcbe8b2813abed81dfc7b36568a80531bce44"
+checksum = "d0ba8712e2a319786c11a228d6689915798db46cfb46b6f4c8eb78ebe28e53b6"
 sources = ["litellm", "modelsdev"]
-total_models = 3179
-litellm_raw_models = 2703
+total_models = 3187
+litellm_raw_models = 2714
 modelsdev_raw_models = 3711
 custom_models = 4
 
@@ -29918,10 +29918,43 @@ supports_parallel_function_calling = false
 input_cost_per_token = 6e-7
 output_cost_per_token = 6e-7
 
+[models."flux-dev"]
+mode = "image_generation"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.025
+supported_endpoints = ["/v1/images/generations"]
+
+[models."flux-dev".pricing."black_forest_labs"]
+output_cost_per_image = 0.025
+
+[models."flux-kontext-max"]
+mode = "image_edit"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.08
+supported_endpoints = ["/v1/images/edits", "/v1/images/generations"]
+
+[models."flux-kontext-max".pricing."black_forest_labs"]
+output_cost_per_image = 0.08
+
+[models."flux-kontext-pro"]
+mode = "image_edit"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.04
+supported_endpoints = ["/v1/images/edits", "/v1/images/generations"]
+
+[models."flux-kontext-pro".pricing."black_forest_labs"]
+output_cost_per_image = 0.04
+
 [models."flux-pro"]
 mode = "image_generation"
 litellm_provider = "aiml"
-providers = ["aiml"]
+providers = ["aiml", "black_forest_labs"]
 source = "https://docs.aimlapi.com/"
 output_cost_per_image = 0.065
 supported_endpoints = ["/v1/images/generations"]
@@ -29931,6 +29964,52 @@ notes = "Flux Dev - Development version optimized for experimentation"
 
 [models."flux-pro".pricing."aiml"]
 output_cost_per_image = 0.065
+[models."flux-pro".pricing."black_forest_labs"]
+output_cost_per_image = 0.05
+
+[models."flux-pro-1.0-expand"]
+mode = "image_edit"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.05
+supported_endpoints = ["/v1/images/edits"]
+
+[models."flux-pro-1.0-expand".pricing."black_forest_labs"]
+output_cost_per_image = 0.05
+
+[models."flux-pro-1.0-fill"]
+mode = "image_edit"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.05
+supported_endpoints = ["/v1/images/edits"]
+
+[models."flux-pro-1.0-fill".pricing."black_forest_labs"]
+output_cost_per_image = 0.05
+
+[models."flux-pro-1.1"]
+mode = "image_generation"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.04
+supported_endpoints = ["/v1/images/generations"]
+
+[models."flux-pro-1.1".pricing."black_forest_labs"]
+output_cost_per_image = 0.04
+
+[models."flux-pro-1.1-ultra"]
+mode = "image_generation"
+litellm_provider = "black_forest_labs"
+providers = ["black_forest_labs"]
+source = "https://bfl.ai/pricing"
+output_cost_per_image = 0.06
+supported_endpoints = ["/v1/images/generations"]
+
+[models."flux-pro-1.1-ultra".pricing."black_forest_labs"]
+output_cost_per_image = 0.06
 
 [models."flux-pro/v1.1"]
 mode = "image_generation"
@@ -34671,6 +34750,35 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 0
 [models."gemini-embedding-001".pricing."vertex_ai-embedding-models"]
 input_cost_per_token = 1.5e-7
+output_cost_per_token = 0
+
+[models."gemini-embedding-2-preview"]
+mode = "embedding"
+max_input_tokens = 8192
+max_tokens = 8192
+input_cost_per_token = 2e-7
+output_cost_per_token = 0
+litellm_provider = "vertex_ai-embedding-models"
+providers = ["vertex_ai-embedding-models", "gemini", "vertex_ai"]
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+input_cost_per_audio_per_second = 0.00016
+input_cost_per_image = 0.00012
+input_cost_per_video_per_second = 0.0237
+output_vector_size = 3072
+supports_multimodal = true
+uses_embed_content = true
+
+[models."gemini-embedding-2-preview".pricing."gemini"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0
+[models."gemini-embedding-2-preview".pricing."vertex_ai"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0
+[models."gemini-embedding-2-preview".pricing."vertex_ai-embedding-models"]
+input_cost_per_audio_per_second = 0.00016
+input_cost_per_image = 0.00012
+input_cost_per_token = 2e-7
+input_cost_per_video_per_second = 0.0237
 output_cost_per_token = 0
 
 [models."gemini-exp-1114"]
