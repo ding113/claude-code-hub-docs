@@ -53,7 +53,7 @@ export function Hero() {
               </p>
               <div className="mt-4 md:flex md:justify-center lg:justify-start">
                 <Badge
-                  version="v0.5"
+                  version="v0.6"
                   href="https://github.com/ding113/claude-code-hub/releases/latest"
                   label="最新版本"
                 />

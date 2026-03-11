@@ -153,6 +153,45 @@ const result = await batchDeleteProviders({
 });
 ```
 
+## Codex 参数覆盖 (v0.6.2+)
+
+{% callout type="note" title="仅对 Codex 类型供应商生效" %}
+以下参数覆盖功能仅在供应商类型为 `codex`（Responses API）时生效。当偏好值为 `inherit` 或未设置时，遵循客户端请求中的原始值。
+{% /callout %}
+
+### 服务层覆盖
+
+通过 `codexServiceTierPreference` 字段控制 Codex 请求的服务层级：
+
+{% table %}
+| 值 | 说明 |
+|------|------|
+| `inherit` | 遵循客户端请求（默认） |
+| `auto` | 自动选择服务层 |
+| `default` | 使用默认服务层 |
+| `flex` | 灵活服务层（批量/非实时场景，成本更低） |
+| `priority` | 优先服务层（更快响应，日志中显示 "fast" 徽章） |
+{% /table %}
+
+**覆盖逻辑：** 供应商级配置会覆盖客户端请求中的 `service_tier` 参数。例如，即使客户端请求指定了 `service_tier: "auto"`，供应商配置为 `priority` 时也会强制使用优先服务层。
+
+### 其他 Codex 覆盖字段
+
+{% table %}
+| 字段 | API 路径 | 可选值 | 说明 |
+|------|----------|--------|------|
+| `codexReasoningEffortPreference` | `reasoning.effort` | `inherit`, `none`, `minimal`, `low`, `medium`, `high`, `xhigh` | 推理努力程度 |
+| `codexReasoningSummaryPreference` | `reasoning.summary` | `inherit`, `auto`, `detailed` | 推理摘要模式 |
+| `codexTextVerbosityPreference` | `text.verbosity` | `inherit`, `low`, `medium`, `high` | 文本输出详细程度 |
+| `codexParallelToolCallsPreference` | `parallel_tool_calls` | `inherit`, `true`, `false` | 是否启用并行工具调用 |
+{% /table %}
+
+### 审计记录
+
+所有覆盖操作会生成 `provider_parameter_override` 类型的特殊设置审计记录，包含每个被覆盖字段的变更前后值（`before`/`after`），可在请求日志详情中查看。
+
+---
+
 ## 高级功能
 
 ### 自动排序优先级

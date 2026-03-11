@@ -19,6 +19,7 @@ export const navigation = [
       { title: '使用日志', href: '/docs/monitoring/logs' },
       { title: '活跃会话', href: '/docs/monitoring/active-sessions' },
       { title: '排行榜', href: '/docs/monitoring/leaderboard' },
+      { title: '用户洞察', href: '/docs/monitoring/user-insights' },
       { title: '统计图表', href: '/docs/monitoring/charts' },
       { title: 'Token 统计', href: '/docs/monitoring/token-stats' },
       { title: '错误率统计', href: '/docs/monitoring/error-stats' },
@@ -71,6 +72,7 @@ export const navigation = [
       { title: '熔断器', href: '/docs/proxy/circuit-breaker' },
       { title: '限流', href: '/docs/proxy/rate-limiting' },
       { title: '超时控制', href: '/docs/proxy/timeout-control' },
+      { title: '供应商竞速', href: '/docs/proxy/hedge-racing' },
       { title: '缓存 TTL', href: '/docs/proxy/cache-ttl' },
       { title: '会话管理', href: '/docs/proxy/session-management' },
       { title: '流式响应', href: '/docs/proxy/streaming-response' },
@@ -88,6 +90,7 @@ export const navigation = [
       { title: '请求头修改', href: '/docs/filters/header-modification' },
       { title: '请求体修改', href: '/docs/filters/body-modification' },
       { title: '响应覆盖', href: '/docs/filters/response-override' },
+      { title: '请求响应整流器', href: '/docs/filters/rectifiers' },
     ],
   },
 

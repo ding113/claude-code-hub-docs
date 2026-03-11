@@ -660,6 +660,256 @@ The pricing system exposes the following API endpoints (admin-only, GET only):
 4. **Provider multipliers**: Use multipliers for consistent markup/discount across all models from a provider
 5. **Monitoring**: Monitor cost calculations for anomalies that might indicate pricing errors
 
+## Provider-aware pricing resolution (v0.6.2+)
+
+Starting from v0.6.2, Claude Code Hub uses a **5-level fallback chain** to resolve which pricing data to apply for each request. The system matches the user's configured provider (by name and URL) to the correct pricing entry inside the cloud price table, so the same model routed through different providers can have different per-token costs.
+
+### Resolution chain
+
+The `resolvePricingForModelRecords` function in `pricing-resolution.ts` walks through five levels in order, returning the first successful match:
+
+| Level | Source type | Description |
+|-------|-----------|-------------|
+| 1 | `local_manual` | A manually-entered price record (source = `"manual"`) in the database. Always wins. |
+| 2 | `cloud_exact` | The cloud price record's `pricing` map contains a key that matches the provider (e.g. `"openrouter"`, `"opencode"`, `"anthropic"`). |
+| 3 | `official_fallback` | No exact provider match, but the model's official provider key is present (e.g. GPT models fall back to `"openai"`). |
+| 4 | `priority_fallback` | No provider match at all. The system picks the pricing entry with the **most detailed price fields**, using a tie-break order: `openrouter > opencode > cloudflare-ai-gateway > github-copilot > chatgpt`. |
+| 5 | `single_provider_top_level` | The cloud record has valid top-level price fields but no `pricing` map. Uses these fields directly. |
+
+If all five levels fail (no valid numeric price found anywhere), the resolution returns `null` and cost defaults to zero.
+
+### Provider matching rules
+
+Provider identification uses heuristics based on the provider's `name` and `url` fields:
+
+```typescript
+// Matching is case-insensitive and checks both name and URL host
+if (name.includes("openrouter") || host.includes("openrouter")) {
+  pushUnique(candidates, "openrouter", "exact");
+}
+if (name.includes("anthropic") || host.includes("anthropic.com")) {
+  pushUnique(candidates, "anthropic", "exact");
+}
+// ... similar rules for openai, vertex, github-copilot, chatgpt, etc.
+```
+
+Official provider keys are inferred from the model name or `model_family` field:
+
+- GPT / GPT-Pro family -> `"openai"`
+- Claude family -> `"anthropic"`
+- Gemini family -> `"vertex_ai"`, `"vertex"`, `"google"`
+
+### Pricing source display
+
+Each resolved price carries a `source` tag (`ResolvedPricingSource`) that is displayed in the usage logs UI. The six possible values are:
+
+- `local_manual` — Price was set manually by admin
+- `cloud_exact` — Exact provider match in cloud data
+- `cloud_model_fallback` — Matched via a fallback model name
+- `official_fallback` — Matched via official provider key
+- `priority_fallback` — Best-detail heuristic pick
+- `single_provider_top_level` — Top-level fields only, no per-provider breakdown
+
+### Detail scoring
+
+When falling back to `priority_fallback`, the system scores each pricing entry by counting how many of the following fields are present (higher is better):
+
+```typescript
+const DETAIL_FIELDS = [
+  "input_cost_per_token",
+  "output_cost_per_token",
+  "input_cost_per_request",
+  "cache_creation_input_token_cost",
+  "cache_read_input_token_cost",
+  "input_cost_per_token_above_200k_tokens",
+  "input_cost_per_token_above_272k_tokens",
+  // ... 26 fields total including priority and cache variants
+] as const;
+```
+
+---
+
+## GPT-5.4 272K token threshold (v0.6.2+)
+
+v0.6.2 adds a new long-context pricing threshold at **272,000 tokens** to support OpenAI's GPT-5.4 and GPT-Pro models, alongside the existing 200K threshold used by Gemini.
+
+### Automatic threshold detection
+
+The `resolveLongContextThreshold` function in `cost-calculation.ts` automatically selects the correct threshold:
+
+```typescript
+const OPENAI_LONG_CONTEXT_TOKEN_THRESHOLD = 272000;
+
+function resolveLongContextThreshold(priceData: ModelPriceData): number {
+  const has272kFields =
+    typeof priceData.input_cost_per_token_above_272k_tokens === "number" ||
+    typeof priceData.output_cost_per_token_above_272k_tokens === "number" ||
+    // ... checks all 272k fields
+
+  const modelFamily = typeof priceData.model_family === "string"
+    ? priceData.model_family : "";
+
+  if (has272kFields || modelFamily === "gpt" || modelFamily === "gpt-pro") {
+    return OPENAI_LONG_CONTEXT_TOKEN_THRESHOLD; // 272,000
+  }
+
+  return CONTEXT_1M_TOKEN_THRESHOLD; // 200,000 (default)
+}
+```
+
+Detection triggers on:
+- Any `*_above_272k_tokens*` field present with a numeric value, **or**
+- `model_family` is `"gpt"` or `"gpt-pro"`
+
+### 272K price fields
+
+The full set of 272K-specific price fields in `ModelPriceData`:
+
+| Field | Description |
+|-------|-------------|
+| `input_cost_per_token_above_272k_tokens` | Input token rate above 272K |
+| `output_cost_per_token_above_272k_tokens` | Output token rate above 272K |
+| `cache_creation_input_token_cost_above_272k_tokens` | Cache creation (5min TTL) above 272K |
+| `cache_read_input_token_cost_above_272k_tokens` | Cache read above 272K |
+| `cache_creation_input_token_cost_above_1hr_above_272k_tokens` | Cache creation (1hr TTL) above 272K |
+| `input_cost_per_token_above_272k_tokens_priority` | Priority tier input above 272K |
+| `output_cost_per_token_above_272k_tokens_priority` | Priority tier output above 272K |
+| `cache_read_input_token_cost_above_272k_tokens_priority` | Priority tier cache read above 272K |
+
+### Priority service tier support
+
+For models that support OpenAI's priority service tier, the cost calculation picks the most specific rate via `resolvePriorityAwareLongContextRate`:
+
+```typescript
+function resolvePriorityAwareLongContextRate(
+  priorityServiceTierApplied: boolean,
+  fields: {
+    above272k?: number;
+    above272kPriority?: number;
+    above200k?: number;
+    above200kPriority?: number;
+  }
+): number | undefined {
+  if (priorityServiceTierApplied) {
+    // Priority: 272k-priority > 200k-priority > 272k > 200k
+    return fields.above272kPriority
+      ?? fields.above200kPriority
+      ?? fields.above272k
+      ?? fields.above200k;
+  }
+  // Non-priority: 272k > 200k
+  return fields.above272k ?? fields.above200k;
+}
+```
+
+---
+
+## Long-context tiered pricing fix (v0.6.2+)
+
+v0.6.2 fixes a critical billing accuracy issue in how long-context pricing is applied.
+
+### Before (incorrect)
+
+Previously, the tiered cost calculation split tokens at the threshold: tokens below the threshold were billed at the base rate, and only tokens above the threshold used the premium rate. This did not match how providers actually bill.
+
+### After (correct)
+
+Once the **total input context** of a request exceeds the long-context threshold (200K or 272K), the provider bills **all tokens in that request** at the long-context rate — not just the portion above the threshold.
+
+```typescript
+// Total input context = input_tokens + cache_creation_tokens + cache_read_tokens
+const longContextThresholdExceeded =
+  getRequestInputContextTokens(usage, cache5mTokens, cache1hTokens)
+    > longContextThreshold;
+
+// When exceeded: entire request uses long-context rate
+if (longContextThresholdExceeded && inputAboveThreshold != null) {
+  inputBucket = inputBucket.add(
+    multiplyCost(usage.input_tokens, inputAboveThreshold)
+  );
+}
+```
+
+### Impact
+
+This fix affects cost calculations for:
+
+- **Input tokens**: All input tokens billed at the above-threshold rate
+- **Output tokens**: All output tokens billed at the above-threshold rate
+- **Cache creation (5min and 1hr)**: Billed at the above-threshold cache creation rate
+- **Cache reads**: Billed at the above-threshold cache read rate
+
+The fix only applies when explicit above-threshold price fields exist in the price data. For models using the legacy multiplier-based tiering (Claude 1M context with `context1mApplied`), the multiplier is similarly applied to the full token count rather than a split calculation.
+
+---
+
+## Multi-source pricing comparison (v0.6.2+)
+
+The **ProviderPricingDialog** component lets administrators compare pricing from different providers for the same model and select which one to use.
+
+### How it works
+
+Cloud-synced price records include a `pricing` map that contains per-provider pricing entries. For example, a model like `gpt-4o` may have pricing entries from `openai`, `openrouter`, `chatgpt`, and others, each with different rates.
+
+The dialog displays:
+
+- **Provider key** as a badge (e.g. `openai`, `openrouter`)
+- **Input price** per million tokens
+- **Output price** per million tokens
+- **Cache read price** per million tokens
+- **Priority tier prices** (shown in orange when available)
+- A **"Pinned"** badge on the currently selected provider
+
+### Opening the dialog
+
+Click the **Compare Pricing** button (with the swap icon) on any model row in the price list. The button only appears for models that have multiple provider entries in their `pricing` map.
+
+### Pin action
+
+Each provider entry has a **Pin** button. Clicking it converts the selected provider's pricing into a manual price record, making it the active pricing for that model. See the [Price pinning](#price-pinning-v062) section below for details.
+
+---
+
+## Price pinning (v0.6.2+)
+
+Price pinning allows administrators to lock a specific provider's pricing as the active price for a model, overriding the automatic resolution chain.
+
+### How pinning works
+
+When you click **Pin** on a provider entry in the comparison dialog, the system calls `pinModelPricingProviderAsManual`, which:
+
+1. Fetches the latest cloud (`litellm`) price record for the model
+2. Extracts the selected provider's pricing node from the `pricing` map
+3. Merges the provider-specific fields onto the base price data
+4. Saves the result as a new `manual` source record with special metadata:
+
+```typescript
+{
+  ...basePriceData,
+  ...pricingNode,          // Provider-specific rates overwrite base rates
+  pricing: undefined,       // Remove the multi-provider map
+  litellm_provider: pricingProviderKey,
+  selected_pricing_provider: pricingProviderKey,
+  selected_pricing_source_model: modelName,
+  selected_pricing_resolution: "manual_pin",
+}
+```
+
+### Effect
+
+- The pinned price becomes a `manual` source record, so it takes **Level 1** priority in the resolution chain
+- Future cloud syncs will **not** overwrite it (manual prices are protected by default)
+- The `selected_pricing_resolution: "manual_pin"` field distinguishes auto-pinned records from user-edited manual prices
+- To unpin, delete the manual record from the price list; the system will fall back to automatic resolution
+
+### Related fields
+
+| Field | Purpose |
+|-------|---------|
+| `selected_pricing_provider` | The provider key that was pinned (e.g. `"openrouter"`) |
+| `selected_pricing_source_model` | The model name the pricing was extracted from |
+| `selected_pricing_resolution` | Set to `"manual_pin"` for pinned records |
+
 ## Related documentation
 
 - [Provider management](/docs/provider-management) — Configure providers and their settings

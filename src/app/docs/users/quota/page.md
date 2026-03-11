@@ -122,6 +122,93 @@ Layer 4 - 中长期周期限制
 总消费限额是硬限制，一旦达到将完全禁止访问。设置时请确保留有足够的安全边际。
 {% /callout %}
 
+### 用户成本限额软重置 (v0.6.2+)
+
+用户级别的总消费限额支持软重置机制，通过 `costResetAt` 字段实现成本计算的重新起点，而不删除历史数据。
+
+**字段说明**：
+
+- **字段名称**：`cost_reset_at`（数据库）/ `costResetAt`（代码）
+- **类型**：`timestamp with timezone`
+- **默认值**：`null`
+
+**工作原理**：
+
+当 `costResetAt` 设置为某个时间点后，所有成本计算（5小时、日、周、月、总限额）将从该时间点开始累计，忽略该时间点之前的消费记录。
+
+```typescript
+// 成本查询时的时间范围裁剪
+const effectiveStart = user.costResetAt && user.costResetAt > startTime
+  ? user.costResetAt
+  : startTime;
+
+const cost = await sumUserCostInTimeRange(userId, effectiveStart, endTime);
+```
+
+**使用场景**：
+
+| 场景 | 说明 |
+|------|------|
+| 月度配额重置 | 每月1日重置用户配额，开始新的计费周期 |
+| 季度配额重置 | 每季度重置配额，适用于季度结算场景 |
+| 用户升级 | 用户升级套餐后，重置成本计数器 |
+| 临时增加配额 | 临时提高限额后，恢复原限额并重置计数 |
+| 配额调整 | 调整用户限额策略后，从新起点开始计算 |
+
+**操作方式**：
+
+1. **用户编辑界面**：管理员在用户编辑表单中设置 `costResetAt` 字段
+2. **Server Action**：调用 `resetUserLimitsOnly(userId)` 函数
+
+```typescript
+// 仅重置限额，不删除历史数据
+await resetUserLimitsOnly(userId);
+```
+
+该函数会：
+- 将 `costResetAt` 设置为当前时间
+- 清除 Redis 中该用户的配额缓存
+- 清除该用户所有 API Key 的配额缓存
+- 保留所有请求日志和账本记录
+
+**与供应商 `totalCostResetAt` 的区别**：
+
+| 字段 | 适用层级 | 影响范围 | 用途 |
+|------|----------|----------|------|
+| `costResetAt` | 用户级 | 该用户的所有配额维度 | 用户配额周期性重置 |
+| `totalCostResetAt` | 供应商级 | 仅供应商总消费限额 | 供应商总限额重置 |
+
+**历史数据保留**：
+
+软重置不会删除任何历史数据：
+- 所有 `messageRequest` 日志保持不变
+- 所有 `usageLedger` 账本记录保持不变
+- 排行榜、统计图表等功能不受影响
+- 仅影响配额检查时的成本累计计算
+
+**成本计算逻辑**：
+
+```sql
+-- 查询时过滤 createdAt >= costResetAt
+SELECT SUM(cost_usd)
+FROM usage_ledger
+WHERE user_id = ?
+  AND created_at >= COALESCE(?, '1970-01-01')  -- costResetAt
+  AND created_at >= ?  -- 窗口起始时间
+  AND created_at < ?;  -- 窗口结束时间
+```
+
+**缓存处理**：
+
+Redis 缓存键在软重置后会自动失效，因为：
+- 租约（Lease）在刷新时会重新查询数据库
+- 数据库查询使用 `costResetAt` 过滤条件
+- 新租约反映重置后的成本累计
+
+{% callout type="note" title="最佳实践" %}
+建议在每月或每季度的固定时间点执行软重置，配合用户限额调整，实现周期性配额管理。软重置后，用户的成本计数器归零，但历史数据仍可用于审计和分析。
+{% /callout %}
+
 ## 并发会话限制
 
 并发会话限制控制同时进行的对话数量，防止资源被单个用户或 Key 独占。

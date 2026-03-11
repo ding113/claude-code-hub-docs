@@ -42,6 +42,12 @@ language: zh
 
 这种设计允许快速识别响应缓慢的供应商，同时不限制长文本生成的总时长。
 
+{% callout type="note" title="供应商竞速" %}
+当首字节超时触发时，如果启用了供应商竞速（默认行为），系统不会立即中止初始请求。而是保持初始尝试存活的同时，启动备选供应商并行竞速。首个成功返回响应的供应商获胜，失败者被取消。详见 [供应商竞速](/docs/proxy/hedge-racing) 文档。
+
+**推荐配置**: 将 `firstByteTimeoutStreamingMs` 设置为 10000-15000（10-15 秒），过短会导致频繁触发对冲，过长会影响用户体验。
+{% /callout %}
+
 ### 非流式请求超时
 
 非流式请求使用**总超时**机制：
@@ -251,6 +257,7 @@ setGlobalDispatcher(
 
 ## 相关文档
 
+- [供应商竞速](/docs/proxy/hedge-racing) - 了解首字节超时触发的并行竞速机制
 - [熔断器机制](/docs/proxy/circuit-breaker) - 了解超时如何触发熔断保护
 - [故障转移与重试](/docs/proxy/failover-retry) - 超时后的请求处理策略
 - [智能路由算法](/docs/proxy/intelligent-routing) - 超时如何影响路由决策
