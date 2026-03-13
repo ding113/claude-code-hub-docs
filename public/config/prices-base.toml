@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.13"
-checksum = "34924b3e173fde47bea3940f83e37372c89fc0d15dde994b389db1b883b69353"
+checksum = "5a74d3b53466fd138786e4f77e6e5875a690021fd388842c9dfbf0753dbb5ed1"
 sources = ["litellm", "modelsdev"]
-total_models = 3121
+total_models = 3124
 litellm_raw_models = 2582
-modelsdev_raw_models = 3741
+modelsdev_raw_models = 3745
 custom_models = 4
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -32221,7 +32221,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "abacus", "gemini", "google", "vercel", "vertex_ai"]
+providers = ["vertex_ai-language-models", "abacus", "gemini", "google", "openrouter", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -32242,6 +32242,7 @@ max_pdf_size_mb = 30
 max_video_length = 1
 max_videos_per_prompt = 10
 output_cost_per_reasoning_token = 0.0000015
+reasoning_cost_per_token = 0.0000015
 supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
 supports_audio_input = true
 supports_audio_output = false
@@ -32270,6 +32271,11 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
+[models."gemini-3.1-flash-lite-preview".pricing."openrouter"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.0000015
+reasoning_cost_per_token = 0.0000015
 [models."gemini-3.1-flash-lite-preview".pricing."vercel"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
@@ -54781,6 +54787,31 @@ source = "modelsdev"
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 
+[models."moonshotai/Kimi-K2-5-fast"]
+display_name = "Kimi-K2.5-fast"
+model_family = "kimi"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 8192
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-06"
+release_date = "2025-12-15"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."moonshotai/Kimi-K2-5-fast".pricing."nebius"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+
 [models."moonshotai/Kimi-K2-Instruct"]
 mode = "chat"
 max_input_tokens = 131072
@@ -56891,28 +56922,6 @@ source = "modelsdev"
 input_cost_per_token = 3e-7
 output_cost_per_token = 7.5e-7
 
-[models."nvidia/Nemotron-3-Super-120B-A12B"]
-display_name = "Nemotron-3-Super-120B-A12B"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 32768
-input_cost_per_token = 3e-7
-output_cost_per_token = 9.000000000000001e-7
-litellm_provider = "nebius"
-providers = ["nebius"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2026-02"
-release_date = "2026-03-11"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."nvidia/Nemotron-3-Super-120B-A12B".pricing."nebius"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 9.000000000000001e-7
-
 [models."nvidia/Nemotron-Nano-V2-12b"]
 display_name = "Nemotron-Nano-V2-12b"
 mode = "chat"
@@ -57074,6 +57083,28 @@ release_date = "2025-12-14"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."nvidia/nemotron-3-super-120b-a12b"]
+display_name = "Nemotron-3-Super-120B-A12B"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32768
+input_cost_per_token = 3e-7
+output_cost_per_token = 9.000000000000001e-7
+litellm_provider = "nebius"
+providers = ["nebius"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2026-02"
+release_date = "2026-03-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia/nemotron-3-super-120b-a12b".pricing."nebius"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 9.000000000000001e-7
 
 [models."nvidia/nemotron-4-340b-instruct"]
 display_name = "Nemotron 4 340b Instruct"
@@ -71068,6 +71099,54 @@ source = "modelsdev"
 [models."x-ai/grok-4-1-fast-reasoning".pricing."nano-gpt"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
+
+[models."x-ai/grok-4-20-beta"]
+display_name = "Grok 4.20 Beta"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 2000000
+max_output_tokens = 30000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."x-ai/grok-4-20-beta".pricing."openrouter"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
+[models."x-ai/grok-4-20-multi-agent-beta"]
+display_name = "Grok 4.20 Multi - Agent Beta"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 2000000
+max_output_tokens = 30000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."x-ai/grok-4-20-multi-agent-beta".pricing."openrouter"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."x-ai/grok-4-fast"]
 display_name = "Grok 4 Fast"
