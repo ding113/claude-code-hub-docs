@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.14"
-checksum = "a68e34916f24eab3b91c08274c96756e7d2b553094f03446a433ea046926fecc"
+checksum = "7ea5289b33f7373a8cf387977d4d98b7aba8bd493ea634b1c7c0c43f925eef29"
 sources = ["litellm", "modelsdev"]
-total_models = 3122
+total_models = 3124
 litellm_raw_models = 2582
-modelsdev_raw_models = 3733
+modelsdev_raw_models = 3742
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -41581,7 +41581,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "abacus", "firmware", "helicone", "jiekou", "xai"]
+providers = ["azure_ai", "302ai", "abacus", "azure", "firmware", "helicone", "jiekou", "xai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -41600,6 +41600,10 @@ supports_web_search = true
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 [models."grok-4-1-fast-non-reasoning".pricing."abacus"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
+[models."grok-4-1-fast-non-reasoning".pricing."azure"]
+cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 [models."grok-4-1-fast-non-reasoning".pricing."azure_ai"]
@@ -41660,7 +41664,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "firmware", "helicone", "jiekou", "xai"]
+providers = ["azure_ai", "302ai", "azure", "firmware", "helicone", "jiekou", "xai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -41676,6 +41680,10 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."grok-4-1-fast-reasoning".pricing."302ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
+[models."grok-4-1-fast-reasoning".pricing."azure"]
+cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 [models."grok-4-1-fast-reasoning".pricing."azure_ai"]
@@ -47481,12 +47489,12 @@ output_cost_per_token = 1.5e-7
 display_name = "Llama 3.1 70B"
 model_family = "llama"
 mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 128000
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 8.000000000000001e-7
-litellm_provider = "wandb"
-providers = ["wandb", "kilo"]
+max_input_tokens = 131072
+max_output_tokens = 16384
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 4.0000000000000003e-7
+litellm_provider = "deepinfra"
+providers = ["deepinfra", "kilo", "wandb"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -47495,12 +47503,59 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."meta-llama/Llama-3-1-70B-Instruct".pricing."deepinfra"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."meta-llama/Llama-3-1-70B-Instruct".pricing."kilo"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."meta-llama/Llama-3-1-70B-Instruct".pricing."wandb"]
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 8.000000000000001e-7
+
+[models."meta-llama/Llama-3-1-70B-Instruct-Turbo"]
+display_name = "Llama 3.1 70B Turbo"
+model_family = "llama"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 16384
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 4.0000000000000003e-7
+litellm_provider = "deepinfra"
+providers = ["deepinfra"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2024-07-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."meta-llama/Llama-3-1-70B-Instruct-Turbo".pricing."deepinfra"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 4.0000000000000003e-7
+
+[models."meta-llama/Llama-3-1-8B-Instruct-Turbo"]
+display_name = "Llama 3.1 8B Turbo"
+model_family = "llama"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 16384
+input_cost_per_token = 2e-8
+output_cost_per_token = 3e-8
+litellm_provider = "deepinfra"
+providers = ["deepinfra"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2024-07-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."meta-llama/Llama-3-1-8B-Instruct-Turbo".pricing."deepinfra"]
+input_cost_per_token = 2e-8
+output_cost_per_token = 3e-8
 
 [models."meta-llama/Llama-3-3-70B-Instruct-fast"]
 display_name = "Llama-3.3-70B-Instruct (Fast)"
@@ -47623,7 +47678,7 @@ input_cost_per_token = 0.071
 output_cost_per_token = 0.071
 
 [models."meta-llama/Llama-3.3-70B-Instruct-Turbo"]
-display_name = "Llama 3.3 70B"
+display_name = "Llama 3.3 70B Turbo"
 model_family = "llama"
 mode = "chat"
 max_input_tokens = 131072
@@ -48288,7 +48343,7 @@ input_cost_per_token = 4e-8
 output_cost_per_token = 4e-8
 
 [models."meta-llama/llama-3.1-8b-instruct"]
-display_name = "Llama 3.1 8B Instruct"
+display_name = "Llama 3.1 8B"
 model_family = "llama"
 mode = "chat"
 max_input_tokens = 16384
@@ -48297,16 +48352,19 @@ max_tokens = 16384
 input_cost_per_token = 2e-8
 output_cost_per_token = 5e-8
 litellm_provider = "novita"
-providers = ["novita", "friendli", "kilo", "nano-gpt", "novita-ai", "wandb"]
+providers = ["novita", "deepinfra", "friendli", "kilo", "nano-gpt", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2023-12"
-release_date = "2024-07-24"
+release_date = "2024-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 
+[models."meta-llama/llama-3.1-8b-instruct".pricing."deepinfra"]
+input_cost_per_token = 2e-8
+output_cost_per_token = 5.0000000000000004e-8
 [models."meta-llama/llama-3.1-8b-instruct".pricing."friendli"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
@@ -48440,7 +48498,7 @@ max_tokens = 8192
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 8.5e-7
 litellm_provider = "novita"
-providers = ["novita", "abacus", "io-net", "novita-ai"]
+providers = ["novita", "abacus", "deepinfra", "io-net", "novita-ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -48454,6 +48512,9 @@ supports_system_messages = true
 [models."meta-llama/llama-4-maverick-17b-128e-instruct-fp8".pricing."abacus"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.9e-7
+[models."meta-llama/llama-4-maverick-17b-128e-instruct-fp8".pricing."deepinfra"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 [models."meta-llama/llama-4-maverick-17b-128e-instruct-fp8".pricing."io-net"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 1.5e-7
@@ -48491,7 +48552,7 @@ input_cost_per_token = 8.500000000000001e-8
 output_cost_per_token = 4.6000000000000004e-7
 
 [models."meta-llama/llama-4-scout-17b-16e-instruct"]
-display_name = "Llama 4 Scout Instruct"
+display_name = "Llama 4 Scout 17B"
 model_family = "llama"
 mode = "chat"
 max_input_tokens = 131072
@@ -48500,19 +48561,22 @@ max_tokens = 131072
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 3.4e-7
 litellm_provider = "groq"
-providers = ["groq", "novita", "novita-ai", "wandb"]
+providers = ["groq", "deepinfra", "novita", "novita-ai", "wandb"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2024-08"
-release_date = "2025-04-06"
+release_date = "2025-04-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."meta-llama/llama-4-scout-17b-16e-instruct".pricing."deepinfra"]
+input_cost_per_token = 8e-8
+output_cost_per_token = 3e-7
 [models."meta-llama/llama-4-scout-17b-16e-instruct".pricing."groq"]
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 3.4e-7
