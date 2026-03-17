@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.17"
-checksum = "2fc67ed8a1885cf626bb7b7e1f85b193efafe4c1e2a7d6f1d1ce3de3daeba534"
+checksum = "b50be711e788257217ce16989bdbaf003af7d730a10637d3bdb05c3f1da1b9e5"
 sources = ["litellm", "modelsdev"]
-total_models = 3173
+total_models = 3176
 litellm_raw_models = 2582
-modelsdev_raw_models = 3824
+modelsdev_raw_models = 3829
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -22015,7 +22015,7 @@ output_cost_per_token = 6e-7
 litellm_provider = "azure-cognitive-services"
 providers = ["azure-cognitive-services", "azure", "github-models"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06-01"
 release_date = "2024-08-30"
@@ -22039,7 +22039,7 @@ max_output_tokens = 4096
 litellm_provider = "github-models"
 providers = ["github-models"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2024-03"
 release_date = "2024-04-04"
@@ -22058,7 +22058,7 @@ output_cost_per_token = 0.00001
 litellm_provider = "azure-cognitive-services"
 providers = ["azure-cognitive-services", "azure", "github-models"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06-01"
 release_date = "2024-08-30"
@@ -22410,7 +22410,7 @@ output_cost_per_token = 0.00001
 litellm_provider = "cohere_chat"
 providers = ["cohere_chat", "cohere"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06-01"
 release_date = "2025-03-13"
@@ -22567,7 +22567,7 @@ output_cost_per_token = 6e-7
 litellm_provider = "cohere_chat"
 providers = ["cohere_chat", "cohere", "kilo"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06-01"
 release_date = "2024-08-30"
@@ -22619,7 +22619,7 @@ output_cost_per_token = 0.00001
 litellm_provider = "cohere_chat"
 providers = ["cohere_chat", "cohere", "kilo", "nano-gpt"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 open_weights = true
 knowledge_cutoff = "2024-06-01"
 release_date = "2024-08-30"
@@ -37908,6 +37908,64 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
+
+[models."gpt-5-4-mini"]
+display_name = "GPT 5.4 Mini"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "vercel"
+providers = ["vercel", "openai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-4-mini".pricing."openai"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+[models."gpt-5-4-mini".pricing."vercel"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+
+[models."gpt-5-4-nano"]
+display_name = "GPT 5.4 Nano"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 2e-7
+output_cost_per_token = 0.00000125
+cache_read_input_token_cost = 2e-8
+litellm_provider = "vercel"
+providers = ["vercel", "openai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-4-nano".pricing."openai"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000125
+[models."gpt-5-4-nano".pricing."vercel"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2e-7
+output_cost_per_token = 0.00000125
 
 [models."gpt-5-chat"]
 display_name = "GPT-5-Chat"
@@ -74871,3 +74929,27 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
+
+[models."zai/glm-5-turbo"]
+display_name = "GLM 5 Turbo"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 202800
+max_output_tokens = 131100
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 2.4e-7
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai/glm-5-turbo".pricing."vercel"]
+cache_read_input_token_cost = 2.4e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
