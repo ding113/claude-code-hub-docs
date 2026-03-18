@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.18"
-checksum = "7bd96d03a30e9d9f286d8bdf9ce8c8b63db60846011f52a9753951bdfd4694a3"
+checksum = "e77c82a2ec4c9cd3ff3c411a7d0e8498dbf00bd9c623c7d867ec0f8fa28acbaf"
 sources = ["litellm", "modelsdev"]
 total_models = 3185
 litellm_raw_models = 2582
-modelsdev_raw_models = 3859
+modelsdev_raw_models = 3861
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -4060,10 +4060,11 @@ mode = "chat"
 max_input_tokens = 204800
 max_output_tokens = 131072
 litellm_provider = "minimax-cn-coding-plan"
-providers = ["minimax-cn-coding-plan", "minimax", "minimax-cn", "minimax-coding-plan"]
+providers = ["minimax-cn-coding-plan", "minimax", "minimax-cn", "minimax-coding-plan", "opencode-go"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
+knowledge_cutoff = "2025-01"
 release_date = "2026-03-18"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -4074,6 +4075,10 @@ cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMax-M2-7".pricing."minimax-cn"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."MiniMax-M2-7".pricing."opencode-go"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -51868,24 +51873,28 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."minimax/minimax-m2-7"]
-display_name = "Minimax M2.7"
+display_name = "MiniMax M2.7"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 204800
-max_output_tokens = 131000
+max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
-litellm_provider = "vercel"
-providers = ["vercel"]
+litellm_provider = "openrouter"
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 release_date = "2026-03-18"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."minimax/minimax-m2-7".pricing."openrouter"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2-7".pricing."vercel"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
