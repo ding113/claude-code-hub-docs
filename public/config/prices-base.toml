@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.19"
-checksum = "72b4df9b59b56ab03fad7c1308e85a78d83b06de7520f14e983482f888639b77"
+checksum = "5045fc9b05aedbcafab3bbb5dbb07c6c9a5066236f9b7fba439522e3df28eb3c"
 sources = ["litellm", "modelsdev"]
-total_models = 3190
+total_models = 3195
 litellm_raw_models = 2585
-modelsdev_raw_models = 3863
+modelsdev_raw_models = 3870
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -25598,9 +25598,9 @@ input_cost_per_token = 2.8e-7
 input_cost_per_token_cache_hit = 2.8e-8
 output_cost_per_token = 4e-7
 [models."deepseek-v3.2".pricing."venice"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000001
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 4.8e-7
 [models."deepseek-v3.2".pricing."vivgrid"]
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
@@ -34692,7 +34692,7 @@ input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 2.4e-7
 litellm_provider = "zai"
-providers = ["zai", "zai-coding-plan"]
+providers = ["zai", "zai-coding-plan", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -51548,6 +51548,31 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."mimo-v2-omni"]
+display_name = "MiMo-V2-Omni"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 128000
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 8e-8
+litellm_provider = "xiaomi"
+providers = ["xiaomi"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-03-18"
+supported_modalities = ["text", "image", "audio", "video", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mimo-v2-omni".pricing."xiaomi"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+
 [models."mimo-v2-omni-free"]
 display_name = "MiMo V2 Omni Free"
 model_family = "mimo-omni-free"
@@ -51564,6 +51589,31 @@ release_date = "2026-03-18"
 supported_modalities = ["text", "image", "audio", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."mimo-v2-pro"]
+display_name = "MiMo-V2-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "xiaomi"
+providers = ["xiaomi"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mimo-v2-pro".pricing."xiaomi"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
 
 [models."mimo-v2-pro-free"]
 display_name = "MiMo V2 Pro Free"
@@ -51698,6 +51748,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 3.4000000000000003e-7
 output_cost_per_token = 0.00000119
+
+[models."minimax-m27"]
+display_name = "MiniMax M2.7"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 198000
+max_output_tokens = 32768
+input_cost_per_token = 3.75e-7
+output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax-m27".pricing."venice"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 3.75e-7
+output_cost_per_token = 0.0000015
 
 [models."minimax-m2p1"]
 mode = "chat"
@@ -73441,6 +73515,50 @@ source = "modelsdev"
 [models."xiaomi/mimo-v2-flash-thinking-original".pricing."nano-gpt"]
 input_cost_per_token = 1.0199999999999999e-7
 output_cost_per_token = 3.06e-7
+
+[models."xiaomi/mimo-v2-omni"]
+display_name = "MiMo-V2-Omni"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi/mimo-v2-omni".pricing."openrouter"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+
+[models."xiaomi/mimo-v2-pro"]
+display_name = "MiMo-V2-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi/mimo-v2-pro".pricing."openrouter"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
 
 [models."xiaomimimo/mimo-v2-flash"]
 display_name = "XiaomiMiMo/MiMo-V2-Flash"
