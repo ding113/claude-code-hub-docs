@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.23"
-checksum = "9be45c7abfa44a91ac7dfd056b3e4dd5f9af6c674f8f3057ec10e09e1e03c42e"
+checksum = "3e787306ccec3a6fcf004466decaaac100141210fc5aaff2c6afc4d2a28cf290"
 sources = ["litellm", "modelsdev"]
-total_models = 3212
+total_models = 3175
 litellm_raw_models = 2594
-modelsdev_raw_models = 3912
+modelsdev_raw_models = 3872
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12385,6 +12385,23 @@ providers = ["fireworks_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
+[models."accounts/fireworks/routers/kimi-k2p5-turbo"]
+display_name = "Kimi K2.5 Turbo"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 256000
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-01-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."ada"]
 mode = "embedding"
 max_input_tokens = 8191
@@ -13286,23 +13303,6 @@ output_cost_per_token = 2.0000000000000002e-7
 [models."allenai/molmo-2-8b".pricing."nano-gpt"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
-
-[models."allenai/molmo-2-8b:free"]
-display_name = "Molmo2 8B (free)"
-model_family = "allenai"
-mode = "chat"
-max_input_tokens = 36864
-max_output_tokens = 36864
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-06"
-release_date = "2026-01-09"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."allenai/olmOCR-7B-0725-FP8"]
 mode = "chat"
@@ -16028,21 +16028,6 @@ input_cost_per_token = 0.0000033
 input_cost_per_token_above_200k_tokens = 0.0000066
 output_cost_per_token = 0.0000165
 output_cost_per_token_above_200k_tokens = 0.00002475
-
-[models."aurora-alpha"]
-display_name = "Aurora Alpha"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 50000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-02-09"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."auto"]
 display_name = "Auto"
@@ -22076,40 +22061,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."cognitivecomputations/dolphin3-0-mistral-24b"]
-display_name = "Dolphin3.0 Mistral 24B"
-model_family = "mistral"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-02-13"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."cognitivecomputations/dolphin3-0-r1-mistral-24b"]
-display_name = "Dolphin3.0 R1 Mistral 24B"
-model_family = "mistral"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-02-13"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."cohere-command-a"]
 display_name = "Command A"
 model_family = "command-a"
@@ -26100,40 +26051,6 @@ output_cost_per_token = 9e-8
 input_cost_per_token = 6e-8
 output_cost_per_token = 9e-8
 
-[models."deepseek/deepseek-r1-0528-qwen3-8b:free"]
-display_name = "Deepseek R1 0528 Qwen3 8B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2025-05-29"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."deepseek/deepseek-r1-0528:free"]
-display_name = "R1 0528 (free)"
-model_family = "deepseek"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2025-05-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."deepseek/deepseek-r1-distill-llama-70b"]
 display_name = "DeepSeek R1 Distill LLama 70B"
 model_family = "deepseek-thinking"
@@ -26171,8 +26088,6 @@ input_cost_per_token = 7.5e-7
 output_cost_per_token = 9.9e-7
 
 [models."deepseek/deepseek-r1-distill-qwen-14b"]
-display_name = "DeepSeek R1 Distill Qwen 14B"
-model_family = "qwen"
 mode = "chat"
 max_input_tokens = 32768
 max_output_tokens = 16384
@@ -26180,14 +26095,8 @@ max_tokens = 16384
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 1.5e-7
 litellm_provider = "novita"
-providers = ["novita", "openrouter"]
-supports_function_calling = false
+providers = ["novita"]
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-01-29"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
@@ -26249,23 +26158,6 @@ output_cost_per_token = 0.0000025
 [models."deepseek/deepseek-r1-turbo".pricing."novita-ai"]
 input_cost_per_token = 7e-7
 output_cost_per_token = 0.0000025
-
-[models."deepseek/deepseek-r1:free"]
-display_name = "R1 (free)"
-model_family = "deepseek"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-01"
-release_date = "2025-01-20"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."deepseek/deepseek-v3"]
 display_name = "DeepSeek V3 0324"
@@ -26431,23 +26323,6 @@ source = "modelsdev"
 [models."deepseek/deepseek-v3-2:thinking".pricing."nano-gpt"]
 input_cost_per_token = 2.7999999999999997e-7
 output_cost_per_token = 4.2000000000000006e-7
-
-[models."deepseek/deepseek-v3-base:free"]
-display_name = "DeepSeek V3 Base (free)"
-model_family = "deepseek"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-03"
-release_date = "2025-03-29"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."deepseek/deepseek-v3-turbo"]
 display_name = "DeepSeek V3 (Turbo)	"
@@ -29545,23 +29420,6 @@ max_tokens = 4096
 litellm_provider = "featherless_ai"
 providers = ["featherless_ai"]
 
-[models."featherless/qwerky-72b"]
-display_name = "Qwerky 72B"
-model_family = "qwerky"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-03-20"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."fireworks-ai-4.1b-to-16b"]
 mode = "chat"
 input_cost_per_token = 2e-7
@@ -30273,23 +30131,6 @@ output_cost_per_token = 0
 cache_read_input_token_cost = 1.875e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
-
-[models."gemini-2-0-flash-exp:free"]
-display_name = "Gemini 2.0 Flash Experimental (free)"
-model_family = "gemini-flash"
-mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 1048576
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2024-12"
-release_date = "2024-12-11"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."gemini-2-0-flash-thinking-exp-01-21"]
 display_name = "Gemini 2.0 Flash Thinking 0121"
@@ -43227,18 +43068,16 @@ output_cost_per_pixel = 0
 
 [models."healer-alpha"]
 display_name = "Healer Alpha"
-model_family = "alpha"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 64000
-litellm_provider = "openrouter"
-providers = ["openrouter", "kilo"]
+max_output_tokens = 32000
+litellm_provider = "kilo"
+providers = ["kilo"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2026-03-11"
-release_date = "2026-03-11"
-supported_modalities = ["text", "image", "audio", "pdf"]
+release_date = "2026-03-12"
+supported_modalities = ["audio", "image", "text", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -44250,18 +44089,16 @@ output_cost_per_token = 7e-7
 
 [models."hunter-alpha"]
 display_name = "Hunter Alpha"
-model_family = "alpha"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 64000
-litellm_provider = "openrouter"
-providers = ["openrouter", "kilo"]
+max_output_tokens = 32000
+litellm_provider = "kilo"
+providers = ["kilo"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2026-03-11"
-release_date = "2026-03-11"
-supported_modalities = ["text", "image", "pdf"]
+release_date = "2026-03-12"
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -46432,23 +46269,6 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-
-[models."kwaipilot/kat-coder-pro:free"]
-display_name = "Kat Coder Pro (free)"
-model_family = "kat-coder"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 65536
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2025-11"
-release_date = "2025-11-10"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."labs-devstral-small-2512"]
 display_name = "Devstral Small 2"
@@ -49295,23 +49115,6 @@ source = "modelsdev"
 input_cost_per_token = 0.000004
 output_cost_per_token = 0.000004
 
-[models."meta-llama/llama-3-1-405b-instruct:free"]
-display_name = "Llama 3.1 405B Instruct (free)"
-model_family = "llama"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-08"
-release_date = "2024-07-23"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."meta-llama/llama-3-2-11b-vision-instruct"]
 display_name = "Llama 3.2 11B Vision Instruct"
 model_family = "llama"
@@ -49829,23 +49632,6 @@ output_cost_per_token = 5.9e-7
 [models."meta-llama/llama-4-scout-17b-16e-instruct".pricing."wandb"]
 input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 6.6e-7
-
-[models."meta-llama/llama-4-scout:free"]
-display_name = "Llama 4 Scout (free)"
-model_family = "llama"
-mode = "chat"
-max_input_tokens = 64000
-max_output_tokens = 64000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-08"
-release_date = "2025-04-05"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."meta-llama/llama-guard-3-11b-vision"]
 mode = "chat"
@@ -51460,23 +51246,6 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2024-06"
 release_date = "2025-01-20"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."microsoft/mai-ds-r1:free"]
-display_name = "MAI DS R1 (free)"
-model_family = "mai"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-21"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -54698,23 +54467,6 @@ input_cost_per_image = 0
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 
-[models."mistralai/devstral-2512:free"]
-display_name = "Devstral 2 2512 (free)"
-model_family = "devstral"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-12"
-release_date = "2025-09-12"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."mistralai/devstral-medium"]
 display_name = "Mistral: Devstral Medium"
 mode = "chat"
@@ -54801,23 +54553,6 @@ source = "modelsdev"
 [models."mistralai/devstral-small-2-24b-instruct-2512".pricing."evroc"]
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 4.6999999999999995e-7
-
-[models."mistralai/devstral-small-2505:free"]
-display_name = "Devstral Small 2505 (free)"
-model_family = "devstral"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2025-05-21"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."mistralai/devstral-small-2507"]
 display_name = "Devstral Small 1.1"
@@ -55017,23 +54752,6 @@ supports_tool_choice = true
 [models."mistralai/mistral-7b-instruct-v0.2".pricing."replicate"]
 input_cost_per_token = 5e-8
 output_cost_per_token = 2.5e-7
-
-[models."mistralai/mistral-7b-instruct:free"]
-display_name = "Mistral 7B Instruct (free)"
-model_family = "mistral"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-05"
-release_date = "2024-05-27"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."mistralai/mistral-7b-v0.1"]
 mode = "chat"
@@ -55318,23 +55036,6 @@ output_cost_per_token = 1.7e-7
 input_cost_per_token = 4e-8
 output_cost_per_token = 1.7000000000000001e-7
 
-[models."mistralai/mistral-nemo:free"]
-display_name = "Mistral Nemo (free)"
-model_family = "mistral-nemo"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-07"
-release_date = "2024-07-19"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."mistralai/mistral-saba"]
 display_name = "Mistral: Saba"
 model_family = "mistral"
@@ -55399,23 +55100,6 @@ supports_parallel_function_calling = true
 [models."mistralai/mistral-small-3-1-24b-instruct-2503".pricing."watsonx"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 3e-7
-
-[models."mistralai/mistral-small-3-2-24b-instruct:free"]
-display_name = "Mistral Small 3.2 24B (free)"
-model_family = "mistral-small"
-mode = "chat"
-max_input_tokens = 96000
-max_output_tokens = 96000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-06"
-release_date = "2025-06-20"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."mistralai/mistral-small-3.1-24b-instruct"]
 display_name = "Mistral Small 3.1 24B Instruct"
@@ -56312,23 +55996,6 @@ cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000302
 
-[models."moonshotai/kimi-dev-72b:free"]
-display_name = "Kimi Dev 72b (free)"
-model_family = "kimi"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-06"
-release_date = "2025-06-16"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."moonshotai/kimi-k2"]
 display_name = "Kimi K2"
 model_family = "kimi"
@@ -57220,23 +56887,6 @@ source = "modelsdev"
 [models."nothingiisreal/L3-1-70B-Celeste-V0-1-BF16".pricing."nano-gpt"]
 input_cost_per_token = 4.93e-7
 output_cost_per_token = 4.93e-7
-
-[models."nousresearch/deephermes-3-llama-3-8b-preview"]
-display_name = "DeepHermes 3 Llama 3 8B Preview"
-model_family = "llama"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-04"
-release_date = "2025-02-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."nousresearch/hermes-2-pro-llama-3-8b"]
 display_name = "Hermes 2 Pro Llama 3 8B"
@@ -61875,23 +61525,6 @@ source = "modelsdev"
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 
-[models."qwen/qwen-2-5-vl-7b-instruct:free"]
-display_name = "Qwen2.5-VL 7B Instruct (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-02"
-release_date = "2024-08-28"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen/qwen-2.5-72b-instruct"]
 display_name = "Qwen 2.5 72B Instruct"
 model_family = "qwen"
@@ -62137,40 +61770,6 @@ output_cost_per_token = 4.0949999999999995e-7
 input_cost_per_token = 2.1e-7
 output_cost_per_token = 6.3e-7
 
-[models."qwen/qwen2-5-vl-32b-instruct:free"]
-display_name = "Qwen2.5 VL 32B Instruct (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 8192
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-03"
-release_date = "2025-03-24"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen/qwen2-5-vl-72b-instruct:free"]
-display_name = "Qwen2.5 VL 72B Instruct (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-02"
-release_date = "2025-02-01"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen/qwen2.5-7b-instruct"]
 display_name = "Qwen2.5 7B Instruct"
 model_family = "qwen"
@@ -62248,23 +61847,6 @@ output_cost_per_token = 5.9e-7
 input_cost_per_token = 5.9e-7
 output_cost_per_token = 5.9e-7
 
-[models."qwen/qwen3-14b:free"]
-display_name = "Qwen3 14B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 40960
-max_output_tokens = 40960
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen/qwen3-235b-a22b-07-25"]
 display_name = "Qwen3 235B A22B Instruct 2507"
 model_family = "qwen"
@@ -62287,23 +61869,6 @@ source = "modelsdev"
 [models."qwen/qwen3-235b-a22b-07-25".pricing."openrouter"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 8.5e-7
-
-[models."qwen/qwen3-235b-a22b-07-25:free"]
-display_name = "Qwen3 235B A22B Instruct 2507 (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."qwen/qwen3-235b-a22b-2507"]
 display_name = "Qwen: Qwen3 235B A22B Instruct 2507"
@@ -62512,23 +62077,6 @@ output_cost_per_token = 6e-7
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
 
-[models."qwen/qwen3-235b-a22b:free"]
-display_name = "Qwen3 235B A22B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen/qwen3-30b-a3b-2507"]
 display_name = "Qwen3 30B A3B 2507"
 model_family = "qwen"
@@ -62574,23 +62122,6 @@ output_cost_per_token = 4.5e-7
 [models."qwen/qwen3-30b-a3b-fp8".pricing."novita-ai"]
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
-
-[models."qwen/qwen3-30b-a3b:free"]
-display_name = "Qwen3 30B A3B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 40960
-max_output_tokens = 40960
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."qwen/qwen3-32b"]
 display_name = "Qwen3-32B"
@@ -62666,23 +62197,6 @@ output_cost_per_token = 4.5e-7
 [models."qwen/qwen3-32b-fp8".pricing."novita-ai"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.5000000000000003e-7
-
-[models."qwen/qwen3-32b:free"]
-display_name = "Qwen3 32B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 40960
-max_output_tokens = 40960
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."qwen/qwen3-4b-fp8"]
 display_name = "Qwen3 4B"
@@ -62800,23 +62314,6 @@ output_cost_per_token = 1.38e-7
 [models."qwen/qwen3-8b-fp8".pricing."novita-ai"]
 input_cost_per_token = 3.5e-8
 output_cost_per_token = 1.3800000000000002e-7
-
-[models."qwen/qwen3-8b:free"]
-display_name = "Qwen3 8B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 40960
-max_output_tokens = 40960
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."qwen/qwen3-coder"]
 display_name = "Qwen3 Coder"
@@ -63943,23 +63440,6 @@ source = "modelsdev"
 [models."qwen/qwenLM/models/Qwen3-30B-A3B-Thinking-2507".pricing."clarifai"]
 input_cost_per_token = 3.6e-7
 output_cost_per_token = 0.0000013
-
-[models."qwen/qwq-32b:free"]
-display_name = "QwQ 32B (free)"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-03"
-release_date = "2025-03-05"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."qwen2-5-14b-instruct"]
 display_name = "Qwen2.5 14B Instruct"
@@ -65690,23 +65170,6 @@ max_tokens = 8192
 litellm_provider = "snowflake"
 providers = ["snowflake"]
 
-[models."rekaai/reka-flash-3"]
-display_name = "Reka Flash 3"
-model_family = "reka"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-03-12"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."relace/relace-apply-3"]
 display_name = "Relace: Relace Apply 3"
 mode = "chat"
@@ -66325,23 +65788,6 @@ cache_read_input_token_cost = 0
 input_cost_per_token = 0
 output_cost_per_token = 0
 
-[models."sarvamai/sarvam-m:free"]
-display_name = "Sarvam-M (free)"
-model_family = "sarvam"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2025-05-25"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."sarvan-medium"]
 display_name = "Sarvam Medium"
 mode = "chat"
@@ -66566,40 +66012,6 @@ input_cost_per_query = 0.0015
 
 [models."search_api".pricing."vertex_ai"]
 input_cost_per_query = 0.0015
-
-[models."sherlock-dash-alpha"]
-display_name = "Sherlock Dash Alpha"
-model_family = "sherlock"
-mode = "chat"
-max_input_tokens = 1840000
-max_output_tokens = 0
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2025-11"
-release_date = "2025-11-15"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."sherlock-think-alpha"]
-display_name = "Sherlock Think Alpha"
-model_family = "sherlock"
-mode = "chat"
-max_input_tokens = 1840000
-max_output_tokens = 0
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-11"
-release_date = "2025-11-15"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."shisa-ai/shisa-v2-1-llama3-3-70b"]
 display_name = "Shisa V2.1 Llama 3.3 70B"
@@ -68748,23 +68160,6 @@ source = "https://fireworks.ai/pricing"
 input_cost_per_token = 1.6e-8
 output_cost_per_token = 0
 
-[models."thudm/glm-z1-32b:free"]
-display_name = "GLM Z1 32B (free)"
-model_family = "glm-z"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."titan-embed-text-v2"]
 display_name = "Titan Text Embeddings V2"
 model_family = "titan-embed"
@@ -68902,23 +68297,6 @@ cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 8.5e-7
 
-[models."tngtech/deepseek-r1t2-chimera:free"]
-display_name = "DeepSeek R1T2 Chimera (free)"
-model_family = "deepseek-thinking"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = false
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-07"
-release_date = "2025-07-08"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."tngtech/tng-r1t-chimera"]
 display_name = "TNG R1T Chimera"
 model_family = "tngtech"
@@ -68940,23 +68318,6 @@ source = "modelsdev"
 [models."tngtech/tng-r1t-chimera".pricing."nano-gpt"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-
-[models."tngtech/tng-r1t-chimera:free"]
-display_name = "R1T Chimera (free)"
-model_family = "tngtech"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-07"
-release_date = "2025-11-26"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."together-ai-21.1b-41b"]
 mode = "chat"
