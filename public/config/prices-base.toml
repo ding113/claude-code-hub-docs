@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.03.27"
-checksum = "1231339beb0a3962bafc566c61ede3f5596c0d2a623b40e0298fd801ac110c2a"
+checksum = "3d3ae8914ee37c0329ab4e5aa59713a63b7a53ebc3169f08a5fddf3930783398"
 sources = ["litellm", "modelsdev"]
-total_models = 3237
+total_models = 3238
 litellm_raw_models = 2598
-modelsdev_raw_models = 4100
+modelsdev_raw_models = 4102
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -58712,6 +58712,29 @@ output_cost_per_token = 0.0000032000000000000003
 input_cost_per_token = 7.989999999999999e-7
 output_cost_per_token = 0.0000031959999999999996
 
+[models."novita/deepseek-v3-2"]
+display_name = "DeepSeek-V3.2"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 0
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1.3e-7
+litellm_provider = "poe"
+providers = ["poe"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-12-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."novita/deepseek-v3-2".pricing."poe"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 4.0000000000000003e-7
+
 [models."nvidia-nemotron-3-nano-30b-a3b"]
 display_name = "NVIDIA Nemotron 3 Nano 30B"
 model_family = "nemotron"
@@ -74809,24 +74832,28 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 
 [models."xai/grok-4-20-multi-agent"]
-display_name = "Grok 4.20 Multi-Agent"
+display_name = "Grok-4.20-Multi-Agent"
 model_family = "grok"
 mode = "chat"
-max_input_tokens = 2000000
-max_output_tokens = 2000000
+max_input_tokens = 128000
+max_output_tokens = 0
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
-cache_read_input_token_cost = 2e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "poe"
+providers = ["poe", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-03-09"
-supported_modalities = ["text"]
+release_date = "2026-03-13"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."xai/grok-4-20-multi-agent".pricing."poe"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 [models."xai/grok-4-20-multi-agent".pricing."vercel"]
 cache_read_input_token_cost = 2e-7
 input_cost_per_token = 0.000002
