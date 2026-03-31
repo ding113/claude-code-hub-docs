@@ -3,7 +3,7 @@
 
 [metadata]
 version = "2026.03.31"
-checksum = "c7884ff46e284c8e7505ea18ba4ee9387fdbad65953986076b9c79939cc3f175"
+checksum = "2cdeef9058ec5956554fcff8bfb0516586a4f143103f13b8632e4f8220e5ca16"
 sources = ["litellm", "modelsdev"]
 total_models = 3242
 litellm_raw_models = 2598
@@ -12549,7 +12549,7 @@ cache_read_input_token_cost = 2.5e-7
 litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = false
-supports_reasoning = false
+supports_reasoning = true
 open_weights = false
 release_date = "2026-03-24"
 supported_modalities = ["text"]
@@ -44138,6 +44138,30 @@ source = "modelsdev"
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 0.000003
 
+[models."hf:Qwen/Qwen3-5-397B-A17B"]
+display_name = "Qwen3.5-97B-A17B"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 6e-7
+litellm_provider = "synthetic"
+providers = ["synthetic"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-11"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."hf:Qwen/Qwen3-5-397B-A17B".pricing."synthetic"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
+
 [models."hf:Qwen/Qwen3-Coder-480B-A35B-Instruct"]
 display_name = "Qwen 3 Coder 480B"
 model_family = "qwen"
@@ -53719,29 +53743,6 @@ supports_function_calling = true
 input_cost_per_token = 0
 output_cost_per_token = 0
 
-[models."mistral-31-24b"]
-display_name = "Venice Medium"
-model_family = "mistral"
-mode = "chat"
-max_input_tokens = 128000
-max_output_tokens = 4096
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000002
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-10"
-release_date = "2025-03-18"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."mistral-31-24b".pricing."venice"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000002
-
 [models."mistral-7B-Instruct-v0.1"]
 mode = "chat"
 max_input_tokens = 8192
@@ -60952,6 +60953,30 @@ cache_read_input_token_cost = 3.13e-7
 input_cost_per_token = 0.00000313
 output_cost_per_token = 0.0000188
 
+[models."openai-gpt-54-mini"]
+display_name = "GPT-5.4 Mini"
+model_family = "gpt-mini"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 9.375e-7
+output_cost_per_token = 0.000005625
+cache_read_input_token_cost = 9.375e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-54-mini".pricing."venice"]
+cache_read_input_token_cost = 9.375e-8
+input_cost_per_token = 9.375e-7
+output_cost_per_token = 0.000005625
+
 [models."openai-gpt-54-pro"]
 display_name = "GPT-5.4 Pro"
 model_family = "gpt-pro"
@@ -65604,29 +65629,6 @@ output_cost_per_token = 1e-7
 [models."qwen3-32b-fp8".pricing."llmgateway"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.5000000000000003e-7
-
-[models."qwen3-4b"]
-display_name = "Venice Small"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 32000
-max_output_tokens = 4096
-input_cost_per_token = 5.0000000000000004e-8
-output_cost_per_token = 1.5e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-07"
-release_date = "2025-04-29"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen3-4b".pricing."venice"]
-input_cost_per_token = 5.0000000000000004e-8
-output_cost_per_token = 1.5e-7
 
 [models."qwen3-4b-fp8"]
 display_name = "Qwen3 4B FP8"
