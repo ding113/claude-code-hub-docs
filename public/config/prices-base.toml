@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.01"
-checksum = "2cdeef9058ec5956554fcff8bfb0516586a4f143103f13b8632e4f8220e5ca16"
+checksum = "8174aeafb3efa0e0233f20a8476137603afdc93dd35a350cda73940e0562d6fb"
 sources = ["litellm", "modelsdev"]
 total_models = 3242
 litellm_raw_models = 2598
-modelsdev_raw_models = 4108
+modelsdev_raw_models = 4109
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -75896,23 +75896,29 @@ input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.0000026
 
 [models."z-ai/glm-5-turbo"]
-display_name = "GLM 5 Turbo"
+display_name = "GLM-5-Turbo"
+model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
-max_output_tokens = 128000
-input_cost_per_token = 8.8e-7
-output_cost_per_token = 0.00000348
-litellm_provider = "zenmux"
-providers = ["zenmux"]
+max_output_tokens = 131072
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 2.4e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-01-01"
-release_date = "2026-03-20"
+release_date = "2026-03-16"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."z-ai/glm-5-turbo".pricing."openrouter"]
+cache_read_input_token_cost = 2.4e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
 [models."z-ai/glm-5-turbo".pricing."zenmux"]
 input_cost_per_token = 8.8e-7
 output_cost_per_token = 0.00000348
