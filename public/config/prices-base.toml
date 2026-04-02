@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.02"
-checksum = "0f6be56e30edfa7bcad5955c1b5df5a8c1fcaa5476469b6dc6bbfeb2c8a1de4b"
+checksum = "f3266c2fd1456396a9e4dd0ac384cdb85e0122935cb2a1c157f5b22f2e1129bc"
 sources = ["litellm", "modelsdev"]
-total_models = 3243
+total_models = 3246
 litellm_raw_models = 2598
-modelsdev_raw_models = 4119
+modelsdev_raw_models = 4123
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -52686,6 +52686,31 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."mimo-v2-omni"]
+display_name = "MiMo V2 Omni"
+model_family = "mimo-omni"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 64000
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 8e-8
+litellm_provider = "opencode-go"
+providers = ["opencode-go"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-03-18"
+supported_modalities = ["text", "image", "audio", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mimo-v2-omni".pricing."opencode-go"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+
 [models."mimo-v2-omni-free"]
 display_name = "MiMo V2 Omni Free"
 model_family = "mimo-omni-free"
@@ -52702,6 +52727,31 @@ release_date = "2026-03-18"
 supported_modalities = ["text", "image", "audio", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."mimo-v2-pro"]
+display_name = "MiMo V2 Pro"
+model_family = "mimo-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 64000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "opencode-go"
+providers = ["opencode-go"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mimo-v2-pro".pricing."opencode-go"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
 
 [models."mimo-v2-pro-free"]
 display_name = "MiMo V2 Pro Free"
@@ -57596,6 +57646,8 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 
 [models."moonshotai/kimi-k2-thinking-maas"]
+display_name = "Kimi K2 Thinking"
+model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 256000
@@ -57603,12 +57655,21 @@ max_tokens = 256000
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-08"
+release_date = "2025-11-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#partner-models"
 supports_tool_choice = true
 supports_web_search = true
 
+[models."moonshotai/kimi-k2-thinking-maas".pricing."google-vertex"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
 [models."moonshotai/kimi-k2-thinking-maas".pricing."vertex_ai"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
@@ -63775,6 +63836,22 @@ supports_reasoning = true
 open_weights = false
 release_date = "2026-03-30"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-6-plus:free"]
+display_name = "Qwen3.6 Plus (free)"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-02"
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
