@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.03"
-checksum = "49f25ab7ef51275e5ba10c07c81892c724b1ec1e10f746a5a4beb8b5707147e2"
+checksum = "ca5577ac1e34a7004761e2b8a49a8a10eebeb32359451fa3906e94d90f2fd7f2"
 sources = ["litellm", "modelsdev"]
-total_models = 3265
+total_models = 3269
 litellm_raw_models = 2616
-modelsdev_raw_models = 4134
+modelsdev_raw_models = 4146
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -47414,6 +47414,29 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."kuaishou/kat-coder-pro-v2"]
+display_name = "KAT-Coder-Pro-V2"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 80000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2026-03-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."kuaishou/kat-coder-pro-v2".pricing."zenmux"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
 [models."kwaipilot/kat-coder"]
 display_name = "KAT-Coder-Pro V1(Free)"
 mode = "chat"
@@ -52971,26 +52994,27 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-omni"]
-display_name = "MiMo V2 Omni"
-model_family = "mimo-omni"
+display_name = "MiMo-V2-Omni"
+model_family = "mimo"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 64000
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000002
-cache_read_input_token_cost = 8e-8
-litellm_provider = "opencode-go"
-providers = ["opencode-go"]
+max_input_tokens = 256000
+max_output_tokens = 128000
+litellm_provider = "xiaomi-token-plan-sgp"
+providers = ["xiaomi-token-plan-sgp", "opencode-go", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2024-12"
 release_date = "2026-03-18"
-supported_modalities = ["text", "image", "audio", "pdf"]
+supported_modalities = ["text", "image", "audio", "video", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-omni".pricing."opencode-go"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+[models."mimo-v2-omni".pricing."xiaomi"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
@@ -53013,16 +53037,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-pro"]
-display_name = "MiMo V2 Pro"
-model_family = "mimo-pro"
+display_name = "MiMo-V2-Pro"
+model_family = "mimo"
 mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 64000
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
-cache_read_input_token_cost = 2.0000000000000002e-7
-litellm_provider = "opencode-go"
-providers = ["opencode-go"]
+max_input_tokens = 1000000
+max_output_tokens = 128000
+litellm_provider = "xiaomi-token-plan-sgp"
+providers = ["xiaomi-token-plan-sgp", "opencode-go", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -53033,6 +53054,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-pro".pricing."opencode-go"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+[models."mimo-v2-pro".pricing."xiaomi"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
@@ -53052,6 +53077,22 @@ knowledge_cutoff = "2024-12"
 release_date = "2026-03-18"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mimo-v2-tts"]
+display_name = "MiMo-V2-TTS"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 8000
+max_output_tokens = 16000
+litellm_provider = "xiaomi-token-plan-sgp"
+providers = ["xiaomi-token-plan-sgp", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["audio"]
 source = "modelsdev"
 
 [models."minimax-m2-1-free"]
@@ -64089,6 +64130,29 @@ source = "modelsdev"
 [models."qwen/qwen3-5-flash".pricing."zenmux"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.0000000000000003e-7
+
+[models."qwen/qwen3-6-plus"]
+display_name = "Qwen3.6-Plus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-6-plus".pricing."zenmux"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
 
 [models."qwen/qwen3-6-plus-preview:free"]
 display_name = "Qwen3.6 Plus Preview (free)"
@@ -75778,8 +75842,9 @@ max_input_tokens = 262144
 max_output_tokens = 65536
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+cache_read_input_token_cost = 8e-8
 litellm_provider = "openrouter"
-providers = ["openrouter", "xiaomi", "zenmux"]
+providers = ["openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -75790,9 +75855,6 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."xiaomi/mimo-v2-omni".pricing."openrouter"]
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000002
-[models."xiaomi/mimo-v2-omni".pricing."xiaomi"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
@@ -75808,8 +75870,9 @@ max_input_tokens = 1048576
 max_output_tokens = 65536
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
+cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "vercel", "xiaomi", "zenmux"]
+providers = ["openrouter", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -75820,14 +75883,11 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."xiaomi/mimo-v2-pro".pricing."openrouter"]
+cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."xiaomi/mimo-v2-pro".pricing."vercel"]
 cache_read_input_token_cost = 2e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
-[models."xiaomi/mimo-v2-pro".pricing."xiaomi"]
-cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."xiaomi/mimo-v2-pro".pricing."zenmux"]
@@ -76421,6 +76481,29 @@ output_cost_per_token = 0.000004
 [models."z-ai/glm-5-turbo".pricing."zenmux"]
 input_cost_per_token = 8.8e-7
 output_cost_per_token = 0.00000348
+
+[models."z-ai/glm-5v-turbo"]
+display_name = "GLM 5V Turbo"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 7.26e-7
+output_cost_per_token = 0.0000031946
+cache_read_input_token_cost = 1.7430000000000002e-7
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-01"
+supported_modalities = ["text", "image", "video", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-5v-turbo".pricing."zenmux"]
+cache_read_input_token_cost = 1.7430000000000002e-7
+input_cost_per_token = 7.26e-7
+output_cost_per_token = 0.0000031946
 
 [models."z-ai/glm4-7"]
 display_name = "GLM-4.7"
