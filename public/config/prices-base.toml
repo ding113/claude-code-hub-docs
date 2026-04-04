@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.04"
-checksum = "880bc4dd6ab0cf1d7cc487455aa03ba44a88dd5849637a68d44f6f4bc9c2c1b5"
+checksum = "5a9e13b4462332898d422e0fecb1df5e6620490dce5d8b205cda80763fda4902"
 sources = ["litellm", "modelsdev"]
 total_models = 3269
 litellm_raw_models = 2617
-modelsdev_raw_models = 4145
+modelsdev_raw_models = 4149
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -25142,6 +25142,8 @@ input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 
 [models."deepseek-ai/deepseek-v3.2-maas"]
+display_name = "DeepSeek V3.2"
+model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 163840
 max_output_tokens = 32768
@@ -25149,10 +25151,14 @@ max_tokens = 32768
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000168
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+release_date = "2025-12-17"
+supported_modalities = ["text", "pdf"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing#partner-models"
 input_cost_per_token_batches = 2.8e-7
 output_cost_per_token_batches = 8.4e-7
@@ -25160,6 +25166,10 @@ supported_regions = ["global"]
 supports_assistant_prefill = true
 supports_tool_choice = true
 
+[models."deepseek-ai/deepseek-v3.2-maas".pricing."google-vertex"]
+cache_read_input_token_cost = 5.6e-8
+input_cost_per_token = 5.6e-7
+output_cost_per_token = 0.00000168
 [models."deepseek-ai/deepseek-v3.2-maas".pricing."vertex_ai"]
 input_cost_per_token = 5.6e-7
 input_cost_per_token_batches = 2.8e-7
@@ -66191,10 +66201,11 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 65536
-input_cost_per_token = 0.000001146
-output_cost_per_token = 0.00000688
+input_cost_per_token = 2.7600000000000004e-7
+output_cost_per_token = 0.000001651
+cache_read_input_token_cost = 2.8e-8
 litellm_provider = "alibaba-cn"
-providers = ["alibaba-cn"]
+providers = ["alibaba-cn", "alibaba", "alibaba-coding-plan", "alibaba-coding-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -66203,12 +66214,15 @@ release_date = "2026-04-02"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
-reasoning_cost_per_token = 0.00000688
 
+[models."qwen3-6-plus".pricing."alibaba"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 2.7600000000000004e-7
+output_cost_per_token = 0.000001651
 [models."qwen3-6-plus".pricing."alibaba-cn"]
-input_cost_per_token = 0.000001146
-output_cost_per_token = 0.00000688
-reasoning_cost_per_token = 0.00000688
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 2.7600000000000004e-7
+output_cost_per_token = 0.000001651
 
 [models."qwen3-6-plus-free"]
 display_name = "Qwen3.6 Plus Free"
