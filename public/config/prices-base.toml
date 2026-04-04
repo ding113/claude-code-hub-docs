@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.04.04"
-checksum = "5a9e13b4462332898d422e0fecb1df5e6620490dce5d8b205cda80763fda4902"
+checksum = "4fef424e4f77debf125870a5c93dcf5879803afd40f6b3889bb2f97c572eb9e4"
 sources = ["litellm", "modelsdev"]
-total_models = 3269
-litellm_raw_models = 2617
+total_models = 3293
+litellm_raw_models = 2642
 modelsdev_raw_models = 4149
 custom_models = 5
 
@@ -19118,7 +19118,7 @@ output_cost_per_token = 0.000005
 cache_read_input_token_cost = 1e-7
 cache_creation_input_token_cost = 0.00000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "cortecs", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "vercel", "zenmux"]
+providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "cortecs", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -19132,6 +19132,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.000002
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_streaming = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
@@ -19201,6 +19202,11 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
 [models."claude-haiku-4-5".pricing."vercel"]
 cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+[models."claude-haiku-4-5".pricing."vertex_ai"]
+cache_creation_input_token_cost = 0.00000125
+cache_read_input_token_cost = 1e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
 [models."claude-haiku-4-5".pricing."zenmux"]
@@ -22611,6 +22617,58 @@ supports_response_schema = false
 input_cost_per_token = 0.00000156
 output_cost_per_token = 0.00000156
 
+[models."cohere.command-a-reasoning-08-2025"]
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."cohere.command-a-reasoning-08-2025".pricing."oci"]
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+
+[models."cohere.command-a-translate-08-2025"]
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 9e-8
+output_cost_per_token = 9e-8
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = false
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."cohere.command-a-translate-08-2025".pricing."oci"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 9e-8
+
+[models."cohere.command-a-vision-07-2025"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+supports_vision = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."cohere.command-a-vision-07-2025".pricing."oci"]
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+
 [models."cohere.command-latest"]
 mode = "chat"
 max_input_tokens = 128000
@@ -22660,6 +22718,40 @@ supports_response_schema = false
 input_cost_per_token = 0.00000156
 output_cost_per_token = 0.00000156
 
+[models."cohere.command-r-08-2024"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 1.5e-7
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."cohere.command-r-08-2024".pricing."oci"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 1.5e-7
+
+[models."cohere.command-r-plus-08-2024"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."cohere.command-r-plus-08-2024".pricing."oci"]
+input_cost_per_token = 0.00000156
+output_cost_per_token = 0.00000156
+
 [models."cohere.command-r-plus-v1:0"]
 mode = "chat"
 max_input_tokens = 128000
@@ -22705,6 +22797,53 @@ supports_tool_choice = true
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000002
 
+[models."cohere.embed-english-image-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 1024
+supports_embedding_image_input = true
+
+[models."cohere.embed-english-image-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-english-light-image-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 384
+supports_embedding_image_input = true
+
+[models."cohere.embed-english-light-image-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-english-light-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 384
+
+[models."cohere.embed-english-light-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
 [models."cohere.embed-english-v3"]
 mode = "embedding"
 max_input_tokens = 512
@@ -22716,6 +22855,52 @@ providers = ["bedrock"]
 supports_embedding_image_input = true
 
 [models."cohere.embed-english-v3".pricing."bedrock"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-english-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 1024
+
+[models."cohere.embed-english-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-multilingual-light-image-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 384
+supports_embedding_image_input = true
+
+[models."cohere.embed-multilingual-light-image-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-multilingual-light-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 384
+
+[models."cohere.embed-multilingual-light-v3.0".pricing."oci"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 0
 
@@ -22731,6 +22916,37 @@ supports_embedding_image_input = true
 
 [models."cohere.embed-multilingual-v3".pricing."bedrock"]
 input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-multilingual-v3.0"]
+mode = "embedding"
+max_input_tokens = 512
+max_tokens = 512
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 1024
+
+[models."cohere.embed-multilingual-v3.0".pricing."oci"]
+input_cost_per_token = 1e-7
+output_cost_per_token = 0
+
+[models."cohere.embed-v4.0"]
+mode = "embedding"
+max_input_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 1.2e-7
+output_cost_per_token = 0
+litellm_provider = "oci"
+providers = ["oci"]
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+output_vector_size = 1536
+supports_embedding_image_input = true
+
+[models."cohere.embed-v4.0".pricing."oci"]
+input_cost_per_token = 1.2e-7
 output_cost_per_token = 0
 
 [models."cohere.embed-v4:0"]
@@ -35933,6 +36149,60 @@ source = "modelsdev"
 [models."google-gemma-3-27b-it".pricing."venice"]
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 2.0000000000000002e-7
+
+[models."google.gemini-2.5-flash"]
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+supports_vision = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = true
+
+[models."google.gemini-2.5-flash".pricing."oci"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+
+[models."google.gemini-2.5-flash-lite"]
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+supports_vision = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = true
+
+[models."google.gemini-2.5-flash-lite".pricing."oci"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 3e-7
+
+[models."google.gemini-2.5-pro"]
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+supports_vision = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = true
+
+[models."google.gemini-2.5-pro".pricing."oci"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
 
 [models."google.gemma-3-12b-it"]
 display_name = "Google Gemma 3 12B"
@@ -51259,6 +51529,41 @@ supports_response_schema = false
 input_cost_per_token = 0.00001068
 output_cost_per_token = 0.00001068
 
+[models."meta.llama-3.1-70b-instruct"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."meta.llama-3.1-70b-instruct".pricing."oci"]
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+
+[models."meta.llama-3.2-11b-vision-instruct"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000002
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+supports_vision = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."meta.llama-3.2-11b-vision-instruct".pricing."oci"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000002
+
 [models."meta.llama-3.2-90b-vision-instruct"]
 mode = "chat"
 max_input_tokens = 128000
@@ -51269,6 +51574,7 @@ output_cost_per_token = 0.000002
 litellm_provider = "oci"
 providers = ["oci"]
 supports_function_calling = true
+supports_vision = true
 source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
 supports_response_schema = false
 
@@ -51290,6 +51596,23 @@ source = "https://www.oracle.com/artificial-intelligence/generative-ai/generativ
 supports_response_schema = false
 
 [models."meta.llama-3.3-70b-instruct".pricing."oci"]
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+
+[models."meta.llama-3.3-70b-instruct-fp8-dynamic"]
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 4000
+max_tokens = 4000
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."meta.llama-3.3-70b-instruct-fp8-dynamic".pricing."oci"]
 input_cost_per_token = 7.2e-7
 output_cost_per_token = 7.2e-7
 
@@ -75193,6 +75516,91 @@ supports_response_schema = false
 [models."xai.grok-4".pricing."oci"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
+
+[models."xai.grok-4-fast"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+max_tokens = 131072
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."xai.grok-4-fast".pricing."oci"]
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."xai.grok-4.1-fast"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+max_tokens = 131072
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."xai.grok-4.1-fast".pricing."oci"]
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."xai.grok-4.20"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+max_tokens = 131072
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."xai.grok-4.20".pricing."oci"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."xai.grok-4.20-multi-agent"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+max_tokens = 131072
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."xai.grok-4.20-multi-agent".pricing."oci"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."xai.grok-code-fast-1"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+max_tokens = 131072
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+litellm_provider = "oci"
+providers = ["oci"]
+supports_function_calling = true
+source = "https://www.oracle.com/artificial-intelligence/generative-ai/generative-ai-service/pricing"
+supports_response_schema = false
+
+[models."xai.grok-code-fast-1".pricing."oci"]
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 
 [models."xai/grok-2"]
 mode = "chat"
