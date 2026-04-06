@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.06"
-checksum = "4fef424e4f77debf125870a5c93dcf5879803afd40f6b3889bb2f97c572eb9e4"
+checksum = "7e5621563c5f43572f91adfe9a5f6b77643103cb6bd0cf3b783e65f235775256"
 sources = ["litellm", "modelsdev"]
-total_models = 3293
+total_models = 3296
 litellm_raw_models = 2642
-modelsdev_raw_models = 4149
+modelsdev_raw_models = 4156
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2060,7 +2060,7 @@ output_cost_per_token = 0.0000015
 display_name = "GLM 5 FP8"
 model_family = "glm"
 mode = "chat"
-max_input_tokens = 202000
+max_input_tokens = 200000
 max_output_tokens = 131072
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.0000031
@@ -2069,8 +2069,8 @@ providers = ["vultr"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-01-20"
+knowledge_cutoff = "2025-05"
+release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -15938,20 +15938,23 @@ source = "modelsdev"
 display_name = "Trinity Large Thinking"
 model_family = "trinity"
 mode = "chat"
-max_input_tokens = 262100
+max_input_tokens = 262144
 max_output_tokens = 80000
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 9e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 8.5e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-04-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."arcee-ai/trinity-large-thinking".pricing."openrouter"]
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 8.5e-7
 [models."arcee-ai/trinity-large-thinking".pricing."vercel"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 9e-7
@@ -16022,6 +16025,30 @@ source = "modelsdev"
 [models."arcee-ai/virtuoso-large".pricing."kilo"]
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.0000012
+
+[models."arcee-trinity-large-thinking"]
+display_name = "Trinity Large Thinking"
+model_family = "trinity"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 3.125e-7
+output_cost_per_token = 0.000001125
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-02"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."arcee-trinity-large-thinking".pricing."venice"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 3.125e-7
+output_cost_per_token = 0.000001125
 
 [models."arcee_ai/AFM/models/trinity-mini"]
 display_name = "Trinity Mini"
@@ -34626,23 +34653,27 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."gemma-4-26b-a4b-it"]
-display_name = "Gemma 4 26B A4B IT"
+display_name = "Gemma 4 26B A4B"
 model_family = "gemma"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 131072
+max_output_tokens = 262144
 input_cost_per_token = 1.3e-7
-output_cost_per_token = 4e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
+output_cost_per_token = 4.0000000000000003e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-04-02"
-supported_modalities = ["text", "image", "pdf"]
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-03"
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemma-4-26b-a4b-it".pricing."openrouter"]
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-26b-a4b-it".pricing."vercel"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4e-7
@@ -34654,7 +34685,7 @@ mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 16384
 litellm_provider = "nvidia"
-providers = ["nvidia", "vercel"]
+providers = ["nvidia", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34664,6 +34695,9 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemma-4-31b-it".pricing."openrouter"]
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-31b-it".pricing."vercel"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4e-7
@@ -36286,6 +36320,50 @@ output_cost_per_token = 8e-8
 [models."google.gemma-3-4b-it".pricing."bedrock_converse"]
 input_cost_per_token = 4e-8
 output_cost_per_token = 8e-8
+
+[models."google.gemma-4-26b-a4b-it"]
+display_name = "Google Gemma 4 26B A4B Instruct"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 12288
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-02"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."google.gemma-4-26b-a4b-it".pricing."venice"]
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
+
+[models."google.gemma-4-31b-it"]
+display_name = "Google Gemma 4 31B Instruct"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 12288
+input_cost_per_token = 1.75e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-03"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."google.gemma-4-31b-it".pricing."venice"]
+input_cost_per_token = 1.75e-7
+output_cost_per_token = 5e-7
 
 [models."gpt-3-5-turbo-0301"]
 display_name = "GPT-3.5 Turbo 0301"
@@ -42214,7 +42292,7 @@ max_tokens = 131072
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "baseten", "berget", "cerebras", "cloudferro-sherlock", "cortecs", "deepinfra", "dinference", "evroc", "fastrouter", "firmware", "groq", "helicone", "io-net", "kilo", "llmgateway", "nano-gpt", "nebius", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "privatemode-ai", "replicate", "sambanova", "scaleway", "siliconflow", "stackit", "submodel", "together_ai", "togetherai", "vercel", "wandb", "watsonx"]
+providers = ["azure_ai", "abacus", "baseten", "berget", "cerebras", "cloudferro-sherlock", "cortecs", "deepinfra", "dinference", "evroc", "fastrouter", "firmware", "groq", "helicone", "io-net", "kilo", "llmgateway", "nano-gpt", "nebius", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "privatemode-ai", "replicate", "sambanova", "scaleway", "siliconflow", "stackit", "submodel", "together_ai", "togetherai", "vercel", "vultr", "wandb", "watsonx"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42328,6 +42406,9 @@ output_cost_per_token = 6e-7
 [models."gpt-oss-120b".pricing."vercel"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
+[models."gpt-oss-120b".pricing."vultr"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 [models."gpt-oss-120b".pricing."wandb"]
 input_cost_per_token = 0.015
 output_cost_per_token = 0.06
@@ -66476,7 +66557,7 @@ display_name = "Qwen 3.5 9B"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 256000
-max_output_tokens = 65536
+max_output_tokens = 32768
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 1.5e-7
 litellm_provider = "venice"
@@ -77040,7 +77121,7 @@ cache_read_input_token_cost = 3e-7
 litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = true
 release_date = "2024-04-01"
 supported_modalities = ["text"]
