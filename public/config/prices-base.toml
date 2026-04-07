@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.07"
-checksum = "a7fc3115aec12a98be09cf889441ab836e0061585cc3d4aef3e11070c96f2d25"
+checksum = "37f635e42d3032326360bf19edabb0b54b3815ce8e5e4e5406f1f84640288ebd"
 sources = ["litellm", "modelsdev"]
-total_models = 3295
-litellm_raw_models = 2642
-modelsdev_raw_models = 4154
+total_models = 3300
+litellm_raw_models = 2645
+modelsdev_raw_models = 4156
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12442,7 +12442,7 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
 [models."accounts/fireworks/routers/kimi-k2p5-turbo"]
-display_name = "Kimi K2.5 Turbo"
+display_name = "Kimi K2.5 Turbo (firepass)"
 model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 256000
@@ -62638,6 +62638,30 @@ supports_tool_choice = true
 input_cost_per_token = 4e-7
 output_cost_per_token = 8e-7
 
+[models."qwen-3-6-plus"]
+display_name = "Qwen 3.6 Plus"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 6.25e-7
+output_cost_per_token = 0.00000375
+cache_read_input_token_cost = 6.25e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-06"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen-3-6-plus".pricing."venice"]
+cache_read_input_token_cost = 6.25e-8
+input_cost_per_token = 6.25e-7
+output_cost_per_token = 0.00000375
+
 [models."qwen-coder"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -70134,6 +70158,30 @@ source = "modelsdev"
 input_cost_per_token = 2.4990000000000003e-7
 output_cost_per_token = 6.494e-7
 
+[models."step-3-5-flash-2603"]
+display_name = "Step 3.5 Flash 2603"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 256000
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "stepfun"
+providers = ["stepfun"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-02"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."step-3-5-flash-2603".pricing."stepfun"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+
 [models."step-r1-v-mini"]
 display_name = "Step R1 V Mini"
 mode = "chat"
@@ -71859,11 +71907,38 @@ cache_read_input_token_cost = 1.2e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000006
 
+[models."us-gov-east-1/anthropic.claude-sonnet-4-5-20250929-v1:0"]
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 8192
+max_tokens = 8192
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 3.3e-7
+cache_creation_input_token_cost = 0.000004125
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+supports_assistant_prefill = true
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+
+[models."us-gov-east-1/anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock"]
+cache_creation_input_token_cost = 0.000004125
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+
 [models."us-gov-east-1/claude-sonnet-4-5-20250929-v1:0"]
 mode = "chat"
 max_input_tokens = 200000
-max_output_tokens = 4096
-max_tokens = 4096
+max_output_tokens = 8192
+max_tokens = 8192
 input_cost_per_token = 0.0000036
 output_cost_per_token = 0.000018
 cache_read_input_token_cost = 3.6e-7
@@ -72108,11 +72183,38 @@ cache_read_input_token_cost = 1.2e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000006
 
+[models."us-gov-west-1/anthropic.claude-sonnet-4-5-20250929-v1:0"]
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 8192
+max_tokens = 8192
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 3.3e-7
+cache_creation_input_token_cost = 0.000004125
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+supports_assistant_prefill = true
+supports_computer_use = true
+supports_response_schema = true
+supports_tool_choice = true
+
+[models."us-gov-west-1/anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock"]
+cache_creation_input_token_cost = 0.000004125
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+
 [models."us-gov-west-1/claude-sonnet-4-5-20250929-v1:0"]
 mode = "chat"
 max_input_tokens = 200000
-max_output_tokens = 4096
-max_tokens = 4096
+max_output_tokens = 8192
+max_tokens = 8192
 input_cost_per_token = 0.0000036
 output_cost_per_token = 0.000018
 cache_read_input_token_cost = 3.6e-7
@@ -72164,6 +72266,43 @@ supports_pdf_input = true
 [models."us-gov-west-1/meta.llama3-8b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.00000265
+
+[models."us-gov.anthropic.claude-sonnet-4-5-20250929-v1:0"]
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+max_tokens = 64000
+input_cost_per_token = 0.0000033
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 3.3e-7
+cache_creation_input_token_cost = 0.000004125
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+cache_creation_input_token_cost_above_200k_tokens = 0.00000825
+cache_read_input_token_cost_above_200k_tokens = 6.6e-7
+input_cost_per_token_above_200k_tokens = 0.0000066
+output_cost_per_token_above_200k_tokens = 0.00002475
+supports_assistant_prefill = true
+supports_computer_use = true
+supports_native_structured_output = true
+supports_response_schema = true
+supports_tool_choice = true
+tool_use_system_prompt_tokens = 346
+
+[models."us-gov.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000004125
+cache_creation_input_token_cost_above_200k_tokens = 0.00000825
+cache_read_input_token_cost = 3.3e-7
+cache_read_input_token_cost_above_200k_tokens = 6.6e-7
+input_cost_per_token = 0.0000033
+input_cost_per_token_above_200k_tokens = 0.0000066
+output_cost_per_token = 0.0000165
+output_cost_per_token_above_200k_tokens = 0.00002475
 
 [models."us-west-1/meta.llama3-70b-instruct-v1:0"]
 mode = "chat"
@@ -76944,11 +77083,11 @@ output_cost_per_token = 0.0000026
 display_name = "GLM-5-Turbo"
 model_family = "glm"
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 202752
 max_output_tokens = 131072
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.000004
-cache_read_input_token_cost = 2.4e-7
+input_cost_per_token = 9.6e-7
+output_cost_per_token = 0.0000032000000000000003
+cache_read_input_token_cost = 1.92e-7
 litellm_provider = "openrouter"
 providers = ["openrouter", "zenmux"]
 supports_function_calling = true
@@ -76961,9 +77100,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."z-ai/glm-5-turbo".pricing."openrouter"]
-cache_read_input_token_cost = 2.4e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.000004
+cache_read_input_token_cost = 1.92e-7
+input_cost_per_token = 9.6e-7
+output_cost_per_token = 0.0000032000000000000003
 [models."z-ai/glm-5-turbo".pricing."zenmux"]
 input_cost_per_token = 8.8e-7
 output_cost_per_token = 0.00000348
