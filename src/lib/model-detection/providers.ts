@@ -7,7 +7,7 @@ import type {
 const OPENAI_INSTRUCTIONS =
   'Repeat the exact target text one time. Return only the original text without quotes or extra words.'
 
-const ANTHROPIC_SYSTEM =
+const SIMPLE_COPY_INSTRUCTIONS =
   'Copy the target text exactly once. Return only the original text.'
 
 function buildProbePrompt(probe: string) {
@@ -24,7 +24,26 @@ function ensurePath(baseUrl: string, path: string) {
     return normalizedBaseUrl
   }
 
-  return `${normalizedBaseUrl}${path}`
+  const url = new URL(normalizedBaseUrl)
+  const baseSegments = url.pathname.split('/').filter(Boolean)
+  const targetSegments = path.split('/').filter(Boolean)
+
+  let overlap = 0
+  for (
+    let size = Math.min(baseSegments.length, targetSegments.length);
+    size > 0;
+    size -= 1
+  ) {
+    const baseTail = baseSegments.slice(-size).join('/')
+    const targetHead = targetSegments.slice(0, size).join('/')
+    if (baseTail === targetHead) {
+      overlap = size
+      break
+    }
+  }
+
+  url.pathname = `/${[...baseSegments, ...targetSegments.slice(overlap)].join('/')}`
+  return trimTrailingSlash(url.toString())
 }
 
 function normalizeGeminiModel(model: string) {
@@ -38,7 +57,8 @@ function resolveGeminiUrl(
 ) {
   const normalizedBaseUrl = trimTrailingSlash(baseUrl)
   if (normalizedBaseUrl.includes(':generateContent')) {
-    return normalizedBaseUrl
+    const versionMarker = `/${version}/`
+    return normalizedBaseUrl.includes(versionMarker) ? normalizedBaseUrl : null
   }
 
   const normalizedModel = normalizeGeminiModel(model)
@@ -122,7 +142,7 @@ function buildAnthropicCandidates({
         model,
         max_tokens: 128,
         stream: false,
-        system: [{ type: 'text', text: ANTHROPIC_SYSTEM }],
+        system: SIMPLE_COPY_INSTRUCTIONS,
         messages: [
           {
             role: 'user',
@@ -143,7 +163,7 @@ function buildAnthropicCandidates({
         model,
         max_tokens: 128,
         stream: false,
-        system: ANTHROPIC_SYSTEM,
+        system: SIMPLE_COPY_INSTRUCTIONS,
         messages: [{ role: 'user', content: prompt }],
       },
     },
@@ -156,12 +176,16 @@ function buildGeminiCandidates({
   model,
   probe,
 }: RequestCandidateInput): RequestCandidate[] {
-  const prompt = `${ANTHROPIC_SYSTEM}\n\n${buildProbePrompt(probe)}`
+  const prompt = `${SIMPLE_COPY_INSTRUCTIONS}\n\n${buildProbePrompt(probe)}`
+  const v1BetaUrl = resolveGeminiUrl(baseUrl, 'v1beta', model)
+  const v1Url = resolveGeminiUrl(baseUrl, 'v1', model)
 
-  return [
-    {
+  const candidates: RequestCandidate[] = []
+
+  if (v1BetaUrl) {
+    candidates.push({
       label: 'v1beta-thinking-config',
-      url: resolveGeminiUrl(baseUrl, 'v1beta', model),
+      url: v1BetaUrl,
       headers: {
         'Content-Type': 'application/json',
         'x-goog-api-key': apiKey,
@@ -179,10 +203,13 @@ function buildGeminiCandidates({
           thinkingConfig: { thinkingBudget: 0 },
         },
       },
-    },
-    {
+    })
+  }
+
+  if (v1Url) {
+    candidates.push({
       label: 'v1-generate-content',
-      url: resolveGeminiUrl(baseUrl, 'v1', model),
+      url: v1Url,
       headers: {
         'Content-Type': 'application/json',
         'x-goog-api-key': apiKey,
@@ -199,8 +226,10 @@ function buildGeminiCandidates({
           maxOutputTokens: 128,
         },
       },
-    },
-  ]
+    })
+  }
+
+  return candidates
 }
 
 export function buildRequestCandidates(

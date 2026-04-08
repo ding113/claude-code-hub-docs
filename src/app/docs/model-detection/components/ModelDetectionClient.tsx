@@ -14,8 +14,16 @@ interface ModelDetectionClientProps {
   runDetection?: (input: ModelDetectionInput) => Promise<ModelDetectionResult>
 }
 
+const ENDPOINT_TYPES = ['openai', 'anthropic', 'gemini'] as const
+
 function formatPercent(value: number) {
   return `${(value * 100).toFixed(1)}%`
+}
+
+function isDetectionEndpointType(
+  value: string,
+): value is DetectionEndpointType {
+  return ENDPOINT_TYPES.includes(value as DetectionEndpointType)
 }
 
 function endpointLabel(value: DetectionEndpointType) {
@@ -167,9 +175,12 @@ export function ModelDetectionClient({
               <select
                 aria-label="Endpoint Type"
                 value={endpointType}
-                onChange={(event) =>
-                  setEndpointType(event.target.value as DetectionEndpointType)
-                }
+                onChange={(event) => {
+                  const nextValue = event.target.value
+                  if (isDetectionEndpointType(nextValue)) {
+                    setEndpointType(nextValue)
+                  }
+                }}
                 className="mt-2 w-full rounded-2xl border border-[var(--claude-smoke)]/55 bg-[var(--claude-sand)] px-4 py-3 text-sm text-[var(--claude-ink)] outline-none transition focus:border-[var(--claude-terracotta)] focus:ring-2 focus:ring-[color-mix(in_oklab,var(--claude-terracotta)_22%,transparent)] dark:bg-[var(--claude-cloud)]"
               >
                 <option value="openai">OpenAI</option>

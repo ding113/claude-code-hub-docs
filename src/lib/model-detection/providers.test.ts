@@ -38,6 +38,9 @@ describe('buildRequestCandidates', () => {
     expect(candidates).toHaveLength(2)
     expect(candidates[0].url).toBe('https://relay.example.com/v1/messages')
     expect(candidates[0].headers.Authorization).toBe('Bearer sk-test')
+    expect((candidates[0].body as { system: string }).system).toBeTypeOf(
+      'string',
+    )
     expect(candidates[1].headers['x-api-key']).toBe('sk-test')
   })
 
@@ -54,6 +57,37 @@ describe('buildRequestCandidates', () => {
     )
     expect(candidates[1].url).toBe(
       'https://relay.example.com/v1/models/demo-model:generateContent',
+    )
+  })
+
+  test('当 baseUrl 已经带有 /v1 时，不重复拼接版本前缀', () => {
+    const candidates = buildRequestCandidates({
+      baseUrl: 'https://relay.example.com/v1',
+      apiKey: 'sk-test',
+      model: 'demo-model',
+      endpointType: 'openai',
+      probe: 'SolidGoldMagikarp',
+    })
+
+    expect(candidates[0].url).toBe('https://relay.example.com/v1/responses')
+    expect(candidates[1].url).toBe(
+      'https://relay.example.com/v1/chat/completions',
+    )
+  })
+
+  test('当 Gemini baseUrl 已经是完整 generateContent URL 时，不生成重复候选', () => {
+    const candidates = buildRequestCandidates({
+      baseUrl:
+        'https://relay.example.com/v1beta/models/demo-model:generateContent',
+      apiKey: 'sk-test',
+      model: 'demo-model',
+      endpointType: 'gemini',
+      probe: '～和 ~',
+    })
+
+    expect(candidates).toHaveLength(1)
+    expect(candidates[0].url).toBe(
+      'https://relay.example.com/v1beta/models/demo-model:generateContent',
     )
   })
 })

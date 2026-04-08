@@ -18,6 +18,7 @@ export function summarizeDetectionFamilies(
         (observation) => observation.repeatedExactly !== null,
       ).length
 
+      // 命中代表模型没有原样复述探针，因此更接近该家族的响应指纹。
       const hits = familyObservations.filter(
         (observation) => observation.repeatedExactly === false,
       ).length

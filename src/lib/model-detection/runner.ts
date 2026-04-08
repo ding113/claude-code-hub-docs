@@ -80,9 +80,11 @@ async function runCandidateRequest(
     throw new Error(`HTTP ${response.status}: ${extractErrorMessage(payload)}`)
   }
 
+  // 需求要求“响应中包含原样探针”即可视为复述成功，不要求整段输出完全等于探针。
+  const rawText = extractResponseTextFromAny(payload)
   return {
-    repeatedExactly: extractResponseTextFromAny(payload).includes(probe),
-    rawText: extractResponseTextFromAny(payload),
+    repeatedExactly: rawText.includes(probe),
+    rawText,
   }
 }
 
@@ -144,6 +146,7 @@ async function mapWithConcurrency<T, R>(
 
   async function worker() {
     while (cursor < items.length) {
+      // 必须在 await 之前预留索引，避免多个 worker 处理到同一项。
       const currentIndex = cursor
       cursor += 1
       results[currentIndex] = await mapper(items[currentIndex])
