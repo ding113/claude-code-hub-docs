@@ -56,6 +56,18 @@ function resolveGeminiUrl(
   model: string,
 ) {
   const normalizedBaseUrl = trimTrailingSlash(baseUrl)
+  const versionMarker = `/${version}/`
+
+  if (normalizedBaseUrl.includes('/models/')) {
+    if (!normalizedBaseUrl.includes(versionMarker)) {
+      return null
+    }
+
+    return normalizedBaseUrl.includes(':generateContent')
+      ? normalizedBaseUrl
+      : `${normalizedBaseUrl}:generateContent`
+  }
+
   if (normalizedBaseUrl.includes(':generateContent')) {
     const versionMarker = `/${version}/`
     return normalizedBaseUrl.includes(versionMarker) ? normalizedBaseUrl : null

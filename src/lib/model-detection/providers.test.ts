@@ -90,6 +90,21 @@ describe('buildRequestCandidates', () => {
       'https://relay.example.com/v1beta/models/demo-model:generateContent',
     )
   })
+
+  test('当 Gemini baseUrl 已经指向具体模型时，直接补上 generateContent 后缀', () => {
+    const candidates = buildRequestCandidates({
+      baseUrl: 'https://relay.example.com/v1beta/models/demo-model',
+      apiKey: 'sk-test',
+      model: 'another-model',
+      endpointType: 'gemini',
+      probe: '～和 ~',
+    })
+
+    expect(candidates).toHaveLength(1)
+    expect(candidates[0].url).toBe(
+      'https://relay.example.com/v1beta/models/demo-model:generateContent',
+    )
+  })
 })
 
 describe('extractResponseText', () => {
