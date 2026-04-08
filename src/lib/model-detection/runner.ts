@@ -11,6 +11,8 @@ import type {
   RequestCandidate,
 } from '@/lib/model-detection/types'
 
+const REQUEST_TIMEOUT_MS = 15_000
+
 function buildProbeEntries() {
   return MODEL_PROBE_FAMILIES.flatMap((family) =>
     family.probes.map((probe) => ({
@@ -69,22 +71,38 @@ async function runCandidateRequest(
   candidate: RequestCandidate,
   probe: string,
 ): Promise<{ repeatedExactly: boolean; rawText: string }> {
-  const response = await fetch(candidate.url, {
-    method: 'POST',
-    headers: candidate.headers,
-    body: JSON.stringify(candidate.body),
-  })
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
-  const payload = await readPayload(response)
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}: ${extractErrorMessage(payload)}`)
-  }
+  try {
+    const response = await fetch(candidate.url, {
+      method: 'POST',
+      headers: candidate.headers,
+      body: JSON.stringify(candidate.body),
+      signal: controller.signal,
+    })
 
-  // 需求要求“响应中包含原样探针”即可视为复述成功，不要求整段输出完全等于探针。
-  const rawText = extractResponseTextFromAny(payload)
-  return {
-    repeatedExactly: rawText.includes(probe),
-    rawText,
+    const payload = await readPayload(response)
+    if (!response.ok) {
+      throw new Error(
+        `HTTP ${response.status}: ${extractErrorMessage(payload)}`,
+      )
+    }
+
+    // 需求要求“响应中包含原样探针”即可视为复述成功，不要求整段输出完全等于探针。
+    const rawText = extractResponseTextFromAny(payload)
+    return {
+      repeatedExactly: rawText.includes(probe),
+      rawText,
+    }
+  } catch (error) {
+    if (controller.signal.aborted) {
+      throw new Error(`Request timed out after ${REQUEST_TIMEOUT_MS}ms`)
+    }
+
+    throw error instanceof Error ? error : new Error(String(error))
+  } finally {
+    clearTimeout(timeoutId)
   }
 }
 
@@ -104,7 +122,18 @@ async function runProbe(
   familyId: string,
   probe: string,
 ): Promise<ProbeObservation> {
-  const candidates = buildRequestCandidates({ ...input, probe })
+  let candidates: RequestCandidate[]
+  try {
+    candidates = buildRequestCandidates({ ...input, probe })
+  } catch (error) {
+    return {
+      familyId,
+      probe,
+      repeatedExactly: null,
+      error: error instanceof Error ? error.message : String(error),
+    }
+  }
+
   const errors: string[] = []
 
   for (const candidate of candidates) {

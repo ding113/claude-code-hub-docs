@@ -75,6 +75,21 @@ describe('buildRequestCandidates', () => {
     )
   })
 
+  test('当用户粘贴了完整 OpenAI endpoint 时，仍能回退到正确候选路径', () => {
+    const candidates = buildRequestCandidates({
+      baseUrl: 'https://relay.example.com/v1/chat/completions',
+      apiKey: 'sk-test',
+      model: 'demo-model',
+      endpointType: 'openai',
+      probe: 'SolidGoldMagikarp',
+    })
+
+    expect(candidates[0].url).toBe('https://relay.example.com/v1/responses')
+    expect(candidates[1].url).toBe(
+      'https://relay.example.com/v1/chat/completions',
+    )
+  })
+
   test('当 Gemini baseUrl 已经是完整 generateContent URL 时，不生成重复候选', () => {
     const candidates = buildRequestCandidates({
       baseUrl:

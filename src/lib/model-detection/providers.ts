@@ -25,7 +25,14 @@ function ensurePath(baseUrl: string, path: string) {
   }
 
   const url = new URL(normalizedBaseUrl)
-  const baseSegments = url.pathname.split('/').filter(Boolean)
+  let baseSegments = url.pathname.split('/').filter(Boolean)
+  const versionIndex = baseSegments.findIndex((segment) =>
+    /^v\d+(?:beta\d+)?$/i.test(segment),
+  )
+  if (versionIndex >= 0 && versionIndex < baseSegments.length - 1) {
+    baseSegments = baseSegments.slice(0, versionIndex + 1)
+  }
+
   const targetSegments = path.split('/').filter(Boolean)
 
   let overlap = 0
