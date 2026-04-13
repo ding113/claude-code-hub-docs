@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.13"
-checksum = "119bb5dba5930180172f13e7401d77675d96bd9fdef8b278988df049413457c4"
+checksum = "84823c6094ed47c7f329439b23881292eaa91259fcf7303b2ac4cd13c04d8020"
 sources = ["litellm", "modelsdev"]
-total_models = 3274
+total_models = 3276
 litellm_raw_models = 2656
-modelsdev_raw_models = 4167
+modelsdev_raw_models = 4172
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3628,6 +3628,34 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000011
+
+[models."MiniMaxAI/MiniMax-M2-7"]
+display_name = "MiniMax-M2.7"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 204800
+max_output_tokens = 131072
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "huggingface"
+providers = ["huggingface", "togetherai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."MiniMaxAI/MiniMax-M2-7".pricing."huggingface"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+[models."MiniMaxAI/MiniMax-M2-7".pricing."togetherai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."MiniMaxAI/MiniMax-M2.1"]
 display_name = "MiniMax-M2.1"
@@ -11856,7 +11884,7 @@ supports_system_messages = true
 input_cost_per_token = 5e-7
 output_cost_per_token = 7e-7
 
-[models."aion-labs.aion-2-0"]
+[models."aion-labs-aion-2-0"]
 display_name = "Aion 2.0"
 model_family = "o"
 mode = "chat"
@@ -11875,7 +11903,7 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."aion-labs.aion-2-0".pricing."venice"]
+[models."aion-labs-aion-2-0".pricing."venice"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
@@ -19151,7 +19179,7 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -19225,6 +19253,10 @@ output_cost_per_token = 0.000021
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."claude-opus-4-5".pricing."venice"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 0.000006
+output_cost_per_token = 0.00003
 [models."claude-opus-4-5".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
@@ -19979,31 +20011,6 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 
-[models."claude-opus-45"]
-display_name = "Claude Opus 4.5"
-model_family = "claude-opus"
-mode = "chat"
-max_input_tokens = 198000
-max_output_tokens = 49500
-input_cost_per_token = 0.000006
-output_cost_per_token = 0.00003
-cache_read_input_token_cost = 6e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-03"
-release_date = "2025-12-06"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."claude-opus-45".pricing."venice"]
-cache_read_input_token_cost = 6e-7
-input_cost_per_token = 0.000006
-output_cost_per_token = 0.00003
-
 [models."claude-opus-4@20250514"]
 display_name = "Claude Opus 4"
 model_family = "claude-opus"
@@ -20360,7 +20367,7 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "aihubmix", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "requesty", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -20441,6 +20448,10 @@ output_cost_per_token = 0.000013
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
+[models."claude-sonnet-4-5".pricing."venice"]
+cache_read_input_token_cost = 3.75e-7
+input_cost_per_token = 0.00000375
+output_cost_per_token = 0.00001875
 [models."claude-sonnet-4-5".pricing."vercel"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
@@ -21016,31 +21027,6 @@ input_cost_per_token = 0.000003
 input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
-
-[models."claude-sonnet-45"]
-display_name = "Claude Sonnet 4.5"
-model_family = "claude-sonnet"
-mode = "chat"
-max_input_tokens = 198000
-max_output_tokens = 49500
-input_cost_per_token = 0.00000375
-output_cost_per_token = 0.00001875
-cache_read_input_token_cost = 3.75e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-09"
-release_date = "2025-01-15"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."claude-sonnet-45".pricing."venice"]
-cache_read_input_token_cost = 3.75e-7
-input_cost_per_token = 0.00000375
-output_cost_per_token = 0.00001875
 
 [models."claude-sonnet-4@20250514"]
 display_name = "Claude Sonnet 4"
@@ -35542,6 +35528,50 @@ source = "modelsdev"
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 2.0000000000000002e-7
 
+[models."google-gemma-4-26b-a4b-it"]
+display_name = "Google Gemma 4 26B A4B Instruct"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 8192
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-02"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."google-gemma-4-26b-a4b-it".pricing."venice"]
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
+
+[models."google-gemma-4-31b-it"]
+display_name = "Google Gemma 4 31B Instruct"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 8192
+input_cost_per_token = 1.75e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-03"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."google-gemma-4-31b-it".pricing."venice"]
+input_cost_per_token = 1.75e-7
+output_cost_per_token = 5e-7
+
 [models."google.gemini-2.5-flash"]
 mode = "chat"
 max_input_tokens = 1048576
@@ -35678,50 +35708,6 @@ output_cost_per_token = 8e-8
 [models."google.gemma-3-4b-it".pricing."bedrock_converse"]
 input_cost_per_token = 4e-8
 output_cost_per_token = 8e-8
-
-[models."google.gemma-4-26b-a4b-it"]
-display_name = "Google Gemma 4 26B A4B Instruct"
-model_family = "gemma"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 8192
-input_cost_per_token = 1.625e-7
-output_cost_per_token = 5e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-04-02"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."google.gemma-4-26b-a4b-it".pricing."venice"]
-input_cost_per_token = 1.625e-7
-output_cost_per_token = 5e-7
-
-[models."google.gemma-4-31b-it"]
-display_name = "Google Gemma 4 31B Instruct"
-model_family = "gemma"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 8192
-input_cost_per_token = 1.75e-7
-output_cost_per_token = 5e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-04-03"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."google.gemma-4-31b-it".pricing."venice"]
-input_cost_per_token = 1.75e-7
-output_cost_per_token = 5e-7
 
 [models."gpt-3-5-turbo-0301"]
 display_name = "GPT-3.5 Turbo 0301"
@@ -43194,6 +43180,30 @@ input_cost_per_token_above_128k_tokens = 4e-7
 output_cost_per_token = 5e-7
 output_cost_per_token_above_128k_tokens = 0.000001
 
+[models."grok-4-20"]
+display_name = "Grok 4.20"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 2000000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
+cache_read_input_token_cost = 2.3000000000000002e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."grok-4-20".pricing."venice"]
+cache_read_input_token_cost = 2.3000000000000002e-7
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
+
 [models."grok-4-20-0309-non-reasoning"]
 display_name = "Grok 4.20 (Non-Reasoning)"
 model_family = "grok"
@@ -43241,30 +43251,6 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
-
-[models."grok-4-20-beta"]
-display_name = "Grok 4.20 Beta"
-model_family = "grok-beta"
-mode = "chat"
-max_input_tokens = 2000000
-max_output_tokens = 128000
-input_cost_per_token = 0.00000227
-output_cost_per_token = 0.0000068
-cache_read_input_token_cost = 2.3000000000000002e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-03-12"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."grok-4-20-beta".pricing."venice"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.00000227
-output_cost_per_token = 0.0000068
 
 [models."grok-4-20-beta-0309-non-reasoning"]
 display_name = "Grok 4.20 Beta Non-Reasoning (0309)"
@@ -43314,6 +43300,30 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 
+[models."grok-4-20-multi-agent"]
+display_name = "Grok 4.20 Multi-Agent"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 2000000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
+cache_read_input_token_cost = 2.3000000000000002e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = false
+supports_reasoning = true
+open_weights = false
+release_date = "2026-03-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."grok-4-20-multi-agent".pricing."venice"]
+cache_read_input_token_cost = 2.3000000000000002e-7
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
+
 [models."grok-4-20-multi-agent-0309"]
 display_name = "Grok 4.20 Multi-Agent"
 model_family = "grok"
@@ -43337,30 +43347,6 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
-
-[models."grok-4-20-multi-agent-beta"]
-display_name = "Grok 4.20 Multi-Agent Beta"
-model_family = "grok-beta"
-mode = "chat"
-max_input_tokens = 2000000
-max_output_tokens = 128000
-input_cost_per_token = 0.00000227
-output_cost_per_token = 0.0000068
-cache_read_input_token_cost = 2.3000000000000002e-7
-litellm_provider = "venice"
-providers = ["venice"]
-supports_function_calling = false
-supports_reasoning = true
-open_weights = false
-release_date = "2026-03-12"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."grok-4-20-multi-agent-beta".pricing."venice"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.00000227
-output_cost_per_token = 0.0000068
 
 [models."grok-4-20-multi-agent-beta-0309"]
 display_name = "Grok 4.20 Multi-Agent Beta (0309)"
@@ -44794,6 +44780,30 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."hf:zai-org/GLM-5".pricing."synthetic"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+
+[models."hf:zai-org/GLM-5-1"]
+display_name = "GLM 5.1"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 196608
+max_output_tokens = 65536
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 0.000001
+litellm_provider = "synthetic"
+providers = ["synthetic"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."hf:zai-org/GLM-5-1".pricing."synthetic"]
 cache_read_input_token_cost = 0.000001
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
@@ -46639,7 +46649,7 @@ litellm_provider = "venice"
 providers = ["venice", "aihubmix", "alibaba-coding-plan-cn", "azure", "azure-cognitive-services", "cortecs", "firmware", "llmgateway", "moonshotai", "moonshotai-cn", "tencent-coding-plan", "vultr"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2024-04"
 release_date = "2026-01-27"
 supported_modalities = ["text", "image"]
@@ -52899,7 +52909,7 @@ litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-02-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -52923,7 +52933,7 @@ litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-03-18"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -65945,7 +65955,7 @@ litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-02-25"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
@@ -76148,6 +76158,54 @@ source = "modelsdev"
 [models."yi-medium-200k".pricing."nano-gpt"]
 input_cost_per_token = 0.000002499
 output_cost_per_token = 0.000002499
+
+[models."z-ai-glm-5-turbo"]
+display_name = "GLM 5 Turbo"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 32768
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 2.4e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai-glm-5-turbo".pricing."venice"]
+cache_read_input_token_cost = 2.4e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000004
+
+[models."z-ai-glm-5v-turbo"]
+display_name = "GLM 5V Turbo"
+model_family = "glmv"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 32768
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.000005
+cache_read_input_token_cost = 3e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-01"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai-glm-5v-turbo".pricing."venice"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.000005
 
 [models."z-ai/glm-4-32b"]
 display_name = "Z.ai: GLM 4 32B "
