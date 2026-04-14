@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.04.14"
-checksum = "d55617fe0e010c64af494dd538e52bf4f1b70e5087e0f4855b97b28083316d2f"
+checksum = "d850c3961750bab4a8b3ad9d9333f5a1c1c917c1ac1679f1b534ae7484f7e88d"
 sources = ["litellm", "modelsdev"]
-total_models = 3276
-litellm_raw_models = 2656
+total_models = 3277
+litellm_raw_models = 2659
 modelsdev_raw_models = 4172
 custom_models = 5
 
@@ -3702,8 +3702,9 @@ output_cost_per_token = 0.0000012
 display_name = "MiniMax-M2.5"
 model_family = "minimax"
 mode = "chat"
-max_input_tokens = 204800
-max_output_tokens = 131072
+max_input_tokens = 197000
+max_output_tokens = 197000
+max_tokens = 197000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "baseten"
@@ -3715,6 +3716,7 @@ knowledge_cutoff = "2025-06"
 release_date = "2026-02-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+supports_response_schema = true
 
 [models."MiniMaxAI/MiniMax-M2.5".pricing."baseten"]
 input_cost_per_token = 3e-7
@@ -57305,16 +57307,17 @@ output_cost_per_token = 0.00000175
 
 [models."moonshotai/Kimi-K2.5"]
 mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 256000
-max_tokens = 256000
+max_input_tokens = 262144
+max_output_tokens = 262144
+max_tokens = 262144
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 litellm_provider = "baseten"
-providers = ["baseten", "together_ai"]
+providers = ["baseten", "together_ai", "wandb"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
+supports_response_schema = true
 supports_tool_choice = true
 
 [models."moonshotai/Kimi-K2.5".pricing."baseten"]
@@ -57323,6 +57326,10 @@ output_cost_per_token = 0.000003
 [models."moonshotai/Kimi-K2.5".pricing."together_ai"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000028
+[models."moonshotai/Kimi-K2.5".pricing."wandb"]
+cache_read_input_token_cost = 1e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.000003
 
 [models."moonshotai/kimi-k2"]
 display_name = "Kimi K2"
@@ -73056,6 +73063,22 @@ output_cost_per_second = 0.4
 output_cost_per_second = 0.4
 [models."veo-3.1-generate-preview".pricing."vertex_ai"]
 output_cost_per_second = 0.4
+
+[models."veo-3.1-lite-generate-preview"]
+mode = "video_generation"
+max_input_tokens = 1024
+max_tokens = 1024
+litellm_provider = "gemini"
+providers = ["gemini"]
+supported_modalities = ["text"]
+supported_output_modalities = ["video"]
+source = "https://ai.google.dev/gemini-api/docs/video"
+output_cost_per_second = 0.05
+output_cost_per_second_1080p = 0.08
+
+[models."veo-3.1-lite-generate-preview".pricing."gemini"]
+output_cost_per_second = 0.05
+output_cost_per_second_1080p = 0.08
 
 [models."vercel/v0-1.0-md"]
 display_name = "v0-1.0-md"
