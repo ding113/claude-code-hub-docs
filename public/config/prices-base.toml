@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.17"
-checksum = "fc18dd69384a5456c3c9846c8c40ab37e4782f8c65889f7ed06bbf70f9287b88"
+checksum = "950a382d113787d13dd0bd29c9b788677a84fdfb3a37abae8f2d2743181d219e"
 sources = ["litellm", "modelsdev"]
-total_models = 3284
+total_models = 3314
 litellm_raw_models = 2671
-modelsdev_raw_models = 4191
+modelsdev_raw_models = 4234
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -878,7 +878,7 @@ max_tokens = 131072
 input_cost_per_token = 6.7e-7
 output_cost_per_token = 6.7e-7
 litellm_provider = "ovhcloud"
-providers = ["ovhcloud", "alibaba-cn", "groq", "helicone", "sambanova", "scaleway"]
+providers = ["ovhcloud", "alibaba-cn", "digitalocean", "groq", "helicone", "sambanova", "scaleway"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -893,6 +893,9 @@ supports_tool_choice = true
 [models."DeepSeek-R1-Distill-Llama-70B".pricing."alibaba-cn"]
 input_cost_per_token = 2.8699999999999996e-7
 output_cost_per_token = 8.61e-7
+[models."DeepSeek-R1-Distill-Llama-70B".pricing."digitalocean"]
+input_cost_per_token = 9.9e-7
+output_cost_per_token = 9.9e-7
 [models."DeepSeek-R1-Distill-Llama-70B".pricing."groq"]
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 9.9e-7
@@ -3856,7 +3859,6 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 3.5e-7
 
 [models."Mixtral-8x7B-Instruct-v0.1"]
-display_name = "Mixtral-8x7B-Instruct-v0.1"
 mode = "chat"
 max_input_tokens = 32000
 max_output_tokens = 32000
@@ -3866,11 +3868,6 @@ output_cost_per_token = 6.3e-7
 litellm_provider = "ovhcloud"
 providers = ["ovhcloud"]
 supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-release_date = "2025-04-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://endpoints.ai.cloud.ovh.net/models/mixtral-8x7b-instruct-v0-1"
 supports_response_schema = true
 supports_tool_choice = false
@@ -12090,13 +12087,26 @@ input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.0000012
 
 [models."alibaba-qwen3-32b"]
+display_name = "Qwen3-32B"
+model_family = "qwen"
 mode = "chat"
+max_input_tokens = 131000
+max_output_tokens = 40960
 max_tokens = 2048
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-04-30"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
+
+[models."alibaba-qwen3-32b".pricing."digitalocean"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 5.5e-7
 
 [models."alibaba/qwen-3-14b"]
 display_name = "Qwen3-14B"
@@ -12638,6 +12648,26 @@ source = "modelsdev"
 [models."alibaba/tongyi-deepresearch-30b-a3b".pricing."kilo"]
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
+
+[models."all-mini-lm-l6-v2"]
+display_name = "All-MiniLM-L6-v2"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 256
+max_output_tokens = 384
+input_cost_per_token = 9e-9
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2021-08-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."all-mini-lm-l6-v2".pricing."digitalocean"]
+input_cost_per_token = 9e-9
 
 [models."allam-2-7b"]
 display_name = "ALLaM-2-7b"
@@ -13625,6 +13655,231 @@ supports_tool_choice = false
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
+[models."anthropic-claude-4-1-opus"]
+display_name = "Claude Opus 4.1"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 32000
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+cache_read_input_token_cost = 0.0000015
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-08-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-4-1-opus".pricing."digitalocean"]
+cache_read_input_token_cost = 0.0000015
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+
+[models."anthropic-claude-4-5-sonnet"]
+display_name = "Claude Sonnet 4.5"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-07-31"
+release_date = "2025-09-29"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-4-5-sonnet".pricing."digitalocean"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."anthropic-claude-4-6-sonnet"]
+display_name = "Claude Sonnet 4.6"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-02-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-4-6-sonnet".pricing."digitalocean"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."anthropic-claude-haiku-4-5"]
+display_name = "Claude Haiku 4.5"
+model_family = "claude-haiku"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+cache_read_input_token_cost = 0.000001
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-02-28"
+release_date = "2025-10-15"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-haiku-4-5".pricing."digitalocean"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+
+[models."anthropic-claude-opus-4"]
+display_name = "Claude Opus 4"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 32000
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+cache_read_input_token_cost = 0.0000015
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-opus-4".pricing."digitalocean"]
+cache_read_input_token_cost = 0.0000015
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
+
+[models."anthropic-claude-opus-4-5"]
+display_name = "Claude Opus 4.5"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-11-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-opus-4-5".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."anthropic-claude-opus-4-6"]
+display_name = "Claude Opus 4.6"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-05-31"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-opus-4-6".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."anthropic-claude-opus-4-7"]
+display_name = "Claude Opus 4.7"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-04-16"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-opus-4-7".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."anthropic-claude-sonnet-4"]
+display_name = "Claude Sonnet 4"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-sonnet-4".pricing."digitalocean"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
 [models."anthropic.claude-3-5-haiku-20241022-v1:0"]
 display_name = "Claude Haiku 3.5"
 model_family = "claude-haiku"
@@ -13643,7 +13898,7 @@ supports_reasoning = false
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-07"
+knowledge_cutoff = "2024-07-31"
 release_date = "2024-10-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -15399,7 +15654,7 @@ input_cost_per_token = 3.125e-7
 output_cost_per_token = 0.000001125
 cache_read_input_token_cost = 7.5e-8
 litellm_provider = "venice"
-providers = ["venice"]
+providers = ["venice", "digitalocean"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -15408,6 +15663,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."arcee-trinity-large-thinking".pricing."digitalocean"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 9.000000000000001e-7
 [models."arcee-trinity-large-thinking".pricing."venice"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3.125e-7
@@ -19487,7 +19746,7 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-24"
+release_date = "2025-11-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 supports_assistant_prefill = true
@@ -29721,9 +29980,19 @@ supported_endpoints = ["/v1/images/generations"]
 output_cost_per_image = 0.06
 
 [models."fal-ai/flux/schnell"]
+display_name = "FLUX.1 [schnell]"
+model_family = "flux"
 mode = "image_generation"
+max_input_tokens = 0
+max_output_tokens = 0
 litellm_provider = "fal_ai"
 providers = ["fal_ai"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-08-01"
+supported_modalities = ["text"]
+supported_output_modalities = ["image"]
 output_cost_per_image = 0.003
 supported_endpoints = ["/v1/images/generations"]
 
@@ -35305,7 +35574,7 @@ output_cost_per_token = 0.0000032
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0
 litellm_provider = "zai"
-providers = ["zai", "aihubmix", "alibaba-cn", "alibaba-coding-plan", "alibaba-coding-plan-cn", "cortecs", "dinference", "llmgateway", "opencode", "opencode-go", "tencent-coding-plan", "vivgrid", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["zai", "aihubmix", "alibaba-cn", "alibaba-coding-plan", "alibaba-coding-plan-cn", "cortecs", "digitalocean", "dinference", "llmgateway", "opencode", "opencode-go", "tencent-coding-plan", "vivgrid", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -35326,6 +35595,9 @@ output_cost_per_token = 0.00000315
 [models."glm-5".pricing."cortecs"]
 input_cost_per_token = 0.00000108
 output_cost_per_token = 0.00000344
+[models."glm-5".pricing."digitalocean"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000032000000000000003
 [models."glm-5".pricing."dinference"]
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.0000024
@@ -44370,6 +44642,26 @@ output_cost_per_token = 9e-8
 input_cost_per_token = 0.000001875
 output_cost_per_token = 0.000001875
 
+[models."gte-large-en-v1-5"]
+display_name = "GTE Large (v1.5)"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 1024
+input_cost_per_token = 9e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-03-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gte-large-en-v1-5".pricing."digitalocean"]
+input_cost_per_token = 9e-8
+
 [models."hd/1024-x-1024/dall-e-3"]
 mode = "image_generation"
 output_cost_per_token = 0
@@ -47060,7 +47352,7 @@ input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.0000035
 cache_read_input_token_cost = 1.1e-7
 litellm_provider = "venice"
-providers = ["venice", "aihubmix", "alibaba-coding-plan-cn", "azure", "azure-cognitive-services", "cortecs", "firmware", "llmgateway", "moonshotai", "moonshotai-cn", "tencent-coding-plan", "vultr"]
+providers = ["venice", "aihubmix", "alibaba-coding-plan-cn", "azure", "azure-cognitive-services", "cortecs", "digitalocean", "firmware", "llmgateway", "moonshotai", "moonshotai-cn", "tencent-coding-plan", "vultr"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -47083,6 +47375,9 @@ output_cost_per_token = 0.000003
 [models."kimi-k2-5".pricing."cortecs"]
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.00000276
+[models."kimi-k2-5".pricing."digitalocean"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000027
 [models."kimi-k2-5".pricing."firmware"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
@@ -48801,16 +49096,29 @@ litellm_provider = "snowflake"
 providers = ["snowflake"]
 
 [models."llama3.3-70b-instruct"]
+display_name = "Llama 3.3 Instruct 70B"
+model_family = "llama"
 mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 128000
 max_tokens = 2048
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 6.5e-7
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2023-12"
+release_date = "2024-12-06"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."llama3.3-70b-instruct".pricing."digitalocean"]
+input_cost_per_token = 6.5e-7
+output_cost_per_token = 6.5e-7
 [models."llama3.3-70b-instruct".pricing."gradient_ai"]
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 6.5e-7
@@ -53213,7 +53521,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 litellm_provider = "firmware"
-providers = ["firmware", "alibaba-coding-plan-cn", "cortecs", "llmgateway", "minimax", "minimax-cn", "tencent-coding-plan", "vultr"]
+providers = ["firmware", "alibaba-coding-plan-cn", "cortecs", "digitalocean", "llmgateway", "minimax", "minimax-cn", "tencent-coding-plan", "vultr"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -53226,6 +53534,9 @@ source = "modelsdev"
 [models."minimax-m2-5".pricing."cortecs"]
 input_cost_per_token = 3.2e-7
 output_cost_per_token = 0.00000118
+[models."minimax-m2-5".pricing."digitalocean"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."minimax-m2-5".pricing."firmware"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -58335,6 +58646,26 @@ output_cost_per_token = 0.0000018999999999999998
 input_cost_per_token = 9e-7
 output_cost_per_token = 0.0000019
 
+[models."multi-qa-mpnet-base-dot-v1"]
+display_name = "Multi-QA-mpnet-base-dot-v1"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 512
+max_output_tokens = 768
+input_cost_per_token = 9e-9
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2021-08-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."multi-qa-mpnet-base-dot-v1".pricing."digitalocean"]
+input_cost_per_token = 9e-9
+
 [models."multimodalembedding"]
 mode = "embedding"
 max_input_tokens = 2048
@@ -59385,6 +59716,29 @@ source = "modelsdev"
 [models."nvidia-nemotron-3-nano-30b-a3b".pricing."venice"]
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
+
+[models."nvidia-nemotron-3-super-120b"]
+display_name = "Nemotron-3-Super-120B"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32768
+input_cost_per_token = 3e-7
+output_cost_per_token = 6.5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2026-02"
+release_date = "2026-03-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia-nemotron-3-super-120b".pricing."digitalocean"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 6.5e-7
 
 [models."nvidia-nemotron-cascade-2-30b-a3b"]
 display_name = "Nemotron Cascade 2 30B A3B"
@@ -61440,14 +61794,54 @@ supports_tool_choice = true
 input_cost_per_token = 7e-7
 output_cost_per_token = 7e-7
 
-[models."openai-gpt-4o"]
+[models."openai-gpt-4-1"]
+display_name = "GPT-4.1"
+model_family = "gpt"
 mode = "chat"
+max_input_tokens = 1047576
+max_output_tokens = 32768
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
+cache_read_input_token_cost = 5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2024-04"
+release_date = "2025-04-14"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-4-1".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
+
+[models."openai-gpt-4o"]
+display_name = "GPT-4o"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
 max_tokens = 16384
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2023-09"
+release_date = "2024-05-13"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
+
+[models."openai-gpt-4o".pricing."digitalocean"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
 
 [models."openai-gpt-4o-2024-11-20"]
 display_name = "GPT-4o"
@@ -61472,13 +61866,28 @@ input_cost_per_token = 0.000003125
 output_cost_per_token = 0.0000125
 
 [models."openai-gpt-4o-mini"]
+display_name = "GPT-4o mini"
+model_family = "gpt-mini"
 mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
 max_tokens = 16384
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2023-09"
+release_date = "2024-07-18"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
+
+[models."openai-gpt-4o-mini".pricing."digitalocean"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 
 [models."openai-gpt-4o-mini-2024-07-18"]
 display_name = "GPT-4o Mini"
@@ -61503,6 +61912,277 @@ source = "modelsdev"
 cache_read_input_token_cost = 9.375e-8
 input_cost_per_token = 1.875e-7
 output_cost_per_token = 7.5e-7
+
+[models."openai-gpt-5"]
+display_name = "GPT-5"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 1.25e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-09-30"
+release_date = "2025-08-07"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5".pricing."digitalocean"]
+cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+
+[models."openai-gpt-5-1-codex-max"]
+display_name = "GPT-5.1 Codex Max"
+model_family = "gpt-codex"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 1.25e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-09-30"
+release_date = "2025-11-13"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-1-codex-max".pricing."digitalocean"]
+cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+
+[models."openai-gpt-5-2"]
+display_name = "GPT-5.2"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+cache_read_input_token_cost = 1.75e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2025-12-11"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-2".pricing."digitalocean"]
+cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+
+[models."openai-gpt-5-2-pro"]
+display_name = "GPT-5.2 pro"
+model_family = "gpt-pro"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.000021
+output_cost_per_token = 0.000168
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2025-12-11"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-2-pro".pricing."digitalocean"]
+input_cost_per_token = 0.000021
+output_cost_per_token = 0.000168
+
+[models."openai-gpt-5-3-codex"]
+display_name = "GPT-5.3 Codex"
+model_family = "gpt-codex"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+cache_read_input_token_cost = 1.75e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-02-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-3-codex".pricing."digitalocean"]
+cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+
+[models."openai-gpt-5-4"]
+display_name = "GPT-5.4"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 2.5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-4".pricing."digitalocean"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+
+[models."openai-gpt-5-4-mini"]
+display_name = "GPT-5.4 mini"
+model_family = "gpt-mini"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-17"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-4-mini".pricing."digitalocean"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+
+[models."openai-gpt-5-4-nano"]
+display_name = "GPT-5.4 nano"
+model_family = "gpt-nano"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000125
+cache_read_input_token_cost = 2e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-17"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-4-nano".pricing."digitalocean"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000125
+
+[models."openai-gpt-5-4-pro"]
+display_name = "GPT-5.4 pro"
+model_family = "gpt-pro"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-05"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-4-pro".pricing."digitalocean"]
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+
+[models."openai-gpt-5-mini"]
+display_name = "GPT-5 mini"
+model_family = "gpt-mini"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 2.5000000000000002e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-05-30"
+release_date = "2025-08-07"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-mini".pricing."digitalocean"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000002
+
+[models."openai-gpt-5-nano"]
+display_name = "GPT-5 nano"
+model_family = "gpt-nano"
+mode = "chat"
+max_input_tokens = 400000
+max_output_tokens = 128000
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 5e-9
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-05-30"
+release_date = "2025-08-07"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-nano".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-9
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 4.0000000000000003e-7
 
 [models."openai-gpt-52"]
 display_name = "GPT-5.2"
@@ -61648,6 +62328,54 @@ source = "modelsdev"
 input_cost_per_token = 0.0000375
 output_cost_per_token = 0.000225
 
+[models."openai-gpt-image-1"]
+display_name = "GPT Image 1"
+model_family = "gpt-image"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00004
+cache_read_input_token_cost = 0.00000125
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2025-04-24"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["image"]
+source = "modelsdev"
+
+[models."openai-gpt-image-1".pricing."digitalocean"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00004
+
+[models."openai-gpt-image-1-5"]
+display_name = "GPT Image 1.5"
+model_family = "gpt-image"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 0.000001
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2025-11-25"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["image"]
+source = "modelsdev"
+
+[models."openai-gpt-image-1-5".pricing."digitalocean"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00001
+
 [models."openai-gpt-oss-120b"]
 display_name = "OpenAI GPT OSS 120B"
 model_family = "gpt-oss"
@@ -61657,9 +62385,9 @@ max_output_tokens = 16384
 input_cost_per_token = 7e-8
 output_cost_per_token = 3e-7
 litellm_provider = "venice"
-providers = ["venice"]
+providers = ["venice", "digitalocean"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-07"
 release_date = "2025-11-06"
@@ -61667,36 +62395,115 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."openai-gpt-oss-120b".pricing."digitalocean"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 7e-7
 [models."openai-gpt-oss-120b".pricing."venice"]
 input_cost_per_token = 7e-8
 output_cost_per_token = 3e-7
 
-[models."openai-o3"]
+[models."openai-gpt-oss-20b"]
+display_name = "gpt-oss-20b"
+model_family = "gpt-oss"
 mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 131072
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 4.5000000000000003e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-06"
+release_date = "2025-08-05"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-oss-20b".pricing."digitalocean"]
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 4.5000000000000003e-7
+
+[models."openai-o1"]
+display_name = "o1"
+model_family = "o"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 100000
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.00006
+cache_read_input_token_cost = 0.0000075
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2023-09"
+release_date = "2024-12-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-o1".pricing."digitalocean"]
+cache_read_input_token_cost = 0.0000075
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.00006
+
+[models."openai-o3"]
+display_name = "o3"
+model_family = "o"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 100000
 max_tokens = 100000
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-05"
+release_date = "2025-04-16"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."openai-o3".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
 [models."openai-o3".pricing."gradient_ai"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 
 [models."openai-o3-mini"]
+display_name = "o3-mini"
+model_family = "o-mini"
 mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 100000
 max_tokens = 100000
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000044
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-05"
+release_date = "2024-12-20"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."openai-o3-mini".pricing."digitalocean"]
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000044
 [models."openai-o3-mini".pricing."gradient_ai"]
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000044
@@ -65661,7 +66468,7 @@ max_output_tokens = 8192
 input_cost_per_token = 2.8699999999999996e-7
 output_cost_per_token = 8.61e-7
 litellm_provider = "alibaba-cn"
-providers = ["alibaba-cn", "ovhcloud"]
+providers = ["alibaba-cn"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -65674,9 +66481,6 @@ source = "modelsdev"
 [models."qwen2-5-coder-32b-instruct".pricing."alibaba-cn"]
 input_cost_per_token = 2.8699999999999996e-7
 output_cost_per_token = 8.61e-7
-[models."qwen2-5-coder-32b-instruct".pricing."ovhcloud"]
-input_cost_per_token = 9.6e-7
-output_cost_per_token = 9.6e-7
 
 [models."qwen2-5-coder-7b-fast"]
 display_name = "Qwen2.5 Coder 7B fast"
@@ -66797,6 +67601,26 @@ supports_function_calling = true
 [models."qwen3-coder:480b-cloud".pricing."ollama"]
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."qwen3-embedding-0-6b"]
+display_name = "Qwen3 Embedding 0.6B"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 8000
+max_output_tokens = 1024
+input_cost_per_token = 4e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2025-06-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-embedding-0-6b".pricing."digitalocean"]
+input_cost_per_token = 4e-8
 
 [models."qwen3-embedding-4b"]
 display_name = "Qwen3-Embedding 4B"
