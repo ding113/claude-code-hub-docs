@@ -3,9 +3,9 @@
 
 [metadata]
 version = "2026.04.19"
-checksum = "3f7446d960200837094d099ef3be05dd9f7633a0809ad455cae000ffbd1f3039"
+checksum = "5253d8cc7eb32f291c166cc4eb80f707796d857562e96f52a9b99fc5d80a63e6"
 sources = ["litellm", "modelsdev"]
-total_models = 3301
+total_models = 3303
 litellm_raw_models = 2672
 modelsdev_raw_models = 4216
 custom_models = 5
@@ -1740,19 +1740,15 @@ max_output_tokens = 448
 input_cost_per_token = 2.36e-9
 output_cost_per_token = 2.36e-9
 litellm_provider = "evroc"
-providers = ["evroc", "berget"]
+providers = ["evroc"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2025-04"
 release_date = "2024-10-01"
 supported_modalities = ["audio"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."KBLab/kb-whisper-large".pricing."berget"]
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000003
 [models."KBLab/kb-whisper-large".pricing."evroc"]
 input_cost_per_token = 2.36e-9
 output_cost_per_token = 2.36e-9
@@ -13931,7 +13927,7 @@ supports_vision = true
 supports_reasoning = false
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2024-04-30"
 release_date = "2024-06-20"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -14310,7 +14306,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -14491,7 +14487,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -16151,8 +16147,6 @@ input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
 
 [models."baai/bge-reranker-v2-m3"]
-display_name = "bge-reranker-v2-m3"
-model_family = "bge"
 mode = "rerank"
 max_input_tokens = 8000
 max_output_tokens = 8000
@@ -16160,18 +16154,8 @@ max_tokens = 8000
 input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
 litellm_provider = "novita"
-providers = ["novita", "berget"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-04-23"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
+providers = ["novita"]
 
-[models."baai/bge-reranker-v2-m3".pricing."berget"]
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 1.0000000000000001e-7
 [models."baai/bge-reranker-v2-m3".pricing."novita"]
 input_cost_per_token = 1e-8
 output_cost_per_token = 1e-8
@@ -20617,6 +20601,31 @@ source = "modelsdev"
 [models."claude-opus4-6".pricing."cortecs"]
 input_cost_per_token = 0.00000598
 output_cost_per_token = 0.00002989
+
+[models."claude-opus4-7"]
+display_name = "Claude Opus 4.7"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.0000056
+output_cost_per_token = 0.000027989999999999998
+cache_read_input_token_cost = 5.6e-7
+litellm_provider = "cortecs"
+providers = ["cortecs"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-04-16"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-opus4-7".pricing."cortecs"]
+cache_read_input_token_cost = 5.6e-7
+input_cost_per_token = 0.0000056
+output_cost_per_token = 0.000027989999999999998
 
 [models."claude-sonnet-3-5"]
 display_name = "Claude-Sonnet-3.5"
@@ -29597,7 +29606,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -34579,7 +34588,7 @@ max_output_tokens = 262144
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "novita-ai", "nvidia", "togetherai", "vercel"]
+providers = ["openrouter", "berget", "kilo", "novita-ai", "nvidia", "togetherai", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -34589,6 +34598,9 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemma-4-31b-it".pricing."berget"]
+input_cost_per_token = 2.75e-7
+output_cost_per_token = 5.5e-7
 [models."gemma-4-31b-it".pricing."kilo"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -34621,6 +34633,28 @@ release_date = "2026-04-02"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."gemma-4-uncensored"]
+display_name = "Gemma 4 Uncensored"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 8192
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-13"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-4-uncensored".pricing."venice"]
+input_cost_per_token = 1.625e-7
+output_cost_per_token = 5e-7
 
 [models."gemma-7b"]
 mode = "chat"
@@ -35996,7 +36030,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -42300,8 +42334,8 @@ output_cost_per_token = 6e-7
 input_cost_per_token = 1e-7
 output_cost_per_token = 5e-7
 [models."gpt-oss-120b".pricing."berget"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 9.000000000000001e-7
+input_cost_per_token = 4.4e-7
+output_cost_per_token = 9.9e-7
 [models."gpt-oss-120b".pricing."cerebras"]
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 7.5e-7
@@ -46533,27 +46567,6 @@ output_cost_per_token = 0
 input_cost_per_token = 2e-8
 output_cost_per_token = 2e-8
 
-[models."intfloat/multilingual-e5-large"]
-display_name = "Multilingual-E5-large"
-model_family = "text-embedding"
-mode = "chat"
-max_input_tokens = 512
-max_output_tokens = 1024
-input_cost_per_token = 2e-8
-litellm_provider = "berget"
-providers = ["berget"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-09"
-release_date = "2025-09-11"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."intfloat/multilingual-e5-large".pricing."berget"]
-input_cost_per_token = 2e-8
-
 [models."intfloat/multilingual-e5-large-instruct"]
 display_name = "E5 Multi-Lingual Large Embeddings 0.6B"
 model_family = "text-embedding"
@@ -46563,18 +46576,15 @@ max_output_tokens = 512
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 1.2e-7
 litellm_provider = "evroc"
-providers = ["evroc", "berget"]
+providers = ["evroc"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2025-04"
 release_date = "2024-06-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."intfloat/multilingual-e5-large-instruct".pricing."berget"]
-input_cost_per_token = 2e-8
 [models."intfloat/multilingual-e5-large-instruct".pricing."evroc"]
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 1.2e-7
@@ -50907,8 +50917,8 @@ supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 
 [models."meta-llama/llama-3-3-70b-instruct".pricing."berget"]
-input_cost_per_token = 9.000000000000001e-7
-output_cost_per_token = 9.000000000000001e-7
+input_cost_per_token = 9.9e-7
+output_cost_per_token = 9.9e-7
 [models."meta-llama/llama-3-3-70b-instruct".pricing."cloudferro-sherlock"]
 input_cost_per_token = 0.00000292
 output_cost_per_token = 0.00000292
@@ -56120,8 +56130,8 @@ supported_output_modalities = ["text"]
 supports_tool_choice = true
 
 [models."mistralai/Mistral-Small-3.2-24B-Instruct-2506".pricing."berget"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 3e-7
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 3.3e-7
 [models."mistralai/Mistral-Small-3.2-24B-Instruct-2506".pricing."deepinfra"]
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2e-7
@@ -66957,7 +66967,7 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 32768
-input_cost_per_token = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.5e-7
 litellm_provider = "venice"
 providers = ["venice"]
@@ -66970,7 +66980,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen3-5-9b".pricing."venice"]
-input_cost_per_token = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.5e-7
 
 [models."qwen3-5-flash"]
@@ -73162,7 +73172,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -73343,7 +73353,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2024-04"
+knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-22"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -73874,6 +73884,28 @@ source = "modelsdev"
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."venice-uncensored".pricing."venice"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 9.000000000000001e-7
+
+[models."venice-uncensored-1-2"]
+display_name = "Venice Uncensored 1.2"
+model_family = "venice"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 9.000000000000001e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-01"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."venice-uncensored-1-2".pricing."venice"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 9.000000000000001e-7
 
@@ -78681,8 +78713,8 @@ output_cost_per_token = 0.0000022
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000022
 [models."zai-org/glm-4.7".pricing."berget"]
-input_cost_per_token = 7e-7
-output_cost_per_token = 0.0000023
+input_cost_per_token = 7.7e-7
+output_cost_per_token = 0.00000275
 [models."zai-org/glm-4.7".pricing."deepinfra"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.3e-7
