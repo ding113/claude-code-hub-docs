@@ -25,6 +25,10 @@ const MODELSDEV_URL = 'https://models.dev/api.json'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUTPUT_PATH = join(__dirname, '../public/config/prices-base.toml')
+const UPSTREAM_CANONICAL_MODEL_ALIASES = new Set([
+  'claude-opus-4-6',
+  'claude-sonnet-4-6',
+])
 
 interface LiteLLMModelInfo extends Record<string, unknown> {
   source?: string
@@ -938,7 +942,22 @@ async function main() {
     }
 
     console.log('Preserving custom models...')
+    const preservedCustomModels = new Map<string, ModelInfo>()
     for (const [name, info] of customModels) {
+      if (
+        UPSTREAM_CANONICAL_MODEL_ALIASES.has(name) &&
+        normalizedModels.has(name)
+      ) {
+        console.log(
+          `Skipping stale custom override for ${name}; canonical alias now comes from LiteLLM upstream`,
+        )
+        continue
+      }
+
+      preservedCustomModels.set(name, info)
+    }
+
+    for (const [name, info] of preservedCustomModels) {
       const existing = normalizedModels.get(name)
       if (existing) {
         const basePricing = existing.pricing
@@ -1015,7 +1034,7 @@ async function main() {
     tomlSections.push(`total_models = ${sortedModelNames.length}`)
     tomlSections.push(`litellm_raw_models = ${litellmRawCount}`)
     tomlSections.push(`modelsdev_raw_models = ${modelsdevRawCount}`)
-    tomlSections.push(`custom_models = ${customModels.size}`)
+    tomlSections.push(`custom_models = ${preservedCustomModels.size}`)
     tomlSections.push('')
     tomlSections.push(modelsToml)
     tomlSections.push('')

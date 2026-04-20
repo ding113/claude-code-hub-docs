@@ -289,27 +289,22 @@ function calculateTieredCostWithSeparatePrices(
 
 ### 1M 上下文窗口定价（Claude）
 
-Claude 的 1M 上下文窗口使用价格倍数而非独立价格字段：
+Claude 不再依赖本地硬编码倍数。系统会优先读取价格表里的显式长上下文字段：
 
 ```typescript
-// 定价倍数
-const CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER = 2.0;   // 输入 2x
-const CONTEXT_1M_OUTPUT_PREMIUM_MULTIPLIER = 1.5;  // 输出 1.5x
+const inputLongContextRate =
+  priceData.input_cost_per_token_above_272k_tokens ??
+  priceData.input_cost_per_token_above_200k_tokens;
 
-// 计算逻辑
-if (context1mApplied && inputCostPerToken != null) {
-  segments.push(
-    calculateTieredCost(
-      usage.input_tokens,
-      inputCostPerToken,
-      CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER
-    )
-  );
+if (inputLongContextRate && triggerInputTokens > threshold) {
+  segments.push(triggerTokens * inputLongContextRate);
+} else {
+  segments.push(triggerTokens * priceData.input_cost_per_token);
 }
 ```
 
 {% callout type="note" title="1M 上下文触发条件" %}
-当请求的上下文窗口超过 200K Token 时，系统会自动应用 1M 上下文定价。这通过 `context1mApplied` 字段标记，并在成本计算时使用相应的倍数。
+`context1mApplied` 现在主要用于审计与 UI 标记，不再单独触发本地硬编码加价。实际单价始终以价格表中的显式字段为准。
 {% /callout %}
 
 ## 成本计算流程
@@ -330,12 +325,12 @@ export function calculateRequestCost(
     segments.push(toDecimal(priceData.input_cost_per_request));
   }
   
-  // 2. 输入 Token 成本（支持分级定价）
-  if (context1mApplied) {
-    segments.push(calculateTieredCost(
+  // 2. 输入 Token 成本（支持显式 long-context 字段）
+  if (priceData.input_cost_per_token_above_272k_tokens) {
+    segments.push(calculateTieredCostWithSeparatePrices(
       usage.input_tokens,
       priceData.input_cost_per_token,
-      CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER
+      priceData.input_cost_per_token_above_272k_tokens
     ));
   } else if (priceData.input_cost_per_token_above_200k_tokens) {
     segments.push(calculateTieredCostWithSeparatePrices(

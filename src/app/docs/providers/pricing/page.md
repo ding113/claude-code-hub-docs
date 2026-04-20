@@ -160,16 +160,14 @@ export function calculateRequestCost(
     segments.push(toDecimal(inputCostPerRequest));
   }
 
-  // 2. Input tokens (with tiered pricing support)
-  if (context1mApplied && inputCostPerToken != null) {
-    // Claude 1M context: use multiplier-based tiering
-    segments.push(calculateTieredCost(
+  // 2. Input tokens (with explicit long-context fields)
+  if (inputAbove272k != null) {
+    segments.push(calculateTieredCostWithSeparatePrices(
       usage.input_tokens,
       inputCostPerToken,
-      CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER
+      inputAbove272k
     ));
   } else if (inputAbove200k != null) {
-    // Gemini: use separate price fields
     segments.push(calculateTieredCostWithSeparatePrices(
       usage.input_tokens,
       inputCostPerToken,
@@ -218,15 +216,23 @@ type UsageMetrics = {
 
 ### Tiered pricing
 
-For Claude 1M context models, tiered pricing uses multipliers:
+The system no longer relies on a built-in Claude `2.0x / 1.5x` premium multiplier. Long-context pricing is driven by explicit fields from the cloud price table:
 
 ```typescript
-export const CONTEXT_1M_TOKEN_THRESHOLD = 200000;
-export const CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER = 2.0;   // 2x for >200k
-export const CONTEXT_1M_OUTPUT_PREMIUM_MULTIPLIER = 1.5;  // 1.5x for >200k
+// 272K tier (GPT / Codex style)
+input_cost_per_token_above_272k_tokens
+output_cost_per_token_above_272k_tokens
+
+// 200K tier (Claude legacy / Gemini / provider-specific overrides)
+input_cost_per_token_above_200k_tokens
+output_cost_per_token_above_200k_tokens
 ```
 
-For Gemini models, separate price fields are used:
+If a model has no `*_above_200k_tokens` or `*_above_272k_tokens` field, long-context requests continue using the standard per-token price.
+
+For Claude 1M GA models such as `claude-opus-4-7`, `claude-opus-4-6`, and `claude-sonnet-4-6`, the current official Anthropic pricing is standard-rate across the full window, so the cloud price table should not include extra long-context surcharge fields for the official Anthropic alias.
+
+For models that do define long-context tiers, separate price fields are used:
 
 ```typescript
 // input_cost_per_token for <=200k

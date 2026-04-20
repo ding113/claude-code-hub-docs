@@ -312,27 +312,21 @@ getCachedPriceDataByBillingSource(billingModelSource: string) {
   成本 = input_tokens × 基础输入成本
 ```
 
-**1M 上下文窗口 (Claude Sonnet)：**
+**长上下文价格（Claude / GPT / Gemini 等）：**
 
 ```typescript
-const CONTEXT_1M_TOKEN_THRESHOLD = 200000;
-const CONTEXT_1M_INPUT_PREMIUM_MULTIPLIER = 2.0;
-const CONTEXT_1M_OUTPUT_PREMIUM_MULTIPLIER = 1.5;
+const inputLongContextRate =
+  priceData.input_cost_per_token_above_272k_tokens ??
+  priceData.input_cost_per_token_above_200k_tokens;
 
-// 输入成本
-if (context1mApplied && inputTokens > CONTEXT_1M_TOKEN_THRESHOLD) {
-  baseCost = 200000 × inputCostPerToken;
-  premiumCost = (inputTokens - 200000) × inputCostPerToken × 2.0;
-  inputCost = baseCost + premiumCost;
-}
-
-// 输出成本
-if (context1mApplied && outputTokens > CONTEXT_1M_TOKEN_THRESHOLD) {
-  baseCost = 200000 × outputCostPerToken;
-  premiumCost = (outputTokens - 200000) × outputCostPerToken × 1.5;
-  outputCost = baseCost + premiumCost;
+if (inputLongContextRate && triggerInputTokens > threshold) {
+  inputCost = totalInputTokens × inputLongContextRate;
+} else {
+  inputCost = totalInputTokens × inputCostPerToken;
 }
 ```
+
+对于当前官方 1M GA 的 Claude 模型（例如 Opus 4.7、Opus 4.6、Sonnet 4.6），价格表通常不会包含额外的 `*_above_200k_tokens` 字段，因此会在整个 1M 窗口内继续使用标准单价。
 
 **缓存计费回退：**
 
