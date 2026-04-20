@@ -845,7 +845,7 @@ This fix affects cost calculations for:
 - **Cache creation (5min and 1hr)**: Billed at the above-threshold cache creation rate
 - **Cache reads**: Billed at the above-threshold cache read rate
 
-The fix only applies when explicit above-threshold price fields exist in the price data. For models using the legacy multiplier-based tiering (Claude 1M context with `context1mApplied`), the multiplier is similarly applied to the full token count rather than a split calculation.
+The fix only applies when explicit above-threshold price fields exist in the price data. Models without `*_above_200k_tokens` or `*_above_272k_tokens` fields continue using the standard per-token price across the full window.
 
 ---
 

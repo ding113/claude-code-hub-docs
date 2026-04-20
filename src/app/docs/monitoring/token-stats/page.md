@@ -296,7 +296,7 @@ const inputLongContextRate =
   priceData.input_cost_per_token_above_272k_tokens ??
   priceData.input_cost_per_token_above_200k_tokens;
 
-if (inputLongContextRate && triggerInputTokens > threshold) {
+if (inputLongContextRate != null && triggerInputTokens > threshold) {
   segments.push(triggerTokens * inputLongContextRate);
 } else {
   segments.push(triggerTokens * priceData.input_cost_per_token);
@@ -326,13 +326,13 @@ export function calculateRequestCost(
   }
   
   // 2. 输入 Token 成本（支持显式 long-context 字段）
-  if (priceData.input_cost_per_token_above_272k_tokens) {
+  if (priceData.input_cost_per_token_above_272k_tokens != null) {
     segments.push(calculateTieredCostWithSeparatePrices(
       usage.input_tokens,
       priceData.input_cost_per_token,
       priceData.input_cost_per_token_above_272k_tokens
     ));
-  } else if (priceData.input_cost_per_token_above_200k_tokens) {
+  } else if (priceData.input_cost_per_token_above_200k_tokens != null) {
     segments.push(calculateTieredCostWithSeparatePrices(
       usage.input_tokens,
       priceData.input_cost_per_token,

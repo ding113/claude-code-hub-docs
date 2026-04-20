@@ -319,7 +319,7 @@ const inputLongContextRate =
   priceData.input_cost_per_token_above_272k_tokens ??
   priceData.input_cost_per_token_above_200k_tokens;
 
-if (inputLongContextRate && triggerInputTokens > threshold) {
+if (inputLongContextRate != null && triggerInputTokens > threshold) {
   inputCost = totalInputTokens × inputLongContextRate;
 } else {
   inputCost = totalInputTokens × inputCostPerToken;

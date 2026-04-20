@@ -193,7 +193,7 @@ await RateLimitService.trackUserDailyCost(
 
 Claude 不再使用本地硬编码的 `2.0x / 1.5x` 1M 溢价倍数。系统现在完全以云端价格表里的显式字段为准：
 
-- 当前官方 1M GA 模型（如 Claude Mythos Preview、Opus 4.7、Opus 4.6、Sonnet 4.6）在整个 1M 窗口内按标准单价计费，价格表不会出现额外的 `*_above_200k_tokens` 字段。
+- 当前官方 1M GA 模型（如 Opus 4.7、Opus 4.6、Sonnet 4.6）在整个 1M 窗口内按标准单价计费，价格表不会出现额外的 `*_above_200k_tokens` 字段；Claude Mythos Preview 属于 research preview / restricted access，不应与 GA 模型混为一类。
 - 仍处于 legacy / beta 阶段、或者第三方代理单独定义了长上下文价格的模型，价格表可能会包含 `input_cost_per_token_above_200k_tokens`、`output_cost_per_token_above_200k_tokens` 等字段。
 - 一旦命中长上下文阈值，系统会按价格表给出的 long-context 单价计算整次请求对应 bucket 的费用，而不是继续使用旧版的“前 200K 基础价 + 超出部分倍数价”本地公式。
 

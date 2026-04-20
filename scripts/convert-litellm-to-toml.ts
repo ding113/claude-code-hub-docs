@@ -25,6 +25,9 @@ const MODELSDEV_URL = 'https://models.dev/api.json'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUTPUT_PATH = join(__dirname, '../public/config/prices-base.toml')
+// 临时白名单：Claude 4.6 官方 alias 已由 LiteLLM 原生提供，
+// 不应再被历史 custom 条目覆盖。后续如果上游继续补齐更多 canonical alias，
+// 请优先把这里迁移成更通用的配置/比较策略，而不是无限扩充硬编码集合。
 const UPSTREAM_CANONICAL_MODEL_ALIASES = new Set([
   'claude-opus-4-6',
   'claude-sonnet-4-6',
@@ -948,8 +951,8 @@ async function main() {
         UPSTREAM_CANONICAL_MODEL_ALIASES.has(name) &&
         normalizedModels.has(name)
       ) {
-        console.log(
-          `Skipping stale custom override for ${name}; canonical alias now comes from LiteLLM upstream`,
+        console.warn(
+          `[stale-alias] Skipping stale custom override for ${name}; canonical alias now comes from LiteLLM upstream`,
         )
         continue
       }
