@@ -57,7 +57,7 @@ nextjs:
 
 ### 4. 1M 上下文过滤
 
-如果客户端通过 `anthropic-beta` 头请求 1M 上下文窗口，会排除 `context1mPreference` 设置为 `disabled` 的供应商。
+当请求被识别为长上下文请求时，会排除 `context1mPreference` 设置为 `disabled` 的供应商。对于当前 Anthropic 1M GA 模型，这种识别不应再被理解为“必须依赖 `anthropic-beta` 头”；实际是否进入长上下文场景，应结合模型能力与当前价格表一起判断。
 
 ### 5. 健康检查过滤
 

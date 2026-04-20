@@ -25,6 +25,13 @@ const MODELSDEV_URL = 'https://models.dev/api.json'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUTPUT_PATH = join(__dirname, '../public/config/prices-base.toml')
+// 临时白名单：Claude 4.6 官方 alias 已由 LiteLLM 原生提供，
+// 不应再被历史 custom 条目覆盖。后续如果上游继续补齐更多 canonical alias，
+// 请优先把这里迁移成更通用的配置/比较策略，而不是无限扩充硬编码集合。
+const UPSTREAM_CANONICAL_MODEL_ALIASES = new Set([
+  'claude-opus-4-6',
+  'claude-sonnet-4-6',
+])
 
 interface LiteLLMModelInfo extends Record<string, unknown> {
   source?: string
@@ -938,7 +945,22 @@ async function main() {
     }
 
     console.log('Preserving custom models...')
+    const preservedCustomModels = new Map<string, ModelInfo>()
     for (const [name, info] of customModels) {
+      if (
+        UPSTREAM_CANONICAL_MODEL_ALIASES.has(name) &&
+        normalizedModels.has(name)
+      ) {
+        console.warn(
+          `[stale-alias] Skipping stale custom override for ${name}; canonical alias now comes from LiteLLM upstream`,
+        )
+        continue
+      }
+
+      preservedCustomModels.set(name, info)
+    }
+
+    for (const [name, info] of preservedCustomModels) {
       const existing = normalizedModels.get(name)
       if (existing) {
         const basePricing = existing.pricing
@@ -1015,7 +1037,7 @@ async function main() {
     tomlSections.push(`total_models = ${sortedModelNames.length}`)
     tomlSections.push(`litellm_raw_models = ${litellmRawCount}`)
     tomlSections.push(`modelsdev_raw_models = ${modelsdevRawCount}`)
-    tomlSections.push(`custom_models = ${customModels.size}`)
+    tomlSections.push(`custom_models = ${preservedCustomModels.size}`)
     tomlSections.push('')
     tomlSections.push(modelsToml)
     tomlSections.push('')

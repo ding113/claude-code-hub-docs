@@ -1,6 +1,7 @@
 export const KNOWN_PROVIDERS = new Set([
   'openai',
   'azure',
+  'azure_ai',
   'anthropic',
   'google',
   'gemini',
@@ -61,6 +62,7 @@ export type ProviderMeta = {
 export const PROVIDER_META: Record<string, ProviderMeta> = {
   openai: { id: 'openai', label: 'OpenAI', iconKey: 'OpenAI' },
   azure: { id: 'azure', label: 'Azure', iconKey: 'Azure' },
+  azure_ai: { id: 'azure_ai', label: 'Azure AI', iconKey: 'Azure' },
   anthropic: { id: 'anthropic', label: 'Anthropic', iconKey: 'Anthropic' },
   bedrock: { id: 'bedrock', label: 'Bedrock', iconKey: 'Bedrock' },
   bedrock_converse: { id: 'bedrock_converse', label: 'Bedrock', iconKey: 'Bedrock' },
@@ -89,4 +91,3 @@ export function getProviderMeta(providerId: string | undefined): ProviderMeta {
   if (!providerId) return { id: 'unknown', label: '未知' }
   return PROVIDER_META[providerId] ?? { id: providerId, label: providerId }
 }
-
