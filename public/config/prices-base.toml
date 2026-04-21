@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.21"
-checksum = "e969e9dff236632dd037401611009e0d1678b28d2140f385d9436aee3f0505df"
+checksum = "3f6d585b5dc93da7e39dbd87fe91ad55d14368c9eb4a967135b4c42c5dceb40c"
 sources = ["litellm", "modelsdev"]
-total_models = 3313
+total_models = 3319
 litellm_raw_models = 2672
-modelsdev_raw_models = 4261
+modelsdev_raw_models = 4274
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6337,7 +6337,7 @@ max_output_tokens = 65536
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036
 litellm_provider = "together_ai"
-providers = ["together_ai", "huggingface", "kilo", "mixlayer", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow-cn", "togetherai"]
+providers = ["together_ai", "deepinfra", "huggingface", "kilo", "mixlayer", "nano-gpt", "novita-ai", "nvidia", "openrouter", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -6350,6 +6350,9 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."Qwen/Qwen3.5-397B-A17B".pricing."deepinfra"]
+input_cost_per_token = 5.4e-7
+output_cost_per_token = 0.0000034
 [models."Qwen/Qwen3.5-397B-A17B".pricing."huggingface"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
@@ -9401,6 +9404,30 @@ cache_read_input_token_cost = 1e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 
+[models."accounts/fireworks/models/kimi-k2p6"]
+display_name = "Kimi K2.6"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 262000
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 1.6e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-17"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/models/kimi-k2p6".pricing."fireworks-ai"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+
 [models."accounts/fireworks/models/llama-guard-2-8b"]
 mode = "chat"
 max_input_tokens = 8192
@@ -12315,6 +12342,28 @@ source = "modelsdev"
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
+
+[models."alibaba/qwen3-6-flash"]
+display_name = "Qwen3.6 Flash"
+model_family = "qwen3.6"
+mode = "chat"
+max_input_tokens = 991800
+max_output_tokens = 65536
+input_cost_per_token = 1.9e-7
+output_cost_per_token = 0.00000116
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-04-17"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen3-6-flash".pricing."nano-gpt"]
+input_cost_per_token = 1.9e-7
+output_cost_per_token = 0.00000116
 
 [models."alibaba/qwen3-6-plus"]
 display_name = "Qwen 3.6 Plus"
@@ -47581,7 +47630,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."kimi-k2-6"]
-display_name = "Kimi K2.6"
+display_name = "Kimi K2.6 (3x limits)"
 model_family = "kimi-k2.6"
 mode = "chat"
 max_input_tokens = 262144
@@ -58312,20 +58361,19 @@ output_cost_per_token = 0.0000018999999999999998
 
 [models."moonshotai/kimi-k2-6"]
 display_name = "Kimi K2.6"
-model_family = "kimi"
+model_family = "kimi-k2.6"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
-cache_read_input_token_cost = 1.6e-7
-litellm_provider = "openrouter"
-providers = ["openrouter", "huggingface"]
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 5.3e-7
+output_cost_per_token = 0.00000273
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "huggingface", "kilo", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-01"
-release_date = "2026-04-20"
+release_date = "2026-04-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -58334,10 +58382,43 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-6".pricing."kilo"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-6".pricing."nano-gpt"]
+input_cost_per_token = 5.3e-7
+output_cost_per_token = 0.00000273
 [models."moonshotai/kimi-k2-6".pricing."openrouter"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-6".pricing."zenmux"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+
+[models."moonshotai/kimi-k2-6:thinking"]
+display_name = "Kimi K2.6 Thinking"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 5.3e-7
+output_cost_per_token = 0.00000273
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-16"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."moonshotai/kimi-k2-6:thinking".pricing."nano-gpt"]
+input_cost_per_token = 5.3e-7
+output_cost_per_token = 0.00000273
 
 [models."moonshotai/kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
@@ -63531,20 +63612,19 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 8e-7
 
 [models."qwen-3-6-plus"]
-display_name = "Qwen 3.6 Plus Uncensored"
-model_family = "qwen"
+display_name = "Qwen 3.6 Plus"
+model_family = "qwen3.6"
 mode = "chat"
-max_input_tokens = 1000000
+max_input_tokens = 991800
 max_output_tokens = 65536
-input_cost_per_token = 6.25e-7
-output_cost_per_token = 0.00000375
-cache_read_input_token_cost = 6.25e-8
-litellm_provider = "venice"
-providers = ["venice", "firmware"]
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000027
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "firmware", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-04-06"
+release_date = "2026-04-02"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -63553,6 +63633,9 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
+[models."qwen-3-6-plus".pricing."nano-gpt"]
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000027
 [models."qwen-3-6-plus".pricing."venice"]
 cache_read_input_token_cost = 6.25e-8
 input_cost_per_token = 6.25e-7
@@ -64540,6 +64623,53 @@ output_cost_per_token = 0.0000015
 [models."qwen.qwen3-vl-235b-a22b".pricing."bedrock_converse"]
 input_cost_per_token = 5.3e-7
 output_cost_per_token = 0.00000266
+
+[models."qwen/Qwen3-6-35B-A3B"]
+display_name = "Qwen3.6 35B A3B"
+model_family = "qwen3.6"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 16384
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.00000174
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "deepinfra"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-17"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/Qwen3-6-35B-A3B".pricing."deepinfra"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.000001
+[models."qwen/Qwen3-6-35B-A3B".pricing."nano-gpt"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.00000174
+
+[models."qwen/Qwen3-6-35B-A3B:thinking"]
+display_name = "Qwen3.6 35B A3B Thinking"
+model_family = "qwen3.6"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 16384
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.00000174
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = false
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-19"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/Qwen3-6-35B-A3B:thinking".pricing."nano-gpt"]
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.00000174
 
 [models."qwen/qwen-2-5-7b-instruct"]
 display_name = "Qwen: Qwen2.5 7B Instruct"
@@ -66299,7 +66429,7 @@ max_tokens = 65536
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "mixlayer", "novita-ai", "siliconflow-cn"]
+providers = ["openrouter", "deepinfra", "kilo", "mixlayer", "novita-ai", "siliconflow-cn"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -66311,6 +66441,9 @@ supported_output_modalities = ["text"]
 source = "https://openrouter.ai/qwen/qwen3.5-35b-a3b"
 supports_tool_choice = true
 
+[models."qwen/qwen3.5-35b-a3b".pricing."deepinfra"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 9.499999999999999e-7
 [models."qwen/qwen3.5-35b-a3b".pricing."kilo"]
 input_cost_per_token = 1.625e-7
 output_cost_per_token = 0.0000013
@@ -67328,6 +67461,28 @@ reasoning_cost_per_token = 0.00000172
 input_cost_per_token = 1.7199999999999998e-7
 output_cost_per_token = 0.00000172
 reasoning_cost_per_token = 0.00000172
+
+[models."qwen3-6-max-preview"]
+display_name = "Qwen3.6 Max Preview"
+model_family = "qwen3.6"
+mode = "chat"
+max_input_tokens = 245800
+max_output_tokens = 65536
+input_cost_per_token = 0.0000013
+output_cost_per_token = 0.0000078
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-04-20"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-6-max-preview".pricing."nano-gpt"]
+input_cost_per_token = 0.0000013
+output_cost_per_token = 0.0000078
 
 [models."qwen3-6-plus"]
 display_name = "Qwen3.6 Plus"
