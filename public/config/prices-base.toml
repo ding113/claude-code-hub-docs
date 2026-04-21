@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.21"
-checksum = "4eab4885aee2b9a48aa0640e335588a68435ffdb3755c0c4ad598a861e340bb8"
+checksum = "b7c8c629f68eac2e1f911d74204f63659983dd910bb02945ef44621b8480757a"
 sources = ["litellm", "modelsdev"]
 total_models = 3313
 litellm_raw_models = 2672
-modelsdev_raw_models = 4254
+modelsdev_raw_models = 4257
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -47586,7 +47586,7 @@ input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.6e-7
 litellm_provider = "opencode-go"
-providers = ["opencode-go"]
+providers = ["opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -47600,6 +47600,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
+[models."kimi-k2-6".pricing."venice"]
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 5.6e-7
+output_cost_per_token = 0.0000035
 
 [models."kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
@@ -58044,31 +58048,6 @@ cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000025
 
-[models."moonshotai/Kimi-K2-6"]
-display_name = "Kimi-K2.6"
-model_family = "kimi"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
-cache_read_input_token_cost = 1.6e-7
-litellm_provider = "huggingface"
-providers = ["huggingface"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-01"
-release_date = "2026-04-20"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."moonshotai/Kimi-K2-6".pricing."huggingface"]
-cache_read_input_token_cost = 1.6e-7
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
-
 [models."moonshotai/Kimi-K2-Instruct"]
 mode = "chat"
 max_input_tokens = 131072
@@ -58314,6 +58293,35 @@ source = "modelsdev"
 [models."moonshotai/kimi-k2-5:thinking".pricing."nano-gpt"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000018999999999999998
+
+[models."moonshotai/kimi-k2-6"]
+display_name = "Kimi K2.6"
+model_family = "kimi"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 1.6e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "huggingface"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-20"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."moonshotai/kimi-k2-6".pricing."huggingface"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-6".pricing."openrouter"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 
 [models."moonshotai/kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
