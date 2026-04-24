@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.24"
-checksum = "30ce818146f7b1125c62bd046134740a2c06489486ee4a799cb56d60354ac4b4"
+checksum = "5cf3efc27e1372ffab74eabe9a71e823f138edad0983c6077357bb42d0d0d84a"
 sources = ["litellm", "modelsdev"]
-total_models = 3345
+total_models = 3346
 litellm_raw_models = 2681
-modelsdev_raw_models = 4321
+modelsdev_raw_models = 4327
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12298,6 +12298,30 @@ output_cost_per_token = 3e-7
 [models."alibaba/qwen-3-32b".pricing."vercel_ai_gateway"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 3e-7
+
+[models."alibaba/qwen-3-6-max-preview"]
+display_name = "Qwen 3.6 Max Preview"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 240000
+max_output_tokens = 64000
+input_cost_per_token = 0.0000013
+output_cost_per_token = 0.0000078
+cache_read_input_token_cost = 2.6e-7
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-20"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen-3-6-max-preview".pricing."vercel"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000013
+output_cost_per_token = 0.0000078
 
 [models."alibaba/qwen3-235b-a22b-thinking"]
 display_name = "Qwen3 235B A22B Thinking 2507"
@@ -27363,7 +27387,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27374,6 +27398,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+[models."deepseek/deepseek-v4-flash".pricing."vercel"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
@@ -27388,7 +27416,7 @@ input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 cache_read_input_token_cost = 1.45e-7
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27399,6 +27427,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."deepseek/deepseek-v4-pro".pricing."openrouter"]
+cache_read_input_token_cost = 1.45e-7
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
+[models."deepseek/deepseek-v4-pro".pricing."vercel"]
 cache_read_input_token_cost = 1.45e-7
 input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
@@ -42451,7 +42483,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "openai"
-providers = ["openai", "opencode"]
+providers = ["openai", "opencode", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42501,6 +42533,10 @@ output_cost_per_token_batches = 0.000015
 output_cost_per_token_flex = 0.000015
 output_cost_per_token_priority = 0.00006
 [models."gpt-5.5".pricing."opencode"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5.5".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
@@ -42572,7 +42608,7 @@ input_cost_per_token = 0.00006
 output_cost_per_token = 0.00036
 cache_read_input_token_cost = 0.000006
 litellm_provider = "openai"
-providers = ["openai", "opencode"]
+providers = ["openai", "opencode", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42615,6 +42651,9 @@ output_cost_per_token_batches = 0.00018
 output_cost_per_token_flex = 0.00018
 [models."gpt-5.5-pro".pricing."opencode"]
 cache_read_input_token_cost = 0.00003
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+[models."gpt-5.5-pro".pricing."vercel"]
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
 
@@ -59127,7 +59166,7 @@ max_output_tokens = 65536
 input_cost_per_token = 5.3e-7
 output_cost_per_token = 0.00000273
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "baseten", "deepinfra", "huggingface", "kilo", "novita-ai", "openrouter", "siliconflow", "togetherai", "zenmux"]
+providers = ["nano-gpt", "baseten", "deepinfra", "huggingface", "kilo", "novita-ai", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -59172,6 +59211,10 @@ output_cost_per_token = 0.000004
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.0000045
+[models."moonshotai/kimi-k2-6".pricing."vercel"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-6".pricing."zenmux"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
