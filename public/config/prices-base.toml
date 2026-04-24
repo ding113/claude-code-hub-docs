@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.04.24"
-checksum = "c10aadd2eb926c73e52e44dce45f2d0af4f121d9def312e6ba60974f37d12085"
+checksum = "30ce818146f7b1125c62bd046134740a2c06489486ee4a799cb56d60354ac4b4"
 sources = ["litellm", "modelsdev"]
-total_models = 3343
-litellm_raw_models = 2678
+total_models = 3345
+litellm_raw_models = 2681
 modelsdev_raw_models = 4321
 custom_models = 5
 
@@ -39716,31 +39716,6 @@ source = "modelsdev"
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.00000125
 
-[models."gpt-5-5-pro"]
-display_name = "GPT-5.5 Pro"
-model_family = "gpt-pro"
-mode = "chat"
-max_input_tokens = 1050000
-max_output_tokens = 128000
-input_cost_per_token = 0.00003
-output_cost_per_token = 0.00018
-cache_read_input_token_cost = 0.00003
-litellm_provider = "opencode"
-providers = ["opencode"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-12-01"
-release_date = "2026-04-24"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."gpt-5-5-pro".pricing."opencode"]
-cache_read_input_token_cost = 0.00003
-input_cost_per_token = 0.00003
-output_cost_per_token = 0.00018
-
 [models."gpt-5-chat"]
 display_name = "GPT-5 Chat (latest)"
 model_family = "gpt-codex"
@@ -42469,7 +42444,7 @@ output_cost_per_token_flex = 0.00009
 display_name = "GPT-5.5"
 model_family = "gpt"
 mode = "chat"
-max_input_tokens = 272000
+max_input_tokens = 1050000
 max_output_tokens = 128000
 max_tokens = 128000
 input_cost_per_token = 0.000005
@@ -42487,6 +42462,17 @@ knowledge_cutoff = "2025-12-01"
 release_date = "2026-04-23"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
+cache_read_input_token_cost_above_272k_tokens = 0.000001
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 0.000001
+input_cost_per_token_above_272k_tokens = 0.00001
+input_cost_per_token_batches = 0.0000025
+input_cost_per_token_flex = 0.0000025
+input_cost_per_token_priority = 0.00001
+output_cost_per_token_above_272k_tokens = 0.000045
+output_cost_per_token_batches = 0.000015
+output_cost_per_token_flex = 0.000015
+output_cost_per_token_priority = 0.00006
 supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
 supports_minimal_reasoning_effort = true
 supports_native_streaming = true
@@ -42496,16 +42482,189 @@ supports_response_schema = true
 supports_service_tier = true
 supports_system_messages = true
 supports_tool_choice = true
+supports_web_search = true
 supports_xhigh_reasoning_effort = true
 
 [models."gpt-5.5".pricing."openai"]
 cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_above_272k_tokens = 0.000001
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 0.000001
 input_cost_per_token = 0.000005
+input_cost_per_token_above_272k_tokens = 0.00001
+input_cost_per_token_batches = 0.0000025
+input_cost_per_token_flex = 0.0000025
+input_cost_per_token_priority = 0.00001
 output_cost_per_token = 0.00003
+output_cost_per_token_above_272k_tokens = 0.000045
+output_cost_per_token_batches = 0.000015
+output_cost_per_token_flex = 0.000015
+output_cost_per_token_priority = 0.00006
 [models."gpt-5.5".pricing."opencode"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
+
+[models."gpt-5.5-2026-04-23"]
+mode = "chat"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+cache_read_input_token_cost = 5e-7
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+cache_read_input_token_cost_above_272k_tokens = 0.000001
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 0.000001
+input_cost_per_token_above_272k_tokens = 0.00001
+input_cost_per_token_batches = 0.0000025
+input_cost_per_token_flex = 0.0000025
+input_cost_per_token_priority = 0.00001
+output_cost_per_token_above_272k_tokens = 0.000045
+output_cost_per_token_batches = 0.000015
+output_cost_per_token_flex = 0.000015
+output_cost_per_token_priority = 0.00006
+supported_endpoints = ["/v1/chat/completions", "/v1/batch", "/v1/responses"]
+supports_minimal_reasoning_effort = true
+supports_native_streaming = true
+supports_none_reasoning_effort = true
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_service_tier = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_web_search = true
+supports_xhigh_reasoning_effort = true
+
+[models."gpt-5.5-2026-04-23".pricing."openai"]
+cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_above_272k_tokens = 0.000001
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 0.000001
+input_cost_per_token = 0.000005
+input_cost_per_token_above_272k_tokens = 0.00001
+input_cost_per_token_batches = 0.0000025
+input_cost_per_token_flex = 0.0000025
+input_cost_per_token_priority = 0.00001
+output_cost_per_token = 0.00003
+output_cost_per_token_above_272k_tokens = 0.000045
+output_cost_per_token_batches = 0.000015
+output_cost_per_token_flex = 0.000015
+output_cost_per_token_priority = 0.00006
+
+[models."gpt-5.5-pro"]
+display_name = "GPT-5.5 Pro"
+model_family = "gpt-pro"
+mode = "responses"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00006
+output_cost_per_token = 0.00036
+cache_read_input_token_cost = 0.000006
+litellm_provider = "openai"
+providers = ["openai", "opencode"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-12-01"
+release_date = "2026-04-24"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+cache_read_input_token_cost_above_272k_tokens = 0.000012
+input_cost_per_token_above_272k_tokens = 0.00012
+input_cost_per_token_batches = 0.00003
+input_cost_per_token_flex = 0.00003
+output_cost_per_token_above_272k_tokens = 0.00054
+output_cost_per_token_batches = 0.00018
+output_cost_per_token_flex = 0.00018
+supported_endpoints = ["/v1/responses", "/v1/batch"]
+supports_minimal_reasoning_effort = true
+supports_native_streaming = true
+supports_none_reasoning_effort = false
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_service_tier = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_web_search = true
+supports_xhigh_reasoning_effort = true
+
+[models."gpt-5.5-pro".pricing."openai"]
+cache_read_input_token_cost = 0.000006
+cache_read_input_token_cost_above_272k_tokens = 0.000012
+input_cost_per_token = 0.00006
+input_cost_per_token_above_272k_tokens = 0.00012
+input_cost_per_token_batches = 0.00003
+input_cost_per_token_flex = 0.00003
+output_cost_per_token = 0.00036
+output_cost_per_token_above_272k_tokens = 0.00054
+output_cost_per_token_batches = 0.00018
+output_cost_per_token_flex = 0.00018
+[models."gpt-5.5-pro".pricing."opencode"]
+cache_read_input_token_cost = 0.00003
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00018
+
+[models."gpt-5.5-pro-2026-04-23"]
+mode = "responses"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00006
+output_cost_per_token = 0.00036
+cache_read_input_token_cost = 0.000006
+litellm_provider = "openai"
+providers = ["openai"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+cache_read_input_token_cost_above_272k_tokens = 0.000012
+input_cost_per_token_above_272k_tokens = 0.00012
+input_cost_per_token_batches = 0.00003
+input_cost_per_token_flex = 0.00003
+output_cost_per_token_above_272k_tokens = 0.00054
+output_cost_per_token_batches = 0.00018
+output_cost_per_token_flex = 0.00018
+supported_endpoints = ["/v1/responses", "/v1/batch"]
+supports_minimal_reasoning_effort = true
+supports_native_streaming = true
+supports_none_reasoning_effort = false
+supports_parallel_function_calling = true
+supports_response_schema = false
+supports_service_tier = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_web_search = true
+supports_xhigh_reasoning_effort = true
+
+[models."gpt-5.5-pro-2026-04-23".pricing."openai"]
+cache_read_input_token_cost = 0.000006
+cache_read_input_token_cost_above_272k_tokens = 0.000012
+input_cost_per_token = 0.00006
+input_cost_per_token_above_272k_tokens = 0.00012
+input_cost_per_token_batches = 0.00003
+input_cost_per_token_flex = 0.00003
+output_cost_per_token = 0.00036
+output_cost_per_token_above_272k_tokens = 0.00054
+output_cost_per_token_batches = 0.00018
+output_cost_per_token_flex = 0.00018
 
 [models."gpt-audio"]
 display_name = "OpenAI: GPT Audio"
