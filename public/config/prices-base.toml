@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.26"
-checksum = "a46178bcf6448b0f52dcbb0ca3392597901a867bc9d29873d10cdb6758cc39ec"
+checksum = "6f67b721fbc3bb97362413be57d6778b7e5280821a12267f3203797423a5cf6a"
 sources = ["litellm", "modelsdev"]
-total_models = 3346
+total_models = 3348
 litellm_raw_models = 2688
-modelsdev_raw_models = 4325
+modelsdev_raw_models = 4329
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -54519,7 +54519,7 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 8e-8
 litellm_provider = "opencode-go"
-providers = ["opencode-go", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn", "xiaomi-token-plan-sgp"]
+providers = ["opencode-go", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn", "xiaomi-token-plan-sgp"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -54530,6 +54530,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-5".pricing."opencode-go"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+[models."mimo-v2-5".pricing."xiaomi"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
@@ -54544,7 +54548,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "opencode-go"
-providers = ["opencode-go", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn", "xiaomi-token-plan-sgp"]
+providers = ["opencode-go", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn", "xiaomi-token-plan-sgp"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -54555,6 +54559,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-5-pro".pricing."opencode-go"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+[models."mimo-v2-5-pro".pricing."xiaomi"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
@@ -78610,6 +78618,56 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
+
+[models."xiaomi/mimo-v2-5"]
+display_name = "MiMo-V2.5"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 8e-8
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi/mimo-v2-5".pricing."openrouter"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+
+[models."xiaomi/mimo-v2-5-pro"]
+display_name = "MiMo-V2.5-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi/mimo-v2-5-pro".pricing."openrouter"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
 
 [models."xiaomi/mimo-v2-flash"]
 display_name = "MiMo V2 Flash"
