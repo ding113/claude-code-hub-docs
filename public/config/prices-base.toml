@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.27"
-checksum = "315ca138d797f7884310ce44d4b1379727fb2dde0028d314641cf036057a7f54"
+checksum = "a9081657ff672d39822952309e7d4dd8d33e1b23efc2f218391a0fef7e75ee56"
 sources = ["litellm", "modelsdev"]
-total_models = 3349
+total_models = 3350
 litellm_raw_models = 2688
-modelsdev_raw_models = 4336
+modelsdev_raw_models = 4343
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -7817,6 +7817,27 @@ source = "modelsdev"
 [models."abacusai/Dracarys-72B-Instruct".pricing."nano-gpt"]
 input_cost_per_token = 4.93e-7
 output_cost_per_token = 4.93e-7
+
+[models."abliterated-model"]
+display_name = "Abliterated Model"
+mode = "chat"
+max_input_tokens = 150000
+max_output_tokens = 8192
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000003
+litellm_provider = "abliteration-ai"
+providers = ["abliteration-ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-06"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."abliterated-model".pricing."abliteration-ai"]
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000003
 
 [models."accounts/fireworks/models/"]
 mode = "embedding"
@@ -26522,7 +26543,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "deepseek"
-providers = ["deepseek", "llmgateway", "opencode-go", "venice"]
+providers = ["deepseek", "alibaba-cn", "llmgateway", "opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -26532,6 +26553,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek-v4-flash".pricing."alibaba-cn"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
 [models."deepseek-v4-flash".pricing."deepseek"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
@@ -26558,7 +26583,7 @@ input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 cache_read_input_token_cost = 1.45e-7
 litellm_provider = "deepseek"
-providers = ["deepseek", "llmgateway", "opencode-go", "venice"]
+providers = ["deepseek", "alibaba-cn", "llmgateway", "opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -26568,6 +26593,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek-v4-pro".pricing."alibaba-cn"]
+cache_read_input_token_cost = 1.45e-7
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
 [models."deepseek-v4-pro".pricing."deepseek"]
 cache_read_input_token_cost = 1.45e-7
 input_cost_per_token = 0.00000174
@@ -33621,7 +33650,7 @@ output_cost_per_token = 0.000012
 
 [models."gemini-3.1-flash-image-preview"]
 display_name = "gemini-3.1-flash-image-preview"
-model_family = "gemini"
+model_family = "gemini-flash"
 mode = "image_generation"
 max_input_tokens = 65536
 max_output_tokens = 32768
@@ -33629,7 +33658,7 @@ max_tokens = 32768
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "kilo", "vercel", "vertex_ai"]
+providers = ["vertex_ai-language-models", "302ai", "gemini", "google", "kilo", "openrouter", "vercel", "vertex_ai"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = true
@@ -33669,6 +33698,9 @@ output_cost_per_token_batches = 7.5e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.00006
 [models."gemini-3.1-flash-image-preview".pricing."kilo"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000003
+[models."gemini-3.1-flash-image-preview".pricing."openrouter"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000003
 [models."gemini-3.1-flash-image-preview".pricing."vercel"]
@@ -42762,7 +42794,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "vercel"]
+providers = ["azure", "azure-cognitive-services", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -42807,6 +42839,10 @@ output_cost_per_token = 0.00003
 output_cost_per_token_above_272k_tokens = 0.000045
 output_cost_per_token_above_272k_tokens_priority = 0.00009
 output_cost_per_token_priority = 0.00006
+[models."gpt-5.5".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
 [models."gpt-5.5".pricing."cloudflare-ai-gateway"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
