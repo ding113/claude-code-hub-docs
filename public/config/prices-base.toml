@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.04.30"
-checksum = "73cbf8e36390621110296b738168abaeea297dcf1e915d71d4e770f2d49449bc"
+checksum = "1523e073bbedcdc68a2c0dabb110dda4577a04858e799a93c33c969a3b39b6f0"
 sources = ["litellm", "modelsdev"]
-total_models = 3356
+total_models = 3367
 litellm_raw_models = 2688
-modelsdev_raw_models = 4363
+modelsdev_raw_models = 4381
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -16856,6 +16856,26 @@ output_cost_per_second = 0
 input_cost_per_second = 0.00003333
 output_cost_per_second = 0
 
+[models."bge-m3"]
+display_name = "BGE M3"
+model_family = "bge"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 1024
+input_cost_per_token = 2e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-01-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."bge-m3".pricing."digitalocean"]
+input_cost_per_token = 2e-8
+
 [models."bge-multilingual-gemma2"]
 display_name = "BGE Multilingual Gemma2"
 model_family = "gemma"
@@ -16875,6 +16895,26 @@ source = "modelsdev"
 
 [models."bge-multilingual-gemma2".pricing."scaleway"]
 input_cost_per_token = 1.0000000000000001e-7
+
+[models."bge-reranker-v2-m3"]
+display_name = "BGE Reranker v2 M3"
+model_family = "bge"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 1
+input_cost_per_token = 1e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-03-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."bge-reranker-v2-m3".pricing."digitalocean"]
+input_cost_per_token = 1e-8
 
 [models."big-pickle"]
 display_name = "Big Pickle"
@@ -24465,6 +24505,29 @@ output_cost_per_token = 0.00000125
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000125
 
+[models."deepseek-3-2"]
+display_name = "DeepSeek V3.2"
+model_family = "deepseek"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 64000
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000016000000000000001
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2025-12-02"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-3-2".pricing."digitalocean"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000016000000000000001
+
 [models."deepseek-ai/DeepSeek-OCR"]
 display_name = "deepseek-ai/DeepSeek-OCR"
 mode = "chat"
@@ -28604,6 +28667,26 @@ release_date = "2026-02-17"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."e5-large-v2"]
+display_name = "E5 Large v2"
+model_family = "text-embedding"
+mode = "chat"
+max_input_tokens = 512
+max_output_tokens = 1024
+input_cost_per_token = 2e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2023-05-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."e5-large-v2".pricing."digitalocean"]
+input_cost_per_token = 2e-8
 
 [models."elephant-alpha"]
 display_name = "Elephant (free)"
@@ -35264,7 +35347,7 @@ max_output_tokens = 262144
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "berget", "kilo", "novita-ai", "nvidia", "togetherai", "vercel"]
+providers = ["openrouter", "berget", "digitalocean", "kilo", "novita-ai", "nvidia", "togetherai", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -35277,6 +35360,9 @@ source = "modelsdev"
 [models."gemma-4-31b-it".pricing."berget"]
 input_cost_per_token = 2.75e-7
 output_cost_per_token = 5.5e-7
+[models."gemma-4-31b-it".pricing."digitalocean"]
+input_cost_per_token = 1.8e-7
+output_cost_per_token = 5e-7
 [models."gemma-4-31b-it".pricing."kilo"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -49734,7 +49820,7 @@ max_output_tokens = 8192
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "helicone"
-providers = ["helicone"]
+providers = ["helicone", "digitalocean"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
@@ -49744,6 +49830,9 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."llama-4-maverick".pricing."digitalocean"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 8.7e-7
 [models."llama-4-maverick".pricing."helicone"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
@@ -55815,6 +55904,28 @@ supports_function_calling = true
 input_cost_per_token = 0
 output_cost_per_token = 0
 
+[models."mistral-3-14B"]
+display_name = "Ministral 3 14B Instruct"
+model_family = "ministral"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 128000
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 2.0000000000000002e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2025-12-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mistral-3-14B".pricing."digitalocean"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 2.0000000000000002e-7
+
 [models."mistral-7B-Instruct-v0.1"]
 mode = "chat"
 max_input_tokens = 8192
@@ -56411,6 +56522,28 @@ source = "modelsdev"
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 
+[models."mistral-medium-2604"]
+display_name = "Mistral Medium 3.5"
+model_family = "mistral-medium"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.0000075
+litellm_provider = "mistral"
+providers = ["mistral"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-29"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mistral-medium-2604".pricing."mistral"]
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.0000075
+
 [models."mistral-medium-3"]
 mode = "chat"
 max_input_tokens = 128000
@@ -56476,10 +56609,9 @@ litellm_provider = "mistral"
 providers = ["mistral"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2025-05-07"
+release_date = "2026-04-29"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_assistant_prefill = true
@@ -57441,29 +57573,6 @@ cache_read_input_token_cost = 0.000001
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 
-[models."mistralai/Mistral-Medium-3-5-128B"]
-display_name = "Mistral Medium 3.5 128B"
-model_family = "mistral-medium"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 131072
-input_cost_per_token = 0.0000016499999999999999
-output_cost_per_token = 0.0000055
-litellm_provider = "berget"
-providers = ["berget"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2026-04"
-release_date = "2026-04-29"
-supported_modalities = ["image", "text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."mistralai/Mistral-Medium-3-5-128B".pricing."berget"]
-input_cost_per_token = 0.0000016499999999999999
-output_cost_per_token = 0.0000055
-
 [models."mistralai/Mistral-Nemo-Instruct-2407"]
 display_name = "Mistral Nemo"
 model_family = "mistral-nemo"
@@ -58296,6 +58405,27 @@ output_cost_per_token = 0.000002
 [models."mistralai/mistral-medium-3-1".pricing."openrouter"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+
+[models."mistralai/mistral-medium-3-5-128b"]
+display_name = "Mistral Medium 3.5 128B"
+model_family = "mistral-medium"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "nvidia"
+providers = ["nvidia", "berget"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2026-04"
+release_date = "2026-04-29"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."mistralai/mistral-medium-3-5-128b".pricing."berget"]
+input_cost_per_token = 0.0000016499999999999999
+output_cost_per_token = 0.0000055
 
 [models."mistralai/mistral-medium-3@001"]
 mode = "chat"
@@ -60204,6 +60334,28 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 
+[models."nemotron-3-nano-omni"]
+display_name = "Nemotron Nano 3 Omni"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 65536
+max_output_tokens = 65536
+input_cost_per_token = 5e-7
+output_cost_per_token = 9.000000000000001e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-28"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nemotron-3-nano-omni".pricing."digitalocean"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 9.000000000000001e-7
+
 [models."nemotron-3-super-free"]
 display_name = "Nemotron 3 Super Free"
 model_family = "nemotron-free"
@@ -60220,6 +60372,29 @@ release_date = "2026-03-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."nemotron-nano-12b-v2-vl"]
+display_name = "Nemotron Nano 12B v2 VL"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 16384
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-10"
+release_date = "2025-12-01"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nemotron-nano-12b-v2-vl".pricing."digitalocean"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
 
 [models."neural"]
 mode = "audio_speech"
@@ -63586,6 +63761,31 @@ source = "modelsdev"
 [models."openai-gpt-5-4-pro".pricing."digitalocean"]
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00018
+
+[models."openai-gpt-5-5"]
+display_name = "GPT-5.5"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+cache_read_input_token_cost = 5e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-12-01"
+release_date = "2026-04-23"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai-gpt-5-5".pricing."digitalocean"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
 
 [models."openai-gpt-5-mini"]
 display_name = "GPT-5 mini"
@@ -68716,7 +68916,7 @@ max_output_tokens = 65536
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 litellm_provider = "alibaba"
-providers = ["alibaba", "alibaba-cn", "scaleway", "venice", "wafer.ai"]
+providers = ["alibaba", "alibaba-cn", "digitalocean", "scaleway", "venice", "wafer.ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -68734,6 +68934,9 @@ output_cost_per_token = 0.0000036000000000000003
 input_cost_per_token = 4.3e-7
 output_cost_per_token = 0.00000258
 reasoning_cost_per_token = 0.00000258
+[models."qwen3-5-397b-a17b".pricing."digitalocean"]
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.0000035
 [models."qwen3-5-397b-a17b".pricing."scaleway"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
@@ -69159,7 +69362,7 @@ max_input_tokens = 997952
 max_output_tokens = 65536
 max_tokens = 65536
 litellm_provider = "dashscope"
-providers = ["dashscope", "alibaba", "alibaba-cn", "llmgateway"]
+providers = ["dashscope", "alibaba", "alibaba-cn", "digitalocean", "llmgateway"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -69177,6 +69380,9 @@ output_cost_per_token = 0.0000015
 [models."qwen3-coder-flash".pricing."alibaba-cn"]
 input_cost_per_token = 1.44e-7
 output_cost_per_token = 5.739999999999999e-7
+[models."qwen3-coder-flash".pricing."digitalocean"]
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000017
 [models."qwen3-coder-flash".pricing."llmgateway"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000015
@@ -72242,6 +72448,26 @@ supported_endpoints = ["/v1/images/generations"]
 [models."stabilityai/stable-diffusion-xl-base-1.0".pricing."nscale"]
 input_cost_per_pixel = 3e-9
 output_cost_per_pixel = 0
+
+[models."stable-diffusion-3-5-large"]
+display_name = "Stable Diffusion 3.5 Large"
+model_family = "stable-diffusion"
+mode = "chat"
+max_input_tokens = 256
+max_output_tokens = 1
+input_cost_per_token = 8e-8
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-10-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["image"]
+source = "modelsdev"
+
+[models."stable-diffusion-3-5-large".pricing."digitalocean"]
+input_cost_per_token = 8e-8
 
 [models."stable-image-core"]
 mode = "image_generation"
@@ -76516,6 +76742,25 @@ providers = ["voyage"]
 [models."voyage-multimodal-3".pricing."voyage"]
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 0
+
+[models."wan2-2-t2v-a14b"]
+display_name = "Wan2.2-T2V-A14B"
+mode = "chat"
+max_input_tokens = 100
+max_output_tokens = 1
+input_cost_per_token = 6e-7
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2025-07-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["video"]
+source = "modelsdev"
+
+[models."wan2-2-t2v-a14b".pricing."digitalocean"]
+input_cost_per_token = 6e-7
 
 [models."whisper"]
 mode = "audio_transcription"
