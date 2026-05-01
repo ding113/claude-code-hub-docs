@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.01"
-checksum = "17d562286098311a6a9affe7e091ba807db5b9c2ce540c7358b3a47805925f65"
+checksum = "ccd3497c38e85aa9e3a7ac103ec725461ddaa824d11ff0684ad9c9add1bee0a8"
 sources = ["litellm", "modelsdev"]
-total_models = 3369
+total_models = 3372
 litellm_raw_models = 2692
-modelsdev_raw_models = 4389
+modelsdev_raw_models = 4395
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12441,6 +12441,28 @@ cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
 
+[models."alibaba/qwen3-6-27b"]
+display_name = "Qwen 3.6 27B"
+model_family = "qwen3.6"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 256000
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen3-6-27b".pricing."vercel"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036
+
 [models."alibaba/qwen3-6-flash"]
 display_name = "Qwen3.6 Flash"
 model_family = "qwen3.6"
@@ -12760,6 +12782,28 @@ source = "modelsdev"
 [models."alibaba/qwen3-next-80b-a3b-thinking".pricing."vercel"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
+
+[models."alibaba/qwen3-vl-235b-a22b-instruct"]
+display_name = "Qwen3 VL 235B A22B Instruct"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 129024
+input_cost_per_token = 4e-7
+output_cost_per_token = 0.0000016
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2025-09-24"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen3-vl-235b-a22b-instruct".pricing."vercel"]
+input_cost_per_token = 4e-7
+output_cost_per_token = 0.0000016
 
 [models."alibaba/qwen3-vl-instruct"]
 display_name = "Qwen3 VL Instruct"
@@ -47638,6 +47682,8 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 7.5e-7
 
 [models."inception/mercury-coder-small"]
+display_name = "Mercury Coder Small Beta"
+model_family = "mercury"
 mode = "chat"
 max_input_tokens = 32000
 max_output_tokens = 16384
@@ -47645,8 +47691,17 @@ max_tokens = 16384
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway"]
+providers = ["vercel_ai_gateway", "vercel"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2025-02-26"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 
+[models."inception/mercury-coder-small".pricing."vercel"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000001
 [models."inception/mercury-coder-small".pricing."vercel_ai_gateway"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
@@ -79125,6 +79180,30 @@ cache_read_input_token_cost = 2e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 
+[models."xai/grok-4-3"]
+display_name = "Grok 4.3"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 1000000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 2e-7
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-30"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xai/grok-4-3".pricing."vercel"]
+cache_read_input_token_cost = 2e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
+
 [models."xai/grok-4-fast"]
 display_name = "Grok 4 Fast"
 model_family = "grok"
@@ -79247,7 +79326,7 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 8e-8
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "zenmux"]
+providers = ["openrouter", "kilo", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -79265,6 +79344,10 @@ output_cost_per_token = 0.000002
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+[models."xiaomi/mimo-v2-5".pricing."vercel"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4e-7
+output_cost_per_token = 0.000002
 [models."xiaomi/mimo-v2-5".pricing."zenmux"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
@@ -79280,7 +79363,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "zenmux"]
+providers = ["openrouter", "kilo", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -79296,6 +79379,10 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."xiaomi/mimo-v2-5-pro".pricing."openrouter"]
 cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+[models."xiaomi/mimo-v2-5-pro".pricing."vercel"]
+cache_read_input_token_cost = 2e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."xiaomi/mimo-v2-5-pro".pricing."zenmux"]
