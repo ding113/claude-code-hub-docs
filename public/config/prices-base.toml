@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.03"
-checksum = "0422dd31e3024e3548f70e432e282546bbf1c4c57f0b66e45e4aa2dc55d80765"
+checksum = "77e42d57d1de4457d9a7fc6616e7be4e5c44c72705588020967ffb36d2434c94"
 sources = ["litellm", "modelsdev"]
-total_models = 3401
+total_models = 3402
 litellm_raw_models = 2692
-modelsdev_raw_models = 4448
+modelsdev_raw_models = 4453
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -20474,7 +20474,7 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "302ai", "aihubmix", "anthropic", "cloudflare-ai-gateway", "firmware", "github-copilot", "kilo", "llmgateway", "opencode", "openrouter", "perplexity", "perplexity-agent", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -20542,6 +20542,10 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."claude-opus-4-7".pricing."openrouter"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-7".pricing."perplexity-agent"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -36576,7 +36580,7 @@ input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
 
 [models."glm-5v-turbo"]
-display_name = "glm-5v-turbo"
+display_name = "GLM-5V-Turbo"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
@@ -36584,7 +36588,7 @@ max_output_tokens = 131072
 input_cost_per_token = 7.2e-7
 output_cost_per_token = 0.0000032000000000000003
 litellm_provider = "302ai"
-providers = ["302ai", "zai", "zai-coding-plan", "zhipuai"]
+providers = ["302ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -43000,7 +43004,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "cloudflare-ai-gateway", "github-copilot", "kilo", "openai", "opencode", "openrouter", "poe", "vivgrid", "zenmux"]
+providers = ["azure", "aihubmix", "cloudflare-ai-gateway", "github-copilot", "kilo", "openai", "opencode", "openrouter", "perplexity-agent", "poe", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -43077,6 +43081,10 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 [models."gpt-5.5".pricing."openrouter"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5.5".pricing."perplexity-agent"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
@@ -46778,6 +46786,31 @@ source = "modelsdev"
 [models."hf:moonshotai/Kimi-K2-5".pricing."synthetic"]
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.0000021899999999999998
+
+[models."hf:moonshotai/Kimi-K2-6"]
+display_name = "Kimi K2.6"
+model_family = "kimi-k2.6"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 9.499999999999999e-7
+litellm_provider = "synthetic"
+providers = ["synthetic"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-21"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."hf:moonshotai/Kimi-K2-6".pricing."synthetic"]
+cache_read_input_token_cost = 9.499999999999999e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 
 [models."hf:moonshotai/Kimi-K2-Instruct-0905"]
 display_name = "Kimi K2 0905"
@@ -59971,7 +60004,7 @@ max_output_tokens = 65536
 input_cost_per_token = 5.3e-7
 output_cost_per_token = 0.00000273
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "baseten", "deepinfra", "huggingface", "kilo", "neuralwatt", "novita-ai", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
+providers = ["nano-gpt", "baseten", "deepinfra", "huggingface", "kilo", "neuralwatt", "novita-ai", "nvidia", "openrouter", "siliconflow", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
