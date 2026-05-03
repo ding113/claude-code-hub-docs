@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.05.02"
-checksum = "5d996da9f6246d0ba1063f7b5c5ceab7f972b42df2b9636bbd8ecef05aafd510"
+version = "2026.05.03"
+checksum = "0422dd31e3024e3548f70e432e282546bbf1c4c57f0b66e45e4aa2dc55d80765"
 sources = ["litellm", "modelsdev"]
 total_models = 3401
 litellm_raw_models = 2692
-modelsdev_raw_models = 4447
+modelsdev_raw_models = 4448
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -69685,14 +69685,15 @@ output_cost_per_token = 0.000001014
 
 [models."qwen3-6-max-preview"]
 display_name = "Qwen3.6 Max Preview"
-model_family = "qwen3.6"
+model_family = "qwen"
 mode = "chat"
-max_input_tokens = 245800
+max_input_tokens = 262144
 max_output_tokens = 65536
 input_cost_per_token = 0.0000013
 output_cost_per_token = 0.0000078
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "alibaba-cn", "llmgateway"]
+cache_read_input_token_cost = 1.3e-7
+litellm_provider = "alibaba"
+providers = ["alibaba", "alibaba-cn", "llmgateway", "nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -69702,6 +69703,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen3-6-max-preview".pricing."alibaba"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 0.0000013
+output_cost_per_token = 0.0000078
 [models."qwen3-6-max-preview".pricing."alibaba-cn"]
 cache_read_input_token_cost = 1.3200000000000002e-7
 input_cost_per_token = 0.00000132
