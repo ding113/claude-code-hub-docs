@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.05"
-checksum = "4095e4c09e1aa0642011ec6c352e41ca3e8bde34e25857bbb5c0e0cd3def1c18"
+checksum = "9fac5807b603d419c51f58da4b5e1bcca0ff6b80d41a150a390b4aba1ff97375"
 sources = ["litellm", "modelsdev"]
 total_models = 3404
 litellm_raw_models = 2692
-modelsdev_raw_models = 4473
+modelsdev_raw_models = 4475
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -25415,6 +25415,35 @@ output_cost_per_token = 4.2e-7
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 4.2e-7
 
+[models."deepseek-ai/DeepSeek-V4-Flash"]
+display_name = "DeepSeek V4 Flash"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 2.8e-8
+litellm_provider = "deepinfra"
+providers = ["deepinfra", "nvidia"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-ai/DeepSeek-V4-Flash".pricing."deepinfra"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+[models."deepseek-ai/DeepSeek-V4-Flash".pricing."nvidia"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+
 [models."deepseek-ai/DeepSeek-V4-Pro"]
 display_name = "DeepSeek V4 Pro"
 model_family = "deepseek-thinking"
@@ -25759,31 +25788,6 @@ input_cost_per_token = 5.6e-7
 input_cost_per_token_batches = 2.8e-7
 output_cost_per_token = 0.00000168
 output_cost_per_token_batches = 8.4e-7
-
-[models."deepseek-ai/deepseek-v4-flash"]
-display_name = "DeepSeek V4 Flash"
-model_family = "deepseek-flash"
-mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 393216
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 2.8e-7
-cache_read_input_token_cost = 2.8e-8
-litellm_provider = "nvidia"
-providers = ["nvidia"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2026-04-24"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."deepseek-ai/deepseek-v4-flash".pricing."nvidia"]
-cache_read_input_token_cost = 2.8e-8
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 2.8e-7
 
 [models."deepseek-ai/deepseek-vl2"]
 display_name = "deepseek-ai/deepseek-vl2"
@@ -49142,7 +49146,7 @@ input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.6e-7
 litellm_provider = "frogbot"
-providers = ["frogbot", "aihubmix", "azure", "azure-cognitive-services", "cortecs", "llmgateway", "moonshotai", "moonshotai-cn", "venice"]
+providers = ["frogbot", "aihubmix", "azure", "azure-cognitive-services", "cortecs", "digitalocean", "llmgateway", "moonshotai", "moonshotai-cn", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -49166,6 +49170,9 @@ output_cost_per_token = 0.000004
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 8.100000000000001e-7
 output_cost_per_token = 0.00000354
+[models."kimi-k2-6".pricing."digitalocean"]
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 [models."kimi-k2-6".pricing."frogbot"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
