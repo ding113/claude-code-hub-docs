@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.07"
-checksum = "3c1999b7cf11c7a29e169479153563fd51d15207c87a5a015496d6e4f139bf1b"
+checksum = "dd80f674e9d3cea4010dd66d0f138ddfd0123ccbe5ca2a6929cd03550e02ef03"
 sources = ["litellm", "modelsdev"]
-total_models = 3406
+total_models = 3407
 litellm_raw_models = 2705
-modelsdev_raw_models = 4474
+modelsdev_raw_models = 4486
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3807,7 +3807,8 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."Mistral-7B-Instruct-v0.3"]
-display_name = "Mistral-7B-Instruct-v0.3"
+display_name = "Mistral 7B Instruct v0.3"
+model_family = "mistral"
 mode = "chat"
 max_input_tokens = 127000
 max_output_tokens = 127000
@@ -3819,7 +3820,7 @@ providers = ["ovhcloud"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-release_date = "2025-04-01"
+release_date = "2024-05-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://endpoints.ai.cloud.ovh.net/models/mistral-7b-instruct-v0-3"
@@ -3861,7 +3862,7 @@ max_tokens = 118000
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 1.3e-7
 litellm_provider = "ovhcloud"
-providers = ["ovhcloud", "scaleway"]
+providers = ["ovhcloud", "digitalocean", "scaleway"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -3872,6 +3873,9 @@ source = "https://endpoints.ai.cloud.ovh.net/models/mistral-nemo-instruct-2407"
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."Mistral-Nemo-Instruct-2407".pricing."digitalocean"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 3e-7
 [models."Mistral-Nemo-Instruct-2407".pricing."ovhcloud"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 1.3e-7
@@ -13859,6 +13863,8 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."anthropic-claude-3-opus"]
+display_name = "Claude 3 Opus"
+model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 1024
@@ -13866,16 +13872,28 @@ max_tokens = 1024
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2023-08"
+release_date = "2024-02-29"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."anthropic-claude-3-opus".pricing."digitalocean"]
+cache_read_input_token_cost = 0.0000015
+input_cost_per_token = 0.000015
+output_cost_per_token = 0.000075
 [models."anthropic-claude-3-opus".pricing."gradient_ai"]
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
 [models."anthropic-claude-3.5-haiku"]
+display_name = "Claude 3.5 Haiku"
+model_family = "claude-haiku"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 1024
@@ -13883,16 +13901,28 @@ max_tokens = 1024
 input_cost_per_token = 8e-7
 output_cost_per_token = 0.000004
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2024-07"
+release_date = "2024-11-05"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."anthropic-claude-3.5-haiku".pricing."digitalocean"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.000004
 [models."anthropic-claude-3.5-haiku".pricing."gradient_ai"]
 input_cost_per_token = 8e-7
 output_cost_per_token = 0.000004
 
 [models."anthropic-claude-3.5-sonnet"]
+display_name = "Claude 3.5 Sonnet"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 1024
@@ -13900,16 +13930,28 @@ max_tokens = 1024
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2024-04"
+release_date = "2024-06-20"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."anthropic-claude-3.5-sonnet".pricing."digitalocean"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."anthropic-claude-3.5-sonnet".pricing."gradient_ai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."anthropic-claude-3.7-sonnet"]
+display_name = "Claude 3.7 Sonnet"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 1024
@@ -13917,11 +13959,21 @@ max_tokens = 1024
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-11"
+release_date = "2025-02-24"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."anthropic-claude-3.7-sonnet".pricing."digitalocean"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."anthropic-claude-3.7-sonnet".pricing."gradient_ai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -13950,6 +14002,31 @@ source = "modelsdev"
 cache_read_input_token_cost = 0.0000015
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
+
+[models."anthropic-claude-4-5-haiku"]
+display_name = "Claude Haiku 4.5"
+model_family = "claude-haiku"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 64000
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+cache_read_input_token_cost = 0.000001
+litellm_provider = "digitalocean"
+providers = ["digitalocean"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-02-28"
+release_date = "2025-10-15"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic-claude-4-5-haiku".pricing."digitalocean"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
 
 [models."anthropic-claude-4-5-sonnet"]
 display_name = "Claude Sonnet 4.5"
@@ -50804,6 +50881,8 @@ input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 8e-8
 
 [models."llama3-8b-instruct"]
+display_name = "Llama 3.1 Instruct (8B)"
+model_family = "llama"
 mode = "chat"
 max_input_tokens = 8192
 max_output_tokens = 512
@@ -50811,11 +50890,20 @@ max_tokens = 512
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 litellm_provider = "gradient_ai"
-providers = ["gradient_ai"]
+providers = ["gradient_ai", "digitalocean"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2023-12"
+release_date = "2024-07-23"
 supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = false
 
+[models."llama3-8b-instruct".pricing."digitalocean"]
+input_cost_per_token = 1.98e-7
+output_cost_per_token = 1.98e-7
 [models."llama3-8b-instruct".pricing."gradient_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
