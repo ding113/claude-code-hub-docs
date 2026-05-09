@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.09"
-checksum = "4ec2f68a6d3072bfa5001ca59b2c132f88be8fb197a623ed63f025f65c16e25b"
+checksum = "83b7d2fcfd830373da7fe75776a62f31606dbe3e10f5342e338f9a2b57ced8cc"
 sources = ["litellm", "modelsdev"]
-total_models = 3411
+total_models = 3413
 litellm_raw_models = 2706
-modelsdev_raw_models = 4499
+modelsdev_raw_models = 4491
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -11976,6 +11976,22 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."accounts/fireworks/routers/kimi-k2p6-turbo"]
+display_name = "Kimi K2.6 Turbo"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 262000
+litellm_provider = "firepass"
+providers = ["firepass"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-17"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."ada"]
 mode = "embedding"
 max_input_tokens = 8191
@@ -13281,29 +13297,6 @@ output_cost_per_token = 1.4e-7
 input_cost_per_token = 3.5e-8
 output_cost_per_token = 1.4e-7
 
-[models."amazon.nova-premier-v1:0"]
-display_name = "Nova Premier"
-model_family = "nova"
-mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 16384
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.0000125
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-10"
-release_date = "2024-12-03"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."amazon.nova-premier-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.0000125
-
 [models."amazon.nova-pro-v1:0"]
 display_name = "Nova Pro"
 model_family = "nova-pro"
@@ -14211,8 +14204,6 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."anthropic.claude-3-5-haiku-20241022-v1:0"]
-display_name = "Claude Haiku 3.5"
-model_family = "claude-haiku"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 8192
@@ -14222,24 +14213,14 @@ output_cost_per_token = 0.000004
 cache_read_input_token_cost = 8e-8
 cache_creation_input_token_cost = 0.000001
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
-supports_reasoning = false
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2024-07-31"
-release_date = "2024-10-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."anthropic.claude-3-5-haiku-20241022-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 8e-8
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.000004
 [models."anthropic.claude-3-5-haiku-20241022-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.000001
 cache_read_input_token_cost = 8e-8
@@ -14247,8 +14228,6 @@ input_cost_per_token = 8e-7
 output_cost_per_token = 0.000004
 
 [models."anthropic.claude-3-5-sonnet-20240620-v1:0"]
-display_name = "Claude Sonnet 3.5"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 4096
@@ -14258,16 +14237,10 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2024-04-30"
-release_date = "2024-06-20"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.0000075
 cache_creation_input_token_cost_above_1hr_above_200k_tokens = 0.000015
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -14277,10 +14250,6 @@ output_cost_per_token_above_200k_tokens = 0.00003
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."anthropic.claude-3-5-sonnet-20240620-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."anthropic.claude-3-5-sonnet-20240620-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_1hr = 0.0000075
@@ -14294,8 +14263,6 @@ output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.00003
 
 [models."anthropic.claude-3-5-sonnet-20241022-v2:0"]
-display_name = "Claude Sonnet 3.5 v2"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 8192
@@ -14305,17 +14272,11 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2024-04"
-release_date = "2024-10-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.0000075
 cache_creation_input_token_cost_above_1hr_above_200k_tokens = 0.000015
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -14327,10 +14288,6 @@ supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."anthropic.claude-3-5-sonnet-20241022-v2:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."anthropic.claude-3-5-sonnet-20241022-v2:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_1hr = 0.0000075
@@ -14371,8 +14328,6 @@ input_cost_per_token = 0.0000036
 output_cost_per_token = 0.000018
 
 [models."anthropic.claude-3-7-sonnet-20250219-v1:0"]
-display_name = "Claude Sonnet 3.7"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 8192
@@ -14382,26 +14337,17 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2024-04"
-release_date = "2025-02-19"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."anthropic.claude-3-7-sonnet-20250219-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."anthropic.claude-3-7-sonnet-20250219-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_read_input_token_cost = 3e-7
@@ -14409,8 +14355,6 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."anthropic.claude-3-haiku-20240307-v1:0"]
-display_name = "Claude Haiku 3"
-model_family = "claude-haiku"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 4096
@@ -14420,22 +14364,13 @@ output_cost_per_token = 0.00000125
 cache_read_input_token_cost = 2.5e-8
 cache_creation_input_token_cost = 3.125e-7
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2024-02"
-release_date = "2024-03-13"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."anthropic.claude-3-haiku-20240307-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.00000125
 [models."anthropic.claude-3-haiku-20240307-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 3.125e-7
 cache_read_input_token_cost = 2.5e-8
@@ -14649,8 +14584,6 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
 [models."anthropic.claude-opus-4-20250514-v1:0"]
-display_name = "Claude Opus 4"
-model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 32000
@@ -14660,17 +14593,12 @@ output_cost_per_token = 0.000075
 cache_read_input_token_cost = 0.0000015
 cache_creation_input_token_cost = 0.00001875
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
@@ -14682,10 +14610,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."anthropic.claude-opus-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000015
-input_cost_per_token = 0.000015
-output_cost_per_token = 0.000075
 [models."anthropic.claude-opus-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00001875
 cache_read_input_token_cost = 0.0000015
@@ -14840,8 +14764,6 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."anthropic.claude-sonnet-4-20250514-v1:0"]
-display_name = "Claude Sonnet 4"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -14851,17 +14773,12 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
 input_cost_per_token_above_200k_tokens = 0.000006
@@ -14877,10 +14794,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -16099,6 +16012,8 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000001
 
 [models."au.anthropic.claude-haiku-4-5-20251001-v1:0"]
+display_name = "Claude Haiku 4.5 (AU)"
+model_family = "claude-haiku"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 64000
@@ -16108,12 +16023,17 @@ output_cost_per_token = 0.0000055
 cache_read_input_token_cost = 1.1e-7
 cache_creation_input_token_cost = 0.000001375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-02-28"
+release_date = "2025-10-15"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_native_structured_output = true
@@ -16121,6 +16041,10 @@ supports_response_schema = true
 supports_tool_choice = true
 tool_use_system_prompt_tokens = 346
 
+[models."au.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
 [models."au.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
 cache_read_input_token_cost = 1.1e-7
@@ -16212,6 +16136,8 @@ input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0"]
+display_name = "Claude Sonnet 4.5 (AU)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 64000
@@ -16221,12 +16147,17 @@ output_cost_per_token = 0.0000165
 cache_read_input_token_cost = 3.3e-7
 cache_creation_input_token_cost = 0.000004125
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-07-31"
+release_date = "2025-09-29"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.00000825
 cache_read_input_token_cost_above_200k_tokens = 6.6e-7
 input_cost_per_token_above_200k_tokens = 0.0000066
@@ -16243,6 +16174,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_200k_tokens = 0.00000825
@@ -30443,8 +30378,6 @@ input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0"]
-display_name = "Claude Sonnet 4 (EU)"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -30454,17 +30387,12 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
 input_cost_per_token_above_200k_tokens = 0.000006
@@ -30480,10 +30408,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."eu.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -37069,8 +36993,6 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."global.anthropic.claude-sonnet-4-20250514-v1:0"]
-display_name = "Claude Sonnet 4 (Global)"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -37080,17 +37002,12 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
 input_cost_per_token_above_200k_tokens = 0.000006
@@ -37106,10 +37023,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."global.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."global.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -48943,7 +48856,34 @@ cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000055
 
+[models."jp.anthropic.claude-opus-4-7"]
+display_name = "Claude Opus 4.7 (JP)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-04-16"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."jp.anthropic.claude-opus-4-7".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
 [models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0"]
+display_name = "Claude Sonnet 4.5 (JP)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 64000
@@ -48953,12 +48893,17 @@ output_cost_per_token = 0.0000165
 cache_read_input_token_cost = 3.3e-7
 cache_creation_input_token_cost = 0.000004125
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-07-31"
+release_date = "2025-09-29"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.00000825
 cache_read_input_token_cost_above_200k_tokens = 6.6e-7
 input_cost_per_token_above_200k_tokens = 0.0000066
@@ -48975,6 +48920,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_200k_tokens = 0.00000825
@@ -48984,6 +48933,31 @@ input_cost_per_token = 0.0000033
 input_cost_per_token_above_200k_tokens = 0.0000066
 output_cost_per_token = 0.0000165
 output_cost_per_token_above_200k_tokens = 0.00002475
+
+[models."jp.anthropic.claude-sonnet-4-6"]
+display_name = "Claude Sonnet 4.6 (JP)"
+model_family = "claude-sonnet"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-02-17"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."jp.anthropic.claude-sonnet-4-6".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 
 [models."k2p5"]
 display_name = "Kimi K2.5"
@@ -53644,8 +53618,6 @@ input_cost_per_token = 0.00000195
 output_cost_per_token = 0.00000256
 
 [models."meta.llama3-1-405b-instruct-v1:0"]
-display_name = "Llama 3.1 405B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -53653,19 +53625,10 @@ max_tokens = 4096
 input_cost_per_token = 0.00000532
 output_cost_per_token = 0.000016
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-12"
-release_date = "2024-07-23"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_tool_choice = false
 
-[models."meta.llama3-1-405b-instruct-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 0.0000024
-output_cost_per_token = 0.0000024
 [models."meta.llama3-1-405b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 0.00000532
 output_cost_per_token = 0.000016
@@ -53725,8 +53688,6 @@ input_cost_per_token = 2.2e-7
 output_cost_per_token = 2.2e-7
 
 [models."meta.llama3-2-11b-instruct-v1:0"]
-display_name = "Llama 3.2 11B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -53734,27 +53695,16 @@ max_tokens = 4096
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 3.5e-7
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-12"
-release_date = "2024-09-25"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 supports_tool_choice = false
 
-[models."meta.llama3-2-11b-instruct-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 1.6e-7
-output_cost_per_token = 1.6e-7
 [models."meta.llama3-2-11b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 3.5e-7
 
 [models."meta.llama3-2-1b-instruct-v1:0"]
-display_name = "Llama 3.2 1B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -53762,26 +53712,15 @@ max_tokens = 4096
 input_cost_per_token = 1e-7
 output_cost_per_token = 1e-7
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-12"
-release_date = "2024-09-25"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_tool_choice = false
 
-[models."meta.llama3-2-1b-instruct-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 1.0000000000000001e-7
 [models."meta.llama3-2-1b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 1e-7
 
 [models."meta.llama3-2-3b-instruct-v1:0"]
-display_name = "Llama 3.2 3B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -53789,26 +53728,15 @@ max_tokens = 4096
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 1.5e-7
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-12"
-release_date = "2024-09-25"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_tool_choice = false
 
-[models."meta.llama3-2-3b-instruct-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 1.5e-7
 [models."meta.llama3-2-3b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 1.5e-7
 
 [models."meta.llama3-2-90b-instruct-v1:0"]
-display_name = "Llama 3.2 90B Instruct"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -53816,20 +53744,11 @@ max_tokens = 4096
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000002
 litellm_provider = "bedrock"
-providers = ["bedrock", "amazon-bedrock"]
+providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2023-12"
-release_date = "2024-09-25"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 supports_tool_choice = false
 
-[models."meta.llama3-2-90b-instruct-v1:0".pricing."amazon-bedrock"]
-input_cost_per_token = 7.2e-7
-output_cost_per_token = 7.2e-7
 [models."meta.llama3-2-90b-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000002
@@ -76406,8 +76325,6 @@ input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
 
 [models."us.anthropic.claude-opus-4-20250514-v1:0"]
-display_name = "Claude Opus 4 (US)"
-model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 32000
@@ -76417,17 +76334,12 @@ output_cost_per_token = 0.000075
 cache_read_input_token_cost = 0.0000015
 cache_creation_input_token_cost = 0.00001875
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
@@ -76439,10 +76351,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."us.anthropic.claude-opus-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000015
-input_cost_per_token = 0.000015
-output_cost_per_token = 0.000075
 [models."us.anthropic.claude-opus-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00001875
 cache_read_input_token_cost = 0.0000015
@@ -76597,8 +76505,6 @@ input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0"]
-display_name = "Claude Sonnet 4 (US)"
-model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -76608,17 +76514,12 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse", "amazon-bedrock"]
+providers = ["bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-05-22"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
 input_cost_per_token_above_200k_tokens = 0.000006
@@ -76634,10 +76535,6 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
-[models."us.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -76755,6 +76652,8 @@ input_cost_per_token = 0.0000033
 output_cost_per_token = 0.0000165
 
 [models."us.deepseek.r1-v1:0"]
+display_name = "DeepSeek-R1 (US)"
+model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -76762,11 +76661,19 @@ max_tokens = 4096
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
-supports_function_calling = false
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
 supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-07"
+release_date = "2025-01-20"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supports_tool_choice = false
 
+[models."us.deepseek.r1-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 0.00000135
+output_cost_per_token = 0.0000054
 [models."us.deepseek.r1-v1:0".pricing."bedrock_converse"]
 input_cost_per_token = 0.00000135
 output_cost_per_token = 0.0000054
@@ -76919,6 +76826,8 @@ input_cost_per_token = 7.2e-7
 output_cost_per_token = 7.2e-7
 
 [models."us.meta.llama4-maverick-17b-instruct-v1:0"]
+display_name = "Llama 4 Maverick 17B Instruct (US)"
+model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -76926,14 +76835,21 @@ max_tokens = 4096
 input_cost_per_token = 2.4e-7
 output_cost_per_token = 9.7e-7
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-08"
+release_date = "2025-04-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "code"]
 input_cost_per_token_batches = 1.2e-7
 output_cost_per_token_batches = 4.85e-7
 supports_tool_choice = false
 
+[models."us.meta.llama4-maverick-17b-instruct-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 2.4e-7
+output_cost_per_token = 9.7e-7
 [models."us.meta.llama4-maverick-17b-instruct-v1:0".pricing."bedrock_converse"]
 input_cost_per_token = 2.4e-7
 input_cost_per_token_batches = 1.2e-7
@@ -76941,6 +76857,8 @@ output_cost_per_token = 9.7e-7
 output_cost_per_token_batches = 4.85e-7
 
 [models."us.meta.llama4-scout-17b-instruct-v1:0"]
+display_name = "Llama 4 Scout 17B Instruct (US)"
+model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
@@ -76948,14 +76866,21 @@ max_tokens = 4096
 input_cost_per_token = 1.7e-7
 output_cost_per_token = 6.6e-7
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2024-08"
+release_date = "2025-04-05"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text", "code"]
 input_cost_per_token_batches = 8.5e-8
 output_cost_per_token_batches = 3.3e-7
 supports_tool_choice = false
 
+[models."us.meta.llama4-scout-17b-instruct-v1:0".pricing."amazon-bedrock"]
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 6.6e-7
 [models."us.meta.llama4-scout-17b-instruct-v1:0".pricing."bedrock_converse"]
 input_cost_per_token = 1.7e-7
 input_cost_per_token_batches = 8.5e-8
