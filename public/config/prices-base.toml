@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.13"
-checksum = "c1c5aeb30375e172a8641c85361aab9a24efa031bf61840a17aa353aaca257a0"
+checksum = "a46ec35c1ce3a1b256b4ef6eefd533f01f9b6938408792a19e6a706ade65d433"
 sources = ["litellm", "modelsdev"]
-total_models = 3442
+total_models = 3456
 litellm_raw_models = 2708
-modelsdev_raw_models = 4506
+modelsdev_raw_models = 4515
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12900,6 +12900,80 @@ source = "modelsdev"
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
 
+[models."alicloud-deepseek-v4-flash"]
+display_name = "DeepSeek V4 Flash (Alibaba Cloud)"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 2.8e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alicloud-deepseek-v4-flash".pricing."aihubmix"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+
+[models."alicloud-deepseek-v4-pro"]
+display_name = "DeepSeek V4 Pro (Alibaba Cloud)"
+model_family = "deepseek-thinking"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 0.00000169
+output_cost_per_token = 0.00000338
+cache_read_input_token_cost = 1.3e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alicloud-deepseek-v4-pro".pricing."aihubmix"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 0.00000169
+output_cost_per_token = 0.00000338
+
+[models."alicloud-glm-5-1"]
+display_name = "GLM-5.1 (Alibaba Cloud)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 128000
+input_cost_per_token = 8.4e-7
+output_cost_per_token = 0.00000338
+cache_read_input_token_cost = 1.6900000000000002e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alicloud-glm-5-1".pricing."aihubmix"]
+cache_read_input_token_cost = 1.6900000000000002e-7
+input_cost_per_token = 8.4e-7
+output_cost_per_token = 0.00000338
+
 [models."all-mini-lm-l6-v2"]
 display_name = "All-MiniLM-L6-v2"
 model_family = "text-embedding"
@@ -20336,11 +20410,11 @@ input_cost_per_token = 0.000036
 output_cost_per_token = 0.00018
 
 [models."claude-opus-4-6-think"]
-display_name = "Claude Opus 4.6"
+display_name = "Claude Opus 4.6 Thinking"
 model_family = "claude-opus"
 mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 32000
+max_input_tokens = 1000000
+max_output_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
@@ -20681,8 +20755,8 @@ output_cost_per_token = 0.000025
 display_name = "Claude Opus 4.7 Thinking"
 model_family = "claude-opus"
 mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 32000
+max_input_tokens = 1000000
+max_output_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
@@ -20693,7 +20767,7 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
 release_date = "2026-04-16"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -21834,10 +21908,10 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."claude-sonnet-4-6-think"]
-display_name = "Claude Sonnet 4.6 Think"
+display_name = "Claude Sonnet 4.6 Thinking"
 model_family = "claude-sonnet"
 mode = "chat"
-max_input_tokens = 200000
+max_input_tokens = 1000000
 max_output_tokens = 64000
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -22662,38 +22736,40 @@ input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000006
 
 [models."coding-glm-5-1"]
-display_name = "Coding-GLM-5.1"
+display_name = "Coding GLM 5.1"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 200000
 max_output_tokens = 128000
 input_cost_per_token = 6e-8
 output_cost_per_token = 2.2e-7
+cache_read_input_token_cost = 1.2999999999999999e-8
 litellm_provider = "aihubmix"
 providers = ["aihubmix"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-04-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."coding-glm-5-1".pricing."aihubmix"]
+cache_read_input_token_cost = 1.2999999999999999e-8
 input_cost_per_token = 6e-8
 output_cost_per_token = 2.2e-7
 
 [models."coding-glm-5-1-free"]
 display_name = "Coding GLM 5.1 (free)"
-model_family = "glm"
+model_family = "glm-free"
 mode = "chat"
-max_input_tokens = 204800
+max_input_tokens = 200000
 max_output_tokens = 128000
 litellm_provider = "aihubmix"
 providers = ["aihubmix"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-04-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -22704,7 +22780,7 @@ display_name = "Coding MiniMax M2.7"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 204800
-max_output_tokens = 13100
+max_output_tokens = 128100
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 litellm_provider = "aihubmix"
@@ -22722,11 +22798,11 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 
 [models."coding-minimax-m2-7-free"]
-display_name = "Coding-MiniMax-M2.7-Free"
-model_family = "minimax"
+display_name = "Coding MiniMax M2.7 (Free)"
+model_family = "minimax-free"
 mode = "chat"
 max_input_tokens = 204800
-max_output_tokens = 13100
+max_output_tokens = 128100
 litellm_provider = "aihubmix"
 providers = ["aihubmix"]
 supports_function_calling = true
@@ -22742,7 +22818,7 @@ display_name = "Coding MiniMax M2.7 Highspeed"
 model_family = "minimax"
 mode = "chat"
 max_input_tokens = 204800
-max_output_tokens = 13100
+max_output_tokens = 128100
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 litellm_provider = "aihubmix"
@@ -22758,6 +22834,56 @@ source = "modelsdev"
 [models."coding-minimax-m2-7-highspeed".pricing."aihubmix"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
+
+[models."coding-xiaomi-mimo-v2-5"]
+display_name = "Coding Xiaomi MiMo-V2.5"
+model_family = "mimo-v2.5"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 8e-8
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1.6e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."coding-xiaomi-mimo-v2-5".pricing."aihubmix"]
+cache_read_input_token_cost = 1.6e-8
+input_cost_per_token = 8e-8
+output_cost_per_token = 4.0000000000000003e-7
+
+[models."coding-xiaomi-mimo-v2-5-pro"]
+display_name = "Coding Xiaomi MiMo-V2.5-Pro"
+model_family = "mimo-v2.5-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 4e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."coding-xiaomi-mimo-v2-5-pro".pricing."aihubmix"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 6e-7
 
 [models."cognitivecomputations/dolphin-2-9.2-qwen2-72b"]
 display_name = "Dolphin 72b"
@@ -25025,6 +25151,56 @@ providers = ["text-completion-openai"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000002
 
+[models."deep-deepseek-v4-flash"]
+display_name = "DeepSeek V4 Flash (DeepSeek)"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 1.54e-7
+output_cost_per_token = 3.08e-7
+cache_read_input_token_cost = 3.08e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deep-deepseek-v4-flash".pricing."aihubmix"]
+cache_read_input_token_cost = 3.08e-8
+input_cost_per_token = 1.54e-7
+output_cost_per_token = 3.08e-7
+
+[models."deep-deepseek-v4-pro"]
+display_name = "DeepSeek V4 Pro (DeepSeek)"
+model_family = "deepseek-thinking"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 4.78e-7
+output_cost_per_token = 9.56e-7
+cache_read_input_token_cost = 4.302e-9
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deep-deepseek-v4-pro".pricing."aihubmix"]
+cache_read_input_token_cost = 4.302e-9
+input_cost_per_token = 4.78e-7
+output_cost_per_token = 9.56e-7
+
 [models."deep-research-pro-preview-12-2025"]
 mode = "image_generation"
 max_input_tokens = 65536
@@ -27070,7 +27246,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "deepseek"
-providers = ["deepseek", "aihubmix", "alibaba-cn", "auriko", "cortecs", "llmgateway", "opencode-go", "venice"]
+providers = ["deepseek", "alibaba-cn", "auriko", "cortecs", "llmgateway", "opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27080,10 +27256,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."deepseek-v4-flash".pricing."aihubmix"]
-cache_read_input_token_cost = 3.08e-8
-input_cost_per_token = 1.54e-7
-output_cost_per_token = 3.08e-7
 [models."deepseek-v4-flash".pricing."alibaba-cn"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
@@ -27130,31 +27302,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."deepseek-v4-flash-think"]
-display_name = "DeepSeek V4 Flash Think"
-model_family = "deepseek"
-mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 384000
-input_cost_per_token = 1.54e-7
-output_cost_per_token = 3.08e-7
-cache_read_input_token_cost = 3.08e-8
-litellm_provider = "aihubmix"
-providers = ["aihubmix"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2026-04-24"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."deepseek-v4-flash-think".pricing."aihubmix"]
-cache_read_input_token_cost = 3.08e-8
-input_cost_per_token = 1.54e-7
-output_cost_per_token = 3.08e-7
-
 [models."deepseek-v4-pro"]
 display_name = "DeepSeek V4 Pro"
 model_family = "deepseek-thinking"
@@ -27165,7 +27312,7 @@ input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 cache_read_input_token_cost = 1.45e-7
 litellm_provider = "deepseek"
-providers = ["deepseek", "aihubmix", "alibaba-cn", "auriko", "cortecs", "digitalocean", "frogbot", "llmgateway", "opencode-go", "venice", "vivgrid"]
+providers = ["deepseek", "alibaba-cn", "auriko", "cortecs", "digitalocean", "frogbot", "llmgateway", "opencode-go", "venice", "vivgrid"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27175,10 +27322,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."deepseek-v4-pro".pricing."aihubmix"]
-cache_read_input_token_cost = 4.302e-9
-input_cost_per_token = 4.78e-7
-output_cost_per_token = 9.56e-7
 [models."deepseek-v4-pro".pricing."alibaba-cn"]
 cache_read_input_token_cost = 1.45e-7
 input_cost_per_token = 0.00000174
@@ -28860,6 +29003,30 @@ output_cost_per_token = 2.86e-7
 input_cost_per_token = 6.12e-7
 output_cost_per_token = 0.00000612
 
+[models."doubao-seed-2-0-code-preview"]
+display_name = "Doubao Seed 2.0 Code Preview"
+model_family = "seed"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 128000
+input_cost_per_token = 4.8e-7
+output_cost_per_token = 0.0000024100000000000002
+cache_read_input_token_cost = 9.644e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-2-0-code-preview".pricing."aihubmix"]
+cache_read_input_token_cost = 9.644e-8
+input_cost_per_token = 4.8e-7
+output_cost_per_token = 0.0000024100000000000002
+
 [models."doubao-seed-2-0-code-preview-260215"]
 display_name = "Doubao Seed 2.0 Code Preview"
 mode = "chat"
@@ -28906,6 +29073,30 @@ tiered_pricing = [{ input_cost_per_token = 8.7e-8, output_cost_per_token = 5.2e-
 input_cost_per_token = 1.462e-7
 output_cost_per_token = 8.738e-7
 
+[models."doubao-seed-2-0-lite-260428"]
+display_name = "Doubao Seed 2.0 Lite 260428"
+model_family = "seed"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 128000
+input_cost_per_token = 8e-8
+output_cost_per_token = 5.1e-7
+cache_read_input_token_cost = 1.6920000000000002e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-28"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-2-0-lite-260428".pricing."aihubmix"]
+cache_read_input_token_cost = 1.6920000000000002e-8
+input_cost_per_token = 8e-8
+output_cost_per_token = 5.1e-7
+
 [models."doubao-seed-2-0-mini-260215"]
 display_name = "Doubao Seed 2.0 Mini"
 mode = "chat"
@@ -28928,6 +29119,54 @@ tiered_pricing = [{ input_cost_per_token = 2.9e-8, output_cost_per_token = 2.9e-
 [models."doubao-seed-2-0-mini-260215".pricing."nano-gpt"]
 input_cost_per_token = 4.93e-8
 output_cost_per_token = 4.845e-7
+
+[models."doubao-seed-2-0-mini-260428"]
+display_name = "Doubao Seed 2.0 Mini 260428"
+model_family = "seed"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 128000
+input_cost_per_token = 3e-8
+output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 5.64e-9
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-04-28"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-2-0-mini-260428".pricing."aihubmix"]
+cache_read_input_token_cost = 5.64e-9
+input_cost_per_token = 3e-8
+output_cost_per_token = 2.8e-7
+
+[models."doubao-seed-2-0-pro"]
+display_name = "Doubao Seed 2.0 Pro"
+model_family = "seed"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 128000
+input_cost_per_token = 4.8e-7
+output_cost_per_token = 0.0000024100000000000002
+cache_read_input_token_cost = 9.644e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-02-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."doubao-seed-2-0-pro".pricing."aihubmix"]
+cache_read_input_token_cost = 9.644e-8
+input_cost_per_token = 4.8e-7
+output_cost_per_token = 0.0000024100000000000002
 
 [models."doubao-seed-2-0-pro-260215"]
 display_name = "Doubao Seed 2.0 Pro"
@@ -32853,7 +33092,7 @@ output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."aihubmix"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
-output_cost_per_token = 0.000002499
+output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."auriko"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -33699,7 +33938,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."gemini-3-1-flash-lite".pricing."aihubmix"]
-cache_read_input_token_cost = 2.5e-7
+cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 [models."gemini-3-1-flash-lite".pricing."google"]
@@ -36976,7 +37215,7 @@ max_output_tokens = 131072
 input_cost_per_token = 8.6e-7
 output_cost_per_token = 0.0000035
 litellm_provider = "302ai"
-providers = ["302ai", "aihubmix", "alibaba-cn", "auriko", "cortecs", "dinference", "llmgateway", "opencode", "opencode-go", "wafer.ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["302ai", "alibaba-cn", "auriko", "cortecs", "dinference", "llmgateway", "opencode", "opencode-go", "wafer.ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -36989,10 +37228,6 @@ source = "modelsdev"
 [models."glm-5-1".pricing."302ai"]
 input_cost_per_token = 8.6e-7
 output_cost_per_token = 0.0000035
-[models."glm-5-1".pricing."aihubmix"]
-cache_read_input_token_cost = 1.83112e-7
-input_cost_per_token = 8.45e-7
-output_cost_per_token = 0.00000338
 [models."glm-5-1".pricing."alibaba-cn"]
 cache_read_input_token_cost = 1.7000000000000001e-7
 input_cost_per_token = 8.7e-7
@@ -38638,7 +38873,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "azure-cognitive-services", "cortecs", "fastrouter", "github_copilot", "github-copilot", "github-models", "helicone", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -38664,10 +38899,6 @@ supports_web_search = true
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 [models."gpt-4.1".pricing."abacus"]
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000008
-[models."gpt-4.1".pricing."aihubmix"]
-cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 [models."gpt-4.1".pricing."azure"]
@@ -38798,7 +39029,7 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 cache_read_input_token_cost = 1e-7
 litellm_provider = "azure"
-providers = ["azure", "302ai", "abacus", "aihubmix", "azure-cognitive-services", "github-models", "helicone", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "302ai", "abacus", "azure-cognitive-services", "github-models", "helicone", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "sap-ai-core", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -38824,10 +39055,6 @@ supports_web_search = true
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 [models."gpt-4.1-mini".pricing."abacus"]
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.0000016000000000000001
-[models."gpt-4.1-mini".pricing."aihubmix"]
-cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 [models."gpt-4.1-mini".pricing."azure"]
@@ -41547,7 +41774,7 @@ output_cost_per_token = 0.00001
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5.1".pricing."aihubmix"]
-cache_read_input_token_cost = 1.25e-7
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5.1".pricing."azure"]
@@ -49782,7 +50009,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."kimi-k2-5".pricing."aihubmix"]
-cache_read_input_token_cost = 1.05e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 [models."kimi-k2-5".pricing."azure"]
@@ -49877,9 +50104,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."kimi-k2-6".pricing."aihubmix"]
-cache_read_input_token_cost = 1.60835e-7
+cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.0000039994999999999996
+output_cost_per_token = 0.000004
 [models."kimi-k2-6".pricing."azure"]
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
@@ -56055,9 +56282,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."minimax-m2-7".pricing."aihubmix"]
-cache_read_input_token_cost = 5.9159999999999995e-8
-input_cost_per_token = 2.958e-7
-output_cost_per_token = 0.0000011832
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."minimax-m2-7".pricing."auriko"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -64470,7 +64697,7 @@ input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.75e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "github-models", "helicone", "jiekou", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["azure", "abacus", "azure-cognitive-services", "cloudflare-ai-gateway", "github-models", "helicone", "jiekou", "kilo", "llmgateway", "nano-gpt", "openai", "openrouter", "poe", "replicate", "requesty", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -64490,10 +64717,6 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."o4-mini".pricing."abacus"]
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000044
-[models."o4-mini".pricing."aihubmix"]
-cache_read_input_token_cost = 2.75e-7
 input_cost_per_token = 0.0000011
 output_cost_per_token = 0.0000044
 [models."o4-mini".pricing."azure"]
@@ -65703,7 +65926,7 @@ providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2024-12-01"
+release_date = "2025-08-05"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_response_schema = true
@@ -65749,7 +65972,7 @@ providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2024-12-01"
+release_date = "2025-08-05"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_response_schema = true
@@ -65776,7 +65999,7 @@ providers = ["bedrock_converse", "amazon-bedrock", "bedrock_mantle"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2024-12-01"
+release_date = "2025-10-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_response_schema = true
@@ -65807,7 +66030,7 @@ providers = ["bedrock_converse", "amazon-bedrock", "bedrock_mantle"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2024-12-01"
+release_date = "2025-10-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_response_schema = true
@@ -70775,12 +70998,12 @@ output_cost_per_token = 1.0000000000000001e-7
 
 [models."qwen3-6-flash"]
 display_name = "Qwen3.6 Flash"
-model_family = "qwen"
+model_family = "qwen3.6"
 mode = "chat"
 max_input_tokens = 991000
 max_output_tokens = 64000
-input_cost_per_token = 1.6900000000000002e-7
-output_cost_per_token = 0.000001014
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.00000101
 cache_read_input_token_cost = 1.69e-8
 litellm_provider = "aihubmix"
 providers = ["aihubmix"]
@@ -70795,8 +71018,8 @@ source = "modelsdev"
 
 [models."qwen3-6-flash".pricing."aihubmix"]
 cache_read_input_token_cost = 1.69e-8
-input_cost_per_token = 1.6900000000000002e-7
-output_cost_per_token = 0.000001014
+input_cost_per_token = 1.7000000000000001e-7
+output_cost_per_token = 0.00000101
 
 [models."qwen3-6-max-preview"]
 display_name = "Qwen3.6 Max Preview"
@@ -70820,8 +71043,8 @@ source = "modelsdev"
 
 [models."qwen3-6-max-preview".pricing."aihubmix"]
 cache_read_input_token_cost = 1.268e-7
-input_cost_per_token = 0.000001268
-output_cost_per_token = 0.000007608
+input_cost_per_token = 0.0000012700000000000001
+output_cost_per_token = 0.00000761
 [models."qwen3-6-max-preview".pricing."alibaba"]
 cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.0000013
@@ -70860,8 +71083,8 @@ source = "modelsdev"
 
 [models."qwen3-6-plus".pricing."aihubmix"]
 cache_read_input_token_cost = 2.8199999999999998e-8
-input_cost_per_token = 2.8199999999999996e-7
-output_cost_per_token = 0.0000016919999999999999
+input_cost_per_token = 2.8e-7
+output_cost_per_token = 0.00000169
 [models."qwen3-6-plus".pricing."alibaba"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
@@ -80970,6 +81193,90 @@ cache_read_input_token_cost = 2e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 
+[models."xiaomi-mimo-v2-5"]
+display_name = "Xiaomi MiMo-V2.5"
+model_family = "mimo-v2.5"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 4.4e-7
+output_cost_per_token = 0.0000022
+cache_read_input_token_cost = 8.8e-8
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi-mimo-v2-5".pricing."aihubmix"]
+cache_read_input_token_cost = 8.8e-8
+input_cost_per_token = 4.4e-7
+output_cost_per_token = 0.0000022
+
+[models."xiaomi-mimo-v2-5-free"]
+display_name = "Xiaomi MiMo-V2.5 (free)"
+model_family = "mimo-v2.5"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi-mimo-v2-5-pro"]
+display_name = "Xiaomi MiMo-V2.5-Pro"
+model_family = "mimo-v2.5-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000032999999999999997
+cache_read_input_token_cost = 2.2e-7
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomi-mimo-v2-5-pro".pricing."aihubmix"]
+cache_read_input_token_cost = 2.2e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000032999999999999997
+
+[models."xiaomi-mimo-v2-5-pro-free"]
+display_name = "Xiaomi MiMo-V2.5-Pro (free)"
+model_family = "mimo-v2.5-pro"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+litellm_provider = "aihubmix"
+providers = ["aihubmix"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."xiaomi/mimo-v2-5"]
 display_name = "Xiaomi: MiMo-V2.5"
 model_family = "mimo"
@@ -81998,9 +82305,9 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "frogbot"
-providers = ["frogbot"]
+providers = ["frogbot", "aihubmix"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2024-10"
 release_date = "2025-01-20"
@@ -82008,6 +82315,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."zai-glm-5-1".pricing."aihubmix"]
+cache_read_input_token_cost = 1.83112e-7
+input_cost_per_token = 8.45e-7
+output_cost_per_token = 0.00000338
 [models."zai-glm-5-1".pricing."frogbot"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
