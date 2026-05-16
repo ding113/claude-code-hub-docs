@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.16"
-checksum = "08389eda85b09175fd16ba623f838c3dde46cc4e34be378f9bc6060fff180dbd"
+checksum = "f0bf4c9702950dc49aa5811a95de4a8630c2607f374c2a6beb31d428f6965d90"
 sources = ["litellm", "modelsdev"]
-total_models = 3456
+total_models = 3448
 litellm_raw_models = 2708
-modelsdev_raw_models = 4828
+modelsdev_raw_models = 4781
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -13065,27 +13065,6 @@ source = "modelsdev"
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 
-[models."alpindale/goliath-120b"]
-display_name = "Goliath 120B"
-mode = "chat"
-max_input_tokens = 6144
-max_output_tokens = 1024
-input_cost_per_token = 0.00000375
-output_cost_per_token = 0.0000075
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-release_date = "2023-11-10"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."alpindale/goliath-120b".pricing."kilo"]
-input_cost_per_token = 0.00000375
-output_cost_per_token = 0.0000075
-
 [models."amazon.nova-2-lite-v1:0"]
 display_name = "Nova 2 Lite"
 model_family = "nova"
@@ -13734,6 +13713,31 @@ source = "modelsdev"
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
+
+[models."anthropic--claude-4-7-opus"]
+display_name = "anthropic--claude-4.7-opus"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "sap-ai-core"
+providers = ["sap-ai-core"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-04-16"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic--claude-4-7-opus".pricing."sap-ai-core"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 
 [models."anthropic--claude-4-opus"]
 display_name = "anthropic--claude-4-opus"
@@ -16785,14 +16789,14 @@ input_cost_per_token = 8.4e-7
 output_cost_per_token = 0.00000337
 
 [models."baidu/qianfan-ocr-fast"]
-display_name = "Qianfan-OCR-Fast"
+display_name = "Baidu: Qianfan-OCR-Fast"
 mode = "chat"
 max_input_tokens = 65536
 max_output_tokens = 28672
 input_cost_per_token = 6.800000000000001e-7
 output_cost_per_token = 0.00000281
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
 supports_function_calling = false
 supports_reasoning = true
 open_weights = false
@@ -16801,24 +16805,12 @@ supported_modalities = ["image", "text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."baidu/qianfan-ocr-fast".pricing."kilo"]
+input_cost_per_token = 6.800000000000001e-7
+output_cost_per_token = 0.00000281
 [models."baidu/qianfan-ocr-fast".pricing."openrouter"]
 input_cost_per_token = 6.800000000000001e-7
 output_cost_per_token = 0.00000281
-
-[models."baidu/qianfan-ocr-fast:free"]
-display_name = "Baidu: Qianfan-OCR-Fast (free)"
-mode = "chat"
-max_input_tokens = 65536
-max_output_tokens = 28672
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = false
-supports_reasoning = true
-open_weights = false
-release_date = "2026-04-20"
-supported_modalities = ["image", "text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."base"]
 mode = "audio_transcription"
@@ -18139,7 +18131,7 @@ max_input_tokens = 200000
 max_output_tokens = 64000
 max_tokens = 64000
 litellm_provider = "heroku"
-providers = ["heroku", "helicone", "kilo", "llmgateway", "requesty", "vercel", "vercel_ai_gateway", "zenmux"]
+providers = ["heroku", "helicone", "llmgateway", "requesty", "vercel", "vercel_ai_gateway", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -18157,10 +18149,6 @@ supports_tool_choice = true
 
 [models."claude-3-7-sonnet".pricing."helicone"]
 cache_read_input_token_cost = 3.0000000000000004e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-[models."claude-3-7-sonnet".pricing."kilo"]
-cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."claude-3-7-sonnet".pricing."llmgateway"]
@@ -18390,29 +18378,6 @@ source = "modelsdev"
 [models."claude-3-7-sonnet-thinking:8192".pricing."nano-gpt"]
 input_cost_per_token = 0.000002992
 output_cost_per_token = 0.000014993999999999999
-
-[models."claude-3-7-sonnet:thinking"]
-display_name = "Anthropic: Claude 3.7 Sonnet (thinking)"
-mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 64000
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-cache_read_input_token_cost = 3e-7
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2025-02-19"
-supported_modalities = ["image", "pdf", "text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."claude-3-7-sonnet:thinking".pricing."kilo"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 
 [models."claude-3-7-sonnet@20250219"]
 display_name = "Claude Sonnet 3.7"
@@ -20720,7 +20685,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."claude-opus-4-7-fast"]
-display_name = "Claude Opus 4.7 (Fast)"
+display_name = "Anthropic: Claude Opus 4.7 (Fast)"
 model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
@@ -20728,16 +20693,20 @@ max_output_tokens = 128000
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00015
 cache_read_input_token_cost = 0.000003
-litellm_provider = "openrouter"
-providers = ["openrouter", "venice"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-12"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["image", "pdf", "text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."claude-opus-4-7-fast".pricing."kilo"]
+cache_read_input_token_cost = 0.000003
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00015
 [models."claude-opus-4-7-fast".pricing."openrouter"]
 cache_read_input_token_cost = 0.000003
 input_cost_per_token = 0.00003
@@ -28336,16 +28305,16 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
 [models."deepseek/deepseek-v4-flash:free"]
-display_name = "DeepSeek V4 Flash (free)"
+display_name = "DeepSeek: DeepSeek V4 Flash (free)"
 model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 384000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-04-24"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -33459,7 +33428,7 @@ output_cost_per_token = 4.0000000000000003e-7
 input_cost_per_token = 7e-8
 output_cost_per_token = 2.8e-7
 [models."gemini-2.5-flash-lite".pricing."sap-ai-core"]
-cache_read_input_token_cost = 2.5000000000000002e-8
+cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."vercel"]
@@ -34027,7 +33996,7 @@ output_cost_per_token = 0.00001
 output_cost_per_token_above_200k_tokens = 0.000015
 
 [models."gemini-3-1-flash-lite"]
-display_name = "Gemini 3.1 Flash Lite"
+display_name = "Google: Gemini 3.1 Flash Lite"
 model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 1048576
@@ -34035,14 +34004,14 @@ max_output_tokens = 65536
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2.5000000000000002e-8
-litellm_provider = "nearai"
-providers = ["nearai", "aihubmix", "google", "google-vertex", "llmgateway", "openrouter", "poe", "vercel"]
+litellm_provider = "kilo"
+providers = ["kilo", "aihubmix", "google", "google-vertex", "llmgateway", "nearai", "openrouter", "poe", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-01"
 release_date = "2026-05-07"
-supported_modalities = ["text", "image", "video", "audio", "pdf"]
+supported_modalities = ["audio", "image", "pdf", "text", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 reasoning_cost_per_token = 0.0000015
@@ -34059,6 +34028,11 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
+[models."gemini-3-1-flash-lite".pricing."kilo"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.0000015
+reasoning_cost_per_token = 0.0000015
 [models."gemini-3-1-flash-lite".pricing."llmgateway"]
 cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
@@ -45873,7 +45847,7 @@ max_tokens = 131072
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "azure", "azure-cognitive-services", "helicone", "llmgateway", "xai"]
+providers = ["azure_ai", "helicone", "xai"]
 supports_function_calling = true
 supports_reasoning = false
 supports_prompt_caching = true
@@ -45887,14 +45861,6 @@ supports_response_schema = false
 supports_tool_choice = true
 supports_web_search = true
 
-[models."grok-3".pricing."azure"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-[models."grok-3".pricing."azure-cognitive-services"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."grok-3".pricing."azure_ai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -45902,10 +45868,6 @@ output_cost_per_token = 0.000015
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."grok-3".pricing."helicone"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-[models."grok-3".pricing."llmgateway"]
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -45977,8 +45939,6 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."grok-3-fast-latest"]
-display_name = "Grok 3 Fast Latest"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -45989,13 +45949,7 @@ cache_read_input_token_cost = 0.00000125
 litellm_provider = "xai"
 providers = ["xai"]
 supports_function_calling = true
-supports_reasoning = false
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://x.ai/api#pricing"
 supports_response_schema = false
 supports_tool_choice = true
@@ -46007,8 +45961,6 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."grok-3-latest"]
-display_name = "Grok 3 Latest"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -46019,13 +45971,7 @@ cache_read_input_token_cost = 7.5e-7
 litellm_provider = "xai"
 providers = ["xai"]
 supports_function_calling = true
-supports_reasoning = false
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://x.ai/api#pricing"
 supports_response_schema = false
 supports_tool_choice = true
@@ -46046,7 +45992,7 @@ max_tokens = 131072
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.00000127
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "azure", "azure-cognitive-services", "helicone", "xai"]
+providers = ["azure_ai", "helicone", "xai"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -46056,21 +46002,10 @@ release_date = "2024-06-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://devblogs.microsoft.com/foundry/announcing-grok-3-and-grok-3-mini-on-azure-ai-foundry/"
-reasoning_cost_per_token = 5e-7
 supports_response_schema = false
 supports_tool_choice = true
 supports_web_search = true
 
-[models."grok-3-mini".pricing."azure"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 5e-7
-reasoning_cost_per_token = 5e-7
-[models."grok-3-mini".pricing."azure-cognitive-services"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 5e-7
-reasoning_cost_per_token = 5e-7
 [models."grok-3-mini".pricing."azure_ai"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.00000127
@@ -46119,8 +46054,6 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 
 [models."grok-3-mini-fast"]
-display_name = "Grok 3 Mini Fast"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -46133,13 +46066,7 @@ providers = ["xai"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://x.ai/api#pricing"
-reasoning_cost_per_token = 0.000004
 supports_response_schema = false
 supports_tool_choice = true
 supports_web_search = true
@@ -46181,8 +46108,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000004
 
 [models."grok-3-mini-fast-latest"]
-display_name = "Grok 3 Mini Fast Latest"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -46195,13 +46120,7 @@ providers = ["xai"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://x.ai/api#pricing"
-reasoning_cost_per_token = 0.000004
 supports_response_schema = false
 supports_tool_choice = true
 supports_web_search = true
@@ -46212,8 +46131,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000004
 
 [models."grok-3-mini-latest"]
-display_name = "Grok 3 Mini Latest"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -46226,13 +46143,7 @@ providers = ["xai"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://x.ai/api#pricing"
-reasoning_cost_per_token = 5e-7
 supports_response_schema = false
 supports_tool_choice = true
 supports_web_search = true
@@ -46252,9 +46163,9 @@ max_tokens = 256000
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "azure", "azure-cognitive-services", "helicone", "llmgateway", "xai"]
+providers = ["azure_ai", "helicone", "xai"]
 supports_function_calling = true
-supports_reasoning = true
+supports_reasoning = false
 supports_prompt_caching = true
 open_weights = false
 knowledge_cutoff = "2024-07"
@@ -46262,21 +46173,10 @@ release_date = "2024-07-09"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/grok/"
-reasoning_cost_per_token = 0.000015
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
-[models."grok-4".pricing."azure"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-reasoning_cost_per_token = 0.000015
-[models."grok-4".pricing."azure-cognitive-services"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-reasoning_cost_per_token = 0.000015
 [models."grok-4".pricing."azure_ai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -46284,11 +46184,6 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
-[models."grok-4".pricing."llmgateway"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-reasoning_cost_per_token = 0.000015
 [models."grok-4".pricing."xai"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -46355,8 +46250,6 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 
 [models."grok-4-1-fast"]
-display_name = "Grok 4.1 Fast"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 2000000
 max_output_tokens = 2000000
@@ -46365,16 +46258,11 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 5e-8
 litellm_provider = "xai"
-providers = ["xai", "llmgateway"]
+providers = ["xai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = false
-knowledge_cutoff = "2025-07"
-release_date = "2025-11-19"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 source = "https://docs.x.ai/docs/models/grok-4-1-fast-reasoning"
 input_cost_per_token_above_128k_tokens = 4e-7
 output_cost_per_token_above_128k_tokens = 0.000001
@@ -46383,10 +46271,6 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
-[models."grok-4-1-fast".pricing."llmgateway"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."grok-4-1-fast".pricing."xai"]
 cache_read_input_token_cost = 5e-8
 input_cost_per_token = 2e-7
@@ -46404,7 +46288,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "abacus", "azure", "frogbot", "helicone", "jiekou", "llmgateway", "xai"]
+providers = ["azure_ai", "302ai", "abacus", "azure", "frogbot", "helicone", "jiekou", "xai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
@@ -46444,10 +46328,6 @@ output_cost_per_token = 5e-7
 [models."grok-4-1-fast-non-reasoning".pricing."jiekou"]
 input_cost_per_token = 1.8e-7
 output_cost_per_token = 4.5000000000000003e-7
-[models."grok-4-1-fast-non-reasoning".pricing."llmgateway"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."grok-4-1-fast-non-reasoning".pricing."xai"]
 cache_read_input_token_cost = 5e-8
 input_cost_per_token = 2e-7
@@ -46807,35 +46687,6 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 
-[models."grok-4-fast"]
-display_name = "Grok 4 Fast"
-model_family = "grok"
-mode = "chat"
-max_input_tokens = 2000000
-max_output_tokens = 30000
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-cache_read_input_token_cost = 5.0000000000000004e-8
-litellm_provider = "llmgateway"
-providers = ["llmgateway", "xai"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-07"
-release_date = "2025-09-19"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."grok-4-fast".pricing."llmgateway"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-[models."grok-4-fast".pricing."xai"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-
 [models."grok-4-fast-non-reasoning"]
 display_name = "xAI Grok 4 Fast Non-Reasoning"
 model_family = "grok"
@@ -46846,7 +46697,7 @@ max_tokens = 2000000
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "abacus", "azure", "azure-cognitive-services", "helicone", "jiekou", "llmgateway", "xai"]
+providers = ["azure_ai", "302ai", "abacus", "helicone", "jiekou", "xai"]
 supports_function_calling = true
 supports_reasoning = false
 supports_prompt_caching = true
@@ -46865,14 +46716,6 @@ output_cost_per_token = 5e-7
 [models."grok-4-fast-non-reasoning".pricing."abacus"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
-[models."grok-4-fast-non-reasoning".pricing."azure"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-[models."grok-4-fast-non-reasoning".pricing."azure-cognitive-services"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."grok-4-fast-non-reasoning".pricing."azure_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 5e-7
@@ -46883,10 +46726,6 @@ output_cost_per_token = 5e-7
 [models."grok-4-fast-non-reasoning".pricing."jiekou"]
 input_cost_per_token = 1.8e-7
 output_cost_per_token = 4.5000000000000003e-7
-[models."grok-4-fast-non-reasoning".pricing."llmgateway"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."grok-4-fast-non-reasoning".pricing."xai"]
 cache_read_input_token_cost = 5e-8
 input_cost_per_token = 2e-7
@@ -47245,7 +47084,7 @@ max_tokens = 256000
 input_cost_per_token = 2e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "azure", "azure-cognitive-services", "frogbot", "github-copilot", "helicone", "jiekou", "llmgateway", "xai"]
+providers = ["azure_ai", "abacus", "frogbot", "github-copilot", "helicone", "jiekou", "xai"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -47262,14 +47101,6 @@ supports_web_search = true
 [models."grok-code-fast-1".pricing."abacus"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
-[models."grok-code-fast-1".pricing."azure"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.0000015
-[models."grok-code-fast-1".pricing."azure-cognitive-services"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.0000015
 [models."grok-code-fast-1".pricing."azure_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 0.0000015
@@ -47284,10 +47115,6 @@ output_cost_per_token = 0.0000015
 [models."grok-code-fast-1".pricing."jiekou"]
 input_cost_per_token = 1.8e-7
 output_cost_per_token = 0.00000135
-[models."grok-code-fast-1".pricing."llmgateway"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.0000015
 [models."grok-code-fast-1".pricing."xai"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 2e-7
@@ -49348,7 +49175,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
 litellm_provider = "novita-ai"
-providers = ["novita-ai", "openrouter"]
+providers = ["novita-ai", "kilo", "openrouter"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -49357,25 +49184,14 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."inclusionai/ling-2-6-1t".pricing."kilo"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."inclusionai/ling-2-6-1t".pricing."openrouter"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
-
-[models."inclusionai/ling-2-6-1t:free"]
-display_name = "inclusionAI: Ling-2.6-1T (free)"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 32768
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2026-04-23"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."inclusionai/ling-2-6-flash"]
 display_name = "Ling-2.6-flash"
@@ -49432,6 +49248,29 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
+
+[models."inclusionai/ring-2-6-1t"]
+display_name = "inclusionAI: Ring-2.6-1T"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 6.25e-7
+cache_read_input_token_cost = 1.5e-8
+litellm_provider = "kilo"
+providers = ["kilo"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-05-08"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."inclusionai/ring-2-6-1t".pricing."kilo"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 6.25e-7
 
 [models."inclusionai/ring-2-6-1t:free"]
 display_name = "Ring-2.6-1T (free)"
@@ -60744,10 +60583,8 @@ display_name = "Mistral: Mixtral 8x7B Instruct"
 mode = "chat"
 max_input_tokens = 32768
 max_output_tokens = 16384
-input_cost_per_token = 5.4e-7
-output_cost_per_token = 5.4e-7
-litellm_provider = "kilo"
-providers = ["kilo", "nvidia"]
+litellm_provider = "nvidia"
+providers = ["nvidia"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -60755,10 +60592,6 @@ release_date = "2023-12-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
-
-[models."mistralai/mixtral-8x7b-instruct".pricing."kilo"]
-input_cost_per_token = 5.4e-7
-output_cost_per_token = 5.4e-7
 
 [models."mistralai/mixtral-8x7b-instruct-v0.1"]
 display_name = "Mixtral 8x7B"
@@ -63604,7 +63437,6 @@ input_cost_per_token = 0.00000118
 output_cost_per_token = 0.00000118
 
 [models."nvidia/Llama-3.1-Nemotron-70B-Instruct"]
-display_name = "NVIDIA: Llama 3.1 Nemotron 70B Instruct"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -63612,21 +63444,13 @@ max_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 6e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "kilo"]
+providers = ["deepinfra"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2024-10-12"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_tool_choice = true
 
 [models."nvidia/Llama-3.1-Nemotron-70B-Instruct".pricing."deepinfra"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 6e-7
-[models."nvidia/Llama-3.1-Nemotron-70B-Instruct".pricing."kilo"]
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000012
 
 [models."nvidia/Llama-3.1-Nemotron-Ultra-253B-v1"]
 display_name = "Nvidia Nemotron Ultra 253B"
@@ -66904,22 +66728,25 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."perceptron/perceptron-mk1"]
-display_name = "Perceptron Mk1"
+display_name = "Perceptron: Perceptron Mk1"
 mode = "chat"
 max_input_tokens = 32768
 max_output_tokens = 8192
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
 supports_function_calling = false
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-12"
-supported_modalities = ["text", "image", "video"]
+supported_modalities = ["image", "text", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."perceptron/perceptron-mk1".pricing."kilo"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.0000015
 [models."perceptron/perceptron-mk1".pricing."openrouter"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
@@ -68782,29 +68609,6 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["image"]
 source = "modelsdev"
 
-[models."qwen/qwen-max"]
-display_name = "Qwen: Qwen-Max "
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 8192
-input_cost_per_token = 0.00000104
-output_cost_per_token = 0.00000416
-cache_read_input_token_cost = 3.2e-7
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2024-04-03"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen/qwen-max".pricing."kilo"]
-cache_read_input_token_cost = 3.2e-7
-input_cost_per_token = 0.00000104
-output_cost_per_token = 0.00000416
-
 [models."qwen/qwen-mt-plus"]
 display_name = "Qwen MT Plus"
 mode = "chat"
@@ -68911,52 +68715,7 @@ output_cost_per_token = 7.8e-7
 input_cost_per_token = 2.6e-7
 output_cost_per_token = 7.8e-7
 
-[models."qwen/qwen-turbo"]
-display_name = "Qwen: Qwen-Turbo"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 8192
-input_cost_per_token = 3.25e-8
-output_cost_per_token = 1.3e-7
-cache_read_input_token_cost = 1e-8
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2024-11-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen/qwen-turbo".pricing."kilo"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 3.25e-8
-output_cost_per_token = 1.3e-7
-
-[models."qwen/qwen-vl-max"]
-display_name = "Qwen: Qwen VL Max"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 32768
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.0000032000000000000003
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2024-04-08"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen/qwen-vl-max".pricing."kilo"]
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.0000032000000000000003
-
 [models."qwen/qwen-vl-plus"]
-display_name = "Qwen: Qwen VL Plus"
 mode = "chat"
 max_input_tokens = 8192
 max_output_tokens = 2048
@@ -68964,20 +68723,10 @@ max_tokens = 2048
 input_cost_per_token = 2.1e-7
 output_cost_per_token = 6.3e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo"]
-supports_function_calling = false
+providers = ["openrouter"]
 supports_vision = true
-supports_reasoning = false
-open_weights = false
-release_date = "2024-01-25"
-supported_modalities = ["image", "text"]
-supported_output_modalities = ["text"]
 supports_tool_choice = true
 
-[models."qwen/qwen-vl-plus".pricing."kilo"]
-cache_read_input_token_cost = 4.2000000000000006e-8
-input_cost_per_token = 1.365e-7
-output_cost_per_token = 4.0949999999999995e-7
 [models."qwen/qwen-vl-plus".pricing."openrouter"]
 input_cost_per_token = 2.1e-7
 output_cost_per_token = 6.3e-7
@@ -76073,7 +75822,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.699999999999999e-7
 
 [models."tencent/hy3-preview"]
-display_name = "Hy3 preview"
+display_name = "Tencent: Hy3 Preview"
 model_family = "Hy"
 mode = "chat"
 max_input_tokens = 262144
@@ -76081,16 +75830,20 @@ max_output_tokens = 262144
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 cache_read_input_token_cost = 2.9e-8
-litellm_provider = "openrouter"
-providers = ["openrouter", "zenmux"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-04-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."tencent/hy3-preview".pricing."kilo"]
+cache_read_input_token_cost = 2.9e-8
+input_cost_per_token = 6.600000000000001e-8
+output_cost_per_token = 2.6e-7
 [models."tencent/hy3-preview".pricing."openrouter"]
 cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
@@ -76099,21 +75852,6 @@ output_cost_per_token = 2.6e-7
 cache_read_input_token_cost = 5.8e-8
 input_cost_per_token = 1.7199999999999998e-7
 output_cost_per_token = 5.72e-7
-
-[models."tencent/hy3-preview:free"]
-display_name = "Tencent: Hy3 Preview (free)"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-04-22"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."text-bison"]
 mode = "completion"
@@ -76688,29 +76426,6 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000011
-
-[models."tngtech/deepseek-r1t2-chimera"]
-display_name = "TNG: DeepSeek R1T2 Chimera"
-mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 8.5e-7
-cache_read_input_token_cost = 1.25e-7
-litellm_provider = "kilo"
-providers = ["kilo"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2025-07-08"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."tngtech/deepseek-r1t2-chimera".pricing."kilo"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 8.5e-7
 
 [models."tngtech/tng-r1t-chimera"]
 display_name = "TNG R1T Chimera"
@@ -80989,116 +80704,100 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000006
 
 [models."x-ai/grok-3"]
-display_name = "xAI: Grok 3"
+display_name = "Grok 3"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
-max_output_tokens = 26215
+max_output_tokens = 8192
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 7.5e-7
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+litellm_provider = "openrouter"
+providers = ["openrouter"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2025-02-28"
-release_date = "2025-02-17"
+release_date = "2025-06-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-3".pricing."kilo"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."x-ai/grok-3".pricing."openrouter"]
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."x-ai/grok-3-beta"]
-display_name = "xAI: Grok 3 Beta"
+display_name = "Grok 3 Beta"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
-max_output_tokens = 26215
+max_output_tokens = 8192
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 7.5e-7
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+litellm_provider = "openrouter"
+providers = ["openrouter"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2025-02-28"
-release_date = "2025-02-17"
+release_date = "2025-04-09"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-3-beta".pricing."kilo"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."x-ai/grok-3-beta".pricing."openrouter"]
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."x-ai/grok-3-mini"]
-display_name = "xAI: Grok 3 Mini"
+display_name = "Grok 3 Mini"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
-max_output_tokens = 26215
+max_output_tokens = 8192
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 7.5e-8
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+litellm_provider = "openrouter"
+providers = ["openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-02-28"
-release_date = "2025-02-17"
+release_date = "2025-06-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-3-mini".pricing."kilo"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 5e-7
 [models."x-ai/grok-3-mini".pricing."openrouter"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 
 [models."x-ai/grok-3-mini-beta"]
-display_name = "xAI: Grok 3 Mini Beta"
+display_name = "Grok 3 Mini Beta"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
-max_output_tokens = 26215
+max_output_tokens = 8192
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 7.5e-8
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+litellm_provider = "openrouter"
+providers = ["openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-02-28"
-release_date = "2025-02-17"
+release_date = "2025-04-09"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-3-mini-beta".pricing."kilo"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 5e-7
 [models."x-ai/grok-3-mini-beta".pricing."openrouter"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
@@ -81114,7 +80813,7 @@ max_tokens = 256000
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "openrouter"
-providers = ["openrouter", "fastrouter", "kilo", "zenmux"]
+providers = ["openrouter", "fastrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81127,10 +80826,6 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."x-ai/grok-4".pricing."fastrouter"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-[models."x-ai/grok-4".pricing."kilo"]
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -81173,7 +80868,7 @@ max_output_tokens = 131072
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter", "zenmux"]
+providers = ["nano-gpt", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81183,10 +80878,6 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-4-1-fast".pricing."kilo"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."x-ai/grok-4-1-fast".pricing."nano-gpt"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -81384,7 +81075,7 @@ max_output_tokens = 131072
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter", "zenmux"]
+providers = ["nano-gpt", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81394,10 +81085,6 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-4-fast".pricing."kilo"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 [models."x-ai/grok-4-fast".pricing."nano-gpt"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -81441,7 +81128,7 @@ max_output_tokens = 131072
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter", "zenmux"]
+providers = ["nano-gpt", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81451,10 +81138,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."x-ai/grok-code-fast-1".pricing."kilo"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.0000015
 [models."x-ai/grok-code-fast-1".pricing."nano-gpt"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
@@ -81707,7 +81390,7 @@ max_tokens = 131072
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "github-models", "poe", "vercel"]
+providers = ["vercel_ai_gateway", "github-models", "poe"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81721,17 +81404,11 @@ supports_tool_choice = true
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
-[models."xai/grok-3".pricing."vercel"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
 [models."xai/grok-3".pricing."vercel_ai_gateway"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."xai/grok-3-fast"]
-display_name = "Grok 3 Fast"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -81739,24 +81416,10 @@ max_tokens = 131072
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "vercel", "xai"]
+providers = ["vercel_ai_gateway"]
 supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 
-[models."xai/grok-3-fast".pricing."vercel"]
-cache_read_input_token_cost = 0.00000125
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
 [models."xai/grok-3-fast".pricing."vercel_ai_gateway"]
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-[models."xai/grok-3-fast".pricing."xai"]
-cache_read_input_token_cost = 0.00000125
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
@@ -81770,7 +81433,7 @@ max_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "github-models", "poe", "vercel"]
+providers = ["vercel_ai_gateway", "github-models", "poe"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81778,25 +81441,17 @@ knowledge_cutoff = "2024-10"
 release_date = "2025-04-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-reasoning_cost_per_token = 5e-7
 supports_tool_choice = true
 
 [models."xai/grok-3-mini".pricing."poe"]
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
-[models."xai/grok-3-mini".pricing."vercel"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 5e-7
-reasoning_cost_per_token = 5e-7
 [models."xai/grok-3-mini".pricing."vercel_ai_gateway"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 5e-7
 
 [models."xai/grok-3-mini-fast"]
-display_name = "Grok 3 Mini Fast"
-model_family = "grok"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -81804,22 +81459,10 @@ max_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000004
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "vercel"]
+providers = ["vercel_ai_gateway"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-11"
-release_date = "2025-02-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-reasoning_cost_per_token = 0.000004
 supports_tool_choice = true
 
-[models."xai/grok-3-mini-fast".pricing."vercel"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000004
-reasoning_cost_per_token = 0.000004
 [models."xai/grok-3-mini-fast".pricing."vercel_ai_gateway"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000004
@@ -81834,7 +81477,7 @@ max_tokens = 256000
 input_cost_per_token = 0.0000072
 output_cost_per_token = 0.000036
 litellm_provider = "replicate"
-providers = ["replicate", "poe", "requesty", "vercel", "vercel_ai_gateway"]
+providers = ["replicate", "poe", "requesty", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81842,7 +81485,6 @@ knowledge_cutoff = "2025-01"
 release_date = "2025-09-09"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-reasoning_cost_per_token = 0.000015
 supports_system_messages = true
 supports_tool_choice = true
 
@@ -81857,11 +81499,6 @@ output_cost_per_token = 0.000036
 cache_read_input_token_cost = 7.5e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
-[models."xai/grok-4".pricing."vercel"]
-cache_read_input_token_cost = 7.5e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-reasoning_cost_per_token = 0.000015
 [models."xai/grok-4".pricing."vercel_ai_gateway"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
@@ -82051,21 +81688,16 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "poe"
-providers = ["poe", "vercel"]
+providers = ["poe"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
-knowledge_cutoff = "2025-07"
 release_date = "2025-09-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."xai/grok-4-fast-non-reasoning".pricing."poe"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-[models."xai/grok-4-fast-non-reasoning".pricing."vercel"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 5e-7
@@ -82231,21 +81863,16 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2e-8
 litellm_provider = "poe"
-providers = ["poe", "vercel"]
+providers = ["poe"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2023-10"
 release_date = "2025-08-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."xai/grok-code-fast-1".pricing."poe"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.0000015
-[models."xai/grok-code-fast-1".pricing."vercel"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
