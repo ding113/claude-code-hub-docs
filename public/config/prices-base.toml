@@ -2,11 +2,11 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.05.19"
-checksum = "fb30747fdc27178f1ddc9acdcf14cf411d4a26dcf27e6d614745f88dd4c68af5"
+version = "2026.05.20"
+checksum = "7ae7f1ed07c7ff0f8e2e2a619ebd0eba2530d29ab935f316f24f6c700175befd"
 sources = ["litellm", "modelsdev"]
 total_models = 3470
-litellm_raw_models = 2717
+litellm_raw_models = 2720
 modelsdev_raw_models = 4806
 custom_models = 5
 
@@ -34203,31 +34203,6 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 
-[models."gemini-3-5-flash"]
-display_name = "Gemini 3.5 Flash"
-model_family = "gemini-flash"
-mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 65536
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.000009
-cache_read_input_token_cost = 1.5e-7
-litellm_provider = "google"
-providers = ["google"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-01"
-release_date = "2026-05-19"
-supported_modalities = ["text", "image", "video", "audio", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."gemini-3-5-flash".pricing."google"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.000009
-
 [models."gemini-3-flash"]
 display_name = "Gemini-3-Flash"
 model_family = "gemini-flash"
@@ -35212,6 +35187,94 @@ output_cost_per_image = 0.00012
 output_cost_per_token = 0.000012
 output_cost_per_token_above_200k_tokens = 0.000018
 output_cost_per_token_batches = 0.000006
+
+[models."gemini-3.5-flash"]
+display_name = "Gemini 3.5 Flash"
+model_family = "gemini-flash"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65535
+max_tokens = 65535
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.000009
+cache_read_input_token_cost = 1.5e-7
+litellm_provider = "vertex_ai"
+providers = ["vertex_ai", "gemini", "google", "vertex_ai-language-models"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2026-05-19"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+cache_read_input_token_cost_priority = 2.7e-7
+input_cost_per_audio_token = 0.000001
+input_cost_per_audio_token_priority = 0.0000018
+input_cost_per_token_priority = 0.0000027
+max_audio_length_hours = 8.4
+max_audio_per_prompt = 1
+max_images_per_prompt = 3000
+max_pdf_size_mb = 30
+max_video_length = 1
+max_videos_per_prompt = 10
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token_priority = 0.0000162
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_audio_input = true
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_service_tier = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_url_context = true
+supports_video_input = true
+supports_web_search = true
+web_search_billing_unit = "per_query"
+
+[models."gemini-3.5-flash".search_context_cost_per_query]
+search_context_size_high = 0.014
+search_context_size_low = 0.014
+search_context_size_medium = 0.014
+
+[models."gemini-3.5-flash".pricing."gemini"]
+cache_read_input_token_cost = 1.5e-7
+cache_read_input_token_cost_priority = 2.7e-7
+input_cost_per_audio_token = 0.000001
+input_cost_per_audio_token_priority = 0.0000018
+input_cost_per_token = 0.0000015
+input_cost_per_token_priority = 0.0000027
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token = 0.000009
+output_cost_per_token_priority = 0.0000162
+[models."gemini-3.5-flash".pricing."google"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.000009
+[models."gemini-3.5-flash".pricing."vertex_ai"]
+cache_read_input_token_cost = 1.5e-7
+cache_read_input_token_cost_priority = 2.7e-7
+input_cost_per_audio_token = 0.000001
+input_cost_per_audio_token_priority = 0.0000018
+input_cost_per_token = 0.0000015
+input_cost_per_token_priority = 0.0000027
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token = 0.000009
+output_cost_per_token_priority = 0.0000162
+[models."gemini-3.5-flash".pricing."vertex_ai-language-models"]
+cache_read_input_token_cost = 1.5e-7
+cache_read_input_token_cost_priority = 2.7e-7
+input_cost_per_audio_token = 0.000001
+input_cost_per_audio_token_priority = 0.0000018
+input_cost_per_token = 0.0000015
+input_cost_per_token_priority = 0.0000027
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token = 0.000009
+output_cost_per_token_priority = 0.0000162
 
 [models."gemini-deep-research"]
 display_name = "gemini-deep-research"
