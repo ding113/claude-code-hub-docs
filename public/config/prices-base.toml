@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.21"
-checksum = "5eff22e6d042f4d127d238bfb5f30818768d74268b48f667e10f23bfdadc1721"
+checksum = "9e1eb0b332f60eabe874dd48d1104e0a5330f7f0af55308cee7b484f5b8c2a27"
 sources = ["litellm", "modelsdev"]
-total_models = 3495
+total_models = 3496
 litellm_raw_models = 2720
-modelsdev_raw_models = 4832
+modelsdev_raw_models = 4837
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12872,7 +12872,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.0000075
 cache_read_input_token_cost = 5e-7
 litellm_provider = "vercel"
-providers = ["vercel"]
+providers = ["vercel", "alibaba"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -12881,6 +12881,10 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."alibaba/qwen3-7-max".pricing."alibaba"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
 [models."alibaba/qwen3-7-max".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.0000025
@@ -35533,7 +35537,7 @@ input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000009
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai", "gemini", "google", "opencode", "openrouter", "poe", "vercel", "vertex_ai-language-models"]
+providers = ["vertex_ai", "gemini", "google", "llmgateway", "opencode", "openrouter", "poe", "vercel", "vertex_ai-language-models"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -35587,6 +35591,10 @@ output_cost_per_reasoning_token = 0.000009
 output_cost_per_token = 0.000009
 output_cost_per_token_priority = 0.0000162
 [models."gemini-3.5-flash".pricing."google"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.000009
+[models."gemini-3.5-flash".pricing."llmgateway"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000009
@@ -47233,47 +47241,57 @@ output_cost_per_token = 0.0000025
 display_name = "Grok 4.20 (Non-Reasoning)"
 model_family = "grok"
 mode = "chat"
-max_input_tokens = 262000
-max_output_tokens = 8192
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
-litellm_provider = "azure"
-providers = ["azure"]
+max_input_tokens = 2000000
+max_output_tokens = 30000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "llmgateway"
+providers = ["llmgateway", "azure"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2025-09"
-release_date = "2026-04-08"
-supported_modalities = ["text"]
+release_date = "2026-03-09"
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."grok-4-20-non-reasoning".pricing."azure"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+[models."grok-4-20-non-reasoning".pricing."llmgateway"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
 
 [models."grok-4-20-reasoning"]
 display_name = "Grok 4.20 (Reasoning)"
 model_family = "grok"
 mode = "chat"
-max_input_tokens = 262000
-max_output_tokens = 8192
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
-litellm_provider = "azure"
-providers = ["azure"]
+max_input_tokens = 2000000
+max_output_tokens = 30000
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "llmgateway"
+providers = ["llmgateway", "azure"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-09"
-release_date = "2026-04-08"
-supported_modalities = ["text"]
+release_date = "2026-03-09"
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."grok-4-20-reasoning".pricing."azure"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+[models."grok-4-20-reasoning".pricing."llmgateway"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.0000025
 
 [models."grok-4-3"]
 display_name = "Grok 4.3"
@@ -73754,6 +73772,30 @@ source = "modelsdev"
 [models."qwen35-397b-a17b".pricing."llmgateway"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
+
+[models."qwen37-max"]
+display_name = "Qwen3.7 Max"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
+cache_read_input_token_cost = 5e-7
+litellm_provider = "llmgateway"
+providers = ["llmgateway"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-05-21"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen37-max".pricing."llmgateway"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
 
 [models."qwq-plus"]
 display_name = "QwQ Plus"
