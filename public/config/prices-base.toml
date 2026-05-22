@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.22"
-checksum = "46c314b5424e4af1afc62a40d992e32fc7663d503437e56dec4de50c6db56113"
+checksum = "5316bea688507bed08cc3698205dfcf3b845b5b51c644f0d48de8b39822f8882"
 sources = ["litellm", "modelsdev"]
-total_models = 3498
+total_models = 3499
 litellm_raw_models = 2720
-modelsdev_raw_models = 4837
+modelsdev_raw_models = 4844
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -12795,7 +12795,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.0000075
 cache_read_input_token_cost = 5e-7
 litellm_provider = "vercel"
-providers = ["vercel", "alibaba"]
+providers = ["vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -12804,10 +12804,6 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."alibaba/qwen3-7-max".pricing."alibaba"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.0000075
 [models."alibaba/qwen3-7-max".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.0000025
@@ -28698,9 +28694,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 2.2e-8
-input_cost_per_token = 1.12e-7
-output_cost_per_token = 2.24e-7
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.9e-7
@@ -72565,18 +72561,17 @@ output_cost_per_token = 0.00000115
 display_name = "Qwen3.6 Flash"
 model_family = "qwen3.6"
 mode = "chat"
-max_input_tokens = 991000
-max_output_tokens = 64000
-input_cost_per_token = 1.7000000000000001e-7
-output_cost_per_token = 0.00000101
-cache_read_input_token_cost = 1.69e-8
-litellm_provider = "aihubmix"
-providers = ["aihubmix"]
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 1.875e-7
+output_cost_per_token = 0.000001125
+litellm_provider = "alibaba-coding-plan-cn"
+providers = ["alibaba-coding-plan-cn", "aihubmix", "alibaba", "alibaba-cn", "alibaba-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-04"
-release_date = "2026-04-02"
+release_date = "2026-04-27"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -72585,6 +72580,18 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.69e-8
 input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 0.00000101
+[models."qwen3-6-flash".pricing."alibaba"]
+input_cost_per_token = 1.875e-7
+output_cost_per_token = 0.000001125
+[models."qwen3-6-flash".pricing."alibaba-cn"]
+input_cost_per_token = 1.875e-7
+output_cost_per_token = 0.000001125
+[models."qwen3-6-flash".pricing."alibaba-coding-plan"]
+input_cost_per_token = 1.875e-7
+output_cost_per_token = 0.000001125
+[models."qwen3-6-flash".pricing."alibaba-coding-plan-cn"]
+input_cost_per_token = 1.875e-7
+output_cost_per_token = 0.000001125
 
 [models."qwen3-6-max-preview"]
 display_name = "Qwen3.6 Max Preview"
@@ -72686,6 +72693,42 @@ release_date = "2026-04-02"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."qwen3-7-max"]
+display_name = "Qwen3.7 Max"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
+cache_read_input_token_cost = 5e-7
+litellm_provider = "alibaba-coding-plan-cn"
+providers = ["alibaba-coding-plan-cn", "alibaba", "alibaba-cn", "alibaba-coding-plan"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-05-21"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-7-max".pricing."alibaba"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
+[models."qwen3-7-max".pricing."alibaba-cn"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
+[models."qwen3-7-max".pricing."alibaba-coding-plan"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
+[models."qwen3-7-max".pricing."alibaba-coding-plan-cn"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
 
 [models."qwen3-8b"]
 display_name = "Qwen3 8B"
