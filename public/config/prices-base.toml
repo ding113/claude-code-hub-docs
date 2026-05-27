@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.05.27"
-checksum = "968216ed26c317230986e05bd29004ba0744469563ee3b8cebab482b569ae725"
+checksum = "586250a39ea8db9acb32eb905c1383f5fb18b3e39c0fe13c18b6199cec9ebeea"
 sources = ["litellm", "modelsdev"]
-total_models = 3515
+total_models = 3520
 litellm_raw_models = 2739
-modelsdev_raw_models = 4852
+modelsdev_raw_models = 4862
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -16865,7 +16865,7 @@ mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 65536
 litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+providers = ["kilo"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -42938,7 +42938,7 @@ output_cost_per_token = 0.00001
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5.1-chat".pricing."openrouter"]
-cache_read_input_token_cost = 1.25e-7
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5.1-chat".pricing."requesty"]
@@ -43375,7 +43375,7 @@ cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 [models."gpt-5.1-codex-mini".pricing."openrouter"]
-cache_read_input_token_cost = 3e-8
+cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 [models."gpt-5.1-codex-mini".pricing."orcarouter"]
@@ -50008,16 +50008,16 @@ input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
 
 [models."inclusionai/ring-2-6-1t"]
-display_name = "inclusionAI: Ring-2.6-1T"
+display_name = "Ring-2.6-1T"
 model_family = "ring"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
-input_cost_per_token = 7.5e-8
-output_cost_per_token = 6.25e-7
-cache_read_input_token_cost = 1.5e-8
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 6e-8
+litellm_provider = "novita-ai"
+providers = ["novita-ai", "kilo", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -50030,6 +50030,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 6.25e-7
+[models."inclusionai/ring-2-6-1t".pricing."novita-ai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."inclusionai/ring-2-6-1t".pricing."openrouter"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
@@ -57183,13 +57187,30 @@ cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 [models."mimo-v2-5".pricing."opencode-go"]
-cache_read_input_token_cost = 8e-8
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000002
+cache_read_input_token_cost = 2.8e-9
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
 [models."mimo-v2-5".pricing."xiaomi"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+
+[models."mimo-v2-5-free"]
+display_name = "MiMo V2.5 Free"
+model_family = "mimo-v2.5-free"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+litellm_provider = "opencode"
+providers = ["opencode"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-24"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."mimo-v2-5-pro"]
 display_name = "MiMo-V2.5-Pro"
@@ -57220,9 +57241,9 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."mimo-v2-5-pro".pricing."opencode-go"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
+cache_read_input_token_cost = 1.45e-8
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
 [models."mimo-v2-5-pro".pricing."xiaomi"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
@@ -57252,14 +57273,65 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.0000025
 
+[models."mimo-v2-5-tts"]
+display_name = "MiMo-V2.5-TTS"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 8192
+litellm_provider = "xiaomi-token-plan-cn"
+providers = ["xiaomi-token-plan-cn", "xiaomi-token-plan-ams", "xiaomi-token-plan-sgp"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["audio"]
+source = "modelsdev"
+
+[models."mimo-v2-5-tts-voiceclone"]
+display_name = "MiMo-V2.5-TTS-VoiceClone"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 8192
+litellm_provider = "xiaomi-token-plan-cn"
+providers = ["xiaomi-token-plan-cn", "xiaomi-token-plan-ams", "xiaomi-token-plan-sgp"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["audio"]
+source = "modelsdev"
+
+[models."mimo-v2-5-tts-voicedesign"]
+display_name = "MiMo-V2.5-TTS-VoiceDesign"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 8192
+max_output_tokens = 8192
+litellm_provider = "xiaomi-token-plan-cn"
+providers = ["xiaomi-token-plan-cn", "xiaomi-token-plan-ams", "xiaomi-token-plan-sgp"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["audio"]
+source = "modelsdev"
+
 [models."mimo-v2-flash"]
 display_name = "MiMo-V2-Flash"
 model_family = "mimo"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
-litellm_provider = "xiaomi-token-plan-cn"
-providers = ["xiaomi-token-plan-cn", "llmgateway", "qiniu-ai", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-sgp"]
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "llmgateway"
+providers = ["llmgateway", "qiniu-ai", "xiaomi"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -57398,7 +57470,7 @@ display_name = "MiMo-V2-TTS"
 model_family = "mimo"
 mode = "chat"
 max_input_tokens = 8192
-max_output_tokens = 16384
+max_output_tokens = 8192
 litellm_provider = "xiaomi-token-plan-cn"
 providers = ["xiaomi-token-plan-cn", "xiaomi-token-plan-ams", "xiaomi-token-plan-sgp"]
 supports_function_calling = false
@@ -58050,8 +58122,8 @@ max_output_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
 cache_read_input_token_cost = 6e-8
-litellm_provider = "orcarouter"
-providers = ["orcarouter", "vercel", "zenmux"]
+litellm_provider = "novita-ai"
+providers = ["novita-ai", "orcarouter", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -58061,6 +58133,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."minimax/minimax-m2-7-highspeed".pricing."novita-ai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000024
 [models."minimax/minimax-m2-7-highspeed".pricing."orcarouter"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 6e-7
@@ -59543,7 +59619,7 @@ input_cost_per_token = 7.9e-7
 output_cost_per_token = 7.9e-7
 
 [models."mistral-small"]
-display_name = "Mistral Small"
+display_name = "Mistral Small 3.2"
 model_family = "mistral-small"
 mode = "chat"
 max_input_tokens = 32000
@@ -59555,9 +59631,9 @@ litellm_provider = "azure_ai"
 providers = ["azure_ai", "helicone", "mistral", "vercel", "vercel_ai_gateway"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2024-02"
-release_date = "2024-02-26"
+open_weights = true
+knowledge_cutoff = "2025-03"
+release_date = "2025-06-20"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 supports_assistant_prefill = true
@@ -59568,8 +59644,8 @@ supports_tool_choice = true
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 [models."mistral-small".pricing."helicone"]
-input_cost_per_token = 0.000075
-output_cost_per_token = 0.0002
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.0000000000000002e-7
 [models."mistral-small".pricing."mistral"]
 input_cost_per_token = 1e-7
 output_cost_per_token = 3e-7
@@ -68435,29 +68511,6 @@ source = "modelsdev"
 input_cost_per_token = 7.900000000000001e-7
 output_cost_per_token = 7.900000000000001e-7
 
-[models."qwen-3-235b-a22b-instruct-2507"]
-display_name = "Qwen 3 235B Instruct"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 131000
-max_output_tokens = 32000
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000012
-litellm_provider = "cerebras"
-providers = ["cerebras"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-22"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen-3-235b-a22b-instruct-2507".pricing."cerebras"]
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000012
-
 [models."qwen-3-32b"]
 mode = "chat"
 max_input_tokens = 128000
@@ -69588,8 +69641,7 @@ output_cost_per_token = 0.00000174
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
 [models."qwen/Qwen3-6-35B-A3B".pricing."openrouter"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 1.5e-7
+input_cost_per_token = 1.4e-7
 output_cost_per_token = 0.000001
 [models."qwen/Qwen3-6-35B-A3B".pricing."orcarouter"]
 input_cost_per_token = 2.48e-7
@@ -70485,9 +70537,8 @@ source = "modelsdev"
 input_cost_per_token = 3.25e-7
 output_cost_per_token = 0.00000325
 [models."qwen/qwen3-6-27b".pricing."openrouter"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.000002
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.0000032000000000000003
 
 [models."qwen/qwen3-6-flash"]
 display_name = "Qwen: Qwen3.6 Flash"
@@ -70540,20 +70591,20 @@ input_cost_per_token = 0.00000104
 output_cost_per_token = 0.00000624
 
 [models."qwen/qwen3-7-max"]
-display_name = "Qwen: Qwen3.7 Max"
+display_name = "Qwen3.7-Max"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 65536
-input_cost_per_token = 0.000001625
-output_cost_per_token = 0.000004875
-cache_read_input_token_cost = 1.625e-7
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter", "togetherai"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000375
+cache_read_input_token_cost = 1.25e-7
+litellm_provider = "novita-ai"
+providers = ["novita-ai", "kilo", "openrouter", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2025-08-26"
+release_date = "2026-05-21"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -70562,6 +70613,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.625e-7
 input_cost_per_token = 0.000001625
 output_cost_per_token = 0.000004875
+[models."qwen/qwen3-7-max".pricing."novita-ai"]
+cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000375
 [models."qwen/qwen3-7-max".pricing."openrouter"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.00000125
@@ -84131,6 +84186,31 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 
+[models."xiaomimimo/mimo-v2-5-pro"]
+display_name = "MiMo-V2.5-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 4.0000000000000003e-7
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomimimo/mimo-v2-5-pro".pricing."novita-ai"]
+cache_read_input_token_cost = 4.0000000000000003e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
 [models."xiaomimimo/mimo-v2-flash"]
 display_name = "XiaomiMiMo/MiMo-V2-Flash"
 model_family = "mimo"
@@ -84171,6 +84251,31 @@ output_cost_per_token = 3e-7
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
+
+[models."xiaomimimo/mimo-v2-pro"]
+display_name = "MiMo-V2-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 4.0000000000000003e-7
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2024-12"
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xiaomimimo/mimo-v2-pro".pricing."novita-ai"]
+cache_read_input_token_cost = 4.0000000000000003e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."xpersona-frieren-coder"]
 display_name = "Xpersona Frieren Coder"
