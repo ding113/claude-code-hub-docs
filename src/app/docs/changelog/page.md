@@ -124,7 +124,7 @@ language: zh
 ### 优化
 
 - i18n 设置模块拆分优化，引入翻译质量门禁机制 (#588) [@YangQing-Lin](https://github.com/YangQing-Lin)
-- OpenCode 使用文档更新，添加 GPT-5.2 和 Gemini v1beta 配置示例 (#597)
+- OpenCode 使用文档更新，添加 GPT-5.5 和 Gemini v1beta 配置示例 (#597)
 
 ### 修复
 
@@ -559,7 +559,7 @@ language: zh
 
 ### 其他
 
-- 更新使用文档：Codex 推荐模型更新为 gpt-5.2 with xhigh reasoning
+- 更新使用文档：Codex 推荐模型更新为 gpt-5.5 with xhigh reasoning
 - 更新 LiteLLM 模型价格数据
 
 ---
