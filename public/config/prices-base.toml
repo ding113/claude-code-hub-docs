@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.05.29"
-checksum = "5ffe15c77cb117af754705841dae0d8b1032dba76f2bab5ce4a0edb03e317e77"
+checksum = "1cd2abe1a0cae2d2184d6211ff16f7959c7ef956b1abd89ee5c2378d40c30e03"
 sources = ["litellm", "modelsdev"]
-total_models = 3532
-litellm_raw_models = 2739
+total_models = 3533
+litellm_raw_models = 2748
 modelsdev_raw_models = 4965
 custom_models = 5
 
@@ -14759,7 +14759,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -14796,7 +14795,6 @@ supports_native_streaming = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."anthropic.claude-haiku-4-5@20251001".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000125
@@ -14839,7 +14837,7 @@ supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = false
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_tool_choice = true
 
 [models."anthropic.claude-mythos-preview".pricing."bedrock"]
@@ -14873,7 +14871,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."anthropic.claude-opus-4-1-20250805-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -14910,7 +14907,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."anthropic.claude-opus-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -14946,14 +14942,14 @@ knowledge_cutoff = "2025-03-31"
 release_date = "2025-11-24"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "high"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."anthropic.claude-opus-4-5-20251101-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -14994,16 +14990,15 @@ knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "max"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -15044,16 +15039,16 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-04-16"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."anthropic.claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -15077,20 +15072,45 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_1hr = 0.00001
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."anthropic.claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -15119,7 +15139,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."anthropic.claude-sonnet-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -15170,7 +15189,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -15220,12 +15238,10 @@ cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -15995,7 +16011,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."apac.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
@@ -16027,7 +16042,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."apac.anthropic.claude-sonnet-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -16372,7 +16386,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."au.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -16407,15 +16420,14 @@ knowledge_cutoff = "2025-05"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "max"
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."au.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -16448,15 +16460,15 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+bedrock_output_config_effort_ceiling = "xhigh"
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."au.anthropic.claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -16475,23 +16487,48 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_1hr = 0.000011
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."au.anthropic.claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."au.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0"]
 display_name = "Claude Sonnet 4.5 (AU)"
@@ -16525,7 +16562,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -16572,12 +16608,10 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."au.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -18584,7 +18618,6 @@ supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-3-7-sonnet-20250219".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -18788,7 +18821,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-3-7-sonnet@20250219".pricing."google-vertex"]
 cache_read_input_token_cost = 3e-7
@@ -18879,7 +18911,6 @@ cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 264
 
 [models."claude-3-haiku-20240307".pricing."anthropic"]
 cache_creation_input_token_cost = 3e-7
@@ -18983,7 +19014,6 @@ cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 395
 
 [models."claude-3-opus-20240229".pricing."anthropic"]
 cache_creation_input_token_cost = 0.00001875
@@ -19127,7 +19157,6 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-3.5-sonnet".pricing."openrouter"]
 input_cost_per_token = 0.000003
@@ -19161,7 +19190,6 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-3.7-sonnet".pricing."openrouter"]
 input_cost_per_image = 0.0048
@@ -19302,7 +19330,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-4-opus-20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -19369,7 +19396,6 @@ supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-4-sonnet-20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -19967,7 +19993,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4-1-20250805".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20203,7 +20228,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4-20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20263,7 +20287,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
@@ -20367,10 +20391,9 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4-5-20251101".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20475,11 +20498,10 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
 supports_native_streaming = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4-5@20251101".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20676,11 +20698,9 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4-6-20260205".provider_specific_entry]
 fast = 6
@@ -20884,11 +20904,9 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4-6@default".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20937,13 +20955,11 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -21061,12 +21077,10 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4-7-20260416".provider_specific_entry]
 fast = 6
@@ -21167,11 +21181,9 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4-7@default".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -21198,21 +21210,47 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "anthropic"
-providers = ["anthropic", "github-copilot", "llmgateway", "opencode", "openrouter", "poe", "venice", "vercel"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "azure_ai"
+providers = ["azure_ai", "anthropic", "github-copilot", "llmgateway", "opencode", "openrouter", "poe", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_1hr = 0.00001
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."claude-opus-4-8".pricing."anthropic"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-8".pricing."azure_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -21236,6 +21274,12 @@ cache_read_input_token_cost = 6e-7
 input_cost_per_token = 0.000006
 output_cost_per_token = 0.00003
 [models."claude-opus-4-8".pricing."vercel"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-8".pricing."vertex_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -21274,24 +21318,46 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "google-vertex"
-providers = ["google-vertex", "google-vertex-anthropic"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "vertex_ai"
+providers = ["vertex_ai", "google-vertex", "google-vertex-anthropic"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+cache_creation_input_token_cost_above_1hr = 0.00001
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."claude-opus-4-8@default".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."claude-opus-4-8@default".pricing."google-vertex"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."claude-opus-4-8@default".pricing."google-vertex-anthropic"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-8@default".pricing."vertex_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -21422,7 +21488,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4.1".pricing."openrouter"]
 cache_creation_input_token_cost = 0.00001875
@@ -21451,7 +21516,7 @@ supports_prompt_caching = true
 supported_endpoints = ["/v1/chat/completions"]
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_tool_choice = true
@@ -21488,10 +21553,9 @@ supports_prompt_caching = true
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4.6".pricing."openrouter"]
 cache_creation_input_token_cost = 0.00000625
@@ -21555,7 +21619,6 @@ supports_max_reasoning_effort = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-opus-4.7".pricing."openrouter"]
 cache_creation_input_token_cost = 0.00000625
@@ -21609,7 +21672,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-opus-4@20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -21928,7 +21990,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-sonnet-4-20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -22118,7 +22179,6 @@ supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-sonnet-4-5-20250929".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -22211,7 +22271,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-sonnet-4-5-20250929-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.00000375
@@ -22514,11 +22573,9 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."claude-sonnet-4-6@default".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -22703,9 +22760,7 @@ output_cost_per_token_above_200k_tokens = 0.0000225
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-sonnet-4.6".pricing."openrouter"]
 cache_creation_input_token_cost = 0.00000375
@@ -22748,7 +22803,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."claude-sonnet-4@20250514".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -24827,7 +24881,7 @@ source = "https://www.databricks.com/product/pricing/proprietary-foundation-mode
 input_dbu_cost_per_token = 0.000071429
 output_dbu_cost_per_token = 0.000357143
 supports_assistant_prefill = true
-supports_minimal_reasoning_effort = true
+supports_output_config = true
 supports_tool_choice = true
 
 [models."databricks-claude-opus-4-5".metadata]
@@ -28607,11 +28661,10 @@ max_output_tokens = 65536
 input_cost_per_token = 2.7999999999999997e-7
 output_cost_per_token = 4.2000000000000006e-7
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter"]
+providers = ["nano-gpt", "kilo"]
 supports_function_calling = false
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2024-07"
 release_date = "2025-12-02"
 supported_modalities = ["text", "pdf"]
 supported_output_modalities = ["text"]
@@ -28624,10 +28677,6 @@ output_cost_per_token = 0.0000012
 [models."deepseek/deepseek-v3-2-speciale".pricing."nano-gpt"]
 input_cost_per_token = 2.7999999999999997e-7
 output_cost_per_token = 4.2000000000000006e-7
-[models."deepseek/deepseek-v3-2-speciale".pricing."openrouter"]
-cache_read_input_token_cost = 5.8e-8
-input_cost_per_token = 2.8699999999999996e-7
-output_cost_per_token = 4.31e-7
 
 [models."deepseek/deepseek-v3-2-thinking"]
 display_name = "DeepSeek V3.2 Thinking"
@@ -31560,7 +31609,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."eu.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -31592,7 +31640,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."eu.anthropic.claude-opus-4-1-20250805-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31625,7 +31672,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."eu.anthropic.claude-opus-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31661,13 +31707,13 @@ knowledge_cutoff = "2025-03-31"
 release_date = "2025-11-24"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "high"
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."eu.anthropic.claude-opus-4-5-20251101-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31707,15 +31753,14 @@ knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "max"
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."eu.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31755,15 +31800,15 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-04-16"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "xhigh"
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."eu.anthropic.claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31786,23 +31831,48 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_1hr = 0.000011
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."eu.anthropic.claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."eu.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."eu.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
@@ -31828,7 +31898,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31877,7 +31946,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."eu.anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31924,12 +31992,10 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."eu.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38523,7 +38589,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."global.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -38559,14 +38624,14 @@ knowledge_cutoff = "2025-03-31"
 release_date = "2025-11-24"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "high"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."global.anthropic.claude-opus-4-5-20251101-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38607,16 +38672,15 @@ knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "max"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."global.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38657,16 +38721,16 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-04-16"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."global.anthropic.claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38690,20 +38754,45 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_1hr = 0.00001
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."global.anthropic.claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."global.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."global.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -38732,7 +38821,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."global.anthropic.claude-sonnet-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38783,7 +38871,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."global.anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -38833,12 +38920,10 @@ cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."global.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -51040,7 +51125,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."jp.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
@@ -51129,7 +51213,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -51176,12 +51259,10 @@ supported_output_modalities = ["text"]
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."jp.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -58452,7 +58533,7 @@ output_cost_per_token = 0.0000048
 display_name = "MiniMax M2.5 (free)"
 model_family = "minimax"
 mode = "chat"
-max_input_tokens = 262144
+max_input_tokens = 196608
 max_output_tokens = 8192
 litellm_provider = "openrouter"
 providers = ["openrouter"]
@@ -78193,6 +78274,30 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."stepfun/step-3-7-flash"]
+display_name = "Step 3.7 Flash"
+model_family = "step"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 256000
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000115
+cache_read_input_token_cost = 4e-8
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-05-28"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."stepfun/step-3-7-flash".pricing."openrouter"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000115
+
 [models."structure"]
 mode = "image_edit"
 litellm_provider = "stability"
@@ -79822,7 +79927,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us-gov-east-1/anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.0000015
@@ -80100,7 +80204,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us-gov-west-1/anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock"]
 cache_creation_input_token_cost = 0.0000015
@@ -80219,7 +80322,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us-gov.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
@@ -80592,7 +80694,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 1.0000000000000001e-7
@@ -80632,7 +80733,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."us.anthropic.claude-opus-4-1-20250805-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80669,7 +80769,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."us.anthropic.claude-opus-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80705,14 +80804,14 @@ knowledge_cutoff = "2025-03-31"
 release_date = "2025-11-24"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "high"
 cache_creation_input_token_cost_above_1hr = 0.000011
 supports_assistant_prefill = true
 supports_computer_use = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."us.anthropic.claude-opus-4-5-20251101-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80753,16 +80852,15 @@ knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "max"
 cache_creation_input_token_cost_above_1hr = 0.000011
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us.anthropic.claude-opus-4-6-v1".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80803,16 +80901,16 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-04-16"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000011
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
+supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
-tool_use_system_prompt_tokens = 346
 
 [models."us.anthropic.claude-opus-4-7".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80836,23 +80934,48 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
 open_weights = false
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_1hr = 0.000011
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."us.anthropic.claude-opus-4-8".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
+[models."us.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
@@ -80878,7 +81001,6 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 159
 
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80929,7 +81051,6 @@ supports_computer_use = true
 supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us.anthropic.claude-sonnet-4-5-20250929-v1:0".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -80979,12 +81100,10 @@ cache_creation_input_token_cost_above_1hr = 0.0000066
 supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
-supports_minimal_reasoning_effort = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
-tool_use_system_prompt_tokens = 346
 
 [models."us.anthropic.claude-sonnet-4-6".search_context_cost_per_query]
 search_context_size_high = 0.01
