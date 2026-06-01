@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.01"
-checksum = "6ac81a949b590959cd5e51e84a7231ea9af62f1e9a36ff4f77f16a8a9acaa47c"
+checksum = "2e5d428aaaa4c4b78da7036d6ec6d6cc652b50e1280700ee00a35aef86266109"
 sources = ["litellm", "modelsdev"]
-total_models = 3530
+total_models = 3531
 litellm_raw_models = 2748
-modelsdev_raw_models = 4967
+modelsdev_raw_models = 4968
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -33408,7 +33408,6 @@ output_cost_per_token = 4e-7
 
 [models."gemini-2.0-flash-001"]
 display_name = "Gemini 2.0 Flash"
-model_family = "gemini-flash"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 1000000
@@ -33422,7 +33421,6 @@ supports_vision = true
 supports_reasoning = false
 supports_prompt_caching = true
 open_weights = false
-knowledge_cutoff = "2024-08-31"
 release_date = "2024-12-11"
 deprecation_date = "2026-06-01"
 supported_modalities = ["text", "image", "audio", "video"]
@@ -33567,7 +33565,6 @@ output_cost_per_token = 3e-7
 
 [models."gemini-2.0-flash-lite-001"]
 display_name = "Google: Gemini 2.0 Flash Lite"
-model_family = "gemini"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 8192
@@ -33575,13 +33572,12 @@ input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 cache_read_input_token_cost = 1.875e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "kilo", "openrouter"]
+providers = ["vertex_ai-language-models", "gemini", "kilo"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 supports_prompt_caching = true
 open_weights = false
-knowledge_cutoff = "2024-08-31"
 release_date = "2024-12-11"
 deprecation_date = "2026-06-01"
 supported_modalities = ["text", "image", "audio", "video"]
@@ -33612,9 +33608,6 @@ input_cost_per_audio_token = 7.5e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 [models."gemini-2.0-flash-lite-001".pricing."kilo"]
-input_cost_per_token = 7.5e-8
-output_cost_per_token = 3e-7
-[models."gemini-2.0-flash-lite-001".pricing."openrouter"]
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 [models."gemini-2.0-flash-lite-001".pricing."vertex_ai-language-models"]
@@ -58104,7 +58097,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
 cache_read_input_token_cost = 1.2e-7
 litellm_provider = "opencode-go"
-providers = ["opencode-go"]
+providers = ["opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -58118,6 +58111,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.2e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
+[models."minimax-m3".pricing."venice"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."minimax-m3-free"]
 display_name = "MiniMax M3 Free"
@@ -58662,9 +58659,9 @@ supports_computer_use = false
 supports_tool_choice = true
 
 [models."minimax/minimax-m2.5".pricing."hpc-ai"]
-cache_read_input_token_cost = 1.4e-8
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 5.6e-7
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2.5".pricing."kilo"]
 cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 2.5e-7
@@ -58694,6 +58691,30 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2.5".pricing."zenmux"]
 cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."minimax/minimax-m3"]
+display_name = "MiniMax M3"
+model_family = "minimax-m3"
+mode = "chat"
+max_input_tokens = 524288
+max_output_tokens = 512000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-05-31"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."minimax/minimax-m3".pricing."openrouter"]
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -63288,9 +63309,9 @@ output_cost_per_token = 0.0000028
 input_cost_per_token = 0.00000147
 output_cost_per_token = 0.0000059
 [models."moonshotai/kimi-k2.5".pricing."hpc-ai"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 2.1e-7
-output_cost_per_token = 0.000001
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000015
 [models."moonshotai/kimi-k2.5".pricing."huggingface"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
@@ -78402,9 +78423,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/hy3-preview".pricing."openrouter"]
-cache_read_input_token_cost = 2.1000000000000003e-8
-input_cost_per_token = 6.3e-8
-output_cost_per_token = 2.1e-7
+cache_read_input_token_cost = 2.9e-8
+input_cost_per_token = 6.600000000000001e-8
+output_cost_per_token = 2.6e-7
 [models."tencent/hy3-preview".pricing."zenmux"]
 cache_read_input_token_cost = 5.8e-8
 input_cost_per_token = 1.7199999999999998e-7
@@ -86584,9 +86605,9 @@ cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 [models."zai-org/glm-5-1".pricing."hpc-ai"]
-cache_read_input_token_cost = 1.2e-7
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.000002
+cache_read_input_token_cost = 1.33e-7
+input_cost_per_token = 6.15e-7
+output_cost_per_token = 0.00000246
 [models."zai-org/glm-5-1".pricing."huggingface"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
