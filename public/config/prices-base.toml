@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.04"
-checksum = "53ab484c4cfbf5a8be16199a135187a91cf3518e5489e712c5c8cb762e6c2e6f"
+checksum = "076cffde8ece729b16d050c76860210454308749564862e82b70f0b2a88bea1c"
 sources = ["litellm", "modelsdev"]
-total_models = 3571
+total_models = 3575
 litellm_raw_models = 2748
-modelsdev_raw_models = 5114
+modelsdev_raw_models = 5120
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2881,7 +2881,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-02-15"
+release_date = "2026-02-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -4910,7 +4910,8 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-04-25"
+knowledge_cutoff = "2025-04"
+release_date = "2025-04"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -4972,7 +4973,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-02-18"
+release_date = "2026-02-15"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -5037,7 +5038,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-04-25"
+release_date = "2026-04-22"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -7681,7 +7682,8 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-release_date = "2026-04-25"
+knowledge_cutoff = "2024-12-01"
+release_date = "2025-12-16"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -25829,7 +25831,8 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2025-12-29"
+knowledge_cutoff = "2024-07"
+release_date = "2025-01-20"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -37152,7 +37155,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-04-25"
+release_date = "2026-04-02"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -37963,7 +37966,7 @@ litellm_provider = "zai"
 providers = ["zai", "llmgateway", "zhipuai"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2025-04"
 release_date = "2025-07-28"
 supported_modalities = ["text"]
@@ -39002,6 +39005,7 @@ max_input_tokens = 256000
 max_output_tokens = 8192
 input_cost_per_token = 1.55e-7
 output_cost_per_token = 4.4e-7
+cache_read_input_token_cost = 1.2e-7
 litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
@@ -39013,6 +39017,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."google-gemma-4-31b-it".pricing."venice"]
+cache_read_input_token_cost = 1.2e-7
 input_cost_per_token = 1.55e-7
 output_cost_per_token = 4.4e-7
 
@@ -44730,7 +44735,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 2.5e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "abacus", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "github-copilot", "kilo", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openai", "opencode", "openrouter", "orcarouter", "perplexity-agent", "poe", "requesty", "sap-ai-core", "vercel", "vivgrid", "zenmux"]
+providers = ["azure_ai", "302ai", "abacus", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "cortecs", "github-copilot", "kilo", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openai", "opencode", "openrouter", "orcarouter", "perplexity-agent", "poe", "requesty", "sap-ai-core", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -44808,6 +44813,10 @@ output_cost_per_token_priority = 0.00003
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
+[models."gpt-5.4".pricing."cortecs"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.00001613
 [models."gpt-5.4".pricing."github-copilot"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
@@ -62859,7 +62868,7 @@ output_cost_per_token = 0.000003
 
 [models."moonshotai/Kimi-K2-5-TEE"]
 display_name = "Kimi K2.5 TEE"
-model_family = "kimi"
+model_family = "kimi-k2.5"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65535
@@ -62872,7 +62881,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2024-10"
-release_date = "2026-01-27"
+release_date = "2026-01"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -62909,7 +62918,7 @@ output_cost_per_token = 0.0000025
 
 [models."moonshotai/Kimi-K2-6-TEE"]
 display_name = "Kimi K2.6 TEE"
-model_family = "kimi"
+model_family = "kimi-k2.6"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65535
@@ -62922,7 +62931,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-12"
-release_date = "2026-04-20"
+release_date = "2026-04-21"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -65827,6 +65836,22 @@ supported_modalities = ["text", "audio"]
 supported_output_modalities = ["audio"]
 source = "modelsdev"
 
+[models."nvidia/nemotron-3-5-content-safety:free"]
+display_name = "Nemotron 3.5 Content Safety (free)"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 8192
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-04"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."nvidia/nemotron-3-content-safety"]
 display_name = "nemotron-3-content-safety"
 mode = "chat"
@@ -66008,6 +66033,50 @@ source = "modelsdev"
 [models."nvidia/nemotron-3-super-120b-a12b:thinking".pricing."nano-gpt"]
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.5e-7
+
+[models."nvidia/nemotron-3-ultra-550b-a55b"]
+display_name = "Nemotron 3 Ultra"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 16384
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 1.5e-7
+litellm_provider = "openrouter"
+providers = ["openrouter", "togetherai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-04"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia/nemotron-3-ultra-550b-a55b".pricing."openrouter"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+[models."nvidia/nemotron-3-ultra-550b-a55b".pricing."togetherai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
+
+[models."nvidia/nemotron-3-ultra-550b-a55b:free"]
+display_name = "Nemotron 3 Ultra (free)"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-04"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."nvidia/nemotron-content-safety-reasoning-4b"]
 display_name = "nemotron-content-safety-reasoning-4b"
@@ -69518,6 +69587,30 @@ cache_read_input_token_cost = 2.7e-7
 input_cost_per_token = 0.0000027
 output_cost_per_token = 0.000008050000000000001
 
+[models."qwen-3-7-plus"]
+display_name = "Qwen 3.7 Plus"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-06-02"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen-3-7-plus".pricing."venice"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000002
+
 [models."qwen-coder"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -70570,6 +70663,7 @@ providers = ["nano-gpt", "chutes"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
+knowledge_cutoff = "2025-04"
 release_date = "2025-07-25"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -71324,8 +71418,8 @@ cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 [models."qwen/qwen3-30b-a3b-instruct-2507".pricing."openrouter"]
-input_cost_per_token = 4.28e-8
-output_cost_per_token = 1.716e-7
+input_cost_per_token = 4.815e-8
+output_cost_per_token = 1.9305e-7
 [models."qwen/qwen3-30b-a3b-instruct-2507".pricing."siliconflow"]
 input_cost_per_token = 9e-8
 output_cost_per_token = 3e-7
@@ -76259,7 +76353,7 @@ litellm_provider = "routing-run"
 providers = ["routing-run"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -76283,7 +76377,7 @@ litellm_provider = "routing-run"
 providers = ["routing-run"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -80101,7 +80195,7 @@ litellm_provider = "umans-ai-coding-plan"
 providers = ["umans-ai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -81859,7 +81953,7 @@ litellm_provider = "bedrock_converse"
 providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 knowledge_cutoff = "2024-07"
 release_date = "2025-01-20"
 supported_modalities = ["text"]
@@ -86783,7 +86877,8 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2025-12-29"
+knowledge_cutoff = "2025-04"
+release_date = "2025-12-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -86963,7 +87058,7 @@ litellm_provider = "ambient"
 providers = ["ambient", "gmicloud", "inceptron", "nearai", "neuralwatt", "vultr"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -87004,7 +87099,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-04-08"
+release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -87055,7 +87150,7 @@ providers = ["chutes"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
-release_date = "2026-02-14"
+release_date = "2026-02-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -88261,7 +88356,7 @@ litellm_provider = "merge-gateway"
 providers = ["merge-gateway", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-03-27"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
