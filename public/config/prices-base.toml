@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.05"
-checksum = "fbb43fd59621532551ab87c0eaea9fb9cdade184f9a20a6a910bbd1e4e7dc1e5"
+checksum = "a9e6ebfa8c7081b5ef67b0e6f6999be8eb890c793ac72ef7873fa5f8e4d518cd"
 sources = ["litellm", "modelsdev"]
-total_models = 3575
+total_models = 3576
 litellm_raw_models = 2748
-modelsdev_raw_models = 5120
+modelsdev_raw_models = 5122
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -50480,8 +50480,6 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 7.5e-7
 
 [models."inception/mercury-coder-small"]
-display_name = "Mercury Coder Small Beta"
-model_family = "mercury"
 mode = "chat"
 max_input_tokens = 32000
 max_output_tokens = 16384
@@ -50489,17 +50487,8 @@ max_tokens = 16384
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "vercel"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = false
-release_date = "2025-02-26"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
+providers = ["vercel_ai_gateway"]
 
-[models."inception/mercury-coder-small".pricing."vercel"]
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.000001
 [models."inception/mercury-coder-small".pricing."vercel_ai_gateway"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000001
@@ -54703,27 +54692,6 @@ output_cost_per_token = 7.5e-7
 cache_read_input_token_cost = 3.125e-8
 input_cost_per_token = 3.125e-7
 output_cost_per_token = 9.375e-7
-
-[models."mercury-coder-small"]
-display_name = "Mercury Coder Small"
-mode = "chat"
-max_input_tokens = 32768
-max_output_tokens = 16384
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.000001
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2024-01-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."mercury-coder-small".pricing."nano-gpt"]
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.000001
 
 [models."mercury-edit-2"]
 display_name = "Mercury Edit 2"
@@ -68490,6 +68458,56 @@ supports_response_schema = true
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
+[models."openai.gpt-5-4"]
+display_name = "GPT-5.4"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+input_cost_per_token = 0.00000275
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 2.75e-7
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-08-31"
+release_date = "2026-03-05"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai.gpt-5-4".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 2.75e-7
+input_cost_per_token = 0.00000275
+output_cost_per_token = 0.0000165
+
+[models."openai.gpt-5-5"]
+display_name = "GPT-5.5"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.000033
+cache_read_input_token_cost = 5.5e-7
+litellm_provider = "amazon-bedrock"
+providers = ["amazon-bedrock"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-12-01"
+release_date = "2026-04-23"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."openai.gpt-5-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.000033
+
 [models."openai.gpt-5-mini"]
 mode = "chat"
 max_input_tokens = 272000
@@ -68531,6 +68549,8 @@ input_cost_per_token = 5e-8
 output_cost_per_token = 4e-7
 
 [models."openai.gpt-oss-120b"]
+display_name = "gpt-oss-120b"
+model_family = "gpt-oss"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 32768
@@ -68538,13 +68558,20 @@ max_tokens = 32768
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "bedrock_mantle"
-providers = ["bedrock_mantle"]
+providers = ["bedrock_mantle", "amazon-bedrock"]
 supports_function_calling = true
 supports_reasoning = true
+open_weights = false
+release_date = "2025-08-05"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."openai.gpt-oss-120b".pricing."amazon-bedrock"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 [models."openai.gpt-oss-120b".pricing."bedrock_mantle"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
@@ -68577,6 +68604,8 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 
 [models."openai.gpt-oss-20b"]
+display_name = "gpt-oss-20b"
+model_family = "gpt-oss"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 32768
@@ -68584,13 +68613,20 @@ max_tokens = 32768
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 litellm_provider = "bedrock_mantle"
-providers = ["bedrock_mantle"]
+providers = ["bedrock_mantle", "amazon-bedrock"]
 supports_function_calling = true
 supports_reasoning = true
+open_weights = false
+release_date = "2025-08-05"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 supports_parallel_function_calling = true
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."openai.gpt-oss-20b".pricing."amazon-bedrock"]
+input_cost_per_token = 7e-8
+output_cost_per_token = 3e-7
 [models."openai.gpt-oss-20b".pricing."bedrock_mantle"]
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
