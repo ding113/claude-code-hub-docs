@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.09"
-checksum = "1e5afef28538d2b82a38d22681aa87d16a77f0ba0bb1bbef021a4eb8c04a3cae"
+checksum = "21cef6294a5cf11e7e2265c8b34f29b59f3e68a21e9c225e7c7771d7b4d20f91"
 sources = ["litellm", "modelsdev"]
-total_models = 3587
+total_models = 3590
 litellm_raw_models = 2776
-modelsdev_raw_models = 5153
+modelsdev_raw_models = 5158
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -18862,6 +18862,34 @@ supports_tool_choice = true
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
+[models."claude-fable-5"]
+display_name = "Claude Fable 5"
+model_family = "claude-fable"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+cache_read_input_token_cost = 0.000001
+litellm_provider = "anthropic"
+providers = ["anthropic", "vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-06-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-fable-5".pricing."anthropic"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+[models."claude-fable-5".pricing."vercel"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+
 [models."claude-haiku-3"]
 display_name = "Claude-Haiku-3"
 model_family = "claude-haiku"
@@ -23928,21 +23956,26 @@ output_cost_per_token = 0.00001
 
 [models."command-a-plus-05-2026"]
 display_name = "Cohere Command A+ (05/2026)"
+model_family = "command-a"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 64000
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
-supports_function_calling = false
+providers = ["nano-gpt", "cohere"]
+supports_function_calling = true
 supports_reasoning = true
 open_weights = false
+knowledge_cutoff = "2025-04-01"
 release_date = "2026-05-22"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."command-a-plus-05-2026".pricing."cohere"]
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00001
 [models."command-a-plus-05-2026".pricing."nano-gpt"]
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.00001
@@ -64529,6 +64562,40 @@ providers = ["llamagate"]
 [models."nomic-embed-text".pricing."llamagate"]
 input_cost_per_token = 2e-8
 output_cost_per_token = 0
+
+[models."north-mini-code-1-0"]
+display_name = "North Mini Code"
+model_family = "north"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+litellm_provider = "cohere"
+providers = ["cohere"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-09-23"
+release_date = "2026-06-09"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."north-mini-code-free"]
+display_name = "North Mini Code Free"
+model_family = "north-free"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+litellm_provider = "opencode"
+providers = ["opencode"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-09-23"
+release_date = "2026-06-09"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."nothingiisreal/L3-1-70B-Celeste-V0-1-BF16"]
 display_name = "Llama 3.1 70B Celeste v0.1"
