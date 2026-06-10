@@ -2,8 +2,8 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.06.09"
-checksum = "e728e6d0fc1610d28946b9ce753ed67e55d17b2573a4ccb93622f78c5217f044"
+version = "2026.06.10"
+checksum = "eb7bed02de7a4138511e1a5ad88029142dd5e9302ad831dda3813d3e5f3dfc27"
 sources = ["litellm", "modelsdev"]
 total_models = 3594
 litellm_raw_models = 2776
@@ -15702,20 +15702,16 @@ max_output_tokens = 32000
 input_cost_per_token = 9.000000000000001e-7
 output_cost_per_token = 0.0000032999999999999997
 litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+providers = ["kilo"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2025-03-31"
 release_date = "2025-05-06"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."arcee-ai/maestro-reasoning".pricing."kilo"]
-input_cost_per_token = 9.000000000000001e-7
-output_cost_per_token = 0.0000032999999999999997
-[models."arcee-ai/maestro-reasoning".pricing."openrouter"]
 input_cost_per_token = 9.000000000000001e-7
 output_cost_per_token = 0.0000032999999999999997
 
@@ -18872,7 +18868,7 @@ input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 litellm_provider = "anthropic"
-providers = ["anthropic", "cloudflare-ai-gateway", "opencode", "vercel", "zenmux"]
+providers = ["anthropic", "cloudflare-ai-gateway", "opencode", "openrouter", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -18891,6 +18887,10 @@ cache_read_input_token_cost = 0.000001
 input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
 [models."claude-fable-5".pricing."opencode"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+[models."claude-fable-5".pricing."openrouter"]
 cache_read_input_token_cost = 0.000001
 input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
@@ -27691,7 +27691,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-9
 litellm_provider = "alibaba-cn"
-providers = ["alibaba-cn", "alibaba-token-plan", "auriko", "cortecs", "crof", "deepseek", "llmgateway", "opencode", "opencode-go", "venice", "wafer.ai"]
+providers = ["alibaba-cn", "alibaba-token-plan", "auriko", "azure", "cortecs", "crof", "deepseek", "llmgateway", "opencode", "opencode-go", "venice", "wafer.ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27709,6 +27709,9 @@ output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
+[models."deepseek-v4-flash".pricing."azure"]
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
 [models."deepseek-v4-flash".pricing."cortecs"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.33e-7
@@ -27769,7 +27772,7 @@ input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
 cache_read_input_token_cost = 3.625e-9
 litellm_provider = "alibaba-cn"
-providers = ["alibaba-cn", "alibaba-token-plan", "auriko", "cortecs", "crof", "deepseek", "digitalocean", "frogbot", "llmgateway", "opencode-go", "venice", "vivgrid", "wafer.ai"]
+providers = ["alibaba-cn", "alibaba-token-plan", "auriko", "azure", "cortecs", "crof", "deepseek", "digitalocean", "frogbot", "llmgateway", "opencode-go", "venice", "vivgrid", "wafer.ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -27787,6 +27790,9 @@ output_cost_per_token = 8.7e-7
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
+[models."deepseek-v4-pro".pricing."azure"]
+input_cost_per_token = 1.9e-7
+output_cost_per_token = 5.1e-7
 [models."deepseek-v4-pro".pricing."cortecs"]
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 0.000001553
@@ -59057,8 +59063,9 @@ cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."minimax/minimax-m2-7".pricing."openrouter"]
-input_cost_per_token = 2.7900000000000005e-7
-output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 5.4e-8
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 0.00000108
 [models."minimax/minimax-m2-7".pricing."orcarouter"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
@@ -86602,27 +86609,22 @@ output_cost_per_token = 0.000005
 
 [models."z-ai/glm-4-32b"]
 display_name = "Z.ai: GLM 4 32B "
-model_family = "glm"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 32768
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
 litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
+providers = ["kilo"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2024-06-30"
 release_date = "2025-07-25"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."z-ai/glm-4-32b".pricing."kilo"]
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 1.0000000000000001e-7
-[models."z-ai/glm-4-32b".pricing."openrouter"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 1.0000000000000001e-7
 
@@ -86699,23 +86701,6 @@ output_cost_per_token = 0.0000011
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.6e-7
-
-[models."z-ai/glm-4-5-air:free"]
-display_name = "GLM 4.5 Air (free)"
-model_family = "glm-air"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 96000
-litellm_provider = "openrouter"
-providers = ["openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2025-07-28"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."z-ai/glm-4-5v"]
 display_name = "GLM 4.5V"
@@ -86815,7 +86800,7 @@ source = "modelsdev"
 input_cost_per_token = 3e-7
 output_cost_per_token = 9.000000000000001e-7
 [models."z-ai/glm-4-6v".pricing."openrouter"]
-cache_read_input_token_cost = 5.0000000000000004e-8
+cache_read_input_token_cost = 5.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 9.000000000000001e-7
 [models."z-ai/glm-4-6v".pricing."zenmux"]
@@ -87151,7 +87136,6 @@ output_cost_per_token = 0.00000348
 
 [models."z-ai/glm-5v-turbo"]
 display_name = "GLM 5V Turbo"
-model_family = "glm"
 mode = "chat"
 max_input_tokens = 202800
 max_output_tokens = 131100
@@ -87159,7 +87143,7 @@ input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 2.4e-7
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter", "zenmux"]
+providers = ["nano-gpt", "kilo", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -87173,10 +87157,6 @@ cache_read_input_token_cost = 2.4e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
 [models."z-ai/glm-5v-turbo".pricing."nano-gpt"]
-cache_read_input_token_cost = 2.4e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.000004
-[models."z-ai/glm-5v-turbo".pricing."openrouter"]
 cache_read_input_token_cost = 2.4e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
@@ -89081,6 +89061,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.4e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000004
+
+[models."~anthropic/claude-fable-latest"]
+display_name = "Claude Fable Latest"
+model_family = "claude-fable"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+cache_read_input_token_cost = 0.000001
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-06-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."~anthropic/claude-fable-latest".pricing."openrouter"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 
 [models."~anthropic/claude-haiku-latest"]
 display_name = "Anthropic: Claude Haiku Latest"
