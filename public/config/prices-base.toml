@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.12"
-checksum = "d587f466a06526eaa7c336581e6fbf4d89d26ac0c6b20631bfd9a308f968a40d"
+checksum = "ffd9475e1c1f68720381ad85bfe856e16ace2fec54c152af3789a573acc1b561"
 sources = ["litellm", "modelsdev"]
-total_models = 3610
+total_models = 3611
 litellm_raw_models = 2784
-modelsdev_raw_models = 5250
+modelsdev_raw_models = 5257
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -29214,9 +29214,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.9699999999999998e-8
-input_cost_per_token = 9.83e-8
-output_cost_per_token = 1.966e-7
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 9.8e-8
+output_cost_per_token = 1.96e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -53010,8 +53010,8 @@ max_output_tokens = 262144
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.9e-7
-litellm_provider = "moonshotai"
-providers = ["moonshotai", "opencode-go"]
+litellm_provider = "opencode-go"
+providers = ["opencode-go"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -53021,10 +53021,6 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."kimi-k2-7-code".pricing."moonshotai"]
-cache_read_input_token_cost = 1.9e-7
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
 [models."kimi-k2-7-code".pricing."opencode-go"]
 cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -56203,7 +56199,6 @@ output_cost_per_token = 0.066
 
 [models."meta-llama/Llama-Guard-3-8B"]
 display_name = "Llama Guard 3 8B"
-model_family = "llama"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 131072
@@ -56211,11 +56206,10 @@ max_tokens = 131072
 input_cost_per_token = 5.5e-8
 output_cost_per_token = 5.5e-8
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "kilo", "nebius", "openrouter"]
+providers = ["deepinfra", "kilo", "nebius"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-knowledge_cutoff = "2023-12-31"
 release_date = "2024-04-18"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -56230,9 +56224,6 @@ output_cost_per_token = 6e-8
 [models."meta-llama/Llama-Guard-3-8B".pricing."nebius"]
 input_cost_per_token = 2e-8
 output_cost_per_token = 6e-8
-[models."meta-llama/Llama-Guard-3-8B".pricing."openrouter"]
-input_cost_per_token = 4.839999999999999e-7
-output_cost_per_token = 3e-8
 
 [models."meta-llama/Llama-Guard-4-12B"]
 mode = "chat"
@@ -64270,9 +64261,9 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-6".pricing."openrouter"]
-cache_read_input_token_cost = 1.4e-7
-input_cost_per_token = 6.7e-7
-output_cost_per_token = 0.00000339
+cache_read_input_token_cost = 3.4000000000000003e-7
+input_cost_per_token = 6.800000000000001e-7
+output_cost_per_token = 0.00000341
 [models."moonshotai/kimi-k2-6".pricing."siliconflow"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -64319,22 +64310,34 @@ output_cost_per_token = 0.00000273
 display_name = "Kimi K2.7 Code"
 model_family = "kimi-k2"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
+max_input_tokens = 256000
+max_output_tokens = 32768
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
-cache_read_input_token_cost = 1.6e-7
-litellm_provider = "zenmux"
-providers = ["zenmux"]
+cache_read_input_token_cost = 1.9e-7
+litellm_provider = "vercel"
+providers = ["vercel", "moonshotai", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 knowledge_cutoff = "2025-01"
 release_date = "2026-06-12"
-supported_modalities = ["text", "image", "video"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."moonshotai/kimi-k2-7-code".pricing."moonshotai"]
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-7-code".pricing."openrouter"]
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-7-code".pricing."vercel"]
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-7-code".pricing."zenmux"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -72236,8 +72239,9 @@ output_cost_per_token = 8e-7
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 8.000000000000001e-7
 [models."qwen/qwen2.5-vl-72b-instruct".pricing."openrouter"]
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 7.5e-7
+cache_read_input_token_cost = 4.0000000000000003e-7
+input_cost_per_token = 8.000000000000001e-7
+output_cost_per_token = 0.000001
 [models."qwen/qwen2.5-vl-72b-instruct".pricing."siliconflow"]
 input_cost_per_token = 5.9e-7
 output_cost_per_token = 5.9e-7
@@ -72755,8 +72759,8 @@ source = "modelsdev"
 input_cost_per_token = 3.25e-7
 output_cost_per_token = 0.00000325
 [models."qwen/qwen3-6-27b".pricing."openrouter"]
-input_cost_per_token = 2.8899999999999995e-7
-output_cost_per_token = 0.0000024
+input_cost_per_token = 2.8849999999999997e-7
+output_cost_per_token = 0.0000031699999999999997
 
 [models."qwen/qwen3-6-flash"]
 display_name = "Qwen: Qwen3.6 Flash"
@@ -81339,7 +81343,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "umans-ai-coding-plan"
-providers = ["umans-ai-coding-plan"]
+providers = ["umans-ai-coding-plan", "umans-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -81348,6 +81352,11 @@ release_date = "2026-04-21"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."umans-coder".pricing."umans-ai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 
 [models."umans-flash"]
 display_name = "Umans Flash"
@@ -81356,7 +81365,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "umans-ai-coding-plan"
-providers = ["umans-ai-coding-plan"]
+providers = ["umans-ai-coding-plan", "umans-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -81365,6 +81374,11 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."umans-flash".pricing."umans-ai"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.000001
+
 [models."umans-glm-5-1"]
 display_name = "GLM 5.1"
 model_family = "glm"
@@ -81372,14 +81386,19 @@ mode = "chat"
 max_input_tokens = 204800
 max_output_tokens = 131072
 litellm_provider = "umans-ai-coding-plan"
-providers = ["umans-ai-coding-plan"]
+providers = ["umans-ai-coding-plan", "umans-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 release_date = "2026-03-27"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."umans-glm-5-1".pricing."umans-ai"]
+cache_read_input_token_cost = 2.9e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."umans-kimi-k2-6"]
 display_name = "Kimi K2.6"
@@ -81388,15 +81407,42 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "umans-ai-coding-plan"
-providers = ["umans-ai-coding-plan"]
+providers = ["umans-ai-coding-plan", "umans-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-01"
 release_date = "2026-04-21"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."umans-kimi-k2-6".pricing."umans-ai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+
+[models."umans-kimi-k2-7"]
+display_name = "Kimi K2.7 Code"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "umans-ai-coding-plan"
+providers = ["umans-ai-coding-plan", "umans-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-06-12"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."umans-kimi-k2-7".pricing."umans-ai"]
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 
 [models."umans-qwen3-6-35b-a3b"]
 display_name = "Qwen3.6 35B A3B"
@@ -89872,9 +89918,9 @@ cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 7.4e-7
 output_cost_per_token = 0.00000349
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.4e-7
-input_cost_per_token = 6.7e-7
-output_cost_per_token = 0.00000339
+cache_read_input_token_cost = 3.4000000000000003e-7
+input_cost_per_token = 6.800000000000001e-7
+output_cost_per_token = 0.00000341
 
 [models."~openai/gpt-latest"]
 display_name = "OpenAI: GPT Latest"
