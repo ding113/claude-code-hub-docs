@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.13"
-checksum = "ffd9475e1c1f68720381ad85bfe856e16ace2fec54c152af3789a573acc1b561"
+checksum = "09a1cdc05b25ad82458fba000a936c586aafc14553be0472adaa53c03571c864"
 sources = ["litellm", "modelsdev"]
-total_models = 3611
+total_models = 3614
 litellm_raw_models = 2784
-modelsdev_raw_models = 5257
+modelsdev_raw_models = 5258
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3081,6 +3081,30 @@ cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.5".pricing."wandb"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."MiniMaxAI/MiniMax-M3"]
+display_name = "MiniMax-M3"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 524288
+max_output_tokens = 250000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "togetherai"
+providers = ["togetherai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."MiniMaxAI/MiniMax-M3".pricing."togetherai"]
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -9611,8 +9635,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 
 [models."accounts/fireworks/models/kimi-k2p5"]
-display_name = "Kimi K2.5"
-model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
@@ -9621,22 +9643,12 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 1e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-01"
-release_date = "2026-01-27"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
 source = "https://fireworks.ai/pricing"
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/kimi-k2p5".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.000003
 [models."accounts/fireworks/models/kimi-k2p5".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1e-7
 input_cost_per_token = 6e-7
@@ -9663,6 +9675,30 @@ source = "modelsdev"
 
 [models."accounts/fireworks/models/kimi-k2p6".pricing."fireworks-ai"]
 cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+
+[models."accounts/fireworks/models/kimi-k2p7-code"]
+display_name = "Kimi K2.7 Code"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 262000
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+cache_read_input_token_cost = 1.9e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/models/kimi-k2p7-code".pricing."fireworks-ai"]
+cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 
@@ -10165,30 +10201,6 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
-[models."accounts/fireworks/models/minimax-m2p5"]
-display_name = "MiniMax-M2.5"
-model_family = "minimax"
-mode = "chat"
-max_input_tokens = 196608
-max_output_tokens = 196608
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
-cache_read_input_token_cost = 3e-8
-litellm_provider = "fireworks-ai"
-providers = ["fireworks-ai"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-02-12"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."accounts/fireworks/models/minimax-m2p5".pricing."fireworks-ai"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
-
 [models."accounts/fireworks/models/minimax-m2p7"]
 display_name = "MiniMax-M2.7"
 model_family = "minimax"
@@ -10209,6 +10221,30 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."accounts/fireworks/models/minimax-m2p7".pricing."fireworks-ai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
+[models."accounts/fireworks/models/minimax-m3"]
+display_name = "MiniMax-M3"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 512000
+max_output_tokens = 512000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/models/minimax-m3".pricing."fireworks-ai"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
@@ -11768,29 +11804,29 @@ providers = ["fireworks_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
-[models."accounts/fireworks/models/qwen3p6-plus"]
-display_name = "Qwen 3.6 Plus"
+[models."accounts/fireworks/models/qwen3p7-plus"]
+display_name = "Qwen 3.7 Plus"
 model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000003
-cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
+cache_read_input_token_cost = 8e-8
 litellm_provider = "fireworks-ai"
 providers = ["fireworks-ai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-04-04"
+release_date = "2026-06-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."accounts/fireworks/models/qwen3p6-plus".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000003
+[models."accounts/fireworks/models/qwen3p7-plus".pricing."fireworks-ai"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000016000000000000001
 
 [models."accounts/fireworks/models/qwq-32b"]
 mode = "chat"
@@ -12131,6 +12167,30 @@ source = "modelsdev"
 
 [models."accounts/fireworks/routers/kimi-k2p6-turbo".pricing."fireworks-ai"]
 cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
+
+[models."accounts/fireworks/routers/kimi-k2p7-code-fast"]
+display_name = "Kimi K2.7 Code Fast"
+model_family = "kimi-thinking"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 262000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000008
+cache_read_input_token_cost = 3.8e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/kimi-k2p7-code-fast".pricing."fireworks-ai"]
+cache_read_input_token_cost = 3.8e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000008
 
@@ -19167,7 +19227,7 @@ output_cost_per_token = 0.000015
 
 [models."claude-fable-5"]
 display_name = "Claude Fable 5"
-model_family = "claude"
+model_family = "claude-fable"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -19177,7 +19237,7 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "anthropic", "azure", "cloudflare-ai-gateway", "freemodel", "github-copilot", "opencode", "openrouter", "venice", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "anthropic", "azure", "cloudflare-ai-gateway", "freemodel", "github-copilot", "opencode", "openrouter", "venice", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -19185,8 +19245,8 @@ supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
-release_date = "2026-06-09"
-supported_modalities = ["text", "image", "pdf"]
+release_date = "2026-06-10"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00002
 supports_adaptive_thinking = true
@@ -19244,10 +19304,6 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.0000012
 input_cost_per_token = 0.000012
 output_cost_per_token = 0.00006
-[models."claude-fable-5".pricing."vercel"]
-cache_read_input_token_cost = 0.000001
-input_cost_per_token = 0.00001
-output_cost_per_token = 0.00005
 [models."claude-fable-5".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.0000125
 cache_creation_input_token_cost_above_1hr = 0.00002
