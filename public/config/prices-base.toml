@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.06.14"
-checksum = "5ab8792cd495684934773e59cdbc85dc1e4725324f2f129ec73f8341e5307eb0"
+version = "2026.06.15"
+checksum = "c77408e57f1df7f17b39dd648184269ab706b8ff5be181d32fbd5a53f86f6825"
 sources = ["litellm", "modelsdev"]
-total_models = 3616
+total_models = 3618
 litellm_raw_models = 2784
-modelsdev_raw_models = 5262
+modelsdev_raw_models = 5268
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -49520,7 +49520,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "venice"
-providers = ["venice", "opencode"]
+providers = ["venice", "llmgateway", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -49529,6 +49529,10 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."grok-build-0-1".pricing."llmgateway"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000002
 [models."grok-build-0-1".pricing."opencode"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
@@ -50059,6 +50063,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 6e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
+
+[models."hf:MiniMaxAI/MiniMax-M3"]
+display_name = "MiniMax-M3"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 524288
+max_output_tokens = 65536
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-7
+litellm_provider = "synthetic"
+providers = ["synthetic"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."hf:MiniMaxAI/MiniMax-M3".pricing."synthetic"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000012
 
 [models."hf:Qwen/Qwen2-5-Coder-32B-Instruct"]
 display_name = "Qwen2.5-Coder-32B-Instruct"
@@ -53085,7 +53113,7 @@ input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.9e-7
 litellm_provider = "opencode-go"
-providers = ["opencode-go"]
+providers = ["opencode-go", "llmgateway"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -53095,6 +53123,10 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."kimi-k2-7-code".pricing."llmgateway"]
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
 [models."kimi-k2-7-code".pricing."opencode-go"]
 cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -60095,7 +60127,7 @@ litellm_provider = "vercel"
 providers = ["vercel", "nano-gpt", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-05-31"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -65267,6 +65299,30 @@ release_date = "2026-03-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."nemotron-3-ultra-550b"]
+display_name = "Nemotron 3 Ultra 550B A55B"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 1.5e-7
+litellm_provider = "llmgateway"
+providers = ["llmgateway"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-04"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nemotron-3-ultra-550b".pricing."llmgateway"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
 
 [models."nemotron-3-ultra-free"]
 display_name = "Nemotron 3 Ultra Free"
