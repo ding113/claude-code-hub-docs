@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.20"
-checksum = "f7a8746ac53d1fc90d4f1f5d38cfac7879541c02fff8037ec5f7b024fb02c00e"
+checksum = "2d83f70476314218180556ac5c7758b696c1547eac130a94c5e723cd6e2b40a1"
 sources = ["litellm", "modelsdev"]
-total_models = 3622
+total_models = 3623
 litellm_raw_models = 2784
-modelsdev_raw_models = 5288
+modelsdev_raw_models = 5289
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -23034,6 +23034,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000002
+
+[models."claudius"]
+display_name = "Claudius"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000008
+cache_read_input_token_cost = 9.000000000000001e-7
+litellm_provider = "claudinio"
+providers = ["claudinio"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-05-12"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claudius".pricing."claudinio"]
+cache_read_input_token_cost = 9.000000000000001e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000008
 
 [models."claw-high"]
 display_name = "Claw High"
@@ -64552,7 +64576,7 @@ display_name = "Kimi K2.7 Code High Speed"
 model_family = "kimi-k2"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 0
+max_output_tokens = 32768
 input_cost_per_token = 0.0000018999999999999998
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 3.8e-7
