@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.22"
-checksum = "400e1b0dd209b4c33e8523c92474a192330d27a7566d32483023c09a99b495b3"
+checksum = "f979ddb3a9cec3ff0b6684e3e9ebbaa42eb92417f1c4bb5a2d657cbf83f33fc7"
 sources = ["litellm", "modelsdev"]
-total_models = 3661
+total_models = 3663
 litellm_raw_models = 2875
-modelsdev_raw_models = 5288
+modelsdev_raw_models = 5289
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -18297,7 +18297,7 @@ max_input_tokens = 200000
 max_output_tokens = 8192
 max_tokens = 8192
 litellm_provider = "heroku"
-providers = ["heroku", "cloudflare-ai-gateway", "helicone", "kilo", "llmgateway", "opencode", "openrouter", "vercel", "vertex_ai", "zenmux"]
+providers = ["heroku", "cloudflare-ai-gateway", "helicone", "kilo", "llmgateway", "opencode", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_reasoning = false
 supports_pdf_input = true
@@ -18327,10 +18327,6 @@ cache_read_input_token_cost = 8e-8
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.000004
 [models."claude-3-5-haiku".pricing."opencode"]
-cache_read_input_token_cost = 8e-8
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.000004
-[models."claude-3-5-haiku".pricing."openrouter"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.000004
@@ -39537,7 +39533,7 @@ mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 131072
 litellm_provider = "alibaba-token-plan-cn"
-providers = ["alibaba-token-plan-cn", "alibaba-token-plan", "cortecs", "crof", "llmgateway", "neuralwatt", "opencode-go", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["alibaba-token-plan-cn", "alibaba-token-plan", "cortecs", "crof", "llmgateway", "neuralwatt", "opencode-go", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -39562,6 +39558,10 @@ output_cost_per_token = 0.0000044
 input_cost_per_token = 0.0000014499999999999999
 output_cost_per_token = 0.0000045
 [models."glm-5-2".pricing."opencode-go"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+[models."glm-5-2".pricing."zai"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
@@ -66311,12 +66311,36 @@ output_cost_per_token = 0.000001
 input_cost_per_token = 2.7999999999999997e-7
 output_cost_per_token = 4.2000000000000006e-7
 
+[models."nex-agi/nex-n2-pro"]
+display_name = "Nex-N2-Pro"
+model_family = "agi"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 2.5e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = false
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-08"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nex-agi/nex-n2-pro".pricing."openrouter"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
+
 [models."nex-agi/nex-n2-pro:free"]
 display_name = "Nex-N2-Pro (free)"
 model_family = "agi"
 mode = "chat"
 max_input_tokens = 262144
-max_output_tokens = 262144
+max_output_tokens = 256000
 litellm_provider = "openrouter"
 providers = ["openrouter"]
 supports_function_calling = true
@@ -89070,16 +89094,16 @@ input_cost_per_token = 8.781e-7
 output_cost_per_token = 0.0000035126
 
 [models."z-ai/glm-5-2"]
-display_name = "GLM-5.2"
+display_name = "GLM 5.2"
 model_family = "glm"
 mode = "chat"
-max_input_tokens = 1048576
+max_input_tokens = 1000000
 max_output_tokens = 131072
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000041
-cache_read_input_token_cost = 2.0000000000000002e-7
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 2.6e-7
+litellm_provider = "zenmux"
+providers = ["zenmux", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -89089,9 +89113,29 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000041
+cache_read_input_token_cost = 1.8e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000004
+[models."z-ai/glm-5-2".pricing."zenmux"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000045
+
+[models."z-ai/glm-5-2-free"]
+display_name = "GLM 5.2 (Free)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+litellm_provider = "zenmux"
+providers = ["zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."z-ai/glm-5-turbo"]
 display_name = "GLM 5 Turbo"
