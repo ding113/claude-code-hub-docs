@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.23"
-checksum = "db3dd4d55f8b06d870177b987e66fed05f386d4576240129ac3c16d779eba733"
+checksum = "87651fa5d2ac275e5b8c75aa3667be6eca25f109e2b3790622c2dd1f0b243f0c"
 sources = ["litellm", "modelsdev"]
 total_models = 3663
 litellm_raw_models = 2875
-modelsdev_raw_models = 5332
+modelsdev_raw_models = 5336
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -21443,13 +21443,14 @@ output_cost_per_token = 0.000025
 cache_read_input_token_cost = 5e-7
 cache_creation_input_token_cost = 0.00000625
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "anthropic", "cloudflare-ai-gateway", "fastrouter", "freemodel", "github-copilot", "llmgateway", "merge-gateway", "nano-gpt", "opencode", "openrouter", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "anthropic", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "fastrouter", "freemodel", "github-copilot", "llmgateway", "merge-gateway", "nano-gpt", "opencode", "openrouter", "poe", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
+knowledge_cutoff = "2025-12-31"
 release_date = "2026-05-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -21472,6 +21473,14 @@ search_context_size_medium = 0.01
 [models."claude-opus-4-8".pricing."anthropic"]
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-8".pricing."azure"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-4-8".pricing."azure-cognitive-services"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -27174,7 +27183,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 0
 litellm_provider = "tensormesh"
-providers = ["tensormesh", "deepinfra", "gmicloud", "huggingface", "nvidia", "siliconflow"]
+providers = ["tensormesh", "deepinfra", "gmicloud", "huggingface", "nvidia", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -27205,6 +27214,10 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek-ai/DeepSeek-V4-Flash".pricing."siliconflow"]
 cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
+[models."deepseek-ai/DeepSeek-V4-Flash".pricing."siliconflow-cn"]
+cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek-ai/DeepSeek-V4-Flash".pricing."tensormesh"]
@@ -39579,7 +39592,7 @@ mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 131072
 litellm_provider = "alibaba-token-plan-cn"
-providers = ["alibaba-token-plan-cn", "alibaba-token-plan", "cortecs", "crof", "llmgateway", "neuralwatt", "opencode", "opencode-go", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["alibaba-token-plan-cn", "alibaba-token-plan", "cortecs", "crof", "llmgateway", "neuralwatt", "opencode", "opencode-go", "wafer.ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -39611,6 +39624,10 @@ output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+[models."glm-5-2".pricing."wafer.ai"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.0000041
 [models."glm-5-2".pricing."zai"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
