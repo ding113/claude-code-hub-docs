@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.24"
-checksum = "82588c87f66ece330c9633c90dda4285d8c4f658e08baa152d5dbaf2c9c25348"
+checksum = "425857340f37be0afe75a8abb733ac5b2a3f7c8f6012564c26bc71aab00685eb"
 sources = ["litellm", "modelsdev"]
 total_models = 3637
 litellm_raw_models = 2901
-modelsdev_raw_models = 5296
+modelsdev_raw_models = 5299
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5432,6 +5432,34 @@ output_cost_per_token = 0.00000174
 input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 2.5e-7
 
+[models."Qwen/Qwen3-6-27B"]
+display_name = "Qwen3.6 27B"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 4.6999999999999995e-7
+output_cost_per_token = 0.00000319
+litellm_provider = "huggingface"
+providers = ["huggingface", "kilo", "openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Qwen/Qwen3-6-27B".pricing."huggingface"]
+input_cost_per_token = 4.6999999999999995e-7
+output_cost_per_token = 0.00000319
+[models."Qwen/Qwen3-6-27B".pricing."kilo"]
+input_cost_per_token = 3.25e-7
+output_cost_per_token = 0.00000325
+[models."Qwen/Qwen3-6-27B".pricing."openrouter"]
+input_cost_per_token = 2.8849999999999997e-7
+output_cost_per_token = 0.0000031699999999999997
+
 [models."Qwen/Qwen3-6-27B-TEE"]
 display_name = "Qwen3.6 27B TEE"
 model_family = "qwen"
@@ -8186,6 +8214,37 @@ source = "modelsdev"
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
+
+[models."XiaomiMiMo/MiMo-V2-5-Pro"]
+display_name = "MiMo-V2.5-Pro"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+litellm_provider = "huggingface"
+providers = ["huggingface", "deepinfra", "novita-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."XiaomiMiMo/MiMo-V2-5-Pro".pricing."deepinfra"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+[models."XiaomiMiMo/MiMo-V2-5-Pro".pricing."huggingface"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
+[models."XiaomiMiMo/MiMo-V2-5-Pro".pricing."novita-ai"]
+cache_read_input_token_cost = 4.0000000000000003e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."XiaomiMiMo/MiMo-V2-Flash-TEE"]
 display_name = "MiMo V2 Flash TEE"
@@ -73532,31 +73591,6 @@ cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000024
 
-[models."qwen/qwen3-6-27b"]
-display_name = "Qwen: Qwen3.6 27B"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 65536
-input_cost_per_token = 3.25e-7
-output_cost_per_token = 0.00000325
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-04-27"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen/qwen3-6-27b".pricing."kilo"]
-input_cost_per_token = 3.25e-7
-output_cost_per_token = 0.00000325
-[models."qwen/qwen3-6-27b".pricing."openrouter"]
-input_cost_per_token = 2.8849999999999997e-7
-output_cost_per_token = 0.0000031699999999999997
-
 [models."qwen/qwen3-6-flash"]
 display_name = "Qwen: Qwen3.6 Flash"
 model_family = "qwen3.6"
@@ -81062,6 +81096,28 @@ cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 
+[models."stepfun-ai/Step-3-7-Flash"]
+display_name = "Step 3.7 Flash"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 256000
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000115
+litellm_provider = "huggingface"
+providers = ["huggingface", "nvidia"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2026-01-01"
+release_date = "2026-05-29"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."stepfun-ai/Step-3-7-Flash".pricing."huggingface"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.00000115
+
 [models."stepfun-ai/step-3-5-flash-2603"]
 display_name = "Step 3.5 Flash 2603"
 mode = "chat"
@@ -81082,21 +81138,6 @@ source = "modelsdev"
 [models."stepfun-ai/step-3-5-flash-2603".pricing."nano-gpt"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
-
-[models."stepfun-ai/step-3-7-flash"]
-display_name = "Step 3.7 Flash"
-mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 16384
-litellm_provider = "nvidia"
-providers = ["nvidia"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-05-28"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."stepfun/step-3"]
 display_name = "Step-3"
@@ -87930,35 +87971,6 @@ output_cost_per_token = 8.7e-7
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
-
-[models."xiaomimimo/mimo-v2-5-pro"]
-display_name = "MiMo-V2.5-Pro"
-model_family = "mimo"
-mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 131072
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
-cache_read_input_token_cost = 4.0000000000000003e-7
-litellm_provider = "novita-ai"
-providers = ["novita-ai", "deepinfra"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2024-12"
-release_date = "2026-04-22"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."xiaomimimo/mimo-v2-5-pro".pricing."deepinfra"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
-[models."xiaomimimo/mimo-v2-5-pro".pricing."novita-ai"]
-cache_read_input_token_cost = 4.0000000000000003e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
 
 [models."xiaomimimo/mimo-v2-flash"]
 display_name = "MiMo-V2-Flash"
