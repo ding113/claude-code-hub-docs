@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.06.28"
-checksum = "ffb70cb7d61430cf8ca2b0e56a2ca97e4df2da9d2a80f25c57d2ab8066e753ed"
+version = "2026.06.29"
+checksum = "0f03b782f5ad4f614b05a2eec8460a85fa98dfd3258da001e9025de6bd84a8e0"
 sources = ["litellm", "modelsdev"]
-total_models = 3625
+total_models = 3624
 litellm_raw_models = 2918
-modelsdev_raw_models = 5247
+modelsdev_raw_models = 5245
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -20749,39 +20749,6 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
-[models."claude-opus-4-6-fast"]
-display_name = "Claude Opus 4.6 Fast"
-model_family = "claude-opus"
-mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 128000
-input_cost_per_token = 0.000036
-output_cost_per_token = 0.00018
-cache_read_input_token_cost = 0.0000036000000000000003
-litellm_provider = "venice"
-providers = ["venice", "kilo", "openrouter"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-05-31"
-release_date = "2026-04-08"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."claude-opus-4-6-fast".pricing."kilo"]
-cache_read_input_token_cost = 0.000003
-input_cost_per_token = 0.00003
-output_cost_per_token = 0.00015
-[models."claude-opus-4-6-fast".pricing."openrouter"]
-cache_read_input_token_cost = 0.000003
-input_cost_per_token = 0.00003
-output_cost_per_token = 0.00015
-[models."claude-opus-4-6-fast".pricing."venice"]
-cache_read_input_token_cost = 0.0000036000000000000003
-input_cost_per_token = 0.000036
-output_cost_per_token = 0.00018
-
 [models."claude-opus-4-6-think"]
 display_name = "Claude Opus 4.6 Thinking"
 model_family = "claude-opus"
@@ -21722,17 +21689,34 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."claude-opus-4.6-fast"]
+display_name = "Anthropic: Claude Opus 4.6 (Fast)"
+model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 16000
 max_tokens = 16000
 litellm_provider = "github_copilot"
-providers = ["github_copilot"]
+providers = ["github_copilot", "kilo", "openrouter"]
 supports_function_calling = true
 supports_vision = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-05-31"
+release_date = "2026-04-07"
+supported_modalities = ["image", "text"]
+supported_output_modalities = ["text"]
 supported_endpoints = ["/v1/chat/completions"]
 supports_adaptive_thinking = true
 supports_parallel_function_calling = true
+
+[models."claude-opus-4.6-fast".pricing."kilo"]
+cache_read_input_token_cost = 0.000003
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00015
+[models."claude-opus-4.6-fast".pricing."openrouter"]
+cache_read_input_token_cost = 0.000003
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00015
 
 [models."claude-opus-4.7"]
 mode = "chat"
@@ -52735,9 +52719,9 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."kimi-k2-6".pricing."llmgateway"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000028
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000022
 [models."kimi-k2-6".pricing."moonshotai-cn"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -52998,7 +52982,7 @@ input_cost_per_token = 0.00000115
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "moonshot"
-providers = ["moonshot", "302ai", "llmgateway", "moonshotai", "moonshotai-cn"]
+providers = ["moonshot", "302ai", "moonshotai", "moonshotai-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -53014,10 +52998,6 @@ supports_web_search = true
 [models."kimi-k2-thinking-turbo".pricing."302ai"]
 input_cost_per_token = 0.000001265
 output_cost_per_token = 0.000009119
-[models."kimi-k2-thinking-turbo".pricing."llmgateway"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 0.00000115
-output_cost_per_token = 0.000008
 [models."kimi-k2-thinking-turbo".pricing."moonshot"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.00000115
@@ -64283,9 +64263,9 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/Kimi-K2.6".pricing."openrouter"]
-cache_read_input_token_cost = 1.44e-7
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000341
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.0000032000000000000003
 [models."moonshotai/Kimi-K2.6".pricing."siliconflow"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 7.7e-7
@@ -90409,9 +90389,9 @@ cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 7.4e-7
 output_cost_per_token = 0.00000349
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.44e-7
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000341
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.0000032000000000000003
 
 [models."~openai/gpt-latest"]
 display_name = "OpenAI: GPT Latest"
