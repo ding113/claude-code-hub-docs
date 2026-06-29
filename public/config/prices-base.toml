@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.06.29"
-checksum = "0f03b782f5ad4f614b05a2eec8460a85fa98dfd3258da001e9025de6bd84a8e0"
+checksum = "0500edac3cd355584cd5f4bb52e7e2d815cb95f451663a16f23206975a4a8c02"
 sources = ["litellm", "modelsdev"]
-total_models = 3624
+total_models = 3631
 litellm_raw_models = 2918
-modelsdev_raw_models = 5245
+modelsdev_raw_models = 5254
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3325,8 +3325,8 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."MiniMaxAI/MiniMax-M2.5".pricing."inceptron"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 2.4e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.5e-7
 output_cost_per_token = 9.000000000000001e-7
 [models."MiniMaxAI/MiniMax-M2.5".pricing."meganova"]
 input_cost_per_token = 3e-7
@@ -5814,6 +5814,7 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."Qwen/Qwen3.5-397B-A17B-FP8".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.725e-7
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.000004139999999999999
 [models."Qwen/Qwen3.5-397B-A17B-FP8".pricing."tensormesh"]
@@ -39156,28 +39157,6 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.0000032000000000000003
 
-[models."glm-5-1-fast"]
-display_name = "GLM 5.1 Fast"
-model_family = "glm"
-mode = "chat"
-max_input_tokens = 202736
-max_output_tokens = 202736
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000036000000000000003
-litellm_provider = "neuralwatt"
-providers = ["neuralwatt"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-release_date = "2026-04-07"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."glm-5-1-fast".pricing."neuralwatt"]
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000036000000000000003
-
 [models."glm-5-2"]
 display_name = "GLM-5.2"
 model_family = "glm"
@@ -39211,6 +39190,7 @@ cache_read_input_token_cost = 2.34e-7
 input_cost_per_token = 0.00000126
 output_cost_per_token = 0.00000396
 [models."glm-5-2".pricing."neuralwatt"]
+cache_read_input_token_cost = 3.6249999999999997e-7
 input_cost_per_token = 0.0000014499999999999999
 output_cost_per_token = 0.0000045
 [models."glm-5-2".pricing."opencode"]
@@ -39240,14 +39220,63 @@ cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 
-[models."glm-5-2-short"]
-display_name = "GLM 5.2 short"
+[models."glm-5-2-fast"]
+display_name = "GLM 5.2 Fast"
 model_family = "glm"
 mode = "chat"
-max_input_tokens = 200000
-max_output_tokens = 200000
+max_input_tokens = 1048560
+max_output_tokens = 1048560
 input_cost_per_token = 0.0000014499999999999999
 output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 3.6249999999999997e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-06-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 3.6249999999999997e-7
+input_cost_per_token = 0.0000014499999999999999
+output_cost_per_token = 0.0000045
+
+[models."glm-5-2-flex"]
+display_name = "GLM 5.2 Flex"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048560
+max_output_tokens = 1048560
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
+cache_read_input_token_cost = 1.8124999999999999e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-flex".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.8124999999999999e-7
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
+
+[models."glm-5-2-short"]
+display_name = "GLM 5.2 Short"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 199984
+max_output_tokens = 199984
+input_cost_per_token = 0.0000014499999999999999
+output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 3.6249999999999997e-7
 litellm_provider = "neuralwatt"
 providers = ["neuralwatt"]
 supports_function_calling = true
@@ -39259,8 +39288,81 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."glm-5-2-short".pricing."neuralwatt"]
+cache_read_input_token_cost = 3.6249999999999997e-7
 input_cost_per_token = 0.0000014499999999999999
 output_cost_per_token = 0.0000045
+
+[models."glm-5-2-short-fast"]
+display_name = "GLM 5.2 Short Fast"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 199984
+max_output_tokens = 199984
+input_cost_per_token = 0.0000014499999999999999
+output_cost_per_token = 0.0000045
+cache_read_input_token_cost = 3.6249999999999997e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-06-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-short-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 3.6249999999999997e-7
+input_cost_per_token = 0.0000014499999999999999
+output_cost_per_token = 0.0000045
+
+[models."glm-5-2-short-fast-flex"]
+display_name = "GLM 5.2 Short Fast Flex"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 199984
+max_output_tokens = 199984
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
+cache_read_input_token_cost = 1.8124999999999999e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-06-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-short-fast-flex".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.8124999999999999e-7
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
+
+[models."glm-5-2-short-flex"]
+display_name = "GLM 5.2 Short Flex"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 199984
+max_output_tokens = 199984
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
+cache_read_input_token_cost = 1.8124999999999999e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-short-flex".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.8124999999999999e-7
+input_cost_per_token = 7.249999999999999e-7
+output_cost_per_token = 0.00000225
 
 [models."glm-5-code"]
 mode = "chat"
@@ -39283,28 +39385,6 @@ cache_creation_input_token_cost = 0
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000005
-
-[models."glm-5-fast"]
-display_name = "GLM 5 Fast"
-model_family = "glm"
-mode = "chat"
-max_input_tokens = 202736
-max_output_tokens = 202736
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000036000000000000003
-litellm_provider = "neuralwatt"
-providers = ["neuralwatt"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-release_date = "2026-04-07"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."glm-5-fast".pricing."neuralwatt"]
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000036000000000000003
 
 [models."glm-5-free"]
 display_name = "GLM-5 Free"
@@ -52623,6 +52703,7 @@ max_input_tokens = 262128
 max_output_tokens = 262128
 input_cost_per_token = 5.2e-7
 output_cost_per_token = 0.0000025899999999999998
+cache_read_input_token_cost = 1.3e-7
 litellm_provider = "neuralwatt"
 providers = ["neuralwatt"]
 supports_function_calling = true
@@ -52634,6 +52715,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."kimi-k2-5-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 5.2e-7
 output_cost_per_token = 0.0000025899999999999998
 
@@ -52754,6 +52836,7 @@ max_input_tokens = 262128
 max_output_tokens = 262128
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.00000322
+cache_read_input_token_cost = 1.725e-7
 litellm_provider = "neuralwatt"
 providers = ["neuralwatt"]
 supports_function_calling = true
@@ -52765,8 +52848,33 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."kimi-k2-6-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.725e-7
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.00000322
+
+[models."kimi-k2-6-flex"]
+display_name = "Kimi K2.6 Flex"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262128
+max_output_tokens = 262128
+input_cost_per_token = 3.45e-7
+output_cost_per_token = 0.00000161
+cache_read_input_token_cost = 8.625e-8
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-21"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."kimi-k2-6-flex".pricing."neuralwatt"]
+cache_read_input_token_cost = 8.625e-8
+input_cost_per_token = 3.45e-7
+output_cost_per_token = 0.00000161
 
 [models."kimi-k2-7-code"]
 display_name = "Kimi K2.7 Code"
@@ -52813,6 +52921,31 @@ output_cost_per_token = 0.000004
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 9.000000000000001e-7
 output_cost_per_token = 0.0000042999999999999995
+
+[models."kimi-k2-7-code-flex"]
+display_name = "Kimi K2.7 Code Flex"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 4.7499999999999995e-7
+output_cost_per_token = 0.000002
+cache_read_input_token_cost = 1.1874999999999999e-7
+litellm_provider = "neuralwatt"
+providers = ["neuralwatt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-06-12"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."kimi-k2-7-code-flex".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.1874999999999999e-7
+input_cost_per_token = 4.7499999999999995e-7
+output_cost_per_token = 0.000002
 
 [models."kimi-k2-7-code-highspeed"]
 display_name = "Kimi K2.7 Code Highspeed"
@@ -64057,6 +64190,31 @@ cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000025
 
+[models."moonshotai/Kimi-K2-6-Fast"]
+display_name = "Kimi K2.6 Fast"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.000007
+cache_read_input_token_cost = 4.0000000000000003e-7
+litellm_provider = "inceptron"
+providers = ["inceptron"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-21"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."moonshotai/Kimi-K2-6-Fast".pricing."inceptron"]
+cache_read_input_token_cost = 4.0000000000000003e-7
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.000007
+
 [models."moonshotai/Kimi-K2-6-TEE"]
 display_name = "Kimi K2.6 TEE"
 model_family = "kimi-k2"
@@ -64239,7 +64397,7 @@ input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/Kimi-K2.6".pricing."inceptron"]
 cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 7.8e-7
+input_cost_per_token = 6.6e-7
 output_cost_per_token = 0.0000035
 [models."moonshotai/Kimi-K2.6".pricing."kilo"]
 cache_read_input_token_cost = 3.75e-7
@@ -64256,6 +64414,7 @@ output_cost_per_token = 0.000004
 input_cost_per_token = 5.3e-7
 output_cost_per_token = 0.00000273
 [models."moonshotai/Kimi-K2.6".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.725e-7
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.00000322
 [models."moonshotai/Kimi-K2.6".pricing."novita-ai"]
@@ -64447,7 +64606,7 @@ input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.9e-7
 litellm_provider = "vercel"
-providers = ["vercel", "ambient", "baseten", "huggingface", "merge-gateway", "neuralwatt", "openrouter", "togetherai", "zenmux"]
+providers = ["vercel", "ambient", "baseten", "huggingface", "inceptron", "merge-gateway", "neuralwatt", "openrouter", "togetherai", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -64468,10 +64627,15 @@ output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-7-code".pricing."huggingface"]
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
+[models."moonshotai/kimi-k2-7-code".pricing."inceptron"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000035
 [models."moonshotai/kimi-k2-7-code".pricing."merge-gateway"]
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-7-code".pricing."neuralwatt"]
+cache_read_input_token_cost = 2.3749999999999998e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/kimi-k2-7-code".pricing."openrouter"]
@@ -64518,7 +64682,7 @@ input_cost_per_token = 0.0000018999999999999998
 output_cost_per_token = 0.000008
 cache_read_input_token_cost = 3.8e-7
 litellm_provider = "vercel"
-providers = ["vercel", "merge-gateway", "moonshotai"]
+providers = ["vercel", "gmicloud", "merge-gateway", "moonshotai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -64528,6 +64692,10 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."moonshotai/kimi-k2-7-code-highspeed".pricing."gmicloud"]
+cache_read_input_token_cost = 3.8e-7
+input_cost_per_token = 0.0000018999999999999998
+output_cost_per_token = 0.000008
 [models."moonshotai/kimi-k2-7-code-highspeed".pricing."merge-gateway"]
 input_cost_per_token = 0.0000018999999999999998
 output_cost_per_token = 0.000008
@@ -64860,6 +65028,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000025
 reasoning_cost_per_token = 0.0000025
 [models."moonshotai/kimi-k2.5".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 5.2e-7
 output_cost_per_token = 0.0000025899999999999998
 [models."moonshotai/kimi-k2.5".pricing."novita-ai"]
@@ -66634,7 +66803,7 @@ max_output_tokens = 4096
 input_cost_per_token = 0.00000115
 output_cost_per_token = 0.00000115
 litellm_provider = "evroc"
-providers = ["evroc", "inceptron"]
+providers = ["evroc"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -66647,9 +66816,6 @@ source = "modelsdev"
 [models."nvidia/Llama-3-3-70B-Instruct-FP8".pricing."evroc"]
 input_cost_per_token = 0.00000115
 output_cost_per_token = 0.00000115
-[models."nvidia/Llama-3-3-70B-Instruct-FP8".pricing."inceptron"]
-input_cost_per_token = 1.2e-7
-output_cost_per_token = 3.8e-7
 
 [models."nvidia/Llama-3.1-Nemotron-70B-Instruct"]
 mode = "chat"
@@ -73119,7 +73285,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000375
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "novita-ai"
-providers = ["novita-ai", "kilo", "openrouter", "togetherai", "zenmux"]
+providers = ["novita-ai", "gmicloud", "kilo", "openrouter", "togetherai", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -73128,6 +73294,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen/qwen3-7-max".pricing."gmicloud"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
 [models."qwen/qwen3-7-max".pricing."kilo"]
 cache_read_input_token_cost = 1.625e-7
 input_cost_per_token = 0.000001625
@@ -74324,6 +74494,7 @@ output_cost_per_token = 9.6525e-7
 input_cost_per_token = 1.12e-7
 output_cost_per_token = 8.000000000000001e-7
 [models."qwen/qwen3.6-35b-a3b".pricing."neuralwatt"]
+cache_read_input_token_cost = 7.25e-8
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
 [models."qwen/qwen3.6-35b-a3b".pricing."openrouter"]
@@ -75345,6 +75516,7 @@ max_input_tokens = 262128
 max_output_tokens = 262128
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.000004139999999999999
+cache_read_input_token_cost = 1.725e-7
 litellm_provider = "neuralwatt"
 providers = ["neuralwatt"]
 supports_function_calling = true
@@ -75356,6 +75528,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen3-5-397b-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 1.725e-7
 input_cost_per_token = 6.9e-7
 output_cost_per_token = 0.000004139999999999999
 
@@ -75535,6 +75708,7 @@ max_input_tokens = 131056
 max_output_tokens = 131056
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
+cache_read_input_token_cost = 7.25e-8
 litellm_provider = "neuralwatt"
 providers = ["neuralwatt"]
 supports_function_calling = true
@@ -75546,6 +75720,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen3-6-35b-fast".pricing."neuralwatt"]
+cache_read_input_token_cost = 7.25e-8
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.00000115
 
@@ -88827,7 +89002,7 @@ max_output_tokens = 131072
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.0000031
 litellm_provider = "vultr"
-providers = ["vultr", "ambient", "gmicloud", "inceptron", "nearai", "neuralwatt"]
+providers = ["vultr", "ambient", "gmicloud", "inceptron", "nearai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -88850,9 +89025,6 @@ output_cost_per_token = 0.0000044
 [models."zai-org/GLM-5-1-FP8".pricing."nearai"]
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.0000032999999999999997
-[models."zai-org/GLM-5-1-FP8".pricing."neuralwatt"]
-input_cost_per_token = 0.0000011
-output_cost_per_token = 0.0000036000000000000003
 [models."zai-org/GLM-5-1-FP8".pricing."vultr"]
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.0000031
@@ -88890,7 +89062,7 @@ max_output_tokens = 131072
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 litellm_provider = "huggingface"
-providers = ["huggingface", "baseten", "berget", "deepinfra", "friendli", "lilac", "nebius", "novita-ai", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["huggingface", "baseten", "berget", "deepinfra", "friendli", "inceptron", "lilac", "nebius", "novita-ai", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -88917,6 +89089,10 @@ output_cost_per_token = 0.0000044
 [models."zai-org/GLM-5-2".pricing."huggingface"]
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+[models."zai-org/GLM-5-2".pricing."inceptron"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.0000042000000000000004
 [models."zai-org/GLM-5-2".pricing."lilac"]
 cache_read_input_token_cost = 2.7e-7
 input_cost_per_token = 9.000000000000001e-7
@@ -88938,6 +89114,30 @@ output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+
+[models."zai-org/GLM-5-2-FP8"]
+display_name = "GLM-5.2"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+input_cost_per_token = 9.79e-7
+output_cost_per_token = 0.00000308
+cache_read_input_token_cost = 1.82e-7
+litellm_provider = "gmicloud"
+providers = ["gmicloud"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/GLM-5-2-FP8".pricing."gmicloud"]
+cache_read_input_token_cost = 1.82e-7
+input_cost_per_token = 9.79e-7
+output_cost_per_token = 0.00000308
 
 [models."zai-org/GLM-5-2-TEE"]
 display_name = "GLM 5.2 TEE"
