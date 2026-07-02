@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.02"
-checksum = "ecba9cc92d796a2e77b2f6bb996da638a6cb33cf07b8bae2eed36d9161cce7d2"
+checksum = "5b127dc9c74a3ca726839e8852ea9044797c4b5bae676b5a19487cd94dce51cd"
 sources = ["litellm", "modelsdev"]
 total_models = 3644
 litellm_raw_models = 2929
-modelsdev_raw_models = 5279
+modelsdev_raw_models = 5280
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -14776,6 +14776,8 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
 [models."anthropic.claude-fable-5"]
+display_name = "Claude Fable 5"
+model_family = "claude-fable"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -14785,12 +14787,17 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-06-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.00002
 supports_adaptive_thinking = true
@@ -14809,6 +14816,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."anthropic.claude-fable-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 [models."anthropic.claude-fable-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.0000125
 cache_creation_input_token_cost_above_1hr = 0.00002
@@ -32272,7 +32283,7 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-09"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000022
@@ -40092,7 +40103,7 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-09"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.00002
@@ -83785,7 +83796,7 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-09"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000022
