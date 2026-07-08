@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.08"
-checksum = "0065e0829c20fc3787a4a8a13120d1dbcda28184ca76e04dc8fa6cb5b8f0e499"
+checksum = "51ab1c6f587c3a51e5e3d9903505e4a9b84e3be8322cc795cb17c968a0e15dde"
 sources = ["litellm", "modelsdev"]
-total_models = 3658
+total_models = 3661
 litellm_raw_models = 2941
-modelsdev_raw_models = 5350
+modelsdev_raw_models = 5356
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -14250,6 +14250,30 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."anthropic--claude-4-7-opus".pricing."sap-ai-core"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."anthropic--claude-4-8-opus"]
+display_name = "anthropic--claude-4.8-opus"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "sap-ai-core"
+providers = ["sap-ai-core"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-05-28"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."anthropic--claude-4-8-opus".pricing."sap-ai-core"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
@@ -50304,24 +50328,32 @@ display_name = "Grok 4.5"
 model_family = "grok"
 mode = "chat"
 max_input_tokens = 500000
-max_output_tokens = 500000
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
-cache_read_input_token_cost = 5e-7
-litellm_provider = "xai"
-providers = ["xai"]
+max_output_tokens = 32000
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
+cache_read_input_token_cost = 5.699999999999999e-7
+litellm_provider = "venice"
+providers = ["venice", "llmgateway", "opencode"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-07-08"
+release_date = "2026-07-07"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."grok-4-5".pricing."xai"]
+[models."grok-4-5".pricing."llmgateway"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+[models."grok-4-5".pricing."opencode"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+[models."grok-4-5".pricing."venice"]
+cache_read_input_token_cost = 5.699999999999999e-7
+input_cost_per_token = 0.00000227
+output_cost_per_token = 0.0000068
 
 [models."grok-4-fast-non-reasoning"]
 display_name = "grok-4-fast-non-reasoning"
@@ -65335,7 +65367,7 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.0000034
 [models."moonshotai/Kimi-K2.6".pricing."openrouter"]
-cache_read_input_token_cost = 3e-7
+cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 0.00000341
 [models."moonshotai/Kimi-K2.6".pricing."siliconflow"]
@@ -82095,11 +82127,11 @@ output_cost_per_token = 0.00002
 display_name = "Hy3"
 model_family = "hy3"
 mode = "chat"
-max_input_tokens = 202752
+max_input_tokens = 262144
 max_output_tokens = 131072
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 8.000000000000001e-7
-cache_read_input_token_cost = 5e-7
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 5.8e-7
+cache_read_input_token_cost = 3.5e-8
 litellm_provider = "openrouter"
 providers = ["openrouter"]
 supports_function_calling = true
@@ -82111,9 +82143,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."tencent/hy3".pricing."openrouter"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 8.000000000000001e-7
+cache_read_input_token_cost = 3.5e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 5.8e-7
 
 [models."tencent/hy3-preview"]
 display_name = "Hy3 preview"
@@ -87396,6 +87428,30 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 
+[models."x-ai/grok-4-5"]
+display_name = "Grok 4.5"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 500000
+max_output_tokens = 500000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-07-08"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."x-ai/grok-4-5".pricing."openrouter"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
 [models."x-ai/grok-4-fast"]
 display_name = "Grok 4 Fast"
 mode = "chat"
@@ -88047,6 +88103,34 @@ output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
+
+[models."xai/grok-4-5"]
+display_name = "Grok 4.5"
+model_family = "grok"
+mode = "chat"
+max_input_tokens = 500000
+max_output_tokens = 500000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
+litellm_provider = "vercel"
+providers = ["vercel", "xai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-07-08"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."xai/grok-4-5".pricing."vercel"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+[models."xai/grok-4-5".pricing."xai"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."xai/grok-4-fast"]
 display_name = "Grok 4 Fast"
@@ -89373,9 +89457,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 1.8e-7
-input_cost_per_token = 9.300000000000001e-7
-output_cost_per_token = 0.000003
+cache_read_input_token_cost = 7.8e-8
+input_cost_per_token = 4.2e-7
+output_cost_per_token = 0.00000132
 [models."z-ai/glm-5-2".pricing."zenmux"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
@@ -91703,7 +91787,7 @@ cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 7.4e-7
 output_cost_per_token = 0.00000349
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
-cache_read_input_token_cost = 3e-7
+cache_read_input_token_cost = 1.4e-7
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 0.00000341
 
@@ -91769,11 +91853,11 @@ output_cost_per_token = 0.0000045
 display_name = "Grok Latest"
 model_family = "grok"
 mode = "chat"
-max_input_tokens = 1000000
+max_input_tokens = 500000
 max_output_tokens = 1000000
-input_cost_per_token = 0.00000125
-output_cost_per_token = 0.0000025
-cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
 litellm_provider = "openrouter"
 providers = ["openrouter"]
 supports_function_calling = true
@@ -91785,6 +91869,6 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~x-ai/grok-latest".pricing."openrouter"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.00000125
-output_cost_per_token = 0.0000025
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
