@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.11"
-checksum = "955d17174fd2df9b9918c4e59fc5b785f44d3cdf6e20eb59621b00e9f6f62a74"
+checksum = "6f3bc9a433943434d8c1dbd98e3b90961bf132b3baf5e2d46201520a6a018a0c"
 sources = ["litellm", "modelsdev"]
-total_models = 3711
+total_models = 3714
 litellm_raw_models = 2949
-modelsdev_raw_models = 5618
+modelsdev_raw_models = 5624
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5505,7 +5505,7 @@ input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 0.0000011
 cache_read_input_token_cost = 5.6e-8
 litellm_provider = "nearai"
-providers = ["nearai", "evroc"]
+providers = ["nearai", "evroc", "inferx"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -5682,29 +5682,6 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 7e-8
 input_cost_per_token = 1.1e-7
 output_cost_per_token = 8.000000000000001e-7
-
-[models."Qwen/Qwen3-Coder-Next-FP8"]
-display_name = "Qwen3 Coder Next FP8"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000012
-litellm_provider = "togetherai"
-providers = ["togetherai"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2026-02-03"
-release_date = "2026-02-03"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."Qwen/Qwen3-Coder-Next-FP8".pricing."togetherai"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000012
 
 [models."Qwen/Qwen3-Embedding-4B"]
 display_name = "Qwen 3 Embedding 4B"
@@ -6042,6 +6019,8 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036
 
 [models."Qwen/Qwen3.6-27B-FP8"]
+display_name = "Qwen3.6 27B FP8"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
@@ -6049,10 +6028,14 @@ input_cost_per_token = 3.2e-7
 output_cost_per_token = 0.0000032
 cache_read_input_token_cost = 0
 litellm_provider = "tensormesh"
-providers = ["tensormesh"]
+providers = ["tensormesh", "inferx"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
 source = "https://serverless.tensormesh.ai/v1/models/openrouter"
 supports_response_schema = true
 supports_system_messages = true
@@ -39442,6 +39425,22 @@ output_cost_per_token = 4.0000000000000003e-7
 cache_read_input_token_cost = 9e-8
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 3.5e-7
+
+[models."gemma-4-31b-it-fp8"]
+display_name = "Gemma 4 31B IT FP8"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-02"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."gemma-4-31b-it-thinking"]
 mode = "chat"
@@ -76483,6 +76482,22 @@ output_cost_per_token = 3e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 3e-8
 
+[models."qwen/qwen3-5-122b-a10b-nvfp4"]
+display_name = "Qwen3.5 122B A10B NVFP4"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 256144
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-02-23"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."qwen/qwen3-5-397b-a17b-thinking"]
 display_name = "Qwen3.5 397B A17B Thinking"
 mode = "chat"
@@ -76973,6 +76988,44 @@ output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 3.9e-8
 input_cost_per_token = 1.95e-7
 output_cost_per_token = 9.75e-7
+
+[models."qwen/qwen3-coder-next-fp8"]
+display_name = "Qwen3 Coder Next FP8"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 256144
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx", "togetherai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-coder-next-fp8".pricing."togetherai"]
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000012
+
+[models."qwen/qwen3-coder-next-fp8-1m"]
+display_name = "Qwen3 Coder Next FP8 1M"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1024000
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."qwen/qwen3-coder-plus"]
 display_name = "Qwen3-Coder-Plus"
