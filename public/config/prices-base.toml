@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.11"
-checksum = "6f3bc9a433943434d8c1dbd98e3b90961bf132b3baf5e2d46201520a6a018a0c"
+checksum = "cd98b6c33b36b44001405dc4c95649caeea32c1ee9bee11af72e839c6143d8e4"
 sources = ["litellm", "modelsdev"]
-total_models = 3714
+total_models = 3715
 litellm_raw_models = 2949
-modelsdev_raw_models = 5624
+modelsdev_raw_models = 5622
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3135,7 +3135,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
 litellm_provider = "minimax"
-providers = ["minimax", "cortecs", "empiriolabs", "kenari", "llmgateway", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "opencode", "opencode-go"]
+providers = ["minimax", "cortecs", "empiriolabs", "kenari", "llmgateway", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "opencode", "opencode-go", "wafer.ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -3182,6 +3182,10 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
+[models."MiniMax-M3".pricing."wafer.ai"]
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 3.3e-7
+output_cost_per_token = 0.00000132
 
 [models."MiniMax/MiniMax-M2-7"]
 display_name = "MiniMax-M2.7"
@@ -28880,7 +28884,7 @@ max_tokens = 384000
 input_cost_per_token = 1.9e-7
 output_cost_per_token = 5.1e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "cortecs", "crof", "deepseek", "empiriolabs", "fireworks_ai", "kenari", "libertai", "llmgateway", "opencode", "opencode-go", "routing-run", "tencent", "unorouter", "venice", "wafer.ai"]
+providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "cortecs", "crof", "deepseek", "empiriolabs", "fireworks_ai", "kenari", "libertai", "llmgateway", "opencode", "opencode-go", "routing-run", "tencent", "unorouter", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -28964,10 +28968,6 @@ output_cost_per_token = 1.25e-7
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.3800000000000002e-7
 output_cost_per_token = 2.75e-7
-[models."deepseek-v4-flash".pricing."wafer.ai"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 2.8e-7
 
 [models."deepseek-v4-flash-free"]
 display_name = "DeepSeek V4 Flash Free"
@@ -29033,7 +29033,7 @@ max_tokens = 384000
 input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "cortecs", "crof", "deepseek", "digitalocean", "empiriolabs", "fireworks_ai", "frogbot", "kenari", "llmgateway", "opencode", "opencode-go", "routing-run", "tencent", "unorouter", "venice", "vivgrid", "wafer.ai"]
+providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "cortecs", "crof", "deepseek", "digitalocean", "empiriolabs", "fireworks_ai", "frogbot", "kenari", "llmgateway", "opencode", "opencode-go", "routing-run", "tencent", "unorouter", "venice", "vivgrid"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -29125,10 +29125,6 @@ output_cost_per_token = 0.0000033010000000000002
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
-[models."deepseek-v4-pro".pricing."wafer.ai"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 0.00000174
-output_cost_per_token = 0.00000348
 
 [models."deepseek-v4-pro-lightning"]
 display_name = "DeepSeek V4 Pro Lightning"
@@ -41253,6 +41249,30 @@ source = "modelsdev"
 [models."glm-zero-preview".pricing."nano-gpt"]
 input_cost_per_token = 0.000001802
 output_cost_per_token = 0.000001802
+
+[models."glm5-2-fast"]
+display_name = "GLM5.2-Fast"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.00001025
+cache_read_input_token_cost = 5e-7
+litellm_provider = "wafer.ai"
+providers = ["wafer.ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm5-2-fast".pricing."wafer.ai"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.00001025
 
 [models."global.amazon.nova-2-lite-v1:0"]
 mode = "chat"
@@ -55501,9 +55521,9 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.0000035
 [models."kimi-k2-6".pricing."wafer.ai"]
-cache_read_input_token_cost = 7e-8
-input_cost_per_token = 6.800000000000001e-7
-output_cost_per_token = 0.00000315
+cache_read_input_token_cost = 1.9e-7
+input_cost_per_token = 0.0000011399999999999999
+output_cost_per_token = 0.0000048
 
 [models."kimi-k2-6-fast"]
 display_name = "Kimi K2.6 Fast"
@@ -79501,7 +79521,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.0000075
 cache_read_input_token_cost = 5e-7
 litellm_provider = "alibaba-cn"
-providers = ["alibaba-cn", "aihubmix", "alibaba", "alibaba-coding-plan", "alibaba-coding-plan-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "empiriolabs", "llmgateway", "nano-gpt", "opencode-go", "pioneer", "wafer.ai"]
+providers = ["alibaba-cn", "aihubmix", "alibaba", "alibaba-coding-plan", "alibaba-coding-plan-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "empiriolabs", "llmgateway", "nano-gpt", "opencode-go", "pioneer"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -79549,10 +79569,6 @@ output_cost_per_token = 0.0000075
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000375
-[models."qwen3-7-max".pricing."wafer.ai"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000015
 
 [models."qwen3-7-max:thinking"]
 display_name = "Qwen3.7 Max Thinking"
@@ -80816,7 +80832,7 @@ max_tokens = 262144
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 litellm_provider = "libertai"
-providers = ["libertai", "alibaba", "llmgateway", "scaleway", "wafer.ai"]
+providers = ["libertai", "alibaba", "llmgateway", "scaleway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -80841,10 +80857,6 @@ output_cost_per_token = 0.0000014850000000000002
 [models."qwen3.6-35b-a3b".pricing."scaleway"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
-[models."qwen3.6-35b-a3b".pricing."wafer.ai"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 0.000001
 
 [models."qwen3.6-35b-a3b-thinking"]
 mode = "chat"
