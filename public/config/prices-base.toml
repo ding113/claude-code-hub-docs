@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.07.15"
-checksum = "2e420faabcd301ba048e410192a786bdedc80cb225f384dc309ff1501521cc45"
+checksum = "fa23b87e182cf9d9de9ab650075a492fbe82b342ae7dd410016c4f2837d4a14d"
 sources = ["litellm", "modelsdev"]
 total_models = 3730
-litellm_raw_models = 2965
+litellm_raw_models = 2968
 modelsdev_raw_models = 5667
 custom_models = 5
 
@@ -74000,81 +74000,6 @@ supports_response_schema = true
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 
-[models."openai.gpt-5-6-luna"]
-display_name = "GPT-5.6 Luna"
-model_family = "gpt-luna"
-mode = "chat"
-max_input_tokens = 272000
-max_output_tokens = 128000
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-cache_read_input_token_cost = 1.0000000000000001e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2026-02-16"
-release_date = "2026-07-09"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."openai.gpt-5-6-luna".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-
-[models."openai.gpt-5-6-sol"]
-display_name = "GPT-5.6 Sol"
-model_family = "gpt-sol"
-mode = "chat"
-max_input_tokens = 272000
-max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-cache_read_input_token_cost = 5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2026-02-16"
-release_date = "2026-07-09"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."openai.gpt-5-6-sol".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-
-[models."openai.gpt-5-6-terra"]
-display_name = "GPT-5.6 Terra"
-model_family = "gpt-terra"
-mode = "chat"
-max_input_tokens = 272000
-max_output_tokens = 128000
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-cache_read_input_token_cost = 2.5e-7
-litellm_provider = "amazon-bedrock"
-providers = ["amazon-bedrock"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2026-02-16"
-release_date = "2026-07-09"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."openai.gpt-5-6-terra".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-
 [models."openai.gpt-5-mini"]
 mode = "chat"
 max_input_tokens = 272000
@@ -74184,6 +74109,117 @@ output_cost_per_token = 0.000033
 cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000055
 output_cost_per_token = 0.000033
+
+[models."openai.gpt-5.6-luna"]
+display_name = "GPT-5.6 Luna"
+model_family = "gpt-luna"
+mode = "responses"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000066
+cache_read_input_token_cost = 1.1e-7
+cache_creation_input_token_cost = 0.000001375
+litellm_provider = "bedrock_mantle"
+providers = ["bedrock_mantle", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+supported_endpoints = ["/v1/responses"]
+supports_response_schema = true
+supports_tool_choice = true
+use_openai_responses_path = true
+
+[models."openai.gpt-5.6-luna".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."openai.gpt-5.6-luna".pricing."bedrock_mantle"]
+cache_creation_input_token_cost = 0.000001375
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000066
+
+[models."openai.gpt-5.6-sol"]
+display_name = "GPT-5.6 Sol"
+model_family = "gpt-sol"
+mode = "responses"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.000033
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_mantle"
+providers = ["bedrock_mantle", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+supported_endpoints = ["/v1/responses"]
+supports_response_schema = true
+supports_tool_choice = true
+use_openai_responses_path = true
+
+[models."openai.gpt-5.6-sol".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."openai.gpt-5.6-sol".pricing."bedrock_mantle"]
+cache_creation_input_token_cost = 0.000006875
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.000033
+
+[models."openai.gpt-5.6-terra"]
+display_name = "GPT-5.6 Terra"
+model_family = "gpt-terra"
+mode = "responses"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00000275
+output_cost_per_token = 0.0000165
+cache_read_input_token_cost = 2.75e-7
+cache_creation_input_token_cost = 0.0000034375
+litellm_provider = "bedrock_mantle"
+providers = ["bedrock_mantle", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+supported_endpoints = ["/v1/responses"]
+supports_response_schema = true
+supports_tool_choice = true
+use_openai_responses_path = true
+
+[models."openai.gpt-5.6-terra".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."openai.gpt-5.6-terra".pricing."bedrock_mantle"]
+cache_creation_input_token_cost = 0.0000034375
+cache_read_input_token_cost = 2.75e-7
+input_cost_per_token = 0.00000275
+output_cost_per_token = 0.0000165
 
 [models."openai.gpt-oss-120b"]
 display_name = "gpt-oss-120b"
