@@ -2,11 +2,11 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.07.14"
-checksum = "4084e876ac834e9bdfcad5a79a3bcf8d9345b3e44ed0bc4469e74b91e50cbe09"
+version = "2026.07.15"
+checksum = "2ffee25cb4087c745eb550e3c87e83c96a743833d8a7fb1877915b7f806c4f03"
 sources = ["litellm", "modelsdev"]
 total_models = 3734
-litellm_raw_models = 2963
+litellm_raw_models = 2965
 modelsdev_raw_models = 5699
 custom_models = 5
 
@@ -20423,6 +20423,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00003
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -20534,6 +20535,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00003
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -20828,6 +20830,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
@@ -20945,6 +20948,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00001
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_tool_choice = true
@@ -21108,6 +21112,7 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
 supports_minimal_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_speed = true
@@ -21272,6 +21277,7 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_speed = true
@@ -21508,6 +21514,7 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_sampling_params = false
@@ -21664,6 +21671,7 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_sampling_params = false
@@ -21849,6 +21857,7 @@ supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
 supports_max_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_sampling_params = false
@@ -22810,6 +22819,7 @@ supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.000006
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
@@ -22955,6 +22965,7 @@ input_cost_per_token_above_200k_tokens = 0.000006
 output_cost_per_token_above_200k_tokens = 0.0000225
 supports_assistant_prefill = true
 supports_computer_use = true
+supports_native_structured_output = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
@@ -23155,6 +23166,7 @@ supports_assistant_prefill = true
 supports_computer_use = true
 supports_max_reasoning_effort = true
 supports_minimal_reasoning_effort = true
+supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_system_messages = true
@@ -34064,7 +34076,7 @@ output_cost_per_image = 0.0398
 mode = "chat"
 litellm_provider = "default"
 providers = ["default"]
-rules = [{ name = "bedrock-claude-ids", pattern = "anthropic\\.claude-", description = "Any Bedrock-syntax Claude id: the dotted anthropic.claude- segment appears in bare (anthropic.claude-...), region-prefixed (us./eu./au./jp./apac.) and global.-prefixed ids, for every version. Routes these to bedrock before the bare-id Anthropic rule is consulted.", model_info = { litellm_provider = "bedrock" } }, { name = "anthropic-claude-ids", pattern = "^claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?$", description = "A bare Claude family-major id with an optional minor and an optional 8-digit date suffix, anchored to the whole name, so claude-newfamily-5 routes like claude-newfamily-5-1 does. Routes an unmapped Claude id that carries no provider namespace to the Anthropic API.", model_info = { litellm_provider = "anthropic" } }, { name = "claude-family-baseline", pattern = "claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?", description = "Any Claude family-major id with an optional minor and an optional 8-digit date suffix, under any provider namespace (bare, bedrock-dotted, vertex, databricks, ...), so bare majors like claude-newfamily-5 get the same baseline as claude-newfamily-5-1. Carries the model-family facts every Claude shares; it carries no pricing, so cost stays on the standard unpriced behavior rather than a guessed number.", model_info = { mode = "chat", max_input_tokens = 200000, max_output_tokens = 64000, max_tokens = 64000, supports_function_calling = true, supports_parallel_function_calling = true, supports_vision = true, supports_tool_choice = true, supports_assistant_prefill = true, supports_prompt_caching = true, supports_response_schema = true, supports_reasoning = true, supports_pdf_input = true, supports_system_messages = true } }, { name = "claude-adaptive-thinking", pattern = "claude-[a-z]+-(?:4[-._](?:[6-9]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.6 or higher, in any id shape that contains claude-<family>-: minors 4.6 through 4.99, any later major-minor, and bare 5+ majors so a new family shaped like claude-fable-5 matches. Requiring the claude- prefix keeps non-Claude names such as team-sonnet-5-1 out. The minor is capped at two digits so an 8-digit date suffix such as claude-opus-4-20250514 is never read as a >= 4.6 minor. Turns on adaptive thinking for new versions and new families with no code change.", model_info = { supports_adaptive_thinking = true } }, { name = "claude-mid-conversation-system", pattern = "claude-[a-z]+-(?:4[-._](?:[89]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.8 or higher, in any id shape that contains claude-<family>-: minors 4.8 through 4.99, any later major-minor, and bare 5+ majors so a new family like claude-fable-5 matches. Anthropic introduced mid-conversation system messages with Opus 4.8 and every newer Claude keeps them; 4.7 and below reject the system role inside messages.", model_info = { supports_mid_conversation_system = true } }]
+rules = [{ name = "bedrock-claude-ids", pattern = "^(?:[a-z-]+\\.)?anthropic\\.claude-", description = "A Bedrock-syntax Claude id, for every version: anthropic.claude- at the start of the name, optionally behind a single dotted geo segment (us./eu./au./jp./apac./global./us-gov.). Anchored to the start because routing rules see the raw request string and provider inference feeds the proxy's provider/* wildcard access checks: an id under an unrecognized namespace such as bedrockz/anthropic.claude-... must stay unroutable rather than resolve to bedrock and slip through a bedrock/* key. Routes to bedrock before the bare-id Anthropic rule is consulted.", model_info = { litellm_provider = "bedrock" } }, { name = "anthropic-claude-ids", pattern = "^claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?$", description = "A bare Claude family-major id with an optional minor and an optional 8-digit date suffix, anchored to the whole name, so claude-newfamily-5 routes like claude-newfamily-5-1 does. Routes an unmapped Claude id that carries no provider namespace to the Anthropic API.", model_info = { litellm_provider = "anthropic" } }, { name = "claude-family-baseline", pattern = "claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?", description = "Any Claude family-major id with an optional minor and an optional 8-digit date suffix, under any provider namespace (bare, bedrock-dotted, vertex, databricks, ...), so bare majors like claude-newfamily-5 get the same baseline as claude-newfamily-5-1. Carries the model-family facts every Claude shares; it carries no pricing, so cost stays on the standard unpriced behavior rather than a guessed number.", model_info = { mode = "chat", max_input_tokens = 200000, max_output_tokens = 64000, max_tokens = 64000, supports_function_calling = true, supports_parallel_function_calling = true, supports_vision = true, supports_tool_choice = true, supports_assistant_prefill = true, supports_prompt_caching = true, supports_response_schema = true, supports_reasoning = true, supports_pdf_input = true, supports_system_messages = true } }, { name = "claude-adaptive-thinking", pattern = "claude-[a-z]+-(?:4[-._](?:[6-9]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.6 or higher, in any id shape that contains claude-<family>-: minors 4.6 through 4.99, any later major-minor, and bare 5+ majors so a new family shaped like claude-fable-5 matches. Requiring the claude- prefix keeps non-Claude names such as team-sonnet-5-1 out. The minor is capped at two digits so an 8-digit date suffix such as claude-opus-4-20250514 is never read as a >= 4.6 minor. Turns on adaptive thinking for new versions and new families with no code change.", model_info = { supports_adaptive_thinking = true } }, { name = "claude-mid-conversation-system", pattern = "claude-[a-z]+-(?:4[-._](?:[89]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.8 or higher, in any id shape that contains claude-<family>-: minors 4.8 through 4.99, any later major-minor, and bare 5+ majors so a new family like claude-fable-5 matches. Anthropic introduced mid-conversation system messages with Opus 4.8 and every newer Claude keeps them; 4.7 and below reject the system role inside messages.", model_info = { supports_mid_conversation_system = true } }]
 
 [models."fast"]
 display_name = "Fast"
@@ -38774,26 +38786,49 @@ output_cost_per_token = 0.000002
 display_name = "Gemini Omni Flash Preview"
 model_family = "gemini"
 mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 57920
+max_input_tokens = 1048576
+max_output_tokens = 65535
+max_tokens = 65535
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000009
-litellm_provider = "vercel"
-providers = ["vercel", "google"]
+litellm_provider = "gemini"
+providers = ["gemini", "google", "vercel", "vertex_ai-language-models"]
 supports_function_calling = false
+supports_vision = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-06-30"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text", "video"]
+source = "https://ai.google.dev/gemini-api/docs/pricing"
+input_cost_per_audio_token = 0.0000015
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_video_token = 0.0000175
+rpm = 2000
+supported_endpoints = ["/v1/chat/completions"]
+supports_audio_input = true
+supports_system_messages = true
+supports_video_input = true
+tpm = 800000
 
+[models."gemini-omni-flash-preview".pricing."gemini"]
+input_cost_per_audio_token = 0.0000015
+input_cost_per_token = 0.0000015
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token = 0.000009
+output_cost_per_video_token = 0.0000175
 [models."gemini-omni-flash-preview".pricing."google"]
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.0000175
 [models."gemini-omni-flash-preview".pricing."vercel"]
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000009
+[models."gemini-omni-flash-preview".pricing."vertex_ai-language-models"]
+input_cost_per_audio_token = 0.0000015
+input_cost_per_token = 0.0000015
+output_cost_per_reasoning_token = 0.000009
+output_cost_per_token = 0.000009
+output_cost_per_video_token = 0.0000175
 
 [models."gemini-pro-latest"]
 display_name = "Gemini Pro Latest"
