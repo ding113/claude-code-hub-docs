@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.17"
-checksum = "af6573cdedd09db557520981f087bf39a70fa27f8e486749b3a4862c13e93e41"
+checksum = "2c0ec8fe66b050a31f79f74111059182e4cfa1318e62c940ac38ce6bb7a55b93"
 sources = ["litellm", "modelsdev"]
 total_models = 3734
 litellm_raw_models = 2968
-modelsdev_raw_models = 5691
+modelsdev_raw_models = 5693
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -56631,8 +56631,8 @@ max_output_tokens = 131072
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
-litellm_provider = "moonshotai-cn"
-providers = ["moonshotai-cn", "moonshotai", "opencode-go"]
+litellm_provider = "llmgateway"
+providers = ["llmgateway", "moonshotai", "moonshotai-cn", "opencode-go"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -56641,6 +56641,10 @@ supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."kimi-k3".pricing."llmgateway"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."kimi-k3".pricing."moonshotai"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
@@ -85762,21 +85766,23 @@ output_cost_per_token = 0
 display_name = "Inkling"
 model_family = "ling"
 mode = "chat"
-max_input_tokens = 256000
-max_output_tokens = 256000
+max_input_tokens = 131000
+max_output_tokens = 32768
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.00000405
-cache_read_input_token_cost = 1.7000000000000001e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
+litellm_provider = "baseten"
+providers = ["baseten", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 release_date = "2026-07-15"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."thinkingmachines/inkling".pricing."baseten"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.00000405
 [models."thinkingmachines/inkling".pricing."vercel"]
 cache_read_input_token_cost = 1.7000000000000001e-7
 input_cost_per_token = 0.000001
