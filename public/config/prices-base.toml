@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.18"
-checksum = "8722011983b96c6b8f993480e7a729bd6bc7724e8dc37ad1a66fad55194b8d34"
+checksum = "7ab1b7b3e29e7b73682c7e9a059f16bb728b7bd4e9d28de65ac12b5ef6799509"
 sources = ["litellm", "modelsdev"]
 total_models = 3732
 litellm_raw_models = 2968
-modelsdev_raw_models = 5694
+modelsdev_raw_models = 5697
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -30001,21 +30001,25 @@ display_name = "DeepSeek V4 Flash"
 model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 384000
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 2.8e-7
-cache_read_input_token_cost = 2.8e-8
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "crossmodel", "hpc-ai", "kilo", "merge-gateway", "novita-ai", "openrouter", "orcarouter", "vercel", "zenmux"]
+max_output_tokens = 1048576
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
+litellm_provider = "ambient"
+providers = ["ambient", "crossmodel", "hpc-ai", "kilo", "merge-gateway", "nano-gpt", "novita-ai", "openrouter", "orcarouter", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 knowledge_cutoff = "2025-05"
 release_date = "2026-04-24"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek/deepseek-v4-flash".pricing."ambient"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."deepseek/deepseek-v4-flash".pricing."crossmodel"]
 cache_read_input_token_cost = 4e-9
 input_cost_per_token = 1.6e-7
@@ -68389,9 +68393,9 @@ model_family = "kimi-k2"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
-input_cost_per_token = 7.5e-7
-output_cost_per_token = 0.0000035
-cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "ambient"
 providers = ["ambient", "baseten", "deepinfra", "hpc-ai", "huggingface", "inceptron", "merge-gateway", "neuralwatt", "openrouter", "pioneer", "togetherai", "vercel", "wandb", "zenmux"]
 supports_function_calling = true
@@ -68404,9 +68408,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."moonshotai/kimi-k2-7-code".pricing."ambient"]
-cache_read_input_token_cost = 1.6e-7
-input_cost_per_token = 7.5e-7
-output_cost_per_token = 0.0000035
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000044
 [models."moonshotai/kimi-k2-7-code".pricing."baseten"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -68867,7 +68871,7 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "vercel", "zenmux"]
+providers = ["openrouter", "cloudflare-ai-gateway", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -68876,6 +68880,10 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."moonshotai/kimi-k3".pricing."cloudflare-ai-gateway"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."moonshotai/kimi-k3".pricing."openrouter"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
@@ -91788,7 +91796,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000003
 
 [models."xiaomi/mimo-v2.5"]
-display_name = "MiMo V2.5"
+display_name = "MiMo-V2.5"
 model_family = "mimo"
 mode = "chat"
 max_input_tokens = 1048576
@@ -91799,21 +91807,25 @@ output_cost_per_token = 0.000002
 cache_read_input_token_cost = 8e-8
 cache_creation_input_token_cost = 0
 litellm_provider = "openrouter"
-providers = ["openrouter", "crossmodel", "kilo", "nano-gpt", "vercel", "xiaomi", "zenmux"]
+providers = ["openrouter", "ambient", "crossmodel", "kilo", "nano-gpt", "vercel", "xiaomi", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = false
+open_weights = true
 knowledge_cutoff = "2024-12"
 release_date = "2026-04-22"
-supported_modalities = ["text", "image", "video"]
+supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 supports_audio_input = true
 supports_response_schema = true
 supports_tool_choice = true
 supports_video_input = true
 
+[models."xiaomi/mimo-v2.5".pricing."ambient"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
 [models."xiaomi/mimo-v2.5".pricing."crossmodel"]
 cache_read_input_token_cost = 4e-9
 input_cost_per_token = 1.6e-7
@@ -92618,9 +92630,9 @@ cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 7.8e-8
-input_cost_per_token = 4.2e-7
-output_cost_per_token = 0.00000132
+cache_read_input_token_cost = 7.696e-8
+input_cost_per_token = 4.144e-7
+output_cost_per_token = 0.0000013024
 [models."z-ai/glm-5-2".pricing."zenmux"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
