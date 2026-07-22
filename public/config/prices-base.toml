@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.22"
-checksum = "3dcc64ba5261dc84d6a6831240fb44cfed9e3cf16bc4b5309fa5c0fdf3f30d69"
+checksum = "162248173c07f64f52f390657ea4c5564bc6379f8a56630535098706e4aec1b2"
 sources = ["litellm", "modelsdev"]
-total_models = 3752
+total_models = 3763
 litellm_raw_models = 2974
-modelsdev_raw_models = 5728
+modelsdev_raw_models = 5744
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -19527,7 +19527,7 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "aihubmix", "anthropic", "azure", "cloudflare-ai-gateway", "crossmodel", "freemodel", "github-copilot", "llmgateway", "opencode", "openrouter", "venice", "vercel", "vertex_ai", "xpersona", "zenmux"]
+providers = ["azure_ai", "abacus", "aihubmix", "anthropic", "azure", "cloudflare-ai-gateway", "crossmodel", "freemodel", "github-copilot", "kenari", "llmgateway", "opencode", "openrouter", "venice", "vercel", "vertex_ai", "xpersona", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -23458,7 +23458,7 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0.0000025
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "aihubmix", "anthropic", "azure", "cloudflare-ai-gateway", "crossmodel", "github-copilot", "llmgateway", "opencode", "openrouter", "unorouter", "venice", "vercel", "vertex_ai", "zenmux"]
+providers = ["azure_ai", "abacus", "aihubmix", "anthropic", "azure", "cloudflare-ai-gateway", "crossmodel", "github-copilot", "kenari", "llmgateway", "opencode", "openrouter", "unorouter", "venice", "vercel", "vertex_ai", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -29378,7 +29378,7 @@ mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
 litellm_provider = "unorouter"
-providers = ["unorouter", "kenari"]
+providers = ["unorouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -35108,11 +35108,8 @@ model_family = "gemini-flash"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
-cache_read_input_token_cost = 3e-8
-litellm_provider = "neon"
-providers = ["neon", "302ai", "google", "jiekou", "kilo", "openrouter", "orcarouter", "poe", "qihang-ai", "requesty", "vercel", "zenmux"]
+litellm_provider = "kenari"
+providers = ["kenari", "302ai", "auriko", "google", "helicone", "jiekou", "kilo", "neon", "openrouter", "orcarouter", "perplexity-agent", "poe", "qihang-ai", "requesty", "sap-ai-core", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -35126,8 +35123,16 @@ reasoning_cost_per_token = 0.0000025
 [models."gemini-2-5-flash".pricing."302ai"]
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
+[models."gemini-2-5-flash".pricing."auriko"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-2-5-flash".pricing."google"]
 cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
+[models."gemini-2-5-flash".pricing."helicone"]
+cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 [models."gemini-2-5-flash".pricing."jiekou"]
@@ -35151,6 +35156,10 @@ reasoning_cost_per_token = 0.0000025
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
+[models."gemini-2-5-flash".pricing."perplexity-agent"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-2-5-flash".pricing."poe"]
 cache_read_input_token_cost = 2.1000000000000003e-8
 input_cost_per_token = 2.1e-7
@@ -35162,6 +35171,10 @@ output_cost_per_token = 7.1e-7
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
+[models."gemini-2-5-flash".pricing."sap-ai-core"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-2-5-flash".pricing."vercel"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -35170,6 +35183,65 @@ output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 7e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
+
+[models."gemini-2-5-flash-lite"]
+display_name = "Gemini 2.5 Flash-Lite"
+model_family = "gemini-flash-lite"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 65536
+litellm_provider = "kenari"
+providers = ["kenari", "google", "helicone", "jiekou", "kilo", "openrouter", "orcarouter", "poe", "sap-ai-core", "vercel", "zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2025-06-17"
+supported_modalities = ["text", "image", "audio", "video", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+reasoning_cost_per_token = 4.0000000000000003e-7
+
+[models."gemini-2-5-flash-lite".pricing."google"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."helicone"]
+cache_read_input_token_cost = 2.5e-8
+input_cost_per_token = 1e-7
+output_cost_per_token = 4e-7
+[models."gemini-2-5-flash-lite".pricing."jiekou"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 3.6e-7
+[models."gemini-2-5-flash-lite".pricing."kilo"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+reasoning_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."openrouter"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+reasoning_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."orcarouter"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."poe"]
+input_cost_per_token = 7e-8
+output_cost_per_token = 2.8e-7
+[models."gemini-2-5-flash-lite".pricing."sap-ai-core"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."vercel"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+[models."gemini-2-5-flash-lite".pricing."zenmux"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 
 [models."gemini-2-5-flash-lite-preview-09-2025-thinking"]
 display_name = "Gemini 2.5 Flash Lite Preview (09/2025) – Thinking"
@@ -35876,7 +35948,7 @@ max_tokens = 1000000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "abacus", "aihubmix", "auriko", "crossmodel", "fastrouter", "frogbot", "gemini", "google-vertex", "helicone", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openrouter", "perplexity", "perplexity-agent", "replicate", "sap-ai-core", "vercel_ai_gateway", "vertex_ai-language-models"]
+providers = ["deepinfra", "abacus", "aihubmix", "crossmodel", "fastrouter", "frogbot", "gemini", "google-vertex", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openrouter", "perplexity", "replicate", "vercel_ai_gateway", "vertex_ai-language-models"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -35905,10 +35977,6 @@ output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
-[models."gemini-2.5-flash".pricing."auriko"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."crossmodel"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -35934,10 +36002,6 @@ output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
-[models."gemini-2.5-flash".pricing."helicone"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."llmgateway"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -35957,16 +36021,8 @@ output_cost_per_token = 0.0000025
 input_cost_per_audio_token = 7e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
-[models."gemini-2.5-flash".pricing."perplexity-agent"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."replicate"]
 input_cost_per_token = 0.0000025
-output_cost_per_token = 0.0000025
-[models."gemini-2.5-flash".pricing."sap-ai-core"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 [models."gemini-2.5-flash".pricing."vercel_ai_gateway"]
 input_cost_per_token = 3e-7
@@ -36077,7 +36133,7 @@ input_cost_per_token = 1e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 1e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "crossmodel", "gemini", "google", "google-vertex", "helicone", "jiekou", "kilo", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openrouter", "orcarouter", "poe", "sap-ai-core", "vercel", "zenmux"]
+providers = ["vertex_ai-language-models", "crossmodel", "gemini", "google-vertex", "llmgateway", "merge-gateway", "nano-gpt", "nearai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -36091,7 +36147,6 @@ supported_output_modalities = ["text"]
 source = "https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-preview"
 input_cost_per_audio_token = 3e-7
 output_cost_per_reasoning_token = 4e-7
-reasoning_cost_per_token = 4.0000000000000003e-7
 supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
 supports_audio_output = false
 supports_image_size = false
@@ -36117,26 +36172,10 @@ input_cost_per_audio_token = 3e-7
 input_cost_per_token = 1e-7
 output_cost_per_reasoning_token = 4e-7
 output_cost_per_token = 4e-7
-[models."gemini-2.5-flash-lite".pricing."google"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."google-vertex"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.0000000000000003e-7
-[models."gemini-2.5-flash-lite".pricing."helicone"]
-cache_read_input_token_cost = 2.5e-8
-input_cost_per_token = 1e-7
-output_cost_per_token = 4e-7
-[models."gemini-2.5-flash-lite".pricing."jiekou"]
-input_cost_per_token = 9e-8
-output_cost_per_token = 3.6e-7
-[models."gemini-2.5-flash-lite".pricing."kilo"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
-reasoning_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."llmgateway"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
@@ -36152,36 +36191,12 @@ output_cost_per_token = 4.0000000000000003e-7
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 4.0000000000000003e-7
-[models."gemini-2.5-flash-lite".pricing."openrouter"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
-reasoning_cost_per_token = 4.0000000000000003e-7
-[models."gemini-2.5-flash-lite".pricing."orcarouter"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
-[models."gemini-2.5-flash-lite".pricing."poe"]
-input_cost_per_token = 7e-8
-output_cost_per_token = 2.8e-7
-[models."gemini-2.5-flash-lite".pricing."sap-ai-core"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
-[models."gemini-2.5-flash-lite".pricing."vercel"]
-cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
 [models."gemini-2.5-flash-lite".pricing."vertex_ai-language-models"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_audio_token = 3e-7
 input_cost_per_token = 1e-7
 output_cost_per_reasoning_token = 4e-7
 output_cost_per_token = 4e-7
-[models."gemini-2.5-flash-lite".pricing."zenmux"]
-cache_read_input_token_cost = 3e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
 
 [models."gemini-2.5-flash-lite-preview-06-17"]
 display_name = "Gemini 2.5 Flash Lite Preview"
@@ -36648,21 +36663,18 @@ output_cost_per_token = 0.00001
 output_cost_per_token_above_200k_tokens = 0.000015
 
 [models."gemini-3-1-flash-lite"]
-display_name = "Gemini 3.1 Flash Lite Preview"
+display_name = "Gemini 3.1 Flash Lite"
 model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 2.5000000000000002e-8
-litellm_provider = "neon"
-providers = ["neon", "google", "kilo", "openrouter", "poe", "vercel", "zenmux"]
+litellm_provider = "kenari"
+providers = ["kenari", "google", "kilo", "neon", "openrouter", "poe", "sap-ai-core", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-01"
-release_date = "2026-03-03"
+release_date = "2026-05-07"
 supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -36687,6 +36699,10 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 reasoning_cost_per_token = 0.0000015
 [models."gemini-3-1-flash-lite".pricing."poe"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.0000015
+[models."gemini-3-1-flash-lite".pricing."sap-ai-core"]
+cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 [models."gemini-3-1-flash-lite".pricing."vercel"]
@@ -37827,7 +37843,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 2.5e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "abacus", "aihubmix", "gemini", "google-vertex", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openrouter", "sap-ai-core", "vertex_ai"]
+providers = ["vertex_ai-language-models", "abacus", "aihubmix", "gemini", "google-vertex", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "openrouter", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -37914,10 +37930,6 @@ cache_read_input_token_cost = 2.5e-8
 input_cost_per_audio_token = 5e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_reasoning_token = 0.0000015
-output_cost_per_token = 0.0000015
-[models."gemini-3.1-flash-lite".pricing."sap-ai-core"]
-cache_read_input_token_cost = 2.5000000000000002e-8
-input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.0000015
 [models."gemini-3.1-flash-lite".pricing."vertex_ai"]
 cache_read_input_token_cost = 2.5e-8
@@ -40611,6 +40623,23 @@ source = "modelsdev"
 [models."glm-4-7-flash".pricing."cortecs"]
 input_cost_per_token = 9e-8
 output_cost_per_token = 5.3e-7
+
+[models."glm-4-7-flash:free"]
+display_name = "GLM-4.7-Flash (Free)"
+model_family = "glm-flash"
+mode = "chat"
+max_input_tokens = 200000
+max_output_tokens = 131072
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-01-19"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."glm-4-7-flashx"]
 display_name = "GLM-4.7-FlashX"
@@ -46541,6 +46570,60 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gpt-5-6-luna"]
+display_name = "GPT-5.6 Luna"
+model_family = "gpt-luna"
+mode = "chat"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+litellm_provider = "kenari"
+providers = ["kenari", "azure", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "vercel", "vivgrid", "zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-6-luna".pricing."azure"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."cloudflare-ai-gateway"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."github-copilot"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."openai"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."opencode"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."openrouter"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."vercel"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."vivgrid"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+[models."gpt-5-6-luna".pricing."zenmux"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000006
+
 [models."gpt-5-6-luna-pro"]
 display_name = "GPT-5.6 Luna Pro"
 model_family = "gpt-luna"
@@ -46566,6 +46649,60 @@ cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000006
 
+[models."gpt-5-6-sol"]
+display_name = "GPT-5.6 Sol"
+model_family = "gpt-sol"
+mode = "chat"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+litellm_provider = "kenari"
+providers = ["kenari", "azure", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "vercel", "vivgrid", "zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-6-sol".pricing."azure"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."cloudflare-ai-gateway"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."github-copilot"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."openai"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."opencode"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."openrouter"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."vercel"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."vivgrid"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+[models."gpt-5-6-sol".pricing."zenmux"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
+
 [models."gpt-5-6-sol-pro"]
 display_name = "GPT-5.6 Sol Pro"
 model_family = "gpt-sol"
@@ -46590,6 +46727,60 @@ source = "modelsdev"
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
+
+[models."gpt-5-6-terra"]
+display_name = "GPT-5.6 Terra"
+model_family = "gpt-terra"
+mode = "chat"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+litellm_provider = "kenari"
+providers = ["kenari", "azure", "cloudflare-ai-gateway", "github-copilot", "openai", "opencode", "openrouter", "vercel", "vivgrid", "zenmux"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-02-16"
+release_date = "2026-07-09"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-5-6-terra".pricing."azure"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."cloudflare-ai-gateway"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."github-copilot"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."openai"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."opencode"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."openrouter"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."vercel"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."vivgrid"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
+[models."gpt-5-6-terra".pricing."zenmux"]
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
 
 [models."gpt-5-6-terra-pro"]
 display_name = "GPT-5.6 Terra Pro"
@@ -50049,7 +50240,7 @@ input_cost_per_token = 0.000001
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 1e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "crossmodel", "github-copilot", "llmgateway", "openai", "opencode", "openrouter", "routing-run", "vercel", "vivgrid", "zenmux"]
+providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "crossmodel", "llmgateway", "openai", "routing-run"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -50129,15 +50320,7 @@ input_cost_per_token_priority = 0.00000275
 output_cost_per_token = 0.0000066
 output_cost_per_token_above_272k_tokens = 0.0000099
 output_cost_per_token_priority = 0.0000165
-[models."gpt-5.6-luna".pricing."cloudflare-ai-gateway"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
 [models."gpt-5.6-luna".pricing."crossmodel"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-[models."gpt-5.6-luna".pricing."github-copilot"]
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000006
@@ -50164,29 +50347,9 @@ output_cost_per_token_above_272k_tokens = 0.000009
 output_cost_per_token_batches = 0.000003
 output_cost_per_token_flex = 0.000003
 output_cost_per_token_priority = 0.000012
-[models."gpt-5.6-luna".pricing."opencode"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-[models."gpt-5.6-luna".pricing."openrouter"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
 [models."gpt-5.6-luna".pricing."routing-run"]
 input_cost_per_token = 7e-7
 output_cost_per_token = 0.0000042000000000000004
-[models."gpt-5.6-luna".pricing."vercel"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-[models."gpt-5.6-luna".pricing."vivgrid"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
-[models."gpt-5.6-luna".pricing."zenmux"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000006
 
 [models."gpt-5.6-sol"]
 display_name = "GPT-5.6 Sol"
@@ -50199,7 +50362,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "crossmodel", "github-copilot", "llmgateway", "openai", "opencode", "openrouter", "routing-run", "vercel", "vivgrid", "zenmux"]
+providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "crossmodel", "llmgateway", "openai", "routing-run"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -50279,15 +50442,7 @@ input_cost_per_token_priority = 0.00001375
 output_cost_per_token = 0.000033
 output_cost_per_token_above_272k_tokens = 0.0000495
 output_cost_per_token_priority = 0.0000825
-[models."gpt-5.6-sol".pricing."cloudflare-ai-gateway"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
 [models."gpt-5.6-sol".pricing."crossmodel"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-[models."gpt-5.6-sol".pricing."github-copilot"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
@@ -50314,29 +50469,9 @@ output_cost_per_token_above_272k_tokens = 0.000045
 output_cost_per_token_batches = 0.000015
 output_cost_per_token_flex = 0.000015
 output_cost_per_token_priority = 0.00006
-[models."gpt-5.6-sol".pricing."opencode"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-[models."gpt-5.6-sol".pricing."openrouter"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
 [models."gpt-5.6-sol".pricing."routing-run"]
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
-[models."gpt-5.6-sol".pricing."vercel"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-[models."gpt-5.6-sol".pricing."vivgrid"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
-[models."gpt-5.6-sol".pricing."zenmux"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
 
 [models."gpt-5.6-terra"]
 display_name = "GPT-5.6 Terra"
@@ -50349,7 +50484,7 @@ input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 2.5e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "cloudflare-ai-gateway", "crossmodel", "github-copilot", "llmgateway", "openai", "opencode", "openrouter", "routing-run", "vercel", "vivgrid", "zenmux"]
+providers = ["azure", "abacus", "ai-router", "aihubmix", "azure-cognitive-services", "crossmodel", "llmgateway", "openai", "routing-run"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -50429,15 +50564,7 @@ input_cost_per_token_priority = 0.000006875
 output_cost_per_token = 0.0000165
 output_cost_per_token_above_272k_tokens = 0.00002475
 output_cost_per_token_priority = 0.00004125
-[models."gpt-5.6-terra".pricing."cloudflare-ai-gateway"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
 [models."gpt-5.6-terra".pricing."crossmodel"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-[models."gpt-5.6-terra".pricing."github-copilot"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.000015
@@ -50464,29 +50591,9 @@ output_cost_per_token_above_272k_tokens = 0.0000225
 output_cost_per_token_batches = 0.0000075
 output_cost_per_token_flex = 0.0000075
 output_cost_per_token_priority = 0.00003
-[models."gpt-5.6-terra".pricing."opencode"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-[models."gpt-5.6-terra".pricing."openrouter"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
 [models."gpt-5.6-terra".pricing."routing-run"]
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.000009
-[models."gpt-5.6-terra".pricing."vercel"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-[models."gpt-5.6-terra".pricing."vivgrid"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-[models."gpt-5.6-terra".pricing."zenmux"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
 
 [models."gpt-audio"]
 display_name = "OpenAI: GPT Audio"
@@ -52954,7 +53061,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "frogbot"
-providers = ["frogbot", "abacus", "aihubmix", "auriko", "daoxe", "kenari", "llmgateway", "venice"]
+providers = ["frogbot", "abacus", "aihubmix", "auriko", "daoxe", "llmgateway", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -53003,7 +53110,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 5e-7
 litellm_provider = "llmgateway"
-providers = ["llmgateway", "daoxe", "opencode", "opencode-go", "venice"]
+providers = ["llmgateway", "daoxe", "kenari", "opencode", "opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -54489,7 +54596,7 @@ mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 64000
 litellm_provider = "tencent-token-plan"
-providers = ["tencent-token-plan", "tencent-tokenhub"]
+providers = ["tencent-token-plan", "cortecs", "tencent-tokenhub"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -54497,6 +54604,11 @@ release_date = "2026-07-06"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."hy3".pricing."cortecs"]
+cache_read_input_token_cost = 1.03e-7
+input_cost_per_token = 4.1e-7
+output_cost_per_token = 0.000001025
 
 [models."hy3-free"]
 display_name = "Hy3 Free"
@@ -56655,6 +56767,23 @@ source = "modelsdev"
 input_cost_per_token = 2.75e-7
 output_cost_per_token = 0.0000011
 
+[models."kimi-k2-6:free"]
+display_name = "Kimi K2.6 (Free)"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-21"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."kimi-k2-7-code"]
 display_name = "Kimi K2.7 Code"
 model_family = "kimi-k2"
@@ -56831,6 +56960,23 @@ source = "modelsdev"
 [models."kimi-k2-7-code-nitro".pricing."routing-run"]
 input_cost_per_token = 2.75e-7
 output_cost_per_token = 0.0000011
+
+[models."kimi-k2-7-code:free"]
+display_name = "Kimi K2.7 Code (Free)"
+model_family = "kimi-k2"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-01"
+release_date = "2026-06-12"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."kimi-k2-instruct"]
 display_name = "Kimi K2 Instruct"
@@ -57240,7 +57386,7 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 litellm_provider = "llmgateway"
-providers = ["llmgateway", "empiriolabs", "moonshotai", "moonshotai-cn", "opencode-go", "venice"]
+providers = ["llmgateway", "empiriolabs", "kenari", "moonshotai", "moonshotai-cn", "opencode-go", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -63201,6 +63347,23 @@ open_weights = true
 release_date = "2026-04-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["audio"]
+source = "modelsdev"
+
+[models."mimo-v2-5:free"]
+display_name = "MiMo-V2.5 (Free)"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."mimo-v2-flash"]
@@ -70051,6 +70214,22 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
+[models."nemotron-3-nano-30b-a3b"]
+display_name = "Nemotron 3 Nano 30B A3B"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-12-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."nemotron-3-nano-omni"]
 display_name = "Nemotron Nano 3 Omni"
 model_family = "nemotron"
@@ -70079,10 +70258,8 @@ model_family = "nemotron"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
-input_cost_per_token = 2.66e-7
-output_cost_per_token = 7.99e-7
-litellm_provider = "cortecs"
-providers = ["cortecs"]
+litellm_provider = "kenari"
+providers = ["kenari", "cortecs"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -70095,6 +70272,22 @@ source = "modelsdev"
 [models."nemotron-3-super-120b-a12b".pricing."cortecs"]
 input_cost_per_token = 2.66e-7
 output_cost_per_token = 7.99e-7
+
+[models."nemotron-3-super-120b-a12b:free"]
+display_name = "Nemotron 3 Super 120B A12B (Free)"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-03-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."nemotron-3-super-free"]
 display_name = "Nemotron 3 Super Free"
@@ -70158,6 +70351,22 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000025
+
+[models."nemotron-3-ultra-550b-a55b"]
+display_name = "Nemotron 3 Ultra 550B A55B"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+litellm_provider = "kenari"
+providers = ["kenari"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-04"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."nemotron-3-ultra-550b-a55b:free"]
 display_name = "Nemotron 3 Ultra 550B A55B"
@@ -85957,7 +86166,7 @@ output_cost_per_token = 0.00002
 
 [models."tencent/hy3"]
 display_name = "Hy3"
-model_family = "hy3"
+model_family = "Hy"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
