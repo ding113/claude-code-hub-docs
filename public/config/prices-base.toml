@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.22"
-checksum = "81ff31baa6821d3e1d4e93a9793cef5bbb51b83515c8e1d9c76d0f1bd2e29606"
+checksum = "3dcc64ba5261dc84d6a6831240fb44cfed9e3cf16bc4b5309fa5c0fdf3f30d69"
 sources = ["litellm", "modelsdev"]
-total_models = 3751
+total_models = 3752
 litellm_raw_models = 2974
-modelsdev_raw_models = 5727
+modelsdev_raw_models = 5728
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -37009,7 +37009,7 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2026-03"
 release_date = "2026-07-09"
-supported_modalities = ["text", "image", "audio"]
+supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 reasoning_cost_per_token = 0.0000025
@@ -37075,7 +37075,7 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2026-03"
 release_date = "2026-07-09"
-supported_modalities = ["text", "image", "audio"]
+supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 reasoning_cost_per_token = 0.0000075
@@ -79000,8 +79000,9 @@ output_cost_per_token = 0.0000015
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
 [models."qwen/qwen3-next-80b-a3b-instruct".pricing."openrouter"]
-input_cost_per_token = 9.75e-8
-output_cost_per_token = 7.8e-7
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 0.0000011
 
 [models."qwen/qwen3-next-80b-a3b-instruct-maas"]
 mode = "chat"
@@ -81011,6 +81012,37 @@ output_cost_per_token = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00001
 
+[models."qwen3-6-35b-a3b"]
+display_name = "Qwen 3.6 35B A3B"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.000001
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "venice"
+providers = ["venice", "alibaba", "scaleway"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-07-20"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen3-6-35b-a3b".pricing."alibaba"]
+input_cost_per_token = 2.48e-7
+output_cost_per_token = 0.0000014850000000000002
+[models."qwen3-6-35b-a3b".pricing."scaleway"]
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.0000015
+[models."qwen3-6-35b-a3b".pricing."venice"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.000001
+
 [models."qwen3-6-35b-fast"]
 display_name = "Qwen3.6 35B Fast"
 model_family = "qwen3.6"
@@ -82498,12 +82530,11 @@ max_tokens = 262144
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 litellm_provider = "libertai"
-providers = ["libertai", "alibaba", "llmgateway", "scaleway"]
+providers = ["libertai", "llmgateway"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 open_weights = true
-knowledge_cutoff = "2025-04"
 release_date = "2026-04-17"
 supported_modalities = ["text", "image", "video", "audio"]
 supported_output_modalities = ["text"]
@@ -82511,18 +82542,12 @@ source = "https://docs.libertai.io/apis/text/"
 supports_system_messages = true
 supports_tool_choice = true
 
-[models."qwen3.6-35b-a3b".pricing."alibaba"]
-input_cost_per_token = 2.48e-7
-output_cost_per_token = 0.0000014850000000000002
 [models."qwen3.6-35b-a3b".pricing."libertai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 [models."qwen3.6-35b-a3b".pricing."llmgateway"]
 input_cost_per_token = 2.48e-7
 output_cost_per_token = 0.0000014850000000000002
-[models."qwen3.6-35b-a3b".pricing."scaleway"]
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
 
 [models."qwen3.6-35b-a3b-thinking"]
 mode = "chat"
@@ -93350,9 +93375,9 @@ cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 1.5314e-7
-input_cost_per_token = 8.246e-7
-output_cost_per_token = 0.0000025916000000000003
+cache_read_input_token_cost = 1.5236e-7
+input_cost_per_token = 8.204e-7
+output_cost_per_token = 0.0000025783999999999997
 [models."z-ai/glm-5-2".pricing."zenmux"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
