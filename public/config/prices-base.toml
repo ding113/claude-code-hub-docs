@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.22"
-checksum = "a323529e7159aa327aab0c56dc07ece96995103d06d0c0b5fe8b878c22469aea"
+checksum = "054e0f0c007df7b6357c1a04ba25d8bec86214fa1fc7911a2b126e3fbe0987a3"
 sources = ["litellm", "modelsdev"]
-total_models = 3763
+total_models = 3764
 litellm_raw_models = 2974
-modelsdev_raw_models = 5745
+modelsdev_raw_models = 5751
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -7881,7 +7881,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-9
 litellm_provider = "pioneer"
-providers = ["pioneer", "deepinfra"]
+providers = ["pioneer", "deepinfra", "huggingface"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -7893,6 +7893,9 @@ source = "modelsdev"
 
 [models."XiaomiMiMo/MiMo-V2-5".pricing."deepinfra"]
 cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
+[models."XiaomiMiMo/MiMo-V2-5".pricing."huggingface"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000002
 [models."XiaomiMiMo/MiMo-V2-5".pricing."pioneer"]
@@ -30332,9 +30335,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.8759999999999997e-8
-input_cost_per_token = 9.379999999999999e-8
-output_cost_per_token = 1.8759999999999999e-7
+cache_read_input_token_cost = 1.96e-8
+input_cost_per_token = 9.8e-8
+output_cost_per_token = 1.96e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -38444,7 +38447,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 3e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "llmgateway", "vertex_ai"]
+providers = ["vertex_ai-language-models", "gemini", "google-vertex", "llmgateway", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -38496,6 +38499,10 @@ output_cost_per_token = 0.0000025
 output_cost_per_token_batches = 0.00000125
 output_cost_per_token_flex = 0.00000125
 output_cost_per_token_priority = 0.0000045
+[models."gemini-3.5-flash-lite".pricing."google-vertex"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-3.5-flash-lite".pricing."llmgateway"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
@@ -38538,7 +38545,7 @@ input_cost_per_token = 0.0000015
 output_cost_per_token = 0.0000075
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai", "gemini", "llmgateway", "vertex_ai-language-models"]
+providers = ["vertex_ai", "gemini", "google-vertex", "llmgateway", "vertex_ai-language-models"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -38589,6 +38596,10 @@ output_cost_per_token = 0.0000075
 output_cost_per_token_batches = 0.00000375
 output_cost_per_token_flex = 0.00000375
 output_cost_per_token_priority = 0.0000135
+[models."gemini-3.6-flash".pricing."google-vertex"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.0000075
 [models."gemini-3.6-flash".pricing."llmgateway"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.0000015
@@ -75946,7 +75957,7 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 2.0000000000000002e-7
 cache_read_input_token_cost = 1e-8
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -75959,6 +75970,26 @@ source = "modelsdev"
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 2.0000000000000002e-7
+[models."poolside/laguna-s-2-1".pricing."vercel"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
+
+[models."poolside/laguna-s-2-1-free"]
+display_name = "Laguna S 2.1 Free"
+model_family = "laguna-s"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 32768
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-07-21"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."poolside/laguna-s-2-1:free"]
 display_name = "Laguna S 2.1 (free)"
@@ -86178,7 +86209,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 cache_read_input_token_cost = 3.5e-8
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -86188,6 +86219,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."tencent/hy3".pricing."openrouter"]
+cache_read_input_token_cost = 3.5e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 5.8e-7
+[models."tencent/hy3".pricing."vercel"]
 cache_read_input_token_cost = 3.5e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
@@ -93588,9 +93623,9 @@ cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.0000012
 output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 1.5236e-7
-input_cost_per_token = 8.204e-7
-output_cost_per_token = 0.0000025783999999999997
+cache_read_input_token_cost = 1.4872e-7
+input_cost_per_token = 8.007999999999999e-7
+output_cost_per_token = 0.0000025167999999999998
 [models."z-ai/glm-5-2".pricing."zenmux"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
