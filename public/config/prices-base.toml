@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.07.24"
-checksum = "cb8cf96c63eca83c5356d7c456bdbbe0189a51eb763f81915bcd09e8d8096ff8"
+checksum = "a5ac3516fe75d85ffbb9ac9304ed35a928741edfde441a02fe64a8d511adb78f"
 sources = ["litellm", "modelsdev"]
-total_models = 3783
-litellm_raw_models = 2974
-modelsdev_raw_models = 5797
+total_models = 3797
+litellm_raw_models = 2984
+modelsdev_raw_models = 5823
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5252,7 +5252,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036000000000000003
 cache_read_input_token_cost = 1.2e-7
 litellm_provider = "wandb"
-providers = ["wandb", "abacus", "deepinfra", "huggingface", "kilo", "openrouter", "pioneer", "siliconflow", "stackit", "vultr"]
+providers = ["wandb", "abacus", "aiand", "deepinfra", "huggingface", "kilo", "openrouter", "pioneer", "siliconflow", "stackit", "vultr"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -5274,9 +5274,8 @@ output_cost_per_token = 0.00000319
 input_cost_per_token = 3.25e-7
 output_cost_per_token = 0.00000325
 [models."Qwen/Qwen3-6-27B".pricing."openrouter"]
-cache_read_input_token_cost = 1.2e-7
-input_cost_per_token = 6e-7
-output_cost_per_token = 0.0000036000000000000003
+input_cost_per_token = 2.88e-7
+output_cost_per_token = 0.0000024
 [models."Qwen/Qwen3-6-27B".pricing."pioneer"]
 cache_read_input_token_cost = 6e-7
 input_cost_per_token = 6e-7
@@ -5329,7 +5328,7 @@ input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 0.0000011
 cache_read_input_token_cost = 5.6e-8
 litellm_provider = "nearai"
-providers = ["nearai", "evroc", "inferx"]
+providers = ["nearai", "evroc", "hetzner", "inferx"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -13071,9 +13070,9 @@ source = "modelsdev"
 input_cost_per_token = 0.0000016499999999999999
 output_cost_per_token = 0.00000495
 [models."alibaba/qwen3-7-max".pricing."vercel"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.00000125
-output_cost_per_token = 0.00000375
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.0000075
 
 [models."alibaba/qwen3-7-plus"]
 display_name = "Qwen 3.7 Plus"
@@ -15484,6 +15483,61 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
+[models."anthropic.claude-opus-5"]
+display_name = "Claude Opus 5"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.00001
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."anthropic.claude-opus-5".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
 [models."anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -16899,6 +16953,61 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."au.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+
+[models."au.anthropic.claude-opus-5"]
+display_name = "Claude Opus 5 (AU)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.000011
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."au.anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."au.anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."au.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
 cache_read_input_token_cost = 5.5e-7
@@ -21558,22 +21667,22 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."claude-opus-4-7-fast"]
-display_name = "Claude Opus 4.7 Fast"
+display_name = "Anthropic: Claude Opus 4.7 (Fast)"
 model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000036
-output_cost_per_token = 0.00018
-cache_read_input_token_cost = 0.0000036000000000000003
-litellm_provider = "venice"
-providers = ["venice", "kilo", "openrouter", "vercel"]
+input_cost_per_token = 0.00003
+output_cost_per_token = 0.00015
+cache_read_input_token_cost = 0.000003
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2026-01-31"
-release_date = "2026-05-14"
-supported_modalities = ["text", "image"]
+release_date = "2026-05-12"
+supported_modalities = ["image", "pdf", "text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -21585,10 +21694,6 @@ output_cost_per_token = 0.00015
 cache_read_input_token_cost = 0.000003
 input_cost_per_token = 0.00003
 output_cost_per_token = 0.00015
-[models."claude-opus-4-7-fast".pricing."venice"]
-cache_read_input_token_cost = 0.0000036000000000000003
-input_cost_per_token = 0.000036
-output_cost_per_token = 0.00018
 [models."claude-opus-4-7-fast".pricing."vercel"]
 cache_read_input_token_cost = 0.000003
 input_cost_per_token = 0.00003
@@ -22308,6 +22413,180 @@ cache_creation_input_token_cost_above_1hr = 0.00003
 cache_read_input_token_cost = 0.0000015
 input_cost_per_token = 0.000015
 output_cost_per_token = 0.000075
+
+[models."claude-opus-5"]
+display_name = "Claude Opus 5"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "azure_ai"
+providers = ["azure_ai", "anthropic", "azure", "azure-cognitive-services", "opencode", "openrouter", "venice", "vercel", "vertex_ai"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+cache_creation_input_token_cost_above_1hr = 0.00001
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_speed = true
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."claude-opus-5".pricing."anthropic"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."azure"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."azure_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."opencode"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."openrouter"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."venice"]
+cache_read_input_token_cost = 6e-7
+input_cost_per_token = 0.000006
+output_cost_per_token = 0.00003
+[models."claude-opus-5".pricing."vercel"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5".pricing."vertex_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."claude-opus-5-fast"]
+display_name = "Claude Opus 5 Fast"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+input_cost_per_token = 0.000012
+output_cost_per_token = 0.00006
+cache_read_input_token_cost = 0.0000012
+litellm_provider = "venice"
+providers = ["venice", "openrouter", "vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-23"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."claude-opus-5-fast".pricing."openrouter"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+[models."claude-opus-5-fast".pricing."venice"]
+cache_read_input_token_cost = 0.0000012
+input_cost_per_token = 0.000012
+output_cost_per_token = 0.00006
+[models."claude-opus-5-fast".pricing."vercel"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+
+[models."claude-opus-5@default"]
+display_name = "Claude Opus 5"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "vertex_ai"
+providers = ["vertex_ai", "google-vertex", "google-vertex-anthropic"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+cache_creation_input_token_cost_above_1hr = 0.00001
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."claude-opus-5@default".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."claude-opus-5@default".pricing."google-vertex"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5@default".pricing."google-vertex-anthropic"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."claude-opus-5@default".pricing."vertex_ai"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
 
 [models."claude-opus-latest"]
 display_name = "Claude Opus Latest"
@@ -24138,7 +24417,7 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-04"
 release_date = "2026-06-02"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -27296,10 +27575,10 @@ input_cost_per_token = 4.78e-7
 output_cost_per_token = 9.56e-7
 
 [models."deep-research-max-preview-04-2026"]
-display_name = "Deep Research Max Preview"
+display_name = "Deep Research Max Preview (Apr-21-2026)"
 model_family = "gemini-pro"
 mode = "chat"
-max_input_tokens = 1048576
+max_input_tokens = 131072
 max_output_tokens = 65536
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
@@ -27321,10 +27600,10 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 
 [models."deep-research-preview-04-2026"]
-display_name = "Gemini Deep Research Preview"
+display_name = "Deep Research Preview (Apr-21-2026)"
 model_family = "gemini-pro"
 mode = "chat"
-max_input_tokens = 1048576
+max_input_tokens = 131072
 max_output_tokens = 65536
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
@@ -28085,7 +28364,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 0
 litellm_provider = "tensormesh"
-providers = ["tensormesh", "abacus", "deepinfra", "gmicloud", "huggingface", "nvidia", "pioneer", "siliconflow", "siliconflow-cn", "vultr", "wandb"]
+providers = ["tensormesh", "abacus", "aiand", "deepinfra", "gmicloud", "huggingface", "nvidia", "pioneer", "siliconflow", "siliconflow-cn", "vultr", "wandb"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -28103,6 +28382,9 @@ supports_tool_choice = true
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
+[models."deepseek-ai/DeepSeek-V4-Flash".pricing."aiand"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 2.5e-7
 [models."deepseek-ai/DeepSeek-V4-Flash".pricing."deepinfra"]
 cache_read_input_token_cost = 1.8e-8
 input_cost_per_token = 9e-8
@@ -28152,7 +28434,7 @@ input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 cache_read_input_token_cost = 1.4e-7
 litellm_provider = "wandb"
-providers = ["wandb", "abacus", "baseten", "deepinfra", "gmicloud", "huggingface", "nebius", "nvidia", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["wandb", "abacus", "aiand", "baseten", "deepinfra", "gmicloud", "huggingface", "nebius", "nvidia", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -28166,6 +28448,9 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
+[models."deepseek-ai/DeepSeek-V4-Pro".pricing."aiand"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.0000025
 [models."deepseek-ai/DeepSeek-V4-Pro".pricing."baseten"]
 cache_read_input_token_cost = 1.45e-7
 input_cost_per_token = 0.00000174
@@ -30518,9 +30803,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."deepseek/deepseek-v4-flash".pricing."ambient"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 5e-7
-output_cost_per_token = 8.000000000000001e-7
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."crossmodel"]
 cache_read_input_token_cost = 4e-9
 input_cost_per_token = 1.6e-7
@@ -33753,6 +34038,61 @@ cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
+[models."eu.anthropic.claude-opus-5"]
+display_name = "Claude Opus 5 (EU)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.000011
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."eu.anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."eu.anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+[models."eu.anthropic.claude-opus-5".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -35169,7 +35509,7 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 cache_read_input_token_cost = 5e-7
 litellm_provider = "llmgateway"
-providers = ["llmgateway", "empiriolabs", "sakana"]
+providers = ["llmgateway", "sakana"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -35178,10 +35518,6 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."fugu-ultra".pricing."empiriolabs"]
-cache_read_input_token_cost = 0.0000015
-input_cost_per_token = 0.0000075
-output_cost_per_token = 0.000045
 [models."fugu-ultra".pricing."llmgateway"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
@@ -36162,7 +36498,7 @@ input_cost_per_token = 7.5e-8
 output_cost_per_token = 3e-7
 
 [models."gemini-2.5-computer-use-preview-10-2025"]
-display_name = "Gemini 2.5 Computer Use Preview"
+display_name = "Gemini 2.5 Computer Use Preview 10-2025"
 model_family = "gemini-pro"
 mode = "chat"
 max_input_tokens = 128000
@@ -36955,7 +37291,7 @@ display_name = "Nano Banana 2 Lite"
 model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 65536
-max_output_tokens = 4096
+max_output_tokens = 65536
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.00003
 litellm_provider = "google"
@@ -36991,7 +37327,7 @@ output_cost_per_token = 0.00002
 litellm_provider = "google"
 providers = ["google"]
 supports_function_calling = false
-supports_reasoning = false
+supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-01"
 release_date = "2026-04-15"
@@ -37306,8 +37642,8 @@ output_cost_per_token = 0.000009
 display_name = "Gemini 3.5 Live Translate Preview"
 model_family = "gemini-pro"
 mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 65536
+max_input_tokens = 16384
+max_output_tokens = 32768
 input_cost_per_token = 0.0000035
 output_cost_per_token = 0.000021
 litellm_provider = "google"
@@ -38989,7 +39325,7 @@ display_name = "Gemini Embedding 2"
 model_family = "gemini"
 mode = "embedding"
 max_input_tokens = 8192
-max_output_tokens = 3072
+max_output_tokens = 1
 max_tokens = 8192
 input_cost_per_token = 2e-7
 output_cost_per_token = 0
@@ -40295,7 +40631,7 @@ max_tokens = 262144
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 4e-7
 litellm_provider = "libertai"
-providers = ["libertai", "abacus", "berget", "crof", "deepinfra", "digitalocean", "fastrouter", "friendli", "huggingface", "kenari", "kilo", "lilac", "llmgateway", "nano-gpt", "nearai", "novita-ai", "nvidia", "openrouter", "orcarouter", "pioneer", "siliconflow", "togetherai", "vercel", "wandb"]
+providers = ["libertai", "abacus", "aiand", "berget", "crof", "deepinfra", "digitalocean", "fastrouter", "friendli", "huggingface", "kenari", "kilo", "lilac", "llmgateway", "nano-gpt", "nearai", "novita-ai", "nvidia", "openrouter", "orcarouter", "pioneer", "siliconflow", "togetherai", "vercel", "wandb"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -40311,6 +40647,9 @@ supports_tool_choice = true
 [models."gemma-4-31b-it".pricing."abacus"]
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
+[models."gemma-4-31b-it".pricing."aiand"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 5e-7
 [models."gemma-4-31b-it".pricing."berget"]
 input_cost_per_token = 2.75e-7
 output_cost_per_token = 5.5e-7
@@ -40356,9 +40695,8 @@ output_cost_per_token = 4.0000000000000003e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-31b-it".pricing."openrouter"]
-cache_read_input_token_cost = 9e-8
-input_cost_per_token = 1.2e-7
-output_cost_per_token = 3.5e-7
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-31b-it".pricing."orcarouter"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 3.8e-7
@@ -41689,7 +42027,7 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "zhipuai"
-providers = ["zhipuai", "aihubmix", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "crof", "digitalocean", "empiriolabs", "kenari", "llmgateway", "neuralwatt", "opencode", "opencode-go", "routing-run", "scaleway", "tinfoil", "unorouter", "vivgrid", "wafer.ai", "zai", "zai-coding-plan", "zhipuai-coding-plan"]
+providers = ["zhipuai", "aihubmix", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "crof", "digitalocean", "dinference", "empiriolabs", "kenari", "llmgateway", "neuralwatt", "opencode", "opencode-go", "routing-run", "scaleway", "tinfoil", "unorouter", "vivgrid", "wafer.ai", "zai", "zai-coding-plan", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -41718,6 +42056,9 @@ output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 2.1e-7
 input_cost_per_token = 0.0000010500000000000001
 output_cost_per_token = 0.0000044
+[models."glm-5-2".pricing."dinference"]
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000389
 [models."glm-5-2".pricing."empiriolabs"]
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
@@ -42603,6 +42944,61 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."global.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.00000625
+cache_creation_input_token_cost_above_1hr = 0.00001
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+
+[models."global.anthropic.claude-opus-5"]
+display_name = "Claude Opus 5 (Global)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5e-7
+cache_creation_input_token_cost = 0.00000625
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.00001
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."global.anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."global.anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."global.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
 cache_read_input_token_cost = 5e-7
@@ -45928,7 +46324,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "neon"
-providers = ["neon", "abacus", "azure", "jiekou", "kilo", "openai", "openrouter", "orcarouter", "requesty", "vercel"]
+providers = ["neon", "abacus", "azure", "jiekou", "kilo", "openrouter", "orcarouter", "requesty", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -45953,10 +46349,6 @@ cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5-1-codex-max".pricing."neon"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 0.00000125
-output_cost_per_token = 0.00001
-[models."gpt-5-1-codex-max".pricing."openai"]
 cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -45987,7 +46379,7 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 cache_read_input_token_cost = 2.5000000000000002e-8
 litellm_provider = "neon"
-providers = ["neon", "aihubmix", "azure", "azure-cognitive-services", "jiekou", "kilo", "openai", "openrouter", "orcarouter", "requesty", "vercel", "zenmux"]
+providers = ["neon", "aihubmix", "azure", "azure-cognitive-services", "jiekou", "kilo", "openrouter", "orcarouter", "requesty", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -46017,10 +46409,6 @@ cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 [models."gpt-5-1-codex-mini".pricing."neon"]
-cache_read_input_token_cost = 2.5000000000000002e-8
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.000002
-[models."gpt-5-1-codex-mini".pricing."openai"]
 cache_read_input_token_cost = 2.5000000000000002e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
@@ -46203,7 +46591,7 @@ input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 cache_read_input_token_cost = 1.75e-7
 litellm_provider = "neon"
-providers = ["neon", "abacus", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "jiekou", "kilo", "openai", "openrouter", "orcarouter", "qihang-ai", "requesty", "vercel", "zenmux"]
+providers = ["neon", "abacus", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "jiekou", "kilo", "openrouter", "orcarouter", "qihang-ai", "requesty", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -46241,10 +46629,6 @@ cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
 [models."gpt-5-2-codex".pricing."neon"]
-cache_read_input_token_cost = 1.75e-7
-input_cost_per_token = 0.00000175
-output_cost_per_token = 0.000014
-[models."gpt-5-2-codex".pricing."openai"]
 cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
@@ -51525,7 +51909,7 @@ max_tokens = 131072
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "aki-io", "baseten", "berget", "cerebras", "cloudferro-sherlock", "cortecs", "crusoe", "deepinfra", "dinference", "evroc", "fastrouter", "fireworks_ai", "frogbot", "groq", "helicone", "huggingface", "io-net", "kenari", "kilo", "llmgateway", "nano-gpt", "nearai", "nebius", "neon", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "pioneer", "privatemode-ai", "regolo-ai", "replicate", "sambanova", "scaleway", "siliconflow", "stackit", "submodel", "tensormesh", "tinfoil", "together_ai", "togetherai", "vercel", "wandb", "watsonx"]
+providers = ["azure_ai", "abacus", "aiand", "aki-io", "baseten", "berget", "cerebras", "cloudferro-sherlock", "cortecs", "crusoe", "deepinfra", "dinference", "evroc", "fastrouter", "fireworks_ai", "frogbot", "groq", "helicone", "huggingface", "io-net", "kenari", "kilo", "llmgateway", "nano-gpt", "nearai", "nebius", "neon", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "pioneer", "privatemode-ai", "regolo-ai", "replicate", "sambanova", "scaleway", "siliconflow", "stackit", "submodel", "tensormesh", "tinfoil", "together_ai", "togetherai", "vercel", "wandb", "watsonx"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -51546,6 +51930,9 @@ supports_web_search = true
 [models."gpt-oss-120b".pricing."abacus"]
 input_cost_per_token = 8e-8
 output_cost_per_token = 4.4e-7
+[models."gpt-oss-120b".pricing."aiand"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 [models."gpt-oss-120b".pricing."aki-io"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5.5e-7
@@ -54193,6 +54580,51 @@ source = "modelsdev"
 [models."gte-large-en-v1-5".pricing."digitalocean"]
 input_cost_per_token = 9e-8
 
+[models."happyhorse-1-1-i2v"]
+display_name = "HappyHorse 1.1 Image-to-Video"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+litellm_provider = "alibaba-token-plan"
+providers = ["alibaba-token-plan", "alibaba-token-plan-cn"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-07-17"
+supported_modalities = ["image", "text"]
+supported_output_modalities = ["video"]
+source = "modelsdev"
+
+[models."happyhorse-1-1-r2v"]
+display_name = "HappyHorse 1.1 Reference-to-Video"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+litellm_provider = "alibaba-token-plan"
+providers = ["alibaba-token-plan", "alibaba-token-plan-cn"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-07-17"
+supported_modalities = ["image", "text"]
+supported_output_modalities = ["video"]
+source = "modelsdev"
+
+[models."happyhorse-1-1-t2v"]
+display_name = "HappyHorse 1.1 Text-to-Video"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+litellm_provider = "alibaba-token-plan"
+providers = ["alibaba-token-plan", "alibaba-token-plan-cn"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-07-17"
+supported_modalities = ["text"]
+supported_output_modalities = ["video"]
+source = "modelsdev"
+
 [models."hcompany/holo2-30b-a3b"]
 mode = "chat"
 max_input_tokens = 22000
@@ -56486,6 +56918,61 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 [models."jp.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+
+[models."jp.anthropic.claude-opus-5"]
+display_name = "Claude Opus 5 (JP)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.000011
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."jp.anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."jp.anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."jp.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
 cache_read_input_token_cost = 5.5e-7
@@ -69369,7 +69856,7 @@ input_cost_per_token = 9.399999999999999e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.9e-7
 litellm_provider = "wandb"
-providers = ["wandb", "ambient", "baseten", "deepinfra", "hpc-ai", "huggingface", "inceptron", "merge-gateway", "nebius", "neuralwatt", "novita-ai", "openrouter", "pioneer", "togetherai", "vercel", "zenmux"]
+providers = ["wandb", "aiand", "ambient", "baseten", "deepinfra", "hpc-ai", "huggingface", "inceptron", "merge-gateway", "nebius", "neuralwatt", "novita-ai", "openrouter", "pioneer", "togetherai", "vercel", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -69379,10 +69866,13 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."moonshotai/Kimi-K2-7-Code".pricing."aiand"]
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000035
 [models."moonshotai/Kimi-K2-7-Code".pricing."ambient"]
-cache_read_input_token_cost = 1.7000000000000001e-7
-input_cost_per_token = 8.5e-7
-output_cost_per_token = 0.0000037999999999999996
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 8.2e-7
+output_cost_per_token = 0.00000375
 [models."moonshotai/Kimi-K2-7-Code".pricing."baseten"]
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -69417,7 +69907,7 @@ cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/Kimi-K2-7-Code".pricing."openrouter"]
-cache_read_input_token_cost = 1.6e-7
+cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 8.2e-7
 output_cost_per_token = 0.00000375
 [models."moonshotai/Kimi-K2-7-Code".pricing."pioneer"]
@@ -69552,7 +70042,7 @@ input_cost_per_token = 9.6e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 0
 litellm_provider = "tensormesh"
-providers = ["tensormesh", "abacus", "ambient", "baseten", "berget", "deepinfra", "evroc", "fastrouter", "gmicloud", "huggingface", "inceptron", "kilo", "lilac", "merge-gateway", "nano-gpt", "neuralwatt", "novita-ai", "nvidia", "ofox", "openrouter", "pioneer", "siliconflow", "togetherai", "vercel", "vultr", "wandb", "zenmux"]
+providers = ["tensormesh", "abacus", "aiand", "ambient", "baseten", "berget", "deepinfra", "evroc", "fastrouter", "gmicloud", "huggingface", "inceptron", "kilo", "lilac", "merge-gateway", "nano-gpt", "neuralwatt", "novita-ai", "nvidia", "ofox", "openrouter", "pioneer", "siliconflow", "togetherai", "vercel", "vultr", "wandb", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -69570,6 +70060,9 @@ supports_tool_choice = true
 cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
+[models."moonshotai/Kimi-K2.6".pricing."aiand"]
+input_cost_per_token = 8.5e-7
+output_cost_per_token = 0.0000035
 [models."moonshotai/Kimi-K2.6".pricing."ambient"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -79755,8 +80248,9 @@ output_cost_per_token = 0.0000015
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
 [models."qwen/qwen3-next-80b-a3b-instruct".pricing."openrouter"]
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 0.0000011
 
 [models."qwen/qwen3-next-80b-a3b-instruct-maas"]
 mode = "chat"
@@ -84699,6 +85193,30 @@ cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 0.000002
 
+[models."seed-2-1-turbo"]
+display_name = "Seed 2.1 Turbo"
+model_family = "seed"
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 65536
+input_cost_per_token = 6.25e-7
+output_cost_per_token = 0.000003125
+cache_read_input_token_cost = 1.25e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-06-28"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."seed-2-1-turbo".pricing."venice"]
+cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 6.25e-7
+output_cost_per_token = 0.000003125
+
 [models."shisa-ai/shisa-v2-1-llama3-3-70b"]
 display_name = "Shisa V2.1 Llama 3.3 70B"
 model_family = "llama"
@@ -86733,9 +87251,9 @@ cache_read_input_token_cost = 4e-8
 input_cost_per_token = 1.6e-7
 output_cost_per_token = 6.4e-7
 [models."tencent/hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.5e-8
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 5.8e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 5.280000000000001e-7
 [models."tencent/hy3".pricing."vercel"]
 cache_read_input_token_cost = 3.5e-8
 input_cost_per_token = 1.4e-7
@@ -89291,6 +89809,61 @@ cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
+[models."us.anthropic.claude-opus-5"]
+display_name = "Claude Opus 5 (US)"
+model_family = "claude-opus"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+cache_read_input_token_cost = 5.5e-7
+cache_creation_input_token_cost = 0.000006875
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse", "amazon-bedrock"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-05"
+release_date = "2026-07-24"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
+cache_creation_input_token_cost_above_1hr = 0.000011
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_assistant_prefill = false
+supports_computer_use = true
+supports_max_reasoning_effort = true
+supports_mid_conversation_system = true
+supports_native_structured_output = true
+supports_output_config = true
+supports_parallel_tool_use_config = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+
+[models."us.anthropic.claude-opus-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."us.anthropic.claude-opus-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000025
+[models."us.anthropic.claude-opus-5".pricing."bedrock_converse"]
+cache_creation_input_token_cost = 0.000006875
+cache_creation_input_token_cost_above_1hr = 0.000011
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
+
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0"]
 mode = "chat"
 max_input_tokens = 1000000
@@ -90070,11 +90643,11 @@ output_cost_per_second = 0.15
 output_cost_per_second = 0.15
 
 [models."veo-3.1-fast-generate-preview"]
-display_name = "Veo 3.1 Fast Preview"
+display_name = "Veo 3.1 fast"
 model_family = "veo"
 mode = "video_generation"
 max_input_tokens = 1024
-max_output_tokens = 0
+max_output_tokens = 8192
 max_tokens = 1024
 litellm_provider = "gemini"
 providers = ["gemini", "vertex_ai"]
@@ -90116,11 +90689,11 @@ output_cost_per_second = 0.4
 output_cost_per_second = 0.4
 
 [models."veo-3.1-generate-preview"]
-display_name = "Veo 3.1 Preview"
+display_name = "Veo 3.1"
 model_family = "veo"
 mode = "video_generation"
 max_input_tokens = 1024
-max_output_tokens = 1
+max_output_tokens = 8192
 max_tokens = 1024
 litellm_provider = "gemini"
 providers = ["gemini", "vertex_ai"]
@@ -90139,11 +90712,11 @@ output_cost_per_second = 0.4
 output_cost_per_second = 0.4
 
 [models."veo-3.1-lite-generate-preview"]
-display_name = "Veo 3.1 Lite Preview"
+display_name = "Veo 3.1 lite"
 model_family = "veo"
 mode = "video_generation"
 max_input_tokens = 1024
-max_output_tokens = 0
+max_output_tokens = 8192
 max_tokens = 1024
 litellm_provider = "gemini"
 providers = ["gemini"]
@@ -94171,9 +94744,9 @@ cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 1.4924e-7
-input_cost_per_token = 8.036e-7
-output_cost_per_token = 0.0000025256
+cache_read_input_token_cost = 1.469e-7
+input_cost_per_token = 7.91e-7
+output_cost_per_token = 0.000002486
 [models."z-ai/glm-5-2".pricing."zenmux"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
@@ -94834,7 +95407,7 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "wandb"
-providers = ["wandb", "abacus", "baseten", "deepinfra", "friendli", "hpc-ai", "huggingface", "nano-gpt", "novita-ai", "pioneer", "siliconflow", "togetherai"]
+providers = ["wandb", "abacus", "aiand", "baseten", "deepinfra", "friendli", "hpc-ai", "huggingface", "nano-gpt", "novita-ai", "pioneer", "siliconflow", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -94846,6 +95419,9 @@ source = "modelsdev"
 
 [models."zai-org/GLM-5-1".pricing."abacus"]
 cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+[models."zai-org/GLM-5-1".pricing."aiand"]
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 [models."zai-org/GLM-5-1".pricing."baseten"]
@@ -94957,7 +95533,7 @@ input_cost_per_token = 0.0000013899999999999998
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "wandb"
-providers = ["wandb", "abacus", "baseten", "berget", "deepinfra", "evroc", "friendli", "hpc-ai", "huggingface", "inceptron", "lilac", "nebius", "novita-ai", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["wandb", "abacus", "aiand", "baseten", "berget", "deepinfra", "evroc", "friendli", "hpc-ai", "huggingface", "inceptron", "lilac", "nebius", "novita-ai", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -94970,6 +95546,9 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+[models."zai-org/GLM-5-2".pricing."aiand"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000004
 [models."zai-org/GLM-5-2".pricing."baseten"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.0000014
@@ -95060,15 +95639,39 @@ output_cost_per_token = 0.00000308
 input_cost_per_token = 8.5e-7
 output_cost_per_token = 0.0000031
 
+[models."zai-org/GLM-5-2-Fast"]
+display_name = "GLM 5.2 Fast"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 524288
+max_output_tokens = 524288
+input_cost_per_token = 0.0000021000000000000002
+output_cost_per_token = 0.0000065999999999999995
+cache_read_input_token_cost = 2.1e-7
+litellm_provider = "baseten"
+providers = ["baseten"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/GLM-5-2-Fast".pricing."baseten"]
+cache_read_input_token_cost = 2.1e-7
+input_cost_per_token = 0.0000021000000000000002
+output_cost_per_token = 0.0000065999999999999995
+
 [models."zai-org/GLM-5-2-TEE"]
 display_name = "GLM 5.2 TEE"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65535
-input_cost_per_token = 0.0000014
-output_cost_per_token = 0.0000044
-cache_read_input_token_cost = 7e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000395
+cache_read_input_token_cost = 6.25e-7
 litellm_provider = "chutes"
 providers = ["chutes"]
 supports_function_calling = true
@@ -95080,9 +95683,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."zai-org/GLM-5-2-TEE".pricing."chutes"]
-cache_read_input_token_cost = 7e-7
-input_cost_per_token = 0.0000014
-output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 6.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000395
 
 [models."zai-org/GLM-5-FP8"]
 display_name = "GLM-5"
