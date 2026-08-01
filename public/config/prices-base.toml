@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.01"
-checksum = "755f90bc16f670c777d2c9b6d705b22f2bac7477752febbf93b8eb260db3bc2d"
+checksum = "3f5c6f55d3e9ae0c99dd5797fdb3823250d5daddc053167273e204cf85098323"
 sources = ["litellm", "modelsdev"]
-total_models = 3837
+total_models = 3838
 litellm_raw_models = 2986
-modelsdev_raw_models = 5936
+modelsdev_raw_models = 5939
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -28457,6 +28457,31 @@ cache_read_input_token_cost = 7e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
+[models."deepseek-ai/DeepSeek-V4-Flash-0731"]
+display_name = "DeepSeek V4 Flash 0731"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 1048576
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 2.6e-7
+cache_read_input_token_cost = 2.8e-8
+litellm_provider = "baseten"
+providers = ["baseten"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-ai/DeepSeek-V4-Flash-0731".pricing."baseten"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 2.6e-7
+
 [models."deepseek-ai/DeepSeek-V4-Pro"]
 display_name = "DeepSeek V4 Pro"
 model_family = "deepseek"
@@ -39206,7 +39231,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 3e-8
 litellm_provider = "vertex_ai-language-models"
-providers = ["vertex_ai-language-models", "gemini", "google", "llmgateway", "opencode", "vertex_ai"]
+providers = ["vertex_ai-language-models", "crossmodel", "gemini", "google", "llmgateway", "opencode", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -39245,6 +39270,10 @@ search_context_size_high = 0.014
 search_context_size_low = 0.014
 search_context_size_medium = 0.014
 
+[models."gemini-3.5-flash-lite".pricing."crossmodel"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000025
 [models."gemini-3.5-flash-lite".pricing."gemini"]
 cache_read_input_token_cost = 3e-8
 cache_read_input_token_cost_flex = 2e-8
@@ -88772,21 +88801,25 @@ output_cost_per_token = 0.00000405
 display_name = "Inkling Small"
 model_family = "ling"
 mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 1000000
+max_input_tokens = 1048576
+max_output_tokens = 32768
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 1.0000000000000001e-7
-litellm_provider = "vercel"
-providers = ["vercel", "openrouter"]
+litellm_provider = "baseten"
+providers = ["baseten", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-07-30"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."thinkingmachines/inkling-small".pricing."baseten"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000012
 [models."thinkingmachines/inkling-small".pricing."openrouter"]
 cache_read_input_token_cost = 1.16e-7
 input_cost_per_token = 5.8e-7
