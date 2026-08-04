@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.08.04"
-checksum = "988d280901ef5937a248e457bb860543ee5a56a50a6f0982a139c898e7eb8ce8"
+checksum = "5fa4a17beb89e11b8b04d8c0ae56b199c9475ff07d007dc954e0b5eb6410c104"
 sources = ["litellm", "modelsdev"]
-total_models = 3847
-litellm_raw_models = 2986
+total_models = 3848
+litellm_raw_models = 2988
 modelsdev_raw_models = 6055
 custom_models = 5
 
@@ -15754,6 +15754,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000004
 prompt_cache_min_tokens = 1024
@@ -17124,6 +17125,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
 prompt_cache_min_tokens = 1024
@@ -35072,6 +35074,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
 prompt_cache_min_tokens = 1024
@@ -40794,29 +40797,6 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000012
 
-[models."gemini-robotics-er-1-6-preview"]
-display_name = "Gemini Robotics-ER 1.6 Preview"
-model_family = "gemini"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 65536
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
-litellm_provider = "google"
-providers = ["google"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-knowledge_cutoff = "2025-01"
-release_date = "2026-04-14"
-supported_modalities = ["text", "image", "video", "audio"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."gemini-robotics-er-1-6-preview".pricing."google"]
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
-
 [models."gemini-robotics-er-1.5-preview"]
 mode = "chat"
 max_input_tokens = 1048576
@@ -40857,6 +40837,100 @@ input_cost_per_audio_token = 0.000001
 input_cost_per_token = 3e-7
 output_cost_per_reasoning_token = 0.0000025
 output_cost_per_token = 0.0000025
+
+[models."gemini-robotics-er-1.6-preview"]
+display_name = "Gemini Robotics-ER 1.6 Preview"
+model_family = "gemini"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+litellm_provider = "gemini"
+providers = ["gemini", "google"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-01"
+release_date = "2026-04-14"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "https://ai.google.dev/gemini-api/docs/pricing#gemini-robotics-er"
+input_cost_per_audio_token = 0.000002
+output_cost_per_reasoning_token = 0.000005
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = false
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_url_context = true
+supports_video_input = true
+supports_web_search = true
+web_search_billing_unit = "per_query"
+
+[models."gemini-robotics-er-1.6-preview".search_context_cost_per_query]
+search_context_size_high = 0.014
+search_context_size_low = 0.014
+search_context_size_medium = 0.014
+
+[models."gemini-robotics-er-1.6-preview".pricing."gemini"]
+input_cost_per_audio_token = 0.000002
+input_cost_per_token = 0.000001
+output_cost_per_reasoning_token = 0.000005
+output_cost_per_token = 0.000005
+[models."gemini-robotics-er-1.6-preview".pricing."google"]
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000005
+
+[models."gemini-robotics-er-2-preview"]
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 65536
+max_tokens = 65536
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2e-7
+litellm_provider = "gemini"
+providers = ["gemini"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "https://ai.google.dev/gemini-api/docs/pricing#gemini-robotics-er-2"
+input_cost_per_audio_token = 0.000002
+output_cost_per_reasoning_token = 0.00001
+supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
+supports_audio_input = true
+supports_audio_output = false
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_system_messages = true
+supports_tool_choice = true
+supports_url_context = true
+supports_video_input = true
+supports_web_search = true
+web_search_billing_unit = "per_query"
+
+[models."gemini-robotics-er-2-preview".search_context_cost_per_query]
+search_context_size_high = 0.014
+search_context_size_low = 0.014
+search_context_size_medium = 0.014
+
+[models."gemini-robotics-er-2-preview".pricing."gemini"]
+cache_read_input_token_cost = 2e-7
+input_cost_per_audio_token = 0.000002
+input_cost_per_token = 0.000002
+output_cost_per_reasoning_token = 0.00001
+output_cost_per_token = 0.00001
 
 [models."gemma-2-27b-it"]
 display_name = "Google: Gemma 2 27B"
@@ -44407,6 +44481,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000004
 prompt_cache_min_tokens = 1024
@@ -53962,6 +54037,11 @@ supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
 
+[models."gpt-oss-safeguard-20b".search_context_cost_per_query]
+search_context_size_high = 0.005
+search_context_size_low = 0.005
+search_context_size_medium = 0.005
+
 [models."gpt-oss-safeguard-20b".pricing."groq"]
 cache_read_input_token_cost = 3.7e-8
 input_cost_per_token = 7.5e-8
@@ -58934,6 +59014,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
 prompt_cache_min_tokens = 1024
@@ -92982,6 +93063,7 @@ knowledge_cutoff = "2026-01-31"
 release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
 prompt_cache_min_tokens = 1024
