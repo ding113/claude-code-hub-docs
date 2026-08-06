@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.06"
-checksum = "5e2f7b31cb3f3e8bfaf7f2732101b51eff2222cf2a5e7204b7bab43d226667d7"
+checksum = "0be355c5529cd5d087e0618b538b91d6bddf9268bce646a68df37b5a81b96d5c"
 sources = ["litellm", "modelsdev"]
-total_models = 3861
+total_models = 3862
 litellm_raw_models = 2988
-modelsdev_raw_models = 6131
+modelsdev_raw_models = 6144
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5085,8 +5085,9 @@ output_cost_per_token = 0.0000027
 input_cost_per_token = 2.8899999999999995e-7
 output_cost_per_token = 0.0000024
 [models."Qwen/Qwen3-6-27B".pricing."openrouter"]
-input_cost_per_token = 2.8899999999999995e-7
-output_cost_per_token = 0.0000024
+cache_read_input_token_cost = 1.2e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000036000000000000003
 [models."Qwen/Qwen3-6-27B".pricing."pioneer"]
 cache_read_input_token_cost = 6e-7
 input_cost_per_token = 6e-7
@@ -6826,7 +6827,7 @@ providers = ["nano-gpt"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
-release_date = "2024-01-01"
+release_date = "2025-08-21"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -28855,7 +28856,7 @@ max_output_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000017
 litellm_provider = "togetherai"
-providers = ["togetherai", "meganova"]
+providers = ["togetherai", "deepinfra", "huggingface", "meganova"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -28865,6 +28866,13 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek-ai/DeepSeek-V3-1".pricing."deepinfra"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 9.499999999999999e-7
+[models."deepseek-ai/DeepSeek-V3-1".pricing."huggingface"]
+input_cost_per_token = 2.7e-7
+output_cost_per_token = 0.000001
 [models."deepseek-ai/DeepSeek-V3-1".pricing."meganova"]
 input_cost_per_token = 2.7e-7
 output_cost_per_token = 0.000001
@@ -29403,7 +29411,7 @@ max_tokens = 8192
 input_cost_per_token = 0.00000145
 output_cost_per_token = 0.00000145
 litellm_provider = "replicate"
-providers = ["replicate", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
+providers = ["replicate", "deepinfra", "huggingface", "pioneer", "siliconflow", "siliconflow-cn", "togetherai"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
@@ -29413,6 +29421,12 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 supports_system_messages = true
 
+[models."deepseek-ai/deepseek-v3".pricing."deepinfra"]
+input_cost_per_token = 3.2e-7
+output_cost_per_token = 8.900000000000001e-7
+[models."deepseek-ai/deepseek-v3".pricing."huggingface"]
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000013
 [models."deepseek-ai/deepseek-v3".pricing."pioneer"]
 cache_read_input_token_cost = 1.35e-7
 input_cost_per_token = 2.7e-7
@@ -31719,9 +31733,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 2.8e-8
-input_cost_per_token = 1.4e-7
-output_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 1.7639999999999998e-8
+input_cost_per_token = 8.82e-8
+output_cost_per_token = 1.764e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -58186,9 +58200,9 @@ input_cost_per_token = 6e-8
 output_cost_per_token = 1.8e-7
 cache_read_input_token_cost = 1.2e-8
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
+providers = ["nano-gpt", "openrouter"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = false
 release_date = "2026-07-23"
 supported_modalities = ["text"]
@@ -58199,6 +58213,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.2e-8
 input_cost_per_token = 6e-8
 output_cost_per_token = 1.8e-7
+[models."inclusionai/ling-3-0-flash".pricing."openrouter"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.2e-7
 
 [models."inclusionai/ling-3-0-flash-free"]
 display_name = "Ling 3.0 Flash"
@@ -66091,25 +66109,69 @@ output_cost_per_token = 0.00000425
 display_name = "Muse Spark 1.2"
 model_family = "muse"
 mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 1048576
+max_input_tokens = 1000000
+max_output_tokens = 65536
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000425
 cache_read_input_token_cost = 1.5e-7
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "meta", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-08-05"
-supported_modalities = ["text", "image", "video", "pdf", "audio"]
+supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."meta/muse-spark-1-2".pricing."meta"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000425
+[models."meta/muse-spark-1-2".pricing."nano-gpt"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000425
 [models."meta/muse-spark-1-2".pricing."openrouter"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000425
+[models."meta/muse-spark-1-2".pricing."vercel"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000425
+
+[models."meta/muse-spark-1-2-contributor"]
+display_name = "Muse Spark 1.2 Contributor (Data Used for Training)"
+model_family = "muse"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
+cache_read_input_token_cost = 2e-9
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "meta", "vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-05"
+supported_modalities = ["text", "image", "video", "audio", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."meta/muse-spark-1-2-contributor".pricing."meta"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
+[models."meta/muse-spark-1-2-contributor".pricing."nano-gpt"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
+[models."meta/muse-spark-1-2-contributor".pricing."vercel"]
+cache_read_input_token_cost = 2e-9
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.0000000000000002e-7
 
 [models."microsoft/Phi-4-mini-instruct"]
 display_name = "Phi-4-Mini"
@@ -66310,9 +66372,9 @@ cache_read_input_token_cost = 3e-9
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 8.000000000000001e-7
 [models."mimo-v2-5-pro".pricing."digitalocean"]
-cache_read_input_token_cost = 1.6e-7
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.000003
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.0000015
 [models."mimo-v2-5-pro".pricing."empiriolabs"]
 cache_read_input_token_cost = 1.8e-8
 input_cost_per_token = 0.000002175
@@ -81710,7 +81772,7 @@ max_tokens = 16384
 input_cost_per_token = 2.64e-7
 output_cost_per_token = 0.00000106
 litellm_provider = "replicate"
-providers = ["replicate", "abacus", "friendli", "jiekou", "meganova", "modelscope", "nano-gpt", "nebius", "novita", "novita-ai", "pioneer", "scaleway", "submodel"]
+providers = ["replicate", "abacus", "deepinfra", "friendli", "huggingface", "jiekou", "meganova", "modelscope", "nano-gpt", "nebius", "novita", "novita-ai", "pioneer", "scaleway", "submodel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -81726,9 +81788,15 @@ supports_tool_choice = true
 [models."qwen/qwen3-235b-a22b-instruct-2507".pricing."abacus"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 6e-7
+[models."qwen/qwen3-235b-a22b-instruct-2507".pricing."deepinfra"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 5.5e-7
 [models."qwen/qwen3-235b-a22b-instruct-2507".pricing."friendli"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 8.000000000000001e-7
+[models."qwen/qwen3-235b-a22b-instruct-2507".pricing."huggingface"]
+input_cost_per_token = 8.55e-7
+output_cost_per_token = 0.000002565
 [models."qwen/qwen3-235b-a22b-instruct-2507".pricing."jiekou"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 8.000000000000001e-7
@@ -83281,8 +83349,8 @@ output_cost_per_token = 0.00000395
 input_cost_per_token = 9.8e-7
 output_cost_per_token = 0.00000395
 [models."qwen/qwen3-vl-235b-a22b-thinking".pricing."openrouter"]
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000004
+input_cost_per_token = 9.8e-7
+output_cost_per_token = 0.00000395
 [models."qwen/qwen3-vl-235b-a22b-thinking".pricing."siliconflow"]
 input_cost_per_token = 4.5000000000000003e-7
 output_cost_per_token = 0.0000035
