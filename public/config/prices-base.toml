@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.08"
-checksum = "175857d4407a584b306019043b708e0ba81c13c986ca0f7b611f4832a0164ac8"
+checksum = "c2df247a765c07ca5e0c791493cff80e52ce552bc8f1dc5658ab343b905f205f"
 sources = ["litellm", "modelsdev"]
-total_models = 3881
+total_models = 3885
 litellm_raw_models = 2988
-modelsdev_raw_models = 6225
+modelsdev_raw_models = 6231
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -16612,18 +16612,19 @@ output_cost_per_token = 0.000015
 output_cost_per_token_above_200k_tokens = 0.0000225
 
 [models."apertus-70b"]
-display_name = "apertus-70b"
+display_name = "Apertus 70B"
 mode = "chat"
-max_input_tokens = 65536
-max_output_tokens = 65536
-input_cost_per_token = 0.000001393
-output_cost_per_token = 0.000002228
-litellm_provider = "cortecs"
-providers = ["cortecs"]
+max_input_tokens = 30000
+max_output_tokens = 30000
+input_cost_per_token = 4.6000000000000004e-7
+output_cost_per_token = 0.00000242
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai", "cortecs"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-07-08"
+open_weights = true
+knowledge_cutoff = "2025-09"
+release_date = "2025-09-02"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -16631,6 +16632,9 @@ source = "modelsdev"
 [models."apertus-70b".pricing."cortecs"]
 input_cost_per_token = 0.000001393
 output_cost_per_token = 0.000002228
+[models."apertus-70b".pricing."regolo-ai"]
+input_cost_per_token = 4.6000000000000004e-7
+output_cost_per_token = 0.00000242
 
 [models."arcee-ai/trinity-large-thinking"]
 display_name = "Trinity Large Thinking"
@@ -18725,6 +18729,43 @@ supported_endpoints = ["/v1/images/generations"]
 
 [models."bria/text-to-image/3.2".pricing."fal_ai"]
 output_cost_per_image = 0.0398
+
+[models."brick-complexity-pro"]
+display_name = "Brick Complexity Pro"
+mode = "chat"
+max_input_tokens = 100000
+max_output_tokens = 15000
+input_cost_per_token = 1.2e-7
+output_cost_per_token = 4.6000000000000004e-7
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2026-02-06"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."brick-complexity-pro".pricing."regolo-ai"]
+input_cost_per_token = 1.2e-7
+output_cost_per_token = 4.6000000000000004e-7
+
+[models."brick-v1-beta"]
+display_name = "Brick v1 Beta"
+model_family = "model-router"
+mode = "chat"
+max_input_tokens = 100000
+max_output_tokens = 15000
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+release_date = "2026-02-06"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."bytedance-seed/seed-1-6"]
 display_name = "ByteDance Seed: Seed 1.6"
@@ -30270,6 +30311,21 @@ supports_tool_choice = true
 input_cost_per_token = 2e-7
 output_cost_per_token = 6e-7
 
+[models."deepseek-ocr-2"]
+display_name = "DeepSeek OCR 2"
+mode = "chat"
+max_input_tokens = 4000
+max_output_tokens = 4000
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2026-01-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."deepseek-r1"]
 mode = "chat"
 max_input_tokens = 128000
@@ -36100,6 +36156,22 @@ supported_endpoints = ["/v1/images/edits"]
 
 [models."fast".pricing."stability"]
 output_cost_per_image = 0.002
+
+[models."faster-whisper-large-v3"]
+display_name = "Faster Whisper Large v3"
+model_family = "whisper"
+mode = "chat"
+max_input_tokens = 448
+max_output_tokens = 4096
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = true
+release_date = "2024-10-01"
+supported_modalities = ["audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."fastgpt"]
 display_name = "Web Answer"
@@ -42322,9 +42394,9 @@ output_cost_per_token = 4.0000000000000003e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 5e-7
 [models."gemma-4-31b-it".pricing."kilo"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 9e-8
-output_cost_per_token = 3.4000000000000003e-7
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 8e-8
+output_cost_per_token = 3.5e-7
 [models."gemma-4-31b-it".pricing."libertai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 4e-7
@@ -42682,7 +42754,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
 litellm_provider = "qvac"
-providers = ["qvac", "tinfoil"]
+providers = ["qvac", "regolo-ai", "tinfoil"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -42691,6 +42763,9 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."gemma4-31b".pricing."regolo-ai"]
+input_cost_per_token = 4.6000000000000004e-7
+output_cost_per_token = 0.00000242
 [models."gemma4-31b".pricing."tinfoil"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000001
@@ -44596,6 +44671,28 @@ source = "modelsdev"
 cache_read_input_token_cost = 9.01e-7
 input_cost_per_token = 0.000001802
 output_cost_per_token = 0.000001802
+
+[models."glm5-2"]
+display_name = "GLM-5.2"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 96000
+max_output_tokens = 96000
+input_cost_per_token = 0.00000231
+output_cost_per_token = 0.000006
+litellm_provider = "regolo-ai"
+providers = ["regolo-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm5-2".pricing."regolo-ai"]
+input_cost_per_token = 0.00000231
+output_cost_per_token = 0.000006
 
 [models."glm5-2-fast"]
 display_name = "GLM5.2-Fast"
@@ -62002,7 +62099,7 @@ max_tokens = 131072
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 litellm_provider = "perplexity"
-providers = ["perplexity", "cortecs", "helicone", "regolo-ai"]
+providers = ["perplexity", "cortecs", "helicone"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -62020,9 +62117,6 @@ output_cost_per_token = 5e-8
 [models."llama-3.1-8b-instruct".pricing."perplexity"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
-[models."llama-3.1-8b-instruct".pricing."regolo-ai"]
-input_cost_per_token = 5.0000000000000004e-8
-output_cost_per_token = 2.5e-7
 
 [models."llama-3.2-3b"]
 display_name = "Llama 3.2 3B"
@@ -67251,7 +67345,7 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 litellm_provider = "frogbot"
-providers = ["frogbot", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "digitalocean", "minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "regolo-ai", "tencent-coding-plan"]
+providers = ["frogbot", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "digitalocean", "minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "tencent-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -67284,9 +67378,6 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-[models."minimax-m2-5".pricing."regolo-ai"]
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.0000035
 
 [models."minimax-m2-5-230b"]
 display_name = "MiniMax-M2.5"
@@ -70096,28 +70187,6 @@ output_cost_per_token = 6e-7
 [models."mistral-small-latest".pricing."mistral"]
 input_cost_per_token = 6e-8
 output_cost_per_token = 1.8e-7
-
-[models."mistral-small3-2"]
-display_name = "Mistral Small 3.2"
-model_family = "mistral-small"
-mode = "chat"
-max_input_tokens = 120000
-max_output_tokens = 120000
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000022
-litellm_provider = "regolo-ai"
-providers = ["regolo-ai"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2025-01-31"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."mistral-small3-2".pricing."regolo-ai"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000022
 
 [models."mistral-tiny"]
 mode = "chat"
@@ -87498,7 +87567,7 @@ max_tokens = 262144
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 litellm_provider = "libertai"
-providers = ["libertai", "crof", "qvac"]
+providers = ["libertai", "crof", "qvac", "regolo-ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -87517,6 +87586,9 @@ output_cost_per_token = 0.0000015
 [models."qwen3.6-27b".pricing."libertai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
+[models."qwen3.6-27b".pricing."regolo-ai"]
+input_cost_per_token = 5.8e-7
+output_cost_per_token = 0.00000242
 
 [models."qwen3.6-27b-thinking"]
 mode = "chat"
@@ -87548,7 +87620,7 @@ max_tokens = 262144
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 litellm_provider = "libertai"
-providers = ["libertai", "greenpt", "llmgateway", "qvac"]
+providers = ["libertai", "greenpt", "llmgateway", "qvac", "salad-cloud"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -87569,6 +87641,9 @@ output_cost_per_token = 5e-7
 [models."qwen3.6-35b-a3b".pricing."llmgateway"]
 input_cost_per_token = 2.48e-7
 output_cost_per_token = 0.0000014850000000000002
+[models."qwen3.6-35b-a3b".pricing."salad-cloud"]
+input_cost_per_token = 9e-8
+output_cost_per_token = 6e-7
 
 [models."qwen3.6-35b-a3b-thinking"]
 mode = "chat"
@@ -99153,9 +99228,9 @@ cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-2".pricing."openrouter"]
-cache_read_input_token_cost = 7.8e-8
-input_cost_per_token = 4.2e-7
-output_cost_per_token = 0.00000132
+cache_read_input_token_cost = 7.019999999999999e-8
+input_cost_per_token = 3.78e-7
+output_cost_per_token = 0.0000011879999999999999
 [models."z-ai/glm-5-2".pricing."tensorx"]
 cache_read_input_token_cost = 3.75e-7
 input_cost_per_token = 0.0000015
