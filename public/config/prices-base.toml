@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.12"
-checksum = "c9e8c075d448e8340023aa7a0f0c8d8364f607988c29aaee59b7f640a44264da"
+checksum = "1782395ca3d5f328a2462c1e3f28d22883e04f4a4f2a4501b8aa7c3884a3aae5"
 sources = ["litellm", "modelsdev"]
-total_models = 3894
+total_models = 3895
 litellm_raw_models = 3003
-modelsdev_raw_models = 6288
+modelsdev_raw_models = 6292
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -31915,6 +31915,7 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash-0731".pricing."merge-gateway"]
+cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash-0731".pricing."nano-gpt"]
@@ -32170,7 +32171,7 @@ input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
 cache_read_input_token_cost = 3.625e-9
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "kilo", "openrouter", "vercel"]
+providers = ["nano-gpt", "kilo", "merge-gateway", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -32180,6 +32181,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."deepseek/deepseek-v4-pro-0813".pricing."kilo"]
+cache_read_input_token_cost = 3.625e-9
+input_cost_per_token = 4.35e-7
+output_cost_per_token = 8.7e-7
+[models."deepseek/deepseek-v4-pro-0813".pricing."merge-gateway"]
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
@@ -56225,7 +56230,7 @@ max_input_tokens = 1000000
 max_output_tokens = 30000
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
-cache_read_input_token_cost = 3.125e-7
+cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "llmgateway"
 providers = ["llmgateway", "abacus", "aihubmix", "auriko", "frogbot", "venice", "xai"]
 supports_function_calling = true
@@ -56254,7 +56259,7 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 [models."grok-4-3".pricing."llmgateway"]
-cache_read_input_token_cost = 3.125e-7
+cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 [models."grok-4-3".pricing."venice"]
@@ -56274,7 +56279,7 @@ max_input_tokens = 500000
 max_output_tokens = 500000
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
-cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost = 3e-7
 litellm_provider = "llmgateway"
 providers = ["llmgateway", "abacus", "aihubmix", "github-copilot", "kenari", "opencode", "pioneer", "requesty", "venice", "xai"]
 supports_function_calling = true
@@ -56297,7 +56302,7 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."grok-4-5".pricing."llmgateway"]
-cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."grok-4-5".pricing."opencode"]
@@ -56330,8 +56335,8 @@ max_output_tokens = 500000
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 5e-7
-litellm_provider = "opencode"
-providers = ["opencode", "venice", "xai"]
+litellm_provider = "llmgateway"
+providers = ["llmgateway", "opencode", "venice", "xai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -56341,6 +56346,10 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."grok-4-6".pricing."llmgateway"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 [models."grok-4-6".pricing."opencode"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
@@ -61915,16 +61924,16 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 2.0000000000000002e-7
 
 [models."liquid/lfm-2-5-2-6b:free"]
-display_name = "LFM2.5-2.6B (free)"
+display_name = "LiquidAI: LFM2.5-2.6B (free)"
 model_family = "liquid"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 32768
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = true
+open_weights = false
 release_date = "2026-08-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -76587,16 +76596,17 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."nvidia/nemotron-3-5-lightning"]
-display_name = "Nemotron 3.5 Lightning 30B A3B"
+display_name = "Nvidia Nemotron 3.5 Lightning"
 model_family = "nemotron"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 262144
+max_input_tokens = 1000000
+max_output_tokens = 65536
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.0000000000000002e-7
-litellm_provider = "kilo"
-providers = ["kilo", "openrouter"]
-supports_function_calling = false
+cache_read_input_token_cost = 1e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "kilo", "openrouter"]
+supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 release_date = "2026-08-11"
@@ -76605,6 +76615,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."nvidia/nemotron-3-5-lightning".pricing."kilo"]
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 2.0000000000000002e-7
+[models."nvidia/nemotron-3-5-lightning".pricing."nano-gpt"]
+cache_read_input_token_cost = 1e-8
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.0000000000000002e-7
 [models."nvidia/nemotron-3-5-lightning".pricing."openrouter"]
@@ -76643,6 +76657,30 @@ release_date = "2026-08-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."nvidia/nemotron-3-5-lightning:thinking"]
+display_name = "Nvidia Nemotron 3.5 Lightning Thinking"
+model_family = "nemotron"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 65536
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 2.0000000000000002e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-11"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."nvidia/nemotron-3-5-lightning:thinking".pricing."nano-gpt"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 2.0000000000000002e-7
 
 [models."nvidia/nemotron-3-content-safety"]
 display_name = "nemotron-3-content-safety"
@@ -86735,25 +86773,17 @@ output_cost_per_token = 0.000006
 display_name = "Qwen3.8 Max Preview"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 991000
-max_output_tokens = 64000
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.000005
-cache_read_input_token_cost = 1.5e-7
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "alibaba-token-plan", "alibaba-token-plan-cn"]
+max_input_tokens = 1000000
+max_output_tokens = 131072
+litellm_provider = "alibaba-token-plan"
+providers = ["alibaba-token-plan", "alibaba-token-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-07-19"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
-
-[models."qwen3-8-max-preview".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.000005
 
 [models."qwen3-8-max:thinking"]
 display_name = "Qwen3.8 Max Thinking"
@@ -98484,8 +98514,8 @@ model_family = "grok"
 mode = "chat"
 max_input_tokens = 500000
 max_output_tokens = 500000
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.0000045
 cache_read_input_token_cost = 5e-7
 litellm_provider = "merge-gateway"
 providers = ["merge-gateway", "vercel"]
@@ -98500,8 +98530,8 @@ source = "modelsdev"
 
 [models."xai/grok-4-6".pricing."merge-gateway"]
 cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000006
+input_cost_per_token = 0.0000015
+output_cost_per_token = 0.0000045
 [models."xai/grok-4-6".pricing."vercel"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
