@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.16"
-checksum = "9c4e1328925d93ed82e5bc79773f6762dead7fe828009c1a05fe464c7337d5d9"
+checksum = "cd589016d783ef81287bc575f934f5c8b292db9b96218248f0d18a2c70bce7b6"
 sources = ["litellm", "modelsdev"]
-total_models = 3990
+total_models = 3996
 litellm_raw_models = 3040
-modelsdev_raw_models = 6617
+modelsdev_raw_models = 6625
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1087,6 +1087,21 @@ providers = ["cloudflare"]
 input_cost_per_token = 0.000001923
 output_cost_per_token = 0.000001923
 
+[models."Agents-A1"]
+display_name = "Agents-A1"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 100000
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-26"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."BAAI/bge-base-en-v1.5"]
 mode = "embedding"
 max_input_tokens = 512
@@ -1570,6 +1585,23 @@ output_cost_per_token = 0.0000045
 [models."DeepSeek-V3.2".pricing."vivgrid"]
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
+
+[models."Devstral-2-123B-Instruct-2512-int4-AutoRound"]
+display_name = "Devstral-2-123B-Instruct-2512-int4-AutoRound"
+model_family = "devstral"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 128000
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-12"
+release_date = "2025-12-09"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."Doctor-Shotgun/MS3-2-24B-Magnum-Diamond"]
 display_name = "MS3.2 24B Magnum Diamond"
@@ -3995,6 +4027,22 @@ cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.2e-7
 
+[models."Ornith-1-0-35B-FP8"]
+display_name = "Ornith-1.0-35B-FP8"
+model_family = "ornith"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 100000
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-25"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."PaddlePaddle/PaddleOCR-VL-1-5"]
 display_name = "PaddlePaddle/PaddleOCR-VL-1.5"
 mode = "chat"
@@ -5519,7 +5567,7 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
 litellm_provider = "hetzner"
-providers = ["hetzner", "evroc", "inferx", "nearai"]
+providers = ["hetzner", "evroc", "nearai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -6084,8 +6132,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000036
 
 [models."Qwen/Qwen3.6-27B-FP8"]
-display_name = "Qwen3.6 27B FP8"
-model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
@@ -6093,14 +6139,10 @@ input_cost_per_token = 3.2e-7
 output_cost_per_token = 0.0000032
 cache_read_input_token_cost = 0
 litellm_provider = "tensormesh"
-providers = ["tensormesh", "inferx"]
+providers = ["tensormesh"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
-open_weights = true
-release_date = "2026-04-22"
-supported_modalities = ["text", "image", "video", "audio"]
-supported_output_modalities = ["text"]
 source = "https://serverless.tensormesh.ai/v1/models/openrouter"
 supports_response_schema = true
 supports_system_messages = true
@@ -6287,6 +6329,54 @@ cache_read_input_token_cost = 1.53e-7
 input_cost_per_token = 3.06e-7
 output_cost_per_token = 3.06e-7
 
+[models."Qwen3-6-27B-FP8"]
+display_name = "Qwen3.6 27B FP8"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Qwen3-6-35B-A3B-FP8"]
+display_name = "Qwen3.6 35B A3B FP8"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-17"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Qwen3-6-35B-A3B-fp8-no-thinking"]
+display_name = "Qwen3.6-35B-A3B-fp8-no-thinking"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262000
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-04-17"
+supported_modalities = ["text", "image", "video", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."Qwen3-Coder-30B-A3B-Instruct-GGUF"]
 mode = "chat"
 max_input_tokens = 262144
@@ -6303,6 +6393,40 @@ supports_tool_choice = true
 [models."Qwen3-Coder-30B-A3B-Instruct-GGUF".pricing."lemonade"]
 input_cost_per_token = 0
 output_cost_per_token = 0
+
+[models."Qwen3-Coder-Next-FP8"]
+display_name = "Qwen3 Coder Next FP8"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 256144
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."Qwen3-Coder-Next-FP8-no-thinking"]
+display_name = "Qwen3-Coder-Next-FP8-no-thinking"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 260000
+max_output_tokens = 65536
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-04"
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."Qwen3_5-9B-MLX-4bit"]
 display_name = "Qwen 3.5 9B (MLX 4-bit)"
@@ -13057,8 +13181,8 @@ litellm_provider = "vercel"
 providers = ["vercel"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-08-03"
+open_weights = true
+release_date = "2026-08-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -30161,7 +30285,7 @@ input_cost_per_token = 0.0000013
 output_cost_per_token = 0.0000026
 cache_read_input_token_cost = 1.0000000000000001e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "baseten", "huggingface"]
+providers = ["deepinfra", "baseten", "huggingface", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -30178,6 +30302,10 @@ cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.0000013
 output_cost_per_token = 0.0000026
 [models."deepseek-ai/DeepSeek-V4-Pro-0813".pricing."huggingface"]
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
+[models."deepseek-ai/DeepSeek-V4-Pro-0813".pricing."togetherai"]
+cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 
@@ -31388,7 +31516,7 @@ max_tokens = 393216
 input_cost_per_token = 1.9e-7
 output_cost_per_token = 5.1e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "kenari", "libertai", "llmgateway", "modelis", "neuralwatt", "opencode", "opencode-go", "routing-run", "scnet-token-plan", "tencent", "tinfoil", "unorouter", "venice", "vivgrid"]
+providers = ["azure_ai", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "inferx", "kenari", "libertai", "llmgateway", "modelis", "neuralwatt", "opencode", "opencode-go", "routing-run", "scnet-token-plan", "tencent", "tinfoil", "unorouter", "venice", "vivgrid"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -43344,6 +43472,22 @@ cache_read_input_token_cost = 0
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.6e-7
 
+[models."gemma-4-31B-it-fp8"]
+display_name = "Gemma 4 31B IT FP8"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-04-02"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."gemma-4-31B-turbo-TEE"]
 display_name = "gemma 4 31B turbo TEE"
 model_family = "gemma"
@@ -43509,22 +43653,6 @@ output_cost_per_token = 4.0000000000000003e-7
 cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3.4000000000000003e-7
-
-[models."gemma-4-31b-it-fp8"]
-display_name = "Gemma 4 31B IT FP8"
-model_family = "gemma"
-mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 32768
-litellm_provider = "inferx"
-providers = ["inferx"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-04-02"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
 
 [models."gemma-4-31b-it-thinking"]
 mode = "chat"
@@ -69302,6 +69430,23 @@ supported_modalities = ["text"]
 supported_output_modalities = ["audio"]
 source = "modelsdev"
 
+[models."mimo-v25"]
+display_name = "mimo-v25"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 100000
+litellm_provider = "inferx"
+providers = ["inferx"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."mini_lm_l12_v2"]
 display_name = "All-MiniLM-L12-v2"
 model_family = "text-embedding"
@@ -85682,22 +85827,6 @@ output_cost_per_token = 3e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 3e-8
 
-[models."qwen/qwen3-5-122b-a10b-nvfp4"]
-display_name = "Qwen3.5 122B A10B NVFP4"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 256144
-max_output_tokens = 65536
-litellm_provider = "inferx"
-providers = ["inferx"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-02-23"
-supported_modalities = ["text", "image", "video", "audio"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen/qwen3-5-397b-a17b-thinking"]
 display_name = "Qwen3.5 397B A17B Thinking"
 model_family = "qwen"
@@ -89274,7 +89403,8 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 
 [models."qwen3-8-2-4t-a95b"]
-display_name = "qwen3.8-2.4t-a95b"
+display_name = "Qwen3.8 2.4T A95B"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
@@ -89285,8 +89415,8 @@ litellm_provider = "cortecs"
 providers = ["cortecs"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-08-14"
+open_weights = true
+release_date = "2026-08-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -89711,40 +89841,6 @@ output_cost_per_token = 6.75e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
-[models."qwen3-coder-next-fp8"]
-display_name = "Qwen3 Coder Next FP8"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 256144
-max_output_tokens = 65536
-litellm_provider = "inferx"
-providers = ["inferx"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2026-02-03"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."qwen3-coder-next-fp8-1m"]
-display_name = "Qwen3 Coder Next FP8 1M"
-model_family = "qwen"
-mode = "chat"
-max_input_tokens = 1024000
-max_output_tokens = 65536
-litellm_provider = "inferx"
-providers = ["inferx"]
-supports_function_calling = true
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2025-04"
-release_date = "2026-02-03"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."qwen3-coder-plus"]
 display_name = "Qwen3-Coder-Plus"
 model_family = "qwen"
@@ -89855,7 +89951,7 @@ max_tokens = 40960
 input_cost_per_token = 2e-8
 output_cost_per_token = 0
 litellm_provider = "llamagate"
-providers = ["llamagate", "regolo-ai", "scaleway"]
+providers = ["llamagate", "inferx", "regolo-ai", "scaleway"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = true
