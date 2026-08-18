@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.18"
-checksum = "610fd1d1f73be7f3f4d2f5b71e47b7322b43a3cdae2083810c9d5fe5ffed2220"
+checksum = "c1c18b82c827fab93bc6e1032aa701334439150a6fe4de3d0fae957d49d368af"
 sources = ["litellm", "modelsdev"]
 total_models = 4027
 litellm_raw_models = 3040
-modelsdev_raw_models = 6728
+modelsdev_raw_models = 6732
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3497,7 +3497,7 @@ max_tokens = 131072
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
 litellm_provider = "sambanova"
-providers = ["sambanova", "cortecs", "scx"]
+providers = ["sambanova", "cortecs"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -3513,10 +3513,6 @@ output_cost_per_token = 0.0000026739999999999997
 [models."MiniMax-M2.7".pricing."sambanova"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
-[models."MiniMax-M2.7".pricing."scx"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 4.8e-7
-output_cost_per_token = 0.00000179
 
 [models."MiniMax-M3"]
 display_name = "MiniMax-M3"
@@ -45260,7 +45256,7 @@ mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 131072
 litellm_provider = "kenari"
-providers = ["kenari", "aihubmix", "alibaba", "alibaba-cn", "alibaba-token-plan-cn", "crof", "digitalocean", "dinference", "empiriolabs", "hyper", "llmgateway", "neon", "opencode", "opencode-go", "requesty", "routing-run", "scaleway", "scnet-token-plan", "tinfoil", "unorouter", "vivgrid", "wafer.ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
+providers = ["kenari", "aihubmix", "alibaba", "alibaba-cn", "alibaba-token-plan-cn", "crof", "digitalocean", "dinference", "empiriolabs", "hyper", "llmgateway", "neon", "opencode", "opencode-go", "requesty", "routing-run", "scaleway", "scnet-token-plan", "scx-ai", "tinfoil", "unorouter", "vivgrid", "wafer.ai", "zai", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -45326,6 +45322,10 @@ output_cost_per_token = 0.0000024
 [models."glm-5-2".pricing."scaleway"]
 input_cost_per_token = 0.0000018000000000000001
 output_cost_per_token = 0.0000055
+[models."glm-5-2".pricing."scx-ai"]
+cache_read_input_token_cost = 1.11e-7
+input_cost_per_token = 5.5e-7
+output_cost_per_token = 0.000001784
 [models."glm-5-2".pricing."tinfoil"]
 cache_read_input_token_cost = 3.75e-7
 input_cost_per_token = 0.0000015
@@ -56698,7 +56698,7 @@ max_tokens = 131072
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "abacus", "aiand", "aki-io", "baseten", "berget", "cerebras", "cloudferro-sherlock", "coralbricks", "cortecs", "crusoe", "deepinfra", "dinference", "edenai", "evroc", "fastrouter", "fireworks_ai", "frogbot", "greenpt", "groq", "helicone", "huggingface", "hyper", "impossibl", "io-net", "kenari", "kilo", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "nebius", "neon", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "pioneer", "privatemode-ai", "qvac", "regolo-ai", "replicate", "sambanova", "scaleway", "scx", "siliconflow", "stackit", "submodel", "tensormesh", "tensorx", "tinfoil", "together_ai", "togetherai", "vercel", "wandb", "watsonx"]
+providers = ["azure_ai", "abacus", "aiand", "aki-io", "baseten", "berget", "cerebras", "cloudferro-sherlock", "coralbricks", "cortecs", "crusoe", "deepinfra", "dinference", "edenai", "evroc", "fastrouter", "fireworks_ai", "frogbot", "greenpt", "groq", "helicone", "huggingface", "hyper", "impossibl", "io-net", "kenari", "kilo", "llmgateway", "merge-gateway", "nano-gpt", "nearai", "nebius", "neon", "novita", "novita-ai", "nvidia", "openrouter", "ovhcloud", "pioneer", "privatemode-ai", "qvac", "regolo-ai", "replicate", "sambanova", "scaleway", "scx-ai", "siliconflow", "stackit", "submodel", "tensormesh", "tensorx", "tinfoil", "together_ai", "togetherai", "vercel", "wandb", "watsonx"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -56853,7 +56853,7 @@ output_cost_per_token = 5.9e-7
 [models."gpt-oss-120b".pricing."scaleway"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
-[models."gpt-oss-120b".pricing."scx"]
+[models."gpt-oss-120b".pricing."scx-ai"]
 input_cost_per_token = 1.7000000000000001e-7
 output_cost_per_token = 5.5e-7
 [models."gpt-oss-120b".pricing."siliconflow"]
@@ -61734,8 +61734,8 @@ model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
-input_cost_per_token = 7.53545e-7
-output_cost_per_token = 7.53545e-7
+input_cost_per_token = 7.5244e-7
+output_cost_per_token = 7.5244e-7
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = false
@@ -61748,8 +61748,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."ionos/meta-llama/Llama-3-3-70B-Instruct".pricing."edenai"]
-input_cost_per_token = 7.53545e-7
-output_cost_per_token = 7.53545e-7
+input_cost_per_token = 7.5244e-7
+output_cost_per_token = 7.5244e-7
 
 [models."ionos/openai/gpt-oss-120b"]
 display_name = "GPT OSS 120B"
@@ -61757,8 +61757,8 @@ model_family = "gpt-oss"
 mode = "chat"
 max_input_tokens = 131072
 max_output_tokens = 32768
-input_cost_per_token = 1.7389499999999998e-7
-output_cost_per_token = 7.53545e-7
+input_cost_per_token = 1.7363999999999999e-7
+output_cost_per_token = 7.5244e-7
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = false
@@ -61770,8 +61770,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."ionos/openai/gpt-oss-120b".pricing."edenai"]
-input_cost_per_token = 1.7389499999999998e-7
-output_cost_per_token = 7.53545e-7
+input_cost_per_token = 1.7363999999999999e-7
+output_cost_per_token = 7.5244e-7
 
 [models."j2-light"]
 mode = "completion"
@@ -70355,7 +70355,7 @@ max_output_tokens = 131072
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 litellm_provider = "auriko"
-providers = ["auriko", "302ai", "aihubmix", "empiriolabs", "frogbot", "hyper", "llmgateway", "minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "opencode", "opencode-go", "scnet-token-plan", "unorouter"]
+providers = ["auriko", "302ai", "aihubmix", "empiriolabs", "frogbot", "hyper", "llmgateway", "minimax", "minimax-cn", "minimax-cn-coding-plan", "minimax-coding-plan", "opencode", "opencode-go", "scnet-token-plan", "scx-ai", "unorouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -70406,6 +70406,10 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
+[models."minimax-m2-7".pricing."scx-ai"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 4.8e-7
+output_cost_per_token = 0.00000179
 [models."minimax-m2-7".pricing."unorouter"]
 input_cost_per_token = 8.189999999999999e-7
 output_cost_per_token = 0.0000032759999999999996
@@ -85930,8 +85934,8 @@ model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 0.000001452
-output_cost_per_token = 0.0000043559999999999995
+input_cost_per_token = 6.6e-7
+output_cost_per_token = 0.00000198
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -85943,8 +85947,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/deepseek-v4-pro-0813".pricing."edenai"]
-input_cost_per_token = 0.000001452
-output_cost_per_token = 0.0000043559999999999995
+input_cost_per_token = 6.6e-7
+output_cost_per_token = 0.00000198
 
 [models."qwen/qwen-2-5-7b-instruct"]
 display_name = "Qwen2.5 7B Instruct"
@@ -91838,7 +91842,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 2.5e-7
 litellm_provider = "dashscope"
-providers = ["dashscope", "aihubmix", "alibaba", "alibaba-cn", "alibaba-token-plan", "digitalocean", "hyper", "nano-gpt", "opencode-go"]
+providers = ["dashscope", "aihubmix", "alibaba", "alibaba-cn", "alibaba-token-plan", "digitalocean", "hyper", "nano-gpt", "opencode-go", "scx-ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -91883,6 +91887,10 @@ output_cost_per_token = 0.000006
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+[models."qwen3.8-max".pricing."scx-ai"]
+cache_read_input_token_cost = 1.7000000000000001e-7
+input_cost_per_token = 0.000001815
+output_cost_per_token = 0.0000054461
 
 [models."qwen35-122b-a10b"]
 display_name = "Qwen3.5 122B-A10B"
@@ -93054,8 +93062,8 @@ model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 256000
 max_output_tokens = 384000
-input_cost_per_token = 4.6372e-7
-output_cost_per_token = 9.27441e-7
+input_cost_per_token = 4.6304e-7
+output_cost_per_token = 9.2608e-7
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -93068,8 +93076,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."scaleway/deepseek-v4-flash-0731".pricing."edenai"]
-input_cost_per_token = 4.6372e-7
-output_cost_per_token = 9.27441e-7
+input_cost_per_token = 4.6304e-7
+output_cost_per_token = 9.2608e-7
 
 [models."scaleway/gpt-oss-120b"]
 display_name = "GPT OSS 120B"
@@ -93077,8 +93085,8 @@ model_family = "gpt-oss"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 32768
-input_cost_per_token = 1.7389499999999998e-7
-output_cost_per_token = 6.955799999999999e-7
+input_cost_per_token = 1.7363999999999999e-7
+output_cost_per_token = 6.945599999999999e-7
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -93090,8 +93098,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."scaleway/gpt-oss-120b".pricing."edenai"]
-input_cost_per_token = 1.7389499999999998e-7
-output_cost_per_token = 6.955799999999999e-7
+input_cost_per_token = 1.7363999999999999e-7
+output_cost_per_token = 6.945599999999999e-7
 
 [models."scaleway/llama-3-3-70b-instruct"]
 display_name = "Llama-3.3-70B-Instruct"
@@ -93099,8 +93107,8 @@ model_family = "llama"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
-input_cost_per_token = 0.000001043371
-output_cost_per_token = 0.000001043371
+input_cost_per_token = 0.0000010418400000000002
+output_cost_per_token = 0.0000010418400000000002
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -93113,8 +93121,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."scaleway/llama-3-3-70b-instruct".pricing."edenai"]
-input_cost_per_token = 0.000001043371
-output_cost_per_token = 0.000001043371
+input_cost_per_token = 0.0000010418400000000002
+output_cost_per_token = 0.0000010418400000000002
 
 [models."scribe_v1"]
 mode = "audio_transcription"
