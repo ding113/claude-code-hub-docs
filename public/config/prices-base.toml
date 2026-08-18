@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.18"
-checksum = "2756371177fd5f13270748da4b05ffabf653005f0473ab7b3801f7d60a73b6d1"
+checksum = "7598ee28d2aa48ed5fbb167db6555e1b5be9b0e234dc18a02612fae73179f566"
 sources = ["litellm", "modelsdev"]
-total_models = 4030
+total_models = 4031
 litellm_raw_models = 3040
-modelsdev_raw_models = 6738
+modelsdev_raw_models = 6741
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5733,7 +5733,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 2.0000000000000002e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "edenai", "huggingface", "kilo", "openrouter"]
+providers = ["deepinfra", "edenai", "huggingface", "kilo", "merge-gateway", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -5757,6 +5757,10 @@ output_cost_per_token = 0.00000625
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+[models."Qwen/Qwen3-8-2-4T-A95B".pricing."merge-gateway"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.00000625
 [models."Qwen/Qwen3-8-2-4T-A95B".pricing."openrouter"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.000002
@@ -5812,9 +5816,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000003
-cache_read_input_token_cost = 3.9999999999999994e-8
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000032000000000000003
+cache_read_input_token_cost = 4.499999999999999e-8
 litellm_provider = "chutes"
 providers = ["chutes"]
 supports_function_calling = true
@@ -5826,9 +5830,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."Qwen/Qwen3-8-27B-TEE".pricing."chutes"]
-cache_read_input_token_cost = 3.9999999999999994e-8
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.000003
+cache_read_input_token_cost = 4.499999999999999e-8
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000032000000000000003
 
 [models."Qwen/Qwen3-8-Max"]
 display_name = "Qwen3.8 Max"
@@ -33170,9 +33174,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.54e-8
-input_cost_per_token = 7.7e-8
-output_cost_per_token = 1.54e-7
+cache_read_input_token_cost = 1.4840000000000001e-8
+input_cost_per_token = 7.42e-8
+output_cost_per_token = 1.484e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -103860,6 +103864,30 @@ cache_read_input_token_cost = 0.0000012495
 input_cost_per_token = 0.000002499
 output_cost_per_token = 0.000002499
 
+[models."z-ai-glm-5-3"]
+display_name = "GLM 5.3"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.0000055
+cache_read_input_token_cost = 3.25e-7
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai-glm-5-3".pricing."venice"]
+cache_read_input_token_cost = 3.25e-7
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.0000055
+
 [models."z-ai-glm-5-turbo"]
 display_name = "GLM 5 Turbo"
 model_family = "glm"
@@ -106842,16 +106870,16 @@ input_cost_per_token = 0.0000021000000000000002
 output_cost_per_token = 0.0000065999999999999995
 
 [models."zai/glm-5-3"]
-display_name = "GLM 5.3"
+display_name = "GLM-5.3"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 1000000
-max_output_tokens = 12800
+max_output_tokens = 131072
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
+litellm_provider = "merge-gateway"
+providers = ["merge-gateway", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -106860,6 +106888,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."zai/glm-5-3".pricing."merge-gateway"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 [models."zai/glm-5-3".pricing."vercel"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
@@ -107064,9 +107096,9 @@ model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 1310720
 max_output_tokens = 384000
-input_cost_per_token = 7.8596e-8
-output_cost_per_token = 1.57192e-7
-cache_read_input_token_cost = 1.5719e-8
+input_cost_per_token = 7.7e-8
+output_cost_per_token = 1.54e-7
+cache_read_input_token_cost = 1.54e-8
 litellm_provider = "openrouter"
 providers = ["openrouter", "kilo"]
 supports_function_calling = true
@@ -107078,13 +107110,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.5719e-8
-input_cost_per_token = 7.8596e-8
-output_cost_per_token = 1.57192e-7
+cache_read_input_token_cost = 1.54e-8
+input_cost_per_token = 7.7e-8
+output_cost_per_token = 1.54e-7
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.5719e-8
-input_cost_per_token = 7.8596e-8
-output_cost_per_token = 1.57192e-7
+cache_read_input_token_cost = 1.54e-8
+input_cost_per_token = 7.7e-8
+output_cost_per_token = 1.54e-7
 
 [models."~google/gemini-flash-latest"]
 display_name = "Google Gemini Flash Latest"
