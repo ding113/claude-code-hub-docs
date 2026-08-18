@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.18"
-checksum = "64e9e4f71e94aa69ef963501648c31d4c13b6498c49cd4ba4b93004ab5b75f48"
+checksum = "aff4814c70d562c53ad4b17ef68483ac2c27977d8832b3ee4858be8d5e376d0d"
 sources = ["litellm", "modelsdev"]
-total_models = 4027
+total_models = 4028
 litellm_raw_models = 3040
-modelsdev_raw_models = 6728
+modelsdev_raw_models = 6730
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1008,7 +1008,7 @@ input_cost_per_token = 4.5000000000000003e-7
 output_cost_per_token = 0.0000032000000000000003
 cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "cloudflare-workers-ai"
-providers = ["cloudflare-workers-ai"]
+providers = ["cloudflare-workers-ai", "edenai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -1018,6 +1018,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."@cf/qwen/qwen3-8-27b".pricing."cloudflare-workers-ai"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.0000032000000000000003
+[models."@cf/qwen/qwen3-8-27b".pricing."edenai"]
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 4.5000000000000003e-7
 output_cost_per_token = 0.0000032000000000000003
@@ -5788,7 +5792,7 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000003
 cache_read_input_token_cost = 4e-8
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "kilo", "kosmik", "openrouter", "runinfra"]
+providers = ["deepinfra", "edenai", "kilo", "kosmik", "openrouter", "runinfra"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -5798,6 +5802,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."Qwen/Qwen3-8-27B".pricing."deepinfra"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000003
+[models."Qwen/Qwen3-8-27B".pricing."edenai"]
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000003
@@ -13365,6 +13373,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
+
+[models."alibaba/qwen3-8-27b"]
+display_name = "Qwen3.8 27B"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262133
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-14"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/qwen3-8-27b".pricing."vercel"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 4.0000000000000003e-7
 
 [models."alibaba/qwen3-8-max"]
 display_name = "Qwen 3.8 Max"
@@ -85898,8 +85930,8 @@ model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 0.00000132
-output_cost_per_token = 0.00000396
+input_cost_per_token = 0.000001452
+output_cost_per_token = 0.0000043559999999999995
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -85911,8 +85943,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/deepseek-v4-pro-0813".pricing."edenai"]
-input_cost_per_token = 0.00000132
-output_cost_per_token = 0.00000396
+input_cost_per_token = 0.000001452
+output_cost_per_token = 0.0000043559999999999995
 
 [models."qwen/qwen-2-5-7b-instruct"]
 display_name = "Qwen2.5 7B Instruct"
