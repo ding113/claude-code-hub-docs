@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.08.19"
-checksum = "fe47c8fb85f5b64e96dbcf6f07ac85dbda01215c9c71e99b424c2251cda3b31c"
+checksum = "96fbe09cd9e860d30f14a8fe3d6a7a4f99edeba5cb6656d1283f6f4e85b196d3"
 sources = ["litellm", "modelsdev"]
-total_models = 4065
-litellm_raw_models = 3040
+total_models = 4070
+litellm_raw_models = 3055
 modelsdev_raw_models = 6834
 custom_models = 5
 
@@ -28422,9 +28422,9 @@ model_family = "claude-opus"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 5e-7
+max_tokens = 128000
+input_cost_per_token = 0.00000500003
+output_cost_per_token = 0.000025000010000000002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28434,12 +28434,20 @@ knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000071429
+output_dbu_cost_per_token = 0.000357143
+supports_assistant_prefill = true
+supports_tool_choice = true
+
+[models."databricks-claude-opus-4-6".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-claude-opus-4-6".pricing."databricks"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+input_cost_per_token = 0.00000500003
+input_dbu_cost_per_token = 0.000071429
+output_cost_per_token = 0.000025000010000000002
+output_dbu_cost_per_token = 0.000357143
 
 [models."databricks-claude-opus-4-7"]
 display_name = "Claude Opus 4.7"
@@ -28564,9 +28572,9 @@ model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
-cache_read_input_token_cost = 3e-7
+max_tokens = 64000
+input_cost_per_token = 0.0000029999900000000002
+output_cost_per_token = 0.000015000020000000002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28576,12 +28584,20 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-02-17"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000042857
+output_dbu_cost_per_token = 0.000214286
+supports_assistant_prefill = true
+supports_tool_choice = true
+
+[models."databricks-claude-sonnet-4-6".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-claude-sonnet-4-6".pricing."databricks"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+input_cost_per_token = 0.0000029999900000000002
+input_dbu_cost_per_token = 0.000042857
+output_cost_per_token = 0.000015000020000000002
+output_dbu_cost_per_token = 0.000214286
 
 [models."databricks-gemini-2-5-flash"]
 display_name = "Gemini 2.5 Flash"
@@ -28653,9 +28669,9 @@ model_family = "gemini-flash-lite"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 2.5000000000000002e-8
+max_tokens = 65536
+input_cost_per_token = 3.1248e-7
+output_cost_per_token = 0.00000187502
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28665,12 +28681,19 @@ knowledge_cutoff = "2025-01"
 release_date = "2026-03-03"
 supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000004464
+output_dbu_cost_per_token = 0.000026786
+supports_tool_choice = true
+
+[models."databricks-gemini-3-1-flash-lite".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gemini-3-1-flash-lite".pricing."databricks"]
-cache_read_input_token_cost = 2.5000000000000002e-8
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+input_cost_per_token = 3.1248e-7
+input_dbu_cost_per_token = 0.000004464
+output_cost_per_token = 0.00000187502
+output_dbu_cost_per_token = 0.000026786
 
 [models."databricks-gemini-3-1-pro"]
 display_name = "Gemini 3.1 Pro Preview Custom Tools"
@@ -28678,9 +28701,9 @@ model_family = "gemini-pro"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000012
-cache_read_input_token_cost = 2.0000000000000002e-7
+max_tokens = 65536
+input_cost_per_token = 0.00000249998
+output_cost_per_token = 0.000015000020000000002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28690,12 +28713,19 @@ knowledge_cutoff = "2025-01"
 release_date = "2026-02-19"
 supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000035714
+output_dbu_cost_per_token = 0.000214286
+supports_tool_choice = true
+
+[models."databricks-gemini-3-1-pro".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gemini-3-1-pro".pricing."databricks"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000012
+input_cost_per_token = 0.00000249998
+input_dbu_cost_per_token = 0.000035714
+output_cost_per_token = 0.000015000020000000002
+output_dbu_cost_per_token = 0.000214286
 
 [models."databricks-gemini-3-flash"]
 display_name = "Gemini 3 Flash Preview"
@@ -28703,9 +28733,9 @@ model_family = "gemini-flash"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000003
-cache_read_input_token_cost = 5.0000000000000004e-8
+max_tokens = 65536
+input_cost_per_token = 6.2503e-7
+output_cost_per_token = 0.00000374997
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28715,12 +28745,19 @@ knowledge_cutoff = "2025-01"
 release_date = "2025-12-17"
 supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000008929
+output_dbu_cost_per_token = 0.000053571
+supports_tool_choice = true
+
+[models."databricks-gemini-3-flash".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gemini-3-flash".pricing."databricks"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.000003
+input_cost_per_token = 6.2503e-7
+input_dbu_cost_per_token = 0.000008929
+output_cost_per_token = 0.00000374997
+output_dbu_cost_per_token = 0.000053571
 
 [models."databricks-gemini-3-pro"]
 display_name = "Gemini 3 Pro Preview"
@@ -28728,9 +28765,9 @@ model_family = "gemini-pro"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000012
-cache_read_input_token_cost = 2.0000000000000002e-7
+max_tokens = 65536
+input_cost_per_token = 0.00000249998
+output_cost_per_token = 0.000015000020000000002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28740,12 +28777,19 @@ knowledge_cutoff = "2025-01"
 release_date = "2025-11-18"
 supported_modalities = ["text", "image", "video", "audio", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000035714
+output_dbu_cost_per_token = 0.000214286
+supports_tool_choice = true
+
+[models."databricks-gemini-3-pro".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gemini-3-pro".pricing."databricks"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000012
+input_cost_per_token = 0.00000249998
+input_dbu_cost_per_token = 0.000035714
+output_cost_per_token = 0.000015000020000000002
+output_dbu_cost_per_token = 0.000214286
 
 [models."databricks-gemma-3-12b"]
 mode = "chat"
@@ -28855,15 +28899,59 @@ input_dbu_cost_per_token = 0.000017857
 output_cost_per_token = 0.000009999990000000002
 output_dbu_cost_per_token = 0.000142857
 
+[models."databricks-gpt-5-1-codex-max"]
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00000124999
+output_cost_per_token = 0.000009999990000000002
+litellm_provider = "databricks"
+providers = ["databricks"]
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000017857
+output_dbu_cost_per_token = 0.000142857
+
+[models."databricks-gpt-5-1-codex-max".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
+
+[models."databricks-gpt-5-1-codex-max".pricing."databricks"]
+input_cost_per_token = 0.00000124999
+input_dbu_cost_per_token = 0.000017857
+output_cost_per_token = 0.000009999990000000002
+output_dbu_cost_per_token = 0.000142857
+
+[models."databricks-gpt-5-1-codex-mini"]
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 2.4997e-7
+output_cost_per_token = 0.00000199997
+litellm_provider = "databricks"
+providers = ["databricks"]
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000003571
+output_dbu_cost_per_token = 0.000028571
+
+[models."databricks-gpt-5-1-codex-mini".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
+
+[models."databricks-gpt-5-1-codex-mini".pricing."databricks"]
+input_cost_per_token = 2.4997e-7
+input_dbu_cost_per_token = 0.000003571
+output_cost_per_token = 0.00000199997
+output_dbu_cost_per_token = 0.000028571
+
 [models."databricks-gpt-5-2"]
 display_name = "GPT-5.2"
 model_family = "gpt"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
-cache_read_input_token_cost = 1.75e-7
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28873,22 +28961,72 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2025-12-11"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000025
+output_dbu_cost_per_token = 0.0002
+
+[models."databricks-gpt-5-2".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gpt-5-2".pricing."databricks"]
-cache_read_input_token_cost = 1.75e-7
+input_cost_per_token = 0.00000175
+input_dbu_cost_per_token = 0.000025
+output_cost_per_token = 0.000014
+output_dbu_cost_per_token = 0.0002
+
+[models."databricks-gpt-5-2-codex"]
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 0.00000175
 output_cost_per_token = 0.000014
+litellm_provider = "databricks"
+providers = ["databricks"]
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000025
+output_dbu_cost_per_token = 0.0002
+
+[models."databricks-gpt-5-2-codex".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
+
+[models."databricks-gpt-5-2-codex".pricing."databricks"]
+input_cost_per_token = 0.00000175
+input_dbu_cost_per_token = 0.000025
+output_cost_per_token = 0.000014
+output_dbu_cost_per_token = 0.0002
+
+[models."databricks-gpt-5-3-codex"]
+mode = "chat"
+max_input_tokens = 272000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00000175
+output_cost_per_token = 0.000014
+litellm_provider = "databricks"
+providers = ["databricks"]
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000025
+output_dbu_cost_per_token = 0.0002
+
+[models."databricks-gpt-5-3-codex".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
+
+[models."databricks-gpt-5-3-codex".pricing."databricks"]
+input_cost_per_token = 0.00000175
+input_dbu_cost_per_token = 0.000025
+output_cost_per_token = 0.000014
+output_dbu_cost_per_token = 0.0002
 
 [models."databricks-gpt-5-4"]
 display_name = "GPT-5.4"
 model_family = "gpt"
 mode = "chat"
-max_input_tokens = 1050000
+max_input_tokens = 272000
 max_output_tokens = 128000
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
-cache_read_input_token_cost = 2.5e-7
+max_tokens = 128000
+input_cost_per_token = 0.00000249998
+output_cost_per_token = 0.000015000020000000002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28898,22 +29036,28 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000035714
+output_dbu_cost_per_token = 0.000214286
+
+[models."databricks-gpt-5-4".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gpt-5-4".pricing."databricks"]
-cache_read_input_token_cost = 2.5e-7
-input_cost_per_token = 0.0000025
-output_cost_per_token = 0.000015
+input_cost_per_token = 0.00000249998
+input_dbu_cost_per_token = 0.000035714
+output_cost_per_token = 0.000015000020000000002
+output_dbu_cost_per_token = 0.000214286
 
 [models."databricks-gpt-5-4-mini"]
 display_name = "GPT-5.4 mini"
 model_family = "gpt-mini"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
-input_cost_per_token = 7.5e-7
-output_cost_per_token = 0.0000045
-cache_read_input_token_cost = 7.5e-8
+max_tokens = 128000
+input_cost_per_token = 7.4998e-7
+output_cost_per_token = 0.00000450002
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28923,22 +29067,28 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-17"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000010714
+output_dbu_cost_per_token = 0.000064286
+
+[models."databricks-gpt-5-4-mini".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gpt-5-4-mini".pricing."databricks"]
-cache_read_input_token_cost = 7.5e-8
-input_cost_per_token = 7.5e-7
-output_cost_per_token = 0.0000045
+input_cost_per_token = 7.4998e-7
+input_dbu_cost_per_token = 0.000010714
+output_cost_per_token = 0.00000450002
+output_dbu_cost_per_token = 0.000064286
 
 [models."databricks-gpt-5-4-nano"]
 display_name = "GPT-5.4 nano"
 model_family = "gpt-nano"
 mode = "chat"
-max_input_tokens = 400000
+max_input_tokens = 272000
 max_output_tokens = 128000
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.00000125
-cache_read_input_token_cost = 2e-8
+max_tokens = 128000
+input_cost_per_token = 1.9999e-7
+output_cost_per_token = 0.00000124999
 litellm_provider = "databricks"
 providers = ["databricks"]
 supports_function_calling = true
@@ -28948,12 +29098,18 @@ knowledge_cutoff = "2025-08-31"
 release_date = "2026-03-17"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+input_dbu_cost_per_token = 0.000002857
+output_dbu_cost_per_token = 0.000017857
+
+[models."databricks-gpt-5-4-nano".metadata]
+notes = "Input/output cost per token is dbu cost * $0.070. Number provided for reference, '*_dbu_cost_per_token' used in actual calculation."
 
 [models."databricks-gpt-5-4-nano".pricing."databricks"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 0.00000125
+input_cost_per_token = 1.9999e-7
+input_dbu_cost_per_token = 0.000002857
+output_cost_per_token = 0.00000124999
+output_dbu_cost_per_token = 0.000017857
 
 [models."databricks-gpt-5-5"]
 display_name = "GPT-5.5"
@@ -33488,9 +33644,9 @@ cache_read_input_token_cost = 4.4e-8
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 [models."deepseek/deepseek-v4-pro".pricing."openrouter"]
-cache_read_input_token_cost = 2.2e-8
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000198
+cache_read_input_token_cost = 4.4e-8
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
 [models."deepseek/deepseek-v4-pro".pricing."orcarouter"]
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 5.6e-7
@@ -33548,9 +33704,9 @@ cache_read_input_token_cost = 4.4e-8
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 [models."deepseek/deepseek-v4-pro-0813".pricing."openrouter"]
-cache_read_input_token_cost = 2.2e-8
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000198
+cache_read_input_token_cost = 4.4e-8
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
 [models."deepseek/deepseek-v4-pro-0813".pricing."vercel"]
 cache_read_input_token_cost = 1.3200000000000002e-7
 input_cost_per_token = 0.00000132
@@ -42275,9 +42431,9 @@ mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 65536
 max_tokens = 65536
-input_cost_per_token = 0.0000015
-output_cost_per_token = 0.0000075
-cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.00000375
+cache_read_input_token_cost = 7.5e-8
 litellm_provider = "vertex_ai"
 providers = ["vertex_ai", "cortecs", "crossmodel", "gemini", "google", "google-vertex", "impossibl", "merge-gateway", "nano-gpt", "ofox", "openrouter", "vertex_ai-language-models"]
 supports_function_calling = true
@@ -42291,15 +42447,15 @@ release_date = "2026-07-21"
 supported_modalities = ["text", "image", "audio", "video"]
 supported_output_modalities = ["text"]
 source = "https://cloud.google.com/vertex-ai/generative-ai/pricing"
-cache_read_input_token_cost_flex = 7.5e-8
-cache_read_input_token_cost_priority = 2.7e-7
-input_cost_per_token_batches = 7.5e-7
-input_cost_per_token_flex = 7.5e-7
-input_cost_per_token_priority = 0.0000027
-output_cost_per_reasoning_token = 0.0000075
-output_cost_per_token_batches = 0.00000375
-output_cost_per_token_flex = 0.00000375
-output_cost_per_token_priority = 0.0000135
+cache_read_input_token_cost_flex = 3.75e-8
+cache_read_input_token_cost_priority = 1.35e-7
+input_cost_per_token_batches = 3.75e-7
+input_cost_per_token_flex = 3.75e-7
+input_cost_per_token_priority = 0.00000135
+output_cost_per_reasoning_token = 0.00000375
+output_cost_per_token_batches = 0.000001875
+output_cost_per_token_flex = 0.000001875
+output_cost_per_token_priority = 0.00000675
 reasoning_cost_per_token = 0.00000375
 supported_endpoints = ["/v1/chat/completions", "/v1/completions", "/v1/batch"]
 supports_audio_input = true
@@ -42327,18 +42483,18 @@ cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.0000015
 output_cost_per_token = 0.0000075
 [models."gemini-3.6-flash".pricing."gemini"]
-cache_read_input_token_cost = 1.5e-7
-cache_read_input_token_cost_flex = 7.5e-8
-cache_read_input_token_cost_priority = 2.7e-7
-input_cost_per_token = 0.0000015
-input_cost_per_token_batches = 7.5e-7
-input_cost_per_token_flex = 7.5e-7
-input_cost_per_token_priority = 0.0000027
-output_cost_per_reasoning_token = 0.0000075
-output_cost_per_token = 0.0000075
-output_cost_per_token_batches = 0.00000375
-output_cost_per_token_flex = 0.00000375
-output_cost_per_token_priority = 0.0000135
+cache_read_input_token_cost = 7.5e-8
+cache_read_input_token_cost_flex = 3.75e-8
+cache_read_input_token_cost_priority = 1.35e-7
+input_cost_per_token = 7.5e-7
+input_cost_per_token_batches = 3.75e-7
+input_cost_per_token_flex = 3.75e-7
+input_cost_per_token_priority = 0.00000135
+output_cost_per_reasoning_token = 0.00000375
+output_cost_per_token = 0.00000375
+output_cost_per_token_batches = 0.000001875
+output_cost_per_token_flex = 0.000001875
+output_cost_per_token_priority = 0.00000675
 [models."gemini-3.6-flash".pricing."google"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 0.0000015
@@ -42369,31 +42525,31 @@ input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.00000375
 reasoning_cost_per_token = 0.00000375
 [models."gemini-3.6-flash".pricing."vertex_ai"]
-cache_read_input_token_cost = 1.5e-7
-cache_read_input_token_cost_flex = 7.5e-8
-cache_read_input_token_cost_priority = 2.7e-7
-input_cost_per_token = 0.0000015
-input_cost_per_token_batches = 7.5e-7
-input_cost_per_token_flex = 7.5e-7
-input_cost_per_token_priority = 0.0000027
-output_cost_per_reasoning_token = 0.0000075
-output_cost_per_token = 0.0000075
-output_cost_per_token_batches = 0.00000375
-output_cost_per_token_flex = 0.00000375
-output_cost_per_token_priority = 0.0000135
+cache_read_input_token_cost = 7.5e-8
+cache_read_input_token_cost_flex = 3.75e-8
+cache_read_input_token_cost_priority = 1.35e-7
+input_cost_per_token = 7.5e-7
+input_cost_per_token_batches = 3.75e-7
+input_cost_per_token_flex = 3.75e-7
+input_cost_per_token_priority = 0.00000135
+output_cost_per_reasoning_token = 0.00000375
+output_cost_per_token = 0.00000375
+output_cost_per_token_batches = 0.000001875
+output_cost_per_token_flex = 0.000001875
+output_cost_per_token_priority = 0.00000675
 [models."gemini-3.6-flash".pricing."vertex_ai-language-models"]
-cache_read_input_token_cost = 1.5e-7
-cache_read_input_token_cost_flex = 7.5e-8
-cache_read_input_token_cost_priority = 2.7e-7
-input_cost_per_token = 0.0000015
-input_cost_per_token_batches = 7.5e-7
-input_cost_per_token_flex = 7.5e-7
-input_cost_per_token_priority = 0.0000027
-output_cost_per_reasoning_token = 0.0000075
-output_cost_per_token = 0.0000075
-output_cost_per_token_batches = 0.00000375
-output_cost_per_token_flex = 0.00000375
-output_cost_per_token_priority = 0.0000135
+cache_read_input_token_cost = 7.5e-8
+cache_read_input_token_cost_flex = 3.75e-8
+cache_read_input_token_cost_priority = 1.35e-7
+input_cost_per_token = 7.5e-7
+input_cost_per_token_batches = 3.75e-7
+input_cost_per_token_flex = 3.75e-7
+input_cost_per_token_priority = 0.00000135
+output_cost_per_reasoning_token = 0.00000375
+output_cost_per_token = 0.00000375
+output_cost_per_token_batches = 0.000001875
+output_cost_per_token_flex = 0.000001875
+output_cost_per_token_priority = 0.00000675
 
 [models."gemini-3.7-flash"]
 display_name = "Gemini 3.7 Flash"
@@ -60096,6 +60252,22 @@ source = "modelsdev"
 
 [models."gte-large-en-v1-5".pricing."digitalocean"]
 input_cost_per_token = 9e-8
+
+[models."guardrails"]
+mode = "guardrail"
+litellm_provider = "bedrock"
+providers = ["bedrock"]
+source = "https://aws.amazon.com/bedrock/pricing/"
+
+[models."guardrails".guardrail_cost_per_unit]
+automatedReasoningPolicyUnits = 0.00017
+contentPolicyImageUnits = 0.00075
+contentPolicyUnits = 0.00015
+contextualGroundingPolicyUnits = 0.0001
+sensitiveInformationPolicyFreeUnits = 0
+sensitiveInformationPolicyUnits = 0.0001
+topicPolicyUnits = 0.00015
+wordPolicyUnits = 0
 
 [models."happyhorse-1-1-i2v"]
 display_name = "HappyHorse 1.1 Image-to-Video"
@@ -89290,8 +89462,9 @@ output_cost_per_token = 0.0000027
 input_cost_per_token = 2.8899999999999995e-7
 output_cost_per_token = 0.0000024
 [models."qwen/qwen3.6-27b".pricing."openrouter"]
-input_cost_per_token = 2.8899999999999995e-7
-output_cost_per_token = 0.0000024
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.000002
 [models."qwen/qwen3.6-27b".pricing."pioneer"]
 cache_read_input_token_cost = 6e-7
 input_cost_per_token = 6e-7
