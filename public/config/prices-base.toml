@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.19"
-checksum = "2699eb31c905c8e17c548c8187c889611f90e6fe8eb783a2a9d6376376c2be90"
+checksum = "149b8f5f56807699b73ab767ac945b7ec03aff9446246f1030410ebbf5bc6b82"
 sources = ["litellm", "modelsdev"]
-total_models = 4068
+total_models = 4069
 litellm_raw_models = 3055
-modelsdev_raw_models = 6835
+modelsdev_raw_models = 6839
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -5462,8 +5462,8 @@ output_cost_per_token = 1.5e-7
 [models."Qwen/Qwen3-4B-Instruct-2507"]
 display_name = "Qwen3 4B Instruct"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 131072
+max_input_tokens = 32768
+max_output_tokens = 32768
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
 cache_read_input_token_cost = 2.0000000000000002e-7
@@ -30625,7 +30625,7 @@ input_cost_per_token = 0.0000013
 output_cost_per_token = 0.0000026
 cache_read_input_token_cost = 1.0000000000000001e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "baseten", "edenai", "huggingface", "togetherai"]
+providers = ["deepinfra", "baseten", "edenai", "huggingface", "runinfra", "togetherai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -30648,6 +30648,10 @@ output_cost_per_token = 0.0000026
 [models."deepseek-ai/DeepSeek-V4-Pro-0813".pricing."huggingface"]
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
+[models."deepseek-ai/DeepSeek-V4-Pro-0813".pricing."runinfra"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000018999999999999998
 [models."deepseek-ai/DeepSeek-V4-Pro-0813".pricing."togetherai"]
 cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 0.00000132
@@ -51962,9 +51966,9 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 [models."gpt-5-6-sol".pricing."opencode"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.0000025
+output_cost_per_token = 0.000015
 [models."gpt-5-6-sol".pricing."pioneer"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
@@ -65226,7 +65230,7 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 8192
 litellm_provider = "openrouter"
-providers = ["openrouter"]
+providers = ["openrouter", "kilo"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -80308,7 +80312,7 @@ output_cost_per_token = 2.5e-7
 display_name = "Nemotron 3 Super 120B A12B"
 model_family = "nemotron"
 mode = "chat"
-max_input_tokens = 1000000
+max_input_tokens = 256000
 max_output_tokens = 32000
 input_cost_per_token = 9e-8
 output_cost_per_token = 4.5000000000000003e-7
@@ -105563,7 +105567,7 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "ofox"]
+providers = ["openrouter", "crossmodel", "kilo", "ofox"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -105572,6 +105576,10 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."z-ai/glm-5-3".pricing."crossmodel"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.0000044
 [models."z-ai/glm-5-3".pricing."kilo"]
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
@@ -107584,6 +107592,22 @@ output_cost_per_token = 9.000000000000001e-7
 cache_read_input_token_cost = 5.0000000000000004e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 9.000000000000001e-7
+
+[models."zai/glm-4-6v-flash-free"]
+display_name = "GLM-4.6V-Flash (Free)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 128000
+max_output_tokens = 24000
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2025-12-08"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."zai/glm-4-7"]
 display_name = "GLM-4.7"
