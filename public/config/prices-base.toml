@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.21"
-checksum = "e35c8b8a601d39f06aaa53da347288f7e279a3889b53696fe0432f942e6c98b8"
+checksum = "5a146c8eccf6a6dee7f7dbdcc924be780cb75b13399746d443796fdfbfbeb766"
 sources = ["litellm", "modelsdev"]
-total_models = 4334
+total_models = 4336
 litellm_raw_models = 3111
-modelsdev_raw_models = 7230
+modelsdev_raw_models = 7235
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -33901,7 +33901,7 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 4e-7
 cache_read_input_token_cost = 4e-8
 litellm_provider = "dashscope"
-providers = ["dashscope", "alibaba", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "crof", "digitalocean", "empiriolabs", "fireworks_ai", "greenpt", "hyper", "perplexity", "requesty", "scnet-token-plan", "venice"]
+providers = ["dashscope", "alibaba", "alibaba-token-plan", "alibaba-token-plan-cn", "cortecs", "crof", "digitalocean", "empiriolabs", "fireworks_ai", "greenpt", "hyper", "perplexity", "requesty", "scaleway", "scnet-token-plan", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -33911,6 +33911,7 @@ release_date = "2026-07-31"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.alibabacloud.com/help/en/model-studio/models"
+reasoning_cost_per_token = 9.36e-7
 supports_response_schema = true
 supports_tool_choice = true
 supports_web_search = true
@@ -33959,6 +33960,11 @@ output_cost_per_token = 2.6e-7
 cache_read_input_token_cost = 6.3e-8
 input_cost_per_token = 1.26e-7
 output_cost_per_token = 2.52e-7
+[models."deepseek-v4-flash-0731".pricing."scaleway"]
+cache_read_input_token_cost = 9.36e-8
+input_cost_per_token = 4.68e-7
+output_cost_per_token = 9.36e-7
+reasoning_cost_per_token = 9.36e-7
 [models."deepseek-v4-flash-0731".pricing."venice"]
 cache_read_input_token_cost = 3.5e-8
 input_cost_per_token = 1.75e-7
@@ -35437,7 +35443,7 @@ input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 cache_read_input_token_cost = 7e-9
 litellm_provider = "openrouter"
-providers = ["openrouter", "edenai", "kilo", "vercel"]
+providers = ["openrouter", "edenai", "kilo", "ofox", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -35454,6 +35460,10 @@ output_cost_per_token = 6.6e-7
 cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
+[models."deepseek/deepseek-v4-flash-vision-exp".pricing."ofox"]
+cache_read_input_token_cost = 1.4e-8
+input_cost_per_token = 4.4e-7
+output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."openrouter"]
 cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
@@ -35579,6 +35589,33 @@ output_cost_per_token = 0.00000348
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
+
+[models."deepseek/deepseek-v4-pro-0423"]
+display_name = "DeepSeek V4 Pro 0423"
+model_family = "deepseek-thinking"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 393216
+input_cost_per_token = 0.0000016499999999999999
+output_cost_per_token = 0.0000032999999999999997
+litellm_provider = "merge-gateway"
+providers = ["merge-gateway", "ofox"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek/deepseek-v4-pro-0423".pricing."merge-gateway"]
+input_cost_per_token = 0.0000016499999999999999
+output_cost_per_token = 0.0000032999999999999997
+[models."deepseek/deepseek-v4-pro-0423".pricing."ofox"]
+cache_read_input_token_cost = 4.4e-8
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
 
 [models."deepseek/deepseek-v4-pro-0813"]
 display_name = "DeepSeek V4 Pro 0813"
@@ -101829,6 +101866,22 @@ output_cost_per_token = 0
 input_cost_per_pixel = 4.359e-8
 output_cost_per_pixel = 0
 
+[models."stealth-ox-alpha"]
+display_name = "Ox Alpha"
+model_family = "alpha"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+litellm_provider = "venice"
+providers = ["venice"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-21"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
 [models."stealth/claude-opus-4-6"]
 display_name = "Stealth: Claude Opus 4.6 (20% off)"
 model_family = "claude-opus"
@@ -102828,9 +102881,9 @@ output_cost_per_token = 5.8e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 3.5e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 5.8e-7
 [models."tencent/hy3".pricing."nano-gpt"]
 cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
