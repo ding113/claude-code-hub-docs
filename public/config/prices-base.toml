@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.21"
-checksum = "2286fb83c3bc5fd41c9530acd01e61967173b4520db3ced76ba9c0c3f9c81bb3"
+checksum = "4523a3a23904cfd2250e8d10568f20c71b9c51e44b7fb2369202c2af08ed6bd5"
 sources = ["litellm", "modelsdev"]
-total_models = 4336
+total_models = 4338
 litellm_raw_models = 3111
-modelsdev_raw_models = 7236
+modelsdev_raw_models = 7242
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -35442,8 +35442,8 @@ max_output_tokens = 384000
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 cache_read_input_token_cost = 7e-9
-litellm_provider = "openrouter"
-providers = ["openrouter", "crossmodel", "edenai", "kilo", "ofox", "vercel"]
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "crossmodel", "edenai", "kilo", "ofox", "openrouter", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -35461,6 +35461,10 @@ cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."kilo"]
+cache_read_input_token_cost = 7e-9
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+[models."deepseek/deepseek-v4-flash-vision-exp".pricing."nano-gpt"]
 cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
@@ -101986,17 +101990,25 @@ output_cost_per_token = 0.000012
 display_name = "Ox Alpha"
 model_family = "alpha"
 mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 131072
-litellm_provider = "openrouter"
-providers = ["openrouter", "kilo"]
+max_input_tokens = 1000000
+max_output_tokens = 32768
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 5.0000000000000004e-8
+cache_read_input_token_cost = 2.5000000000000002e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "kilo", "openrouter"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-08-20"
-supported_modalities = ["text", "image", "video"]
+release_date = "2026-08-21"
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."stealth/ox-alpha".pricing."nano-gpt"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 5.0000000000000004e-8
 
 [models."stealth/qwen3-6-plus"]
 display_name = "Stealth: Qwen3.6 Plus (50% off)"
@@ -103701,6 +103713,38 @@ output_cost_per_token = 0.00000405
 cache_read_input_token_cost = 1.7000000000000001e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.00000405
+
+[models."thinkingmachines/inkling-small:free"]
+display_name = "Inkling Small (free)"
+model_family = "ling"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-07-30"
+supported_modalities = ["text", "image", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."thinkingmachines/inkling:free"]
+display_name = "Inkling (free)"
+model_family = "ling"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-07-15"
+supported_modalities = ["text", "image", "audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."thinkingmachines/inkling:thinking"]
 display_name = "Inkling Thinking"
