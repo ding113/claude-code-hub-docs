@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.22"
-checksum = "3b6cef2d25419b69bbfccf109e44720426f3a2dbdc4f3addbc814b870a3bd47f"
+checksum = "a93d0b3cf2c0d554a1fb44ec576e79bc529963aab37b2a4ee2534e6972c13470"
 sources = ["litellm", "modelsdev"]
-total_models = 4339
+total_models = 4342
 litellm_raw_models = 3111
-modelsdev_raw_models = 7246
+modelsdev_raw_models = 7251
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -46382,6 +46382,30 @@ cache_read_input_token_cost = 6.5e-8
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
 
+[models."gemma-4-26b-a4b-uncensored"]
+display_name = "Gemma 4 26B A4B Uncensored"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 131072
+max_output_tokens = 32768
+input_cost_per_token = 8e-8
+output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 4e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+release_date = "2026-08-22"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-4-26b-a4b-uncensored".pricing."nano-gpt"]
+cache_read_input_token_cost = 4e-8
+input_cost_per_token = 8e-8
+output_cost_per_token = 3.3e-7
+
 [models."gemma-4-31B-it"]
 mode = "chat"
 max_input_tokens = 131072
@@ -74030,7 +74054,7 @@ mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
 litellm_provider = "xiaomi-token-plan-sgp"
-providers = ["xiaomi-token-plan-sgp", "empiriolabs", "kenari", "llmgateway", "opencode-go", "requesty", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
+providers = ["xiaomi-token-plan-sgp", "empiriolabs", "kenari", "llmgateway", "llmgateway-providers", "opencode-go", "requesty", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -74048,6 +74072,10 @@ output_cost_per_token = 0.0000014
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
+[models."mimo-v2-5".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 8e-8
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000002
 [models."mimo-v2-5".pricing."opencode-go"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
@@ -74085,7 +74113,7 @@ mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
 litellm_provider = "xiaomi-token-plan-sgp"
-providers = ["xiaomi-token-plan-sgp", "crof", "digitalocean", "empiriolabs", "kenari", "llmgateway", "opencode-go", "requesty", "scnet-token-plan", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
+providers = ["xiaomi-token-plan-sgp", "crof", "digitalocean", "empiriolabs", "kenari", "llmgateway", "llmgateway-providers", "opencode-go", "requesty", "scnet-token-plan", "xiaomi", "xiaomi-token-plan-ams", "xiaomi-token-plan-cn"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -74111,6 +74139,10 @@ output_cost_per_token = 0.00000435
 cache_read_input_token_cost = 3.6e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
+[models."mimo-v2-5-pro".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000001
+output_cost_per_token = 0.000003
 [models."mimo-v2-5-pro".pricing."opencode-go"]
 cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
@@ -84477,6 +84509,56 @@ source = "modelsdev"
 [models."novita/llama-4-scout-17b-instruct".pricing."llmgateway-providers"]
 input_cost_per_token = 1.8e-7
 output_cost_per_token = 5.9e-7
+
+[models."novita/mimo-v2-5"]
+display_name = "MiMo V2.5 (NovitaAI)"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 1.6800000000000002e-7
+output_cost_per_token = 3.3600000000000004e-7
+cache_read_input_token_cost = 3.4e-9
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text", "image", "audio", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."novita/mimo-v2-5".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 3.4e-9
+input_cost_per_token = 1.6800000000000002e-7
+output_cost_per_token = 3.3600000000000004e-7
+
+[models."novita/mimo-v2-5-pro"]
+display_name = "MiMo V2.5 Pro (NovitaAI)"
+model_family = "mimo"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 5.22e-7
+output_cost_per_token = 0.000001044
+cache_read_input_token_cost = 4.3e-9
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2024-12"
+release_date = "2026-04-22"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."novita/mimo-v2-5-pro".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 4.3e-9
+input_cost_per_token = 5.22e-7
+output_cost_per_token = 0.000001044
 
 [models."novita/minimax-m2-1"]
 display_name = "MiniMax M2.1 (NovitaAI)"
