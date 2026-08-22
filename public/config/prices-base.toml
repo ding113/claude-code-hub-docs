@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.22"
-checksum = "179663691be2fd39b7ef95fc468a96b26830dd6ae32d6741a8368d5be042581f"
+checksum = "6579b7a00c417e042a0eec55a6b998ab01e9b6e288d2c7e539e1435e64e47582"
 sources = ["litellm", "modelsdev"]
 total_models = 4338
 litellm_raw_models = 3111
-modelsdev_raw_models = 7243
+modelsdev_raw_models = 7245
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -22767,6 +22767,8 @@ input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
 
 [models."claude-fable-5@default"]
+display_name = "Claude Fable 5"
+model_family = "claude-fable"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -22776,13 +22778,18 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex", "google-vertex-anthropic"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-01-31"
+release_date = "2026-06-09"
 deprecation_date = "2027-06-08"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_1hr = 0.00002
 regional_endpoint_uplift_multiplier = 1.1
 supports_adaptive_thinking = true
@@ -22800,6 +22807,14 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-fable-5@default".pricing."google-vertex"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+[models."claude-fable-5@default".pricing."google-vertex-anthropic"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 [models."claude-fable-5@default".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.0000125
 cache_creation_input_token_cost_above_1hr = 0.00002
@@ -35300,9 +35315,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.5372e-8
-input_cost_per_token = 7.686e-8
-output_cost_per_token = 1.5372e-7
+cache_read_input_token_cost = 1.5092e-8
+input_cost_per_token = 7.546e-8
+output_cost_per_token = 1.5092e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -55137,8 +55152,8 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.00003
 [models."gpt-5-6-sol".pricing."merge-gateway"]
 cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.00003
+input_cost_per_token = 0.000004
+output_cost_per_token = 0.000024
 [models."gpt-5-6-sol".pricing."neon"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000005
@@ -93971,7 +93986,8 @@ output_cost_per_token = 0.0000015
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 0.0000015
 [models."qwen/qwen3-next-80b-a3b-instruct".pricing."openrouter"]
-input_cost_per_token = 9e-8
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 0.0000011
 
 [models."qwen/qwen3-next-80b-a3b-instruct-maas"]
