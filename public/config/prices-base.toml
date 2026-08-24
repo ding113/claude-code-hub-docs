@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.24"
-checksum = "50da521341b71263521989065d059fe2127ed28dcb01404c8e15b96da4b6ad26"
+checksum = "5b56a54a6403cd5bfee76a20dc53e458d47d0660084fca3a077915e6c77bfa79"
 sources = ["litellm", "modelsdev"]
 total_models = 4410
 litellm_raw_models = 3176
-modelsdev_raw_models = 7292
+modelsdev_raw_models = 7285
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -7711,6 +7711,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000015
+
+[models."TEE/qwen3-8-27b"]
+display_name = "Qwen3.8 27B TEE"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 262144
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000003
+cache_read_input_token_cost = 1.5e-7
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-14"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."TEE/qwen3-8-27b".pricing."nano-gpt"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 4.0000000000000003e-7
+output_cost_per_token = 0.000003
 
 [models."THUDM/GLM-4-32B-0414"]
 display_name = "GLM 4 32B 0414"
@@ -17656,29 +17680,6 @@ output_cost_per_token = 8.5e-7
 [models."arcee-ai/trinity-large-thinking".pricing."vercel"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 9e-7
-
-[models."arcee-ai/trinity-mini"]
-display_name = "Trinity Mini"
-model_family = "trinity"
-mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 131072
-input_cost_per_token = 4.5e-8
-output_cost_per_token = 1.5e-7
-litellm_provider = "vercel"
-providers = ["vercel"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = true
-knowledge_cutoff = "2024-10"
-release_date = "2025-12-01"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."arcee-ai/trinity-mini".pricing."vercel"]
-input_cost_per_token = 4.5e-8
-output_cost_per_token = 1.5e-7
 
 [models."arcee-ai/virtuoso-large"]
 display_name = "Virtuoso Large"
@@ -53498,14 +53499,13 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 cache_read_input_token_cost = 7.5e-8
 litellm_provider = "openai"
-providers = ["openai", "nano-gpt", "vercel"]
+providers = ["openai", "nano-gpt"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = false
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2023-09"
 release_date = "2026-03-10"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
@@ -53532,9 +53532,6 @@ input_cost_per_token = 1.5e-7
 input_cost_per_token_batches = 7.5e-8
 output_cost_per_token = 6e-7
 output_cost_per_token_batches = 3e-7
-[models."gpt-4o-mini-search-preview".pricing."vercel"]
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 6e-7
 
 [models."gpt-4o-mini-search-preview-2025-03-11"]
 mode = "chat"
@@ -65832,7 +65829,7 @@ input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
 
 [models."inclusionai/ling-2-6-1t"]
-display_name = "Ling 2.6 1T"
+display_name = "Ling-2.6-1T"
 model_family = "ling"
 mode = "chat"
 max_input_tokens = 262144
@@ -65840,27 +65837,23 @@ max_output_tokens = 32768
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 6e-8
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "novita-ai"]
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
 supports_function_calling = true
 supports_reasoning = false
-open_weights = false
+open_weights = true
 release_date = "2026-04-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."inclusionai/ling-2-6-1t".pricing."nano-gpt"]
-cache_read_input_token_cost = 6e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
 [models."inclusionai/ling-2-6-1t".pricing."novita-ai"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 
 [models."inclusionai/ling-2-6-flash"]
-display_name = "Ling 2.6 Flash"
+display_name = "Ling-2.6-flash"
 model_family = "ling"
 mode = "chat"
 max_input_tokens = 262144
@@ -65868,20 +65861,16 @@ max_output_tokens = 32768
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 cache_read_input_token_cost = 2e-8
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "novita-ai"]
+litellm_provider = "novita-ai"
+providers = ["novita-ai"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = true
-release_date = "2026-04-21"
+release_date = "2026-04-24"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."inclusionai/ling-2-6-flash".pricing."nano-gpt"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 3e-7
 [models."inclusionai/ling-2-6-flash".pricing."novita-ai"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.0000000000000001e-7
@@ -65972,29 +65961,25 @@ input_cost_per_token = 5.6e-7
 output_cost_per_token = 0.00000224
 
 [models."inclusionai/ring-2-6-1t"]
-display_name = "Ring 2.6 1T"
+display_name = "inclusionAI: Ring-2.6-1T"
 model_family = "ring"
 mode = "chat"
-max_input_tokens = 262144
-max_output_tokens = 65536
+max_input_tokens = 262000
+max_output_tokens = 65000
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 6e-8
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt", "novita-ai", "zenmux"]
+litellm_provider = "zenmux"
+providers = ["zenmux", "novita-ai"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 knowledge_cutoff = "2025-12-31"
-release_date = "2026-05-08"
+release_date = "2026-05-07"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
-[models."inclusionai/ring-2-6-1t".pricing."nano-gpt"]
-cache_read_input_token_cost = 6e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000025
 [models."inclusionai/ring-2-6-1t".pricing."novita-ai"]
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
@@ -71141,8 +71126,6 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 
 [models."magistral-medium"]
-display_name = "Magistral Medium (latest)"
-model_family = "magistral-medium"
 mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 64000
@@ -71150,20 +71133,11 @@ max_tokens = 64000
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000005
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "vercel"]
+providers = ["vercel_ai_gateway"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-06"
-release_date = "2025-03-17"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."magistral-medium".pricing."vercel"]
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000005
 [models."magistral-medium".pricing."vercel_ai_gateway"]
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000005
@@ -71274,7 +71248,7 @@ max_tokens = 64000
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "vercel_ai_gateway"
-providers = ["vercel_ai_gateway", "mistral", "vercel"]
+providers = ["vercel_ai_gateway", "mistral"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -71284,9 +71258,6 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 
 [models."magistral-small".pricing."mistral"]
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000015
-[models."magistral-small".pricing."vercel"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000015
 [models."magistral-small".pricing."vercel_ai_gateway"]
@@ -88213,7 +88184,7 @@ input_cost_per_token = 0.00001
 output_cost_per_token = 0.00004
 cache_read_input_token_cost = 0.0000025
 litellm_provider = "azure"
-providers = ["azure", "nano-gpt", "openai", "poe", "vercel"]
+providers = ["azure", "nano-gpt", "openai", "poe"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -88256,10 +88227,6 @@ output_cost_per_token_batches = 0.00002
 cache_read_input_token_cost = 0.0000022
 input_cost_per_token = 0.000009
 output_cost_per_token = 0.000036
-[models."o3-deep-research".pricing."vercel"]
-cache_read_input_token_cost = 0.0000025
-input_cost_per_token = 0.00001
-output_cost_per_token = 0.00004
 
 [models."o3-deep-research-2025-06-26"]
 mode = "responses"
