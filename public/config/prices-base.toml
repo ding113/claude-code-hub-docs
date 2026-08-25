@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.25"
-checksum = "4f280edc980de9da0e4c68dea1f873b05a7884ad0adae2c112d2f3e29792a092"
+checksum = "f5ab7ed3c385bdf29e8004493786e32be2794596fd77ebaf30d0465eb2c073cb"
 sources = ["litellm", "modelsdev"]
-total_models = 4415
+total_models = 4417
 litellm_raw_models = 3176
-modelsdev_raw_models = 7292
+modelsdev_raw_models = 7294
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -40567,7 +40567,7 @@ output_cost_per_token = 6e-7
 display_name = "DeepSeek V4 Flash 0731"
 model_family = "deepseek-flash"
 mode = "chat"
-max_input_tokens = 1000000
+max_input_tokens = 786432
 max_output_tokens = 384000
 input_cost_per_token = 8e-8
 output_cost_per_token = 1.8e-7
@@ -63305,11 +63305,11 @@ cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."grok-4-5".pricing."opencode"]
-cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."grok-4-5".pricing."opencode-go"]
-cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."grok-4-5".pricing."pioneer"]
@@ -63864,7 +63864,7 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 5e-7
 litellm_provider = "xai"
-providers = ["xai", "opencode", "requesty"]
+providers = ["xai", "opencode", "opencode-go", "requesty"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -63872,7 +63872,7 @@ supports_prompt_caching = true
 open_weights = false
 knowledge_cutoff = "2026-02-01"
 release_date = "2026-08-12"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://docs.x.ai/developers/models"
 cache_read_input_token_cost_above_200k_tokens = 0.000001
@@ -63883,6 +63883,10 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."grok-4.6".pricing."opencode"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+[models."grok-4.6".pricing."opencode-go"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
@@ -95325,6 +95329,29 @@ cache_read_input_token_cost = 7e-8
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 8.000000000000001e-7
 
+[models."qwen/qwen3-coder-next@eu"]
+display_name = "Qwen3 Coder Next (EU)"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000015
+litellm_provider = "edenai"
+providers = ["edenai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = true
+knowledge_cutoff = "2025-09"
+release_date = "2026-02-03"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-coder-next@eu".pricing."edenai"]
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000015
+
 [models."qwen/qwen3-coder-plus"]
 display_name = "Qwen3 Coder Plus"
 model_family = "qwen"
@@ -95517,6 +95544,31 @@ output_cost_per_token = 0.0000039
 [models."qwen/qwen3-max-thinking".pricing."openrouter"]
 input_cost_per_token = 7.8e-7
 output_cost_per_token = 0.0000039
+
+[models."qwen/qwen3-max@eu"]
+display_name = "Qwen3 Max (EU)"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 65536
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 2.4e-7
+litellm_provider = "edenai"
+providers = ["edenai"]
+supports_function_calling = true
+supports_reasoning = false
+open_weights = false
+knowledge_cutoff = "2025-04"
+release_date = "2025-09-23"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-max@eu".pricing."edenai"]
+cache_read_input_token_cost = 2.4e-7
+input_cost_per_token = 0.0000012
+output_cost_per_token = 0.000006
 
 [models."qwen/qwen3-next-80b-a3b-instruct"]
 display_name = "Qwen3-Next-80B-A3B-Instruct"
