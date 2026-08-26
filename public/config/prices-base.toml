@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.26"
-checksum = "39efcbc2022d60728c69cbe1bbc66caa7518c9901ff8d5c4cd21c2e423cd30e3"
+checksum = "f4b8c2e1672e710e2cdd1fc01a1144e5dbb4f9d0314113d008cbed82587cd174"
 sources = ["litellm", "modelsdev"]
-total_models = 4448
+total_models = 4453
 litellm_raw_models = 3213
-modelsdev_raw_models = 7323
+modelsdev_raw_models = 7339
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2927,8 +2927,8 @@ output_cost_per_token = 0.000001254
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 3.9e-7
 [models."Llama-3.3-70B-Instruct".pricing."hyper"]
-input_cost_per_token = 5.979999999999999e-7
-output_cost_per_token = 7.38e-7
+input_cost_per_token = 6.38e-7
+output_cost_per_token = 7.68e-7
 [models."Llama-3.3-70B-Instruct".pricing."llmgateway"]
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
@@ -14350,6 +14350,7 @@ output_cost_per_token = 0.0000032999999999999997
 
 [models."alibaba/qwen3-8-flash"]
 display_name = "Qwen3.8 Flash"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 991808
 max_output_tokens = 131072
@@ -14357,7 +14358,7 @@ input_cost_per_token = 1.6e-7
 output_cost_per_token = 4.6999999999999995e-7
 cache_read_input_token_cost = 1.6e-8
 litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
+providers = ["nano-gpt", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -14367,6 +14368,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."alibaba/qwen3-8-flash".pricing."nano-gpt"]
+cache_read_input_token_cost = 1.6e-8
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 4.6999999999999995e-7
+[models."alibaba/qwen3-8-flash".pricing."vercel"]
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 1.6e-7
 output_cost_per_token = 4.6999999999999995e-7
@@ -28652,57 +28657,57 @@ output_cost_per_token = 0.000008
 [models."claw-high"]
 display_name = "Claw High"
 mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 0.0000025
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-11"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."claw-high".pricing."nano-gpt"]
-cache_read_input_token_cost = 0.0000025
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."claw-low"]
 display_name = "Claw Low"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 65536
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 2.5000000000000002e-8
+max_output_tokens = 131072
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-11"
-supported_modalities = ["text", "image", "video", "pdf"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."claw-low".pricing."nano-gpt"]
-cache_read_input_token_cost = 2.5000000000000002e-8
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."claw-medium"]
 display_name = "Claw Medium"
 mode = "chat"
-max_input_tokens = 204800
+max_input_tokens = 1048576
 max_output_tokens = 131072
-input_cost_per_token = 3.15e-7
-output_cost_per_token = 0.00000126
-cache_read_input_token_cost = 1.575e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -28714,9 +28719,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."claw-medium".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.575e-7
-input_cost_per_token = 3.15e-7
-output_cost_per_token = 0.00000126
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."cline-pass/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash"
@@ -35320,6 +35325,31 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek-v4-flash-ga-260731"]
+display_name = "DeepSeek V4 Flash 0731"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 4.453e-7
+output_cost_per_token = 0.0000013359
+cache_read_input_token_cost = 1.4840000000000001e-8
+litellm_provider = "volcengine"
+providers = ["volcengine"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-07-31"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-v4-flash-ga-260731".pricing."volcengine"]
+cache_read_input_token_cost = 1.4840000000000001e-8
+input_cost_per_token = 4.453e-7
+output_cost_per_token = 0.0000013359
+
 [models."deepseek-v4-flash-thinking"]
 mode = "chat"
 max_input_tokens = 200000
@@ -35549,6 +35579,30 @@ output_cost_per_token = 0.000003564
 cache_read_input_token_cost = 1.65e-7
 input_cost_per_token = 0.0000016499999999999999
 output_cost_per_token = 0.00000495
+
+[models."deepseek-v4-pro-ga-260813"]
+display_name = "DeepSeek V4 Pro 0813"
+model_family = "deepseek-thinking"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 0.0000013359
+output_cost_per_token = 0.0000040077100000000005
+cache_read_input_token_cost = 4.453e-8
+litellm_provider = "volcengine"
+providers = ["volcengine"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-v4-pro-ga-260813".pricing."volcengine"]
+cache_read_input_token_cost = 4.453e-8
+input_cost_per_token = 0.0000013359
+output_cost_per_token = 0.0000040077100000000005
 
 [models."deepseek-v4-pro-lightning"]
 display_name = "DeepSeek V4 Pro Lightning"
@@ -36585,9 +36639,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.6212e-8
-input_cost_per_token = 8.106e-8
-output_cost_per_token = 1.6212e-7
+cache_read_input_token_cost = 1.5904e-8
+input_cost_per_token = 7.952e-8
+output_cost_per_token = 1.5904e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.9e-7
@@ -37744,7 +37798,7 @@ supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 release_date = "2025-08-28"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -37837,7 +37891,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2025-12-28"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -44356,6 +44410,28 @@ cache_read_input_token_cost = 1.4849999999999999e-7
 input_cost_per_token = 0.0000014850000000000002
 output_cost_per_token = 0.00000891
 
+[models."gemini-3-5-transcribe"]
+display_name = "Gemini 3.5 Transcribe"
+model_family = "gemini"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-08-26"
+supported_modalities = ["audio"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemini-3-5-transcribe".pricing."vercel"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000012
+
 [models."gemini-3-6-flash"]
 display_name = "Gemini 3.6 Flash"
 model_family = "gemini-flash"
@@ -49392,8 +49468,8 @@ output_cost_per_token = 0.0000032000000000000003
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.0000024
 [models."glm-5".pricing."hyper"]
-input_cost_per_token = 9.100000000000001e-7
-output_cost_per_token = 0.000002814
+input_cost_per_token = 9.200000000000001e-7
+output_cost_per_token = 0.000002976
 [models."glm-5".pricing."llmgateway"]
 cache_read_input_token_cost = 1.44e-7
 input_cost_per_token = 7.2e-7
@@ -49459,8 +49535,8 @@ cache_read_input_token_cost = 1.65e-7
 input_cost_per_token = 8.249999999999999e-7
 output_cost_per_token = 0.0000033010000000000002
 [models."glm-5-1".pricing."hyper"]
-input_cost_per_token = 0.0000013600000000000001
-output_cost_per_token = 0.0000044
+input_cost_per_token = 0.00000129
+output_cost_per_token = 0.000004219999999999999
 [models."glm-5-1".pricing."llmgateway"]
 cache_read_input_token_cost = 1.7299999999999997e-7
 input_cost_per_token = 9.310000000000001e-7
@@ -49645,6 +49721,30 @@ output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+
+[models."glm-5-2-260617"]
+display_name = "GLM-5.2"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+input_cost_per_token = 0.00000118747
+output_cost_per_token = 0.00000415615
+cache_read_input_token_cost = 2.9687000000000004e-7
+litellm_provider = "volcengine"
+providers = ["volcengine"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-13"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."glm-5-2-260617".pricing."volcengine"]
+cache_read_input_token_cost = 2.9687000000000004e-7
+input_cost_per_token = 0.00000118747
+output_cost_per_token = 0.00000415615
 
 [models."glm-5-2-caveman"]
 display_name = "GLM-5.2 Caveman"
@@ -50124,7 +50224,7 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 2.6e-7
 litellm_provider = "zai"
-providers = ["zai", "empiriolabs", "llmgateway", "opencode-go", "requesty", "vivgrid", "zai-coding-plan", "zhipuai-coding-plan"]
+providers = ["zai", "empiriolabs", "llmgateway", "opencode-go", "requesty", "vivgrid", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -50157,9 +50257,13 @@ output_cost_per_token = 0.0000042000000000000004
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+[models."glm-5-3".pricing."zhipuai"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."glm-5-3-flash"]
-display_name = "GLM-5.3-Flash (2x usage)"
+display_name = "GLM-5.3-Flash"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 1000000
@@ -50167,8 +50271,8 @@ max_output_tokens = 131072
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2.5e-7
 cache_read_input_token_cost = 1.5e-8
-litellm_provider = "opencode-go"
-providers = ["opencode-go", "empiriolabs", "llmgateway"]
+litellm_provider = "zai"
+providers = ["zai", "empiriolabs", "llmgateway", "opencode-go", "zai-coding-plan", "zhipuai", "zhipuai-coding-plan"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -50186,6 +50290,14 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 [models."glm-5-3-flash".pricing."opencode-go"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.5e-7
+[models."glm-5-3-flash".pricing."zai"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.5e-7
+[models."glm-5-3-flash".pricing."zhipuai"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2.5e-7
@@ -62130,8 +62242,8 @@ output_cost_per_token = 1.6e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 6.9e-7
 [models."gpt-oss-120b".pricing."hyper"]
-input_cost_per_token = 1.88e-7
-output_cost_per_token = 7e-7
+input_cost_per_token = 1.7799999999999998e-7
+output_cost_per_token = 6.800000000000001e-7
 [models."gpt-oss-120b".pricing."impossibl"]
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 7.5e-7
@@ -65469,59 +65581,59 @@ output_cost_per_token = 4.0000000000000003e-7
 display_name = "Hermes High"
 model_family = "hermes"
 mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 128000
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
-cache_read_input_token_cost = 0.0000025
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-11"
-supported_modalities = ["text", "image", "pdf"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."hermes-high".pricing."nano-gpt"]
-cache_read_input_token_cost = 0.0000025
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."hermes-low"]
 display_name = "Hermes Low"
 model_family = "hermes"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 65536
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 2.5000000000000002e-8
+max_output_tokens = 131072
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-05-11"
-supported_modalities = ["text", "image", "video", "pdf"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."hermes-low".pricing."nano-gpt"]
-cache_read_input_token_cost = 2.5000000000000002e-8
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."hermes-medium"]
 display_name = "Hermes Medium"
 model_family = "hermes"
 mode = "chat"
-max_input_tokens = 204800
+max_input_tokens = 1048576
 max_output_tokens = 131072
-input_cost_per_token = 3.15e-7
-output_cost_per_token = 0.00000126
-cache_read_input_token_cost = 1.575e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -65533,9 +65645,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."hermes-medium".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.575e-7
-input_cost_per_token = 3.15e-7
-output_cost_per_token = 0.00000126
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
 
 [models."hermes3-405b"]
 mode = "chat"
@@ -69356,8 +69468,8 @@ cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 [models."kimi-k2.5".pricing."hyper"]
-input_cost_per_token = 5.444e-7
-output_cost_per_token = 0.000002855
+input_cost_per_token = 5.44e-7
+output_cost_per_token = 0.00000276
 [models."kimi-k2.5".pricing."jalapeno"]
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
@@ -76913,8 +77025,8 @@ cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."minimax-m2-7".pricing."hyper"]
-input_cost_per_token = 4.1e-7
-output_cost_per_token = 0.00000152
+input_cost_per_token = 4.24e-7
+output_cost_per_token = 0.0000016120000000000002
 [models."minimax-m2-7".pricing."llmgateway"]
 cache_read_input_token_cost = 1.7e-8
 input_cost_per_token = 8e-8
@@ -82717,8 +82829,8 @@ cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."moonshotai/Kimi-K2.6".pricing."inceptron"]
-cache_read_input_token_cost = 1.7000000000000001e-7
-input_cost_per_token = 5.6e-7
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 5.4e-7
 output_cost_per_token = 0.00000339
 [models."moonshotai/Kimi-K2.6".pricing."infomaniak"]
 input_cost_per_token = 7.4e-7
@@ -99357,7 +99469,8 @@ input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000014
 
 [models."qwen3-8-flash"]
-display_name = "Qwen3.8-Flash"
+display_name = "Qwen3.8 Flash"
+model_family = "qwen"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -99365,15 +99478,19 @@ input_cost_per_token = 1.6e-7
 output_cost_per_token = 4.6999999999999995e-7
 cache_read_input_token_cost = 1.6e-8
 litellm_provider = "hyper"
-providers = ["hyper"]
+providers = ["hyper", "empiriolabs"]
 supports_function_calling = true
-supports_reasoning = false
+supports_reasoning = true
 open_weights = false
 release_date = "2026-08-26"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."qwen3-8-flash".pricing."empiriolabs"]
+cache_read_input_token_cost = 1.6e-7
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 4.6999999999999995e-7
 [models."qwen3-8-flash".pricing."hyper"]
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 1.6e-7
@@ -105570,9 +105687,9 @@ output_cost_per_token = 5.8e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/hy3".pricing."kilo"]
-cache_read_input_token_cost = 2.0625e-8
-input_cost_per_token = 8.25e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 5.280000000000001e-7
 [models."tencent/hy3".pricing."nano-gpt"]
 cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
@@ -111283,7 +111400,7 @@ supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 release_date = "2025-08-28"
-supported_modalities = ["text"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -114185,9 +114302,9 @@ cache_read_input_token_cost = 5e-9
 input_cost_per_token = 4.6999999999999995e-7
 output_cost_per_token = 9.399999999999999e-7
 [models."xiaomi/mimo-v2.5-pro".pricing."kilo"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000003
+cache_read_input_token_cost = 4e-9
+input_cost_per_token = 4.35e-7
+output_cost_per_token = 8.7e-7
 [models."xiaomi/mimo-v2.5-pro".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.6e-9
 input_cost_per_token = 4.35e-7
@@ -115959,6 +116076,33 @@ cache_read_input_token_cost = 1.2499999999999997e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00000395
 
+[models."zai-org/GLM-5-3-Flash"]
+display_name = "GLM-5.3-Flash"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 3e-8
+litellm_provider = "deepinfra"
+providers = ["deepinfra", "huggingface"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-26"
+supported_modalities = ["text", "image", "video", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."zai-org/GLM-5-3-Flash".pricing."deepinfra"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+[models."zai-org/GLM-5-3-Flash".pricing."huggingface"]
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+
 [models."zai-org/GLM-5-FP8"]
 display_name = "GLM-5"
 model_family = "glm"
@@ -117701,7 +117845,7 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 cache_read_input_token_cost = 3e-8
 litellm_provider = "llmgateway-providers"
-providers = ["llmgateway-providers", "edenai", "merge-gateway"]
+providers = ["llmgateway-providers", "edenai", "merge-gateway", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -117719,6 +117863,10 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 [models."zai/glm-5-3-flash".pricing."merge-gateway"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.5e-7
+[models."zai/glm-5-3-flash".pricing."vercel"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2.5e-7
