@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.08.26"
-checksum = "f4b8c2e1672e710e2cdd1fc01a1144e5dbb4f9d0314113d008cbed82587cd174"
+version = "2026.08.27"
+checksum = "26703a01144305a97ec50b3e81d6c10b93787578c8d414dc98a11cf254147a40"
 sources = ["litellm", "modelsdev"]
-total_models = 4453
+total_models = 4456
 litellm_raw_models = 3213
-modelsdev_raw_models = 7339
+modelsdev_raw_models = 7343
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1082,6 +1082,30 @@ output_cost_per_token = 4.0000000000000003e-7
 [models."@cf/zai-org/glm-4.7-flash".pricing."edenai"]
 input_cost_per_token = 6.049999999999999e-8
 output_cost_per_token = 4.0000000000000003e-7
+
+[models."@cf/zai-org/glm-5-3-flash"]
+display_name = "Glm 5.3 Flash"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1310720
+max_output_tokens = 1310720
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 3e-8
+litellm_provider = "cloudflare-workers-ai"
+providers = ["cloudflare-workers-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-26"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."@cf/zai-org/glm-5-3-flash".pricing."cloudflare-workers-ai"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
 
 [models."@cf/zai-org/glm-5.2"]
 display_name = "Glm 5.2"
@@ -30687,6 +30711,31 @@ supports_tool_choice = true
 [models."computer-use-preview".pricing."azure"]
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000012
+
+[models."consensusprotocol/deepseek-v4-flash"]
+display_name = "DeepSeek V4 Flash (Consensus Protocol)"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 524288
+max_output_tokens = 393216
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 2.7e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."consensusprotocol/deepseek-v4-flash".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 2.7e-7
 
 [models."conservative"]
 mode = "image_edit"
@@ -96054,6 +96103,34 @@ cache_read_input_token_cost = 7.5e-8
 input_cost_per_token = 1.8e-7
 output_cost_per_token = 5e-7
 
+[models."qwen/qwen3-8-flash"]
+display_name = "Qwen3.8 Flash"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 4.6999999999999995e-7
+cache_read_input_token_cost = 1.6e-8
+litellm_provider = "openrouter"
+providers = ["openrouter", "kilo"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-26"
+supported_modalities = ["text", "image", "video"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-8-flash".pricing."kilo"]
+cache_read_input_token_cost = 1.6e-8
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 4.6999999999999995e-7
+[models."qwen/qwen3-8-flash".pricing."openrouter"]
+cache_read_input_token_cost = 1.6e-8
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 4.6999999999999995e-7
+
 [models."qwen/qwen3-8-max-preview"]
 display_name = "Qwen3.8 Max Preview"
 model_family = "qwen"
@@ -104059,7 +104136,7 @@ providers = ["vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-04-30"
+release_date = "2026-04-17"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -104107,6 +104184,7 @@ providers = ["vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
+knowledge_cutoff = "2026-02-01"
 release_date = "2026-08-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
@@ -104131,7 +104209,7 @@ providers = ["vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-release_date = "2026-05-20"
+release_date = "2026-04-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
@@ -114555,7 +114633,7 @@ litellm_provider = "venice"
 providers = ["venice"]
 supports_function_calling = true
 supports_reasoning = true
-open_weights = false
+open_weights = true
 release_date = "2026-08-21"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
@@ -117867,9 +117945,9 @@ cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 2.5e-7
 [models."zai/glm-5-3-flash".pricing."vercel"]
-cache_read_input_token_cost = 1.5e-8
-input_cost_per_token = 7.5e-8
-output_cost_per_token = 2.5e-7
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
 
 [models."zai/glm-5-turbo"]
 display_name = "GLM-5-Turbo"
