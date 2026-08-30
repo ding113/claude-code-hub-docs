@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.08.30"
-checksum = "1bd7b8815a2b5d3ed511e80470e499478c976f0d0352ae01f470477c2d3f14c7"
+checksum = "786ae2574048e94112a7917c1323eaf29d0eec4ee2fd0d8fc3810094a64c001a"
 sources = ["litellm", "modelsdev"]
 total_models = 4568
 litellm_raw_models = 3408
-modelsdev_raw_models = 7492
+modelsdev_raw_models = 7493
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -37550,9 +37550,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.5792e-8
-input_cost_per_token = 7.896e-8
-output_cost_per_token = 1.5792e-7
+cache_read_input_token_cost = 1.5736e-8
+input_cost_per_token = 7.868e-8
+output_cost_per_token = 1.5736e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.4699999999999998e-7
@@ -42044,18 +42044,9 @@ providers = ["default"]
 rules = [{ name = "bedrock-claude-ids", pattern = "^(?:[a-z-]+\\.)?anthropic\\.claude-", description = "A Bedrock-syntax Claude id, for every version: anthropic.claude- at the start of the name, optionally behind a single dotted geo segment (us./eu./au./jp./apac./global./us-gov.). Anchored to the start because routing rules see the raw request string and provider inference feeds the proxy's provider/* wildcard access checks: an id under an unrecognized namespace such as bedrockz/anthropic.claude-... must stay unroutable rather than resolve to bedrock and slip through a bedrock/* key. Routes to bedrock before the bare-id Anthropic rule is consulted.", model_info = { litellm_provider = "bedrock" } }, { name = "anthropic-claude-ids", pattern = "^claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?$", description = "A bare Claude family-major id with an optional minor and an optional 8-digit date suffix, anchored to the whole name, so claude-newfamily-5 routes like claude-newfamily-5-1 does. Routes an unmapped Claude id that carries no provider namespace to the Anthropic API.", model_info = { litellm_provider = "anthropic" } }, { name = "claude-family-baseline", pattern = "claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?", description = "Any Claude family-major id with an optional minor and an optional 8-digit date suffix, under any provider namespace (bare, bedrock-dotted, vertex, databricks, ...), so bare majors like claude-newfamily-5 get the same baseline as claude-newfamily-5-1. Carries the model-family facts every Claude shares; it carries no pricing, so cost stays on the standard unpriced behavior rather than a guessed number.", model_info = { mode = "chat", max_input_tokens = 200000, max_output_tokens = 64000, max_tokens = 64000, supports_function_calling = true, supports_parallel_function_calling = true, supports_vision = true, supports_tool_choice = true, supports_assistant_prefill = true, supports_prompt_caching = true, supports_response_schema = true, supports_reasoning = true, supports_pdf_input = true, supports_system_messages = true } }, { name = "claude-adaptive-thinking", pattern = "claude-[a-z]+-(?:4[-._](?:[6-9]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.6 or higher, in any id shape that contains claude-<family>-: minors 4.6 through 4.99, any later major-minor, and bare 5+ majors so a new family shaped like claude-fable-5 matches. Requiring the claude- prefix keeps non-Claude names such as team-sonnet-5-1 out. The minor is capped at two digits so an 8-digit date suffix such as claude-opus-4-20250514 is never read as a >= 4.6 minor. Turns on adaptive thinking for new versions and new families with no code change.", model_info = { supports_adaptive_thinking = true } }, { name = "claude-legacy-thinking", pattern = "claude-[a-z]+-4[-._]6(?!\\d)", description = "Claude at version 4.6 exactly, in any id shape that contains claude-<family>-4-6 (dotted and underscored minors included, dated releases such as claude-sonnet-4-6-20260219 too). The 4.6 family is adaptive-thinking yet still accepts legacy thinking.type=enabled with budget_tokens, so the caller's hard budget cap is forwarded verbatim instead of being rewritten to an uncapped output_config.effort. The lookahead keeps two-digit minors such as 4-60 from matching. 4.7+ and 5+ majors reject the legacy shape and stay on the adaptive translation.", model_info = { supports_legacy_thinking = true } }, { name = "claude-always-on-thinking", pattern = "claude-(?:fable|mythos)-", description = "Any Claude Fable or Mythos id, under any provider namespace and any version. These families always think and reject thinking.type=disabled with a 400; the Anthropic transformations omit the param instead, so the model falls back to its default adaptive thinking.", model_info = { thinking_always_on = true } }, { name = "claude-mid-conversation-system", pattern = "claude-[a-z]+-(?:4[-._](?:[89]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.8 or higher, in any id shape that contains claude-<family>-: minors 4.8 through 4.99, any later major-minor, and bare 5+ majors so a new family like claude-fable-5 matches. Anthropic introduced mid-conversation system messages with Opus 4.8 and every newer Claude keeps them; 4.7 and below reject the system role inside messages.", model_info = { supports_mid_conversation_system = true } }]
 
 [models."fast"]
-display_name = "Fast"
 mode = "image_edit"
-max_input_tokens = 1000000
-max_output_tokens = 131072
 litellm_provider = "stability"
 providers = ["stability"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = false
-release_date = "2026-06-01"
-supported_modalities = ["text", "image", "pdf"]
-supported_output_modalities = ["text"]
 output_cost_per_image = 0.002
 supported_endpoints = ["/v1/images/edits"]
 
@@ -121680,7 +121671,7 @@ max_input_tokens = 1310720
 max_output_tokens = 393216
 input_cost_per_token = 3e-8
 output_cost_per_token = 1.6e-7
-cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost = 1.2999999999999999e-8
 litellm_provider = "openrouter"
 providers = ["openrouter", "kilo"]
 supports_function_calling = true
@@ -121692,11 +121683,11 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost = 1.2999999999999999e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 1.6e-7
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost = 1.2999999999999999e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 1.6e-7
 
