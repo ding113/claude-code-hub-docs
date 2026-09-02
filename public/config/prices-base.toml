@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.09.01"
-checksum = "2e1bd3b23dd8149e52eb06e2e95cd953e28e1a94b4370104f38916879bbc9c0e"
+version = "2026.09.02"
+checksum = "acc435735058d220390e8ba161e235b1e083b3637300b3c00181d7943e772849"
 sources = ["litellm", "modelsdev"]
 total_models = 4561
 litellm_raw_models = 3518
-modelsdev_raw_models = 7493
+modelsdev_raw_models = 7496
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -7372,7 +7372,7 @@ cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."Qwen/Qwen3.8-2.4T-A95B".pricing."openrouter"]
-cache_read_input_token_cost = 2.5e-7
+cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."Qwen/Qwen3.8-2.4T-A95B".pricing."together_ai"]
@@ -24430,7 +24430,7 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 2.5e-7
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "anthropic", "azure", "azure-cognitive-services", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "openrouter", "venice", "vercel", "vertex_ai"]
+providers = ["azure_ai", "anthropic", "azure", "azure-cognitive-services", "edenai", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "openrouter", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -24479,6 +24479,10 @@ output_cost_per_token = 0.00005
 [models."claude-fable-5-1".pricing."azure_ai"]
 cache_creation_input_token_cost = 0.0000125
 cache_creation_input_token_cost_above_1hr = 0.00002
+cache_read_input_token_cost = 2.5e-7
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+[models."claude-fable-5-1".pricing."edenai"]
 cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
@@ -24677,14 +24681,14 @@ providers = ["nano-gpt", "edenai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2026-01-31"
+knowledge_cutoff = "2026-06"
 release_date = "2026-06-09"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."claude-fable-latest".pricing."edenai"]
-cache_read_input_token_cost = 0.000001
+cache_read_input_token_cost = 2.5e-7
 input_cost_per_token = 0.00001
 output_cost_per_token = 0.00005
 [models."claude-fable-latest".pricing."nano-gpt"]
@@ -32479,6 +32483,8 @@ output_cost_per_token = 0.00001500002
 output_dbu_cost_per_token = 0.000214286
 
 [models."databricks-deepseek-v4-flash-0731"]
+display_name = "DeepSeek V4 Flash 0731"
+model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 393216
@@ -32488,11 +32494,14 @@ output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-8
 cache_creation_input_token_cost = 1.4e-7
 litellm_provider = "databricks"
-providers = ["databricks"]
+providers = ["databricks", "edenai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-07-31"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.databricks.com/product/pricing/foundation-model-serving"
@@ -32510,8 +32519,14 @@ input_cost_per_token = 1.4e-7
 input_dbu_cost_per_token = 0.000002
 output_cost_per_token = 2.8e-7
 output_dbu_cost_per_token = 0.000004
+[models."databricks-deepseek-v4-flash-0731".pricing."edenai"]
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
 
 [models."databricks-deepseek-v4-pro-0813"]
+display_name = "DeepSeek V4 Pro 0813"
+model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 393216
@@ -32521,11 +32536,13 @@ output_cost_per_token = 0.00000395997
 cache_read_input_token_cost = 1.3202e-7
 cache_creation_input_token_cost = 0.00000131999
 litellm_provider = "databricks"
-providers = ["databricks"]
+providers = ["databricks", "edenai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
 supports_prompt_caching = true
+open_weights = true
+release_date = "2026-08-12"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://www.databricks.com/product/pricing/foundation-model-serving"
@@ -32543,6 +32560,10 @@ input_cost_per_token = 0.00000131999
 input_dbu_cost_per_token = 0.000018857
 output_cost_per_token = 0.00000395997
 output_dbu_cost_per_token = 0.000056571
+[models."databricks-deepseek-v4-pro-0813".pricing."edenai"]
+cache_read_input_token_cost = 1.3202e-7
+input_cost_per_token = 0.00000131999
+output_cost_per_token = 0.00000395997
 
 [models."databricks-gemini-2-5-flash"]
 display_name = "Gemini 2.5 Flash"
@@ -38022,9 +38043,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.4336e-8
-input_cost_per_token = 7.167999999999999e-8
-output_cost_per_token = 1.4335999999999998e-7
+cache_read_input_token_cost = 1.4028e-8
+input_cost_per_token = 7.013999999999999e-8
+output_cost_per_token = 1.4027999999999998e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.4699999999999998e-7
