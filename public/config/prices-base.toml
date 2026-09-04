@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.04"
-checksum = "991393d827d7680a49f3516eb26372b79a91e773a05335fb7afa28db2ad7eed9"
+checksum = "87fde0c04bcf88d0c719d406fbd1434145c9a4e70598fe10852bd2e92d1c6a58"
 sources = ["litellm", "modelsdev"]
-total_models = 4613
+total_models = 4616
 litellm_raw_models = 3561
-modelsdev_raw_models = 7525
+modelsdev_raw_models = 7531
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -31602,8 +31602,8 @@ model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 524288
 max_output_tokens = 393216
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 2.7e-7
+input_cost_per_token = 8e-8
+output_cost_per_token = 1.6e-7
 cache_read_input_token_cost = 2e-8
 litellm_provider = "llmgateway-providers"
 providers = ["llmgateway-providers"]
@@ -31618,8 +31618,32 @@ source = "modelsdev"
 
 [models."consensusprotocol/deepseek-v4-flash".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 2e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 2.7e-7
+input_cost_per_token = 8e-8
+output_cost_per_token = 1.6e-7
+
+[models."consensusprotocol/glm-5-3-flash"]
+display_name = "GLM-5.3 Flash (Consensus Protocol)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.5e-7
+cache_read_input_token_cost = 2e-8
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-08-26"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."consensusprotocol/glm-5-3-flash".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.5e-7
 
 [models."consensusprotocol/gpt-oss-20b"]
 display_name = "GPT OSS 20B (Consensus Protocol)"
@@ -38000,9 +38024,9 @@ cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash".pricing."openrouter"]
-cache_read_input_token_cost = 1.7612e-8
-input_cost_per_token = 8.806e-8
-output_cost_per_token = 1.7612e-7
+cache_read_input_token_cost = 1.7556e-8
+input_cost_per_token = 8.778e-8
+output_cost_per_token = 1.7556e-7
 [models."deepseek/deepseek-v4-flash".pricing."orcarouter"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.4699999999999998e-7
@@ -52623,9 +52647,9 @@ cache_read_input_token_cost = 3.1574999999999997e-8
 input_cost_per_token = 1.6331999999999998e-7
 output_cost_per_token = 5.444e-7
 [models."glm-5-3-flash".pricing."llmgateway"]
-cache_read_input_token_cost = 2.4e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 2e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 2.5e-7
 [models."glm-5-3-flash".pricing."opencode-go"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-8
@@ -64220,6 +64244,8 @@ input_cost_per_token = 0.000001375
 output_cost_per_token = 0.000011
 
 [models."gpt-6-astra"]
+display_name = "OpenAI: GPT-6 Astra ($$$$)"
+model_family = "gpt"
 mode = "chat"
 max_input_tokens = 922000
 max_output_tokens = 128000
@@ -64229,12 +64255,14 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "openai"
-providers = ["openai"]
+providers = ["openai", "kilo", "openrouter"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+release_date = "2026-09-04"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 cache_creation_input_token_cost_above_272k_tokens = 0.000025
@@ -64280,6 +64308,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."gpt-6-astra".pricing."kilo"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 [models."gpt-6-astra".pricing."openai"]
 cache_creation_input_token_cost = 0.0000125
 cache_creation_input_token_cost_above_272k_tokens = 0.000025
@@ -64307,6 +64339,34 @@ output_cost_per_token_above_272k_tokens_priority = 0.00015
 output_cost_per_token_batches = 0.000025
 output_cost_per_token_flex = 0.000025
 output_cost_per_token_priority = 0.0001
+[models."gpt-6-astra".pricing."openrouter"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+
+[models."gpt-6-astra-pro"]
+display_name = "GPT-6 Astra Pro"
+model_family = "gpt"
+mode = "chat"
+max_input_tokens = 1050000
+max_output_tokens = 128000
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
+cache_read_input_token_cost = 0.000001
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-04"
+supported_modalities = ["pdf", "image", "text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gpt-6-astra-pro".pricing."openrouter"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 
 [models."gpt-audio"]
 display_name = "OpenAI: GPT Audio"
@@ -70473,7 +70533,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."inclusionai/ling-3-0-flash-fin:free"]
-display_name = "Ling 3.0 Flash Fin (free)"
+display_name = "inclusionAI: Ling 3.0 Flash Fin (free)"
 model_family = "ling"
 mode = "chat"
 max_input_tokens = 262144
@@ -70484,6 +70544,22 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2026-08-27"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."inclusionai/ling-3-0-flash-sante:free"]
+display_name = "inclusionAI: Ling 3.0 Flash Sante (free)"
+model_family = "ling"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-04"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
