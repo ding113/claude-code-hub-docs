@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.09.10"
-checksum = "6f04d7112af97eae1b1ab1e7f12196675180c86d8064e9c183ebd08a585bd4c5"
+version = "2026.09.11"
+checksum = "ef12031223a764bf5012b543e267dacb53bb16b27823daadcbd7348a1fa182b8"
 sources = ["litellm", "modelsdev"]
 total_models = 4733
 litellm_raw_models = 3886
-modelsdev_raw_models = 7653
+modelsdev_raw_models = 7660
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6106,7 +6106,7 @@ input_cost_per_token = 0.0000012
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 2.4e-7
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt", "novita-ai", "openrouter", "orcarouter", "zenmux"]
+providers = ["deepinfra", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt", "novita-ai", "ofox", "openrouter", "orcarouter", "zenmux"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -6146,6 +6146,10 @@ output_cost_per_token = 0.000006001000000000001
 [models."Qwen/Qwen3-Max".pricing."novita-ai"]
 input_cost_per_token = 0.0000021099999999999997
 output_cost_per_token = 0.000008449999999999999
+[models."Qwen/Qwen3-Max".pricing."ofox"]
+cache_read_input_token_cost = 7.2e-8
+input_cost_per_token = 3.6e-7
+output_cost_per_token = 0.0000014299999999999999
 [models."Qwen/Qwen3-Max".pricing."openrouter"]
 cache_read_input_token_cost = 1.56e-7
 input_cost_per_token = 7.8e-7
@@ -6462,7 +6466,7 @@ max_tokens = 262144
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.0000024
 litellm_provider = "deepinfra"
-providers = ["deepinfra", "huggingface", "kilo", "merge-gateway", "mixlayer", "novita-ai", "nvidia", "openrouter", "orcarouter", "siliconflow", "siliconflow-cn", "tensorx"]
+providers = ["deepinfra", "huggingface", "kilo", "merge-gateway", "mixlayer", "novita-ai", "nvidia", "ofox", "openrouter", "orcarouter", "siliconflow", "siliconflow-cn", "tensorx"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -6494,6 +6498,10 @@ output_cost_per_token = 0.0000032000000000000003
 [models."Qwen/Qwen3.5-122B-A10B".pricing."novita-ai"]
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000032000000000000003
+[models."Qwen/Qwen3.5-122B-A10B".pricing."ofox"]
+cache_read_input_token_cost = 2.9e-7
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.00000229
 [models."Qwen/Qwen3.5-122B-A10B".pricing."openrouter"]
 input_cost_per_token = 2.6e-7
 output_cost_per_token = 0.00000208
@@ -36952,12 +36960,12 @@ display_name = "DeepSeek V4.1 Flash"
 model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 393216
+max_output_tokens = 26214
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
-cache_read_input_token_cost = 6e-9
-litellm_provider = "requesty"
-providers = ["requesty", "llmgateway", "opencode-go", "venice"]
+cache_read_input_token_cost = 3e-8
+litellm_provider = "hyper"
+providers = ["hyper", "llmgateway", "opencode-go", "requesty", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -36967,6 +36975,10 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
+[models."deepseek-v4-1-flash".pricing."hyper"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."deepseek-v4-1-flash".pricing."llmgateway"]
 cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
@@ -101352,19 +101364,19 @@ output_cost_per_token_above_256k_tokens = 0.00000234
 display_name = "Qwen-VL Max"
 model_family = "qwen"
 mode = "chat"
-max_input_tokens = 131072
-max_output_tokens = 8192
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 0.0000032000000000000003
-cache_read_input_token_cost = 1.6e-7
-litellm_provider = "edenai"
-providers = ["edenai"]
-supports_function_calling = false
+max_input_tokens = 128000
+max_output_tokens = 8000
+input_cost_per_token = 2.3000000000000002e-7
+output_cost_per_token = 5.8e-7
+cache_read_input_token_cost = 4.6e-8
+litellm_provider = "ofox"
+providers = ["ofox", "edenai"]
+supports_function_calling = true
 supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2024-04"
 release_date = "2024-04-08"
-supported_modalities = ["text", "image", "video"]
+supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -101372,6 +101384,10 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.6e-7
 input_cost_per_token = 8.000000000000001e-7
 output_cost_per_token = 0.0000032000000000000003
+[models."qwen/qwen-vl-max".pricing."ofox"]
+cache_read_input_token_cost = 4.6e-8
+input_cost_per_token = 2.3000000000000002e-7
+output_cost_per_token = 5.8e-7
 
 [models."qwen/qwen-vl-plus"]
 display_name = "Qwen-VL Plus"
@@ -102649,7 +102665,7 @@ output_cost_per_token = 9.75e-7
 cache_read_input_token_cost = 3.9e-8
 cache_creation_input_token_cost = 2.4375e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt"]
+providers = ["openrouter", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt", "ofox"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -102686,6 +102702,10 @@ output_cost_per_token = 5.739999999999999e-7
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000015
+[models."qwen/qwen3-coder-flash".pricing."ofox"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000025
 [models."qwen/qwen3-coder-flash".pricing."openrouter"]
 cache_creation_input_token_cost = 2.4375e-7
 cache_creation_input_token_cost_above_128k_tokens = 6.5e-7
@@ -102706,7 +102726,7 @@ max_tokens = 235929
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 litellm_provider = "novita"
-providers = ["novita", "edenai", "huggingface", "jiekou", "kilo", "merge-gateway", "nano-gpt", "novita-ai", "openrouter"]
+providers = ["novita", "edenai", "huggingface", "jiekou", "kilo", "merge-gateway", "nano-gpt", "novita-ai", "ofox", "openrouter"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -102744,6 +102764,9 @@ output_cost_per_token = 0.0000015
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 [models."qwen/qwen3-coder-next".pricing."novita-ai"]
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000015
+[models."qwen/qwen3-coder-next".pricing."ofox"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000015
 [models."qwen/qwen3-coder-next".pricing."openrouter"]
@@ -102784,7 +102807,7 @@ max_tokens = 65536
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 0.00000325
 litellm_provider = "openrouter"
-providers = ["openrouter", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt", "zenmux"]
+providers = ["openrouter", "edenai", "kilo", "llmtr", "merge-gateway", "nano-gpt", "ofox", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -102814,6 +102837,10 @@ output_cost_per_token = 0.000002294
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000001
 output_cost_per_token = 0.000005
+[models."qwen/qwen3-coder-plus".pricing."ofox"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.0000018000000000000001
+output_cost_per_token = 0.000009
 [models."qwen/qwen3-coder-plus".pricing."openrouter"]
 input_cost_per_token = 6.5e-7
 output_cost_per_token = 0.00000325
