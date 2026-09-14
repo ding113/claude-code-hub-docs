@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.14"
-checksum = "6056102b2432a4397309324455bd74a3293da61d2781c8ad9f297e6b215a57a5"
+checksum = "9be6d6687ddbe3ce80647ee449f5d7f92e2f9f363c7048e8d6367c149b920518"
 sources = ["litellm", "modelsdev"]
 total_models = 4797
 litellm_raw_models = 3924
-modelsdev_raw_models = 7809
+modelsdev_raw_models = 7810
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -37202,7 +37202,7 @@ input_cost_per_token = 2.55552e-7
 output_cost_per_token = 0.00000127776
 cache_read_input_token_cost = 1.27776e-8
 litellm_provider = "greenpt"
-providers = ["greenpt", "aihubmix", "alibaba-token-plan-cn", "amd", "cortecs", "hyper", "llmgateway", "llmgateway-providers", "melious", "opencode-go", "requesty", "tinfoil", "venice"]
+providers = ["greenpt", "aihubmix", "alibaba-token-plan-cn", "amd", "cortecs", "empiriolabs", "hyper", "llmgateway", "llmgateway-providers", "melious", "opencode-go", "requesty", "tinfoil", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -37224,6 +37224,10 @@ output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 1.3e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000014990000000000002
+[models."deepseek-v4-1-flash".pricing."empiriolabs"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."deepseek-v4-1-flash".pricing."greenpt"]
 cache_read_input_token_cost = 1.27776e-8
 input_cost_per_token = 2.55552e-7
@@ -39522,9 +39526,9 @@ cache_read_input_token_cost = 3.625e-9
 input_cost_per_token = 4.35e-7
 output_cost_per_token = 8.7e-7
 [models."deepseek/deepseek-v4-pro".pricing."merge-gateway"]
-cache_read_input_token_cost = 2.2e-8
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000198
+cache_read_input_token_cost = 1.45e-7
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
 [models."deepseek/deepseek-v4-pro".pricing."nano-gpt"]
 cache_read_input_token_cost = 1.1e-7
 input_cost_per_token = 0.0000011
@@ -39626,9 +39630,9 @@ cache_read_input_token_cost = 4.4e-8
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 [models."deepseek/deepseek-v4-pro-0813".pricing."merge-gateway"]
-cache_read_input_token_cost = 2.2e-8
-input_cost_per_token = 6.6e-7
-output_cost_per_token = 0.00000198
+cache_read_input_token_cost = 3.625e-9
+input_cost_per_token = 0.00000174
+output_cost_per_token = 0.00000348
 [models."deepseek/deepseek-v4-pro-0813".pricing."nano-gpt"]
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 0.0000011
@@ -43869,7 +43873,7 @@ output_cost_per_image = 0.0398
 mode = "chat"
 litellm_provider = "default"
 providers = ["default"]
-rules = [{ name = "bedrock-claude-ids", pattern = "^(?:[a-z-]+\\.)?anthropic\\.claude-", description = "A Bedrock-syntax Claude id, for every version: anthropic.claude- at the start of the name, optionally behind a single dotted geo segment (us./eu./au./jp./apac./global./us-gov.). Anchored to the start because routing rules see the raw request string and provider inference feeds the proxy's provider/* wildcard access checks: an id under an unrecognized namespace such as bedrockz/anthropic.claude-... must stay unroutable rather than resolve to bedrock and slip through a bedrock/* key. Routes to bedrock before the bare-id Anthropic rule is consulted.", model_info = { litellm_provider = "bedrock" } }, { name = "anthropic-claude-ids", pattern = "^claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?$", description = "A bare Claude family-major id with an optional minor and an optional 8-digit date suffix, anchored to the whole name, so claude-newfamily-5 routes like claude-newfamily-5-1 does. Routes an unmapped Claude id that carries no provider namespace to the Anthropic API.", model_info = { litellm_provider = "anthropic" } }, { name = "claude-family-baseline", pattern = "claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?", description = "Any Claude family-major id with an optional minor and an optional 8-digit date suffix, under any provider namespace (bare, bedrock-dotted, vertex, databricks, ...), so bare majors like claude-newfamily-5 get the same baseline as claude-newfamily-5-1. Carries the model-family facts every Claude shares; it carries no pricing, so cost stays on the standard unpriced behavior rather than a guessed number.", model_info = { mode = "chat", max_input_tokens = 200000, max_output_tokens = 64000, max_tokens = 64000, supports_function_calling = true, supports_parallel_function_calling = true, supports_vision = true, supports_tool_choice = true, supports_assistant_prefill = true, supports_prompt_caching = true, supports_response_schema = true, supports_reasoning = true, supports_pdf_input = true, supports_system_messages = true } }, { name = "claude-adaptive-thinking", pattern = "claude-[a-z]+-(?:4[-._](?:[6-9]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.6 or higher, in any id shape that contains claude-<family>-: minors 4.6 through 4.99, any later major-minor, and bare 5+ majors so a new family shaped like claude-fable-5 matches. Requiring the claude- prefix keeps non-Claude names such as team-sonnet-5-1 out. The minor is capped at two digits so an 8-digit date suffix such as claude-opus-4-20250514 is never read as a >= 4.6 minor. Turns on adaptive thinking for new versions and new families with no code change.", model_info = { supports_adaptive_thinking = true } }, { name = "claude-legacy-thinking", pattern = "claude-[a-z]+-4[-._]6(?!\\d)", description = "Claude at version 4.6 exactly, in any id shape that contains claude-<family>-4-6 (dotted and underscored minors included, dated releases such as claude-sonnet-4-6-20260219 too). The 4.6 family is adaptive-thinking yet still accepts legacy thinking.type=enabled with budget_tokens, so the caller's hard budget cap is forwarded verbatim instead of being rewritten to an uncapped output_config.effort. The lookahead keeps two-digit minors such as 4-60 from matching. 4.7+ and 5+ majors reject the legacy shape and stay on the adaptive translation.", model_info = { supports_legacy_thinking = true } }, { name = "claude-always-on-thinking", pattern = "claude-(?:fable|mythos)-", description = "Any Claude Fable or Mythos id, under any provider namespace and any version. These families always think and reject thinking.type=disabled with a 400; the Anthropic transformations omit the param instead, so the model falls back to its default adaptive thinking.", model_info = { thinking_always_on = true } }, { name = "claude-mid-conversation-system", pattern = "claude-[a-z]+-(?:4[-._](?:[89]|[1-9]\\d)(?!\\d)|(?:[5-9]|[1-9]\\d)(?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", description = "Claude at version 4.8 or higher, in any id shape that contains claude-<family>-: minors 4.8 through 4.99, any later major-minor, and bare 5+ majors so a new family like claude-fable-5 matches. Anthropic introduced mid-conversation system messages with Opus 4.8 and every newer Claude keeps them; 4.7 and below reject the system role inside messages.", model_info = { supports_mid_conversation_system = true } }, { name = "wandb-reasoning-baseline", pattern = "^wandb/", description = "Any Weights & Biases Inference model id, anchored to the wandb/ namespace so only that provider's ids match. W&B's serverless catalog is reasoning-first and grows faster than this registry names it, so an id the map has not described yet is treated as reasoning-capable and keeps the caller's reasoning_effort instead of dropping it or raising UnsupportedParamsError. Rules lose to exact entries, so a mapped non-reasoning model such as wandb/meta-llama/Llama-3.1-8B-Instruct is unaffected. Carries no mode and no pricing, so cost stays on the standard unpriced behavior and the deployment does not read as catalog-mapped to the router's reasoning-effort resolver.", model_info = { supports_reasoning = true } }, { name = "openai-reasoning-family-baseline", pattern = "^(?!.*search-api)(?:[a-z0-9_.-]+/)*(?:ft:)?(?:o[1-9]\\d*(?![a-z0-9])|gpt-[5-9](?:\\.\\d+)?(?![0-9.])|(?:gpt-\\d+(?:\\.\\d+)?(?:-[a-z0-9]+)*-)?(?:codex|deep-research|chat-latest)(?![a-z0-9]))", description = "OpenAI reasoning families by id shape, under any provider namespace and with an optional ft: prefix: the o-series (o1, o3-pro, o4-mini), gpt-5 through gpt-9 majors including dotted minors and suffixed variants (gpt-5.5-cyber, gpt-6-astra), and the codex, deep-research and chat-latest lines when standalone or on a gpt base. gpt-5-search-api is excluded because it is a search-only surface. Every model here is a reasoning model, and the Responses API drops the caller's reasoning param for any mapped OpenAI model whose info lacks supports_reasoning, so an id the registry has not named yet keeps its reasoning settings instead of silently losing them. Rules lose to exact entries. Carries no mode and no pricing, so cost stays on the standard unpriced behavior.", model_info = { supports_reasoning = true } }]
+rules = [{ name = "bedrock-claude-ids", pattern = "^(?:[a-z-]+\\.)?anthropic\\.claude-", description = "A Bedrock-syntax Claude id, for every version: anthropic.claude- at the start of the name, optionally behind a single dotted geo segment (us./eu./au./jp./apac./global./us-gov.). Anchored to the start because routing rules see the raw request string and provider inference feeds the proxy's provider/* wildcard access checks: an id under an unrecognized namespace such as bedrockz/anthropic.claude-... must stay unroutable rather than resolve to bedrock and slip through a bedrock/* key. Routes to bedrock before the bare-id Anthropic rule is consulted.", model_info = { litellm_provider = "bedrock" } }, { name = "anthropic-claude-ids", pattern = "^claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?$", description = "A bare Claude family-major id with an optional minor and an optional 8-digit date suffix, anchored to the whole name, so claude-newfamily-5 routes like claude-newfamily-5-1 does. Routes an unmapped Claude id that carries no provider namespace to the Anthropic API.", model_info = { litellm_provider = "anthropic" } }, { name = "claude-family-baseline", pattern = "claude-[a-z]+-\\d+(?:[-.]\\d+)?(?:-\\d{8})?", description = "Any Claude family-major id with an optional minor and an optional 8-digit date suffix, under any provider namespace (bare, bedrock-dotted, vertex, databricks, ...), so bare majors like claude-newfamily-5 get the same baseline as claude-newfamily-5-1. Carries the model-family facts every Claude shares; it carries no pricing, so cost stays on the standard unpriced behavior rather than a guessed number.", model_info = { mode = "chat", max_input_tokens = 200000, max_output_tokens = 64000, max_tokens = 64000, supports_function_calling = true, supports_parallel_function_calling = true, supports_vision = true, supports_tool_choice = true, supports_assistant_prefill = true, supports_prompt_caching = true, supports_response_schema = true, supports_reasoning = true, supports_pdf_input = true, supports_system_messages = true } }, { name = "claude-adaptive-thinking", pattern = "claude-[a-z]+-(?:4[-._](?:[6-9]|[1-9]\\d)(?!\\d)|[5-9](?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", fill_missing_for_providers = ["anthropic", "azure_ai", "bedrock", "bedrock_converse", "vertex_ai-anthropic_models"], description = "Claude at version 4.6 or higher, in any id shape that contains claude-<family>-: minors 4.6 through 4.99, any later major-minor, and bare 5+ majors so a new family shaped like claude-fable-5 matches. Requiring the claude- prefix keeps non-Claude names such as team-sonnet-5-1 out. The minor is capped at two digits so an 8-digit date suffix such as claude-opus-4-20250514 is never read as a >= 4.6 minor. Two-digit majors are deliberately not matched so ids like claude-opus-41 (4.1) are not read as major 41. Turns on adaptive thinking for new versions and new families with no code change.", model_info = { supports_adaptive_thinking = true } }, { name = "claude-legacy-thinking", pattern = "claude-[a-z]+-4[-._]6(?!\\d)", fill_missing_for_providers = ["anthropic", "azure_ai", "bedrock", "bedrock_converse", "vertex_ai-anthropic_models"], description = "Claude at version 4.6 exactly, in any id shape that contains claude-<family>-4-6 (dotted and underscored minors included, dated releases such as claude-sonnet-4-6-20260219 too). The 4.6 family is adaptive-thinking yet still accepts legacy thinking.type=enabled with budget_tokens, so the caller's hard budget cap is forwarded verbatim instead of being rewritten to an uncapped output_config.effort. The lookahead keeps two-digit minors such as 4-60 from matching. 4.7+ and 5+ majors reject the legacy shape and stay on the adaptive translation.", model_info = { supports_legacy_thinking = true } }, { name = "claude-always-on-thinking", pattern = "claude-(?:fable|mythos)-", description = "Any Claude Fable or Mythos id, under any provider namespace and any version. These families always think and reject thinking.type=disabled with a 400; the Anthropic transformations omit the param instead, so the model falls back to its default adaptive thinking.", model_info = { thinking_always_on = true } }, { name = "claude-mid-conversation-system", pattern = "claude-[a-z]+-(?:4[-._](?:[89]|[1-9]\\d)(?!\\d)|[5-9](?!\\d)(?:[-._]\\d{1,2}(?!\\d))?)", fill_missing_for_providers = ["anthropic", "azure_ai", "bedrock", "bedrock_converse", "vertex_ai-anthropic_models"], description = "Claude at version 4.8 or higher, in any id shape that contains claude-<family>-: minors 4.8 through 4.99, any later major-minor, and bare 5+ majors so a new family like claude-fable-5 matches. Two-digit majors are deliberately not matched so ids like claude-opus-41 (4.1) are not read as major 41. Anthropic introduced mid-conversation system messages with Opus 4.8 and every newer Claude keeps them; 4.7 and below reject the system role inside messages.", model_info = { supports_mid_conversation_system = true } }, { name = "wandb-reasoning-baseline", pattern = "^wandb/", description = "Any Weights & Biases Inference model id, anchored to the wandb/ namespace so only that provider's ids match. W&B's serverless catalog is reasoning-first and grows faster than this registry names it, so an id the map has not described yet is treated as reasoning-capable and keeps the caller's reasoning_effort instead of dropping it or raising UnsupportedParamsError. Rules lose to exact entries, so a mapped non-reasoning model such as wandb/meta-llama/Llama-3.1-8B-Instruct is unaffected. Carries no mode and no pricing, so cost stays on the standard unpriced behavior and the deployment does not read as catalog-mapped to the router's reasoning-effort resolver.", model_info = { supports_reasoning = true } }, { name = "openai-reasoning-family-baseline", pattern = "^(?!.*search-api)(?:[a-z0-9_.-]+/)*(?:ft:)?(?:o[1-9]\\d*(?![a-z0-9])|gpt-[5-9](?:\\.\\d+)?(?![0-9.])|(?:gpt-\\d+(?:\\.\\d+)?(?:-[a-z0-9]+)*-)?(?:codex|deep-research|chat-latest)(?![a-z0-9]))", fill_missing_for_providers = ["azure", "azure_ai", "openai"], description = "OpenAI reasoning families by id shape, under any provider namespace and with an optional ft: prefix: the o-series (o1, o3-pro, o4-mini), gpt-5 through gpt-9 majors including dotted minors and suffixed variants (gpt-5.5-cyber, gpt-6-astra), and the codex, deep-research and chat-latest lines when standalone or on a gpt base. gpt-5-search-api is excluded because it is a search-only surface. Every model here is a reasoning model, and the Responses API drops the caller's reasoning param for any mapped OpenAI model whose info lacks supports_reasoning, so an id the registry has not named yet keeps its reasoning settings instead of silently losing them. Rules lose to exact entries. Carries no mode and no pricing, so cost stays on the standard unpriced behavior.", model_info = { supports_reasoning = true } }]
 
 [models."fast"]
 mode = "image_edit"
@@ -54370,7 +54374,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = true
 release_date = "2026-08-26"
-supported_modalities = ["text", "image", "video", "pdf"]
+supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
 
@@ -130318,9 +130322,9 @@ model_family = "kimi"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 943718
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.000010949999999999998
-cache_read_input_token_cost = 2.3000000000000002e-7
+input_cost_per_token = 0.000001975
+output_cost_per_token = 0.00001106
+cache_read_input_token_cost = 2.291e-7
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -130332,13 +130336,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.000010949999999999998
+cache_read_input_token_cost = 2.291e-7
+input_cost_per_token = 0.000001975
+output_cost_per_token = 0.00001106
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.000010949999999999998
+cache_read_input_token_cost = 2.291e-7
+input_cost_per_token = 0.000001975
+output_cost_per_token = 0.00001106
 
 [models."~openai/gpt-astra-latest"]
 display_name = "OpenAI: GPT Astra Latest ($$$$)"
@@ -130545,10 +130549,10 @@ display_name = "Z.ai: GLM Latest"
 model_family = "glm"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 131072
-input_cost_per_token = 9.100000000000001e-7
-output_cost_per_token = 0.0000028599999999999997
-cache_read_input_token_cost = 1.6900000000000002e-7
+max_output_tokens = 943718
+input_cost_per_token = 9.000000000000001e-7
+output_cost_per_token = 0.0000030689999999999998
+cache_read_input_token_cost = 1.8e-7
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -130560,10 +130564,10 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.6900000000000002e-7
-input_cost_per_token = 9.100000000000001e-7
-output_cost_per_token = 0.0000028599999999999997
+cache_read_input_token_cost = 1.8e-7
+input_cost_per_token = 9.000000000000001e-7
+output_cost_per_token = 0.0000030689999999999998
 [models."~z-ai/glm-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.6900000000000002e-7
-input_cost_per_token = 9.100000000000001e-7
-output_cost_per_token = 0.0000028599999999999997
+cache_read_input_token_cost = 1.8e-7
+input_cost_per_token = 9.000000000000001e-7
+output_cost_per_token = 0.0000030689999999999998
