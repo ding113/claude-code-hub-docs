@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.14"
-checksum = "2b8596b032dabaf5f0ceb7446c4c0e25eb63d458ec898411efd5a8fad50c2f19"
+checksum = "05760307e63e8ab4f9ae6b92f36ef873a53e625ab1847702b55416d29febca71"
 sources = ["litellm", "modelsdev"]
-total_models = 4799
+total_models = 4800
 litellm_raw_models = 3923
-modelsdev_raw_models = 7787
+modelsdev_raw_models = 7789
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -14194,6 +14194,31 @@ supports_tool_choice = false
 [models."alibaba-qwen3-32b".pricing."digitalocean"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 5.5e-7
+
+[models."alibaba/deepseek-v4-1-flash"]
+display_name = "DeepSeek V4.1 Flash (Alibaba Cloud)"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 393216
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 3e-8
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-09-10"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."alibaba/deepseek-v4-1-flash".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."alibaba/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash (Alibaba Cloud)"
@@ -102372,8 +102397,9 @@ model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 1.5e-8
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -102386,8 +102412,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/deepseek-v4-1-flash".pricing."edenai"]
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/deepseek-v4-flash-0731"]
 display_name = "DeepSeek V4 Flash 0731 (Alibaba)"
@@ -102395,8 +102422,9 @@ model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 3.52e-7
-output_cost_per_token = 0.0000010560000000000001
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+cache_read_input_token_cost = 2.2e-8
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -102409,8 +102437,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/deepseek-v4-flash-0731".pricing."edenai"]
-input_cost_per_token = 3.52e-7
-output_cost_per_token = 0.0000010560000000000001
+cache_read_input_token_cost = 2.2e-8
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
 
 [models."qwen/deepseek-v4-pro-0813"]
 display_name = "DeepSeek V4 Pro 0813 (Alibaba)"
@@ -102418,8 +102447,9 @@ model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 0.000001122
-output_cost_per_token = 0.000003366
+input_cost_per_token = 6.6e-7
+output_cost_per_token = 0.00000198
+cache_read_input_token_cost = 6.600000000000001e-8
 litellm_provider = "edenai"
 providers = ["edenai"]
 supports_function_calling = true
@@ -102431,8 +102461,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/deepseek-v4-pro-0813".pricing."edenai"]
-input_cost_per_token = 0.000001122
-output_cost_per_token = 0.000003366
+cache_read_input_token_cost = 6.600000000000001e-8
+input_cost_per_token = 6.6e-7
+output_cost_per_token = 0.00000198
 
 [models."qwen/qwen-2-5-7b-vision-instruct"]
 display_name = "Qwen 2.5 7B Vision Instruct"
@@ -105705,7 +105736,7 @@ output_cost_per_token = 4.7e-7
 cache_read_input_token_cost = 1.6e-8
 cache_creation_input_token_cost = 2e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "crossmodel", "edenai", "kilo", "ofox"]
+providers = ["openrouter", "crossmodel", "deepinfra", "edenai", "kilo", "ofox"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -105722,6 +105753,10 @@ supports_tool_choice = true
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.3e-7
+[models."qwen/qwen3.8-flash".pricing."deepinfra"]
+cache_read_input_token_cost = 1.4099999999999999e-8
+input_cost_per_token = 1.13e-7
+output_cost_per_token = 3.82e-7
 [models."qwen/qwen3.8-flash".pricing."edenai"]
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 1.5e-7
@@ -130170,10 +130205,10 @@ display_name = "DeepSeek: DeepSeek V4 Flash Latest"
 model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 131072
-input_cost_per_token = 3.5200000000000004e-8
-output_cost_per_token = 1.056e-7
-cache_read_input_token_cost = 1.1199999999999999e-9
+max_output_tokens = 393216
+input_cost_per_token = 4e-8
+output_cost_per_token = 1.0000000000000001e-7
+cache_read_input_token_cost = 1e-8
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -130185,13 +130220,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.1199999999999999e-9
-input_cost_per_token = 3.5200000000000004e-8
-output_cost_per_token = 1.056e-7
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 4e-8
+output_cost_per_token = 1.0000000000000001e-7
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.1199999999999999e-9
-input_cost_per_token = 3.5200000000000004e-8
-output_cost_per_token = 1.056e-7
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 4e-8
+output_cost_per_token = 1.0000000000000001e-7
 
 [models."~google/gemini-flash-latest"]
 display_name = "Google: Gemini Flash Latest"
