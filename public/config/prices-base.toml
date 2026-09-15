@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.15"
-checksum = "0006bde47e56f9f28dbec09ef282b41d2d2f4de2ee6324798213fe32524d8673"
+checksum = "00d50138e8bf4ec5108261c8a9179abc7d9a8cec84af8412fb1b731287e257e3"
 sources = ["litellm", "modelsdev"]
-total_models = 4818
+total_models = 4829
 litellm_raw_models = 3958
-modelsdev_raw_models = 7805
+modelsdev_raw_models = 7824
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -10029,6 +10029,8 @@ input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 
 [models."accounts/fireworks/models/deepseek-v4-pro"]
+display_name = "DeepSeek V4 Pro"
+model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 384000
@@ -10041,6 +10043,11 @@ providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-04-24"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 6e-7
 input_cost_per_token_priority = 0.0000012
@@ -11661,6 +11668,8 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."accounts/fireworks/models/minimax-m2p7"]
+display_name = "MiniMax-M2.7"
+model_family = "minimax"
 mode = "chat"
 max_input_tokens = 196608
 max_output_tokens = 196608
@@ -11669,10 +11678,14 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-8
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai"]
+providers = ["fireworks_ai", "fireworks-ai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
+open_weights = true
+release_date = "2026-03-18"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 6e-7
 input_cost_per_token_priority = 0.0000012
@@ -11680,6 +11693,10 @@ output_cost_per_token_priority = 0.0000012
 supports_response_schema = true
 supports_tool_choice = true
 
+[models."accounts/fireworks/models/minimax-m2p7".pricing."fireworks-ai"]
+cache_read_input_token_cost = 5.9e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."accounts/fireworks/models/minimax-m2p7".pricing."fireworks_ai"]
 cache_read_input_token_cost = 6e-8
 cache_read_input_token_cost_priority = 6e-7
@@ -13742,6 +13759,55 @@ providers = ["fireworks_ai"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
+[models."accounts/fireworks/routers/deepseek-flash-latest"]
+display_name = "DeepSeek Flash Latest"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+cache_read_input_token_cost = 7e-9
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-09-10"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/deepseek-flash-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 7e-9
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+
+[models."accounts/fireworks/routers/deepseek-pro-latest"]
+display_name = "DeepSeek Pro Latest"
+model_family = "deepseek-thinking"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 384000
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
+cache_read_input_token_cost = 4.4e-8
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/deepseek-pro-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 4.4e-8
+input_cost_per_token = 0.00000132
+output_cost_per_token = 0.00000396
+
 [models."accounts/fireworks/routers/glm-5p1-fast"]
 mode = "chat"
 max_input_tokens = 202800
@@ -13846,6 +13912,102 @@ cache_read_input_token_cost = 3.9e-7
 input_cost_per_token = 0.0000021
 output_cost_per_token = 0.0000066
 
+[models."accounts/fireworks/routers/glm-fast-latest"]
+display_name = "GLM 5.3 Fast (Latest)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048572
+max_output_tokens = 262144
+input_cost_per_token = 0.0000021000000000000002
+output_cost_per_token = 0.0000065999999999999995
+cache_read_input_token_cost = 3.9e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-28"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/glm-fast-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 3.9e-7
+input_cost_per_token = 0.0000021000000000000002
+output_cost_per_token = 0.0000065999999999999995
+
+[models."accounts/fireworks/routers/glm-flash-latest"]
+display_name = "GLM Flash Latest (GLM 5.3 Flash)"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048573
+max_output_tokens = 131072
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 3e-8
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-26"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/glm-flash-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+
+[models."accounts/fireworks/routers/glm-latest"]
+display_name = "GLM Latest"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048573
+max_output_tokens = 262144
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+cache_read_input_token_cost = 2.6e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-08-14"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/glm-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 2.6e-7
+input_cost_per_token = 0.0000014
+output_cost_per_token = 0.0000044
+
+[models."accounts/fireworks/routers/kimi-fast-latest"]
+display_name = "Kimi Fast Latest"
+model_family = "kimi-k3"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.0000045
+output_cost_per_token = 0.0000225
+cache_read_input_token_cost = 4.5000000000000003e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-07-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/kimi-fast-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 4.5000000000000003e-7
+input_cost_per_token = 0.0000045
+output_cost_per_token = 0.0000225
+
 [models."accounts/fireworks/routers/kimi-k2p6-fast"]
 mode = "chat"
 max_input_tokens = 262144
@@ -13945,6 +14107,54 @@ supports_tool_choice = true
 cache_read_input_token_cost = 3.3e-7
 input_cost_per_token = 0.0000033
 output_cost_per_token = 0.0000165
+
+[models."accounts/fireworks/routers/kimi-latest"]
+display_name = "Kimi Latest"
+model_family = "kimi-k3"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3e-7
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-07-27"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/kimi-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
+
+[models."accounts/fireworks/routers/minimax-latest"]
+display_name = "MiniMax Latest"
+model_family = "minimax"
+mode = "chat"
+max_input_tokens = 512000
+max_output_tokens = 512000
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-8
+litellm_provider = "fireworks-ai"
+providers = ["fireworks-ai"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-06-12"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."accounts/fireworks/routers/minimax-latest".pricing."fireworks-ai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 
 [models."ada"]
 mode = "embedding"
@@ -17822,8 +18032,8 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-24"
+knowledge_cutoff = "2025-05"
+release_date = "2025-11-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "high"
@@ -17898,9 +18108,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000625
 cache_creation_input_token_cost_above_1hr = 0.00001
@@ -18224,9 +18434,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."anthropic.claude-sonnet-4-6".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."anthropic.claude-sonnet-4-6".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_1hr = 0.000006
@@ -19105,6 +19315,8 @@ output_cost_per_token = 0.0000055
 output_cost_per_token_batches = 0.00000275
 
 [models."apac.anthropic.claude-sonnet-4-20250514-v1:0"]
+display_name = "Claude Sonnet 4 (APAC)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -19114,13 +19326,18 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
 deprecation_date = "2026-10-14"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 bedrock_converse_supports_strict_tools = false
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
@@ -19137,6 +19354,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."apac.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."apac.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -19369,9 +19590,9 @@ supports_tool_choice = true
 supports_tool_search = true
 
 [models."au.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000055
 [models."au.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
 cache_creation_input_token_cost_above_1hr = 0.0000022
@@ -19400,7 +19621,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-05"
+knowledge_cutoff = "2025-05-31"
 release_date = "2026-02-05"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -19425,9 +19646,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.0000016499999999999999
-input_cost_per_token = 0.0000165
-output_cost_per_token = 0.0000825
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."au.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -19537,9 +19758,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."au.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -19592,9 +19813,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-opus-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."au.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -19648,9 +19869,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."au.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_1hr = 0.0000066
@@ -19684,7 +19905,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-08"
+knowledge_cutoff = "2025-08-31"
 release_date = "2026-02-17"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -19764,9 +19985,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."au.anthropic.claude-sonnet-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2.2e-7
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.000011
 [models."au.anthropic.claude-sonnet-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000275
 cache_creation_input_token_cost_above_1hr = 0.0000044
@@ -32124,7 +32345,7 @@ cache_read_input_token_cost = 5e-9
 litellm_provider = "llmgateway-providers"
 providers = ["llmgateway-providers"]
 supports_function_calling = false
-supports_reasoning = false
+supports_reasoning = true
 open_weights = true
 knowledge_cutoff = "2025-05"
 release_date = "2026-09-10"
@@ -37389,7 +37610,7 @@ input_cost_per_token = 2.55552e-7
 output_cost_per_token = 0.00000127776
 cache_read_input_token_cost = 1.27776e-8
 litellm_provider = "greenpt"
-providers = ["greenpt", "aihubmix", "alibaba-token-plan-cn", "amd", "cortecs", "digitalocean", "empiriolabs", "hyper", "llmgateway", "llmgateway-providers", "melious", "ollama-cloud", "opencode-go", "requesty", "tinfoil", "venice"]
+providers = ["greenpt", "aihubmix", "alibaba-token-plan", "alibaba-token-plan-cn", "amd", "cortecs", "digitalocean", "empiriolabs", "hyper", "llmgateway", "llmgateway-providers", "melious", "ollama-cloud", "opencode-go", "requesty", "tinfoil", "venice"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = true
@@ -37428,7 +37649,7 @@ cache_read_input_token_cost = 3.2664e-8
 input_cost_per_token = 3.2663999999999997e-7
 output_cost_per_token = 0.0000013065599999999999
 [models."deepseek-v4-1-flash".pricing."llmgateway"]
-cache_read_input_token_cost = 3e-9
+cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 [models."deepseek-v4-1-flash".pricing."llmgateway-providers"]
@@ -37496,7 +37717,7 @@ input_cost_per_token = 1.9e-7
 output_cost_per_token = 5.1e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "above", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "amd", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "inferx", "jalapeno", "kenari", "libertai", "llmgateway", "llmgateway-providers", "modelis", "nan", "neuralwatt", "ollama-cloud", "opencode", "opencode-go", "pendra", "qwen_ai_platform", "qwencloud", "requesty", "routing-run", "scnet-token-plan", "sensenova", "tencent", "tinfoil", "unorouter", "venice", "vivgrid", "volcengine-coding-plan"]
+providers = ["azure_ai", "above", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "amd", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "inferx", "jalapeno", "kenari", "libertai", "llmgateway", "llmgateway-providers", "modelis", "nan", "neuralwatt", "ollama-cloud", "opencode", "opencode-go", "pendra", "qwen_ai_platform", "qwencloud", "requesty", "routing-run", "scnet-token-plan", "sensenova", "tencent", "unorouter", "venice", "vivgrid", "volcengine-coding-plan"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -37624,10 +37845,6 @@ cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
 input_cost_per_token_cache_hit = 2.8e-9
 output_cost_per_token = 2.8e-7
-[models."deepseek-v4-flash".pricing."tinfoil"]
-cache_read_input_token_cost = 6e-8
-input_cost_per_token = 3e-7
-output_cost_per_token = 7e-7
 [models."deepseek-v4-flash".pricing."unorouter"]
 input_cost_per_token = 6.25e-8
 output_cost_per_token = 1.25e-7
@@ -39983,7 +40200,7 @@ input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 cache_read_input_token_cost = 3e-9
 litellm_provider = "openrouter"
-providers = ["openrouter", "crossmodel", "kilo", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "vercel"]
+providers = ["openrouter", "crossmodel", "kilo", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "tensorx", "vercel"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -40026,6 +40243,10 @@ output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
+[models."deepseek/deepseek-v4.1-flash".pricing."tensorx"]
+cache_read_input_token_cost = 1.3e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.0000015
 [models."deepseek/deepseek-v4.1-flash".pricing."vercel"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 1.5e-7
@@ -43342,8 +43563,8 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-24"
+knowledge_cutoff = "2025-05"
+release_date = "2025-11-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "high"
@@ -43594,6 +43815,8 @@ input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0"]
+display_name = "Claude Sonnet 4 (EU)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -43603,13 +43826,18 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
 deprecation_date = "2026-10-14"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 bedrock_converse_supports_strict_tools = false
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
@@ -43626,6 +43854,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."eu.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."eu.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -48229,6 +48461,50 @@ source = "modelsdev"
 cache_read_input_token_cost = 8.25e-8
 input_cost_per_token = 8.249999999999999e-7
 output_cost_per_token = 0.000004125
+
+[models."gemini-3-8-live"]
+display_name = "Gemini 3.8 Live"
+model_family = "gemini"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-09-15"
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+source = "modelsdev"
+
+[models."gemini-3-8-live".pricing."vercel"]
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+
+[models."gemini-3-8-live-extended-thinking"]
+display_name = "Gemini 3.8 Live Extended Thinking"
+model_family = "gemini"
+mode = "chat"
+max_input_tokens = 0
+max_output_tokens = 0
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
+litellm_provider = "vercel"
+providers = ["vercel"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-09-15"
+supported_modalities = ["text", "audio"]
+supported_output_modalities = ["text", "audio"]
+source = "modelsdev"
+
+[models."gemini-3-8-live-extended-thinking".pricing."vercel"]
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000045
 
 [models."gemini-3-flash"]
 display_name = "Gemini-3-Flash"
@@ -55841,8 +56117,8 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-24"
+knowledge_cutoff = "2025-05"
+release_date = "2025-11-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "high"
@@ -56095,6 +56371,8 @@ input_cost_per_token = 0.000005
 output_cost_per_token = 0.000025
 
 [models."global.anthropic.claude-sonnet-4-20250514-v1:0"]
+display_name = "Claude Sonnet 4 (Global)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -56104,13 +56382,18 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
 deprecation_date = "2026-10-14"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 bedrock_converse_supports_strict_tools = false
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
@@ -56127,6 +56410,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."global.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."global.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -75054,9 +75341,9 @@ supports_tool_choice = true
 supports_tool_search = true
 
 [models."jp.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000055
 [models."jp.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
 cache_creation_input_token_cost_above_1hr = 0.0000022
@@ -75110,9 +75397,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-opus-4-7".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."jp.anthropic.claude-opus-4-7".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_read_input_token_cost = 5.5e-7
@@ -75165,9 +75452,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."jp.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -75220,9 +75507,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-opus-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."jp.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -75276,9 +75563,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."jp.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_1hr = 0.0000066
@@ -75336,9 +75623,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-sonnet-4-6".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."jp.anthropic.claude-sonnet-4-6".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_1hr = 0.0000066
@@ -75392,9 +75679,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."jp.anthropic.claude-sonnet-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2.2e-7
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.000011
 [models."jp.anthropic.claude-sonnet-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000275
 cache_creation_input_token_cost_above_1hr = 0.0000044
@@ -111067,6 +111354,30 @@ cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 
+[models."runware/deepseek-v4-1-flash"]
+display_name = "DeepSeek-V4.1-Flash (Runware)"
+model_family = "deepseek"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 1048576
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 1e-8
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-15"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."runware/deepseek-v4-1-flash".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+
 [models."runware/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash (Runware)"
 model_family = "deepseek-flash"
@@ -120559,9 +120870,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-fable-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 0.000001
-input_cost_per_token = 0.00001
-output_cost_per_token = 0.00005
+cache_read_input_token_cost = 0.0000011
+input_cost_per_token = 0.000011
+output_cost_per_token = 0.000055
 [models."us.anthropic.claude-fable-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00001375
 cache_creation_input_token_cost_above_1hr = 0.000022
@@ -120663,9 +120974,9 @@ supports_tool_choice = true
 supports_tool_search = true
 
 [models."us.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
+cache_read_input_token_cost = 1.1e-7
+input_cost_per_token = 0.0000011
+output_cost_per_token = 0.0000055
 [models."us.anthropic.claude-haiku-4-5-20251001-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000001375
 cache_creation_input_token_cost_above_1hr = 0.0000022
@@ -120772,8 +121083,8 @@ supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
-knowledge_cutoff = "2025-03-31"
-release_date = "2025-11-24"
+knowledge_cutoff = "2025-05"
+release_date = "2025-11-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 bedrock_output_config_effort_ceiling = "high"
@@ -120794,9 +121105,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-5-20251101-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."us.anthropic.claude-opus-4-5-20251101-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -120848,9 +121159,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-6-v1".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."us.anthropic.claude-opus-4-6-v1".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -120904,9 +121215,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-7".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."us.anthropic.claude-opus-4-7".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -120960,9 +121271,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-4-8".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."us.anthropic.claude-opus-4-8".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -121015,9 +121326,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-opus-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 5e-7
-input_cost_per_token = 0.000005
-output_cost_per_token = 0.000025
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000055
+output_cost_per_token = 0.0000275
 [models."us.anthropic.claude-opus-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000006875
 cache_creation_input_token_cost_above_1hr = 0.000011
@@ -121026,6 +121337,8 @@ input_cost_per_token = 0.0000055
 output_cost_per_token = 0.0000275
 
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0"]
+display_name = "Claude Sonnet 4 (US)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 64000
@@ -121035,13 +121348,18 @@ output_cost_per_token = 0.000015
 cache_read_input_token_cost = 3e-7
 cache_creation_input_token_cost = 0.00000375
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2025-03-31"
+release_date = "2025-05-22"
 deprecation_date = "2026-10-14"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 bedrock_converse_supports_strict_tools = false
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
 cache_read_input_token_cost_above_200k_tokens = 6e-7
@@ -121058,6 +121376,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."us.anthropic.claude-sonnet-4-20250514-v1:0".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."us.anthropic.claude-sonnet-4-20250514-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
 cache_creation_input_token_cost_above_200k_tokens = 0.0000075
@@ -121114,9 +121436,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."us.anthropic.claude-sonnet-4-5-20250929-v1:0".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_1hr = 0.0000066
@@ -121174,9 +121496,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-sonnet-4-6".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+cache_read_input_token_cost = 3.3e-7
+input_cost_per_token = 0.0000032999999999999997
+output_cost_per_token = 0.0000165
 [models."us.anthropic.claude-sonnet-4-6".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
 cache_creation_input_token_cost_above_1hr = 0.0000066
@@ -121230,9 +121552,9 @@ search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
 [models."us.anthropic.claude-sonnet-5".pricing."amazon-bedrock"]
-cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2.2e-7
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.000011
 [models."us.anthropic.claude-sonnet-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000275
 cache_creation_input_token_cost_above_1hr = 0.0000044
