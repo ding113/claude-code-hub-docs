@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.18"
-checksum = "d78c20dea3c5e37c918c8cc89daef087cc3fb4134089efc72814ab69a999cee9"
+checksum = "341de81abc859431a02e4400a54bcfd738c8451aaf1671b12adde51e822b29e5"
 sources = ["litellm", "modelsdev"]
-total_models = 4948
-litellm_raw_models = 4307
-modelsdev_raw_models = 7852
+total_models = 4950
+litellm_raw_models = 4308
+modelsdev_raw_models = 7854
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -7791,6 +7791,21 @@ output_cost_per_token = 7.5e-7
 cache_read_input_token_cost = 2.465e-7
 input_cost_per_token = 4.93e-7
 output_cost_per_token = 4.93e-7
+
+[models."StartTranscriptionJob"]
+mode = "audio_transcription"
+litellm_provider = "transcribe"
+providers = ["transcribe"]
+source = "https://aws.amazon.com/transcribe/pricing/"
+input_cost_per_second = 0.0001
+output_cost_per_second = 0
+
+[models."StartTranscriptionJob".metadata]
+notes = "Amazon Transcribe standard batch transcription, billed per second of audio with no minimum. Same rate in every region of the AWS Price List offer file for transcribe (checked 2026-09-17)"
+
+[models."StartTranscriptionJob".pricing."transcribe"]
+input_cost_per_second = 0.0001
+output_cost_per_second = 0
 
 [models."Steelskull/L3-3-Cu-Mai-R1-70b"]
 display_name = "Llama 3.3 70B Cu Mai"
@@ -96536,9 +96551,9 @@ cache_read_input_token_cost = 2.9e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.0000149
 [models."moonshotai/kimi-k3".pricing."kilo"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.000010949999999999998
+cache_read_input_token_cost = 2.262e-7
+input_cost_per_token = 0.00000195
+output_cost_per_token = 0.00001092
 [models."moonshotai/kimi-k3".pricing."modal"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
@@ -106817,6 +106832,30 @@ litellm_provider = "perplexity"
 providers = ["perplexity"]
 supports_function_calling = true
 supports_web_search = true
+
+[models."prism-ml/ternary-bonsai-2-27b"]
+display_name = "PrismML: Ternary Bonsai 2 27B"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 5e-7
+litellm_provider = "kilo"
+providers = ["kilo", "openrouter"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-18"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."prism-ml/ternary-bonsai-2-27b".pricing."kilo"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 5e-7
+[models."prism-ml/ternary-bonsai-2-27b".pricing."openrouter"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 5e-7
 
 [models."ps/deepseek-v4-flash"]
 mode = "chat"
@@ -137641,9 +137680,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.5e-8
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 6e-7
+cache_read_input_token_cost = 4.1999999999999996e-9
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 4.2e-7
 [models."~deepseek/deepseek-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 1.5e-7
@@ -137845,9 +137884,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
-cache_read_input_token_cost = 2.3000000000000002e-7
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.000010949999999999998
+cache_read_input_token_cost = 2.262e-7
+input_cost_per_token = 0.00000195
+output_cost_per_token = 0.00001092
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
 cache_read_input_token_cost = 2.3e-7
 input_cost_per_token = 0.0000021
@@ -138183,9 +138222,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.6692000000000002e-7
-input_cost_per_token = 8.988000000000001e-7
-output_cost_per_token = 0.0000028248
+cache_read_input_token_cost = 1.6562e-7
+input_cost_per_token = 8.918000000000001e-7
+output_cost_per_token = 0.0000028028
 [models."~z-ai/glm-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 9e-7
