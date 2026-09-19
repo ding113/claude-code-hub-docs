@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.19"
-checksum = "10874ab6a86bfc43ce0c5267a030f84cdaf0989968294196a262d8dbddbeb4cb"
+checksum = "3965b36ea4f69f7c7a278759d6b44d06b2a454b0ee48838c34d024fa222cbd8b"
 sources = ["litellm", "modelsdev"]
-total_models = 4964
+total_models = 4967
 litellm_raw_models = 4318
-modelsdev_raw_models = 7860
+modelsdev_raw_models = 7864
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -37664,6 +37664,12 @@ supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
+[models."deepseek-flash".off_peak_pricing]
+cache_read_input_token_cost = 3e-9
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+windows = [{ hours_utc = ["00:00-01:00", "04:00-06:00", "10:00-00:00"], weekdays = [1, 2, 3, 4, 5] }, { hours_utc = "00:00-00:00", weekdays = [6, 7] }]
+
 [models."deepseek-flash".pricing."302ai"]
 cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
@@ -38957,6 +38963,12 @@ supports_parallel_function_calling = true
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
+
+[models."deepseek-v4-flash-vision-exp".off_peak_pricing]
+cache_read_input_token_cost = 3e-9
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 6e-7
+windows = [{ hours_utc = ["00:00-01:00", "04:00-06:00", "10:00-00:00"], weekdays = [1, 2, 3, 4, 5] }, { hours_utc = "00:00-00:00", weekdays = [6, 7] }]
 
 [models."deepseek-v4-flash-vision-exp".pricing."above"]
 cache_read_input_token_cost = 7.7e-9
@@ -54111,6 +54123,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 6e-8
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 3.8e-7
+
+[models."gemma-4-26b-a4b-it-cybersecurity"]
+display_name = "Gemma 4 26B A4B Cybersecurity"
+model_family = "gemma"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+input_cost_per_token = 1.056e-7
+output_cost_per_token = 3.344e-7
+cache_read_input_token_cost = 5.28e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-09-19"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."gemma-4-26b-a4b-it-cybersecurity".pricing."nano-gpt"]
+cache_read_input_token_cost = 5.28e-8
+input_cost_per_token = 1.056e-7
+output_cost_per_token = 3.344e-7
 
 [models."gemma-4-26b-a4b-it-darksoul"]
 display_name = "Dark Soul"
@@ -102131,7 +102167,7 @@ max_tokens = 117964
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo"]
+providers = ["openrouter", "kilo", "nano-gpt"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = true
@@ -102139,7 +102175,7 @@ supports_prompt_caching = false
 supports_pdf_input = false
 open_weights = true
 release_date = "2026-06-04"
-supported_modalities = ["text", "image"]
+supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://openrouter.ai/api/v1/models"
 supports_audio_input = false
@@ -102150,6 +102186,10 @@ supports_web_search = false
 [models."nvidia/nemotron-3.5-content-safety".pricing."kilo"]
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 2.0000000000000002e-7
+[models."nvidia/nemotron-3.5-content-safety".pricing."nano-gpt"]
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 1.5e-7
 [models."nvidia/nemotron-3.5-content-safety".pricing."openrouter"]
 input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
@@ -110247,6 +110287,30 @@ cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.0000016000000000000001
 
+[models."qwen/qwen3-8-27b-cybersecurity"]
+display_name = "Qwen 3.8 27B Cybersecurity"
+model_family = "qwen"
+mode = "chat"
+max_input_tokens = 262144
+max_output_tokens = 32768
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-09-19"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."qwen/qwen3-8-27b-cybersecurity".pricing."nano-gpt"]
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+
 [models."qwen/qwen3-8-27b-fable"]
 display_name = "Qwen 3.8 27B Fable"
 model_family = "qwen"
@@ -110349,9 +110413,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 524288
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000017
+cache_read_input_token_cost = 1.8e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -110363,9 +110427,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-uncensored".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 1.8e-7
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000017
 
 [models."qwen/qwen3-8-27b-uncensored:thinking"]
 display_name = "Qwen 3.8 27B Uncensored Thinking"
@@ -110373,9 +110437,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 524288
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000017
+cache_read_input_token_cost = 1.8e-7
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -110387,9 +110451,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-uncensored:thinking".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 1.8e-7
+input_cost_per_token = 2.0000000000000002e-7
+output_cost_per_token = 0.0000017
 
 [models."qwen/qwen3-8-27b:thinking"]
 display_name = "Qwen3.8 27B Thinking"
@@ -134300,9 +134364,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."z-ai/glm-4.6".pricing."kilo"]
-cache_read_input_token_cost = 8e-8
-input_cost_per_token = 4.3e-7
-output_cost_per_token = 0.00000175
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 5e-7
+output_cost_per_token = 0.000002
 [models."z-ai/glm-4.6".pricing."nano-gpt"]
 cache_read_input_token_cost = 1.75e-7
 input_cost_per_token = 3.5e-7
@@ -134625,6 +134689,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 7.8e-8
 input_cost_per_token = 4.2e-7
 output_cost_per_token = 0.00000132
+
+[models."z-ai/glm-5-3-flash-cybersecurity"]
+display_name = "GLM 5.3 Flash Cybersecurity"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 32768
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 7.5e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-09-19"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-5-3-flash-cybersecurity".pricing."nano-gpt"]
+cache_read_input_token_cost = 7.5e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
 
 [models."z-ai/glm-5-3-flash-free"]
 display_name = "GLM-5.3-Flash (free)"
