@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.20"
-checksum = "6106ed1d4acb6bd1fa328322ae32905483404136582260ac19cbd422d0c7f857"
+checksum = "544dc46e95abdd58d02a9aca8873390283f8038c30ed49aac78142bf539d44be"
 sources = ["litellm", "modelsdev"]
-total_models = 4967
-litellm_raw_models = 4320
-modelsdev_raw_models = 7871
+total_models = 4968
+litellm_raw_models = 4326
+modelsdev_raw_models = 7865
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6494,8 +6494,8 @@ output_cost_per_token = 5.5e-7
 input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 7e-7
 [models."Qwen/Qwen3-VL-30B-A3B-Instruct".pricing."openrouter"]
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 7e-7
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.2e-7
 [models."Qwen/Qwen3-VL-30B-A3B-Instruct".pricing."siliconflow"]
 input_cost_per_token = 2.9e-7
 output_cost_per_token = 0.000001
@@ -21085,6 +21085,31 @@ cache_read_input_token_cost = 7e-8
 input_cost_per_token = 2.8e-7
 output_cost_per_token = 0.00000113
 
+[models."baidu/deepseek-v4-1-flash"]
+display_name = "DeepSeek V4.1 Flash (Baidu)"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 393216
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 6e-9
+litellm_provider = "llmgateway-providers"
+providers = ["llmgateway-providers"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-09-10"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."baidu/deepseek-v4-1-flash".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
+
 [models."baidu/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash (Baidu)"
 model_family = "deepseek-flash"
@@ -21093,7 +21118,7 @@ max_input_tokens = 1048576
 max_output_tokens = 131072
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
-cache_read_input_token_cost = 4.4e-8
+cache_read_input_token_cost = 1.4e-8
 litellm_provider = "llmgateway-providers"
 providers = ["llmgateway-providers"]
 supports_function_calling = true
@@ -21106,7 +21131,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."baidu/deepseek-v4-flash".pricing."llmgateway-providers"]
-cache_read_input_token_cost = 4.4e-8
+cache_read_input_token_cost = 1.4e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 
@@ -21118,7 +21143,7 @@ max_input_tokens = 1048576
 max_output_tokens = 131072
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
-cache_read_input_token_cost = 1.3200000000000002e-7
+cache_read_input_token_cost = 4.2000000000000006e-8
 litellm_provider = "llmgateway-providers"
 providers = ["llmgateway-providers"]
 supports_function_calling = true
@@ -21131,7 +21156,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."baidu/deepseek-v4-pro".pricing."llmgateway-providers"]
-cache_read_input_token_cost = 1.3200000000000002e-7
+cache_read_input_token_cost = 4.2000000000000006e-8
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 
@@ -23265,6 +23290,129 @@ release_date = "2025-09-04"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."bytedance/seedance-2.0/image-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.0/image-to-video"
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.0/image-to-video".metadata]
+comment = "fal bills $0.014 per 1k tokens (480p/720p/1080p) and $0.008 per 1k tokens (4k) with tokens = h*w*seconds*24/1024; 480p and 4k rates derived from that formula at 854x480 and 3840x2160"
+
+[models."bytedance/seedance-2.0/image-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+
+[models."bytedance/seedance-2.0/reference-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.0/reference-to-video"
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.0/reference-to-video".metadata]
+comment = "fal bills $0.014 per 1k tokens (480p/720p/1080p) and $0.008 per 1k tokens (4k) with tokens = h*w*seconds*24/1024; 480p and 4k rates derived from that formula at 854x480 and 3840x2160"
+
+[models."bytedance/seedance-2.0/reference-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+
+[models."bytedance/seedance-2.0/text-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.0/text-to-video"
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.0/text-to-video".metadata]
+comment = "fal bills $0.014 per 1k tokens (480p/720p/1080p) and $0.008 per 1k tokens (4k) with tokens = h*w*seconds*24/1024; 480p and 4k rates derived from that formula at 854x480 and 3840x2160"
+
+[models."bytedance/seedance-2.0/text-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.3034
+output_cost_per_second_1080p = 0.682
+output_cost_per_second_480p = 0.1346
+output_cost_per_second_4k = 1.5552
+output_cost_per_second_720p = 0.3034
+
+[models."bytedance/seedance-2.5/image-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.5/image-to-video"
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.5/image-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
+
+[models."bytedance/seedance-2.5/reference-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.5/reference-to-video"
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.5/reference-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
+
+[models."bytedance/seedance-2.5/text-to-video"]
+mode = "video_generation"
+litellm_provider = "fal_ai"
+providers = ["fal_ai"]
+supported_modalities = ["text"]
+supported_output_modalities = ["video"]
+source = "https://fal.ai/models/bytedance/seedance-2.5/text-to-video"
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
+supported_endpoints = ["/v1/videos"]
+
+[models."bytedance/seedance-2.5/text-to-video".pricing."fal_ai"]
+output_cost_per_second = 0.473
+output_cost_per_second_480p = 0.2205
+output_cost_per_second_720p = 0.473
 
 [models."bytedance/ui-tars-1.5-7b"]
 display_name = "ByteDance: UI-TARS 7B "
@@ -40401,9 +40549,9 @@ model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 384000
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
-cache_read_input_token_cost = 3e-9
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.2e-7
+cache_read_input_token_cost = 6e-9
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -40416,9 +40564,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."deepseek/deepseek-v4-1-flash:thinking".pricing."nano-gpt"]
-cache_read_input_token_cost = 3e-9
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.2e-7
 
 [models."deepseek/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash"
@@ -41212,9 +41360,9 @@ cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 [models."deepseek/deepseek-v4.1-flash".pricing."nano-gpt"]
-cache_read_input_token_cost = 3e-9
-input_cost_per_token = 1.0000000000000001e-7
-output_cost_per_token = 4.0000000000000003e-7
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.2e-7
 [models."deepseek/deepseek-v4.1-flash".pricing."ofox"]
 cache_read_input_token_cost = 4.1999999999999996e-9
 input_cost_per_token = 2.1e-7
@@ -79390,59 +79538,6 @@ supports_tool_choice = true
 input_cost_per_token = 2e-7
 output_cost_per_token = 4e-7
 
-[models."jev"]
-display_name = "Jev"
-mode = "chat"
-max_input_tokens = 64000
-max_output_tokens = 0
-input_cost_per_token = 4.2000000000000006e-8
-litellm_provider = "vivgrid"
-providers = ["vivgrid"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."jev".pricing."vivgrid"]
-input_cost_per_token = 4.2000000000000006e-8
-
-[models."jev-1-13"]
-display_name = "Jev 1.13"
-mode = "chat"
-max_input_tokens = 64000
-max_output_tokens = 0
-input_cost_per_token = 4.2000000000000006e-8
-litellm_provider = "opencode"
-providers = ["opencode"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."jev-1-13".pricing."opencode"]
-input_cost_per_token = 4.2000000000000006e-8
-
-[models."jev-1-13-free"]
-display_name = "Jev 1.13 Free"
-mode = "chat"
-max_input_tokens = 64000
-max_output_tokens = 0
-litellm_provider = "opencode"
-providers = ["opencode"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
 [models."jev-1.13.0"]
 mode = "evaluation"
 input_cost_per_token = 4.2e-8
@@ -79456,24 +79551,13 @@ input_cost_per_token = 4.2e-8
 output_cost_per_token = 0
 
 [models."jev-latest"]
-display_name = "Jev"
 mode = "evaluation"
-max_input_tokens = 64000
-max_output_tokens = 0
 input_cost_per_token = 4.2e-8
 output_cost_per_token = 0
 litellm_provider = "typesafe"
-providers = ["typesafe", "opencode"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
+providers = ["typesafe"]
 source = "https://docs.typesafe.ai/models"
 
-[models."jev-latest".pricing."opencode"]
-input_cost_per_token = 4.2000000000000006e-8
 [models."jev-latest".pricing."typesafe"]
 input_cost_per_token = 4.2e-8
 output_cost_per_token = 0
@@ -89165,7 +89249,7 @@ cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 [models."minimax-m2-5".pricing."opencode-go"]
-cache_read_input_token_cost = 3e-8
+cache_read_input_token_cost = 6e-8
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
@@ -121635,9 +121719,9 @@ output_cost_per_token = 5.8e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -121647,9 +121731,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -124033,65 +124117,6 @@ supports_video_input = true
 [models."twelvelabs.pegasus-1-2-v1:0".pricing."bedrock"]
 input_cost_per_video_per_second = 0.00049
 output_cost_per_token = 0.0000075
-
-[models."typesafe-ai/jev"]
-display_name = "Jev"
-mode = "chat"
-max_input_tokens = 32000
-max_output_tokens = 0
-input_cost_per_token = 4.2000000000000006e-8
-litellm_provider = "vercel"
-providers = ["vercel"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."typesafe-ai/jev".pricing."vercel"]
-input_cost_per_token = 4.2000000000000006e-8
-
-[models."typesafe/jev"]
-display_name = "Jev"
-mode = "chat"
-max_input_tokens = 32000
-max_output_tokens = 0
-input_cost_per_token = 4.2000000000000006e-8
-litellm_provider = "cloudflare-ai-gateway"
-providers = ["cloudflare-ai-gateway"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."typesafe/jev".pricing."cloudflare-ai-gateway"]
-input_cost_per_token = 4.2000000000000006e-8
-
-[models."typesafe/jev-latest"]
-display_name = "Jev Latest"
-mode = "chat"
-max_input_tokens = 32000
-max_output_tokens = 0
-input_cost_per_token = 4.2000000000000006e-8
-cache_read_input_token_cost = 2.1000000000000003e-8
-litellm_provider = "nano-gpt"
-providers = ["nano-gpt"]
-supports_function_calling = false
-supports_reasoning = false
-open_weights = false
-release_date = "2026-09-15"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."typesafe/jev-latest".pricing."nano-gpt"]
-cache_read_input_token_cost = 2.1000000000000003e-8
-input_cost_per_token = 4.2000000000000006e-8
 
 [models."umans-coder"]
 display_name = "Umans Coder"
@@ -138247,9 +138272,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.8612e-8
-input_cost_per_token = 5.5836e-7
-output_cost_per_token = 0.00000167508
+cache_read_input_token_cost = 1.7136e-8
+input_cost_per_token = 5.385600000000001e-7
+output_cost_per_token = 0.00000161568
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.9228e-8
 input_cost_per_token = 5.7684e-7
@@ -138753,9 +138778,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.5678e-7
-input_cost_per_token = 8.442e-7
-output_cost_per_token = 0.0000026532
+cache_read_input_token_cost = 1.5444e-7
+input_cost_per_token = 8.316e-7
+output_cost_per_token = 0.0000026136
 [models."~z-ai/glm-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.5678e-7
 input_cost_per_token = 8.442e-7
