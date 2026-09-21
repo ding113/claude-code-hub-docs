@@ -1,0 +1,59 @@
+import type { ModelProbeFamily } from '@/lib/model-detection/types'
+
+export const MODEL_PROBE_FAMILIES: ModelProbeFamily[] = [
+  {
+    id: 'openai-pre-4o',
+    label: 'OpenAI（GPT-4o 前）',
+    probes: [
+      'SolidGoldMagikarp',
+      'TheNitromeFan',
+      'StreamerBot',
+      '?????-?????-',
+      'petertodd',
+      'ForgeModLoader',
+    ],
+  },
+  {
+    id: 'openai-post-4o',
+    label: 'OpenAI（GPT-4o 后）',
+    probes: [
+      '微信公众号天天中彩票',
+      '大发展有限公司官网',
+      '久久免费热在线精品',
+      '微信上的天天中彩票',
+      '给主人留下些什么吧',
+      '微信里的天天中彩票',
+      '彩神争霸大发快三',
+    ],
+  },
+  {
+    id: 'glm',
+    label: 'GLM',
+    probes: ['锅内倒入植物油烧热'],
+  },
+  {
+    id: 'anthropic',
+    label: 'Anthropic',
+    probes: ['“中文引号”和"英文引号"'],
+  },
+  {
+    id: 'qwen',
+    label: 'Qwen',
+    probes: ['～和 ~'],
+  },
+  {
+    id: 'minimax-pre-m27',
+    label: 'MiniMax（M2.7 前）',
+    probes: ['马嘉祺'],
+  },
+  {
+    id: 'deepseek',
+    label: 'DeepSeek',
+    probes: [
+      '<｜begin▁of▁thinking｜>',
+      '<｜end▁of▁thinking｜>',
+      '<｜▁pad▁｜>',
+      '<｜begin▁of▁sentence｜>',
+    ],
+  },
+]
