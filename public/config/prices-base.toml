@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.26"
-checksum = "7ad422de8c82234d7c5e9f51c78196613fb68ebdb9ee2b24397f86f414c082c5"
+checksum = "f592708db4e1e28bae9a54197c20877e9eaec64a38bf75446e32c4a0d92adf7f"
 sources = ["litellm", "modelsdev"]
-total_models = 5142
-litellm_raw_models = 4377
-modelsdev_raw_models = 8181
+total_models = 5145
+litellm_raw_models = 4378
+modelsdev_raw_models = 8173
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3285,15 +3285,15 @@ providers = ["azure_ai"]
 deprecation_date = "2026-10-01"
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
 input_cost_per_image_token = 0.00000175
-output_cost_per_image = 0.0338
-output_cost_per_image_token = 0.000033
+output_cost_per_image = 0.02
+output_cost_per_image_token = 0.0000195
 supported_endpoints = ["/v1/images/generations", "/v1/images/edits"]
 
 [models."MAI-Image-2.5-Flash".pricing."azure_ai"]
 input_cost_per_image_token = 0.00000175
 input_cost_per_token = 0.00000175
-output_cost_per_image = 0.0338
-output_cost_per_image_token = 0.000033
+output_cost_per_image = 0.02
+output_cost_per_image_token = 0.0000195
 
 [models."MAI-Image-2.5-Pro"]
 mode = "image_generation"
@@ -9669,7 +9669,7 @@ input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
 [models."accounts/fireworks/models/deepseek-v4-flash-0731"]
-display_name = "DeepSeek V4 Flash 0731"
+display_name = "DeepSeek V4 Flash 0731 (Fireworks AI)"
 model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1048576
@@ -9679,7 +9679,7 @@ input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 cache_read_input_token_cost = 7e-9
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "edenai", "fireworks-ai"]
+providers = ["fireworks_ai", "edenai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -9700,10 +9700,6 @@ supports_tool_choice = true
 cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
-[models."accounts/fireworks/models/deepseek-v4-flash-0731".pricing."fireworks-ai"]
-cache_read_input_token_cost = 7e-9
-input_cost_per_token = 2.2e-7
-output_cost_per_token = 6.6e-7
 [models."accounts/fireworks/models/deepseek-v4-flash-0731".pricing."fireworks_ai"]
 cache_read_input_token_cost = 7e-9
 cache_read_input_token_cost_priority = 8.75e-9
@@ -9713,25 +9709,17 @@ output_cost_per_token = 6.6e-7
 output_cost_per_token_priority = 8.25e-7
 
 [models."accounts/fireworks/models/deepseek-v4-flash-vision-exp"]
-display_name = "DeepSeek V4 Flash Vision Exp"
-model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 384000
 max_tokens = 1048576
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 cache_read_input_token_cost = 7e-9
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-08-21"
 deprecation_date = "2026-09-25"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 8.75e-9
 input_cost_per_token_priority = 2.75e-7
@@ -9739,10 +9727,6 @@ output_cost_per_token_priority = 8.25e-7
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/deepseek-v4-flash-vision-exp".pricing."fireworks-ai"]
-cache_read_input_token_cost = 7e-9
-input_cost_per_token = 2.2e-7
-output_cost_per_token = 6.6e-7
 [models."accounts/fireworks/models/deepseek-v4-flash-vision-exp".pricing."fireworks_ai"]
 cache_read_input_token_cost = 7e-9
 cache_read_input_token_cost_priority = 8.75e-9
@@ -9752,8 +9736,6 @@ output_cost_per_token = 6.6e-7
 output_cost_per_token_priority = 8.25e-7
 
 [models."accounts/fireworks/models/deepseek-v4-pro"]
-display_name = "DeepSeek V4 Pro"
-model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
@@ -9762,16 +9744,11 @@ input_cost_per_token = 0.0000012
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2026-04-24"
 deprecation_date = "2026-08-27"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 6e-7
 input_cost_per_token_priority = 0.0000012
@@ -9779,10 +9756,6 @@ output_cost_per_token_priority = 0.0000012
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/deepseek-v4-pro".pricing."fireworks-ai"]
-cache_read_input_token_cost = 6e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000012
 [models."accounts/fireworks/models/deepseek-v4-pro".pricing."fireworks_ai"]
 cache_read_input_token_cost = 6e-7
 cache_read_input_token_cost_priority = 6e-7
@@ -9792,7 +9765,7 @@ output_cost_per_token = 0.0000012
 output_cost_per_token_priority = 0.0000012
 
 [models."accounts/fireworks/models/deepseek-v4-pro-0813"]
-display_name = "DeepSeek V4 Pro 0813"
+display_name = "DeepSeek V4 Pro 0813 (Fireworks AI)"
 model_family = "deepseek-thinking"
 mode = "chat"
 max_input_tokens = 1048576
@@ -9802,7 +9775,7 @@ input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
 cache_read_input_token_cost = 4.4e-8
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "edenai", "fireworks-ai"]
+providers = ["fireworks_ai", "edenai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -9822,10 +9795,6 @@ supports_tool_choice = true
 cache_read_input_token_cost = 4.4e-8
 input_cost_per_token = 0.00000132
 output_cost_per_token = 0.00000396
-[models."accounts/fireworks/models/deepseek-v4-pro-0813".pricing."fireworks-ai"]
-cache_read_input_token_cost = 4.4e-8
-input_cost_per_token = 0.00000132
-output_cost_per_token = 0.00000396
 [models."accounts/fireworks/models/deepseek-v4-pro-0813".pricing."fireworks_ai"]
 cache_read_input_token_cost = 4.4e-8
 cache_read_input_token_cost_priority = 5.5e-8
@@ -9841,9 +9810,9 @@ mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 393216
 max_tokens = 393216
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
-cache_read_input_token_cost = 6e-9
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+cache_read_input_token_cost = 7e-9
 litellm_provider = "fireworks_ai"
 providers = ["fireworks_ai", "fireworks-ai"]
 supports_function_calling = true
@@ -9855,10 +9824,10 @@ knowledge_cutoff = "2025-05"
 release_date = "2026-09-10"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "https://docs.fireworks.ai/serverless/pricing"
-cache_read_input_token_cost_priority = 7.5e-9
-input_cost_per_token_priority = 3.75e-7
-output_cost_per_token_priority = 0.0000015
+source = "https://api.fireworks.ai/v1/serverless/models?format=nested"
+cache_read_input_token_cost_priority = 8.75e-9
+input_cost_per_token_priority = 2.75e-7
+output_cost_per_token_priority = 8.25e-7
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -9867,12 +9836,12 @@ cache_read_input_token_cost = 7e-9
 input_cost_per_token = 2.2e-7
 output_cost_per_token = 6.6e-7
 [models."accounts/fireworks/models/deepseek-v4p1-flash".pricing."fireworks_ai"]
-cache_read_input_token_cost = 6e-9
-cache_read_input_token_cost_priority = 7.5e-9
-input_cost_per_token = 3e-7
-input_cost_per_token_priority = 3.75e-7
-output_cost_per_token = 0.0000012
-output_cost_per_token_priority = 0.0000015
+cache_read_input_token_cost = 7e-9
+cache_read_input_token_cost_priority = 8.75e-9
+input_cost_per_token = 2.2e-7
+input_cost_per_token_priority = 2.75e-7
+output_cost_per_token = 6.6e-7
+output_cost_per_token_priority = 8.25e-7
 
 [models."accounts/fireworks/models/devstral-small-2505"]
 mode = "chat"
@@ -10388,8 +10357,6 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 
 [models."accounts/fireworks/models/glm-5p2"]
-display_name = "GLM 5.2"
-model_family = "glm"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
@@ -10398,15 +10365,11 @@ input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
 cache_read_input_token_cost = 1.4e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
-open_weights = true
-release_date = "2026-06-16"
 deprecation_date = "2026-09-25"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 1.75e-7
 input_cost_per_token_priority = 0.00000175
@@ -10414,10 +10377,6 @@ output_cost_per_token_priority = 0.0000055
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/glm-5p2".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.4e-7
-input_cost_per_token = 0.0000014
-output_cost_per_token = 0.0000044
 [models."accounts/fireworks/models/glm-5p2".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1.4e-7
 cache_read_input_token_cost_priority = 1.75e-7
@@ -10814,8 +10773,6 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 
 [models."accounts/fireworks/models/kimi-k2p6"]
-display_name = "Kimi K2.6"
-model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
@@ -10824,15 +10781,11 @@ input_cost_per_token = 9.5e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.6e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
-open_weights = true
-release_date = "2026-04-17"
 deprecation_date = "2026-09-25"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 2.2e-7
 input_cost_per_token_priority = 0.0000015
@@ -10840,10 +10793,6 @@ output_cost_per_token_priority = 0.000006
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/kimi-k2p6".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.6e-7
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
 [models."accounts/fireworks/models/kimi-k2p6".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1.6e-7
 cache_read_input_token_cost_priority = 2.2e-7
@@ -10853,8 +10802,6 @@ output_cost_per_token = 0.000004
 output_cost_per_token_priority = 0.000006
 
 [models."accounts/fireworks/models/kimi-k2p7-code"]
-display_name = "Kimi K2.7 Code"
-model_family = "kimi-k2"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
@@ -10863,15 +10810,11 @@ input_cost_per_token = 9.5e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.9e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
-open_weights = true
-release_date = "2026-06-12"
 deprecation_date = "2026-09-25"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 2.85e-7
 input_cost_per_token_priority = 0.000001425
@@ -10879,10 +10822,6 @@ output_cost_per_token_priority = 0.000006
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/kimi-k2p7-code".pricing."fireworks-ai"]
-cache_read_input_token_cost = 1.9e-7
-input_cost_per_token = 9.499999999999999e-7
-output_cost_per_token = 0.000004
 [models."accounts/fireworks/models/kimi-k2p7-code".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1.9e-7
 cache_read_input_token_cost_priority = 2.85e-7
@@ -11430,21 +11369,14 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."accounts/fireworks/models/minimax-m2p7"]
-display_name = "MiniMax-M2.7"
-model_family = "minimax"
 mode = "chat"
 max_input_tokens = 196608
 max_output_tokens = 196608
 max_tokens = 196608
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-release_date = "2026-03-18"
 deprecation_date = "2026-08-27"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 cache_read_input_token_cost_priority = 6e-7
 input_cost_per_token_priority = 0.0000012
@@ -11452,10 +11384,6 @@ output_cost_per_token_priority = 0.0000012
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/minimax-m2p7".pricing."fireworks-ai"]
-cache_read_input_token_cost = 6e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000012
 [models."accounts/fireworks/models/minimax-m2p7".pricing."fireworks_ai"]
 cache_read_input_token_cost_priority = 6e-7
 input_cost_per_token_priority = 0.0000012
@@ -11756,7 +11684,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 5e-7
 
 [models."accounts/fireworks/models/muse-glimmer-30b"]
-display_name = "Muse Glimmer 30B"
+display_name = "Muse Glimmer 30B (Fireworks AI)"
 model_family = "muse"
 mode = "chat"
 max_input_tokens = 131072
@@ -11766,7 +11694,7 @@ input_cost_per_token = 3.5e-7
 output_cost_per_token = 0.0000015
 cache_read_input_token_cost = 4e-8
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "edenai", "fireworks-ai"]
+providers = ["fireworks_ai", "edenai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -11784,10 +11712,6 @@ supports_response_schema = true
 supports_tool_choice = true
 
 [models."accounts/fireworks/models/muse-glimmer-30b".pricing."edenai"]
-cache_read_input_token_cost = 4e-8
-input_cost_per_token = 3.5e-7
-output_cost_per_token = 0.0000015
-[models."accounts/fireworks/models/muse-glimmer-30b".pricing."fireworks-ai"]
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 3.5e-7
 output_cost_per_token = 0.0000015
@@ -13179,8 +13103,6 @@ input_cost_per_token = 2e-7
 output_cost_per_token = 2e-7
 
 [models."accounts/fireworks/models/qwen3p7-plus"]
-display_name = "Qwen 3.7 Plus"
-model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 65536
@@ -13189,22 +13111,14 @@ input_cost_per_token = 4e-7
 output_cost_per_token = 0.0000016
 cache_read_input_token_cost = 8e-8
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
-open_weights = false
-release_date = "2026-06-12"
-supported_modalities = ["text", "image"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/models/qwen3p7-plus".pricing."fireworks-ai"]
-cache_read_input_token_cost = 8e-8
-input_cost_per_token = 4.0000000000000003e-7
-output_cost_per_token = 0.0000016000000000000001
 [models."accounts/fireworks/models/qwen3p7-plus".pricing."fireworks_ai"]
 cache_read_input_token_cost = 8e-8
 input_cost_per_token = 4e-7
@@ -13590,8 +13504,6 @@ input_cost_per_token = 0.0000028
 output_cost_per_token = 0.0000088
 
 [models."accounts/fireworks/routers/glm-5p2-fast"]
-display_name = "GLM 5.2 Fast"
-model_family = "glm"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
@@ -13600,23 +13512,15 @@ input_cost_per_token = 0.0000021
 output_cost_per_token = 0.0000066
 cache_read_input_token_cost = 2.1e-7
 litellm_provider = "fireworks_ai"
-providers = ["fireworks_ai", "fireworks-ai"]
+providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
-open_weights = true
-release_date = "2026-06-26"
 deprecation_date = "2026-09-25"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
 supports_response_schema = true
 supports_tool_choice = true
 
-[models."accounts/fireworks/routers/glm-5p2-fast".pricing."fireworks-ai"]
-cache_read_input_token_cost = 2.1e-7
-input_cost_per_token = 0.0000021000000000000002
-output_cost_per_token = 0.0000065999999999999995
 [models."accounts/fireworks/routers/glm-5p2-fast".pricing."fireworks_ai"]
 cache_read_input_token_cost = 2.1e-7
 input_cost_per_token = 0.0000021
@@ -34814,6 +34718,51 @@ input_dbu_cost_per_token = 0.000071429
 output_cost_per_token = 0.00002500001
 output_dbu_cost_per_token = 0.000357143
 
+[models."databricks-claude-opus-5-5"]
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.00000400001
+output_cost_per_token = 0.00001999998
+cache_read_input_token_cost = 1.9999e-7
+cache_creation_input_token_cost = 0.00000500003
+litellm_provider = "databricks"
+providers = ["databricks"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
+cache_creation_input_token_cost_above_1hr = 0.00000800002
+input_dbu_cost_per_token = 0.000057143
+output_dbu_cost_per_token = 0.000285714
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_anthropic_thinking_payload = true
+supports_assistant_prefill = false
+supports_forced_tool_use = false
+supports_max_reasoning_effort = true
+supports_minimal_reasoning_effort = false
+supports_none_reasoning_effort = false
+supports_output_config = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_xhigh_reasoning_effort = true
+thinking_always_on = true
+
+[models."databricks-claude-opus-5-5".metadata]
+notes = "Costs per token are the published Global DBU rates times $0.070 per DBU. The '*_dbu_cost_per_token' fields are provided for reference; cost calculation reads the dollar '*_cost_per_token' fields."
+
+[models."databricks-claude-opus-5-5".pricing."databricks"]
+cache_creation_input_token_cost = 0.00000500003
+cache_creation_input_token_cost_above_1hr = 0.00000800002
+cache_read_input_token_cost = 1.9999e-7
+input_cost_per_token = 0.00000400001
+input_dbu_cost_per_token = 0.000057143
+output_cost_per_token = 0.00001999998
+output_dbu_cost_per_token = 0.000285714
+
 [models."databricks-claude-sonnet-4"]
 display_name = "Claude Sonnet 4.5"
 model_family = "claude-sonnet"
@@ -39177,6 +39126,7 @@ supports_function_calling = true
 supports_reasoning = true
 open_weights = false
 release_date = "2025-08-19"
+deprecation_date = "2026-07-13"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
@@ -40402,29 +40352,29 @@ mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 393216
 max_tokens = 393216
-input_cost_per_token = 3e-7
-output_cost_per_token = 0.0000012
-cache_read_input_token_cost = 6e-9
+input_cost_per_token = 2.2e-7
+output_cost_per_token = 6.6e-7
+cache_read_input_token_cost = 7e-9
 litellm_provider = "fireworks_ai"
 providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
-source = "https://docs.fireworks.ai/serverless/pricing"
-cache_read_input_token_cost_priority = 7.5e-9
-input_cost_per_token_priority = 3.75e-7
-output_cost_per_token_priority = 0.0000015
+source = "https://api.fireworks.ai/v1/serverless/models?format=nested"
+cache_read_input_token_cost_priority = 8.75e-9
+input_cost_per_token_priority = 2.75e-7
+output_cost_per_token_priority = 8.25e-7
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."deepseek-v4p1-flash".pricing."fireworks_ai"]
-cache_read_input_token_cost = 6e-9
-cache_read_input_token_cost_priority = 7.5e-9
-input_cost_per_token = 3e-7
-input_cost_per_token_priority = 3.75e-7
-output_cost_per_token = 0.0000012
-output_cost_per_token_priority = 0.0000015
+cache_read_input_token_cost = 7e-9
+cache_read_input_token_cost_priority = 8.75e-9
+input_cost_per_token = 2.2e-7
+input_cost_per_token_priority = 2.75e-7
+output_cost_per_token = 6.6e-7
+output_cost_per_token_priority = 8.25e-7
 
 [models."deepseek-v4p1-flash-us"]
 mode = "chat"
@@ -76513,6 +76463,7 @@ supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2024-06"
 release_date = "2024-06-01"
+deprecation_date = "2026-05-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
@@ -76540,6 +76491,7 @@ supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2024-06"
 release_date = "2024-06-01"
+deprecation_date = "2026-05-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
@@ -77204,6 +77156,7 @@ supports_reasoning = false
 open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-07-09"
+deprecation_date = "2026-05-01"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
@@ -77240,6 +77193,7 @@ supports_reasoning = true
 open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-09-23"
+deprecation_date = "2026-05-01"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
@@ -86586,6 +86540,22 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.000003
+
+[models."longcat-2-5-preview-free"]
+display_name = "LongCat 2.5 Preview Free"
+model_family = "longcat"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+litellm_provider = "opencode-go"
+providers = ["opencode-go", "opencode"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-25"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
 [models."longcat-2.0"]
 display_name = "LongCat 2.0"
@@ -126304,9 +126274,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 5.3e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -126316,9 +126286,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -140379,6 +140349,30 @@ release_date = "2026-08-14"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."z-ai/glm-5-3-uncensored"]
+display_name = "GLM 5.3 Uncensored"
+model_family = "glm"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 131072
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000225
+cache_read_input_token_cost = 3e-7
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+release_date = "2026-09-26"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."z-ai/glm-5-3-uncensored".pricing."nano-gpt"]
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00000225
 
 [models."z-ai/glm-5-3:thinking"]
 display_name = "GLM 5.3 Thinking"
