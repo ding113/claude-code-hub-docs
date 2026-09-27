@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.27"
-checksum = "065ca8307737cec55f1dde2ad9b5fc16aa4a63b2baeb6023f5f218e9bbd9706e"
+checksum = "a6cb220e41013205aed8bd41a2612be1e15db5ae4cc34b787e4ba0bc3d2b75e5"
 sources = ["litellm", "modelsdev"]
-total_models = 5149
-litellm_raw_models = 4392
-modelsdev_raw_models = 8169
+total_models = 5151
+litellm_raw_models = 4393
+modelsdev_raw_models = 8170
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3241,6 +3241,27 @@ supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://ai.developer.meta.com/docs/models"
 supports_tool_choice = true
+
+[models."MAI-Cyber-1-Flash"]
+mode = "chat"
+max_input_tokens = 256000
+max_output_tokens = 64000
+max_tokens = 64000
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000035
+cache_read_input_token_cost = 6e-8
+litellm_provider = "azure_ai"
+providers = ["azure_ai"]
+supports_function_calling = true
+supports_reasoning = true
+supports_prompt_caching = true
+source = "https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/"
+supports_tool_choice = true
+
+[models."MAI-Cyber-1-Flash".pricing."azure_ai"]
+cache_read_input_token_cost = 6e-8
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000035
 
 [models."MAI-DS-R1"]
 mode = "chat"
@@ -40552,8 +40573,8 @@ cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 [models."deepseek/deepseek-chat".pricing."kilo"]
-input_cost_per_token = 3.2e-7
-output_cost_per_token = 8.900000000000001e-7
+input_cost_per_token = 2.574e-7
+output_cost_per_token = 0.0000010287
 [models."deepseek/deepseek-chat".pricing."openrouter"]
 input_cost_per_token = 3.2e-7
 output_cost_per_token = 8.9e-7
@@ -78593,7 +78614,7 @@ mode = "chat"
 max_input_tokens = 500000
 max_output_tokens = 500000
 max_tokens = 500000
-input_cost_per_token = 0.000002
+input_cost_per_token = 0.00000125
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 5e-7
 litellm_provider = "azure_ai"
@@ -78602,7 +78623,7 @@ supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
-source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
+source = "https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/grok/"
 cache_read_input_token_cost_above_200k_tokens = 0.000001
 input_cost_per_token_above_200k_tokens = 0.000004
 output_cost_per_token_above_200k_tokens = 0.000012
@@ -78617,7 +78638,7 @@ output_cost_per_token = 0.000006
 [models."grok-4.6".pricing."azure_ai"]
 cache_read_input_token_cost = 5e-7
 cache_read_input_token_cost_above_200k_tokens = 0.000001
-input_cost_per_token = 0.000002
+input_cost_per_token = 0.00000125
 input_cost_per_token_above_200k_tokens = 0.000004
 output_cost_per_token = 0.000006
 output_cost_per_token_above_200k_tokens = 0.000012
@@ -86583,6 +86604,30 @@ source = "modelsdev"
 cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 7.5e-7
 output_cost_per_token = 0.000003
+
+[models."longcat-2-5-preview"]
+display_name = "LongCat 2.5 Preview"
+model_family = "longcat"
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 131072
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.00000295
+cache_read_input_token_cost = 1.5e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = false
+release_date = "2026-09-25"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."longcat-2-5-preview".pricing."nano-gpt"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.00000295
 
 [models."longcat-2-5-preview-free"]
 display_name = "LongCat 2.5 Preview Free"
@@ -126450,9 +126495,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 5.3e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -126462,9 +126507,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -144581,8 +144626,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 4.4965e-8
-input_cost_per_token = 2.737e-7
+cache_read_input_token_cost = 5.951e-8
+input_cost_per_token = 3.032e-7
 output_cost_per_token = 0.000002574
 [models."~z-ai/glm-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.2142e-7
