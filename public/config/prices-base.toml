@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.28"
-checksum = "d83e81e73916e6c73c76cfe519bedb3b15511c88c80c6740961ee93833b9e05a"
+checksum = "4d61b37423d97c58ddc080fc0aaf5fce00904480abbe2fcc9f3dda24575eb5eb"
 sources = ["litellm", "modelsdev"]
-total_models = 5192
-litellm_raw_models = 4414
-modelsdev_raw_models = 8256
+total_models = 5195
+litellm_raw_models = 4415
+modelsdev_raw_models = 8281
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -1664,8 +1664,8 @@ output_cost_per_token = 0.0000045
 [models."DeepSeek-V4-Flash-0731"]
 mode = "chat"
 max_input_tokens = 1000000
-max_output_tokens = 128000
-max_tokens = 128000
+max_output_tokens = 384000
+max_tokens = 384000
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 cache_read_input_token_cost = 1.4e-8
@@ -1675,7 +1675,7 @@ supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
 deprecation_date = "2026-12-03"
-source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
+source = "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure"
 supports_tool_choice = true
 
 [models."DeepSeek-V4-Flash-0731".pricing."azure_ai"]
@@ -8654,7 +8654,7 @@ max_input_tokens = 1048576
 max_output_tokens = 131072
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
-cache_read_input_token_cost = 2.7e-9
+cache_read_input_token_cost = 2.8e-9
 litellm_provider = "deepinfra"
 providers = ["deepinfra"]
 supports_function_calling = true
@@ -8666,7 +8666,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."XiaomiMiMo/MiMo-V2-6-Flash".pricing."deepinfra"]
-cache_read_input_token_cost = 2.7e-9
+cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
@@ -18731,10 +18731,11 @@ source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockF
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000004
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -18745,6 +18746,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -19254,22 +19256,22 @@ mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 8192
 max_tokens = 8192
-input_cost_per_token = 3.09e-7
-output_cost_per_token = 0.000001236
+input_cost_per_token = 3.1e-7
+output_cost_per_token = 0.00000124
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_audio_input = false
 supports_response_schema = true
 supports_system_messages = true
 supports_tool_choice = true
 
 [models."ap-southeast-2/minimax.minimax-m2.5".pricing."bedrock"]
-input_cost_per_token = 3.09e-7
-output_cost_per_token = 0.000001236
+input_cost_per_token = 3.1e-7
+output_cost_per_token = 0.00000124
 
 [models."ap-southeast-2/qwen.qwen3-next-80b-a3b"]
 mode = "chat"
@@ -19978,10 +19980,11 @@ source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockF
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -19992,6 +19995,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."apac.anthropic.claude-sonnet-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000275
@@ -20796,10 +20800,11 @@ source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -20810,6 +20815,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."au.anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -31993,8 +31999,8 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5".pricing."merge-gateway"]
 cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000015
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."claude-sonnet-5".pricing."nano-gpt"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
@@ -32070,48 +32076,59 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 
 [models."claude-sonnet-5-5"]
-display_name = "Anthropic: Claude Sonnet 5.5"
+display_name = "Claude Sonnet 5.5"
 model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-max_tokens = 1000000
+max_tokens = 128000
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0.0000025
-litellm_provider = "aihubmix"
-providers = ["aihubmix", "anthropic", "azure_ai", "deepinfra", "kilo", "openrouter", "perplexity", "vertex_ai"]
+litellm_provider = "anthropic"
+providers = ["anthropic", "azure", "azure_ai", "azure-cognitive-services", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "opencode", "openrouter", "perplexity", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
 open_weights = false
+knowledge_cutoff = "2026-06"
 release_date = "2026-09-28"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aihubmix.com/api/v1/models"
-prompt_cache_min_tokens = 1024
+source = "https://platform.claude.com/docs/en/models/sonnet-5-5/overview"
+cache_creation_input_token_cost_above_1hr = 0.000004
+cache_creation_input_token_cost_batches = 0.00000125
+cache_read_input_token_cost_batches = 1e-7
+input_cost_per_token_batches = 0.000001
+output_cost_per_token_batches = 0.000005
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_anthropic_compaction = true
+supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = true
 supports_output_config = true
 supports_response_schema = true
 supports_sampling_params = false
-supports_thinking_cache_preservation = true
 supports_tool_choice = true
 supports_web_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
-[models."claude-sonnet-5-5".pricing."aihubmix"]
-cache_creation_input_token_cost = 0.0000025
-cache_read_input_token_cost = 2e-7
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".provider_specific_entry]
+us = 1.1
+
+[models."claude-sonnet-5-5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
 [models."claude-sonnet-5-5".pricing."anthropic"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
@@ -32122,69 +32139,99 @@ input_cost_per_token = 0.000002
 input_cost_per_token_batches = 0.000001
 output_cost_per_token = 0.00001
 output_cost_per_token_batches = 0.000005
+[models."claude-sonnet-5-5".pricing."azure"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."azure_ai"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
 cache_read_input_token_cost = 2e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
-[models."claude-sonnet-5-5".pricing."deepinfra"]
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."kilo"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."llmgateway"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."llmgateway-providers"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."merge-gateway"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."nano-gpt"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."opencode"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."openrouter"]
-cache_creation_input_token_cost = 0.0000025
-cache_creation_input_token_cost_above_1hr = 0.000004
-cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."perplexity"]
 cache_read_input_token_cost = 2e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5".pricing."venice"]
+cache_read_input_token_cost = 3.75e-7
+input_cost_per_token = 0.00000375
+output_cost_per_token = 0.00001875
+[models."claude-sonnet-5-5".pricing."vercel"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
+cache_creation_input_token_cost_batches = 0.00000125
 cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_batches = 1e-7
 input_cost_per_token = 0.000002
 input_cost_per_token_batches = 0.000001
 output_cost_per_token = 0.00001
 output_cost_per_token_batches = 0.000005
 
-[models."claude-sonnet-5-5:batch"]
+[models."claude-sonnet-5-5:thinking"]
+display_name = "Claude Sonnet 5.5 Thinking"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
-max_tokens = 128000
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
-cache_read_input_token_cost = 1e-7
-cache_creation_input_token_cost = 0.00000125
-litellm_provider = "openrouter"
-providers = ["openrouter"]
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2.0000000000000002e-7
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt"]
 supports_function_calling = true
-supports_vision = true
 supports_reasoning = true
-supports_prompt_caching = true
-supports_pdf_input = true
-source = "https://openrouter.ai/api/v1/models"
-cache_creation_input_token_cost_above_1hr = 0.000002
-supports_audio_input = false
-supports_response_schema = true
-supports_tool_choice = true
-supports_web_search = true
+open_weights = false
+knowledge_cutoff = "2026-06"
+release_date = "2026-09-28"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
 
-[models."claude-sonnet-5-5:batch".pricing."openrouter"]
-cache_creation_input_token_cost = 0.00000125
-cache_creation_input_token_cost_above_1hr = 0.000002
-cache_read_input_token_cost = 1e-7
-input_cost_per_token = 0.000001
-output_cost_per_token = 0.000005
+[models."claude-sonnet-5-5:thinking".pricing."nano-gpt"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 
 [models."claude-sonnet-5-5@default"]
+display_name = "Claude Sonnet 5.5"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -32194,38 +32241,56 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0.0000025
 litellm_provider = "vertex_ai"
-providers = ["vertex_ai"]
+providers = ["vertex_ai", "google-vertex", "google-vertex-anthropic"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-deprecation_date = "2026-12-24"
+open_weights = false
+knowledge_cutoff = "2026-06"
+release_date = "2026-09-28"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 source = "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing"
 cache_creation_input_token_cost_above_1hr = 0.000004
+cache_creation_input_token_cost_batches = 0.00000125
+cache_read_input_token_cost_batches = 1e-7
 input_cost_per_token_batches = 0.000001
 output_cost_per_token_batches = 0.000005
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 regional_endpoint_uplift_multiplier = 1.1
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_response_schema = true
 supports_sampling_params = false
 supports_tool_choice = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."claude-sonnet-5-5@default".search_context_cost_per_query]
 search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."claude-sonnet-5-5@default".pricing."google-vertex"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+[models."claude-sonnet-5-5@default".pricing."google-vertex-anthropic"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5@default".pricing."vertex_ai"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
+cache_creation_input_token_cost_batches = 0.00000125
 cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_batches = 1e-7
 input_cost_per_token = 0.000002
 input_cost_per_token_batches = 0.000001
 output_cost_per_token = 0.00001
@@ -32247,6 +32312,38 @@ release_date = "2026-06-30"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."claude-sonnet-5.5"]
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
+cache_read_input_token_cost = 2e-7
+cache_creation_input_token_cost = 0.0000025
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+source = "https://openrouter.ai/api/v1/models"
+cache_creation_input_token_cost_above_1hr = 0.000004
+supports_adaptive_thinking = true
+supports_audio_input = false
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_web_search = true
+
+[models."claude-sonnet-5.5".pricing."openrouter"]
+cache_creation_input_token_cost = 0.0000025
+cache_creation_input_token_cost_above_1hr = 0.000004
+cache_read_input_token_cost = 2e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 
 [models."claude-sonnet-5:batch"]
 mode = "chat"
@@ -35560,43 +35657,6 @@ supports_tool_choice = true
 notes = "Costs per token are the published Global DBU rates times $0.070 per DBU. The '*_dbu_cost_per_token' fields are provided for reference; cost calculation reads the dollar '*_cost_per_token' fields. Introductory launch rates of 28.571 input / 142.857 output / 35.714 cache write / 2.857 cache read DBU run through 2026-08-31; the standard rates are listed here because entries carry no expiry date."
 
 [models."databricks-claude-sonnet-5".pricing."databricks"]
-cache_creation_input_token_cost = 0.00000374997
-cache_read_input_token_cost = 3.0002e-7
-input_cost_per_token = 0.00000299999
-input_dbu_cost_per_token = 0.000042857
-output_cost_per_token = 0.00001500002
-output_dbu_cost_per_token = 0.000214286
-
-[models."databricks-claude-sonnet-5-5"]
-mode = "chat"
-max_input_tokens = 1000000
-max_output_tokens = 128000
-max_tokens = 128000
-input_cost_per_token = 0.00000299999
-output_cost_per_token = 0.00001500002
-cache_read_input_token_cost = 3.0002e-7
-cache_creation_input_token_cost = 0.00000374997
-litellm_provider = "databricks"
-providers = ["databricks"]
-supports_function_calling = true
-supports_vision = true
-supports_reasoning = true
-supports_prompt_caching = true
-source = "https://www.databricks.com/product/pricing/proprietary-foundation-model-serving"
-input_dbu_cost_per_token = 0.000042857
-output_dbu_cost_per_token = 0.000214286
-prompt_cache_min_tokens = 1024
-supports_adaptive_thinking = true
-supports_anthropic_thinking_payload = true
-supports_assistant_prefill = false
-supports_mid_conversation_system = true
-supports_sampling_params = false
-supports_tool_choice = true
-
-[models."databricks-claude-sonnet-5-5".metadata]
-notes = "Costs per token are the published Global DBU rates times $0.070 per DBU. The '*_dbu_cost_per_token' fields are provided for reference; cost calculation reads the dollar '*_cost_per_token' fields. Introductory launch rates of 28.571 input / 142.857 output / 35.714 cache write / 2.857 cache read DBU run through 2026-08-31; the standard rates are listed here because entries carry no expiry date."
-
-[models."databricks-claude-sonnet-5-5".pricing."databricks"]
 cache_creation_input_token_cost = 0.00000374997
 cache_read_input_token_cost = 3.0002e-7
 input_cost_per_token = 0.00000299999
@@ -39874,9 +39934,9 @@ output_cost_per_token = 4e-7
 display_name = "DeepSeek-V3.2-Speciale"
 model_family = "deepseek"
 mode = "chat"
-max_input_tokens = 163840
-max_output_tokens = 163840
-max_tokens = 163840
+max_input_tokens = 128000
+max_output_tokens = 128000
+max_tokens = 128000
 input_cost_per_token = 5.8e-7
 output_cost_per_token = 0.00000168
 litellm_provider = "azure_ai"
@@ -39889,7 +39949,7 @@ knowledge_cutoff = "2024-07"
 release_date = "2025-12-01"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
+source = "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure"
 supports_assistant_prefill = true
 supports_tool_choice = true
 
@@ -40117,7 +40177,7 @@ input_cost_per_token = 1.9e-7
 output_cost_per_token = 5.1e-7
 cache_read_input_token_cost = 2.8e-8
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "above", "aihubmix", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "amd", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "inferx", "jalapeno", "kenari", "libertai", "llmgateway", "llmgateway-providers", "modelis", "nan", "neuralwatt", "ollama-cloud", "opencode", "opencode-go", "opper", "pendra", "qwen_ai_platform", "qwencloud", "requesty", "routing-run", "scnet-token-plan", "sensenova", "tencent", "unorouter", "venice", "vivgrid", "volcengine-coding-plan"]
+providers = ["azure_ai", "above", "aihubmix", "alibaba-cn", "alibaba-token-plan", "alibaba-token-plan-cn", "amd", "auriko", "azure", "crof", "dashscope", "deepseek", "ebcloud", "empiriolabs", "fireworks_ai", "hyper", "inferx", "jalapeno", "kenari", "libertai", "llmgateway", "llmgateway-providers", "modelis", "nan", "neuralwatt", "ollama-cloud", "opencode", "opencode-go", "opper", "pendra", "prism", "qwen_ai_platform", "qwencloud", "requesty", "routing-run", "scnet-token-plan", "sensenova", "tencent", "unorouter", "venice", "vivgrid", "volcengine-coding-plan"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -40130,7 +40190,7 @@ supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Foundry%20Models'%20and%20armRegionName%20eq%20'eastus'%20and%20priceType%20eq%20'Consumption'"
 reasoning_cost_per_token = 6e-7
-supported_endpoints = ["/v1/chat/completions"]
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/messages"]
 supports_assistant_prefill = true
 supports_native_streaming = true
 supports_parallel_function_calling = true
@@ -40231,6 +40291,10 @@ output_cost_per_token = 6e-7
 [models."deepseek-v4-flash".pricing."opper"]
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 6.6e-7
+[models."deepseek-v4-flash".pricing."prism"]
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 1.7e-7
+output_cost_per_token = 2.1e-7
 [models."deepseek-v4-flash".pricing."qwen_ai_platform"]
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 2e-7
@@ -41029,18 +41093,28 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 cache_read_input_token_cost = 6e-9
 litellm_provider = "azure_ai"
-providers = ["azure_ai"]
+providers = ["azure_ai", "prism"]
 supports_function_calling = true
+supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 deprecation_date = "2026-12-15"
 source = "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/deepseek-v4-1-flash-is-coming-to-microsoft-foundry/4556431"
+supported_endpoints = ["/v1/chat/completions", "/v1/responses", "/v1/messages"]
+supports_native_streaming = true
+supports_parallel_function_calling = true
+supports_response_schema = true
+supports_system_messages = true
 supports_tool_choice = true
 
 [models."deepseek-v4.1-flash".pricing."azure_ai"]
 cache_read_input_token_cost = 6e-9
 input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
+[models."deepseek-v4.1-flash".pricing."prism"]
+cache_read_input_token_cost = 7e-8
+input_cost_per_token = 1.7e-7
+output_cost_per_token = 6.3e-7
 
 [models."deepseek-v4p1-flash"]
 mode = "chat"
@@ -46898,10 +46972,11 @@ source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -46912,6 +46987,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."eu.anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -56210,6 +56286,7 @@ cache_read_input_token_cost = 4.9e-8
 input_cost_per_token = 9.8e-8
 output_cost_per_token = 3.34e-7
 [models."gemma-4-26B-A4B-it".pricing."kilo"]
+cache_read_input_token_cost = 2.1000000000000003e-8
 input_cost_per_token = 4.2000000000000006e-8
 output_cost_per_token = 2.2e-7
 [models."gemma-4-26B-A4B-it".pricing."llmgateway"]
@@ -56229,9 +56306,9 @@ output_cost_per_token = 3.8e-7
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-26B-A4B-it".pricing."openrouter"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
+cache_read_input_token_cost = 4.2500000000000003e-8
+input_cost_per_token = 7.65e-8
+output_cost_per_token = 2.55e-7
 [models."gemma-4-26B-A4B-it".pricing."orcarouter"]
 cache_read_input_token_cost = 7.5e-9
 input_cost_per_token = 6e-8
@@ -61017,6 +61094,8 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 
 [models."global.anthropic.claude-sonnet-5-5"]
+display_name = "Claude Sonnet 5.5 (Global)"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -61026,20 +61105,26 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0.0000025
 litellm_provider = "bedrock_converse"
-providers = ["bedrock_converse"]
+providers = ["bedrock_converse", "amazon-bedrock"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-06"
+release_date = "2026-09-28"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.000004
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -61050,12 +61135,17 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."global.anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."global.anthropic.claude-sonnet-5-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."global.anthropic.claude-sonnet-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
@@ -61509,6 +61599,28 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."global.xai.grok-4.6".pricing."bedrock_converse"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
+[models."global.xai.grok-4.7"]
+mode = "chat"
+max_input_tokens = 500000
+max_output_tokens = 500000
+max_tokens = 500000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = false
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+supports_tool_choice = true
+
+[models."global.xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
@@ -68895,7 +69007,7 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "azure"
-providers = ["azure", "abacus", "chatgpt", "edenai", "github_copilot", "jiekou", "kilo", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "poe", "vercel", "vivgrid"]
+providers = ["azure", "abacus", "azure-cognitive-services", "chatgpt", "edenai", "github_copilot", "jiekou", "kilo", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "poe", "vercel", "vivgrid"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -68920,6 +69032,10 @@ supports_web_search = true
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
 [models."gpt-5.1-codex-max".pricing."azure"]
+cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 0.00000125
+output_cost_per_token = 0.00001
+[models."gpt-5.1-codex-max".pricing."azure-cognitive-services"]
 cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 0.00000125
 output_cost_per_token = 0.00001
@@ -73579,7 +73695,7 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "cloudflare-ai-gateway", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "neon", "ofox", "openai", "opencode", "openrouter", "opper", "requesty", "vercel", "vivgrid", "zenmux"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "neon", "ofox", "openai", "opencode", "openrouter", "opper", "requesty", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -73630,6 +73746,10 @@ input_cost_per_token = 0.00001
 input_cost_per_token_above_272k_tokens = 0.00002
 output_cost_per_token = 0.00005
 output_cost_per_token_above_272k_tokens = 0.000075
+[models."gpt-6-astra".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.000001
+input_cost_per_token = 0.00001
+output_cost_per_token = 0.00005
 [models."gpt-6-astra".pricing."azure/eu"]
 cache_creation_input_token_cost = 0.00001375
 cache_creation_input_token_cost_above_272k_tokens = 0.0000275
@@ -73978,7 +74098,7 @@ output_cost_per_token = 5e-7
 cache_read_input_token_cost = 1e-8
 cache_creation_input_token_cost = 1.25e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "opencode-go", "openrouter", "requesty", "vercel", "vivgrid"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "opencode-go", "openrouter", "requesty", "vercel", "vivgrid"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -74030,6 +74150,10 @@ input_cost_per_token = 1e-7
 input_cost_per_token_above_272k_tokens = 2e-7
 output_cost_per_token = 5e-7
 output_cost_per_token_above_272k_tokens = 7.5e-7
+[models."gpt-6-luna".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 5e-7
 [models."gpt-6-luna".pricing."azure/eu"]
 cache_creation_input_token_cost = 1.5e-7
 cache_creation_input_token_cost_above_272k_tokens = 3e-7
@@ -75280,7 +75404,7 @@ max_output_tokens = 0
 input_cost_per_token = 0.000005
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "openai", "vercel"]
+providers = ["azure", "azure-cognitive-services", "openai", "vercel"]
 supports_function_calling = true
 supports_reasoning = false
 open_weights = false
@@ -75297,6 +75421,10 @@ cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.00001
 input_cost_per_token = 0.000005
 output_cost_per_image_token = 0.00004
+[models."gpt-image-1".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00004
 [models."gpt-image-1".pricing."openai"]
 cache_read_input_image_token_cost = 0.0000025
 cache_read_input_token_cost = 0.00000125
@@ -75360,7 +75488,7 @@ max_output_tokens = 0
 input_cost_per_token = 0.000005
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "openai", "vercel"]
+providers = ["azure", "aihubmix", "azure-cognitive-services", "openai", "vercel"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = false
@@ -75382,6 +75510,10 @@ cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.000008
 input_cost_per_token = 0.000005
 output_cost_per_image_token = 0.000032
+[models."gpt-image-1.5".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.000032
 [models."gpt-image-1.5".pricing."openai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
@@ -75435,7 +75567,7 @@ mode = "image_generation"
 max_input_tokens = 0
 max_output_tokens = 0
 litellm_provider = "aiml"
-providers = ["aiml", "aihubmix", "azure", "azure_ai", "fal_ai", "kenari", "openai", "poe", "vercel"]
+providers = ["aiml", "aihubmix", "azure", "azure_ai", "azure-cognitive-services", "fal_ai", "kenari", "openai", "poe", "vercel"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = false
@@ -75462,6 +75594,10 @@ cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.000008
 input_cost_per_token = 0.000005
 output_cost_per_image_token = 0.00003
+[models."gpt-image-2".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
 [models."gpt-image-2".pricing."azure_ai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
@@ -75522,7 +75658,7 @@ max_output_tokens = 0
 input_cost_per_token = 0.000005
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "openai", "vercel"]
+providers = ["azure", "aihubmix", "azure-cognitive-services", "openai", "vercel"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = false
@@ -75545,6 +75681,10 @@ cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.000008
 input_cost_per_token = 0.000005
 output_cost_per_image_token = 0.00003
+[models."gpt-image-2.5-flare".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
 [models."gpt-image-2.5-flare".pricing."openai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
@@ -75586,7 +75726,7 @@ max_output_tokens = 0
 input_cost_per_token = 0.000005
 cache_read_input_token_cost = 0.00000125
 litellm_provider = "azure"
-providers = ["azure", "aihubmix", "openai", "vercel"]
+providers = ["azure", "aihubmix", "azure-cognitive-services", "openai", "vercel"]
 supports_function_calling = false
 supports_vision = true
 supports_reasoning = false
@@ -75609,6 +75749,10 @@ cache_read_input_token_cost = 0.00000125
 input_cost_per_image_token = 0.000008
 input_cost_per_token = 0.000005
 output_cost_per_image_token = 0.00003
+[models."gpt-image-2.5-sunburst".pricing."azure-cognitive-services"]
+cache_read_input_token_cost = 0.00000125
+input_cost_per_token = 0.000005
+output_cost_per_token = 0.00003
 [models."gpt-image-2.5-sunburst".pricing."openai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
@@ -76247,6 +76391,7 @@ cache_read_input_token_cost = 1.5e-8
 input_cost_per_token = 3e-8
 output_cost_per_token = 1.4e-7
 [models."gpt-oss-20b".pricing."kilo"]
+cache_read_input_token_cost = 9e-9
 input_cost_per_token = 1.8e-8
 output_cost_per_token = 9e-8
 [models."gpt-oss-20b".pricing."llmgateway"]
@@ -84212,10 +84357,11 @@ source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -84226,6 +84372,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."jp.anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -92080,16 +92227,17 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 0.00000532
-output_cost_per_token = 0.000016
+input_cost_per_token = 0.0000024
+output_cost_per_token = 0.0000024
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."meta.llama3-1-405b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 0.00000532
-output_cost_per_token = 0.000016
+input_cost_per_token = 0.0000024
+output_cost_per_token = 0.0000024
 
 [models."meta.llama3-1-70b-instruct-v1:0"]
 display_name = "Llama 3.1 70B Instruct"
@@ -92098,8 +92246,8 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 2048
 max_tokens = 2048
-input_cost_per_token = 9.9e-7
-output_cost_per_token = 9.9e-7
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 litellm_provider = "bedrock"
 providers = ["bedrock", "amazon-bedrock"]
 supports_function_calling = true
@@ -92109,14 +92257,15 @@ knowledge_cutoff = "2023-12"
 release_date = "2024-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."meta.llama3-1-70b-instruct-v1:0".pricing."amazon-bedrock"]
 input_cost_per_token = 7.2e-7
 output_cost_per_token = 7.2e-7
 [models."meta.llama3-1-70b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 9.9e-7
-output_cost_per_token = 9.9e-7
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 
 [models."meta.llama3-1-8b-instruct-v1:0"]
 display_name = "Llama 3.1 8B Instruct"
@@ -92150,17 +92299,18 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 3.5e-7
-output_cost_per_token = 3.5e-7
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 1.6e-7
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."meta.llama3-2-11b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 3.5e-7
-output_cost_per_token = 3.5e-7
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 1.6e-7
 
 [models."meta.llama3-2-1b-instruct-v1:0"]
 mode = "chat"
@@ -92199,17 +92349,18 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000002
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."meta.llama3-2-90b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000002
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 
 [models."meta.llama3-3-70b-instruct-v1:0"]
 display_name = "Llama 3.3 70B Instruct"
@@ -98107,16 +98258,17 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 8191
 max_tokens = 8191
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000009
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = true
 
 [models."mistral.mistral-large-2407-v1:0".pricing."bedrock"]
-input_cost_per_token = 0.000003
-output_cost_per_token = 0.000009
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."mistral.mistral-large-3-675b-instruct"]
 display_name = "Mistral Large 3"
@@ -107724,6 +107876,7 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."nvidia/nemotron-3.5-lightning".pricing."kilo"]
+cache_read_input_token_cost = 1.95e-8
 input_cost_per_token = 3.9e-8
 output_cost_per_token = 1.8e-7
 [models."nvidia/nemotron-3.5-lightning".pricing."nano-gpt"]
@@ -112561,6 +112714,7 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."prism-ml/ternary-bonsai-2-27b".pricing."kilo"]
+cache_read_input_token_cost = 3.75e-8
 input_cost_per_token = 7.5e-8
 output_cost_per_token = 5e-7
 [models."prism-ml/ternary-bonsai-2-27b".pricing."nano-gpt"]
@@ -118339,7 +118493,7 @@ max_tokens = 131072
 input_cost_per_token = 8e-7
 output_cost_per_token = 0.000004
 litellm_provider = "groq"
-providers = ["groq", "aiand", "ambient", "deepinfra", "edenai", "evroc", "huggingface", "iteracompute", "kilo", "kosmik", "nano-gpt", "ofox", "openrouter", "orcarouter", "runinfra", "tensorx", "wandb"]
+providers = ["groq", "aiand", "ambient", "deepinfra", "edenai", "evroc", "huggingface", "iteracompute", "kilo", "kosmik", "nano-gpt", "nebius", "ofox", "openrouter", "orcarouter", "runinfra", "tensorx", "wandb"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -118393,6 +118547,10 @@ output_cost_per_token = 0.0000022
 cache_read_input_token_cost = 4e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 7e-7
+[models."qwen/qwen3.8-27b".pricing."nebius"]
+cache_read_input_token_cost = 4.5000000000000003e-7
+input_cost_per_token = 4.5000000000000003e-7
+output_cost_per_token = 0.000003
 [models."qwen/qwen3.8-27b".pricing."ofox"]
 cache_read_input_token_cost = 4.2999999999999995e-8
 input_cost_per_token = 5e-7
@@ -126058,9 +126216,9 @@ model_family = "grok"
 mode = "chat"
 max_input_tokens = 500000
 max_output_tokens = 500000
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000036000000000000003
-cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
 litellm_provider = "vercel"
 providers = ["vercel"]
 supports_function_calling = true
@@ -126073,9 +126231,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."spacexai/grok-4-7".pricing."vercel"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 0.0000012
-output_cost_per_token = 0.0000036000000000000003
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 
 [models."spacexai/grok-build-0-1"]
 display_name = "Grok Build 0.1"
@@ -131264,10 +131422,11 @@ supports_pdf_input = true
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000048
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -131278,6 +131437,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."us-gov-east-1/anthropic.claude-sonnet-5-5".pricing."bedrock"]
 cache_creation_input_token_cost = 0.000003
@@ -132009,10 +132169,11 @@ supports_pdf_input = true
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000048
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -132023,6 +132184,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."us-gov-west-1/anthropic.claude-sonnet-5-5".pricing."bedrock"]
 cache_creation_input_token_cost = 0.000003
@@ -132741,10 +132903,11 @@ source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000048
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -132755,6 +132918,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."us-gov.anthropic.claude-sonnet-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000003
@@ -134291,10 +134455,11 @@ source = "https://aws.amazon.com/bedrock/pricing/"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
 cache_creation_input_token_cost_above_1hr = 0.0000044
-prompt_cache_min_tokens = 1024
+prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
+supports_forced_tool_use = false
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -134305,6 +134470,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
+thinking_always_on = true
 
 [models."us.anthropic.claude-sonnet-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -134388,16 +134554,17 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 0.00000532
-output_cost_per_token = 0.000016
+input_cost_per_token = 0.0000024
+output_cost_per_token = 0.0000024
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."us.meta.llama3-1-405b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 0.00000532
-output_cost_per_token = 0.000016
+input_cost_per_token = 0.0000024
+output_cost_per_token = 0.0000024
 
 [models."us.meta.llama3-1-70b-instruct-v1:0"]
 display_name = "Llama 3.1 70B Instruct (US)"
@@ -134406,8 +134573,8 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 2048
 max_tokens = 2048
-input_cost_per_token = 9.9e-7
-output_cost_per_token = 9.9e-7
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 litellm_provider = "bedrock"
 providers = ["bedrock", "amazon-bedrock"]
 supports_function_calling = true
@@ -134417,14 +134584,15 @@ knowledge_cutoff = "2023-12"
 release_date = "2024-07-23"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."us.meta.llama3-1-70b-instruct-v1:0".pricing."amazon-bedrock"]
 input_cost_per_token = 7.2e-7
 output_cost_per_token = 7.2e-7
 [models."us.meta.llama3-1-70b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 9.9e-7
-output_cost_per_token = 9.9e-7
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 
 [models."us.meta.llama3-1-8b-instruct-v1:0"]
 display_name = "Llama 3.1 8B Instruct (US)"
@@ -134458,17 +134626,18 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 3.5e-7
-output_cost_per_token = 3.5e-7
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 1.6e-7
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."us.meta.llama3-2-11b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 3.5e-7
-output_cost_per_token = 3.5e-7
+input_cost_per_token = 1.6e-7
+output_cost_per_token = 1.6e-7
 
 [models."us.meta.llama3-2-1b-instruct-v1:0"]
 mode = "chat"
@@ -134507,17 +134676,18 @@ mode = "chat"
 max_input_tokens = 128000
 max_output_tokens = 4096
 max_tokens = 4096
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000002
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 litellm_provider = "bedrock"
 providers = ["bedrock"]
 supports_function_calling = true
 supports_vision = true
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
 supports_tool_choice = false
 
 [models."us.meta.llama3-2-90b-instruct-v1:0".pricing."bedrock"]
-input_cost_per_token = 0.000002
-output_cost_per_token = 0.000002
+input_cost_per_token = 7.2e-7
+output_cost_per_token = 7.2e-7
 
 [models."us.meta.llama3-3-70b-instruct-v1:0"]
 display_name = "Llama 3.3 70B Instruct (US)"
@@ -135163,6 +135333,28 @@ cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000065999999999999995
 [models."us.xai.grok-4.6".pricing."bedrock_converse"]
+cache_read_input_token_cost = 5.5e-7
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.0000066
+
+[models."us.xai.grok-4.7"]
+mode = "chat"
+max_input_tokens = 500000
+max_output_tokens = 500000
+max_tokens = 500000
+input_cost_per_token = 0.0000022
+output_cost_per_token = 0.0000066
+cache_read_input_token_cost = 5.5e-7
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = false
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+supports_tool_choice = true
+
+[models."us.xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000066
@@ -138620,9 +138812,9 @@ cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."x-ai/grok-4.7".pricing."kilo"]
-cache_read_input_token_cost = 4.0000000000000003e-7
-input_cost_per_token = 0.0000016000000000000001
-output_cost_per_token = 0.0000048
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 [models."x-ai/grok-4.7".pricing."nano-gpt"]
 cache_read_input_token_cost = 4.0000000000000003e-7
 input_cost_per_token = 0.0000016000000000000001
@@ -139015,6 +139207,28 @@ cache_read_input_token_cost = 5.5e-7
 input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000066
 [models."xai.grok-4.6".pricing."oci"]
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+
+[models."xai.grok-4.7"]
+mode = "chat"
+max_input_tokens = 500000
+max_output_tokens = 500000
+max_tokens = 500000
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
+cache_read_input_token_cost = 5e-7
+litellm_provider = "bedrock_converse"
+providers = ["bedrock_converse"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = false
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+supports_tool_choice = true
+
+[models."xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
@@ -140686,9 +140900,9 @@ cache_read_input_token_cost = 4e-9
 input_cost_per_token = 1.6e-7
 output_cost_per_token = 3.2e-7
 [models."xiaomi/mimo-v2.6-flash".pricing."kilo"]
-cache_read_input_token_cost = 4e-8
-input_cost_per_token = 1.2e-7
-output_cost_per_token = 0.00000128
+cache_read_input_token_cost = 2.8e-9
+input_cost_per_token = 1.4e-7
+output_cost_per_token = 2.8e-7
 [models."xiaomi/mimo-v2.6-flash".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 2.8e-9
 input_cost_per_token = 1.4e-7
@@ -142493,7 +142707,7 @@ input_cost_per_token = 3.7e-7
 output_cost_per_token = 0.00000125
 cache_read_input_token_cost = 9e-8
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "zenmux"]
+providers = ["openrouter", "kilo", "ofox", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -142514,6 +142728,10 @@ supports_web_search = false
 cache_read_input_token_cost = 9e-8
 input_cost_per_token = 3.7e-7
 output_cost_per_token = 0.00000125
+[models."z-ai/glm-5.3-flashx".pricing."ofox"]
+cache_read_input_token_cost = 3e-8
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 5e-7
 [models."z-ai/glm-5.3-flashx".pricing."openrouter"]
 cache_read_input_token_cost = 9e-8
 input_cost_per_token = 3.7e-7
@@ -145578,9 +145796,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1e-9
-input_cost_per_token = 3.5e-8
-output_cost_per_token = 2.9e-7
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 5.0000000000000004e-8
+output_cost_per_token = 6e-7
 [models."~deepseek/deepseek-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 6e-9
 input_cost_per_token = 3e-7
@@ -145656,9 +145874,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.6e-8
-input_cost_per_token = 2.1000000000000003e-8
-output_cost_per_token = 3.2e-7
+cache_read_input_token_cost = 1.4e-8
+input_cost_per_token = 1.8999999999999998e-8
+output_cost_per_token = 3e-7
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 4e-8
@@ -146051,9 +146269,9 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."~x-ai/grok-latest".pricing."kilo"]
-cache_read_input_token_cost = 4.0000000000000003e-7
-input_cost_per_token = 0.0000016000000000000001
-output_cost_per_token = 0.0000048
+cache_read_input_token_cost = 5e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.000006
 [models."~x-ai/grok-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4e-7
 cache_read_input_token_cost_above_200k_tokens = 8e-7
@@ -146126,9 +146344,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.46625e-7
-input_cost_per_token = 1.785e-7
-output_cost_per_token = 0.0000028050000000000002
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 1.5e-7
+output_cost_per_token = 0.0000032999999999999997
 [models."~z-ai/glm-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.2142e-7
 input_cost_per_token = 6.538e-7
