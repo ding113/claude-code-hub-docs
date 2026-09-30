@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.30"
-checksum = "ac948d44eca2a9319c2b99f48706f792ca23832da0de07658718928fb3352db5"
+checksum = "f84d6695ca53f45e768a9ec76c356bd347ac7c4a19baa5c4433f283c313592a1"
 sources = ["litellm", "modelsdev"]
 total_models = 5219
 litellm_raw_models = 4437
-modelsdev_raw_models = 8323
+modelsdev_raw_models = 8324
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -8656,7 +8656,7 @@ model_family = "mimo"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
-input_cost_per_token = 8e-8
+input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 cache_read_input_token_cost = 2.8e-9
 litellm_provider = "deepinfra"
@@ -8671,7 +8671,7 @@ source = "modelsdev"
 
 [models."XiaomiMiMo/MiMo-V2-6-Flash".pricing."deepinfra"]
 cache_read_input_token_cost = 2.8e-9
-input_cost_per_token = 8e-8
+input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 
 [models."XiaomiMiMo/MiMo-V2-6-Pro"]
@@ -18781,6 +18781,8 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 
 [models."anthropic.claude-sonnet-5-5"]
+display_name = "Claude Sonnet 5.5"
+model_family = "claude-sonnet"
 mode = "chat"
 max_input_tokens = 1000000
 max_output_tokens = 128000
@@ -18790,12 +18792,17 @@ output_cost_per_token = 0.000011
 cache_read_input_token_cost = 2.2e-7
 cache_creation_input_token_cost = 0.00000275
 litellm_provider = "bedrock_mantle"
-providers = ["bedrock_mantle", "bedrock_converse"]
+providers = ["bedrock_mantle", "amazon-bedrock", "bedrock_converse"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+open_weights = false
+knowledge_cutoff = "2026-06"
+release_date = "2026-09-28"
+supported_modalities = ["text", "image", "pdf"]
+supported_output_modalities = ["text"]
 source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-5-5.html"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
@@ -18822,6 +18829,10 @@ search_context_size_high = 0.01
 search_context_size_low = 0.01
 search_context_size_medium = 0.01
 
+[models."anthropic.claude-sonnet-5-5".pricing."amazon-bedrock"]
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 0.000002
+output_cost_per_token = 0.00001
 [models."anthropic.claude-sonnet-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.0000025
 cache_creation_input_token_cost_above_1hr = 0.000004
@@ -57114,8 +57125,8 @@ input_cost_per_token = 2.5e-7
 output_cost_per_token = 5e-7
 [models."gemma-4-31b-it".pricing."kilo"]
 cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 8e-8
-output_cost_per_token = 3e-7
+input_cost_per_token = 9e-8
+output_cost_per_token = 3.4000000000000003e-7
 [models."gemma-4-31b-it".pricing."libertai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 4e-7
@@ -61750,8 +61761,8 @@ output_cost_per_token_above_272k_tokens = 0.000015
 [models."global.openai.gpt-6.1-sol"]
 mode = "chat"
 max_input_tokens = 1050000
-max_output_tokens = 128000
-max_tokens = 128000
+max_output_tokens = 131072
+max_tokens = 131072
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1e-7
@@ -61764,7 +61775,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "https://developers.openai.com/api/docs/pricing"
+source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-1-sol.html"
 cache_creation_input_token_cost_above_272k_tokens = 0.000005
 cache_read_input_token_cost_above_272k_tokens = 2e-7
 input_cost_per_token_above_272k_tokens = 0.000004
@@ -102706,8 +102717,8 @@ input_cost_per_token = 6.6e-7
 output_cost_per_token = 0.0000034
 [models."moonshotai/kimi-k2.7-code".pricing."kilo"]
 cache_read_input_token_cost = 1.8e-7
-input_cost_per_token = 6.562e-7
-output_cost_per_token = 0.0000032999999999999997
+input_cost_per_token = 6.712e-7
+output_cost_per_token = 0.00000335
 [models."moonshotai/kimi-k2.7-code".pricing."nano-gpt"]
 cache_read_input_token_cost = 1.9e-7
 input_cost_per_token = 9.499999999999999e-7
@@ -112074,8 +112085,8 @@ output_cost_per_token_above_272k_tokens = 0.0000165
 [models."openai.gpt-6.1-sol"]
 mode = "chat"
 max_input_tokens = 1050000
-max_output_tokens = 128000
-max_tokens = 128000
+max_output_tokens = 131072
+max_tokens = 131072
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1e-7
@@ -112088,7 +112099,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "https://developers.openai.com/api/docs/pricing"
+source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-1-sol.html"
 cache_creation_input_token_cost_above_272k_tokens = 0.000005
 cache_read_input_token_cost_above_272k_tokens = 2e-7
 input_cost_per_token_above_272k_tokens = 0.000004
@@ -128669,9 +128680,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 2.0625e-8
-input_cost_per_token = 8.25e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -128681,9 +128692,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 2.0625e-8
-input_cost_per_token = 8.25e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 5.280000000000001e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -136019,8 +136030,8 @@ output_cost_per_token_above_272k_tokens = 0.0000165
 [models."us.openai.gpt-6.1-sol"]
 mode = "chat"
 max_input_tokens = 1050000
-max_output_tokens = 128000
-max_tokens = 128000
+max_output_tokens = 131072
+max_tokens = 131072
 input_cost_per_token = 0.0000022
 output_cost_per_token = 0.000011
 cache_read_input_token_cost = 1.1e-7
@@ -136033,7 +136044,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "https://developers.openai.com/api/docs/pricing"
+source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-1-sol.html"
 cache_creation_input_token_cost_above_272k_tokens = 0.0000055
 cache_read_input_token_cost_above_272k_tokens = 2.2e-7
 input_cost_per_token_above_272k_tokens = 0.0000044
@@ -141870,7 +141881,7 @@ input_cost_per_token = 1.6e-7
 output_cost_per_token = 3.2e-7
 [models."xiaomi/mimo-v2.6-flash".pricing."kilo"]
 cache_read_input_token_cost = 2.8e-9
-input_cost_per_token = 8e-8
+input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."xiaomi/mimo-v2.6-flash".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 2.8e-9
@@ -146807,8 +146818,8 @@ output_cost_per_token = 0.00000198
 windows = [{ weekdays = ["saturday", "sunday"], hours_utc = "00:00-00:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "00:00-01:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "04:00-06:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "10:00-00:00" }]
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.5e-7
-input_cost_per_token = 1.5e-7
+cache_read_input_token_cost = 2.0000000000000002e-7
+input_cost_per_token = 2.0000000000000002e-7
 output_cost_per_token = 0.0000035
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4.4e-8
@@ -146844,8 +146855,8 @@ supports_web_search = false
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
 cache_read_input_token_cost = 1e-8
-input_cost_per_token = 1.2e-8
-output_cost_per_token = 0.00000125
+input_cost_per_token = 1e-8
+output_cost_per_token = 0.00000128
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.6e-8
 input_cost_per_token = 4e-8
