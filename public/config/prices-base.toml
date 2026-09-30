@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.09.30"
-checksum = "904a8e7c893f5c9491be1d0221b7bb02f8cba9e8c309825b7cfc93aeec1da44c"
+checksum = "d4d16b847674533b9802b652903420dba3f1066ea3b52e7850eab40ea0f652d7"
 sources = ["litellm", "modelsdev"]
 total_models = 5219
-litellm_raw_models = 4437
-modelsdev_raw_models = 8324
+litellm_raw_models = 4439
+modelsdev_raw_models = 8325
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -9943,6 +9943,9 @@ release_date = "2026-09-22"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
+cache_read_input_token_cost_priority = 3.75e-7
+input_cost_per_token_priority = 0.00000375
+output_cost_per_token_priority = 0.00001875
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -9952,8 +9955,11 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."accounts/fireworks/models/ember-1".pricing."fireworks_ai"]
 cache_read_input_token_cost = 3e-7
+cache_read_input_token_cost_priority = 3.75e-7
 input_cost_per_token = 0.000003
+input_cost_per_token_priority = 0.00000375
 output_cost_per_token = 0.000015
+output_cost_per_token_priority = 0.00001875
 
 [models."accounts/fireworks/models/ernie-4p5-21b-a3b-pt"]
 mode = "chat"
@@ -11762,6 +11768,9 @@ release_date = "2026-06-04"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
+cache_read_input_token_cost_priority = 1.5e-7
+input_cost_per_token_priority = 7.5e-7
+output_cost_per_token_priority = 0.000003
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -11771,8 +11780,11 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000024
 [models."accounts/fireworks/models/nemotron-3-ultra-nvfp4".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1.2e-7
+cache_read_input_token_cost_priority = 1.5e-7
 input_cost_per_token = 6e-7
+input_cost_per_token_priority = 7.5e-7
 output_cost_per_token = 0.0000024
+output_cost_per_token_priority = 0.000003
 
 [models."accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b"]
 display_name = "Nemotron 3.5 Lightning 30B A3B"
@@ -11794,6 +11806,9 @@ release_date = "2026-08-11"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 1.25e-8
+input_cost_per_token_priority = 6.25e-8
+output_cost_per_token_priority = 2.5e-7
 supports_response_schema = true
 supports_tool_choice = true
 
@@ -11803,8 +11818,11 @@ input_cost_per_token = 5.0000000000000004e-8
 output_cost_per_token = 2.0000000000000002e-7
 [models."accounts/fireworks/models/nemotron-lightning-3p5-30b-a3b".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_priority = 1.25e-8
 input_cost_per_token = 5e-8
+input_cost_per_token_priority = 6.25e-8
 output_cost_per_token = 2e-7
+output_cost_per_token_priority = 2.5e-7
 
 [models."accounts/fireworks/models/nemotron-nano-v2-12b-vl"]
 mode = "chat"
@@ -13628,13 +13646,19 @@ providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 5.625e-8
+input_cost_per_token_priority = 2.8125e-7
+output_cost_per_token_priority = 9.375e-7
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."accounts/fireworks/routers/glm-5p3-flash-us".pricing."fireworks_ai"]
 cache_read_input_token_cost = 4.5e-8
+cache_read_input_token_cost_priority = 5.625e-8
 input_cost_per_token = 2.25e-7
+input_cost_per_token_priority = 2.8125e-7
 output_cost_per_token = 7.5e-7
+output_cost_per_token_priority = 9.375e-7
 
 [models."accounts/fireworks/routers/glm-5p3-us"]
 mode = "chat"
@@ -13650,13 +13674,19 @@ supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 4.875e-7
+input_cost_per_token_priority = 0.000002625
+output_cost_per_token_priority = 0.00000825
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."accounts/fireworks/routers/glm-5p3-us".pricing."fireworks_ai"]
 cache_read_input_token_cost = 3.9e-7
+cache_read_input_token_cost_priority = 4.875e-7
 input_cost_per_token = 0.0000021
+input_cost_per_token_priority = 0.000002625
 output_cost_per_token = 0.0000066
+output_cost_per_token_priority = 0.00000825
 
 [models."accounts/fireworks/routers/glm-fast-latest"]
 display_name = "GLM 5.3 Fast (Latest)"
@@ -26610,9 +26640,10 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-02-28"
 release_date = "2025-10-15"
-deprecation_date = "2026-10-19"
+deprecation_date = "2026-11-15"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+source = "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule"
 cache_creation_input_token_cost_above_1hr = 0.000002
 prompt_cache_min_tokens = 4096
 reasoning_cost_per_token = 0.0000037
@@ -27596,9 +27627,10 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-03-31"
 release_date = "2025-11-24"
-deprecation_date = "2026-10-19"
+deprecation_date = "2026-11-24"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+source = "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule"
 cache_creation_input_token_cost_above_1hr = 0.00001
 prompt_cache_min_tokens = 4096
 supports_assistant_prefill = true
@@ -30713,9 +30745,10 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-07-31"
 release_date = "2025-09-29"
-deprecation_date = "2026-10-19"
+deprecation_date = "2026-11-15"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
+source = "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirement-schedule"
 cache_creation_input_token_cost_above_1hr = 0.000006
 prompt_cache_min_tokens = 1024
 supports_assistant_prefill = true
@@ -32583,7 +32616,7 @@ providers = ["nano-gpt", "edenai"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
-knowledge_cutoff = "2026-01-31"
+knowledge_cutoff = "2026-06"
 release_date = "2026-03-01"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
@@ -42387,9 +42420,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 2.8e-7
 [models."deepseek/deepseek-v4-flash".pricing."crossmodel"]
-cache_read_input_token_cost = 5.4e-9
-input_cost_per_token = 2.7e-7
-output_cost_per_token = 0.00000108
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."deepseek/deepseek-v4-flash".pricing."edenai"]
 cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
@@ -42671,9 +42704,9 @@ supports_response_schema = true
 supports_tool_choice = true
 
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."crossmodel"]
-cache_read_input_token_cost = 5.4e-9
-input_cost_per_token = 2.7e-7
-output_cost_per_token = 0.00000108
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."edenai"]
 cache_read_input_token_cost = 3e-9
 input_cost_per_token = 1.5e-7
@@ -42770,9 +42803,9 @@ cache_read_input_token_cost = 1.45e-7
 input_cost_per_token = 0.00000174
 output_cost_per_token = 0.00000348
 [models."deepseek/deepseek-v4-pro".pricing."crossmodel"]
-cache_read_input_token_cost = 4.05e-8
-input_cost_per_token = 0.000001215
-output_cost_per_token = 0.000003645
+cache_read_input_token_cost = 4.5e-8
+input_cost_per_token = 0.00000135
+output_cost_per_token = 0.00000405
 [models."deepseek/deepseek-v4-pro".pricing."edenai"]
 cache_read_input_token_cost = 2.2e-8
 input_cost_per_token = 6.6e-7
@@ -43023,9 +43056,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."deepseek/deepseek-v4.1-flash".pricing."crossmodel"]
-cache_read_input_token_cost = 5.4e-9
-input_cost_per_token = 2.7e-7
-output_cost_per_token = 0.00000108
+cache_read_input_token_cost = 6e-9
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000012
 [models."deepseek/deepseek-v4.1-flash".pricing."kilo"]
 cache_read_input_token_cost = 6e-9
 input_cost_per_token = 3e-7
@@ -54784,7 +54817,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.000006
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "gemini"
-providers = ["gemini", "vercel"]
+providers = ["gemini", "vercel", "vertex_ai"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = false
@@ -54822,6 +54855,10 @@ output_cost_per_token_priority = 0.0000108
 cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.000006
+[models."gemini-3.8-flash-lite-tts".pricing."vertex_ai"]
+input_cost_per_token = 5e-7
+output_cost_per_audio_token = 0.000006
+output_cost_per_token = 0.000006
 
 [models."gemini-3.8-flash-tts"]
 display_name = "Gemini 3.8 Flash TTS"
@@ -54834,7 +54871,7 @@ input_cost_per_token = 5e-7
 output_cost_per_token = 0.000009
 cache_read_input_token_cost = 1.25e-7
 litellm_provider = "gemini"
-providers = ["gemini", "vercel"]
+providers = ["gemini", "vercel", "vertex_ai"]
 supports_function_calling = false
 supports_reasoning = false
 open_weights = false
@@ -54871,6 +54908,10 @@ output_cost_per_token_priority = 0.0000162
 [models."gemini-3.8-flash-tts".pricing."vercel"]
 cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 5e-7
+output_cost_per_token = 0.000009
+[models."gemini-3.8-flash-tts".pricing."vertex_ai"]
+input_cost_per_token = 5e-7
+output_cost_per_audio_token = 0.000009
 output_cost_per_token = 0.000009
 
 [models."gemini-3.8-flash:batch"]
@@ -57124,8 +57165,9 @@ output_cost_per_token = 4.0000000000000003e-7
 input_cost_per_token = 2.5e-7
 output_cost_per_token = 5e-7
 [models."gemma-4-31b-it".pricing."kilo"]
-input_cost_per_token = 6e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 9e-8
+output_cost_per_token = 3.4000000000000003e-7
 [models."gemma-4-31b-it".pricing."libertai"]
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 4e-7
@@ -60234,13 +60276,19 @@ providers = ["fireworks_ai"]
 supports_function_calling = true
 supports_vision = true
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 5.625e-8
+input_cost_per_token_priority = 2.8125e-7
+output_cost_per_token_priority = 9.375e-7
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."glm-5p3-flash-us".pricing."fireworks_ai"]
 cache_read_input_token_cost = 4.5e-8
+cache_read_input_token_cost_priority = 5.625e-8
 input_cost_per_token = 2.25e-7
+input_cost_per_token_priority = 2.8125e-7
 output_cost_per_token = 7.5e-7
+output_cost_per_token_priority = 9.375e-7
 
 [models."glm-5p3-us"]
 mode = "chat"
@@ -60256,13 +60304,19 @@ supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 4.875e-7
+input_cost_per_token_priority = 0.000002625
+output_cost_per_token_priority = 0.00000825
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."glm-5p3-us".pricing."fireworks_ai"]
 cache_read_input_token_cost = 3.9e-7
+cache_read_input_token_cost_priority = 4.875e-7
 input_cost_per_token = 0.0000021
+input_cost_per_token_priority = 0.000002625
 output_cost_per_token = 0.0000066
+output_cost_per_token_priority = 0.00000825
 
 [models."glm-5v-turbo"]
 display_name = "GLM-5V-Turbo"
@@ -76353,8 +76407,11 @@ output_cost_per_token = 0.00003
 [models."gpt-image-2.5-flare".pricing."openai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
+cache_read_input_token_cost_batches = 6.25e-7
 input_cost_per_image_token = 0.000008
+input_cost_per_image_token_batches = 0.000004
 input_cost_per_token = 0.000005
+input_cost_per_token_batches = 0.0000025
 output_cost_per_image_token = 0.00003
 [models."gpt-image-2.5-flare".pricing."vercel"]
 cache_read_input_token_cost = 0.00000125
@@ -76421,8 +76478,11 @@ output_cost_per_token = 0.00003
 [models."gpt-image-2.5-sunburst".pricing."openai"]
 cache_read_input_image_token_cost = 0.000002
 cache_read_input_token_cost = 0.00000125
+cache_read_input_token_cost_batches = 6.25e-7
 input_cost_per_image_token = 0.000008
+input_cost_per_image_token_batches = 0.000004
 input_cost_per_token = 0.000005
+input_cost_per_token_batches = 0.0000025
 output_cost_per_image_token = 0.00003
 [models."gpt-image-2.5-sunburst".pricing."vercel"]
 cache_read_input_token_cost = 0.00000125
@@ -83471,8 +83531,11 @@ model_family = "ling"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-litellm_provider = "vercel"
-providers = ["vercel"]
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.2e-7
+cache_read_input_token_cost = 1.5e-8
+litellm_provider = "nano-gpt"
+providers = ["nano-gpt", "vercel"]
 supports_function_calling = true
 supports_reasoning = true
 open_weights = false
@@ -83480,6 +83543,11 @@ release_date = "2026-09-29"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."inclusionai/ling-3-1-flash".pricing."nano-gpt"]
+cache_read_input_token_cost = 1.5e-8
+input_cost_per_token = 7.5e-8
+output_cost_per_token = 2.2e-7
 
 [models."inclusionai/ling-3-1-flash-free"]
 display_name = "Ling 3.1 Flash (Free)"
@@ -86916,6 +86984,7 @@ output_cost_per_token = 0
 litellm_provider = "mistral"
 providers = ["mistral"]
 supports_function_calling = true
+deprecation_date = "2026-09-30"
 source = "https://docs.mistral.ai/models/model-cards/leanstral-1-5"
 supports_response_schema = true
 supports_tool_choice = true
@@ -104436,13 +104505,19 @@ release_date = "2026-06-13"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://api.fireworks.ai/v1/serverless/models"
+cache_read_input_token_cost_priority = 1.5e-7
+input_cost_per_token_priority = 7.5e-7
+output_cost_per_token_priority = 0.000003
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."nemotron-3-ultra-nvfp4".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1.2e-7
+cache_read_input_token_cost_priority = 1.5e-7
 input_cost_per_token = 6e-7
+input_cost_per_token_priority = 7.5e-7
 output_cost_per_token = 0.0000024
+output_cost_per_token_priority = 0.000003
 [models."nemotron-3-ultra-nvfp4".pricing."requesty"]
 cache_read_input_token_cost = 1.2e-7
 input_cost_per_token = 6e-7
@@ -104511,13 +104586,19 @@ supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
 source = "https://docs.fireworks.ai/serverless/pricing"
+cache_read_input_token_cost_priority = 1.25e-8
+input_cost_per_token_priority = 6.25e-8
+output_cost_per_token_priority = 2.5e-7
 supports_response_schema = true
 supports_tool_choice = true
 
 [models."nemotron-lightning-3p5-30b-a3b".pricing."fireworks_ai"]
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_priority = 1.25e-8
 input_cost_per_token = 5e-8
+input_cost_per_token_priority = 6.25e-8
 output_cost_per_token = 2e-7
+output_cost_per_token_priority = 2.5e-7
 
 [models."nemotron-nano-12b-v2-vl"]
 display_name = "Nemotron-nano 12b v2-vl"
@@ -128679,9 +128760,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 5.3e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -128691,9 +128772,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -129211,9 +129292,9 @@ output_cost_per_token = 0.000002501
 input_cost_per_token = 8.34e-7
 output_cost_per_token = 0.000002501
 [models."tencent/hy4-preview".pricing."kilo"]
-cache_read_input_token_cost = 4.2000000000000006e-8
-input_cost_per_token = 8.34e-7
-output_cost_per_token = 0.000002501
+cache_read_input_token_cost = 3.78e-8
+input_cost_per_token = 7.506000000000001e-7
+output_cost_per_token = 0.0000022509
 [models."tencent/hy4-preview".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 4.2000000000000006e-8
 input_cost_per_token = 8.34e-7
@@ -136490,6 +136571,7 @@ supports_function_calling = false
 supports_reasoning = false
 open_weights = false
 release_date = "2025-10-15"
+deprecation_date = "2026-10-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["video"]
 source = "https://ai.google.dev/gemini-api/docs/pricing"
@@ -136545,6 +136627,7 @@ supports_function_calling = false
 supports_reasoning = false
 open_weights = false
 release_date = "2025-10-15"
+deprecation_date = "2026-10-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["video"]
 source = "https://ai.google.dev/gemini-api/docs/pricing"
@@ -136594,6 +136677,7 @@ supports_function_calling = false
 supports_reasoning = false
 open_weights = false
 release_date = "2026-03-31"
+deprecation_date = "2026-10-22"
 supported_modalities = ["text"]
 supported_output_modalities = ["video"]
 source = "https://ai.google.dev/gemini-api/docs/video"
@@ -143618,9 +143702,9 @@ cache_read_input_token_cost = 3e-8
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 5e-7
 [models."z-ai/glm-5.3-flash".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.5e-8
-input_cost_per_token = 7.5e-8
-output_cost_per_token = 2.5e-7
+cache_read_input_token_cost = 2.5000000000000002e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 3e-7
 [models."z-ai/glm-5.3-flash".pricing."ofox"]
 cache_read_input_token_cost = 3e-8
 input_cost_per_token = 1.5e-7
@@ -143977,6 +144061,7 @@ supports_reasoning = true
 supports_prompt_caching = true
 open_weights = true
 release_date = "2026-06-13"
+deprecation_date = "2026-10-31"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
 source = "https://docs.mistral.ai/models/zai-glm-5-2"
@@ -146985,9 +147070,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
-cache_read_input_token_cost = 4.0000000000000003e-7
-input_cost_per_token = 3.177e-7
-output_cost_per_token = 0.0000079431
+cache_read_input_token_cost = 2.8e-7
+input_cost_per_token = 2.9e-7
+output_cost_per_token = 0.000009
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
