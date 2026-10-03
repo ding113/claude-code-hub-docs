@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.10.03"
-checksum = "c343f5ba9fc7b4eb0118ab528e2c0c03d2a1c4b0c13ac0f5ada5d3989502f504"
+checksum = "91521e83bdac809e1c59e6701f0f742b0d2a1e6f92bf61a88fd93e7a9e31a606"
 sources = ["litellm", "modelsdev"]
 total_models = 5244
-litellm_raw_models = 4460
-modelsdev_raw_models = 8385
+litellm_raw_models = 4461
+modelsdev_raw_models = 8386
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -3288,6 +3288,7 @@ output_cost_per_token = 0.0000054
 
 [models."MAI-Image-2.5"]
 mode = "image_generation"
+max_input_tokens = 32000
 input_cost_per_token = 0.000005
 litellm_provider = "azure_ai"
 providers = ["azure_ai"]
@@ -3306,6 +3307,7 @@ output_cost_per_image_token = 0.000047
 
 [models."MAI-Image-2.5-Flash"]
 mode = "image_generation"
+max_input_tokens = 32000
 input_cost_per_token = 0.00000175
 litellm_provider = "azure_ai"
 providers = ["azure_ai"]
@@ -3324,6 +3326,7 @@ output_cost_per_image_token = 0.0000195
 
 [models."MAI-Image-2.5-Pro"]
 mode = "image_generation"
+max_input_tokens = 32000
 input_cost_per_token = 0.000005
 litellm_provider = "azure_ai"
 providers = ["azure_ai"]
@@ -3342,6 +3345,7 @@ output_cost_per_image_token = 0.000106
 
 [models."MAI-Image-2.6"]
 mode = "image_generation"
+max_input_tokens = 32000
 input_cost_per_token = 0.000005
 litellm_provider = "azure_ai"
 providers = ["azure_ai"]
@@ -3357,6 +3361,7 @@ output_cost_per_image_token = 0.000038
 
 [models."MAI-Image-2.6-Flash"]
 mode = "image_generation"
+max_input_tokens = 32000
 input_cost_per_token = 0.00000175
 litellm_provider = "azure_ai"
 providers = ["azure_ai"]
@@ -86550,18 +86555,23 @@ model_family = "kimi-thinking"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 262144
-input_cost_per_token = 5.75e-7
-output_cost_per_token = 0.0000023
-litellm_provider = "302ai"
-providers = ["302ai", "alibaba-cn", "helicone", "hyper", "llmgateway", "opencode"]
+max_tokens = 262144
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
+litellm_provider = "azure_ai"
+providers = ["azure_ai", "302ai", "alibaba-cn", "helicone", "hyper", "llmgateway", "opencode"]
 supports_function_calling = true
+supports_vision = false
 supports_reasoning = true
+supports_prompt_caching = false
 open_weights = false
 knowledge_cutoff = "2025-06"
 release_date = "2025-09-05"
 supported_modalities = ["text"]
 supported_output_modalities = ["text"]
-source = "modelsdev"
+source = "https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/kimi/"
+supports_tool_choice = true
+supports_video_input = false
 
 [models."kimi-k2-thinking".pricing."302ai"]
 input_cost_per_token = 5.75e-7
@@ -86569,6 +86579,9 @@ output_cost_per_token = 0.0000023
 [models."kimi-k2-thinking".pricing."alibaba-cn"]
 input_cost_per_token = 5.739999999999999e-7
 output_cost_per_token = 0.000002294
+[models."kimi-k2-thinking".pricing."azure_ai"]
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
 [models."kimi-k2-thinking".pricing."helicone"]
 input_cost_per_token = 4.8e-7
 output_cost_per_token = 0.000002
@@ -103437,9 +103450,9 @@ cache_read_input_token_cost = 2.9e-7
 input_cost_per_token = 0.000003
 output_cost_per_token = 0.0000149
 [models."moonshotai/kimi-k3".pricing."kilo"]
-cache_read_input_token_cost = 2.7e-7
-input_cost_per_token = 0.0000027
-output_cost_per_token = 0.0000135
+cache_read_input_token_cost = 3e-7
+input_cost_per_token = 0.000003
+output_cost_per_token = 0.000015
 [models."moonshotai/kimi-k3".pricing."modal"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 0.000003
@@ -125242,7 +125255,7 @@ input_cost_per_token = 9.5e-7
 output_cost_per_token = 0.000004
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "merge-gateway", "sakana"]
+providers = ["openrouter", "kilo", "merge-gateway", "nano-gpt", "sakana"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -125263,6 +125276,10 @@ cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
 [models."sakana/sakana-namazu".pricing."merge-gateway"]
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 9.499999999999999e-7
+output_cost_per_token = 0.000004
+[models."sakana/sakana-namazu".pricing."nano-gpt"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 9.499999999999999e-7
 output_cost_per_token = 0.000004
@@ -129378,9 +129395,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3e-7
-output_cost_per_token = 5.3e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -129390,9 +129407,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 3.3000000000000004e-8
-input_cost_per_token = 1.3200000000000002e-7
-output_cost_per_token = 5.280000000000001e-7
+cache_read_input_token_cost = 2.0625e-8
+input_cost_per_token = 8.25e-8
+output_cost_per_token = 3.3e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -129940,9 +129957,9 @@ output_cost_per_token = 0.000002501
 input_cost_per_token = 8.34e-7
 output_cost_per_token = 0.000002501
 [models."tencent/hy4-preview".pricing."kilo"]
-cache_read_input_token_cost = 4.2000000000000006e-8
-input_cost_per_token = 8.34e-7
-output_cost_per_token = 0.000002501
+cache_read_input_token_cost = 3.78e-8
+input_cost_per_token = 7.506000000000001e-7
+output_cost_per_token = 0.0000022509
 [models."tencent/hy4-preview".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 4.2000000000000006e-8
 input_cost_per_token = 8.34e-7
@@ -147722,8 +147739,8 @@ output_cost_per_token = 0.00000198
 windows = [{ weekdays = ["saturday", "sunday"], hours_utc = "00:00-00:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "00:00-01:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "04:00-06:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "10:00-00:00" }]
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.2e-7
-input_cost_per_token = 1.4e-7
+cache_read_input_token_cost = 1.4e-7
+input_cost_per_token = 2.2e-7
 output_cost_per_token = 0.0000042000000000000004
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4.4e-8
