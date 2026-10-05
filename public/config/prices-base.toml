@@ -3,11 +3,11 @@
 
 [metadata]
 version = "2026.10.05"
-checksum = "303038d8da1e90af5be8bcf634b4c96be202c1087bb7074530b37b3f60cf286b"
+checksum = "200bffeef7ab2a3e13432025c8b22333758bb4c2ac62389aa9458cd1db93d8e1"
 sources = ["litellm", "modelsdev"]
 total_models = 5269
 litellm_raw_models = 4473
-modelsdev_raw_models = 8396
+modelsdev_raw_models = 8398
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -6835,8 +6835,8 @@ output_cost_per_token = 0.00000319
 input_cost_per_token = 4.5000000000000003e-7
 output_cost_per_token = 0.0000027
 [models."Qwen/Qwen3.6-27B".pricing."merge-gateway"]
-input_cost_per_token = 2.8899999999999995e-7
-output_cost_per_token = 0.0000024
+input_cost_per_token = 4.1260000000000003e-7
+output_cost_per_token = 0.0000024754
 [models."Qwen/Qwen3.6-27B".pricing."nano-gpt"]
 cache_read_input_token_cost = 1.015e-7
 input_cost_per_token = 2.03e-7
@@ -42504,7 +42504,8 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."deepseek/deepseek-v3.1-terminus".pricing."kilo"]
-input_cost_per_token = 2.7e-7
+cache_read_input_token_cost = 1.35e-7
+input_cost_per_token = 3e-7
 output_cost_per_token = 0.000001
 [models."deepseek/deepseek-v3.1-terminus".pricing."novita"]
 cache_read_input_token_cost = 1.35e-7
@@ -42558,8 +42559,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."deepseek/deepseek-v3.2".pricing."kilo"]
-cache_read_input_token_cost = 2.8e-8
-input_cost_per_token = 2.8e-7
+cache_read_input_token_cost = 1.35e-7
+input_cost_per_token = 2.5900000000000003e-7
 output_cost_per_token = 4.2e-7
 [models."deepseek/deepseek-v3.2".pricing."merge-gateway"]
 cache_read_input_token_cost = 1.3e-7
@@ -45363,13 +45364,21 @@ input_cost_per_token = 1.2e-7
 output_cost_per_token = 0
 
 [models."embed-v5.0-fast"]
+display_name = "Embed 5 Fast"
 mode = "embedding"
 max_input_tokens = 128000
+max_output_tokens = 0
 max_tokens = 128000
 input_cost_per_token = 8e-8
 output_cost_per_token = 0
 litellm_provider = "cohere"
 providers = ["cohere"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-09-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://cohere.com/pricing"
 output_vector_size = 2048
 supports_embedding_image_input = true
@@ -45379,13 +45388,21 @@ input_cost_per_token = 8e-8
 output_cost_per_token = 0
 
 [models."embed-v5.0-pro"]
+display_name = "Embed 5 Pro"
 mode = "embedding"
 max_input_tokens = 128000
+max_output_tokens = 0
 max_tokens = 128000
 input_cost_per_token = 1.2e-7
 output_cost_per_token = 0
 litellm_provider = "cohere"
 providers = ["cohere"]
+supports_function_calling = false
+supports_reasoning = false
+open_weights = false
+release_date = "2026-09-30"
+supported_modalities = ["text"]
+supported_output_modalities = ["text"]
 source = "https://cohere.com/pricing"
 output_vector_size = 2048
 supports_embedding_image_input = true
@@ -50310,6 +50327,7 @@ cache_read_input_token_cost_priority = 5.4e-8
 google_maps_grounding_cost_per_query = 0.025
 input_cost_per_audio_token = 0.000001
 input_cost_per_audio_token_batches = 5e-7
+input_cost_per_audio_token_priority = 0.0000018
 input_cost_per_token = 3e-7
 input_cost_per_token_batches = 1.5e-7
 input_cost_per_token_flex = 1.5e-7
@@ -50598,6 +50616,7 @@ cache_read_input_token_cost_priority = 1.8e-8
 google_maps_grounding_cost_per_query = 0.025
 input_cost_per_audio_token = 3e-7
 input_cost_per_audio_token_batches = 1.5e-7
+input_cost_per_audio_token_priority = 5.4e-7
 input_cost_per_token = 1e-7
 input_cost_per_token_batches = 5e-8
 input_cost_per_token_flex = 5e-8
@@ -53470,6 +53489,7 @@ cache_read_input_token_cost_priority = 4.5e-8
 google_maps_grounding_cost_per_query = 0.014
 input_cost_per_audio_token = 5e-7
 input_cost_per_audio_token_batches = 2.5e-7
+input_cost_per_audio_token_priority = 9e-7
 input_cost_per_token = 2.5e-7
 input_cost_per_token_batches = 1.25e-7
 input_cost_per_token_flex = 1.25e-7
@@ -53590,6 +53610,7 @@ supports_pdf_input = true
 open_weights = false
 knowledge_cutoff = "2025-01"
 release_date = "2026-06-30"
+deprecation_date = "2027-06-28"
 supported_modalities = ["text", "image", "video"]
 supported_output_modalities = ["text", "image"]
 source = "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing"
@@ -56992,9 +57013,9 @@ output_cost_per_token = 3.8e-7
 input_cost_per_token = 1.3e-7
 output_cost_per_token = 4.0000000000000003e-7
 [models."gemma-4-26B-A4B-it".pricing."openrouter"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
+cache_read_input_token_cost = 4.2500000000000003e-8
+input_cost_per_token = 7.65e-8
+output_cost_per_token = 2.55e-7
 [models."gemma-4-26B-A4B-it".pricing."orcarouter"]
 cache_read_input_token_cost = 7.5e-9
 input_cost_per_token = 6e-8
@@ -61935,6 +61956,14 @@ release_date = "2026-07-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
+cache_creation_input_token_cost_flex = 0.000001875
+cache_creation_input_token_cost_priority = 0.0000065625
+cache_read_input_token_cost_flex = 1.5e-7
+cache_read_input_token_cost_priority = 5.25e-7
+input_cost_per_token_flex = 0.0000015
+input_cost_per_token_priority = 0.00000525
+output_cost_per_token_flex = 0.0000075
+output_cost_per_token_priority = 0.00002625
 supports_audio_input = false
 supports_prompt_cache_breakpoint = false
 supports_regex_lookaround = false
@@ -61948,9 +61977,17 @@ input_cost_per_token = 0.000003
 output_cost_per_token = 0.000015
 [models."global.moonshotai.kimi-k3".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.00000375
+cache_creation_input_token_cost_flex = 0.000001875
+cache_creation_input_token_cost_priority = 0.0000065625
 cache_read_input_token_cost = 3e-7
+cache_read_input_token_cost_flex = 1.5e-7
+cache_read_input_token_cost_priority = 5.25e-7
 input_cost_per_token = 0.000003
+input_cost_per_token_flex = 0.0000015
+input_cost_per_token_priority = 0.00000525
 output_cost_per_token = 0.000015
+output_cost_per_token_flex = 0.0000075
+output_cost_per_token_priority = 0.00002625
 
 [models."global.openai.gpt-5.4"]
 mode = "chat"
@@ -62397,6 +62434,12 @@ release_date = "2026-08-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 supported_endpoints = ["/v1/chat/completions"]
 supports_bedrock_runtime_chat_completions_response_format = true
 supports_bedrock_runtime_chat_completions_tools_with_reasoning = true
@@ -62409,8 +62452,14 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."global.xai.grok-4.6".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
 input_cost_per_token = 0.000002
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
 output_cost_per_token = 0.000006
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 
 [models."global.xai.grok-4.7"]
 display_name = "Grok 4.7 (Global)"
@@ -62434,6 +62483,12 @@ release_date = "2026-09-21"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 supports_regex_lookaround = false
 supports_tool_choice = true
 
@@ -62443,8 +62498,14 @@ input_cost_per_token = 0.000002
 output_cost_per_token = 0.000006
 [models."global.xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
 input_cost_per_token = 0.000002
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
 output_cost_per_token = 0.000006
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 
 [models."gonka24/deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash (Gonka24)"
@@ -102583,6 +102644,14 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-east-1/index.json"
+cache_creation_input_token_cost_flex = 0.0000020625
+cache_creation_input_token_cost_priority = 0.00000721875
+cache_read_input_token_cost_flex = 1.65e-7
+cache_read_input_token_cost_priority = 5.775e-7
+input_cost_per_token_flex = 0.00000165
+input_cost_per_token_priority = 0.000005775
+output_cost_per_token_flex = 0.00000825
+output_cost_per_token_priority = 0.000028875
 supports_audio_input = false
 supports_prompt_cache_breakpoint = false
 supports_regex_lookaround = false
@@ -102592,9 +102661,17 @@ supports_tool_choice = true
 
 [models."moonshotai.kimi-k3".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
+cache_creation_input_token_cost_flex = 0.0000020625
+cache_creation_input_token_cost_priority = 0.00000721875
 cache_read_input_token_cost = 3.3e-7
+cache_read_input_token_cost_flex = 1.65e-7
+cache_read_input_token_cost_priority = 5.775e-7
 input_cost_per_token = 0.0000033
+input_cost_per_token_flex = 0.00000165
+input_cost_per_token_priority = 0.000005775
 output_cost_per_token = 0.0000165
+output_cost_per_token_flex = 0.00000825
+output_cost_per_token_priority = 0.000028875
 
 [models."moonshotai/Kimi-K2-6-TEE"]
 display_name = "Kimi K2.6 TEE"
@@ -117861,9 +117938,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -117875,9 +117952,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-antislop".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-cybersecurity"]
 display_name = "Qwen 3.8 27B Cybersecurity"
@@ -117909,9 +117986,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -117923,9 +118000,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-darkidol".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-fable"]
 display_name = "Qwen 3.8 27B Fable"
@@ -117957,9 +118034,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -117971,9 +118048,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-fimi".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-hemmingway"]
 display_name = "Qwen 3.8 27B Hemingway"
@@ -118005,9 +118082,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -118019,9 +118096,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-kimiko".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-kiwen"]
 display_name = "Qwen 3.8 27B Kiwen"
@@ -118029,9 +118106,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -118043,9 +118120,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-kiwen".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-novelist"]
 display_name = "Qwen 3.8 27B Novelist"
@@ -118053,9 +118130,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -118067,9 +118144,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-novelist".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-obliterated"]
 display_name = "Qwen 3.8 27B Obliterated"
@@ -118149,9 +118226,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = true
@@ -118163,9 +118240,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-swift".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-synthia"]
 display_name = "Qwen 3.8 27B Synthia"
@@ -118173,9 +118250,9 @@ model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 32768
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
-cache_read_input_token_cost = 1.25e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
+cache_read_input_token_cost = 5.0000000000000004e-8
 litellm_provider = "nano-gpt"
 providers = ["nano-gpt"]
 supports_function_calling = false
@@ -118187,9 +118264,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."qwen/qwen3-8-27b-synthia".pricing."nano-gpt"]
-cache_read_input_token_cost = 1.25e-7
-input_cost_per_token = 2.5e-7
-output_cost_per_token = 0.0000015
+cache_read_input_token_cost = 5.0000000000000004e-8
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 6e-7
 
 [models."qwen/qwen3-8-27b-uncensored"]
 display_name = "Qwen 3.8 27B Uncensored"
@@ -120518,8 +120595,6 @@ input_cost_per_token = 4.0000000000000003e-7
 output_cost_per_token = 0.000003
 
 [models."qwen/qwen3.8-27b:free"]
-display_name = "Qwen3.8 27B (free)"
-model_family = "qwen"
 mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 235929
@@ -120533,10 +120608,6 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = false
 supports_pdf_input = false
-open_weights = true
-release_date = "2026-08-14"
-supported_modalities = ["text", "image", "video"]
-supported_output_modalities = ["text"]
 source = "https://openrouter.ai/api/v1/models"
 supports_audio_input = false
 supports_response_schema = true
@@ -137003,6 +137074,14 @@ release_date = "2026-07-16"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
+cache_creation_input_token_cost_flex = 0.0000020625
+cache_creation_input_token_cost_priority = 0.00000721875
+cache_read_input_token_cost_flex = 1.65e-7
+cache_read_input_token_cost_priority = 5.775e-7
+input_cost_per_token_flex = 0.00000165
+input_cost_per_token_priority = 0.000005775
+output_cost_per_token_flex = 0.00000825
+output_cost_per_token_priority = 0.000028875
 supports_audio_input = false
 supports_prompt_cache_breakpoint = false
 supports_regex_lookaround = false
@@ -137016,9 +137095,17 @@ input_cost_per_token = 0.0000032999999999999997
 output_cost_per_token = 0.0000165
 [models."us.moonshotai.kimi-k3".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 0.000004125
+cache_creation_input_token_cost_flex = 0.0000020625
+cache_creation_input_token_cost_priority = 0.00000721875
 cache_read_input_token_cost = 3.3e-7
+cache_read_input_token_cost_flex = 1.65e-7
+cache_read_input_token_cost_priority = 5.775e-7
 input_cost_per_token = 0.0000033
+input_cost_per_token_flex = 0.00000165
+input_cost_per_token_priority = 0.000005775
 output_cost_per_token = 0.0000165
+output_cost_per_token_flex = 0.00000825
+output_cost_per_token_priority = 0.000028875
 
 [models."us.openai.gpt-5.4"]
 mode = "chat"
@@ -137563,6 +137650,12 @@ release_date = "2026-08-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 supported_endpoints = ["/v1/chat/completions"]
 supports_bedrock_runtime_chat_completions_response_format = true
 supports_bedrock_runtime_chat_completions_tools_with_reasoning = true
@@ -137575,8 +137668,14 @@ input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000065999999999999995
 [models."us.xai.grok-4.6".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
 input_cost_per_token = 0.0000022
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
 output_cost_per_token = 0.0000066
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 
 [models."us.xai.grok-4.7"]
 display_name = "Grok 4.7 (US)"
@@ -137600,6 +137699,12 @@ release_date = "2026-09-21"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 supports_regex_lookaround = false
 supports_tool_choice = true
 
@@ -137609,8 +137714,14 @@ input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000065999999999999995
 [models."us.xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
 input_cost_per_token = 0.0000022
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
 output_cost_per_token = 0.0000066
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 
 [models."v0-1.0-md"]
 display_name = "v0-1.0-md"
@@ -141420,6 +141531,12 @@ release_date = "2026-04-17"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://aws.amazon.com/bedrock/pricing/"
+cache_read_input_token_cost_flex = 1e-7
+cache_read_input_token_cost_priority = 3.5e-7
+input_cost_per_token_flex = 6.25e-7
+input_cost_per_token_priority = 0.0000021875
+output_cost_per_token_flex = 0.00000125
+output_cost_per_token_priority = 0.000004375
 supported_endpoints = ["/v1/chat/completions", "/v1/responses"]
 supports_response_schema = true
 supports_tool_choice = true
@@ -141431,8 +141548,14 @@ input_cost_per_token = 0.00000125
 output_cost_per_token = 0.0000025
 [models."xai.grok-4.3".pricing."bedrock_mantle"]
 cache_read_input_token_cost = 2e-7
+cache_read_input_token_cost_flex = 1e-7
+cache_read_input_token_cost_priority = 3.5e-7
 input_cost_per_token = 0.00000125
+input_cost_per_token_flex = 6.25e-7
+input_cost_per_token_priority = 0.0000021875
 output_cost_per_token = 0.0000025
+output_cost_per_token_flex = 0.00000125
+output_cost_per_token_priority = 0.000004375
 [models."xai.grok-4.3".pricing."oci"]
 cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.00000125
@@ -141460,6 +141583,12 @@ release_date = "2026-08-12"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-xai-grok-4-6.html"
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 supported_endpoints = ["/v1/chat/completions", "/v1/responses"]
 supports_response_schema = true
 supports_tool_choice = true
@@ -141471,8 +141600,14 @@ input_cost_per_token = 0.0000022
 output_cost_per_token = 0.0000065999999999999995
 [models."xai.grok-4.6".pricing."bedrock_mantle"]
 cache_read_input_token_cost = 5.5e-7
+cache_read_input_token_cost_flex = 2.75e-7
+cache_read_input_token_cost_priority = 9.625e-7
 input_cost_per_token = 0.0000022
+input_cost_per_token_flex = 0.0000011
+input_cost_per_token_priority = 0.00000385
 output_cost_per_token = 0.0000066
+output_cost_per_token_flex = 0.0000033
+output_cost_per_token_priority = 0.00001155
 [models."xai.grok-4.6".pricing."oci"]
 cache_read_input_token_cost = 5e-7
 input_cost_per_token = 0.000002
@@ -141493,13 +141628,25 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = false
 source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 supports_regex_lookaround = false
 supports_tool_choice = true
 
 [models."xai.grok-4.7".pricing."bedrock_converse"]
 cache_read_input_token_cost = 5e-7
+cache_read_input_token_cost_flex = 2.5e-7
+cache_read_input_token_cost_priority = 8.75e-7
 input_cost_per_token = 0.000002
+input_cost_per_token_flex = 0.000001
+input_cost_per_token_priority = 0.0000035
 output_cost_per_token = 0.000006
+output_cost_per_token_flex = 0.000003
+output_cost_per_token_priority = 0.0000105
 
 [models."xai.grok-code-fast-1"]
 mode = "chat"
@@ -148294,8 +148441,8 @@ output_cost_per_token = 0.00000198
 windows = [{ weekdays = ["saturday", "sunday"], hours_utc = "00:00-00:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "00:00-01:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "04:00-06:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "10:00-00:00" }]
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.9e-7
-input_cost_per_token = 1.901e-7
+cache_read_input_token_cost = 2.8e-7
+input_cost_per_token = 2.783e-7
 output_cost_per_token = 0.0000042000000000000004
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4.4e-8
@@ -148463,7 +148610,7 @@ supports_web_search = false
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
 cache_read_input_token_cost = 4.5000000000000003e-7
-input_cost_per_token = 6.6e-7
+input_cost_per_token = 7.883999999999999e-7
 output_cost_per_token = 0.000013
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
 cache_read_input_token_cost = 3e-7
