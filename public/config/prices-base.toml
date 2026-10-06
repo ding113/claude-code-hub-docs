@@ -2,12 +2,12 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.10.05"
-checksum = "200bffeef7ab2a3e13432025c8b22333758bb4c2ac62389aa9458cd1db93d8e1"
+version = "2026.10.06"
+checksum = "7bf2cb23788f83421b25ef44471e03ba88a9034949027ce5fb77388612e9d123"
 sources = ["litellm", "modelsdev"]
 total_models = 5269
-litellm_raw_models = 4473
-modelsdev_raw_models = 8398
+litellm_raw_models = 4477
+modelsdev_raw_models = 8389
 custom_models = 5
 
 [models."*/1-month-commitment/cohere.command-light-text-v14"]
@@ -2899,23 +2899,15 @@ input_cost_per_token = 2.2e-7
 output_cost_per_token = 9.499999999999999e-7
 
 [models."JetBrains/Mellum2-12B-A2.5B-Instruct"]
-display_name = "Mellum2 12B A2.5B"
 mode = "chat"
 max_input_tokens = 131000
-max_output_tokens = 131072
 max_tokens = 131072
 input_cost_per_token = 5e-8
 output_cost_per_token = 1e-7
 litellm_provider = "wandb"
 providers = ["wandb"]
-supports_function_calling = true
 supports_vision = false
-supports_reasoning = false
-open_weights = true
-release_date = "2026-06-01"
 deprecation_date = "2026-10-05"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://wandb.ai/site/pricing/tokens/"
 
 [models."JetBrains/Mellum2-12B-A2.5B-Instruct".pricing."wandb"]
@@ -4519,24 +4511,15 @@ input_cost_per_token = 3e-7
 output_cost_per_token = 0.0000012
 
 [models."OpenPipe/Qwen3-14B-Instruct"]
-display_name = "Qwen3 14B Instruct"
-model_family = "qwen"
 mode = "chat"
 max_input_tokens = 32800
-max_output_tokens = 32768
 max_tokens = 32768
 input_cost_per_token = 5e-8
 output_cost_per_token = 2.2e-7
 litellm_provider = "wandb"
 providers = ["wandb"]
-supports_function_calling = true
 supports_vision = false
-supports_reasoning = false
-open_weights = true
-release_date = "2025-04-29"
 deprecation_date = "2026-10-05"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://wandb.ai/site/pricing/tokens/"
 
 [models."OpenPipe/Qwen3-14B-Instruct".pricing."wandb"]
@@ -40494,6 +40477,31 @@ output_cost_per_token = 0.00000123
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 6e-7
 
+[models."deepseek-v4-1-flash-552b"]
+display_name = "DeepSeek V4.1 Flash"
+model_family = "deepseek-flash"
+mode = "chat"
+max_input_tokens = 1048576
+max_output_tokens = 81920
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000001
+cache_read_input_token_cost = 1.0000000000000001e-7
+litellm_provider = "aki-io"
+providers = ["aki-io"]
+supports_function_calling = true
+supports_reasoning = true
+open_weights = true
+knowledge_cutoff = "2025-05"
+release_date = "2026-09-10"
+supported_modalities = ["text", "image"]
+supported_output_modalities = ["text"]
+source = "modelsdev"
+
+[models."deepseek-v4-1-flash-552b".pricing."aki-io"]
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 2.5e-7
+output_cost_per_token = 0.000001
+
 [models."deepseek-v4-1-flash-fast"]
 display_name = "DeepSeek V4.1 Flash"
 model_family = "deepseek-flash"
@@ -40883,31 +40891,6 @@ output_cost_per_token = 3.5e-7
 [models."deepseek-v4-flash-0731".pricing."vultr"]
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 2.5e-7
-
-[models."deepseek-v4-flash-0731-284b"]
-display_name = "DeepSeek V4 Flash 0731"
-model_family = "deepseek-flash"
-mode = "chat"
-max_input_tokens = 1048576
-max_output_tokens = 81920
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
-cache_read_input_token_cost = 1.0000000000000001e-7
-litellm_provider = "aki-io"
-providers = ["aki-io"]
-supports_function_calling = true
-supports_reasoning = true
-open_weights = true
-knowledge_cutoff = "2025-05"
-release_date = "2026-07-31"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
-source = "modelsdev"
-
-[models."deepseek-v4-flash-0731-284b".pricing."aki-io"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 2.0000000000000002e-7
-output_cost_per_token = 5e-7
 
 [models."deepseek-v4-flash-0731-fast"]
 display_name = "DeepSeek V4 Flash 0731 Fast"
@@ -42504,8 +42487,7 @@ supports_system_messages = true
 supports_tool_choice = true
 
 [models."deepseek/deepseek-v3.1-terminus".pricing."kilo"]
-cache_read_input_token_cost = 1.35e-7
-input_cost_per_token = 3e-7
+input_cost_per_token = 2.7e-7
 output_cost_per_token = 0.000001
 [models."deepseek/deepseek-v3.1-terminus".pricing."novita"]
 cache_read_input_token_cost = 1.35e-7
@@ -42559,8 +42541,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."deepseek/deepseek-v3.2".pricing."kilo"]
-cache_read_input_token_cost = 1.35e-7
-input_cost_per_token = 2.5900000000000003e-7
+cache_read_input_token_cost = 2.8e-8
+input_cost_per_token = 2.8e-7
 output_cost_per_token = 4.2e-7
 [models."deepseek/deepseek-v3.2".pricing."merge-gateway"]
 cache_read_input_token_cost = 1.3e-7
@@ -43048,9 +43030,9 @@ cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 4.4e-7
 output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."nano-gpt"]
-cache_read_input_token_cost = 7e-9
-input_cost_per_token = 2.2e-7
-output_cost_per_token = 6.6e-7
+cache_read_input_token_cost = 1.4e-8
+input_cost_per_token = 4.4e-7
+output_cost_per_token = 0.00000132
 [models."deepseek/deepseek-v4-flash-vision-exp".pricing."novita"]
 cache_read_input_token_cost = 2.8e-8
 input_cost_per_token = 4.4e-7
@@ -74660,7 +74642,7 @@ output_cost_per_token = 0.00005
 cache_read_input_token_cost = 0.000001
 cache_creation_input_token_cost = 0.0000125
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "neon", "ofox", "openai", "opencode", "openrouter", "opper", "requesty", "vercel", "vivgrid", "zenmux"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "neon", "ofox", "openai", "opencode", "openrouter", "opper", "requesty", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -75071,7 +75053,7 @@ output_cost_per_token = 5e-7
 cache_read_input_token_cost = 1e-8
 cache_creation_input_token_cost = 1.25e-7
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "opencode-go", "openrouter", "perplexity", "requesty", "vercel", "vivgrid"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "opencode-go", "openrouter", "perplexity", "requesty", "vercel", "vivgrid"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -75504,7 +75486,7 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 2e-7
 cache_creation_input_token_cost = 0.0000025
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "perplexity", "requesty", "vercel", "vivgrid", "zenmux"]
+providers = ["azure_ai", "302ai", "aihubmix", "azure", "azure-cognitive-services", "chatgpt", "cloudflare-ai-gateway", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "perplexity", "requesty", "vercel", "vivgrid", "zenmux"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -75937,7 +75919,7 @@ output_cost_per_token = 0.00001
 cache_read_input_token_cost = 1e-7
 cache_creation_input_token_cost = 0.0000025
 litellm_provider = "azure_ai"
-providers = ["azure_ai", "azure", "azure-cognitive-services", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "perplexity", "requesty", "vercel", "vivgrid"]
+providers = ["azure_ai", "azure", "azure-cognitive-services", "chatgpt", "cortecs", "crossmodel", "edenai", "github-copilot", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "ofox", "openai", "opencode", "openrouter", "perplexity", "requesty", "vercel", "vivgrid"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -83580,24 +83562,15 @@ input_cost_per_token = 1.7e-8
 output_cost_per_token = 1.12e-7
 
 [models."ibm-granite/granite-4.1-8b"]
-display_name = "Granite 4.1 8B"
-model_family = "granite"
 mode = "chat"
 max_input_tokens = 131000
-max_output_tokens = 131072
 max_tokens = 131072
 input_cost_per_token = 5e-8
 output_cost_per_token = 1e-7
 litellm_provider = "wandb"
 providers = ["wandb"]
-supports_function_calling = true
 supports_vision = false
-supports_reasoning = false
-open_weights = true
-release_date = "2026-04-29"
 deprecation_date = "2026-10-05"
-supported_modalities = ["text"]
-supported_output_modalities = ["text"]
 source = "https://wandb.ai/site/pricing/tokens/"
 
 [models."ibm-granite/granite-4.1-8b".pricing."wandb"]
@@ -93071,7 +93044,7 @@ input_cost_per_token = 4e-8
 output_cost_per_token = 4e-8
 
 [models."meta-llama/llama-3.1-70b-instruct"]
-display_name = "Llama 3.1 70B"
+display_name = "Llama-3.1-70B-Instruct"
 model_family = "llama"
 mode = "chat"
 max_input_tokens = 131072
@@ -93080,7 +93053,7 @@ max_tokens = 16384
 input_cost_per_token = 4e-7
 output_cost_per_token = 4e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "wandb"]
+providers = ["openrouter", "kilo"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -93103,10 +93076,6 @@ output_cost_per_token = 4.0000000000000003e-7
 [models."meta-llama/llama-3.1-70b-instruct".pricing."openrouter"]
 input_cost_per_token = 4e-7
 output_cost_per_token = 4e-7
-[models."meta-llama/llama-3.1-70b-instruct".pricing."wandb"]
-cache_read_input_token_cost = 8.000000000000001e-7
-input_cost_per_token = 8.000000000000001e-7
-output_cost_per_token = 8.000000000000001e-7
 
 [models."meta-llama/llama-3.1-8b-instruct"]
 display_name = "Llama 3.1 8b Instruct"
@@ -103305,6 +103274,7 @@ cache_read_input_token_cost = 2.75e-7
 input_cost_per_token = 5.5e-7
 output_cost_per_token = 0.00000225
 [models."moonshotai/kimi-k2-thinking".pricing."kilo"]
+cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 [models."moonshotai/kimi-k2-thinking".pricing."meganova"]
@@ -117387,7 +117357,7 @@ max_tokens = 32000
 input_cost_per_token = 4.815e-8
 output_cost_per_token = 1.9305e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "modelscope", "nano-gpt", "nebius", "siliconflow", "siliconflow-cn", "wandb"]
+providers = ["openrouter", "kilo", "modelscope", "nano-gpt", "nebius", "siliconflow", "siliconflow-cn"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = false
@@ -117423,10 +117393,6 @@ input_cost_per_token = 9e-8
 output_cost_per_token = 3e-7
 [models."qwen/qwen3-30b-a3b-instruct-2507".pricing."siliconflow-cn"]
 input_cost_per_token = 9e-8
-output_cost_per_token = 3e-7
-[models."qwen/qwen3-30b-a3b-instruct-2507".pricing."wandb"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 
 [models."qwen/qwen3-30b-a3b-thinking-2507"]
@@ -129940,9 +129906,9 @@ output_cost_per_token = 5.3e-7
 input_cost_per_token = 1.4e-7
 output_cost_per_token = 5.8e-7
 [models."tencent/Hy3".pricing."kilo"]
-cache_read_input_token_cost = 2.0625e-8
-input_cost_per_token = 8.25e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3e-7
+output_cost_per_token = 5.3e-7
 [models."tencent/Hy3".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 3.3000000000000004e-8
 input_cost_per_token = 1.3200000000000002e-7
@@ -129952,9 +129918,9 @@ cache_read_input_token_cost = 2.9e-8
 input_cost_per_token = 6.600000000000001e-8
 output_cost_per_token = 2.6e-7
 [models."tencent/Hy3".pricing."openrouter"]
-cache_read_input_token_cost = 2.0625e-8
-input_cost_per_token = 8.25e-8
-output_cost_per_token = 3.3e-7
+cache_read_input_token_cost = 3.3000000000000004e-8
+input_cost_per_token = 1.3200000000000002e-7
+output_cost_per_token = 5.280000000000001e-7
 [models."tencent/Hy3".pricing."orcarouter"]
 cache_read_input_token_cost = 5.9e-8
 input_cost_per_token = 1.8e-7
@@ -130502,9 +130468,9 @@ output_cost_per_token = 0.000002501
 input_cost_per_token = 8.34e-7
 output_cost_per_token = 0.000002501
 [models."tencent/hy4-preview".pricing."kilo"]
-cache_read_input_token_cost = 3.78e-8
-input_cost_per_token = 7.506000000000001e-7
-output_cost_per_token = 0.0000022509
+cache_read_input_token_cost = 4.2000000000000006e-8
+input_cost_per_token = 8.34e-7
+output_cost_per_token = 0.000002501
 [models."tencent/hy4-preview".pricing."llmgateway-providers"]
 cache_read_input_token_cost = 4.2000000000000006e-8
 input_cost_per_token = 8.34e-7
@@ -148441,9 +148407,9 @@ output_cost_per_token = 0.00000198
 windows = [{ weekdays = ["saturday", "sunday"], hours_utc = "00:00-00:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "00:00-01:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "04:00-06:00" }, { weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"], hours_utc = "10:00-00:00" }]
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
-cache_read_input_token_cost = 2.8e-7
-input_cost_per_token = 2.783e-7
-output_cost_per_token = 0.0000042000000000000004
+cache_read_input_token_cost = 1.5e-7
+input_cost_per_token = 1.5199999999999998e-7
+output_cost_per_token = 0.000006
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4.4e-8
 input_cost_per_token = 0.00000132
@@ -148477,8 +148443,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.52e-8
-input_cost_per_token = 1.52e-8
+cache_read_input_token_cost = 1.3400000000000001e-8
+input_cost_per_token = 1.3400000000000001e-8
 output_cost_per_token = 0.00000128
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.6e-8
@@ -148610,7 +148576,7 @@ supports_web_search = false
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
 cache_read_input_token_cost = 4.5000000000000003e-7
-input_cost_per_token = 7.883999999999999e-7
+input_cost_per_token = 9.8e-7
 output_cost_per_token = 0.000013
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
 cache_read_input_token_cost = 3e-7
@@ -148911,8 +148877,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 2.32e-8
-input_cost_per_token = 3.5200000000000004e-8
+cache_read_input_token_cost = 2.09e-8
+input_cost_per_token = 3.17e-8
 output_cost_per_token = 5e-7
 [models."~z-ai/glm-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 5e-8
