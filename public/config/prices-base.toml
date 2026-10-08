@@ -2,11 +2,11 @@
 # Sources: LiteLLM + models.dev
 
 [metadata]
-version = "2026.10.07"
-checksum = "486b11de789d18425cf7d9099ea29f8840249e8f38bcfc07f9482d70a09352fb"
+version = "2026.10.08"
+checksum = "85b24cc342ecd0c61f443fae5a084d2471cf6755e7deeaa384bda17da9d9cb5c"
 sources = ["litellm", "modelsdev"]
-total_models = 5290
-litellm_raw_models = 4503
+total_models = 5291
+litellm_raw_models = 4504
 modelsdev_raw_models = 8452
 custom_models = 5
 
@@ -18126,12 +18126,17 @@ supported_output_modalities = ["text"]
 source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-haiku-5-5.html"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -18142,7 +18147,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -18155,16 +18160,26 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
 output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 [models."anthropic.claude-haiku-5-5".pricing."bedrock_mantle"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."anthropic.claude-instant-v1"]
 mode = "chat"
@@ -19854,12 +19869,17 @@ supports_pdf_input = true
 source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -19870,14 +19890,19 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."apac.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."apac.anthropic.claude-mythos-preview"]
 mode = "chat"
@@ -20587,15 +20612,20 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -20606,7 +20636,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."au.anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -20619,10 +20649,15 @@ input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.5e-7
 [models."au.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."au.anthropic.claude-mythos-preview"]
 mode = "chat"
@@ -27483,7 +27518,7 @@ output_cost_per_token = 5e-7
 cache_read_input_token_cost = 1e-8
 cache_creation_input_token_cost = 1.25e-7
 litellm_provider = "anthropic"
-providers = ["anthropic", "azure", "azure_ai", "azure-cognitive-services", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "opencode", "opencode-go", "openrouter", "perplexity", "vercel", "vertex_ai"]
+providers = ["anthropic", "azure", "azure_ai", "azure-cognitive-services", "edenai", "kilo", "llmgateway", "llmgateway-providers", "merge-gateway", "nano-gpt", "opencode", "opencode-go", "openrouter", "perplexity", "venice", "vercel", "vertex_ai"]
 supports_function_calling = true
 supports_vision = true
 supports_reasoning = true
@@ -27496,14 +27531,18 @@ supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
 source = "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
 cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
+cache_creation_input_token_cost_above_100k_tokens_batches = 3.125e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
 cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_creation_input_token_cost_batches = 6.25e-8
 cache_read_input_token_cost_above_100k_tokens = 5e-8
+cache_read_input_token_cost_above_100k_tokens_batches = 2.5e-8
 cache_read_input_token_cost_batches = 5e-9
 input_cost_per_token_above_100k_tokens = 5e-7
+input_cost_per_token_above_100k_tokens_batches = 2.5e-7
 input_cost_per_token_batches = 5e-8
 output_cost_per_token_above_100k_tokens = 0.0000025
+output_cost_per_token_above_100k_tokens_batches = 0.00000125
 output_cost_per_token_batches = 2.5e-7
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
@@ -27520,7 +27559,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_web_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."claude-haiku-5-5".provider_specific_entry]
 us = 1.1
@@ -27533,17 +27572,21 @@ search_context_size_medium = 0.01
 [models."claude-haiku-5-5".pricing."anthropic"]
 cache_creation_input_token_cost = 1.25e-7
 cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
+cache_creation_input_token_cost_above_100k_tokens_batches = 3.125e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
 cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_creation_input_token_cost_batches = 6.25e-8
 cache_read_input_token_cost = 1e-8
 cache_read_input_token_cost_above_100k_tokens = 5e-8
+cache_read_input_token_cost_above_100k_tokens_batches = 2.5e-8
 cache_read_input_token_cost_batches = 5e-9
 input_cost_per_token = 1e-7
 input_cost_per_token_above_100k_tokens = 5e-7
+input_cost_per_token_above_100k_tokens_batches = 2.5e-7
 input_cost_per_token_batches = 5e-8
 output_cost_per_token = 5e-7
 output_cost_per_token_above_100k_tokens = 0.0000025
+output_cost_per_token_above_100k_tokens_batches = 0.00000125
 output_cost_per_token_batches = 2.5e-7
 [models."claude-haiku-5-5".pricing."azure"]
 cache_read_input_token_cost = 1e-8
@@ -27555,9 +27598,18 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."claude-haiku-5-5".pricing."azure_ai"]
 cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
+output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
+[models."claude-haiku-5-5".pricing."edenai"]
+cache_read_input_token_cost = 1e-8
+input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."claude-haiku-5-5".pricing."kilo"]
 cache_read_input_token_cost = 1e-8
@@ -27595,19 +27647,28 @@ output_cost_per_token = 5e-7
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1e-7
 output_cost_per_token = 5e-7
+[models."claude-haiku-5-5".pricing."venice"]
+cache_read_input_token_cost = 1.2500000000000001e-8
+input_cost_per_token = 1.25e-7
+output_cost_per_token = 6.25e-7
 [models."claude-haiku-5-5".pricing."vercel"]
 cache_read_input_token_cost = 1e-8
 input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."claude-haiku-5-5".pricing."vertex_ai"]
 cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_creation_input_token_cost_batches = 6.25e-8
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 cache_read_input_token_cost_batches = 5e-9
 input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
 input_cost_per_token_batches = 5e-8
 output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 output_cost_per_token_batches = 2.5e-7
 
 [models."claude-haiku-5-5@default"]
@@ -27633,11 +27694,16 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://platform.claude.com/docs/en/about-claude/pricing"
+source = "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_creation_input_token_cost_batches = 6.25e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 cache_read_input_token_cost_batches = 5e-9
+input_cost_per_token_above_100k_tokens = 5e-7
 input_cost_per_token_batches = 5e-8
+output_cost_per_token_above_100k_tokens = 0.0000025
 output_cost_per_token_batches = 2.5e-7
 prompt_cache_min_tokens = 512
 regional_endpoint_uplift_multiplier = 1.1
@@ -27668,14 +27734,66 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."claude-haiku-5-5@default".pricing."vertex_ai"]
 cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_creation_input_token_cost_batches = 6.25e-8
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 cache_read_input_token_cost_batches = 5e-9
 input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
 input_cost_per_token_batches = 5e-8
 output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 output_cost_per_token_batches = 2.5e-7
+
+[models."claude-haiku-5.5"]
+mode = "chat"
+max_input_tokens = 1000000
+max_output_tokens = 128000
+max_tokens = 128000
+input_cost_per_token = 1e-7
+output_cost_per_token = 5e-7
+cache_read_input_token_cost = 1e-8
+cache_creation_input_token_cost = 1.25e-7
+litellm_provider = "openrouter"
+providers = ["openrouter"]
+supports_function_calling = true
+supports_vision = true
+supports_reasoning = true
+supports_prompt_caching = true
+supports_pdf_input = true
+source = "https://openrouter.ai/api/v1/models"
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
+cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
+cache_read_input_token_cost_above_100k_tokens = 5e-8
+input_cost_per_token_above_100k_tokens = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
+prompt_cache_min_tokens = 512
+supports_adaptive_thinking = true
+supports_response_schema = true
+supports_sampling_params = false
+supports_tool_choice = true
+supports_web_search = true
+
+[models."claude-haiku-5.5".search_context_cost_per_query]
+search_context_size_high = 0.01
+search_context_size_low = 0.01
+search_context_size_medium = 0.01
+
+[models."claude-haiku-5.5".pricing."openrouter"]
+cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
+cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
+cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
+input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
+output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 
 [models."claude-haiku-latest"]
 display_name = "Claude Haiku Latest"
@@ -32821,15 +32939,15 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."edenai"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."github-copilot"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."kilo"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."llmgateway"]
@@ -32857,7 +32975,7 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."openrouter"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."perplexity"]
@@ -32869,11 +32987,11 @@ cache_read_input_token_cost = 2.0000000000000002e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."venice"]
-cache_read_input_token_cost = 2.5e-7
+cache_read_input_token_cost = 1.25e-7
 input_cost_per_token = 0.0000025
 output_cost_per_token = 0.0000125
 [models."claude-sonnet-5-5".pricing."vercel"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-5-5".pricing."vertex_ai"]
@@ -33250,7 +33368,7 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."claude-sonnet-latest".pricing."edenai"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."claude-sonnet-latest".pricing."nano-gpt"]
@@ -47325,15 +47443,20 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -47344,7 +47467,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."eu.anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -47357,10 +47480,15 @@ input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.5e-7
 [models."eu.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."eu.anthropic.claude-opus-4-1-20250805-v1:0"]
 mode = "chat"
@@ -61813,15 +61941,20 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
+cache_read_input_token_cost_above_100k_tokens = 5e-8
+input_cost_per_token_above_100k_tokens = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -61832,7 +61965,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."global.anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -61845,10 +61978,15 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 5e-7
 [models."global.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.25e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.25e-7
 cache_creation_input_token_cost_above_1hr = 2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.000001
 cache_read_input_token_cost = 1e-8
+cache_read_input_token_cost_above_100k_tokens = 5e-8
 input_cost_per_token = 1e-7
+input_cost_per_token_above_100k_tokens = 5e-7
 output_cost_per_token = 5e-7
+output_cost_per_token_above_100k_tokens = 0.0000025
 
 [models."global.anthropic.claude-mythos-5-1"]
 mode = "chat"
@@ -86361,15 +86499,20 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -86380,7 +86523,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."jp.anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -86393,10 +86536,15 @@ input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.5e-7
 [models."jp.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."jp.anthropic.claude-opus-4-7"]
 display_name = "Claude Opus 4.7 (JP)"
@@ -104353,7 +104501,7 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 litellm_provider = "novita"
-providers = ["novita", "huggingface", "io-net", "kilo", "meganova", "merge-gateway", "nano-gpt", "novita-ai", "openrouter", "vercel", "zenmux"]
+providers = ["novita", "huggingface", "io-net", "kilo", "meganova", "merge-gateway", "nano-gpt", "novita-ai", "openrouter", "zenmux"]
 supports_function_calling = true
 supports_reasoning = true
 supports_prompt_caching = true
@@ -104400,10 +104548,6 @@ output_cost_per_token = 0.0000025
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
 output_cost_per_token = 0.0000025
-[models."moonshotai/kimi-k2-thinking".pricing."vercel"]
-cache_read_input_token_cost = 1.4099999999999998e-7
-input_cost_per_token = 4.6999999999999995e-7
-output_cost_per_token = 0.000002
 [models."moonshotai/kimi-k2-thinking".pricing."zenmux"]
 cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 6e-7
@@ -130604,7 +130748,7 @@ max_tokens = 65536
 input_cost_per_token = 1e-7
 output_cost_per_token = 3e-7
 litellm_provider = "openrouter"
-providers = ["openrouter", "kilo", "vercel", "zenmux"]
+providers = ["openrouter", "kilo", "zenmux"]
 supports_function_calling = true
 supports_vision = false
 supports_reasoning = true
@@ -130626,10 +130770,6 @@ input_cost_per_token = 1.0000000000000001e-7
 output_cost_per_token = 3e-7
 [models."stepfun/step-3.5-flash".pricing."openrouter"]
 input_cost_per_token = 1e-7
-output_cost_per_token = 3e-7
-[models."stepfun/step-3.5-flash".pricing."vercel"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 9e-8
 output_cost_per_token = 3e-7
 [models."stepfun/step-3.5-flash".pricing."zenmux"]
 input_cost_per_token = 1.0000000000000001e-7
@@ -134546,14 +134686,20 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
+cache_read_input_token_cost_above_100k_tokens = 6e-8
+input_cost_per_token_above_100k_tokens = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -134564,14 +134710,19 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."us-gov-east-1/anthropic.claude-haiku-5-5".pricing."bedrock"]
 cache_creation_input_token_cost = 1.5e-7
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
 cache_read_input_token_cost = 1.2e-8
+cache_read_input_token_cost_above_100k_tokens = 6e-8
 input_cost_per_token = 1.2e-7
+input_cost_per_token_above_100k_tokens = 6e-7
 output_cost_per_token = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 
 [models."us-gov-east-1/anthropic.claude-opus-4-8"]
 mode = "chat"
@@ -135343,12 +135494,17 @@ supports_pdf_input = true
 source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-haiku-5-5.html"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
+cache_read_input_token_cost_above_100k_tokens = 6e-8
+input_cost_per_token_above_100k_tokens = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -135359,20 +135515,30 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."us-gov-west-1/anthropic.claude-haiku-5-5".pricing."bedrock"]
 cache_creation_input_token_cost = 1.5e-7
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
 cache_read_input_token_cost = 1.2e-8
+cache_read_input_token_cost_above_100k_tokens = 6e-8
 input_cost_per_token = 1.2e-7
+input_cost_per_token_above_100k_tokens = 6e-7
 output_cost_per_token = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 [models."us-gov-west-1/anthropic.claude-haiku-5-5".pricing."bedrock_mantle"]
 cache_creation_input_token_cost = 1.5e-7
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
 cache_read_input_token_cost = 1.2e-8
+cache_read_input_token_cost_above_100k_tokens = 6e-8
 input_cost_per_token = 1.2e-7
+input_cost_per_token_above_100k_tokens = 6e-7
 output_cost_per_token = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 
 [models."us-gov-west-1/anthropic.claude-opus-4-8"]
 mode = "chat"
@@ -136129,15 +136295,20 @@ supports_vision = true
 supports_reasoning = true
 supports_prompt_caching = true
 supports_pdf_input = true
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
+cache_read_input_token_cost_above_100k_tokens = 6e-8
+input_cost_per_token_above_100k_tokens = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -136148,14 +136319,19 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."us-gov.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.5e-7
+cache_creation_input_token_cost_above_100k_tokens = 7.5e-7
 cache_creation_input_token_cost_above_1hr = 2.4e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000012
 cache_read_input_token_cost = 1.2e-8
+cache_read_input_token_cost_above_100k_tokens = 6e-8
 input_cost_per_token = 1.2e-7
+input_cost_per_token_above_100k_tokens = 6e-7
 output_cost_per_token = 6e-7
+output_cost_per_token_above_100k_tokens = 0.000003
 
 [models."us-gov.anthropic.claude-opus-4-8"]
 mode = "chat"
@@ -137195,15 +137371,20 @@ knowledge_cutoff = "2026-06"
 release_date = "2026-10-07"
 supported_modalities = ["text", "image", "pdf"]
 supported_output_modalities = ["text"]
-source = "https://aws.amazon.com/bedrock/pricing/"
+source = "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrockFoundationModels/current/index.json"
 bedrock_converse_supports_strict_tools = false
 bedrock_output_config_effort_ceiling = "xhigh"
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
+input_cost_per_token_above_100k_tokens = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 prompt_cache_min_tokens = 512
 supports_adaptive_thinking = true
 supports_assistant_prefill = false
 supports_computer_use = true
-supports_forced_tool_use = false
+supports_forced_tool_use = true
 supports_max_reasoning_effort = true
 supports_mid_conversation_system = true
 supports_native_structured_output = false
@@ -137214,7 +137395,7 @@ supports_sampling_params = false
 supports_tool_choice = true
 supports_tool_search = true
 supports_xhigh_reasoning_effort = true
-thinking_always_on = true
+thinking_always_on = false
 
 [models."us.anthropic.claude-haiku-5-5".search_context_cost_per_query]
 search_context_size_high = 0.01
@@ -137227,10 +137408,15 @@ input_cost_per_token = 1.1e-7
 output_cost_per_token = 5.5e-7
 [models."us.anthropic.claude-haiku-5-5".pricing."bedrock_converse"]
 cache_creation_input_token_cost = 1.375e-7
+cache_creation_input_token_cost_above_100k_tokens = 6.875e-7
 cache_creation_input_token_cost_above_1hr = 2.2e-7
+cache_creation_input_token_cost_above_1hr_above_100k_tokens = 0.0000011
 cache_read_input_token_cost = 1.1e-8
+cache_read_input_token_cost_above_100k_tokens = 5.5e-8
 input_cost_per_token = 1.1e-7
+input_cost_per_token_above_100k_tokens = 5.5e-7
 output_cost_per_token = 5.5e-7
+output_cost_per_token_above_100k_tokens = 0.00000275
 
 [models."us.anthropic.claude-mythos-5"]
 mode = "chat"
@@ -149763,7 +149949,7 @@ supports_tool_choice = true
 supports_web_search = true
 
 [models."~anthropic/claude-sonnet-latest".pricing."kilo"]
-cache_read_input_token_cost = 2.0000000000000002e-7
+cache_read_input_token_cost = 1.0000000000000001e-7
 input_cost_per_token = 0.000002
 output_cost_per_token = 0.00001
 [models."~anthropic/claude-sonnet-latest".pricing."openrouter"]
@@ -149801,9 +149987,9 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~deepseek/deepseek-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 2e-8
-input_cost_per_token = 3.92e-8
-output_cost_per_token = 0.0000012
+cache_read_input_token_cost = 5e-9
+input_cost_per_token = 1.52e-8
+output_cost_per_token = 8.000000000000001e-7
 [models."~deepseek/deepseek-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 6e-9
 input_cost_per_token = 3e-7
@@ -149844,7 +150030,7 @@ windows = [{ weekdays = ["saturday", "sunday"], hours_utc = "00:00-00:00" }, { w
 
 [models."~deepseek/deepseek-pro-latest".pricing."kilo"]
 cache_read_input_token_cost = 2.0000000000000002e-7
-input_cost_per_token = 2.871e-7
+input_cost_per_token = 2.909e-7
 output_cost_per_token = 0.0000042000000000000004
 [models."~deepseek/deepseek-pro-latest".pricing."openrouter"]
 cache_read_input_token_cost = 4.4e-8
@@ -150349,8 +150535,8 @@ supports_tool_choice = true
 supports_web_search = false
 
 [models."~z-ai/glm-latest".pricing."kilo"]
-cache_read_input_token_cost = 5.85e-8
-input_cost_per_token = 6.3e-8
+cache_read_input_token_cost = 4.61e-8
+input_cost_per_token = 4.96e-8
 output_cost_per_token = 0.0000063
 [models."~z-ai/glm-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.2142e-7
