@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.10.10"
-checksum = "6a157d544f91be252078200c6f5f9a5ffaabd989c062040612c1b270dfd0382e"
+checksum = "19b5a8e22b565416edd2a95962fc7a55b8da3abab20c04f993b862dcaf7c0f8d"
 sources = ["litellm", "modelsdev"]
-total_models = 5200
-litellm_raw_models = 4036
+total_models = 5205
+litellm_raw_models = 4041
 modelsdev_raw_models = 8443
 custom_models = 5
 
@@ -26240,6 +26240,20 @@ source = "modelsdev"
 input_cost_per_token = 6.58e-7
 output_cost_per_token = 0.0000011100000000000002
 
+[models."classify"]
+mode = "chat"
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+litellm_provider = "scaledown"
+providers = ["scaledown"]
+supports_function_calling = false
+supports_vision = false
+supports_system_messages = false
+
+[models."classify".pricing."scaledown"]
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+
 [models."claude-3-5-haiku"]
 display_name = "Claude 3.5 Haiku"
 model_family = "claude-haiku"
@@ -35635,6 +35649,20 @@ source = "modelsdev"
 input_cost_per_token = 3.75e-8
 output_cost_per_token = 1.5e-7
 
+[models."compress"]
+mode = "chat"
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+litellm_provider = "scaledown"
+providers = ["scaledown"]
+supports_function_calling = false
+supports_vision = false
+supports_system_messages = true
+
+[models."compress".pricing."scaledown"]
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+
 [models."computer-use-preview"]
 mode = "chat"
 max_input_tokens = 8192
@@ -38298,6 +38326,20 @@ input_cost_per_token = 0.0000125
 input_cost_per_token_above_272k_tokens = 0.000025
 output_cost_per_token = 0.000075
 output_cost_per_token_above_272k_tokens = 0.0001125
+
+[models."decisions"]
+mode = "chat"
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+litellm_provider = "scaledown"
+providers = ["scaledown"]
+supports_function_calling = false
+supports_vision = false
+supports_system_messages = false
+
+[models."decisions".pricing."scaledown"]
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
 
 [models."deep-deepseek-v4-flash"]
 display_name = "DeepSeek V4 Flash (DeepSeek)"
@@ -48214,6 +48256,21 @@ release_date = "2026-10-06"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
 source = "modelsdev"
+
+[models."extract"]
+mode = "chat"
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+litellm_provider = "scaledown"
+providers = ["scaledown"]
+supports_function_calling = false
+supports_vision = false
+supports_response_schema = false
+supports_system_messages = false
+
+[models."extract".pricing."scaledown"]
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
 
 [models."failspy/Meta-Llama-3-70B-Instruct-abliterated-v3-5"]
 display_name = "Llama 3 70B abliterated"
@@ -101226,24 +101283,24 @@ mode = "chat"
 max_input_tokens = 262144
 max_output_tokens = 16000
 max_tokens = 16000
-input_cost_per_token = 7.3e-7
-output_cost_per_token = 0.00000303
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000025
 litellm_provider = "bedrock"
 providers = ["bedrock", "bedrock_mantle"]
 supports_function_calling = true
 supports_reasoning = true
 deprecation_date = "2027-03-30"
-source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k2-thinking.html"
-input_cost_per_token_flex = 3.6e-7
-output_cost_per_token_flex = 0.00000152
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+input_cost_per_token_flex = 3e-7
+output_cost_per_token_flex = 0.00000125
 supported_endpoints = ["/v1/chat/completions"]
 supports_tool_choice = true
 
 [models."moonshotai.kimi-k2-thinking".pricing."bedrock"]
-input_cost_per_token = 7.3e-7
-input_cost_per_token_flex = 3.6e-7
-output_cost_per_token = 0.00000303
-output_cost_per_token_flex = 0.00000152
+input_cost_per_token = 6e-7
+input_cost_per_token_flex = 3e-7
+output_cost_per_token = 0.0000025
+output_cost_per_token_flex = 0.00000125
 [models."moonshotai.kimi-k2-thinking".pricing."bedrock/us-east-1"]
 input_cost_per_token = 6e-7
 input_cost_per_token_flex = 3e-7
@@ -101268,7 +101325,7 @@ max_input_tokens = 262144
 max_output_tokens = 16000
 max_tokens = 16000
 input_cost_per_token = 6e-7
-output_cost_per_token = 0.00000303
+output_cost_per_token = 0.000003
 litellm_provider = "bedrock"
 providers = ["bedrock", "amazon-bedrock", "bedrock_converse", "edenai"]
 supports_function_calling = true
@@ -101279,7 +101336,9 @@ knowledge_cutoff = "2025-01"
 release_date = "2026-01"
 supported_modalities = ["text", "image"]
 supported_output_modalities = ["text"]
-source = "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k2-5.html"
+source = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/bedrock/USD/current/bedrock.json"
+input_cost_per_token_flex = 3e-7
+output_cost_per_token_flex = 0.0000015
 supports_audio_input = false
 supports_response_schema = true
 supports_system_messages = true
@@ -101291,7 +101350,9 @@ input_cost_per_token = 6e-7
 output_cost_per_token = 0.000003
 [models."moonshotai.kimi-k2.5".pricing."bedrock"]
 input_cost_per_token = 6e-7
-output_cost_per_token = 0.00000303
+input_cost_per_token_flex = 3e-7
+output_cost_per_token = 0.000003
+output_cost_per_token_flex = 0.0000015
 [models."moonshotai.kimi-k2.5".pricing."bedrock/us-east-1"]
 input_cost_per_token = 6e-7
 input_cost_per_token_flex = 3e-7
@@ -117768,9 +117829,9 @@ output_cost_per_token = 0.00000138
 input_cost_per_token = 1.5e-7
 output_cost_per_token = 9.499999999999999e-7
 [models."qwen/qwen3.6-35b-a3b".pricing."kilo"]
-cache_read_input_token_cost = 5.0000000000000004e-8
-input_cost_per_token = 1.5e-7
-output_cost_per_token = 0.000001
+cache_read_input_token_cost = 1.0000000000000001e-7
+input_cost_per_token = 1.0000000000000001e-7
+output_cost_per_token = 9.499999999999999e-7
 [models."qwen/qwen3.6-35b-a3b".pricing."merge-gateway"]
 cache_read_input_token_cost = 4.96e-8
 input_cost_per_token = 2.48e-7
@@ -126997,6 +127058,20 @@ source = "modelsdev"
 cache_read_input_token_cost = 2.6e-7
 input_cost_per_token = 0.0000014
 output_cost_per_token = 0.0000044
+
+[models."summarize"]
+mode = "chat"
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
+litellm_provider = "scaledown"
+providers = ["scaledown"]
+supports_function_calling = false
+supports_vision = false
+supports_system_messages = true
+
+[models."summarize".pricing."scaledown"]
+input_cost_per_token = 5e-8
+output_cost_per_token = 0
 
 [models."swe-1.6"]
 mode = "chat"
@@ -145279,9 +145354,9 @@ model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 943718
-input_cost_per_token = 1.8e-8
-output_cost_per_token = 0.00000128
-cache_read_input_token_cost = 1.8e-8
+input_cost_per_token = 1e-8
+output_cost_per_token = 0.0000012700000000000001
+cache_read_input_token_cost = 9e-9
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145293,9 +145368,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.8e-8
-input_cost_per_token = 1.8e-8
-output_cost_per_token = 0.00000128
+cache_read_input_token_cost = 9e-9
+input_cost_per_token = 1e-8
+output_cost_per_token = 0.0000012700000000000001
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.8e-8
 input_cost_per_token = 1.8e-8
@@ -145371,9 +145446,9 @@ model_family = "kimi"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 943718
-input_cost_per_token = 3.1e-7
-output_cost_per_token = 0.00001489
-cache_read_input_token_cost = 3e-7
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000149
+cache_read_input_token_cost = 2.9e-7
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145385,9 +145460,9 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 3.1e-7
-output_cost_per_token = 0.00001489
+cache_read_input_token_cost = 2.9e-7
+input_cost_per_token = 3e-7
+output_cost_per_token = 0.0000149
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
 cache_read_input_token_cost = 3e-7
 input_cost_per_token = 3.1e-7
@@ -145571,9 +145646,9 @@ model_family = "glm-flash"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 131072
-input_cost_per_token = 4e-8
+input_cost_per_token = 3e-8
 output_cost_per_token = 5e-7
-cache_read_input_token_cost = 1.2500000000000001e-8
+cache_read_input_token_cost = 1.2e-8
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145585,8 +145660,8 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~z-ai/glm-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.2500000000000001e-8
-input_cost_per_token = 4e-8
+cache_read_input_token_cost = 1.2e-8
+input_cost_per_token = 3e-8
 output_cost_per_token = 5e-7
 [models."~z-ai/glm-flash-latest".pricing."openrouter"]
 cache_read_input_token_cost = 1.2500000000000001e-8
