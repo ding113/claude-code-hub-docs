@@ -3,10 +3,10 @@
 
 [metadata]
 version = "2026.10.11"
-checksum = "d1b549975a67e4aacfd2cdcc32069a90d5e34ff006b3e8128bfda4e74611011f"
+checksum = "616dcb6c8152905bf843d19bc90b7e5c6d39c173845a5b1ef219c4cae5b61673"
 sources = ["litellm", "modelsdev"]
-total_models = 5205
-litellm_raw_models = 4041
+total_models = 5206
+litellm_raw_models = 4042
 modelsdev_raw_models = 8468
 custom_models = 5
 
@@ -14746,6 +14746,25 @@ supports_system_messages = true
 [models."ai21.jamba-instruct-v1:0".pricing."bedrock"]
 input_cost_per_token = 5e-7
 output_cost_per_token = 7e-7
+
+[models."ai_decide"]
+mode = "evaluation"
+input_cost_per_token = 0
+output_cost_per_token = 0
+cache_read_input_token_cost = 0
+cache_creation_input_token_cost = 0
+litellm_provider = "databricks"
+providers = ["databricks"]
+source = "https://docs.databricks.com/api/ai-functions/v1/ai-decide"
+
+[models."ai_decide".metadata]
+notes = "The ai_decide AI Function (Beta), called through POST /api/2.0/ai-functions/ai-decide. Its response carries no token usage, so LiteLLM records no spend for it."
+
+[models."ai_decide".pricing."databricks"]
+cache_creation_input_token_cost = 0
+cache_read_input_token_cost = 0
+input_cost_per_token = 0
+output_cost_per_token = 0
 
 [models."aion-labs-aion-3-0"]
 display_name = "Aion 3.0"
@@ -43399,9 +43418,9 @@ cache_read_input_token_cost = 9.8e-9
 input_cost_per_token = 3.08e-7
 output_cost_per_token = 9.240000000000001e-7
 [models."deepseek/deepseek-v4-flash-0731".pricing."openrouter"]
-cache_read_input_token_cost = 1.37e-8
-input_cost_per_token = 1.37e-8
-output_cost_per_token = 0.00000128
+cache_read_input_token_cost = 1.8e-8
+input_cost_per_token = 1.8e-8
+output_cost_per_token = 6.4e-7
 [models."deepseek/deepseek-v4-flash-0731".pricing."orcarouter"]
 cache_read_input_token_cost = 2e-8
 input_cost_per_token = 1.4699999999999998e-7
@@ -108176,9 +108195,9 @@ cache_read_input_token_cost = 1.5e-7
 input_cost_per_token = 5e-7
 output_cost_per_token = 0.0000025
 [models."nvidia/nemotron-3-ultra-550b-a55b".pricing."openrouter"]
-cache_read_input_token_cost = 1.0000000000000001e-7
-input_cost_per_token = 5e-7
-output_cost_per_token = 0.0000022
+cache_read_input_token_cost = 1.2e-7
+input_cost_per_token = 6e-7
+output_cost_per_token = 0.0000024
 [models."nvidia/nemotron-3-ultra-550b-a55b".pricing."together_ai"]
 cache_read_input_token_cost = 2e-7
 input_cost_per_token = 6e-7
@@ -145404,10 +145423,10 @@ display_name = "DeepSeek: DeepSeek Flash Latest"
 model_family = "deepseek-flash"
 mode = "chat"
 max_input_tokens = 1048576
-max_output_tokens = 943718
-input_cost_per_token = 1e-10
-output_cost_per_token = 6e-7
-cache_read_input_token_cost = 5e-9
+max_output_tokens = 393216
+input_cost_per_token = 3.48e-8
+output_cost_per_token = 1.392e-7
+cache_read_input_token_cost = 6.96e-10
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145419,13 +145438,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 5e-9
-input_cost_per_token = 1e-10
-output_cost_per_token = 6e-7
+cache_read_input_token_cost = 6.96e-10
+input_cost_per_token = 3.48e-8
+output_cost_per_token = 1.392e-7
 [models."~deepseek/deepseek-flash-latest".pricing."openrouter"]
-cache_read_input_token_cost = 5e-9
-input_cost_per_token = 1e-10
-output_cost_per_token = 6e-7
+cache_read_input_token_cost = 6.96e-10
+input_cost_per_token = 3.48e-8
+output_cost_per_token = 1.392e-7
 
 [models."~deepseek/deepseek-pro-latest"]
 display_name = "DeepSeek: DeepSeek Pro Latest"
@@ -145461,9 +145480,9 @@ model_family = "deepseek"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 943718
-input_cost_per_token = 1.54e-8
+input_cost_per_token = 1.8e-8
 output_cost_per_token = 6.4e-7
-cache_read_input_token_cost = 1.54e-8
+cache_read_input_token_cost = 1.8e-8
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145475,13 +145494,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~deepseek/deepseek-v4-flash-latest".pricing."kilo"]
-cache_read_input_token_cost = 1.54e-8
-input_cost_per_token = 1.54e-8
+cache_read_input_token_cost = 1.8e-8
+input_cost_per_token = 1.8e-8
 output_cost_per_token = 6.4e-7
 [models."~deepseek/deepseek-v4-flash-latest".pricing."openrouter"]
-cache_read_input_token_cost = 1.37e-8
-input_cost_per_token = 1.37e-8
-output_cost_per_token = 0.00000128
+cache_read_input_token_cost = 1.8e-8
+input_cost_per_token = 1.8e-8
+output_cost_per_token = 6.4e-7
 
 [models."~google/gemini-flash-latest"]
 display_name = "Google: Gemini Flash Latest"
@@ -145553,9 +145572,9 @@ model_family = "kimi"
 mode = "chat"
 max_input_tokens = 1048576
 max_output_tokens = 943718
-input_cost_per_token = 4.4e-7
-output_cost_per_token = 0.00001489
-cache_read_input_token_cost = 3e-7
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000149
+cache_read_input_token_cost = 2.9e-7
 litellm_provider = "kilo"
 providers = ["kilo", "openrouter"]
 supports_function_calling = true
@@ -145567,13 +145586,13 @@ supported_output_modalities = ["text"]
 source = "modelsdev"
 
 [models."~moonshotai/kimi-latest".pricing."kilo"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 4.4e-7
-output_cost_per_token = 0.00001489
+cache_read_input_token_cost = 2.9e-7
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000149
 [models."~moonshotai/kimi-latest".pricing."openrouter"]
-cache_read_input_token_cost = 3e-7
-input_cost_per_token = 4.4e-7
-output_cost_per_token = 0.00001489
+cache_read_input_token_cost = 2.9e-7
+input_cost_per_token = 7.5e-7
+output_cost_per_token = 0.0000149
 
 [models."~openai/gpt-astra-latest"]
 display_name = "OpenAI: GPT Astra Latest ($$$$)"
