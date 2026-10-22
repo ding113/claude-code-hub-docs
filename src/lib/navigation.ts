@@ -117,6 +117,7 @@ export const navigation = [
     links: [
       { title: '环境变量', href: '/docs/reference/env-variables' },
       { title: 'API 兼容层', href: '/docs/reference/api-compatibility' },
+      { title: '响应模型检测', href: '/docs/model-detection' },
       { title: '供应商类型', href: '/docs/reference/provider-types' },
       { title: '供应商字段', href: '/docs/reference/provider-fields' },
       { title: '智能调度详解', href: '/docs/reference/intelligent-routing' },
